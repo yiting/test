@@ -1,0 +1,138 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>预览</title>
+    <link rel="stylesheet" href="/css/edit.css">
+</head>
+<body id="app" class="page-list">
+<header>
+    <div class="header-left">
+        <ul class="tab">
+            <li class="icon-logo"></li>
+            <li class="current">页面</li>
+        </ul>
+    </div>
+    <div class="qr">
+        <i>
+            <div class="qr-code"></div>
+            <input class="current-url" type="text" value="" readonly/>
+        </i>
+    </div>
+</header>
+<main>
+    <% let pagesData = JSON.parse(data);
+    let pageFirstData = pagesData[0];
+    let artBoardsData = pageFirstData.artBoards
+    %>
+    <!-- 左:导航-->
+    <aside class="navbar on">
+        <section id="artboards">
+            <!--pages下拉操作-->
+            <div class="pages-select">
+                <h3 class="page-title" data-pid="<%= pageFirstData.pageId %>">
+                    <%= pageFirstData.pageName %>
+                    <em>(<%= artBoardsData.length %>)</em>
+                </h3>
+                <ul class="pages-list">
+                    <% for(var i = 0;i < pagesData.length;i++){ %>
+                    <li class="pages-item" data-id="<%= pagesData[i].pageId %>">
+                        <label>
+                            <input type="radio" name="pages-item" data-id="<%= pagesData[i].pageId %>"
+                                    <% if (i == 0) { %>
+                                   checked
+                                    <% } %>
+                            />
+                            <span>
+                                <%= pagesData[i].pageName.trim() %>
+                                <em>(<%= pagesData[i].artBoards.length %>)</em>
+                            </span>
+                        </label>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+            <!--artBoards列表数据-->
+            <ul class="artboard-list">
+                <% for(var i = 0;i < artBoardsData.length;i++){ %>
+                <li class="artboard<%= i == 0 ? " active" : "" %>" data-id=<%= artBoardsData[i].artboardId %>>
+                    <!--<picture class="preview-img"><img
+                                src="https://xshow.tencent.com/s/guide/180517/111532_557573_72b269d86795358003fb2adf75effecc_s.jpg">
+                    </picture>-->
+                    <div>
+                        <h3>
+                            <%= artBoardsData[i].artboardName.trim() %>
+                        </h3>
+                        <small>ArtBoard <%= i + 1 %></small>
+                    </div>
+                </li>
+                <% } %>
+            </ul>
+        </section>
+        <div class="btn download-btn">下载项目</div>
+    </aside>
+    <!-- 中:预览-->
+    <section class="screen-viewer dragscroll">
+        <div  class="screen-viewer-inner">
+            <iframe frameborder="0" scrolling="auto" style="width:375px; height: 667px;" class="screen"
+                    src="" id="screen"></iframe>
+        </div>
+    </section>
+    <!-- 右:编辑区-->
+    <!--<aside class="inspector active">
+        <h2>标题标题</h2>
+        <section>
+            <h3>属性</h3>
+            <ul class="features-list">
+                <li title="左对齐"><img src="icons/height-left-normal.png"></li>
+                <li title="居中齐"><img src="icons/height-center-normal.png"></li>
+                <li title="右对齐"><img src="icons/height-right-normal.png"></li>
+            </ul>
+        </section>
+        <section>
+            <h3>对齐</h3>
+            <ul class="features-list">
+                <li class="opacity"></li>
+                <li><img src="icons/spacing-top-normal.png"></li>
+                <li class="opacity"></li>
+                <li><img src="icons/spacing-left-normal.png"></li>
+                <li><img src="icons/spacing-bottom-normal.png"></li>
+                <li><img src="icons/spacing-right-normal.png"></li>
+            </ul>
+        </section>
+        <section>
+            <h3>布局</h3>
+            <ul class="features-list">
+                <li><img src="icons/properties-left-normal.png"></li>
+                <li><img src="icons/properties-top-normal.png"></li>
+                <li><img src="icons/properties-right-normal.png"></li>
+            </ul>
+        </section>
+        <section>
+            <h3>平台</h3>
+            <ul class="features-list">
+                <li>
+                    <ios></ios>
+                </li>
+                <li><img src="icons/properties-top-normal.png"></li>
+                <li>
+                    <webview></webview>
+                </li>
+            </ul>
+        </section>
+    </aside>-->
+</main>
+<script src="js/jquery.min.js"></script>
+<!--二维码插件 -->
+<script src="js/jquery.qrcode.min.js"></script>
+<!--页面弹框插件 -->
+<script src="layer.js"></script>
+<script src="js/util.js"></script>
+<script>
+    //获取当前所有结构数据
+    let pagesData = JSON.parse('<%- data %>');
+</script>
+<script src="js/edit.js"></script>
+</body>
+</html>

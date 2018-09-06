@@ -1,0 +1,294 @@
+// this module is define the abstract node and tree structure
+
+
+// 依赖的模块
+const {serialize,walkin} = require('./designjson_utils');
+/**
+ * 基础节点类
+ */
+class QObject {
+    constructor() {
+        // id
+        this.id = null;
+        // 类型
+        this.type = 'QObject';
+        // 图层名
+        this.name = "";
+        // 长度
+        this.width = 0;
+        // 宽度
+        this.height = 0;
+        // x坐标
+        this.x = 0;
+        // y坐标
+        this.y = 0;
+        // 相对于坐标原点(左上角的位置)
+        this.abX = 0;
+        // 相对于坐标原点(左上角的位置)
+        this.abY = 0;
+        // 布局约束
+        this.constraints = [];
+    }
+}
+
+/**
+ * 基础层级或组类
+ */
+class QLayer extends QObject {
+    constructor() {
+        super();
+        this.type = 'QLayer';
+    }
+}
+/**
+ * 根元素
+ */
+class QBody extends QLayer {
+    constructor() {
+        super();
+        this.type = 'QBody';
+    }
+}
+
+/**
+ * 图片层类
+ */
+class QImage extends QLayer {
+    constructor() {
+        super();
+        this.type = 'QImage';
+        this.path = '';             // 图片路径
+    }
+}
+
+/**
+ * 文本层类
+ */
+class QText extends QObject {
+    constructor() {
+        super();
+        this.type = 'QText';
+        this.text = '';             // 文字内容
+    }
+}
+
+/**
+ * 图形层类
+ */
+class QShape extends QObject {
+    constructor() {
+        super();
+        this.type = 'QShape';
+        this.shapeType = 'Shape';      // 属于一个什么图形
+    }
+}
+/**
+ * 叠加遮罩样式层
+ */
+class QMask extends QObject {
+    constructor() {
+        super();
+        this.type = 'QMask';
+    }
+}
+
+/**
+ * 切图标识
+ */
+class QSlice extends QObject {
+    constructor() {
+        super();
+        this.type = 'QSlice';
+    }
+}
+
+/**
+ * 用于构建的虚拟树
+ * 树的节点储存信息为QObject类型
+ */
+/**
+ * 用于构建的虚拟树
+ * 树的节点储存信息为QObject类型
+ */
+class QDocument {
+    constructor() {
+        this._tree = null;
+        this._images = [];          // 用于输出图片的记录
+    }
+
+    /**
+     * 添加节点
+     * @param {Sketch ID} id 
+     * @param {QObject} qobject 
+     * @param {父节点} parent 
+     * @param {Boolean} isInsert 是否插入到父级第一个元素 
+     */
+    addNode(id, qobject, parent) {
+        let node = this._makeNode(id, qobject);
+
+        if (!parent) {
+            // 根节点
+            this._tree = node;
+        }
+        else {
+            node.parent = parent.id;
+            parent.children.push(node);
+            node.zIndex = node.childnum;
+            parent.childnum++;
+        }
+
+        return node;
+    }
+    /**
+     * 移动节点
+     * @param {Sketch ID} id 
+     * @param {父节点} parent 
+     */
+    moveNode(id,parent) {
+        const currentNode = this.getNode(id);
+        this.removeNode(id);
+        currentNode.x = currentNode.abX - parent.abX;
+        currentNode.y = currentNode.abY - parent.abY;
+        currentNode.parent = parent.id;
+        if(Array.isArray(parent.children)) parent.children.push(currentNode)
+        else parent.children = [currentNode];
+        parent.childnum = parent.children.length;
+        parent.isLeaf = false;
+    }
+    /**
+     * 删除子节点
+     * @param {Sketch ID} id 
+     * @param {父节点} parent 非必输
+     */
+    removeNode(id,parent) {
+        parent = parent || this.getParentNode(id);
+        const currentNode = parent.children.find(node => node.id === id);
+        if(currentNode.isMasked) {
+            const maskNode = parent.children.find(node => node.id === currentNode.maskNode);
+            if(maskNode) {
+                maskNode.maskedNodes = maskNode.maskedNodes.filter(node => node.id !== id)
+            }
+        }
+        // if(!parent.children || !parent.children.length) return; // 叶节点
+        parent.children = parent.children.filter(node => node.id !== id);
+        parent.childnum = parent.children.length;
+        if (parent.childnum === 0) parent.isLeaf = true;
+    }
+    /**
+     * 获取节点
+     * @param {Sketch ID} id 
+     */
+    getNode(id) {
+        const nodes = this.toList();
+        return nodes.find(node => node.id === id);
+    }
+    /**
+     * 获取父节点
+     * @param {Sketch ID} id 
+     */
+    getParentNode(id) {
+        const node = this.getNode(id);
+        const parent = this.getNode(node.parent);
+        return parent;
+    }
+    /**
+     * 储存图片
+     * @param {MSBitmapLayer} layer 
+     */
+    addImage(layer) {
+        this._images.push(layer);
+    }
+
+    /**
+     * 返回解析中遇到的图片层
+     */
+    getImage() {
+        const _images = [];
+        walkin(this._tree,node => {
+            if(node.type === QImage.name) _images.push(node);
+        })
+        // const rules = ['children','styles','parent','childnum','isLeaf','constraints'];break;
+        return _images.map(({
+            id, name, type, width, height, x, y, abX, abY, isMasked, maskedNodes, maskNode, path, _imageChildren, _origin
+        }) => {
+        // if(node.type != QShape.name) delete node._origin.layers;
+
+        if(_origin) _origin = {
+            ..._origin,
+            layers: 'shapeGroup' === _origin._class ? _origin.layers : null
+        }
+            return {
+                id, name, type, width, height, x, y, abX, abY, isMasked, maskedNodes, maskNode, path, _imageChildren,
+                _origin
+            }
+        });
+    }
+
+    /**
+     * 解析出json数据
+     */
+    toJson(type = 0) {
+        let res = {}, rules;
+        switch(type) {
+            case 0: rules = ['_origin','_imageChildren','isMasked','maskNode','maskedNodes','isLeaf'];break;
+        }
+        this._setValueToJson(res, this._tree, rules);
+
+        return res;
+    }
+    toList() {
+        // if (this._nodes.length > 0) return this._nodes
+        // else this._nodes = serialize(this._tree);
+        return serialize(this._tree);
+    }
+    /**
+     * 设置json值
+     * @param {Object} res json对象
+     * @param {TreeNode} node 节点 
+     */
+    _setValueToJson(res, node, rules) {
+        for (let key in node) {
+            // 除去不需要的
+            if(~rules.indexOf(key)) continue;
+            res[key] = node[key];
+        }
+
+        // 继续递归
+        if (node.childnum != 0) {
+            res.children = [];
+            
+            for (let i = 0; i < node.childnum; i++) {
+                res.children[i] = {};
+                this._setValueToJson(res.children[i], node.children[i],rules);
+            }
+        }
+    }
+
+    /**
+     * 生成子节点
+     */
+    _makeNode(id,qobject) {
+        return {
+            ...qobject,
+            id,
+            parent: null,
+            children: [],
+            childnum: 0,          // 所拥有子节点数
+            zIndex: 0,            // 节点的层级，越小越上面
+            isLeaf: false        // 是否为子叶
+        };
+    }
+}
+
+// 对外接口
+module.exports = {
+    QDocument,
+    QObject,
+    QLayer,
+    QBody,
+    QImage,
+    QText,
+    QShape,
+    QMask,
+    QSlice
+}
