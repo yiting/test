@@ -12,7 +12,7 @@ const uuidv1 = require('uuid/v1');
 //工具类
 let Utils = require('../server_modules/util/utils');
 //上传文件及新的文件名称变量
-let originFileName, potIndex, newFileName;
+let originFileName, potIndex;
 //上传文件配置
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -20,9 +20,8 @@ let storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         originFileName = Utils.getDateStr() + '_' + file.originalname
-        potIndex = originFileName.lastIndexOf('.')
-        newFileName = originFileName.substring(0, potIndex) + '.zip'
-        cb(null, newFileName);
+        //直接保留原始文件格式(.sketch)
+        cb(null, originFileName);
     }
 })
 //上传文件对象
@@ -38,7 +37,7 @@ let uuidStr, responseJson
 router.post('/upload', upload.any(), function (req, res, next) {
     //请求ip
     let reqIP = Utils.getClientIp(req).match(/\d+.\d+.\d+.\d+/)
-    let newDesFile = './data/upload_file/' + newFileName
+    let newDesFile = './data/upload_file/' + originFileName
     //生成uuid
     uuidStr = uuidv1()
     responseJson = {
@@ -49,7 +48,7 @@ router.post('/upload', upload.any(), function (req, res, next) {
     //将生成的uuid写入到文本中，作为生成url的标示
     fs.appendFile('./data/upload_data/上传标识数据.txt', JSON.stringify({
             ip: reqIP,
-            name: newFileName,
+            name: originFileName,
             uuid: uuidStr,
             time: new Date().toLocaleString()
         }) + '\r\n', function (err) {
