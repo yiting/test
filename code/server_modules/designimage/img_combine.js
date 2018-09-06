@@ -14,6 +14,9 @@ var fs = require('fs');
 //mask方法1：输入节点和mask图层，输出该mask后的bitmap节点
 //slice方法1：输入含slice的节点，输出slice后的bitmap节点
 
+//"convert circle_left.gif circle_right.gif -compose Darken -composite    circle_intersection.gif"
+//gm翻译为 outputImage.out("convert","circle_left.gif","circle_right.gif","-compose","Darken","-composite","circle_intersection.gif");
+
 module.exports = {
     init:function(param){
         inputDir = param.inputDir;
@@ -31,10 +34,68 @@ module.exports = {
             var imageChildren = node._imageChildren || [node];
             var isGroup = (node._imageChildren && node._imageChildren.length > 1) == true;
             
+            // var exec = require('child_process').exec;
+            // // var command = "convert "+outputDir+"1.png "+outputDir+"2.png -compose DstOut -composite "+outputDir+"3.png";
+            // var command = "composite -compose Dst_Over -tile pattern:checkerboard \ "+outputDir+"31.png "+ outputDir+"32.png ";
+            // // // gm.out("convert",outputDir+"t_11.png",outputDir+"t_2.png","-compose","Src","-composite",outputDir+"t_3.png");
+            // exec(command,function(err){
+            //     console.log(command);
+            // })
+            // return ;
+            // var outputImage =  gm(212, 158,"#00ffffff");
+            // outputImage.in(outputDir+"1.png");
+            // outputImage.in(outputDir+"2.png");
+            // outputImage.compose("In").mosaic()
+            // console.log(outputPath);
+            // gm()
+            // .in(outputDir+"1.png")
+            // .in("-compose", "In")
+            // .in(outputDir+"2.png")
+            // .command("composite")
+            // .write(outputDir+"3.png",function (e) {
+            //     if(e) {
+            //         console.log(e.message)
+            //     }
+                
+            // });
+            // return ;
+
+            // gm(500,500,'none')
+            // // .command("composite")
+            // .in('-page',"+0+0")
+            // .in(outputDir+"6.png")
+            // .mosaic().write(outputDir+"61.png",function (e) {
+            //     gm(500,500,'none')
+            //     // .command("composite")
+            //     .in('-page',"+50+0")
+            //     .in(outputDir+"7.png")
+            //     .mosaic().write(outputDir+"71.png",function (e) {
+            //         gm()
+            //         .in(outputDir+"61.png")
+            //         .in("-compose", "Xor")
+            //         .in(outputDir+"71.png")
+            //         .command("composite")
+            //         .write(outputDir+"31.png",function (e) {
+            //             if(e) {
+            //                 console.log(e.message)
+            //             }
+            //             gm(outputDir+"31.png").trim().write(outputDir+"31.png",function (e) {
+            //                 if(e) {
+            //                     console.log(e.message)
+            //                 }
+                            
+            //             });
+            //         });
+            //     });
+            // });
+
+            // return ;
+
+
             if(typeof rootNode == "undefined"){
                 rootNode = node;
             }
-            if(node.id.indexOf("_A82BE333-DBD9-4E61-A6D3-D638A05DC456_D482D86D-61EC-4BE4-AEBF-89390BD99E15_A1E3DBEF-79E7-4840-8752-E71D0A49D0")>-1){//D6799224  A82BE333
+            if(outputPath.indexOf("CF78B1F5-63A5")>-1){//D6799224  A82BE333
                 console.log(111);
             }
             //如果第一层子层无slice，或者param中没标明这次操作是在合并含有裁剪元素的节点，则做常规的图片合并
@@ -62,7 +123,7 @@ module.exports = {
                                     });
                                 }
                             }else{
-                                childNode = await this.combineOriginNode(origin);
+                                childNode = await this.combineShapeGroupNode(origin);
                                 path = childNode.image._ref;
                             }
                             
@@ -157,10 +218,11 @@ module.exports = {
         }
         
     },
-    combineOriginNode:function(node){
+    combineShapeGroupNode:function(node){
         var  main = async () => {
             var newNode = {};
-            var outputImage =  gm(node.frame.width, node.frame.height,"#00ffffff");
+            var tmpNode = {};
+            var outputImage =  gm();
             var outputPath = outputDir+that._getTmpFileName(node.do_objectID)+".png";
             var layers = node.layers || [node];
             var isGroup = node._class == "group" || (node._class == "shapeGroup" && node.layers.length>1) || node._class == "artboard";
@@ -169,11 +231,10 @@ module.exports = {
                 rootNode = node;
             }
             
-            //如果第一层子层无slice，或者param中没标明这次操作是在合并含有裁剪元素的节点，则做常规的图片合并
+            
                // console.log("开始合并："+outputPath);
                 for(var i =0,ilen = layers.length;i<ilen;i++){
                     var item = layers[i]; 
-                    // if(item.clippingMaskMode == 0 && item.shouldBreakMaskChain == false){//遇到遮罩层，则从这层网上找，将所有被遮罩的图层都合成一张图
                     if(item._class != "group" && item._class != "slice"){
                         var path ;
                         var childNode ;
@@ -182,10 +243,9 @@ module.exports = {
                                 childNode = item.layers[0];
                                 path = await draw.image(item,childNode);
                             }else{
-                                childNode = await this.combineOriginNode(item);
+                                childNode = await this.combineShapeGroupNode(item);
                                 path = childNode.image._ref;
-                            }
-                            
+                            }                           
                         }else{
                             childNode = item;
                             path = await draw.image(node,childNode);
@@ -197,16 +257,25 @@ module.exports = {
                         }else{
                             continue;
                         }
+                        item = await this._makePreComposeImage(item);
+                        
                     }
+                    
                     if(item._class != "group" && item._class != "slice"){    //else if(item._class == "bitmap" || item._class == "shapeGroup" ){    
-                        outputImage.in('-page', this._getLocationText(item.frame.x,item.frame.y,isGroup)).in(outputDir+that._getTmpFileName(item.image._ref));
+                        // outputImage.in('-page', this._getLocationText(item.frame.x,item.frame.y,isGroup)).in(outputDir+that._getTmpFileName(item.image._ref));
                         //console.log("生成图片："+item.image._ref);
+                        if(i == 0){
+                            tmpNode = item;
+                        }else if(i > 0 ){
+                            tmpNode = await that._combineTwoShape(tmpNode,item,node.do_objectID+".png");
+                        }
                     }
                 }        
                 
                 return new Promise(function (resolve, reject) {
                     var newNode = {};
-                    outputImage.mosaic().write(outputPath,function (e) {
+                    
+                    gm(outputPath).trim().write(outputPath,function (e) {
                         if(e) {
                             console.log(e.message)
                         }
@@ -226,6 +295,7 @@ module.exports = {
 
                         resolve(newNode);
                     });
+
                 });
             
         }
@@ -235,6 +305,54 @@ module.exports = {
             console.log(e);
         }
         
+    },
+    _makePreComposeImage:function(node){
+        var that = this;
+        var  main = async () => {
+            
+            return new Promise(function (resolve, reject) { 
+                gm(1000,1000,'none')
+                .in('-page',that._getLocationText(node.frame.x+500,node.frame.y+500,true))
+                .in(outputDir+that._getTmpFileName(node.image._ref))
+                .mosaic().write(outputDir+that._getTmpFileName(node.image._ref),function (e){
+                    if(e) {
+                        console.log(e.message)
+                    }
+                    resolve(node);
+                });
+            });
+        }
+        return main(); 
+    },
+    _combineTwoShape:function(node1,node2,outputRelativePath){
+        var that = this;
+        var  main = async () => {
+            var outputImage;
+            return new Promise(function (resolve, reject) { 
+                outputImage = gm().in(outputDir+that._getTmpFileName(node1.image._ref))
+                if(node2.booleanOperation == 0){//union √ Over
+                    outputImage.in("-compose", "Over");
+                }else if(node2.booleanOperation == 1){//substract Out
+                    outputImage.in("-compose", "Out");
+                }else if(node2.booleanOperation == 2){//intersect In
+                    outputImage.in("-compose", "In");
+                }else if(node2.booleanOperation == 3){//none different √
+                    outputImage.in("-compose", "Xor");
+                }
+                outputImage.in(outputDir+that._getTmpFileName(node2.image._ref)).command("composite").write(outputDir+that._getTmpFileName(outputRelativePath),function (e) {
+                    if(e) {
+                        console.log(e.message)
+                    }
+                    var newNode = {};
+                    newNode._class = "tmpCombineImg";
+                    newNode.image = {
+                        "_ref": outputRelativePath
+                    }
+                    resolve(newNode);
+                });
+            });
+        }
+        return main(); 
     },
     maskNode:function(maskGrouupNode,maskIndex){
         var  main = async () => {

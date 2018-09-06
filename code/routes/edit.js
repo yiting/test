@@ -19,7 +19,7 @@ let DSL = require('../server_modules/dsl/dsl');
 //3.引入图片模块
 let ImageCombine = require("../server_modules/designimage/img_combine");
 //声明页面数据
-let pageArtboardsData = [], projectUUID, projectName, taskPromise;
+let pageArtboardsData = [], projectUUID, projectName;
 /*业务逻辑*/
 //渲染页面路由:初始化编辑查看页面,填充页面数据
 router.get('/', function (req, res, next) {
@@ -43,13 +43,15 @@ router.post('/getPageById', function (req, res, next) {
     let pageId = req.body.pageId;
     let artBoardId = req.body.artboardId;
     //console.log("传到后台的pid为:" + artBoardId)
+    //console.log("ip为:" + req.headers.host)
     let resultURL = {
+        url: "http://" + req.headers.host + "/result/" + projectUUID + "/" + artBoardId + ".html"
         //本机ip
-        url: "http://localhost:8080/result/" + projectUUID + "/" + artBoardId + ".html"
+        //url: "http://localhost:8080/result/" + projectUUID + "/" + artBoardId + ".html"
         //在线url
         //url: "http://111.231.239.66:8080/result/" + projectUUID + "/" + artBoardId + ".html"
     }
-    //2018-08-25:将pages下面所有json读取出来给到yone。根据artBoardID，[json数组]获取当前artBoard对应的degisnDom，然后调用俊标模块，获取对应的html和css
+    //将pages下面所有json读取出来给到yone。根据artBoardID，[json数组]获取当前artBoard对应的degisnDom，然后调用俊标模块，获取对应的html和css;调用大雄模块，获取处理后的图片
     let currentPagesJsonsArr = [];
     let pagesJsonDirectory = './data/unzip_file/' + projectName + "/pages";
     if (fs.existsSync(pagesJsonDirectory)) {
@@ -68,67 +70,12 @@ router.post('/getPageById', function (req, res, next) {
                 let designJson = currentDesignDom.toJson();
                 //获取要合并的图片列表
                 let imageList = currentDesignDom.getImage();
-                // //2.给design dom生成html方法
-                // jsonToHtmlCss(artBoardId, designJson, function () {
-                //     res.send(JSON.stringify(resultURL));
-                // });
                 //1.创建项目生成文件夹目录
                 let fileFolder = './public/result/' + projectUUID;
-                //1.创建目录
-                Utils.isFileExist(fileFolder, function (existFlag) {
-                    //文件不存在的话
-                    console.log('检测文件是否存在标识:' + existFlag)
-                    if (!existFlag) {
-                        fs.mkdir(fileFolder, function (err) {
-                            if (err) {
-                                console.log('创建目录失败')
-                            } else {
-                                console.log('创建目录成功')
-                            }
-                        })
-                    } else {
-                        console.log('目录已存在')
-                    }
-
-                    //2.获取image图片文件
-                    ImageCombine.init({
-                        "inputDir": "./data/unzip_file/" + projectName + "/",//源图片------'./unzip_file/' + projectName + "/images";
-                        "outputDir": "./public/result/" + projectUUID + "/",//图片导出路径---let exportPath = './public/result/' + projectUUID
-                        "pageJson": imageList
-                    });
-
-                    //异步任务处理图片导出
-                    taskPromise = new Promise((resolve, reject) => {
-                        let combineImages = async (callback) => {
-                            for (let i = 0, ilen = imageList.length; i < ilen; i++) {
-                                let newNode = await ImageCombine.combineNode(imageList[i]);
-                                console.log("生成目标图片" + i + "：" + newNode.path);
-                            }
-                            ImageCombine.deleteTmpFiles();
-                            callback();
-                        }
-                        combineImages(function () {
-                            resolve('success');
-                        });
-
-                    });
-                    //3.生成图片后，再生成html和css
-                    try {
-                        taskPromise.then((result) => {
-                            console.log('接受resolved的结果');
-                            //2.给design dom生成html方法
-                            jsonToHtmlCss(artBoardId, designJson, function () {
-                                res.send(JSON.stringify(resultURL));
-                            });
-
-                            console.log(result);
-                        }, (err) => {
-                            console.log('捕获错误的结果');
-                            console.log(err);
-                        });
-                    } catch (e) {
-                        console.log(e)
-                    }
+                //进行任务:导出html、css任务;合并图片任务
+                Promise.all([jsonToHtmlCss(artBoardId, designJson), combineImages(imageList)]).then((info) => {
+                    console.log("导出所有模块成功")
+                    res.send(JSON.stringify(resultURL));
                 })
             } catch (e) {
                 console.log("报错，不解析：" + e)
@@ -141,10 +88,11 @@ router.post('/getPageById', function (req, res, next) {
 
 /**
  * 解析sketch pages数据基本信息---来源:meta.json
+ * 获取页面基本结构模块
  * @param projectName
  * @param callback
  */
-let getPagesAndArtBoards = function (projectName, callback) {
+let getPagesAndArtBoards = (projectName, callback) => {
     fs.readFile('./data/unzip_file/' + projectName + '/meta.json', 'utf8', function (err, data) {
         if (err) console.log(err);
         //console.log(data);
@@ -155,7 +103,6 @@ let getPagesAndArtBoards = function (projectName, callback) {
             if (pagesData.hasOwnProperty(pageProp)) {
                 let objOneKey = pageProp;
                 let objOneValue = pagesData[pageProp];
-
                 let pageOne = {
                     pageId: objOneKey,
                     pageName: objOneValue.name,
@@ -184,64 +131,65 @@ let getPagesAndArtBoards = function (projectName, callback) {
 
 /**
  * 根据给到当前artBoardId对应designDom，调用DSL模块方法转为html和css
+ * 导出html+css模块
  * @param artBoardId
  * @param currentDesignDom
- * @param callback
- * @returns {boolean}
+ * @returns {*}
  */
-let jsonToHtmlCss = function (artBoardId, currentDesignDom, callback) {
-    //这里的testdata根据yone解析后的数据传入即可
+let jsonToHtmlCss = (artBoardId, currentDesignDom) => {
+    let htmlCssPromise;
     let h5Render = DSL.mobileHtml(currentDesignDom),
         html = h5Render.toHtml(),
         css = 'html{font-size:13.33333vw;}body{margin:0;}img{font-size:0}' + h5Render.toCss()
     //动态传入css文件名称:按照遍历序号来
     let cssHtmlfileName = artBoardId
     html = Template.html5(cssHtmlfileName) + html + Template.end()
-    //console.log('css日志:' + css)
     //console.log('html日志:' + html)
-    //这里的文件要以项目组织起来
     //生成文件导出对应路径
     let exportPath = './public/result/' + projectUUID
     //console.log('全路径:' + exportPath)
-    // 导出html、css文件
+    // 导出html文件
     try {
-        /*if (html) {
-         Export.exportHtml(exportPath, cssHtmlfileName, html, function () {
-         console.log('导出html成功')
-         if (css) {
-         Export.exportCss(exportPath, cssHtmlfileName, css, function () {
-         console.log('导出css成功')
-         exportFlag = true;
-         callback()
-         })
-         }
-         })
-         }*/
-
-        taskPromise.then((result) => {
+        htmlCssPromise = new Promise(function (resolve, reject) {
             if (html) {
                 Export.exportHtml(exportPath, cssHtmlfileName, html, function () {
                     console.log('导出html成功')
+                    resolve("success")
                 })
             }
-        }, (err) => {
-            console.log("导出html错误:" + err);
-        }).then((result) => {
+        });
+        htmlCssPromise.then((data) => {
             if (css) {
                 Export.exportCss(exportPath, cssHtmlfileName, css, function () {
                     console.log('导出css成功')
-                    callback()
                 })
             }
-        }, (err) => {
-            console.log("导出css错误:" + err);
-        });
+        })
     }
     catch (e) {
         console.log('导出文件出错！')
     }
+    return htmlCssPromise;
 }
 
+
+/**
+ * 导出图片模块
+ * @param callback
+ * @returns {Promise.<void>}
+ */
+let combineImages = async (imageList) => {
+    ImageCombine.init({
+        "inputDir": "./data/unzip_file/" + projectName + "/",//源图片------'./unzip_file/' + projectName + "/images";
+        "outputDir": "./public/result/" + projectUUID + "/",//图片导出路径---let exportPath = './public/result/' + projectUUID
+        "pageJson": imageList
+    });
+    for (let i = 0, ilen = imageList.length; i < ilen; i++) {
+        let newNode = await ImageCombine.combineNode(imageList[i]);
+        console.log("生成目标图片" + i + "：" + newNode.path);
+    }
+    ImageCombine.deleteTmpFiles();
+}
 
 /**
  * 文件下载模块

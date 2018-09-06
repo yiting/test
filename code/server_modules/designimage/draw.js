@@ -210,7 +210,7 @@ const draw = {
 					})
 					break;
 				default:
-					reject(null)
+					resolve(null)
 					//抛出错误-保留
 					break;
 			}
