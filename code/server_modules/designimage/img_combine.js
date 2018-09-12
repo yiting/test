@@ -9,6 +9,13 @@ var tmpFiles = [];
 var rootNode ;
 var that;
 var fs = require('fs');
+var logData={
+    "costTime":0,
+    "num":{
+        "_makePreComposeImage":0,
+        "_combineTwoShape":0
+    }
+}
 
 //合图方法1：输入节点，先合并最里面的组，然后往外合并，直至合完，返回合成的bitmap节点
 //mask方法1：输入节点和mask图层，输出该mask后的bitmap节点
@@ -24,8 +31,12 @@ module.exports = {
         pageJson = param.pageJson;
         draw.init(param);
         that = this;
+        logData.num._makePreComposeImage = 0;
+        logData.num._combineTwoShape = 0;
+        logData.costTime = new Date().getTime();
     },
     //param.isSlice:是否合并含有裁剪元素的节点，为true的时候无视slice节点，合并剩余的节点
+    //合成一个节点图片
     combineNode: function(node,param){
         var  main = async () => {
             var newNode = {};
@@ -95,7 +106,10 @@ module.exports = {
             if(typeof rootNode == "undefined"){
                 rootNode = node;
             }
-            if(outputPath.indexOf("CF78B1F5-63A5")>-1){//D6799224  A82BE333
+            // if(node.name.indexOf("4 copy")>-1){//D6799224  A82BE333
+            //     console.log(111);
+            // }
+            if(node.id.indexOf("51272AFF-3026-4F32-B4A1")>-1){
                 console.log(111);
             }
             //如果第一层子层无slice，或者param中没标明这次操作是在合并含有裁剪元素的节点，则做常规的图片合并
@@ -106,6 +120,9 @@ module.exports = {
                 // console.log("开始合并："+outputPath);
                 for(var i =0,ilen = imageChildren.length;i<ilen;i++){
                     var item = imageChildren[i]; 
+                    if(item.id.indexOf("21B1C8B6-90E9")>-1){
+                        console.log(222);
+                    }
                     var origin = item._origin;
                     // if(item.clippingMaskMode == 0 && item.shouldBreakMaskChain == false){//遇到遮罩层，则从这层网上找，将所有被遮罩的图层都合成一张图
                     // 针对shapeGroup做处理
@@ -119,8 +136,12 @@ module.exports = {
                                 if(item.type == "QMask"){
                                     item.maskPath = path;
                                 }else if(item.path){
-                                    fs.renameSync(outputDir+that._getTmpFileName(path),outputDir+that._getTmpFileName(item.path),function(err){
-                                    });
+                                    try{
+                                        fs.renameSync(outputDir+that._getTmpFileName(path),outputDir+that._getTmpFileName(item.path),function(err){
+                                        });
+                                    }catch(e){
+                                        console.error(e);
+                                    }
                                 }
                             }else{
                                 childNode = await this.combineShapeGroupNode(origin);
@@ -157,7 +178,7 @@ module.exports = {
                         var newNode = {};
                         outputImage.mosaic().write(outputPath,function (e) {
                             if(e) {
-                                console.log(e.message)
+                                console.error(e.message)
                             }
                             newNode = {
                                 _class : "combineImg",
@@ -218,6 +239,7 @@ module.exports = {
         }
         
     },
+    //合成一个shapeGroup节点图片
     combineShapeGroupNode:function(node){
         var  main = async () => {
             var newNode = {};
@@ -257,8 +279,9 @@ module.exports = {
                         }else{
                             continue;
                         }
-                        item = await this._makePreComposeImage(item);
-                        
+                        if(ilen>1){
+                            item = await this._makePreComposeImage(item);
+                        }
                     }
                     
                     if(item._class != "group" && item._class != "slice"){    //else if(item._class == "bitmap" || item._class == "shapeGroup" ){    
@@ -274,11 +297,7 @@ module.exports = {
                 
                 return new Promise(function (resolve, reject) {
                     var newNode = {};
-                    
-                    gm(outputPath).trim().write(outputPath,function (e) {
-                        if(e) {
-                            console.log(e.message)
-                        }
+                    if(layers.length == 1){
                         newNode._class = "combineImg";
                         newNode.frame = {
                             x : node.frame.x,
@@ -287,15 +306,31 @@ module.exports = {
                             height : node.frame.height
                         }
                         newNode.image = {
-                            "_ref": outputPath
+                            "_ref": node.do_objectID+".png"
                         }
-                        // console.log("合并图片 x:"+newNode.frame.x+ " y:"+newNode.frame.y+"  ref:"+newNode.image._ref);
-
-                        // that._handleTmpFiles(node.do_objectID,outputPath,{"push":true});
-
                         resolve(newNode);
-                    });
-
+                    }else{
+                        gm(outputPath).trim().write(outputPath,function (e) {
+                            if(e) {
+                                console.log(e.message)
+                            }
+                            newNode._class = "combineImg";
+                            newNode.frame = {
+                                x : node.frame.x,
+                                y : node.frame.y,
+                                width : node.frame.width,
+                                height : node.frame.height
+                            }
+                            newNode.image = {
+                                "_ref": node.do_objectID+".png"
+                            }
+                            // console.log("合并图片 x:"+newNode.frame.x+ " y:"+newNode.frame.y+"  ref:"+newNode.image._ref);
+    
+                            // that._handleTmpFiles(node.do_objectID,outputPath,{"push":true});
+    
+                            resolve(newNode);
+                        });
+                    }
                 });
             
         }
@@ -306,13 +341,14 @@ module.exports = {
         }
         
     },
+    //将shapeGroup中的每个图层按数据位移放在一张大的透明图中，因为gm不能在做集合运算时加上-page等属性，所以只能先如此合一张图出来，再单纯做集合运算。
     _makePreComposeImage:function(node){
         var that = this;
+        logData.num._makePreComposeImage++;
         var  main = async () => {
-            
             return new Promise(function (resolve, reject) { 
-                gm(1000,1000,'none')
-                .in('-page',that._getLocationText(node.frame.x+500,node.frame.y+500,true))
+                gm(400,400,'none')
+                .in('-page',that._getLocationText(node.frame.x+200,node.frame.y+200,true))
                 .in(outputDir+that._getTmpFileName(node.image._ref))
                 .mosaic().write(outputDir+that._getTmpFileName(node.image._ref),function (e){
                     if(e) {
@@ -324,8 +360,10 @@ module.exports = {
         }
         return main(); 
     },
+    //合并shapeGroup中的两个图层。例如shapeGroup中有3个图层，则需要1和2合，生成t1，t1再和3合，如此类推。gm没找到多个图层一起进行集合运算的办法，就是这么蛋疼。
     _combineTwoShape:function(node1,node2,outputRelativePath){
         var that = this;
+        logData.num._combineTwoShape++;
         var  main = async () => {
             var outputImage;
             return new Promise(function (resolve, reject) { 
@@ -354,6 +392,7 @@ module.exports = {
         }
         return main(); 
     },
+    //合成一个有遮罩的节点的图片
     maskNode:function(maskGrouupNode,maskIndex){
         var  main = async () => {
             var imageChildren = maskGrouupNode._imageChildren;
@@ -432,6 +471,7 @@ module.exports = {
         }
         return main();
     },
+    //合成切片图片，目前还没用上
     sliceNode : function(sliceNode,groupNode){
         var  main = async () => {
             var layers = groupNode.layers;
@@ -516,6 +556,7 @@ module.exports = {
         }       
         return resultArr;
     },
+    //获取元素在图片中的位置，如果元素是在一个组里面，则需要获取其位置，否则如果元素是单张图输出，则无需位置信息。
     _getLocationText:function(x,y,isGroup){
         var text =  "";
         if(typeof isGroup != "undefined" && isGroup == false){
@@ -532,13 +573,21 @@ module.exports = {
         text += y;
         return text;
     },
+    //在删除临时文件之前，将目标图片前面的临时图片标识去掉
     _renameTargetFiles:function(){
-        fs.renameSync(outputDir+that._getTmpFileName(rootNode.id)+".png",outputDir+rootNode.id+".png"); 
+        try{
+            fs.renameSync(outputDir+that._getTmpFileName(rootNode.id)+".png",outputDir+rootNode.id+".png"); 
+        }catch(e){
+            console.error(e);
+            
+        }
         rootNode = undefined ;
     },
+    //给临时文件加标识
     _getTmpFileName:function(path){
         return "t_"+path;
     },
+    //删除临时文件
     deleteTmpFiles:function(){
         console.log("开始删除临时图片");
         var files = [];
@@ -553,12 +602,18 @@ module.exports = {
         }
         
     },
-    //如果node的id和根目录的id一样，则删除多余的临时图片
+    //处理临时文件
+    //如果node的id和根目录的id一样，则重命名目标图片名，以前的删除
     //param : push :直接进行
     _handleTmpFiles:function(do_objectID,outputPath,param){
         if(rootNode && do_objectID == rootNode.id){
             that._renameTargetFiles();
         }
+    },
+    getLogData:function(){
+        logData.costTime = (new Date().getTime() - logData.costTime)/1000;
+        console.log(logData);
+        return logData;
     }
 } 
 

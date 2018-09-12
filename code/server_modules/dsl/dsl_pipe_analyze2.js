@@ -4,16 +4,9 @@ import Store from "./dsl_store.js";
  * @param  {Object} option 主流程传进来的参数
  * @return {Optimize}        返回原对象
  */
-let layoutType = [
-    Store.type.BLOCK,
-    Store.type.COLUMN,
-    Store.type.INLINE,
-    Store.type.ROW
-]
-
 function analyze(obj, children) {
 
-    let isLayout = layoutType.includes(obj.type);
+    let isLayout = Store.layout[obj.type];
     let o = {}
     o.id = obj.id
     o.name = obj.name

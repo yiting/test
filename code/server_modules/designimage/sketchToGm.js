@@ -36,7 +36,7 @@ const sketchToGm = {
 			var color = data.style.fills[data.style.fills.length-1].color;
 			return this.getColor(color)
 		} else {
-			return "rgba(255,255,255,0)"
+			return "rgba(255,255,255,255)"
 		}
 	},
 	/**

@@ -210,7 +210,7 @@ const draw = {
 					})
 					break;
 				default:
-					resolve(null)
+					reject("未知的图形")
 					//抛出错误-保留
 					break;
 			}

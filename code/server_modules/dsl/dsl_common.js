@@ -31,41 +31,6 @@ function gatherByLogic(domArr, logic) {
 
 
 /**
- * 创建新组
- */
-function groupByArray(newArr, type) {
-
-    var children = [];
-    if (newArr.length == 1) {
-        return newArr[0];
-    }
-    newArr.forEach((crr, i) => {
-        if (crr.length == 1) {
-            children.push(crr[0])
-        } else {
-            let pos = calRange(crr),
-                child = createDom({
-                    type: type,
-                    x: pos.x,
-                    y: pos.y,
-                    width: pos.width,
-                    height: pos.height,
-                    abX: pos.abX,
-                    abY: pos.abY,
-                    children: crr
-                });
-            crr.forEach((d, j) => {
-                d.x -= pos.x;
-                d.y -= pos.y;
-            });
-            children.push(child);
-        }
-    });
-    return children;
-}
-
-
-/**
  * 创建空Dom
  */
 let createDomIndex = 0;
@@ -79,11 +44,28 @@ function createDom(obj) {
         y: 0,
         width: 0,
         height: 0,
+        contrains: {},
         children: []
     }, obj);
     return o;
 }
 
+// 按面积从大到小排序
+function sort(arr, cal) {
+    let _sort = [],
+        index
+    arr.forEach(function(dom) {
+        index = cal(dom);
+        if (!_sort[index]) {
+            _sort[index] = [];
+        }
+        _sort[index].push(dom);
+    });
+    let domArr = Array.prototype.concat.apply([], _sort.filter((s) => {
+        return s !== undefined;
+    }));
+    return domArr;
+}
 
 let designDomAttrs = /^(id|type|name|abX|abY|x|y|width|height|children)$/;
 
@@ -134,7 +116,7 @@ function calRange(doms) {
 
 
 module.exports = {
-    groupByArray,
+    sort,
     calRange,
     createDom,
     assign,

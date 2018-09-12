@@ -45,7 +45,7 @@ router.post('/getPageById', function (req, res, next) {
     //console.log("传到后台的pid为:" + artBoardId)
     //console.log("ip为:" + req.headers.host)
     let resultURL = {
-        url: "http://" + req.headers.host + "/result/" + projectUUID + "/" + artBoardId + ".html"
+        url: "http://" + req.headers.host + "/result/" + projectUUID + "/" + artBoardId + ".html?_wv=131072"
         //本机ip
         //url: "http://localhost:8080/result/" + projectUUID + "/" + artBoardId + ".html"
         //在线url
@@ -65,18 +65,24 @@ router.post('/getPageById', function (req, res, next) {
             try {
                 //1.根据当前选中的artBoardId获取当前的designDom
                 let currentDesignDom = Parser(artBoardId, currentPagesJsonsArr);
-                Optimize(currentDesignDom);
-                //获取当前的designdom对应的json
-                let designJson = currentDesignDom.toJson();
-                //获取要合并的图片列表
-                let imageList = currentDesignDom.getImage();
-                //1.创建项目生成文件夹目录
-                let fileFolder = './public/result/' + projectUUID;
-                //进行任务:导出html、css任务;合并图片任务
-                Promise.all([jsonToHtmlCss(artBoardId, designJson), combineImages(imageList)]).then((info) => {
-                    console.log("导出所有模块成功")
-                    res.send(JSON.stringify(resultURL));
-                })
+                console.log("当前内容:" + currentDesignDom)
+                if (currentDesignDom) {
+                    Optimize(currentDesignDom);
+                    //获取当前的designdom对应的json
+                    let designJson = currentDesignDom.toJson();
+                    //获取要合并的图片列表
+                    let imageList = currentDesignDom.getImage();
+                    //1.创建项目生成文件夹目录
+                    let fileFolder = './public/result/' + projectUUID;
+                    //进行任务:导出html、css任务;合并图片任务
+                    Promise.all([jsonToHtmlCss(artBoardId, designJson), combineImages(imageList)]).then((info) => {
+                        console.log("导出所有模块成功")
+                        res.send(JSON.stringify(resultURL));
+                    })
+                } else {
+                    res.send("Symbol，不解析");
+                }
+
             } catch (e) {
                 console.log("报错，不解析：" + e)
                 res.send(e.toString());
@@ -140,7 +146,8 @@ let jsonToHtmlCss = (artBoardId, currentDesignDom) => {
     let htmlCssPromise;
     let h5Render = DSL.mobileHtml(currentDesignDom),
         html = h5Render.toHtml(),
-        css = 'html{font-size:13.33333vw;}body{margin:0;}img{font-size:0}' + h5Render.toCss()
+        //css = 'html{font-size:13.33333vw;}body{margin:0;}img{font-size:0}' + h5Render.toCss()
+        css = h5Render.toCss()
     //动态传入css文件名称:按照遍历序号来
     let cssHtmlfileName = artBoardId
     html = Template.html5(cssHtmlfileName) + html + Template.end()

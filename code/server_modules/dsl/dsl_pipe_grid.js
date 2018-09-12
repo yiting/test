@@ -1,22 +1,62 @@
-let Common = require("./dsl_common.js");
-let Store = require("./dsl_store.js");
+const Common = require("./dsl_common.js");
+const Store = require("./dsl_store.js");
+
+
+
+
+/**
+ * 创建新组
+ */
+function groupByArray(newArr, type) {
+
+    var children = [];
+    if (newArr.length == 1) {
+        return newArr[0];
+    }
+    newArr.forEach((crr, i) => {
+        if (crr.length == 1) {
+            if (!Object.values(Store.layout).includes(crr[0].type)) {
+                crr[0].type = type;
+            }
+            children.push(crr[0])
+        } else {
+            let pos = Common.calRange(crr),
+                child = Common.createDom({
+                    type: type,
+                    x: pos.x,
+                    y: pos.y,
+                    width: pos.width,
+                    height: pos.height,
+                    abX: pos.abX,
+                    abY: pos.abY,
+                    children: crr
+                });
+            crr.forEach((d, j) => {
+                d.x -= pos.x;
+                d.y -= pos.y;
+            });
+            children.push(child);
+        }
+    });
+    return children;
+}
+
+
+
+
 
 // 聚合
 function block(domArr) {
     let newArr = Common.gatherByLogic(domArr, (meta, target) => {
         let s = meta.height < target.height ? meta : target;
         let verticalSpacing = s.text ? s.styles.lineHeight * Config.dsl.textSpacingCoefficient : Config.dsl.verticalSpacing;
-        if (meta.id == '1DCF16FB-C993-4488-8F65-34B07DC975BC' &&
-            target.id == 'A788AFCC-F51E-44A9-9741-73A09930F779') {
-            debugger;
-        }
-        return meta.type != Store.type.SEGMENTING_HORIZONTAL &&
-            target.type != Store.type.SEGMENTING_HORIZONTAL &&
+        return meta.type != Store.model.SEGMENTING_HORIZONTAL &&
+            target.type != Store.model.SEGMENTING_HORIZONTAL &&
             meta.abY <= target.abY + target.height + verticalSpacing &&
             target.abY <= meta.abY + meta.height + verticalSpacing
 
     });
-    let children = Common.groupByArray(newArr, Store.type.BLOCK);
+    let children = groupByArray(newArr, Store.layout.BLOCK);
     return children;
 }
 
@@ -26,13 +66,18 @@ function column(domArr) {
     let newArr = Common.gatherByLogic(domArr, (meta, target) => {
         return meta.x + meta.width > target.x && meta.x < target.x + target.width
     });
-    let children = Common.groupByArray(newArr, Store.type.COLUMN);
+    let children = groupByArray(newArr, Store.layout.COLUMN);
     return children;
 }
 // 横向相邻元素
 function inline(domArr) {
     let newArr = Common.gatherByLogic(domArr, (meta, target) => {
         let horizontalSpacing = Config.dsl.horizontalSpacing
+        /*if (meta.id == "AE2C94F3-435B-492D-9011-74D5141783E8" &&
+            target.id == "63FADA10-9CDD-4980-B63B-6FCF014A2065"
+        ) {
+            debugger;
+        }*/
         if (meta.type == "QText" && target.type == 'QText') {
             horizontalSpacing = Math.max(meta.size, target.size);
         }
@@ -41,7 +86,7 @@ function inline(domArr) {
             meta.abX + meta.width + horizontalSpacing >= target.abX &&
             target.abX + target.width + horizontalSpacing >= meta.abX
     });
-    let children = Common.groupByArray(newArr, Store.type.INLINE);
+    let children = groupByArray(newArr, Store.layout.INLINE);
     return children;
 }
 
@@ -54,7 +99,7 @@ function row(domArr) {
             Math.abs(meta.y - target.y) < Option.errorSpacing
         // 顶对齐
     });
-    let children = Common.groupByArray(newArr, Store.type.ROW);
+    let children = groupByArray(newArr, Store.layout.ROW);
     return children
 
 }
@@ -73,8 +118,10 @@ function ergodic(json, func) {
                 arr.push(child);
             }
         });
-        arr = func(arr);
-        json.children = arr.concat(ignore);
+        // if (!Object.values(Store.layout).includes(json.type)) {
+            arr = func(arr);
+            json.children = arr.concat(ignore);
+        // }
         arr.forEach((child) => {
             ergodic(child, func)
         });

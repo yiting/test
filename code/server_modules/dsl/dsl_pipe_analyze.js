@@ -4,24 +4,18 @@ let Store = require("./dsl_store.js");
  * @param  {Object} option 主流程传进来的参数
  * @return {Optimize}        返回原对象
  */
-let layoutType = [
-    Store.type.BLOCK,
-    Store.type.COLUMN,
-    Store.type.INLINE,
-    Store.type.ROW
-]
 /**
  * 分离结构节点与内容节点
  */
 function getChildDom(json, arr) {
     let children = json.children;
     json.children = [];
-    if (layoutType.includes(json.type)) {
+    if (!Object.values(Store.layout).includes(json.type)) {
         arr.push(json);
     }
     children.forEach((child, i) => {
         getChildDom(child, arr)
-        if (layoutType.includes(child.type)) {
+        if (!Object.values(Store.layout).includes(child.type)) {
             json.children = json.children.concat(child.children);
         } else {
             json.children.push(child);

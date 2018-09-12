@@ -30,6 +30,7 @@ let parse = function(artboradId, inputList) {
     // _parseFromSymbol
     const symbolMasterLayerMap = getSymbolMasterLayerMap(inputList);
     const artboardLayer = getArtboardLayer(artboradId,inputList);
+    if (!artboardLayer) return null; // symbol
     const _document = _parseFromArtboard(artboardLayer,symbolMasterLayerMap);
     return _document;
 }
@@ -132,10 +133,6 @@ const styleParser = {
         const textValue = attributedString.string;
         const texts = attributedString.attributes.map(text => {
             const { name: fontName, size } = text.attributes.MSAttributedStringFontAttribute.attributes;
-            // if (fontName.indexOf("-")) {
-            //     fontWeight=fontName.split('-')[fontName.split('-').length - 1].toLowerCase();
-            //     //fontWeight = fontName.split("-")[1].toLowerCase();
-            // }
             return {
                 color: this._getColor(text.attributes.MSAttributedStringColorAttribute),
                 string: textValue.slice(text.location, text.length),
@@ -162,11 +159,12 @@ const styleParser = {
 // }
 let getArtboardLayer = function(artboradId,inputList) {
     for(let json of inputList) {
-        const arr = json.layers.filter(({do_objectID}) => do_objectID === artboradId);
+        const arr = json.layers.filter(({do_objectID, _class}) => do_objectID === artboradId && _class === Artboard);
         if (arr.length) {
             return arr[0];
         }
     }
+    return null
 }
 let getSymbolMasterLayerMap = function(inputList) {
     let obj = {},arr = [];
@@ -274,6 +272,7 @@ let _parseLayer = function(_document, layer, pnode = null) {
     // Symbol合并
     if (layerType === SymbolInstance) {
         layer = _document._symbolMasterLayers[layer.symbolID];
+        if(!layer) throw '找不到Symbol';
         const {x,y} = obj;
         setAttrByLayer(obj,layer);
         Object.assign(obj,{x,y});

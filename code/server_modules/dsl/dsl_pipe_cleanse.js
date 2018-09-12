@@ -10,6 +10,7 @@ function serialize(cur, arr) {
     arr.push(cur);
     cur.abX = cur.abX || 0;
     cur.abY = cur.abY || 0;
+    cur.contrains = {};
     delete cur.parent;
     if (cur.children) {
         cur.children.forEach((c, i) => {
@@ -116,11 +117,11 @@ function markerSegmenting(arr) {
                 d.height < Config.dsl.verticalSpacing
             ) {
                 // 水平分割线
-                d.type = Store.type.SEGMENTING_HORIZONTAL
+                d.type = Store.model.SEGMENTING_HORIZONTAL
             } else if (d.width < Option.segmentingVerticalWidth &&
                 d.height > d.width) {
                 // 垂直分割线
-                d.type = Store.type.SEGMENTING_VERTICAL
+                d.type = Store.model.SEGMENTING_VERTICAL
             }
         }
         /*if (d.width >= horizontalWidth && (d.isSegmenting || !segmentingArr[d.abY])) {

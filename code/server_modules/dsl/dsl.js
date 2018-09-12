@@ -4,7 +4,7 @@ let grid = require("./dsl_pipe_grid.js");
 let sort = require("./dsl_pipe_sort.js");
 let contrain = require("./dsl_pipe_contrain.js");
 let model = require("./dsl_pipe_model.js");
-let symbol = require("./dsl_pipe_symbol.js");
+// let symbol = require("./dsl_pipe_symbol.js");
 let analyze = require("./dsl_pipe_analyze.js");
 
 function createConfig(json) {
@@ -14,6 +14,7 @@ function createConfig(json) {
         navbar,
         unit,
         fontSize,
+        dpr,
         textSpacingCoefficient = 1 / 1.4;
     switch (json.width + '') {
         case "1080":
@@ -25,6 +26,7 @@ function createConfig(json) {
                 unit = "rem";
                 fontSize = 28;
                 navbar = 228;
+                dpr = 2;
                 break;
             };
         case "750":
@@ -35,6 +37,7 @@ function createConfig(json) {
                 unit = "rem";
                 fontSize = 28;
                 navbar = 128;
+                dpr = 2;
                 break;
             };
         case "720":
@@ -45,6 +48,7 @@ function createConfig(json) {
                 unit = "rem";
                 fontSize = 28;
                 navbar = 128;
+                dpr = 2;
                 break;
             };
         case "375":
@@ -55,6 +59,7 @@ function createConfig(json) {
                 unit = "rem";
                 fontSize = 14;
                 navbar = 64;
+                dpr = 1;
                 break;
             };
         case "360":
@@ -65,6 +70,7 @@ function createConfig(json) {
                 unit = "rem";
                 fontSize = 14;
                 navbar = 64;
+                dpr = 1;
                 break;
             };
         default:
@@ -74,6 +80,7 @@ function createConfig(json) {
                 fontSize = 12;
                 navbar = 0;
                 unit = "px";
+                dpr = 1;
             };
     }
     return {
@@ -90,7 +97,8 @@ function createConfig(json) {
             textSpacingCoefficient,
             fontSize,
             navbar,
-            unit
+            unit,
+            dpr
         }
     }
 }
@@ -118,10 +126,10 @@ function mobileHtml(designDom) {
     var json = Klotski(designDom, Config)
         .pipe(cleanse) // 清洗
         .pipe(grid) // 行列组合
-        // // .pipe(symbol) // 符号处理
-        .pipe(model)
         .pipe(sort) // 排序
-        .pipe(contrain)
+        .pipe(model) // 模型处理
+        // .pipe(repeat) // 重复结构处理
+        .pipe(contrain) // 约束处理
         .get(); // 获取json
     return H5Render(json, Config);
 }
