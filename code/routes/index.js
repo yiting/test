@@ -20,6 +20,8 @@ let storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         originFileName = Utils.getDateStr() + '_' + file.originalname
+        //截取sketch文件前缀为项目名称(即为sketch文件名)
+        potIndex = originFileName.lastIndexOf('.')
         //直接保留原始文件格式(.sketch)
         cb(null, originFileName);
     }
