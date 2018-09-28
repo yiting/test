@@ -14,8 +14,8 @@ function serialize(cur, arr) {
     delete cur.parent;
     if (cur.children) {
         cur.children.forEach((c, i) => {
-            c.abX = parseInt(cur.abX || 0) + parseInt(c.x || 0);
-            c.abY = parseInt(cur.abY || 0) + parseInt(c.y || 0);
+            // c.abX = parseInt(cur.abX || 0) + parseInt(c.x || 0);
+            // c.abY = parseInt(cur.abY || 0) + parseInt(c.y || 0);
             if (c.abX < 0) {
                 c.abX = 0;
                 c.width -= c.abX;
@@ -85,9 +85,10 @@ function cleanLineHeight(arr) {
             d.styles.maxSize = maxSize;
             d.styles.minSize = minSize;
             // lineHeight
-            let lineHeight = d.styles.lineHeight || d.minSize * 1.4;
+            let lineHeight = d.styles.lineHeight || minSize * 1.4;
             // 如果多行，则不处理行高
-            if (d.height / lineHeight > 1.5) {
+
+            if (d.height / lineHeight > 1) {
                 d.lines = Math.round(d.height / lineHeight);
                 return;
             }
@@ -99,6 +100,7 @@ function cleanLineHeight(arr) {
             d.height -= dif;
             d.y += diff;
             d.abY += diff;
+
         }
     });
     return arr;
@@ -106,51 +108,30 @@ function cleanLineHeight(arr) {
 /**
  *  标记水平分割线
  */
-function markerSegmenting(arr) {
-    let horizontalWidth = Config.device.width * Option.segmentingCoefficient;
-    Option.segmentingVerticalWidth
-    let index = 0;
-    arr.forEach((d, i) => {
+function markerSegmenting(json) {
+    const horizontalLength = json.width * Config.dsl.segmentingCoefficient;
+    const verticalLength = json.height * Config.dsl.segmentingCoefficient;
+    let arr = [];
+    // let index = 0;
+    json.children.forEach((d, i) => {
         if (!d.text && (!d.children || d.children.length == 0)) {
-            if (d.width > d.height &&
-                d.width >= horizontalWidth &&
+            if (d.width / d.height >= Option.segmentingProportion &&
+                d.width >= horizontalLength &&
                 d.height < Config.dsl.verticalSpacing
             ) {
                 // 水平分割线
                 d.type = Store.model.SEGMENTING_HORIZONTAL
-            } else if (d.width < Option.segmentingVerticalWidth &&
-                d.height > d.width) {
+                arr.push(d);
+            } else if (d.width / d.height >= Option.segmentingProportion &&
+                d.height >= verticalLength &&
+                d.width < Config.dsl.segmentingVerticalWidth) {
                 // 垂直分割线
                 d.type = Store.model.SEGMENTING_VERTICAL
+                arr.push(d);
             }
         }
-        /*if (d.width >= horizontalWidth && (d.isSegmenting || !segmentingArr[d.abY])) {
-            index++;
-            segmentingArr.fill(index, d.abY, d.abY + d.height);
-        }*/
+        arr = arr.concat(markerSegmenting(d));
     });
-    let segmentingArr = new Array(Config.page.height);
-    /*let cur, start = 0,
-        height;
-    segmentingArr.forEach((d, i) => {
-        if (d !== cur) {
-            height = i - start;
-            if (height > 0) {
-                let dom = Common.createDom({
-                    type: "box",
-                    x: 0,
-                    abX: 0,
-                    y: start,
-                    abY: start,
-                    width: Config.page.width,
-                    height: height
-                });
-                arr.push(dom);
-            }
-            start = i;
-            cur = d;
-        }
-    });*/
     return arr;
 }
 
@@ -237,7 +218,7 @@ function relayer(arr, body) {
 
 let Config = {},
     Option = {
-        segmentingCoefficient: .7,
+        segmentingProportion: 25,
         segmentingVerticalWidth: 2
     };
 
@@ -251,8 +232,9 @@ function fn(json) {
     arr = filterUselessGroup(arr); // 移除无用组
     arr = mergeBySize(arr); // 合并同大小元素
     arr = cleanLineHeight(arr); // 清洗属性-行高
-    markerSegmenting(arr); // 标记分割线
+    let arr2 = arr.concat([]);
     relayer(arr, body); // 重组父子结构
+    markerSegmenting(body); // 标记分割线
     return body;
 }
 module.exports = function(data, conf, opt) {

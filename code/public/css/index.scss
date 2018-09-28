@@ -778,9 +778,9 @@ textarea {
   }
   .qrcode {
     width: 120px;
-    height: 180px;
+    height: 90px;
     background-image: $url_0;
-    background-position: -233px 0
+    background-position: -233px 27px;
   }
 }
 
@@ -1305,9 +1305,16 @@ html[lang=en] {
   }
   .file-info {
     display: none;
-    text-align: left;
-    margin-top: 10px;
-    margin-left: 505px;
+    //text-align: left;
+    //margin-top: 10px;
+    //margin-left: 505px;
+    //font-size: 14px;
+    //color: gray;
+    position: absolute;
+    left: -24px;
+    width: 100%;
+    top: 131px;
+    color: #fff;
     font-size: 14px;
     color: gray;
     .file-size {
@@ -1371,53 +1378,3 @@ html[lang=en] {
   top: 138px !important;
 }
 
-.no-result-info {
-  display: none;
-  margin-top: 10px;
-  margin-left: 505px;
-  font-size: 16px;
-  height: 30px;
-  line-height: 30px;
-  .count-down-time {
-    /* font-weight: bold;*/
-    font-size: 14px;
-    color: gray;
-  }
-}
-
-.result-panel {
-  display: none;
-  margin-top: 20px;
-  font-size: 15px;
-  text-align: center;
-  /*height: 30px;
-  line-height: 30px;*/
-  .result-url {
-    color: #1E9FFF;
-    cursor: pointer;
-  }
-  .tips {
-    margin-top: 5px;
-    font-size: 14px;
-    color: gray;
-  }
-  .copy-btn {
-    display: inline-block;
-    padding: 3px 12px;
-    margin-left: 10px;
-    color: #ffffff;
-    background-color: #126ee1;
-    font-size: 14px;
-    text-align: center;
-    border-radius: 3px;
-    cursor: default;
-    &:hover {
-      opacity: .7;
-    }
-  }
-  .qr-code {
-    position: absolute;
-    left: 81px;
-    top: 18px;
-  }
-}

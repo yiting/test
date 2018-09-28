@@ -5,12 +5,17 @@ module.exports = {
     LayoutRightMargin: 2, // 右边距
     LayoutBottomMargin: 3, // 下边距
     LayoutLeftMargin: 4, // 左边距
-    LayoutAlignSelfAbsolute: 5, // 以x,y方式定位
-    LayoutAlignSelfStart: 6, // 排版中自身方式（优于父容器的排版）
-    LayoutAlignSelfEnd: 7, // 排版中自身方式（优于父容器的排版）
-    LayoutAlignSelfCenter: 8, // 排版中自身方式（优于父容器的排版）
-    LayoutAutoHeight: 9, // 自适应高度
-    LayoutAutoWidth: 10, // 自适应宽度
+    LayoutSelfAbsolute: 5, // 以x,y方式定位
+    LayoutSelfLeft: 6, // 排版中自身方式（优于父容器的排版）
+    LayoutSelfRight: 7, // 排版中自身方式（优于父容器的排版）
+    LayoutSelfTop: 8, // 排版中自身方式（优于父容器的排版）
+    LayoutSelfBottom: 9, // 排版中自身方式（优于父容器的排版）
+    LayoutAlignLeft: 10, // 文本左对齐
+    LayoutAlignRight: 11, // 文本右对齐
+    LayoutAlignCenter: 12, // 文本中心对齐
+    LayoutFixedHeight: 13, // 固定高度
+    LayoutFixedWidth: 14, // 固定宽度
+    LayoutAutoFlex: 15, // flex:1
 
     // 父容器排版方式描述
     LayoutAbsolute: 20, // 父类中所有子类已x,y方式定位

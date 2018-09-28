@@ -13,6 +13,13 @@ let Models = {
     inline: require("./model/inline"),
     block: require("./model/block"),
     layoutEquality: require("./model/layoutEquality"),
+    body: require("./model/body"),
+    list0: require("./model/list0"),
+    listHorizontalItem: require("./model/list-horizontal-item"),
+    numerical: require("./model/numerical"),
+    ul: require("./model/ul"),
+
+
 
 }
 /**
@@ -23,21 +30,30 @@ function fn(dom) {
         // 从子孙节点开始遍历
         dom.children.forEach((child, i) => {
             fn(child);
-            child.styleAuto = {};
-            Models.inline.is(child, dom, Option, Config) ||
-                Models.block.is(child, dom, Option, Config);
-
-            // 先结构模型
-            Models.textContain.is(child, dom, Option, Config) ||
-                Models.image.is(child, dom, Option, Config) ||
-                Models.text.is(child, dom, Option, Config) ||
-                Models.paragraph.is(child, dom, Option, Config) ||
-                Models.tag.is(child, dom, Option, Config) ||
-                Models.iconEnter.is(child, dom, Option, Config) ||
-                Models.legend.is(child, dom, Option, Config) ||
-                Models.textButton.is(child, dom, Option, Config) ||
-                Models.layoutEquality.is(child, dom, Option, Config)
-                
+            [
+                'ul',
+                'inline',
+                'block'
+            ].some(c => { 
+                return Models[c].is(child, dom, Option, Config)
+            });       
+            [
+                'textContain',
+                'image',
+                'text',
+                'paragraph',
+                'tag',
+                'iconEnter',
+                'legend',
+                'textButton',
+                'numerical',
+                'layoutEquality',
+                'body',
+                'listHorizontalItem',
+                // 'list0'
+            ].some(c => {
+                return Models[c].is(child, dom, Option, Config)
+            });
         });
     }
     return dom;

@@ -19,6 +19,8 @@ module.exports.template = function(dom) {
 module.exports.is = function(dom,parent,option,config) {
     if (!dom.text && dom.path && (!dom.children || dom.children.length == 0)) {
         dom.type = STORE.model.IMAGE;
+        dom.contrains[CONTRAIN.LayoutFixedWidth] = true;
+        dom.contrains[CONTRAIN.LayoutFixedHeight] = true;
         return true;
     }
 }

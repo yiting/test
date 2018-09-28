@@ -11,7 +11,6 @@ let html5 = function(cssName) {
             + '<title></title>'
             + '<link rel="stylesheet" href="'+cssName+'.css">'
             + '<script src="http://imgcache.qq.com/push/js/grid.js"></script>'
-            + '<script src="https://open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>'
             + '</head>';
 
     return str;

@@ -1,11 +1,10 @@
 $(function () {
-    initPage();
     operatePage();
 });
 
 //文件类型
-let fileType = '', fileUUID = ''
-const operatePage = function (_this) {
+let fileType = '';
+const operatePage = function () {
     //选择文件,获取文件信息
     $('.choose-file-btn input').on('change', function (e) {
         let fileContent = $(this).val()
@@ -13,7 +12,7 @@ const operatePage = function (_this) {
             return
         }
         //清空上一次记录
-        $('.upload-tips,.qr-code,.file-info,.result-panel,.no-result-info').hide()
+        $('.upload-tips,.qr-code,.file-info,.no-result-info').hide()
         //e.currentTarget.files 是一个数组，如果支持多个文件，则需要遍历
         let file = e.currentTarget.files[0]
         //文件名称
@@ -42,17 +41,12 @@ const operatePage = function (_this) {
                 CommonTool.uploadFile("/upload", formData, function (data) {
                     layer.msg('正在解析中，请稍后', {shift: -1}, function () {
                         //结果区域显示
-                        $('.result-panel').show()
                         $(".file-info").hide();
                         let fileUUID = data.uuid;
                         let fileName = data.filename;
                         //跳转到编辑页面
                         window.location.href = "/edit?id=" + fileUUID + "&name=" + fileName;
                     })
-
-                    //把后台返回的结果，存入本地sessionStorage中，然后再edit页面中进行数据初始化
-                    //获取html文件
-                    //generateHtml(data)
                 }, function (error) {
                     layer.msg('上传文件错误，请重试')
                 });
@@ -98,59 +92,6 @@ const operatePage = function (_this) {
 
 }
 
-/*获取html文件*/
-const generateHtml = function (data) {
-    //后台返回的url生成对应的链接和二维码
-    generateURL(data)
-}
-
-/*后台返回的url生成对应的链接和二维码*/
-const generateURL = function (data) {
-    /*将返回结果先填充，并隐藏起来*/
-    let resultJSON = JSON.parse(data)
-    fileUUID = resultJSON.uuid
-    //将生成uuid的文件
-    //1.在线云服务
-    //let resultURLSTR = "http://203.195.206.75:3000/" + resultJSON.uuid + ".html";
-    //2.node服务(静态资源服务器)
-    //let resultURLSTR = "http://192.168.1.102:6768/" + resultJSON.uuid + ".html";
-    //let resultURLSTR = "http://192.168.1.102:3000/result/" + fileUUID + ".html";
-    //公司电脑地址
-    let resultURLSTR = 'http://127.0.0.1:3000/result/' + fileUUID + '/page-1.html'
-    //腾讯云在线node服务
-    //let resultURLSTR = 'http://tosee.oa.com/result/' + fileUUID + '.html'
-    $('.result-url').text(resultURLSTR).attr('href', resultURLSTR)
-    //将返回结果的url保存在浏览器storage中，便于用户关闭浏览器下次访问
-    //保存标识
-    let saveFlag = saveURL(resultURLSTR)
-}
-
-/*初始化页面数据*/
-const initPage = function (_this) {
-    if ('localStorage' in window && window['localStorage'] !== null) {
-        let resultURL = localStorage.getItem('resultUrl')
-        if (resultURL) {
-            layer.msg('上次上传的文件已生成代码，请在页面底部上传区查看结果~')
-            $('.result-url').text(resultURL).attr('href', resultURL)
-            $('.upload-tips').hide()
-            $('.result-panel').show()
-        }
-    }
-}
-
-/*将url存储在storage中*/
-const saveURL = function (url) {
-    try {
-        if ('localStorage' in window && window['localStorage'] !== null) {
-            localStorage.setItem('resultUrl', url)
-            return true
-        }
-        return false
-    }
-    catch (e) {
-        return false
-    }
-}
 
 //文件大小换算
 const convert = function (limit) {

@@ -9,7 +9,8 @@ module.exports.template = function() {
 
 }
 module.exports.is = function(dom, parent, option, config) {
-    if (dom.type === STORE.layout.INLINE) {
+    if (dom.layout === STORE.layout.INLINE) {
+        return true;
         // dom.contrains[CONTRAIN.LayoutAutoWidth] = true;
     }
 }

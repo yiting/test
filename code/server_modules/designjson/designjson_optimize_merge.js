@@ -9,7 +9,7 @@ const {
     QMask, 
     QSlice
 } = require('./designjson_node');
-const {walkin,walkout,hasMaskChild,hasCompleteSytle,generateGroupStyle} = require('./designjson_utils');
+const {walkin,walkout,hasMaskChild,hasCompleteSytle,generateGroupAttr} = require('./designjson_utils');
 /**
  * 优化树的结构
  * @param {QDocument} _document 
@@ -63,7 +63,7 @@ class _ImageMergeProcessor {
         // obj.backgroundColor = null;
         obj.path = `${id}.png`;
         // 设置组的样式
-        Object.assign(obj,generateGroupStyle(nodes));
+        Object.assign(obj,generateGroupAttr(nodes));
         const new_node = this._document.addNode(id, obj, pnode); // 插入新节点
         if (nodes.length) new_node._imageChildren = [...nodes];
         Object.assign(new_node,{children:[],childnum: 0,isLeaf: true});
@@ -98,7 +98,7 @@ class _ImageMergeProcessor {
         // _document._images = images; // 生成图片信息列表，待export
     }
 }
-function isBigNode(node,pnode,threshold = 0.5) {
+function isBigNode(node,pnode,threshold = 1) {
         const {width,height,abX,abY} = node;
         return width * height >= pnode.width * pnode.height * threshold;
 }

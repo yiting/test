@@ -11,10 +11,10 @@ module.exports.is = function(dom,parent,option,config) {
     // 判断：只有两个节点
     if (dom.children && dom.children.length == 2) {
         const txt = dom.children.find((child) => {
-            return child.type == STORE.type.TEXT;
+            return child.type == STORE.model.TEXT;
         });
         const img = dom.children.find((child) => {
-            return child.type == STORE.type.IMAGE;
+            return child.type == STORE.model.IMAGE;
         });
         //  左右结构，节点图片高度与文案高度差小于一个字体
         if (txt && img &&
@@ -23,7 +23,7 @@ module.exports.is = function(dom,parent,option,config) {
             (img.abX + img.width < txt.abX)
         ) {
             dom.type = STORE.type.LEGEND;
+            return true;
         }
-        return true;
     }
 }

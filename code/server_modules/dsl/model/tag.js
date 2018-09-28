@@ -40,7 +40,7 @@ module.exports.is = function(dom, parent, option, config) {
             dom.textAlign = "center";
             dom.children = [];
             // dom.styleAuto["width"] = true;
-            dom.contrains[CONTRAIN.LayoutAutoWidth] = true;
+            // dom.contrains[CONTRAIN.LayoutAutoWidth] = true;
             return true;
         }
     }

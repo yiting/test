@@ -5,8 +5,18 @@
  * @description 图片的主绘制程序
  */
 const gm = require('gm');
+const imageMagick = gm.subClass({ imageMagick: true });
 require('gm-base64');
 let sketchToGm = require('./sketchToGm');
+
+gm.prototype.opacity=function(opacity){
+	return this.out("-alpha","set","-channel","A","-evaluate","multiply",opacity,"+channel");
+}
+
+// gm.opacity=()=>{
+// 	convert img.png -alpha set -channel A -evaluate multiply 0.2 +channel result.png
+// l result.png
+// };
 const draw = {
 	/**
 	 * 图片倍率，多倍图，暂时只支持矢量图
@@ -64,6 +74,7 @@ const draw = {
 			sketchToGm.getBorderColor(imageData),
 			sketchToGm.getBorderWidth(imageData)
 		);
+		// convert 11.png -alpha set  -channel A -evaluate multiply 0.5 +channel 22.png
 	},
 	/**
 	 * 初始化配置
@@ -81,7 +92,6 @@ const draw = {
 	 */
 	fill(color) {
 		draw.drawImage.fill(color);
-		return draw.drawImage;
 	},
 	/**
 	 * 描边
@@ -100,6 +110,15 @@ const draw = {
 	 */
 	gradient(gm) {
 		return gm;
+	},
+	/**
+	 * tansform图形
+	 * @return {[type]} [description]
+	 */
+	transform:function(imageData){
+		if(imageData.rotation){
+			draw.drawImage.rotate("rgba(255,255,255,255)", (360-imageData.rotation)).trim()
+		}
 	},
 	/**
 	 * 三角形绘制
@@ -133,6 +152,8 @@ const draw = {
 		draw.createImage(imageData)
 		//绘制
 		draw.drawImage.out("-draw", "stroke-linecap round path '" + sketchToGm.getPath(imageData,draw.ratio) + "'")
+		//transform
+		draw.transform(imageData);
 		//保存图片
 		draw.testExportImage && draw.exportImage(draw.outputDir + imageData.do_objectID + ".png")
 		//返回绘制的对象
@@ -143,19 +164,33 @@ const draw = {
 	 * @return {[type]} [description]
 	 */
 	bitmap(imageData) {
+		var imageMagick = gm.subClass({ imageMagick: true });
 		//搬运位图
 		let imagePath = draw.inputDir +  imageData.image._ref;
 		let width = imageData.frame.width;
 		let height = imageData.frame.height;
 		//保存一份图片
 		let imageExportPath = draw.outputDir + "t_"+ imageData.do_objectID + ".png";
-		draw.drawImage=gm(imagePath).resize(width);
+		draw.drawImage=imageMagick(imagePath);
+		//颜色填充
+		try{
+			if(imageData.style.fills && imageData.style.fills[imageData.style.fills.length - 1].color.alpha!=0){
+				var color=sketchToGm.getFillColor(imageData);
+				delete imageData.style.fills[imageData.style.fills.length - 1].color;
+				draw.drawImage.out("\(","-clone","0","-fill",color,"-colorize","100%","\)","-alpha","set","8","-transparent","none","-compose","Over","-composite" )
+			}
+		}catch(e){}
+		//透明度
+		try{
+			draw.drawImage.opacity(imageData.style.contextSettings.opacity)
+		}catch(e){}
+		//保存一份图片
 		draw.exportImage(imageExportPath);
-		return gm(imagePath).resize(width)
+		//返回
+		return draw.drawImage.resize(width)
 	},
 	/**
 	 * 生成单张图片@daxiong
-	 * 
 	 * @param  {[type]}   imageParentNode [description]
 	 * @param  {[type]}   imageNode       [description]
 	 * @param  {Function} callback        [description]
@@ -175,7 +210,7 @@ const draw = {
 					break;
 					//矩形
 				case "rectangle":
-					draw.rectangle(imageNode).write(imageFullPath, function() {
+					draw.path(imageNode).write(imageFullPath, function() {
 						resolve(imageNode.do_objectID+".png")
 					})
 					break;
@@ -210,7 +245,7 @@ const draw = {
 					})
 					break;
 				default:
-					reject("未知的图形")
+					resolve(null)
 					//抛出错误-保留
 					break;
 			}
@@ -241,7 +276,7 @@ const draw = {
 					//矩形
 				case "rectangle":
 					//跳过
-					draw.rectangle(imagesData[i])
+					draw.path(imagesData[i])
 						.toBase64('png', true, function(err, base64) {
 							base64Imaegs.push(base64);
 							if (--images == 0) {

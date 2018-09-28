@@ -109,7 +109,7 @@ module.exports = {
             // if(node.name.indexOf("4 copy")>-1){//D6799224  A82BE333
             //     console.log(111);
             // }
-            if(node.id.indexOf("51272AFF-3026-4F32-B4A1")>-1){
+            if(node.id.indexOf("DB86_3184")>-1){
                 console.log(111);
             }
             //如果第一层子层无slice，或者param中没标明这次操作是在合并含有裁剪元素的节点，则做常规的图片合并
@@ -133,12 +133,13 @@ module.exports = {
                             if(origin.layers.length == 1){
                                 childNode = origin.layers[0];
                                 path = await draw.image(origin,childNode);
-                                if(item.type == "QMask"){
+                                if(that._isQMask(item)){
                                     item.maskPath = path;
                                 }else if(item.path){
                                     try{
                                         fs.renameSync(outputDir+that._getTmpFileName(path),outputDir+that._getTmpFileName(item.path),function(err){
                                         });
+                                        path = item.path;
                                     }catch(e){
                                         console.error(e);
                                     }
@@ -147,18 +148,20 @@ module.exports = {
                                 childNode = await this.combineShapeGroupNode(origin);
                                 path = childNode.image._ref;
                             }
-                            
+                            //若有需要，给合成的shapeGroup加透明度
+                            await that._compositeAlpha(origin,path); 
+          
                         }else{
                             childNode = origin;
                             path = await draw.image(origin,childNode);
                         }
-                        if(path && path != "" && !item.path && item.type != "QMask"){
+                        if(path && path != "" && !item.path && !that._isQMask(item)){
                             item.path = path;
                                                       
                         }
                         // await that._handleTmpFiles(childNode.do_objectID,"t_"+path,{"push":true});
                     }
-                    if(item.type == "QMask" && ilen>1){//遇到遮罩层，则从这层往上找，将所有被遮罩的图层都合成一张图
+                    if(that._isQMask(item) && ilen>1){//遇到遮罩层，则从这层往上找，将所有被遮罩的图层都合成一张图
                         var maskData = await this.maskNode(node,i);
                         if(maskData){
                             var newNode = maskData.newNode;
@@ -279,6 +282,11 @@ module.exports = {
                         }else{
                             continue;
                         }
+                        //如果图片含有旋转样式，则要重新计算图片的坐标
+                        if(item.rotation){
+                            item.frame.x = item.frame.x + (0.5*item.frame.width-item.frame.height*Math.sin((360-item.rotation)/360*2*Math.PI));
+                            item.frame.y = item.frame.y + (0.5*item.frame.height-item.frame.height*Math.cos((360-item.rotation)/360*2*Math.PI));
+                        }
                         if(ilen>1){
                             item = await this._makePreComposeImage(item);
                         }
@@ -314,6 +322,47 @@ module.exports = {
                             if(e) {
                                 console.log(e.message)
                             }
+                            //若有需要，给合成的图片加透明度
+                            // if(node.do_objectID.indexOf("55B8987C-0E96")>-1){
+                            //     console.log(333)
+                            // }
+                            // if(node.style.contextSettings && node.style.contextSettings.opacity){
+                            //     var imageMagick = gm.subClass({ imageMagick: true });
+                            //     imageMagick(outputPath).opacity(node.style.contextSettings.opacity).write(outputPath,function(e){
+                            //         newNode._class = "combineImg";
+                            //         newNode.frame = {
+                            //             x : node.frame.x,
+                            //             y : node.frame.y,
+                            //             width : node.frame.width,
+                            //             height : node.frame.height
+                            //         }
+                            //         newNode.image = {
+                            //             "_ref": node.do_objectID+".png"
+                            //         }
+                            //         // console.log("合并图片 x:"+newNode.frame.x+ " y:"+newNode.frame.y+"  ref:"+newNode.image._ref);
+            
+                            //         // that._handleTmpFiles(node.do_objectID,outputPath,{"push":true});
+            
+                            //         resolve(newNode);
+                            //     });
+                            // }else{
+                            //     newNode._class = "combineImg";
+                            //     newNode.frame = {
+                            //         x : node.frame.x,
+                            //         y : node.frame.y,
+                            //         width : node.frame.width,
+                            //         height : node.frame.height
+                            //     }
+                            //     newNode.image = {
+                            //         "_ref": node.do_objectID+".png"
+                            //     }
+                            //     // console.log("合并图片 x:"+newNode.frame.x+ " y:"+newNode.frame.y+"  ref:"+newNode.image._ref);
+        
+                            //     // that._handleTmpFiles(node.do_objectID,outputPath,{"push":true});
+        
+                            //     resolve(newNode);
+                            // }
+
                             newNode._class = "combineImg";
                             newNode.frame = {
                                 x : node.frame.x,
@@ -329,6 +378,7 @@ module.exports = {
                             // that._handleTmpFiles(node.do_objectID,outputPath,{"push":true});
     
                             resolve(newNode);
+                            
                         });
                     }
                 });
@@ -347,8 +397,8 @@ module.exports = {
         logData.num._makePreComposeImage++;
         var  main = async () => {
             return new Promise(function (resolve, reject) { 
-                gm(400,400,'none')
-                .in('-page',that._getLocationText(node.frame.x+200,node.frame.y+200,true))
+                gm(500,500,'none')
+                .in('-page',that._getLocationText(node.frame.x+250,node.frame.y+250,true))
                 .in(outputDir+that._getTmpFileName(node.image._ref))
                 .mosaic().write(outputDir+that._getTmpFileName(node.image._ref),function (e){
                     if(e) {
@@ -356,6 +406,23 @@ module.exports = {
                     }
                     resolve(node);
                 });
+            });
+        }
+        return main(); 
+    },
+    //若有需要，给合成的shapeGroup加透明度
+    _compositeAlpha:function(origin,path){
+        var that = this;
+        var  main = async () => {
+            return new Promise(function (resolve, reject) {            
+                if(origin.style.contextSettings && origin.style.contextSettings.opacity){
+                    var imageMagick = gm.subClass({ imageMagick: true });
+                    imageMagick(outputDir+that._getTmpFileName(path)).opacity(origin.style.contextSettings.opacity).write(outputDir+that._getTmpFileName(path),function(e){
+                        resolve(origin);
+                    });
+                }else{
+                    resolve(origin);
+                }
             });
         }
         return main(); 
@@ -576,7 +643,7 @@ module.exports = {
     //在删除临时文件之前，将目标图片前面的临时图片标识去掉
     _renameTargetFiles:function(){
         try{
-            fs.renameSync(outputDir+that._getTmpFileName(rootNode.id)+".png",outputDir+rootNode.id+".png"); 
+            fs.renameSync(outputDir+that._getTmpFileName(rootNode.path),outputDir+rootNode.path); 
         }catch(e){
             console.error(e);
             
@@ -598,9 +665,9 @@ module.exports = {
                 if(file.indexOf("t_")>-1){
                     fs.unlinkSync(curPath);
                 }
-            });  
+            });
         }
-        
+
     },
     //处理临时文件
     //如果node的id和根目录的id一样，则重命名目标图片名，以前的删除
@@ -614,6 +681,13 @@ module.exports = {
         logData.costTime = (new Date().getTime() - logData.costTime)/1000;
         console.log(logData);
         return logData;
+    },
+    _isQMask:function(item){
+        var result = false;
+        if(item.type == "QMask" && item.maskedNodes.length>0){
+            result = true;
+        }
+        return result;
     }
 } 
 
