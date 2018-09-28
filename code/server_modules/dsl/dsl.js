@@ -8,14 +8,18 @@ let model = require("./dsl_pipe_model.js");
 let analyze = require("./dsl_pipe_analyze.js");
 
 function createConfig(json) {
-    let width,
-        verticalSpacing,
-        horizontalSpacing,
-        navbar,
-        unit,
-        fontSize,
-        dpr,
-        textSpacingCoefficient = 1 / 1.4;
+    let width, // 设计稿宽
+        verticalSpacing, // 垂直间距
+        horizontalSpacing, // 水平间距
+        navbarHeight, // 导航高度
+        unit, // 设计长度单位
+        fontSize, // 字体基础大小
+        dpr, // 设备像素比 Device Pixel Ratio
+        textSpacingCoefficient = 1 / 1.4, // 文案空间误差系数
+        segmentingCoefficient = .7, // 分割线比例系数
+        segmentingVerticalWidth = 2, // 垂直分割线宽度
+        operateErrorCoefficient = 3 // 操作误差系数
+
     switch (json.width + '') {
         case "1080":
             {
@@ -25,7 +29,7 @@ function createConfig(json) {
                 horizontalSpacing = 20;
                 unit = "rem";
                 fontSize = 28;
-                navbar = 228;
+                navbarHeight = 228;
                 dpr = 2;
                 break;
             };
@@ -36,7 +40,7 @@ function createConfig(json) {
                 horizontalSpacing = 20;
                 unit = "rem";
                 fontSize = 28;
-                navbar = 128;
+                navbarHeight = 128;
                 dpr = 2;
                 break;
             };
@@ -47,7 +51,7 @@ function createConfig(json) {
                 horizontalSpacing = 20;
                 unit = "rem";
                 fontSize = 28;
-                navbar = 128;
+                navbarHeight = 128;
                 dpr = 2;
                 break;
             };
@@ -58,7 +62,7 @@ function createConfig(json) {
                 horizontalSpacing = 10;
                 unit = "rem";
                 fontSize = 14;
-                navbar = 64;
+                navbarHeight = 64;
                 dpr = 1;
                 break;
             };
@@ -69,7 +73,7 @@ function createConfig(json) {
                 horizontalSpacing = 10;
                 unit = "rem";
                 fontSize = 14;
-                navbar = 64;
+                navbarHeight = 64;
                 dpr = 1;
                 break;
             };
@@ -78,7 +82,7 @@ function createConfig(json) {
                 verticalSpacing = 15;
                 horizontalSpacing = 10;
                 fontSize = 12;
-                navbar = 0;
+                navbarHeight = 0;
                 unit = "px";
                 dpr = 1;
             };
@@ -96,9 +100,12 @@ function createConfig(json) {
             horizontalSpacing,
             textSpacingCoefficient,
             fontSize,
-            navbar,
+            navbarHeight,
             unit,
-            dpr
+            dpr,
+            segmentingCoefficient,
+            segmentingVerticalWidth,
+            operateErrorCoefficient,
         }
     }
 }
@@ -127,8 +134,8 @@ function mobileHtml(designDom) {
         .pipe(cleanse) // 清洗
         .pipe(grid) // 行列组合
         .pipe(sort) // 排序
+        .pipe(analyze) // 结构分析
         .pipe(model) // 模型处理
-        // .pipe(repeat) // 重复结构处理
         .pipe(contrain) // 约束处理
         .get(); // 获取json
     return H5Render(json, Config);
@@ -140,9 +147,13 @@ function analyzeDom(designDom) {
     var json = Klotski(designDom, Config)
         .pipe(cleanse) // 清洗
         .pipe(grid) // 行列组合
-        .pipe(analyze)
+        .pipe(analyze, {
+            matchGroup: function(r) {
+                res = r
+            }
+        })
         .get(); // 获取json
-    return json;
+    return res;
 }
 module.exports = {
     mobileHtml,

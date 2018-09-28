@@ -7,7 +7,9 @@ module.exports.template = function() {
 
 }
 module.exports.is = function(dom,parent,option,config) {
-    if (dom.type == STORE.layout.BLOCK||dom.type==STORE.layout.ROW) {
+    if (dom.layout == STORE.layout.BLOCK||dom.layout==STORE.layout.ROW) {
+
+        dom.contrains[CONTRAIN.LayoutFixedWidth] = true;
         let paddingLeft = dom.x;
         let d = dom.x
         dom.x = 0;
@@ -15,7 +17,6 @@ module.exports.is = function(dom,parent,option,config) {
         dom.width = parent.width;
         dom.children.forEach((child, i) => {
             child.x += paddingLeft;
-            child.abX += paddingLeft;
         });
         return true;
     }

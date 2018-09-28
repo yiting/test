@@ -115,10 +115,91 @@ function calRange(doms) {
 }
 
 
+/**
+ * 计算margin
+ */
+function calMargin(cur, parent, prev, next, direction) {
+    // 水平布局
+    if (!parent) {
+        return {};
+    }
+    let o = {};
+    if (direction == 'x') {
+        o["left"] = cur.x - (prev ? (prev.x + prev.width) : 0)
+        o["right"] = (next ? next.x : parent.width) - cur.x - cur.width;
+        o["top"] = cur.y;
+        o["bottom"] = parent.height - cur.y - cur.height;
+    } else if (direction == 'y') {
+        o["top"] = cur.y - (prev ? (prev.y + prev.height) : 0)
+        o["bottom"] = (next ? next.y : parent.height) - cur.y - cur.height;
+        o["left"] = cur.x;
+        o["right"] = parent.width - cur.x - cur.width;
+    } else {
+        o["left"] = o.x;
+        o["right"] = parent.width - o.x - o.width;
+        o["top"] = o.y;
+        o["bottom"] = parent.height - o.y - o.height;
+    }
+    return o;
+}
+
+function calPosition(cur, parent) {
+    let o = {
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0
+    };
+    if (parent) {
+        o.left = cur.x;
+        o.top = cur.y;
+        o.right = parent.width - cur.x - cur.width;
+        o.bottom = parent.height - cur.y - cur.height
+    }
+    return o;
+}
+
+/**
+ * 是否水平
+ */
+function isHorizontal(arr, errorCoefficient = 0) {
+    let prev;
+    return arr.every(meta => {
+        if (!prev) {
+            prev = meta;
+            return true;
+        }
+        let res = meta.abY <= prev.abY + prev.height + errorCoefficient &&
+            prev.abY <= meta.abY + meta.height + errorCoefficient;
+        prev = meta;
+        return res;
+    })
+}
+/**
+ * 是否垂直
+ */
+function isVertical(arr, errorCoefficient = 0) {
+    let prev;
+    return arr.every(meta => {
+        if (!prev) {
+            prev = meta;
+            return true;
+        }
+        let res = meta.abX <= prev.abX + prev.width + errorCoefficient &&
+            prev.abX <= meta.abX + meta.width + errorCoefficient;
+        prev = meta;
+        return res;
+    })
+}
+
 module.exports = {
     sort,
+    calMargin,
     calRange,
     createDom,
     assign,
-    gatherByLogic
+    gatherByLogic,
+    isHorizontal,
+    isVertical,
+    calPosition,
 }

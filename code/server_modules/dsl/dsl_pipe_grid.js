@@ -2,27 +2,25 @@ const Common = require("./dsl_common.js");
 const Store = require("./dsl_store.js");
 
 
-
-
 /**
  * 创建新组
  */
-function groupByArray(newArr, type) {
-
+function groupByArray(newArr, layout) {
     var children = [];
     if (newArr.length == 1) {
         return newArr[0];
     }
     newArr.forEach((crr, i) => {
         if (crr.length == 1) {
-            if (!Object.values(Store.layout).includes(crr[0].type)) {
-                crr[0].type = type;
+            if (!Object.values(Store.layout).includes(crr[0].layout)) {
+                crr[0].layout = layout;
             }
             children.push(crr[0])
         } else {
             let pos = Common.calRange(crr),
                 child = Common.createDom({
-                    type: type,
+                    type: "layout",
+                    layout: layout,
                     x: pos.x,
                     y: pos.y,
                     width: pos.width,
@@ -72,19 +70,18 @@ function column(domArr) {
 // 横向相邻元素
 function inline(domArr) {
     let newArr = Common.gatherByLogic(domArr, (meta, target) => {
-        let horizontalSpacing = Config.dsl.horizontalSpacing
-        /*if (meta.id == "AE2C94F3-435B-492D-9011-74D5141783E8" &&
-            target.id == "63FADA10-9CDD-4980-B63B-6FCF014A2065"
-        ) {
-            debugger;
-        }*/
-        if (meta.type == "QText" && target.type == 'QText') {
-            horizontalSpacing = Math.max(meta.size, target.size);
+        let horizontalSpacing = Config.dsl.horizontalSpacing;
+        if (meta.text && target.text) {
+            horizontalSpacing = Math.max(meta.styles.maxSize, target.styles.maxSize);
         }
-        return (Math.abs(meta.y + meta.height / 2 - target.y - target.height / 2) < Option.errorSpacing ||
+        return ((meta.abY + meta.height > target.abY) &&
+                (target.abY + target.height > meta.abY)) &&
+            meta.abX + meta.width + horizontalSpacing >= target.abX &&
+            target.abX + target.width + horizontalSpacing >= meta.abX;
+        /*return (Math.abs(meta.y + meta.height / 2 - target.y - target.height / 2) < Option.errorSpacing ||
                 Math.abs(meta.y + meta.height - target.y - target.height) < Option.errorSpacing) &&
             meta.abX + meta.width + horizontalSpacing >= target.abX &&
-            target.abX + target.width + horizontalSpacing >= meta.abX
+            target.abX + target.width + horizontalSpacing >= meta.abX*/
     });
     let children = groupByArray(newArr, Store.layout.INLINE);
     return children;
@@ -112,15 +109,16 @@ function ergodic(json, func) {
         let arr = [],
             ignore = [];
         json.children.forEach((child, i) => {
-            if (child.isSegmenting) {
+            if (child.type == Store.model.SEGMENTING_HORIZONTAL ||
+                child.type == Store.model.SEGMENTING_VERTICAL) {
                 ignore.push(child)
             } else {
                 arr.push(child);
             }
         });
-        // if (!Object.values(Store.layout).includes(json.type)) {
-            arr = func(arr);
-            json.children = arr.concat(ignore);
+        // if (!Object.values(Store.layout).includes(json.layout)) {
+        arr = func(arr);
+        json.children = arr.concat(ignore);
         // }
         arr.forEach((child) => {
             ergodic(child, func)

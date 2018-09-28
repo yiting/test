@@ -44,7 +44,7 @@ function horizontal(json) {
         // align
         contrainsObj[CONTRAIN.LayoutAlignItemsStart] = contrainsObj[CONTRAIN.LayoutAlignItemsStart] !== false && info.magrin_top < Option.positionDeviation;
         contrainsObj[CONTRAIN.LayoutAlignItemsEnd] = contrainsObj[CONTRAIN.LayoutAlignItemsEnd] !== false && info.margin_bottom < Option.positionDeviation;
-        contrainsObj[CONTRAIN.LayoutAlignItemsCenter] = contrainsObj[CONTRAIN.LayoutAlignItemsCenter] !== false && Math.abs(info.offset_top - info.offset_bottom < Option.positionDeviation);
+        contrainsObj[CONTRAIN.LayoutAlignItemsCenter] = contrainsObj[CONTRAIN.LayoutAlignItemsCenter] !== false && Math.abs(info.offset_top - info.offset_bottom) < Option.positionDeviation;
 
         if (i == 0) {
             contrainsObj[CONTRAIN.LayoutJustifyContentBetween] = contrainsObj[CONTRAIN.LayoutJustifyContentBetween] !== false && info.margin_left == 0
@@ -130,13 +130,17 @@ function calChildrenContrain(json) {
     let children = json.children,
         firstChild = children[0],
         lastChild = children[children.length - 1]
+    // 遍历子节点
+    children.forEach(function(child, i) {
+        calChildrenContrain(child);
+    });
     // 如果无子节点，不计算节点约束
     if (!firstChild) {
         return;
     }
-    if (Object.values(Store.model).includes(json.type)) {
-        return;
-    }
+    // if (Object.values(Store.model).includes(json.type)) {
+        // return;
+    // }
     let _x = json.x,
         _y = json.y,
         _width = json.width,
@@ -158,12 +162,9 @@ function calChildrenContrain(json) {
      * 合并约束关系
      */
     if (Object.keys(contrainsObj).length) {
-        json.contrains = Object.assign({}, json.contrains, contrainsObj);
+        // json.contrains = Object.assign({}, json.contrains, contrainsObj);
+        json.contrains =Object.assign({},contrainsObj,json.contrains);
     }
-    // 遍历子节点
-    children.forEach(function(child, i) {
-        calChildrenContrain(child);
-    });
 }
 
 let Option = {},

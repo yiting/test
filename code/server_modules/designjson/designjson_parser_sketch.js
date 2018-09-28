@@ -277,10 +277,11 @@ let _parseLayer = function(_document, layer, pnode = null) {
         setAttrByLayer(obj,layer);
         Object.assign(obj,{x,y});
     }
+    if (layerType === Bitmap) obj.styles = {};
     setAbsoulutePostion(obj,pnode);
     // 创建根节点
     curNode = _document.addNode(uin, obj, pnode);
-    
+    // if (pnode) curNode._originParent = pnode.id;
     // 继续递归
     if (layerType == Artboard || layerType == Group || layerType == SymbolInstance) {
         let sublayers = layer.layers;

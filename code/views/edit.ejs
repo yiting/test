@@ -4,6 +4,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>预览</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/jquery.magnify.css">
     <link rel="stylesheet" href="/css/edit.css">
 </head>
 <body id="app" class="page-list">
@@ -74,58 +76,97 @@
     </aside>
     <!-- 中:预览-->
     <section class="screen-viewer dragscroll">
-        <div  class="screen-viewer-inner">
+        <div class="screen-viewer-inner">
             <iframe frameborder="0" scrolling="auto" style="width:375px; height: 667px;" class="screen"
                     src="" id="screen"></iframe>
+
+            <!--生成模式:1.普通规则   2.AI模式-->
+            <ul class="compilation-mode-list">
+                <li class="compilation-mode-item ordinary-mode-item">
+                    <input type="radio" id="ordinary-mode" name="compilation-mode" value="0" checked/>
+                    <label for="ordinary-mode">普通模式</label>
+                </li>
+                <li class="compilation-mode-item ai-mode-item">
+                    <input type="radio" id="ai-mode" name="compilation-mode" value="1"/>
+                    <label for="ai-mode">AI模式</label>
+                    <input type="file" class="upload-ai-img" id="upload-img"
+                           accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"
+                           style="visibility:hidden;"/>
+                </li>
+            </ul>
+
         </div>
     </section>
     <!-- 右:编辑区-->
-    <!--<aside class="inspector active">
-        <h2>标题标题</h2>
-        <section>
-            <h3>属性</h3>
-            <ul class="features-list">
-                <li title="左对齐"><img src="icons/height-left-normal.png"></li>
-                <li title="居中齐"><img src="icons/height-center-normal.png"></li>
-                <li title="右对齐"><img src="icons/height-right-normal.png"></li>
-            </ul>
-        </section>
-        <section>
-            <h3>对齐</h3>
-            <ul class="features-list">
-                <li class="opacity"></li>
-                <li><img src="icons/spacing-top-normal.png"></li>
-                <li class="opacity"></li>
-                <li><img src="icons/spacing-left-normal.png"></li>
-                <li><img src="icons/spacing-bottom-normal.png"></li>
-                <li><img src="icons/spacing-right-normal.png"></li>
-            </ul>
-        </section>
-        <section>
-            <h3>布局</h3>
-            <ul class="features-list">
-                <li><img src="icons/properties-left-normal.png"></li>
-                <li><img src="icons/properties-top-normal.png"></li>
-                <li><img src="icons/properties-right-normal.png"></li>
-            </ul>
-        </section>
-        <section>
-            <h3>平台</h3>
-            <ul class="features-list">
-                <li>
-                    <ios></ios>
-                </li>
-                <li><img src="icons/properties-top-normal.png"></li>
-                <li>
-                    <webview></webview>
-                </li>
-            </ul>
-        </section>
-    </aside>-->
+    <!-- 素材库/编辑-->
+    <aside class="inspector active">
+        <ul class="func-tab-list">
+            <li class="tab-item material-tab active">素材库</li>
+            <li class="tab-item edit-tab">编辑</li>
+        </ul>
+
+        <!-- 具体内容-->
+        <ul class="func-content-list">
+            <!--存放图片素材列表区域-->
+            <li class="content-item material-content-panel active">
+                <div class="img-item-list" id="masonry">
+                    <!--<div class="img-item">-->
+                    <!--<img src="../result/6296b840-bb2c-11e8-81f0-8f250e2f9329/778133A4-4CA7-410B-A19B-B504AF603BD1.png"/>-->
+                    <!--</div>-->
+                </div>
+            </li>
+            <!--操作区域-->
+            <li class="content-item edit-content-panel">
+                <section>
+                    <h3>属性</h3>
+                    <ul class="features-list">
+                        <li title="左对齐"><img src="icons/height-left-normal.png"></li>
+                        <li title="居中齐"><img src="icons/height-center-normal.png"></li>
+                        <li title="右对齐"><img src="icons/height-right-normal.png"></li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>对齐</h3>
+                    <ul class="features-list">
+                        <li class="opacity"></li>
+                        <li><img src="icons/spacing-top-normal.png"></li>
+                        <li class="opacity"></li>
+                        <li><img src="icons/spacing-left-normal.png"></li>
+                        <li><img src="icons/spacing-bottom-normal.png"></li>
+                        <li><img src="icons/spacing-right-normal.png"></li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>布局</h3>
+                    <ul class="features-list">
+                        <li><img src="icons/properties-left-normal.png"></li>
+                        <li><img src="icons/properties-top-normal.png"></li>
+                        <li><img src="icons/properties-right-normal.png"></li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>平台</h3>
+                    <ul class="features-list">
+                        <li>
+                            <ios></ios>
+                        </li>
+                        <li><img src="icons/properties-top-normal.png"></li>
+                        <li>
+                            <webview></webview>
+                        </li>
+                    </ul>
+                </section>
+            </li>
+        </ul>
+    </aside>
 </main>
-<script src="js/jquery.min.js"></script>
+<script src="js/lib/jquery.min.js"></script>
+<!--瀑布流插件-->
+<script src="js/lib/masonry-docs.min.js"></script>
+<!--图片查看器-->
+<script src="js/lib/jquery.magnify.js"></script>
 <!--二维码插件 -->
-<script src="js/jquery.qrcode.min.js"></script>
+<script src="js/lib/jquery.qrcode.min.js"></script>
 <!--页面弹框插件 -->
 <script src="layer.js"></script>
 <script src="js/util.js"></script>

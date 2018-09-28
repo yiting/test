@@ -6,7 +6,7 @@ let STORE = require("../dsl_store.js");
  */
 module.exports.template = function(dom) {
     let o = {};
-    o.contrains[CONTRAIN.LayoutAutoHeight] = true;
+    // o.contrains[CONTRAIN.LayoutAutoHeight] = true;
     o.tagStart = "p";
     o.tagEnd = "p";
     o.innerHTML = dom.text;

@@ -98,7 +98,6 @@ let zipFolder = function (destZip, sourceFolder, cb) {
 /*获取客户端请求ip*/
 let getClientIp = function (req) {
     return req.headers['x-forwarded-for'] ||
-        req.ip ||
         req.connection.remoteAddress ||
         req.socket.remoteAddress ||
         req.connection.socket.remoteAddress || ''

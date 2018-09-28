@@ -7,7 +7,7 @@ let STORE = require("../dsl_store.js");
 module.exports.template = function() {
 
 }
-module.exports.is = function(dom,parent,option,config) {
+module.exports.is = function(dom, parent, option, config) {
     if (dom.children && dom.children.length == 2) {
         const txt = dom.children.find((child) => {
             return child.type == STORE.model.TEXT;
@@ -17,7 +17,7 @@ module.exports.is = function(dom,parent,option,config) {
         });
         if (txt && img && img.abY + img.height < txt.abY) {
             dom.type = STORE.model.ICONENTER;
+            return true;
         }
-        return true;
     }
 }

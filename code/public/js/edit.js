@@ -6,8 +6,17 @@ $(document).ready(function () {
     operatePage();
 });
 
+
 let currentArtBoardUrl, currentPageId, currentPageName, currentArtboardId, artboardsUrlArr = [], urlIsGenerate = false;
+let imgsPathArr = [], projectId;//存放生成的图片素材路径数组
 let operatePage = function () {
+    leftOperate();
+    centerOperate();
+    rightOperate();
+};
+
+//左侧面板操作
+let leftOperate = function () {
     //跳转到主页
     $(".icon-logo").click(function () {
         window.location = "/";
@@ -22,6 +31,8 @@ let operatePage = function () {
         $(".pages-list").hide();
     });
     $(".pages-list").on("change", ".pages-item input", function () {
+        //关闭图片查看器
+        $(".magnify-modal").remove();
         let inputObj = $(this);
         //当前选中page页面的id，根据pageid，切换下面的数据,并请求第一个artBoard，合成html网页
         let itemObj = inputObj.parent();
@@ -38,6 +49,8 @@ let operatePage = function () {
 
     //根据选择artBoardId来加载对应的ardBoard页面
     $(".artboard-list").on("click", ".artboard", function () {
+        //关闭图片查看器
+        $(".magnify-modal").remove();
         let currentArtboard = $(this);
         currentArtboard.addClass("active").siblings().removeClass("active");
         //请求当前artBoardId对应的url
@@ -51,7 +64,176 @@ let operatePage = function () {
     showQrCodeAndUrl();
     //下载当前编译项目zip文件
     downloadProject();
-};
+}
+
+//中间面板操作
+let centerOperate = function () {
+    //切换编译模式：默认使用普通模式
+    $('.compilation-mode-item input[type=radio]').click(function () {
+        let _this = $(this);
+        //当前选中值
+        let _thisVal = _this.val();
+        //普通模式
+        if (_thisVal == '0') {
+            //请求普通模式，直接从缓存里面去读，第一次已经是普通模式
+        }
+        //AI模式
+        else if (_thisVal == '1') {
+            //弹出文件选择框
+            $("#upload-img").click();
+        }
+    });
+    //文件选择框，上传图片文件:change--->click:保证每次触发
+    $('#upload-img').on('change', function (e) {
+        //如果没有内容，则返回
+        let fileContent = $(this).val()
+        if (!fileContent) {
+            layer.msg("未上传图片，请重新上传!")
+            return
+        }
+        let formData = new FormData();
+        formData.append('file', $('#upload-img')[0].files[0]);  //添加图片信息的参数
+        CommonTool.uploadFile("/edit/uploadAIImg", formData, function (data) {
+            layer.msg("上传图片成功，AI服务正在解析中...")
+            //console.log(data)
+            //上传成功后，获取图片地址url。请求AI服务地址(可以在后台进行，拿到的数据，直接结合俊标模型规则，进行组装页面)
+
+        });
+    });
+}
+//右侧面板操作
+let rightOperate = function () {
+    $(".func-tab-list").on("click", "li", function () {
+        let currentLi = $(this);
+        let currentIndex = currentLi.index();
+        //tab切换
+        currentLi.addClass("active");
+        currentLi.siblings().removeClass("active");
+        //tab对应的内容面板切换
+        let currentContentLi = $(".func-content-list li").eq(currentIndex);
+        currentContentLi.addClass("active");
+        currentContentLi.siblings().removeClass("active");
+        //素材tab
+        if (currentLi.hasClass("material-tab")) {
+
+        } else if (currentLi.hasClass("edit-tab")) {//操作tab
+
+        }
+    });
+}
+/**
+ * 判断是否是图片格式
+ * @param imgurl
+ * @returns {boolean}
+ * @constructor
+ */
+let checkImg = function (imgUrl) {
+    let postfix = "";
+    let index = imgUrl.indexOf("."); //得到"."在第几位
+    postfix = imgUrl.substring(index); //截断"."之前的，得到后缀
+    if (postfix != ".bmp" && postfix != ".png" && postfix != ".gif" && postfix != ".jpg" && postfix != ".jpeg") {  //根据后缀，判断是否符合图片格式
+        return false;
+    } else {
+        return true;
+    }
+}
+
+//拉取图片素材:iframe加载完成后，当前pageID里面对应的artBoardId，拉取本地素材(对应的项目文件夹名称：projectId)
+//need:还需素材全部下载操作；图片布局操作
+let getImgsByArtBoardId = function () {
+    //每次请求，清空上次的设置
+    let imgListHtml = [];
+    //给图片大小重新排个序，从小图到大图排序
+    imgsPathArr.sort(function (a, b) {
+        return a.width - b.width;
+    });
+    //后台获取图片输出列表
+    let imgsArrPathLen = imgsPathArr.length;
+    for (let i = 0; i < imgsArrPathLen; i++) {
+        let imgName = imgsPathArr[i].path;
+        //检验图片是否是图片，如果是，则展示出来
+        if (checkImg(imgName)) {
+            let imgOneUrl = `../complie/${projectId}/${imgName}`;
+            imgListHtml.push(`<div class="img-item" data-magnify="gallery" data-src="${imgOneUrl}"><img src="${imgOneUrl}"   style="width:${imgsPathArr[i].width}px;"/></div>`)
+        }
+    }
+    $(".img-item-list").html(imgListHtml.join(""));
+    //图片查看器:https://nzbin.github.io/magnify/
+    let viewImgUrl = "";
+    $('[data-magnify]').magnify({
+        headToolbar: [
+            'maximize',
+            'close'
+        ],
+        footToolbar: [
+            'zoomIn',
+            'zoomOut',
+            'prev',
+            'fullscreen',
+            'next',
+            'actualSize',
+            'rotateRight'
+        ],
+        icons: {
+            maximize: 'fa fa-window-maximize',
+            close: 'fa fa-close',
+            zoomIn: 'fa fa-search-plus',
+            zoomOut: 'fa fa-search-minus',
+            prev: 'fa fa-arrow-left',
+            next: 'fa fa-arrow-right',
+            fullscreen: 'fa fa-photo',
+            actualSize: 'fa fa-arrows-alt'
+        },
+        //modalWidth: document.documentElement.clientWidth,
+        //modalHeight: document.documentElement.clientHeight,
+        modalWidth: 500,
+        modalHeight: 500,
+        initMaximized: false,
+        initAnimation: false,
+        title: false,
+        callbacks: {
+            //刚刚打开时
+            opened: function (el) {
+                let currentDom = $(el);
+                //获取初始化点击的图的url
+                viewImgUrl = currentDom.find("img").attr("src");
+                $(".magnify-foot-toolbar").append(`<button class="magnify-button magnify-button-download" title="下载"><a href="${viewImgUrl}"download=""><i class="fa fa-download" aria-hidden="true"></i></a></button>`);
+            },
+            //图片发生变化时
+            changed: function (el) {
+                //获取当前预览图的url
+                viewImgUrl = $(".magnify-stage img").attr("src");
+                $(".magnify-foot-toolbar a").attr("href", viewImgUrl);
+            }
+        }
+    });
+
+    //$(".magnify-foot-toolbar").append('<button class="magnify-button magnify-button-zoom-in" title="zoom-in(+)">ffs<i class="fa fa-search-plus" aria-hidden="true"></i></button>');
+    /*let $container = $('#masonry');
+     let msnry = new Masonry($container, {
+     // options
+     columnWidth: 200,
+     itemSelector: '.img-item',
+     isAnimated: true,
+     });*/
+
+    /*$container.imagesLoaded(function () {
+     $container.masonry({
+     //gutter: 20,
+     itemSelector: '.img-item',
+     isFitWidth: true,//是否根据浏览器窗口大小自动适应默认false
+     isAnimated: true,//是否采用jquery动画进行重拍版
+     isRTL: false,//设置布局的排列方式，即：定位砖块时，是从左向右排列还是从右向左排列。默认值为false，即从左向右
+     isResizable: true,//是否自动布局默认true
+     animationOptions: {
+     duration: 800,
+     easing: 'easeInOutBack',//如果你引用了jQeasing这里就可以添加对应的动态动画效果，如果没引用删除这行，默认是匀速变化
+     queue: false//是否队列，从一点填充瀑布流
+     }
+     });
+     });*/
+    //$container.masonry('appended', $(imgListHtml.join("")), true);
+}
 
 /**
  * 根据pageid，切换对应的artBoard列表
@@ -74,7 +256,7 @@ let getArtBoardsByPageId = function (currentPid, callback) {
     let currentArtBoardsLen = currentArtBoards.length;
     //设置当前选中的pageName
     $(".page-title").data("id", currentPid).html(currentPageName + `<em>(${currentArtBoardsLen})</em>`);
-    //设置选中的额pageId下面对应的artBoard列表
+    //设置选中的pageId下面对应的artBoard列表
     let artBoardListObj = $(".artboard-list");
     let artBoardListHtmlArr = [];
     for (let i = 0; i < currentArtBoardsLen; i++) {
@@ -125,10 +307,18 @@ let getPageUrlById = function () {
         //console.log("新页面，需要重新请求:" + data)
         //let dataObj = JSON.parse(data);
         currentArtBoardUrl = data.url;
-        //延迟1s，保证生成的图片能全部生成，html可以第1次全部加载出来，无需再次刷新才出路
+        imgsPathArr = data.imgPaths;
+        projectId = data.projectId;
+        //关闭之前所有的信息窗口
         layer.closeAll();
+        setTimeout(function () {
+            layer.msg("结果不准？请尝试使用AI模式!")
+        }, 1000);
+        //设置对应的url
         $("#screen").attr("src", currentArtBoardUrl);
-        //将生成的url存储在本地数据中
+        //设置显示当前artBoardId对应的素材库
+        getImgsByArtBoardId();
+        //将生成的url存储在缓存数据中
         artboardsUrlArr.push({
             artboardId: currentArtboardId,
             artBoardUrl: currentArtBoardUrl

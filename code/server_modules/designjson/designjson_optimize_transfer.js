@@ -15,10 +15,11 @@ class _TransferProcessor {
         walkout(_document._tree,node => {
             if(!node.parent) return;
             const parent = _document.getNode(node.parent);
-            if (node.type === 'QImage' || hasCompleteSytle(node) || !isCoincide(node,parent)) return;
+            if (node.type === 'QText' || node.type === 'QImage' || hasCompleteSytle(node) || !isCoincide(node,parent)) return;
              // 父子重合时，将子元素属性合并到父元素上
             console.log(node.name,'合并到',parent.name)
             mergeStyle(parent,node);
+            // if(node.path) parent.path = node.path;
             if (node.children && node.children.length) {
                 node.children.forEach(n => {
                     _document.moveNode(n.id,parent)

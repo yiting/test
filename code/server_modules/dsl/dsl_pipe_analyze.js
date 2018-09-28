@@ -7,23 +7,31 @@ let Store = require("./dsl_store.js");
 /**
  * 分离结构节点与内容节点
  */
-function getChildDom(json, arr) {
-    let children = json.children;
-    json.children = [];
-    if (!Object.values(Store.layout).includes(json.type)) {
+
+function serialize(json) {
+    let arr = [];
+    // if (Object.values(Store.layout).includes(json.layout)) {
+    if (json.type=='layout') {
         arr.push(json);
+        json.nodes = getChildDom(json)
     }
-    children.forEach((child, i) => {
-        getChildDom(child, arr)
-        if (!Object.values(Store.layout).includes(child.type)) {
-            json.children = json.children.concat(child.children);
-        } else {
-            json.children.push(child);
-        }
-    });
+    json.children.forEach(child => {
+        arr = arr.concat(serialize(child));
+    })
     return arr;
 }
 
+function getChildDom(json) {
+    let nodes = [];
+    json.children.forEach(child => {
+        if (Object.values(Store.layout).includes(child.layout)) {
+            nodes = nodes.concat(getChildDom(child));
+        } else {
+            nodes.push(child);
+        }
+    });
+    return nodes;
+}
 /**
  * 内容矩阵化
  */
@@ -36,9 +44,13 @@ function matrix(obj) {
         matrix.push(a);
     }
     obj.children.forEach((o) => {
-        let w = o.width;
+        let w = (o.type == Store.model.TEXT || o.type == Store.model.PARAGRAPH) ? o.styles.maxSize : o.width,
+            h = (o.type == Store.model.TEXT || o.type == Store.model.PARAGRAPH) ? o.styles.maxSize : o.height
+
+        // let w = o.width,
+        // h = o.height
         while (--w) {
-            matrix[o.x + w].fill(1, o.y, o.height);
+            matrix[o.x + w].fill(1, o.y, h);
         };
     });
     return matrix;
@@ -72,11 +84,11 @@ function matching(a, b) {
     }
 }
 
-function matchGroup(arr) {
+/**
+ * 两两对比矩阵列表
+ */
+function matchMatrix(arr) {
     let matchResult = [];
-    /**
-     * 两两对比矩阵
-     */
     arr.forEach((a, i) => {
         arr.slice(i + 1).forEach((b) => {
             let o = matching(a.matrix, b.matrix);
@@ -91,12 +103,16 @@ function matchGroup(arr) {
             });
         })
     });
-    /**
-     * 成组
-     */
+    return matchResult;
+}
+
+/**
+ * 同比率矩阵成组
+ */
+function groupMatch(matchResult) {
     let group = [];
     matchResult.forEach((d) => {
-        if (d.rate > .8) {
+        if (d.rate > .9) {
             group.some((g) => {
                 let g1 = g.includes(d.id1),
                     g2 = g.includes(d.id2);
@@ -111,23 +127,33 @@ function matchGroup(arr) {
                 }
             }) || group.push([d.id1, d.id2]);
         }
+    });
+    return group;
+}
+
+
+function markGroup(json, arr) {
+    arr.forEach((l, i) => {
+        if (l.includes(json.id)) {
+            json._groupId = 'group' + i;
+        }
     })
-    console.log(group)
-    return matchResult;
+    json.children.forEach(c => {
+        markGroup(c, arr);
+    });
 }
 
 function fn(json) {
     let objs = JSON.parse(JSON.stringify(json));
-    let arr = getChildDom(objs, []);
+    let arr = serialize(objs);
     arr.forEach((obj) => {
         obj.matrix = matrix(obj);
     });
-    console.log(arr)
-    let matchResult = matchGroup(arr);
-    // arr = arr.slice(0, 6);
-    // console.log(matchResult)
-    return matchResult
-
+    let matchResult = matchMatrix(arr);
+    let group = groupMatch(matchResult);
+    markGroup(json, group);
+    Option.matchGroup && Option.matchGroup(matchResult)
+    return json;
 }
 let Config = {},
     Option = {}

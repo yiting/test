@@ -47,7 +47,7 @@ function hasCompleteSytle(node) { // 节点是否包含影响子元素的属
     const isBgComplex = background && !(background.type === 'color' && background.color.a === 1)
     return opacity != 1 || rotation!= 0 || border || shadows || borderRadius!=0 || isBgComplex ;
 }
-function generateGroupStyle(nodes) {
+function generateGroupAttr(nodes) {
      // 如果是mask，则合并的图片为mask的位置大小信息
     const maskList = nodes.filter(({type}) => type === 'QMask');
     if(maskList.length) {
@@ -78,5 +78,5 @@ module.exports = {
     isCoincide,
     mergeStyle,
     hasCompleteSytle,
-    generateGroupStyle
+    generateGroupAttr
 }
