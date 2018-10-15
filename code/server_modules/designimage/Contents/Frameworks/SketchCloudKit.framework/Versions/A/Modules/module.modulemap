@@ -1,0 +1,8 @@
+framework module SketchCloudKit {
+  umbrella header "SketchCloudKit.h"
+  
+  link framework "SketchCloudKit"
+  
+  export *
+  module * { export * }
+}

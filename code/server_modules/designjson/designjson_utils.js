@@ -1,5 +1,5 @@
 
-// 深度遍历，自底向上处理
+// 往外走
 function walkout(node,handler) {
     if (!node.children || !node.children.length) return;
 
@@ -9,7 +9,7 @@ function walkout(node,handler) {
     });
     if(!node.parent) handler(node); // 处理根节点
 }
-// 广度遍历，自上而下处理
+// 往里走
 function walkin(node,handler) {
     if (!node.children || !node.children.length) return;
     if(!node.parent) handler(node); // 处理根节点

@@ -13,12 +13,13 @@ module.exports.model = {
     BODY: 'body', // Qbody
     LIST0: 'list0', // list0
     NUMERICAL: 'numerical', // 数值
+    POSTER:'poster',// 背景
     LISTHORIZONTALITEM: 'list-horizontal-item',
 }
 module.exports.layout = {
     BLOCK: 'block', // 组织
     COLUMN: 'column', // 列
-    INLINE: 'inline', // 行内
     ROW: 'row', // 行
     UL: 'ul', // Unordered List
+    INLINE: 'inline', // 行内
 }

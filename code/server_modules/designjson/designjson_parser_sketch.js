@@ -135,7 +135,7 @@ const styleParser = {
             const { name: fontName, size } = text.attributes.MSAttributedStringFontAttribute.attributes;
             return {
                 color: this._getColor(text.attributes.MSAttributedStringColorAttribute),
-                string: textValue.slice(text.location, text.length),
+                string: textValue.slice(text.location, text.location + text.length),
                 // fontWeight: name.slice(0,2), // TODO
                 font: fontName,
                 size
@@ -187,7 +187,7 @@ let _parseFromArtboard = function(artboardLayer,symbolMasterLayerMap) {
  * @param {SketchLayer} layer 解析到的sketch层级类
  * @param {QNode} pnode 父节点
  */
-let _parseLayer = function(_document, layer, pnode = null) {
+let _parseLayer = function(_document, layer, pnode = null, brotherLayers = null) {
     // 隐藏的就不读出来
     if (!layer.isVisible) return;
 
@@ -196,7 +196,6 @@ let _parseLayer = function(_document, layer, pnode = null) {
     let layerType = layer._class;
     let obj = null;                     // 具体QObject
     let curNode = null;                 // 生成的节点
-    
     // 根据不同类型初始化不同object
     switch(layerType) {
         case Artboard:
@@ -226,13 +225,14 @@ let _parseLayer = function(_document, layer, pnode = null) {
                 obj = new QMask();
                 const maskedNodes = [];
                 //收集mask关联的图层
-                const brotherLayers = pnode._origin.layers;
-                const index = brotherLayers.indexOf(layer);
-                for(let i = index + 1; i < brotherLayers.length; i++) {
-                    const brotherLayer = brotherLayers[i];
-                    if(brotherLayer.shouldBreakMaskChain) break;
-                    if(brotherLayer.isVisible) maskedNodes.push(brotherLayer.do_objectID);
-                    brotherLayer.maskNode = uin;
+                if (brotherLayers && brotherLayers.length) {
+                    const index = brotherLayers.indexOf(layer);
+                    for(let i = index + 1; i < brotherLayers.length; i++) {
+                        const brotherLayer = brotherLayers[i];
+                        if(brotherLayer.shouldBreakMaskChain) break;
+                        if(brotherLayer.isVisible) maskedNodes.push(brotherLayer.do_objectID);
+                        brotherLayer.maskNode = uin;
+                    }
                 }
                 obj.maskedNodes = maskedNodes;
             } else {
@@ -273,9 +273,9 @@ let _parseLayer = function(_document, layer, pnode = null) {
     if (layerType === SymbolInstance) {
         layer = _document._symbolMasterLayers[layer.symbolID];
         if(!layer) throw '找不到Symbol';
-        const {x,y} = obj;
-        setAttrByLayer(obj,layer);
-        Object.assign(obj,{x,y});
+        // const {x,y} = obj;
+        // setAttrByLayer(obj,layer);
+        // Object.assign(obj,{x,y});
     }
     if (layerType === Bitmap) obj.styles = {};
     setAbsoulutePostion(obj,pnode);
@@ -287,7 +287,7 @@ let _parseLayer = function(_document, layer, pnode = null) {
         let sublayers = layer.layers;
         for (let i = 0; i < sublayers.length; i++) {
             let sblayer = sublayers[i];
-            _parseLayer(_document, sblayer, curNode);
+            _parseLayer(_document, sblayer, curNode,sublayers);
         }
     }
 }

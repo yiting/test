@@ -31,8 +31,10 @@ let leftOperate = function () {
         $(".pages-list").hide();
     });
     $(".pages-list").on("change", ".pages-item input", function () {
+        $(".design-img-panel").hide();
         //关闭图片查看器
         $(".magnify-modal").remove();
+        $(".img-item-list").html("");
         let inputObj = $(this);
         //当前选中page页面的id，根据pageid，切换下面的数据,并请求第一个artBoard，合成html网页
         let itemObj = inputObj.parent();
@@ -49,8 +51,10 @@ let leftOperate = function () {
 
     //根据选择artBoardId来加载对应的ardBoard页面
     $(".artboard-list").on("click", ".artboard", function () {
+        $(".design-img-panel").hide();
         //关闭图片查看器
         $(".magnify-modal").remove();
+        $(".img-item-list").html("");
         let currentArtboard = $(this);
         currentArtboard.addClass("active").siblings().removeClass("active");
         //请求当前artBoardId对应的url
@@ -98,6 +102,23 @@ let centerOperate = function () {
             //console.log(data)
             //上传成功后，获取图片地址url。请求AI服务地址(可以在后台进行，拿到的数据，直接结合俊标模型规则，进行组装页面)
 
+        });
+    });
+    //获取当前artBoard设计图
+    $(".design-img-btn").click(function () {
+        //请求后台数据
+        let postData = {
+            pageId: currentPageId,
+            artboardId: currentArtboardId
+        }
+        //2018-10-12:请求设计稿当前artBoard的预览图
+        CommonTool.httpRequest("/edit/getArtBoardImg", postData, function (data) {
+            let artBoardImgUrl = `../complie/${projectId}/` + data.artBoardImgName + ".png";
+            //设置显示当前artBoardId对应的预览图
+            $("#design-img-prew").attr("src", artBoardImgUrl);
+            $(".design-img-panel").show();
+        }, function (error) {
+            layer.msg('生成预览图失败，错误信息:' + error.responseText)
         });
     });
 }
@@ -159,7 +180,7 @@ let getImgsByArtBoardId = function () {
     }
     $(".img-item-list").html(imgListHtml.join(""));
     //图片查看器:https://nzbin.github.io/magnify/
-    let viewImgUrl = "";
+    let viewImgObj, viewImgUrl = "", viewImgW = 0, viewImgH = 0;
     $('[data-magnify]').magnify({
         headToolbar: [
             'maximize',
@@ -190,20 +211,43 @@ let getImgsByArtBoardId = function () {
         modalHeight: 500,
         initMaximized: false,
         initAnimation: false,
-        title: false,
+        title: true,
         callbacks: {
             //刚刚打开时
+            beforeOpen: function (el) {
+                // Will fire before modal is opened
+                let currentDom = $(el);
+                //点击的图对象
+                let o = currentDom.find("img");
+                viewImgW = o[0].naturalWidth, viewImgH = o[0].naturalHeight;
+            },
             opened: function (el) {
+                //删除之前的图片查看弹框:如果存在多个的话，删除最后一个之前的：即为删除非最后一个
+                if ($(".magnify-modal").length > 1) {
+                    $(".magnify-modal:last").siblings(".magnify-modal").remove();
+                }
                 let currentDom = $(el);
                 //获取初始化点击的图的url
                 viewImgUrl = currentDom.find("img").attr("src");
                 $(".magnify-foot-toolbar").append(`<button class="magnify-button magnify-button-download" title="下载"><a href="${viewImgUrl}"download=""><i class="fa fa-download" aria-hidden="true"></i></a></button>`);
+                //被查看弹框的的图片：增加宽高
+                $(".magnify-stage").append(`<div class="show-img-info"><div class="img-width">宽:${viewImgW}px</div><div class="img-height">高:${viewImgH}px</div></div>`)
+            },
+            beforeChange: function (index) {
+                // Will fire before image is changed
+                // The arguments is the index of image group
             },
             //图片发生变化时
             changed: function (el) {
+                //$(".show-img-info").remove();
                 //获取当前预览图的url
-                viewImgUrl = $(".magnify-stage img").attr("src");
+                viewImgObj = $(".magnify-stage img");
+                viewImgUrl = viewImgObj.attr("src");
                 $(".magnify-foot-toolbar a").attr("href", viewImgUrl);
+                viewImgW = viewImgObj[0].naturalWidth, viewImgH = viewImgObj[0].naturalHeight;
+                //设置宽高
+                $(".show-img-info .img-width").html(`宽:${viewImgW}px`);
+                $(".show-img-info .img-height").html(`高:${viewImgH}px`);
             }
         }
     });
@@ -284,7 +328,11 @@ let getPageUrlById = function () {
         let artBdId = artBoardsOne.artboardId;
         //如果当前正在请求的artboard对应的id已经生成，则不请求页面
         if (currentArtboardId == artBdId) {
+            //当前url
             currentArtBoardUrl = artBoardsOne.artBoardUrl;
+            //当前url对象的素材
+            imgsPathArr = artBoardsOne.artBoardImgs;
+            getImgsByArtBoardId();
             //不请求
             console.log("链接已生成，不予请求")
             urlIsGenerate = true;
@@ -292,32 +340,33 @@ let getPageUrlById = function () {
     }
     //如果链接生成，则调取本地已存储的网页地址，且返回
     if (urlIsGenerate) {
+        //设置对应的链接
         $("#screen").attr("src", currentArtBoardUrl);
+        //设置对应的素材库(直接本地读取)
         //重置下
         urlIsGenerate = false;
         return;
     }
-    layer.msg("页面正在加载中，请稍后...", {time: 200000000})
+    layer.msg("页面结构正在生成中，请稍后...", {time: 200000000})
     //请求后台数据
     let postData = {
         pageId: currentPageId,
         artboardId: currentArtboardId
     }
+    //2018-10-10:请求页面骨架结构
     CommonTool.httpRequest("/edit/getPageById", postData, function (data) {
         //console.log("新页面，需要重新请求:" + data)
         //let dataObj = JSON.parse(data);
         currentArtBoardUrl = data.url;
-        imgsPathArr = data.imgPaths;
         projectId = data.projectId;
         //关闭之前所有的信息窗口
         layer.closeAll();
-        setTimeout(function () {
-            layer.msg("结果不准？请尝试使用AI模式!")
-        }, 1000);
+        layer.msg("页面图片正在生成中，请稍后...", {time: 200000000})
+        /*setTimeout(function () {
+         layer.msg("结果不准？请尝试使用AI模式!")
+         }, 1000);*/
         //设置对应的url
         $("#screen").attr("src", currentArtBoardUrl);
-        //设置显示当前artBoardId对应的素材库
-        getImgsByArtBoardId();
         //将生成的url存储在缓存数据中
         artboardsUrlArr.push({
             artboardId: currentArtboardId,
@@ -326,7 +375,36 @@ let getPageUrlById = function () {
         //对应artBoard生成的url数组
         console.log(artboardsUrlArr)
     }, function (error) {
-        layer.msg('获取页面数据失败，错误信息:' + error.responseText)
+        layer.msg('生成页面结果失败，错误信息:' + error.responseText)
+    });
+
+
+    //2018-10-10：请求图片资源
+    //图片出来了则填充
+    let imgInterval = setInterval(function () {
+        //刷新页面
+        $("#screen").attr("src", currentArtBoardUrl);
+    }, 3000);
+    CommonTool.httpRequest("/edit/getPageImgById", postData, function (data) {
+        //关闭之前所有的信息窗口
+        layer.closeAll();
+        imgsPathArr = data.imgPaths;
+        //2018-10-10:如果图片生成了，再次进行排序，显示图片，且重新加载页面
+        //设置显示当前artBoardId对应的素材库
+        artboardsUrlArr.forEach((item, i) => {
+            if (item.artboardId == currentArtboardId) {
+                artboardsUrlArr[i].artBoardImgs = imgsPathArr;
+            }
+        })
+        //图片全部出来了，清空定时器
+        if (imgsPathArr) {
+            clearInterval(imgInterval);
+            getImgsByArtBoardId();
+            //刷新页面
+            $("#screen").attr("src", currentArtBoardUrl);
+        }
+    }, function (error) {
+        layer.msg('生成页面图片失败，错误信息:' + error.responseText)
     });
 }
 

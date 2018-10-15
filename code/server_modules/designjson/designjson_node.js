@@ -144,14 +144,16 @@ class QDocument {
      * @param {Sketch ID} id 
      * @param {父节点} parent 
      */
-    moveNode(id,parent) {
+    moveNode(id,parent,isInsert = false) {
         const currentNode = this.getNode(id);
         this.removeNode(id);
         currentNode.x = currentNode.abX - parent.abX;
         currentNode.y = currentNode.abY - parent.abY;
         currentNode.parent = parent.id;
-        if(Array.isArray(parent.children)) parent.children.push(currentNode)
-        else parent.children = [currentNode];
+        if(Array.isArray(parent.children)) {
+            if (isInsert) parent.children.unshift(currentNode);
+            else parent.children.push(currentNode)
+        } else parent.children = [currentNode];
         parent.childnum = parent.children.length;
         parent.isLeaf = false;
     }
@@ -179,7 +181,7 @@ class QDocument {
      * @param {Sketch ID} id 
      */
     getNode(id) {
-        const nodes = this.toList();
+        const nodes = serialize(this._tree);
         return nodes.find(node => node.id === id);
     }
     /**
@@ -190,6 +192,20 @@ class QDocument {
         const node = this.getNode(id);
         const parent = this.getNode(node.parent);
         return parent;
+    }
+    /**
+     * 获取祖父节点列表
+     * @param {Sketch ID} id 
+     * @return {Array.<QNode>}
+     */
+    getParentList(id) {
+        const parentList = [];
+        let parent = this.getParentNode(id)
+        while(parent) {
+            parentList.push(parent);
+            parent = this.getParentNode(parent.id)
+        }
+        return parentList;
     }
     /**
      * 储存图片
@@ -236,10 +252,22 @@ class QDocument {
 
         return res;
     }
+    /**
+     * 平铺树节点
+     */
     toList() {
-        // if (this._nodes.length > 0) return this._nodes
-        // else this._nodes = serialize(this._tree);
-        return serialize(this._tree);
+        const rules = ['_origin','_imageChildren','isMasked','maskNode','maskedNodes','isLeaf'];
+        return serialize(this._tree)
+        .map(node => {
+            const res = {};
+            for (let key in node) {
+                // 除去不需要的
+                if(~rules.indexOf(key)) continue;
+                if (key === 'children') res[key] = node[key].map(({id}) => id);
+                else res[key] = node[key];
+            }
+            return res;
+        })
     }
     /**
      * 设置json值

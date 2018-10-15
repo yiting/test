@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>预览</title>
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/jquery.magnify.css">
     <link rel="stylesheet" href="/css/edit.css">
 </head>
@@ -77,11 +77,26 @@
     <!-- 中:预览-->
     <section class="screen-viewer dragscroll">
         <div class="screen-viewer-inner">
-            <iframe frameborder="0" scrolling="auto" style="width:375px; height: 667px;" class="screen"
-                    src="" id="screen"></iframe>
-
+            <!--素材图和设计图-->
+            <div class="design-coding-panel">
+                <!-- 2018-10-12：设计稿图-->
+                <div class="design-img-panel">
+                    <h1 class="design-title">设计图</h1>
+                    <div class="design-img" style="width:375px; height: 667px;overflow-y: auto;">
+                        <img src="" id="design-img-prew">
+                    </div>
+                </div>
+                <!-- 编译结果-->
+                <div class="compile-result-panel">
+                    <h1 class="compile-title">编译结果</h1>
+                    <iframe frameborder="0" scrolling="auto" style="width:375px; height: 667px;" class="screen"
+                            src="" id="screen"></iframe>
+                </div>
+            </div>
+            <!--获取当前设计稿图按钮-->
+            <div class="design-img-btn">获取设计图</div>
             <!--生成模式:1.普通规则   2.AI模式-->
-            <ul class="compilation-mode-list">
+            <!--<ul class="compilation-mode-list">
                 <li class="compilation-mode-item ordinary-mode-item">
                     <input type="radio" id="ordinary-mode" name="compilation-mode" value="0" checked/>
                     <label for="ordinary-mode">普通模式</label>
@@ -93,7 +108,7 @@
                            accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"
                            style="visibility:hidden;"/>
                 </li>
-            </ul>
+            </ul>-->
 
         </div>
     </section>
@@ -101,8 +116,9 @@
     <!-- 素材库/编辑-->
     <aside class="inspector active">
         <ul class="func-tab-list">
-            <li class="tab-item material-tab active">素材库</li>
-            <li class="tab-item edit-tab">编辑</li>
+            <li class="tab-item material-tab active">图片素材库</li>
+            <!--2018-09-30:先屏蔽掉-->
+            <!--<li class="tab-item edit-tab">编辑</li>-->
         </ul>
 
         <!-- 具体内容-->

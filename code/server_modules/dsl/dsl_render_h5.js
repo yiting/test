@@ -84,25 +84,6 @@ class Render {
             }
         }
     }
-    get jade() {
-        let attr = this.attrObj,
-            style = this.inlineStyle || ''
-
-        let attrArr = Object.keys(attr).map((key, i) => {
-            return `${key}="${attr[key]}"`
-        });
-        let className = this.className.map(function(c, i) {
-            return '.' + c;
-        }).join('');
-        let styleArr = Object.keys(style).map((key, i) => {
-            return `${key}:${style[key]}`;
-        });
-        if (styleArr.length) {
-            attrArr.push('style="' + styleArr.join(';') + '"');
-        }
-        let attrStr = attrArr.length ? '(' + attrArr.join(',') + ')' : '';
-        return this.tagName + className + attrStr + ' ' + this.innerText
-    }
     get filter() {
         let filter = [];
         if (this._data.styles && this._data.styles.shadows) {
@@ -151,26 +132,6 @@ class Render {
         return rt;
     }
     /**
-     * 输出Jade
-     * @param  {Render} dom   dom节点
-     * @param  {Number} level 层级
-     * @return {Jade}       Jade
-     */
-    _toJade(dom, level = 0) {
-        let spaces = new Array(level * 4).join(' ');
-        let str = spaces + dom.jade + '\n';
-        dom.children.forEach((d, i) => {
-            str += this._toJade(d, level + 1);
-        });
-        return str;
-    }
-
-    toJade(cb) {
-        let rt = this._toJade(this)
-        typeof cb == 'function' && cb(rt);
-        return rt;
-    }
-    /**
      * 输出Css
      * @param  {Render} dom dom节点
      * @return {Css}     Css
@@ -184,7 +145,7 @@ class Render {
     }
 
     toCss(cb) {
-        let base = 'html{font-size:13.33333vw;}body{margin:0;}img{font-size:0}ul,li{list-style:none;margin:0;padding:0;}';
+        let base = 'html{font-size:13.33333vw;}body{font-size:0;margin:0;}img{font-size:0;display:block;}ul,li{list-style:none;margin:0;padding:0;}';
         let rt = this._toCss(this)
         typeof cb == 'function' && cb(rt);
         return base + rt;
@@ -315,7 +276,7 @@ function getTextStyleObj(data) {
     let styleObj = {}
     styleObj["font-size"] = Render.unit(data.size);
     styleObj["font-family"] = data.font;
-    styleObj["white-space"] = "pre";
+    styleObj["white-space"] = "pre-line";
     styleObj['color'] = Render.toRGBA(data.color);
     return styleObj
 }
@@ -405,17 +366,16 @@ class DOM extends Render {
             prevData = this.prevData,
             nextData = this.nextData
         const SelfContrain = curData.contrains || {},
-            ParentContrains = this.parentNode && this.parentNode._data.contrains;
+            ParentContrains = this.parentNode && this.parentNode._data.contrains || {};
         if (this.parentNode && Object.keys(ParentContrains).length) {
             if (ParentContrains[CONTRAIN.LayoutHorizontal]) {
                 // 水平
-                if (ParentContrains[CONTRAIN.LayoutJustifyContentStart]) {
-
-                    this.styleObj['margin-left'] = Render.unit(curData.x - (prevData ? (prevData.x + prevData.width) : 0));
-                } else if (ParentContrains[CONTRAIN.LayoutJustifyContentCenter]) {
+                if (ParentContrains[CONTRAIN.LayoutJustifyContentCenter]) {
                     if (prevData) {
                         this.styleObj['margin-left'] = Render.unit(curData.x - prevData.x - prevData.width);
                     }
+                } else if (ParentContrains[CONTRAIN.LayoutJustifyContentStart]) {
+                    this.styleObj['margin-left'] = Render.unit(curData.x - (prevData ? (prevData.x + prevData.width) : 0));
                 } else if (ParentContrains[CONTRAIN.LayoutJustifyContentEnd]) {
                     this.styleObj['margin-right'] = Render.unit((nextData ? nextData.x : parentData.width) - curData.x - curData.width);
                 } else {
@@ -448,7 +408,7 @@ class DOM extends Render {
                 ) {
                     this.styleObj['margin-left'] = Render.unit(curData.x);
                 }
-            } else if (ParentContrains[CONTRAIN.LayoutAbsolute]) {
+            } else {
                 this.styleObj['position'] = 'absolute';
                 this.styleObj['left'] = Render.unit(curData.x);
                 this.styleObj['top'] = Render.unit(curData.y);
@@ -467,18 +427,19 @@ class DOM extends Render {
                 this.styleObj["display"] = 'flex';
                 this.styleObj['flex-direction'] = 'row';
             } else if (SelfContrain[CONTRAIN.LayoutVertical]) {
-                this.styleObj["display"] = 'flex';
-                this.styleObj['flex-direction'] = 'column';
+                this.styleObj["display"] = 'block';
+                // this.styleObj["display"] = "flex";
+                // this.styleObj['flex-direction'] = 'column';
             }
             // 横轴
             if (SelfContrain[CONTRAIN.LayoutJustifyContentBetween]) {
-                this.styleObj['justify-content'] = 'space-between;';
-            } else if (SelfContrain[CONTRAIN.LayoutJustifyContentStart]) {
-                this.styleObj['justify-content'] = 'start';
-            } else if (SelfContrain[CONTRAIN.LayoutJustifyContentEnd]) {
-                this.styleObj['justify-content'] = 'end';
+                this.styleObj['justify-content'] = 'space-between';
             } else if (SelfContrain[CONTRAIN.LayoutJustifyContentCenter]) {
                 this.styleObj['justify-content'] = 'center';
+            } else if (SelfContrain[CONTRAIN.LayoutJustifyContentEnd]) {
+                this.styleObj['justify-content'] = 'end';
+            } else if (SelfContrain[CONTRAIN.LayoutJustifyContentStart]) {
+                this.styleObj['justify-content'] = 'start';
             }
             // 纵轴
             if (SelfContrain[CONTRAIN.LayoutAlignItemsStart]) {
@@ -488,63 +449,92 @@ class DOM extends Render {
             } else if (SelfContrain[CONTRAIN.LayoutAlignItemsCenter]) {
                 this.styleObj['align-items'] = 'center';
             }
-            if (SelfContrain[CONTRAIN.LayoutAutoFlex]) {
-                this.styleObj['flex'] = '1';
+            if (SelfContrain[CONTRAIN.LayoutFlexGrow]) {
+                this.styleObj['flex-grow'] = '1';
+            }
+            if (SelfContrain[CONTRAIN.LayoutFlexShrink]) {
+                this.styleObj['flex-shrink'] = '1';
             }
 
 
             /**
              * 绝对定位
              */
+            if (SelfContrain[CONTRAIN.LayoutAbsolute]) {
+                this.styleObj["position"] = "relative";
+            }
             if (SelfContrain[CONTRAIN.LayoutSelfAbsolute]) {
                 this.styleObj["position"] = "absolute";
                 let pos = Common.calPosition(curData, parentData);
-                this.styleObj['left'] = SelfContrain[CONTRAIN.LayoutSelfLeft] && Render.unit(pos.left);
-                this.styleObj['right'] = SelfContrain[CONTRAIN.LayoutSelfRight] && Render.unit(pos.right);
-                this.styleObj['top'] = SelfContrain[CONTRAIN.LayoutSelfTop] && Render.unit(pos.top);
-                this.styleObj['bottom'] = SelfContrain[CONTRAIN.LayoutSelfBottom] && Render.unit(pos.bottom);
+                if (SelfContrain[CONTRAIN.LayoutSelfLeft]) {
+                    this.styleObj['left'] = Render.unit(pos.left);
+                }
+                if (SelfContrain[CONTRAIN.LayoutSelfRight]) {
+                    this.styleObj['right'] = Render.unit(pos.right);
+                }
+                if (SelfContrain[CONTRAIN.LayoutSelfTop]) {
+                    this.styleObj['top'] = Render.unit(pos.top);
+                }
+                if (SelfContrain[CONTRAIN.LayoutSelfBottom]) {
+                    this.styleObj['bottom'] = Render.unit(pos.bottom);
+                }
             } else {
-                this.styleObj['position'] = 'relative';
                 /**
                  * 自身相关描述 - Margin
                  */
                 let margin = Common.calMargin(curData, parentData, prevData, nextData,
-                    (ParentContrains && ParentContrains[CONTRAIN.LayoutHorizontal] && 'x') ||
-                    (ParentContrains && ParentContrains[CONTRAIN.LayoutVertical] && 'y')
+                    (ParentContrains[CONTRAIN.LayoutHorizontal] && 'x') ||
+                    (ParentContrains[CONTRAIN.LayoutVertical] && 'y')
                 );
                 // 上边距
-                if (SelfContrain[CONTRAIN.LayoutTopMargin]) {
+                if (SelfContrain[CONTRAIN.LayoutSelfTop]) {
                     this.styleObj["margin-top"] = Render.unit(margin["top"]);
-                } else if (SelfContrain[CONTRAIN.LayoutTopMargin] === false) {
+                } else if (SelfContrain[CONTRAIN.LayoutSelfTop] === false) {
                     this.styleObj["margin-top"] = '0'
                 }
                 // 右边距
-                if (SelfContrain[CONTRAIN.LayoutRightMargin]) {
+                if (SelfContrain[CONTRAIN.LayoutSelfRight]) {
                     this.styleObj["margin-right"] = Render.unit(margin["right"]);
-                } else if (SelfContrain[CONTRAIN.LayoutRightMargin] === false) {
+                } else if (SelfContrain[CONTRAIN.LayoutSelfRight] === false) {
                     this.styleObj["margin-right"] = '0'
                 }
                 // 下边距
-                if (SelfContrain[CONTRAIN.LayoutBottomMargin]) {
+                if (SelfContrain[CONTRAIN.LayoutSelfBottom]) {
                     this.styleObj["margin-bottom"] = Render.unit(margin["bottom"]);
-                } else if (SelfContrain[CONTRAIN.LayoutBottomMargin] === false) {
+                } else if (SelfContrain[CONTRAIN.LayoutSelfBottom] === false) {
                     this.styleObj["margin-bottom"] = '0'
                 }
                 // 左边距
-                if (SelfContrain[CONTRAIN.LayoutLeftMargin]) {
+                if (SelfContrain[CONTRAIN.LayoutSelfLeft]) {
                     this.styleObj["margin-left"] = Render.unit(margin["left"]);
-                } else if (SelfContrain[CONTRAIN.LayoutLeftMargin] === false) {
+                } else if (SelfContrain[CONTRAIN.LayoutSelfLeft] === false) {
                     this.styleObj["margin-left"] = '0'
                 }
+            }
+
+            if (SelfContrain[CONTRAIN.LayoutAlignCenter]) {
+                this.styleObj["text-align"] = "center";
+            } else if (SelfContrain[CONTRAIN.LayoutAlignRight]) {
+                this.styleObj["text-align"] = "right";
+            } else {
+                this.styleObj["text-align"] = "left";
             }
         }
 
         // height,width
-        if (SelfContrain[CONTRAIN.LayoutFixedHeight]) {
+        // if (SelfContrain[CONTRAIN.LayoutFixedHeight] || SelfContrain[CONTRAIN.LayoutAbsolute]) {
+        if (SelfContrain[CONTRAIN.LayoutFixedHeight] ||
+            (SelfContrain[CONTRAIN.LayoutAbsolute] &&
+                !SelfContrain[CONTRAIN.LayoutHorizontal] &&
+                !SelfContrain[CONTRAIN.LayoutVertical])) {
             // 固定高度
             this.styleObj["height"] = Render.unit(curData.height);
         }
-        if (SelfContrain[CONTRAIN.LayoutFixedWidth]) {
+        // if (SelfContrain[CONTRAIN.LayoutFixedWidth] || SelfContrain[CONTRAIN.LayoutAbsolute]) {
+        if (SelfContrain[CONTRAIN.LayoutFixedWidth] ||
+            (SelfContrain[CONTRAIN.LayoutAbsolute] &&
+                !SelfContrain[CONTRAIN.LayoutHorizontal] &&
+                !SelfContrain[CONTRAIN.LayoutVertical])) {
             // 固定宽度
             this.styleObj["width"] = Render.unit(curData.width)
         }

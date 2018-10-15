@@ -1,17 +1,13 @@
 let Store = require("./dsl_store.js");
-/**
- * functionName
- * @param  {Object} option 主流程传进来的参数
- * @return {Optimize}        返回原对象
- */
+let Matrixs = require("./dsl_matrixs.js");
+
+
 /**
  * 分离结构节点与内容节点
  */
-
 function serialize(json) {
     let arr = [];
-    // if (Object.values(Store.layout).includes(json.layout)) {
-    if (json.type=='layout') {
+    if (json.type == 'layout') {
         arr.push(json);
         json.nodes = getChildDom(json)
     }
@@ -24,7 +20,8 @@ function serialize(json) {
 function getChildDom(json) {
     let nodes = [];
     json.children.forEach(child => {
-        if (Object.values(Store.layout).includes(child.layout)) {
+        // if (Object.values(Store.layout).includes(child.layout)) {
+        if (child.type == 'layout') {
             nodes = nodes.concat(getChildDom(child));
         } else {
             nodes.push(child);
@@ -36,51 +33,45 @@ function getChildDom(json) {
  * 内容矩阵化
  */
 function matrix(obj) {
-    let matrix = new Array(),
-        w = obj.width
-    while (w--) {
-        let a = new Array(obj.height);
-        a.fill(0);
-        matrix.push(a);
+    let m = {
+        width: obj.width,
+        height: obj.height,
+        matrix: []
     }
     obj.children.forEach((o) => {
-        let w = (o.type == Store.model.TEXT || o.type == Store.model.PARAGRAPH) ? o.styles.maxSize : o.width,
-            h = (o.type == Store.model.TEXT || o.type == Store.model.PARAGRAPH) ? o.styles.maxSize : o.height
-
-        // let w = o.width,
-        // h = o.height
-        while (--w) {
-            matrix[o.x + w].fill(1, o.y, h);
-        };
+        // let w = (o.type == Store.model.TEXT || o.type == Store.model.PARAGRAPH) ? o.styles.maxSize : o.width,
+        // h = (o.type == Store.model.TEXT || o.type == Store.model.PARAGRAPH) ? o.styles.maxSize : o.height
+        m.matrix.push({
+            width: o.width,
+            height: o.height,
+            x: o.abX - obj.abX,
+            y: o.abY - obj.abY
+        })
     });
-    return matrix;
+    return m;
 }
 
 /**
  * 矩阵对比
  */
 function matching(a, b) {
-    let w = a.length > b.length ? a.length : b.length,
-        h = a[0].length > b[0].length ? a[0].length : b[0].length,
-        count = w * h,
-        res = 0;
-    let _w = w;
-    let _h = h;
-    while (_w > 0) {
-        _w--;
-        _h = h;
-        while (_h > 0) {
-            _h--;
-            if (a[_w] && b[_w]) {
-                res += a[_w][_h] == b[_w][_h] ? 1 : 0
+    const size = Math.max(a.width * a.height, b.width * b.height);
+    let res = 0;
+    a.matrix.forEach(p1 => {
+        b.matrix.forEach(p2 => {
+            const x = Math.max(p1.x, p2.x),
+                y = Math.max(p1.y, p2.y),
+                width = Math.min(p1.x + p1.width, p2.x + p2.width) - x,
+                height = Math.min(p1.y + p1.height, p2.y + p2.height) - y;
+            if (width > 0 && height > 0) {
+                res += width * height;
             }
-        }
-    };
-
+        });
+    });
     return {
         res,
-        count,
-        rate: res / count
+        size,
+        rate: res / size
     }
 }
 
@@ -92,11 +83,12 @@ function matchMatrix(arr) {
     arr.forEach((a, i) => {
         arr.slice(i + 1).forEach((b) => {
             let o = matching(a.matrix, b.matrix);
+            // if(a.id==29&&b.id==34){
+            // debugger;
+            // }
             matchResult.push({
                 id1: a.id,
                 id2: b.id,
-                // res: o.res,
-                // count: o.count,
                 id1Size: `${a.width},${a.height}`,
                 id2Size: `${b.width},${b.height}`,
                 rate: o.rate
@@ -109,10 +101,10 @@ function matchMatrix(arr) {
 /**
  * 同比率矩阵成组
  */
-function groupMatch(matchResult) {
+function groupMatch(matchResult, rate) {
     let group = [];
     matchResult.forEach((d) => {
-        if (d.rate > .9) {
+        if (d.rate > rate) {
             group.some((g) => {
                 let g1 = g.includes(d.id1),
                     g2 = g.includes(d.id2);
@@ -132,12 +124,55 @@ function groupMatch(matchResult) {
 }
 
 
+function matchModels(arr) {
+    let matchResult = [];
+    arr.forEach(dom => {
+        let d = {
+            id: dom.id,
+            model: '',
+            rate: 0
+        };
+        matchResult.push(d);
+        Object.keys(Matrixs).forEach(modelName => {
+            let o = matching(dom.matrix, Matrixs[modelName]);
+            if (o.rate > d.rate) {
+                d.rate = o.rate;
+                d.model = modelName;
+            }
+        })
+    });
+    return matchResult;
+}
+
+/**
+ * 标记模型
+ */
+function markModel(json, matchResult, rate) {
+    let group = [];
+    matchResult.forEach(r => {
+        if (r.id == json.id && r.rate > rate) {
+            json._model = r.model;
+            json._modelRate = r.rate;
+            console.log(json)
+        }
+    })
+    if (!json.children) {
+        return;
+    }
+    json.children.forEach(c => {
+        markModel(c, matchResult, rate);
+    })
+}
+
 function markGroup(json, arr) {
     arr.forEach((l, i) => {
         if (l.includes(json.id)) {
             json._groupId = 'group' + i;
         }
     })
+    if (!json.children) {
+        return;
+    }
     json.children.forEach(c => {
         markGroup(c, arr);
     });
@@ -145,18 +180,31 @@ function markGroup(json, arr) {
 
 function fn(json) {
     let objs = JSON.parse(JSON.stringify(json));
+    // 筛选每个结构有效子节点，序列化为一维数组
     let arr = serialize(objs);
+    // 矩阵化每个结构
     arr.forEach((obj) => {
         obj.matrix = matrix(obj);
     });
-    let matchResult = matchMatrix(arr);
-    let group = groupMatch(matchResult);
+    // 矩阵对比，输出结果
+    let matchMatrixResult = matchMatrix(arr);
+    // 矩阵结果分组
+    let group = groupMatch(matchMatrixResult, Option.groupRate);
+    // 组标记
     markGroup(json, group);
-    Option.matchGroup && Option.matchGroup(matchResult)
+    // 模型对比结果
+    // let matchModelsResult = matchModels(arr);
+    // markModel(json, matchModelsResult, Option.modelRate)
+
+    Option.matchGroup && Option.matchGroup(matchMatrixResult)
+    Option.matchModel && Option.matchModel(matchModelsResult)
     return json;
 }
 let Config = {},
-    Option = {}
+    Option = {
+        groupRate: .9,
+        modelRate: .5
+    }
 module.exports = function(data, conf, opt) {
     Object.assign(Option, opt);
     Object.assign(Config, conf);

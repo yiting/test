@@ -2,38 +2,43 @@ const CONTRAIN = require('../dsl_contrain.js');
 const STORE = require("../dsl_store.js");
 const Common = require("../dsl_common.js");
 /**
- * list
+ * list-horizontal-item
+ * 列表水平内容
+ * 规则：盒模型，水平方向内容
  */
 module.exports.template = function() {
 
 }
 module.exports.is = function(dom, parent, option, config) {
     // 通过block或row选取横向布局内容
-    if (dom.children && (dom.layout == STORE.layout.BLOCK || dom.layout == STORE.layout.ROW)) {
-        //  非水平方向，return
-        if (!Common.isHorizontal(dom.children)) {
-            return;
-        }
+    if (dom._groupId &&
+        dom.children &&
+        dom.children.length > 2 &&
+        (dom.layout == STORE.layout.BLOCK || dom.layout == STORE.layout.ROW) &&
+        Common.isHorizontal(dom.children)
+    ) {
         dom.contrains[CONTRAIN.LayoutHorizontal] = true;
         // 修正子节点
         dom.children.forEach((child, i) => {
             let prev = dom.children[i - 1],
                 next = dom.children[i + 1],
                 margin = Common.calMargin(child, dom, prev, next, 'x');
-            if (child.type != STORE.model.TEXT && child.layout != STORE.layout.INLINE) {
-                return
-            }
+            // if (child.type != STORE.model.TEXT && child.layout != STORE.layout.INLINE) {
+            // if (child.type != STORE.model.TEXT && child.layout != STORE.layout.INLINE) {
+            // return
+            // }
             // 暂定右边比左边宽20px时，为flex布局
             if (margin.right - margin.left > 20) {
-                child.contrains[CONTRAIN.LayoutAutoFlex] = true;
-                child.contrains[CONTRAIN.LayoutHorizontal] = true;
-                child.contrains[CONTRAIN.LayoutJustifyContentStart] = true;
+                child.contrains[CONTRAIN.LayoutFlexGrow] = true;
+                // child.contrains[CONTRAIN.LayoutHorizontal] = true;
+                // child.contrains[CONTRAIN.LayoutJustifyContentStart] = true;
             }
             // 暂定左边比右边宽时，为固定布局
             if (margin.left - margin.right > 20) {
-                child.contrains[CONTRAIN.LayoutLeftMargin] = false;
-                child.contrains[CONTRAIN.LayoutRightMargin] = true;
-                child.contrains[CONTRAIN.LayoutFixedWidth] = true;
+                child.contrains[CONTRAIN.LayoutSelfLeft] = false;
+                child.contrains[CONTRAIN.LayoutSelfRight] = true;
+                child.contrains[CONTRAIN.LayoutFlexShrink] = true;
+                // child.contrains[CONTRAIN.LayoutFixedWidth] = true;
             }
             if (
                 child.type == STORE.model.TEXT &&

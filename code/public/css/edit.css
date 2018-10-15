@@ -416,17 +416,17 @@ main {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAAAAAClZ7nPAAAAAnRSTlMAUvP2/eAAAAARSURBVAjXY6ASYD6ATlAHAADy5gMN0fCqFwAAAABJRU5ErkJggg==) #191919;
   background-size: 16px 16px;
   overflow: auto;
+  display: -webkit-box;
 }
 
 .screen-viewer-inner {
   position: relative;
-  margin: 0 auto;
+  margin: 20px auto;
   display: -webkit-box;
   text-align: center;
   -webkit-box-align: center;
   -webkit-box-pack: center;
   -webkit-box-orient: vertical;
-  height: 100%;
 }
 .screen-viewer-inner .compilation-mode-list {
   margin-top: 30px;
@@ -446,14 +446,61 @@ main {
   visibility: visible;
   width: 16px;
   height: 16px;
+  vertical-align: middle;
 }
 .screen-viewer-inner .compilation-mode-list .compilation-mode-item label {
   font-size: 15px;
   vertical-align: top;
 }
 
-.screen {
+.design-coding-panel {
+  display: -webkit-box;
+  text-align: center;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  /*当前artBoard对应的预览图*/
+}
+.design-coding-panel .design-img-panel {
+  display: none;
+  margin-right: 20px;
+}
+.design-coding-panel .design-img-panel .design-title {
+  color: #FFFFFF;
+}
+.design-coding-panel .design-img-panel .design-img {
+  margin-top: 10px;
+}
+.design-coding-panel .design-img-panel .design-img img {
+  background-color: #FFFFFF;
+  width: 100%;
+}
+.design-coding-panel .compile-result-panel .compile-title {
+  color: #FFFFFF;
+}
+.design-coding-panel .compile-result-panel .screen {
+  margin-top: 10px;
   background: #FFF;
+}
+
+.design-img-btn {
+  width: 120px;
+  display: inline-block;
+  margin-top: 30px;
+  padding: 5px 15px;
+  border-radius: 20px;
+  background: #3484F5;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  color: #FFF;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.design-img-btn:hover {
+  opacity: .9;
+}
+.design-img-btn:active {
+  opacity: .7;
 }
 
 /*右:导航
@@ -721,6 +768,14 @@ main {
 
 .magnify-stage img {
   width: 0;
+}
+
+.magnify-stage .show-img-info {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  color: #FFFFFF;
+  font-size: 16px;
 }
 
 .magnify-loading {

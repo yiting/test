@@ -70,7 +70,8 @@ function assign(...objects) {
     return json;
 }
 
-// 清洗行高，使行高为1
+// 清洗行高，使行高为1.4
+// 赋值 textHeight,textY
 // 赋值行数lines
 function cleanLineHeight(arr) {
     arr.forEach((d, i) => {
@@ -82,25 +83,27 @@ function cleanLineHeight(arr) {
                 maxSize = s.size > maxSize ? s.size : maxSize;
                 minSize = s.size < minSize ? s.size : minSize;
             });
-            d.styles.maxSize = maxSize;
-            d.styles.minSize = minSize;
-            // lineHeight
-            let lineHeight = d.styles.lineHeight || minSize * 1.4;
-            // 如果多行，则不处理行高
-
-            if (d.height / lineHeight > 1) {
+            d.styles.maxSize = Math.round(maxSize);
+            d.styles.minSize = Math.round(minSize);
+            // 当前真实行高
+            const lineHeight = d.styles.lineHeight || maxSize * 1.4;
+            // 目标行高
+            const targetLineHeight = maxSize * Config.dsl.lineHeight
+            // 根据高度处以行高，如果多行，则不处理行高
+            if (d.height / lineHeight > 1.1) {
                 d.lines = Math.round(d.height / lineHeight);
                 return;
             }
             d.lines = 1;
-            let dif = lineHeight - maxSize,
-                diff = Math.floor(dif / 2);
-            d.styles.lineHeight = maxSize;
-            d.styles._lineHeight = lineHeight;
-            d.height -= dif;
-            d.y += diff;
-            d.abY += diff;
-
+            // 当前行高差
+            let dir = (lineHeight - maxSize);
+            d.textHeight = Math.round(maxSize);
+            d.textAbY = Math.round(d.abY + dir / 2);
+            // 设置目标行高、高度、Y
+            let dif = Math.floor((targetLineHeight - d.height) / 2);
+            d.height = d.styles.lineHeight = Math.round(targetLineHeight);
+            d.y -= dif;
+            d.abY -= dif;
         }
     });
     return arr;
@@ -134,7 +137,7 @@ function markerSegmenting(json) {
     });
     return arr;
 }
-
+/**/
 function mergeBySize(arr) {
     let s = [];
     let d = arr.shift();
@@ -163,13 +166,13 @@ function filterUselessGroup(arr) {
         return (
             d.text ||
             d.path ||
-            (d.styles &&
+            (d.styles && (
                 d.styles.opacity != 1 ||
                 d.styles.border ||
                 d.styles.borderRadius ||
                 d.styles.background ||
                 d.styles.shadows ||
-                d.styles.blending)
+                d.styles.blending))
         );
     });
 }
@@ -215,6 +218,15 @@ function relayer(arr, body) {
     })
     return;
 }
+/**
+ * 识别多彩内容
+ */
+function identifyColourful(arr) {
+    arr.forEach(o => {
+        o.isColourful = o.path || o.styles.border || o.styles.background;
+    })
+    return arr;
+}
 
 let Config = {},
     Option = {
@@ -232,6 +244,7 @@ function fn(json) {
     arr = filterUselessGroup(arr); // 移除无用组
     arr = mergeBySize(arr); // 合并同大小元素
     arr = cleanLineHeight(arr); // 清洗属性-行高
+    // arr = identifyColourful(arr); // 识别彩色的
     let arr2 = arr.concat([]);
     relayer(arr, body); // 重组父子结构
     markerSegmenting(body); // 标记分割线

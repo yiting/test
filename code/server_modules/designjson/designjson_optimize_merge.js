@@ -47,7 +47,7 @@ class _ImageMergeProcessor {
     }
     _mergeGroupToParent(nodes,pnode) {
         if(!nodes || !nodes.length) return;
-        const targetNodes = nodes.filter((node) => node.type !== QText.name && node.type !== QLayer.name && !isBigNode(node,pnode)); // 过滤掉文字节点、组节点、与父级重合的矩形
+        const targetNodes = nodes.filter((node) => node.type !== QText.name && node.type !== QLayer.name && !isBigNode(node,pnode,this._document._tree)); // 过滤掉文字节点、组节点、与父级重合的矩形
         if(!targetNodes.length) return;
         const groupArr = mergeJudge(targetNodes); // 根据规则输出 成组列表 [[node1,node2],[node3,node4],node5]
         groupArr.map(item => {
@@ -89,18 +89,23 @@ class _ImageMergeProcessor {
         const images = [];
         walkout(_document._tree,node => {
             const {type,shapeType,styles} = node;
-            if(type === QShape.name && shapeType != 'rectangle') { // QShape -> QImage
+            if (type === QShape.name && shapeType != 'rectangle') { // QShape -> QImage
                 this._convertToImageNode(node);
             }
-            if(shapeType === 'rectangle' && styles.background && styles.background.type === 'image') this._convertToLayerNode(node); // QShape -> QLayer
+            // if (node.name === 'Rectangle 353 Copy 5') debugger
+            if (shapeType === 'rectangle') {
+                if (styles.background && styles.background.type === 'image') this._convertToImageNode(node); // QShape -> QLayer
+                else this._convertToLayerNode(node);
+            }
             // (node.type === QImage.name) && images.push(node); // 更新组图片信息
         });
         // _document._images = images; // 生成图片信息列表，待export
     }
 }
-function isBigNode(node,pnode,threshold = 1) {
-        const {width,height,abX,abY} = node;
-        return width * height >= pnode.width * pnode.height * threshold;
+function isBigNode(node,pnode,rnode,threshold = 1/200) {
+    const {width,height,abX,abY} = node;
+    const size = width * height;
+    return size >= rnode.width ** 2 * threshold || size >= pnode.width * pnode.height;
 }
 const mergeJudge = (boxArray,threshold=20) => {
     //分组

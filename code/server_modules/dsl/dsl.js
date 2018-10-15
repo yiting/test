@@ -1,9 +1,10 @@
 let H5Render = require("./dsl_render_h5.js");
 let cleanse = require("./dsl_pipe_cleanse.js");
-let grid = require("./dsl_pipe_grid.js");
+let layout = require("./dsl_pipe_layout.js");
 let sort = require("./dsl_pipe_sort.js");
 let contrain = require("./dsl_pipe_contrain.js");
 let model = require("./dsl_pipe_model.js");
+let absLayout = require("./dsl_pipe_absLayout.js");
 // let symbol = require("./dsl_pipe_symbol.js");
 let analyze = require("./dsl_pipe_analyze.js");
 
@@ -15,6 +16,7 @@ function createConfig(json) {
         unit, // 设计长度单位
         fontSize, // 字体基础大小
         dpr, // 设备像素比 Device Pixel Ratio
+        lineHeight = 1.1,
         textSpacingCoefficient = 1 / 1.4, // 文案空间误差系数
         segmentingCoefficient = .7, // 分割线比例系数
         segmentingVerticalWidth = 2, // 垂直分割线宽度
@@ -96,6 +98,7 @@ function createConfig(json) {
             height: json.height
         },
         dsl: {
+            lineHeight,
             verticalSpacing,
             horizontalSpacing,
             textSpacingCoefficient,
@@ -132,24 +135,28 @@ function mobileHtml(designDom) {
     let Config = createConfig(designDom);
     var json = Klotski(designDom, Config)
         .pipe(cleanse) // 清洗
-        .pipe(grid) // 行列组合
+        .pipe(layout) // 行列组合
         .pipe(sort) // 排序
         .pipe(analyze) // 结构分析
         .pipe(model) // 模型处理
         .pipe(contrain) // 约束处理
+        // .pipe(absLayout)
         .get(); // 获取json
     return H5Render(json, Config);
 }
 
 function analyzeDom(designDom) {
-    let res;
+    let res = {};
     let Config = createConfig(designDom);
     var json = Klotski(designDom, Config)
         .pipe(cleanse) // 清洗
-        .pipe(grid) // 行列组合
+        .pipe(layout) // 行列组合
         .pipe(analyze, {
             matchGroup: function(r) {
-                res = r
+                res.matchGroupResult = r
+            },
+            matchModel: function(r) {
+                res.matchModelResult = r;
             }
         })
         .get(); // 获取json

@@ -1,0 +1,61 @@
+{
+  "_args": [
+    [
+      "@skpm/util@0.1.8",
+      "/Users/Shared/Jenkins/workspace/Stage/Modules/SketchAPI/core-modules"
+    ]
+  ],
+  "_from": "@skpm/util@0.1.8",
+  "_id": "@skpm/util@0.1.8",
+  "_inBundle": false,
+  "_integrity": "sha512-yIE/ElyHhdEAqT4ap3VSzkLRwsZxqcRt/TX55feBDswpJBDD25IC+jUHYpf8nDcK07t3aNhbrYXxa6+yDNSz+Q==",
+  "_location": "/@skpm/util",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@skpm/util@0.1.8",
+    "name": "@skpm/util",
+    "escapedName": "@skpm%2futil",
+    "scope": "@skpm",
+    "rawSpec": "0.1.8",
+    "saveSpec": null,
+    "fetchSpec": "0.1.8"
+  },
+  "_requiredBy": [
+    "/",
+    "/@skpm/console"
+  ],
+  "_resolved": "https://registry.npmjs.org/@skpm/util/-/util-0.1.8.tgz",
+  "_spec": "0.1.8",
+  "_where": "/Users/Shared/Jenkins/workspace/Stage/Modules/SketchAPI/core-modules",
+  "author": {
+    "name": "Mathieu Dutour",
+    "email": "mathieu@dutour.me",
+    "url": "http://mathieu.dutour.me/"
+  },
+  "bugs": {
+    "url": "https://github.com/skpm/util/issues"
+  },
+  "description": "A drop in replacement for the util NodeJS module",
+  "devDependencies": {
+    "@skpm/test-runner": "^0.2.0"
+  },
+  "homepage": "https://github.com/skpm/util#readme",
+  "keywords": [
+    "sketch",
+    "module",
+    "util"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "@skpm/util",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skpm/util.git"
+  },
+  "scripts": {
+    "test": "skpm-test"
+  },
+  "version": "0.1.8"
+}

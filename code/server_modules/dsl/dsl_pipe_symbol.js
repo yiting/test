@@ -98,13 +98,6 @@ function symbol(domArr) {
 
         )
     });
-    // console.log(newArr)
-    // newArr.forEach((c, i) => {
-    //     if (c.length > 1) {
-    //         // console.log(c);
-    //         console.log(c, extractCommonStyles(c));
-    //     }
-    // });
 }
 let Config = {},
     Option = {

@@ -10,7 +10,11 @@ module.exports.template = function() {
 }
 module.exports.is = function(dom, parent, option, config) {
     if (dom.layout === STORE.layout.INLINE) {
+        dom.contrains[CONTRAIN.LayoutHorizontal] = true;
+        dom.contrains[CONTRAIN.LayoutJustifyContentStart] = true;
+        dom.contrains[CONTRAIN.LayoutJustifyContentEnd] = false;
+        dom.contrains[CONTRAIN.LayoutJustifyContentCenter] = false;
+        dom.contrains[CONTRAIN.LayoutJustifyContentBetween] = false;
         return true;
-        // dom.contrains[CONTRAIN.LayoutAutoWidth] = true;
     }
 }

@@ -8,12 +8,18 @@ var outputDir = "";
 var tmpFiles = [];
 var rootNode ;
 var that;
+var projectName;
 var fs = require('fs');
+var request = require('request');
+const exec = require('child_process').exec;
+const BIN='./server_modules/designimage/Contents/Resources/sketchtool/bin/sketchtool';
+var serverUrl = "http://10.65.90.50:8888/";
 var logData={
     "costTime":0,
     "num":{
         "_makePreComposeImage":0,
-        "_combineTwoShape":0
+        "_combineTwoShape":0,
+        "combineShapeGroupNodeWithNative":0
     }
 }
 
@@ -34,6 +40,7 @@ module.exports = {
         logData.num._makePreComposeImage = 0;
         logData.num._combineTwoShape = 0;
         logData.costTime = new Date().getTime();
+        projectName = param.projectName;
     },
     //param.isSlice:是否合并含有裁剪元素的节点，为true的时候无视slice节点，合并剩余的节点
     //合成一个节点图片
@@ -44,95 +51,38 @@ module.exports = {
             var outputPath = outputDir+that._getTmpFileName(node.path);
             var imageChildren = node._imageChildren || [node];
             var isGroup = (node._imageChildren && node._imageChildren.length > 1) == true;
-            
-            // var exec = require('child_process').exec;
-            // // var command = "convert "+outputDir+"1.png "+outputDir+"2.png -compose DstOut -composite "+outputDir+"3.png";
-            // var command = "composite -compose Dst_Over -tile pattern:checkerboard \ "+outputDir+"31.png "+ outputDir+"32.png ";
-            // // // gm.out("convert",outputDir+"t_11.png",outputDir+"t_2.png","-compose","Src","-composite",outputDir+"t_3.png");
-            // exec(command,function(err){
-            //     console.log(command);
-            // })
-            // return ;
-            // var outputImage =  gm(212, 158,"#00ffffff");
-            // outputImage.in(outputDir+"1.png");
-            // outputImage.in(outputDir+"2.png");
-            // outputImage.compose("In").mosaic()
-            // console.log(outputPath);
-            // gm()
-            // .in(outputDir+"1.png")
-            // .in("-compose", "In")
-            // .in(outputDir+"2.png")
-            // .command("composite")
-            // .write(outputDir+"3.png",function (e) {
-            //     if(e) {
-            //         console.log(e.message)
-            //     }
-                
-            // });
-            // return ;
-
-            // gm(500,500,'none')
-            // // .command("composite")
-            // .in('-page',"+0+0")
-            // .in(outputDir+"6.png")
-            // .mosaic().write(outputDir+"61.png",function (e) {
-            //     gm(500,500,'none')
-            //     // .command("composite")
-            //     .in('-page',"+50+0")
-            //     .in(outputDir+"7.png")
-            //     .mosaic().write(outputDir+"71.png",function (e) {
-            //         gm()
-            //         .in(outputDir+"61.png")
-            //         .in("-compose", "Xor")
-            //         .in(outputDir+"71.png")
-            //         .command("composite")
-            //         .write(outputDir+"31.png",function (e) {
-            //             if(e) {
-            //                 console.log(e.message)
-            //             }
-            //             gm(outputDir+"31.png").trim().write(outputDir+"31.png",function (e) {
-            //                 if(e) {
-            //                     console.log(e.message)
-            //                 }
-                            
-            //             });
-            //         });
-            //     });
-            // });
-
-            // return ;
-
+            var path;
 
             if(typeof rootNode == "undefined"){
                 rootNode = node;
             }
-            // if(node.name.indexOf("4 copy")>-1){//D6799224  A82BE333
-            //     console.log(111);
-            // }
-            if(node.id.indexOf("DB86_3184")>-1){
+
+            if(node.id.indexOf('374DBDC2-239B-4624-84A6-574D0EA4BCF6')>-1){
                 console.log(111);
             }
-            //如果第一层子层无slice，或者param中没标明这次操作是在合并含有裁剪元素的节点，则做常规的图片合并
-            // var sliceNodes = this.getSliceNode(node);
-            // if((typeof param != "undefined" && param.isSlice == true) || sliceNodes.length==0 || rootNode.do_objectID != node.do_objectID){
-                
-                // 先忽略slice做合并图片
-                // console.log("开始合并："+outputPath);
+
+            // if(imageChildren.length == 1){
+            //     path = await this.combineShapeGroupNodeWithNative(node._origin);
+            // }else{
+
                 for(var i =0,ilen = imageChildren.length;i<ilen;i++){
                     var item = imageChildren[i]; 
-                    if(item.id.indexOf("21B1C8B6-90E9")>-1){
-                        console.log(222);
-                    }
                     var origin = item._origin;
+                    var isNeedCompositeAlpha = true;
                     // if(item.clippingMaskMode == 0 && item.shouldBreakMaskChain == false){//遇到遮罩层，则从这层网上找，将所有被遮罩的图层都合成一张图
                     // 针对shapeGroup做处理
                     if(origin._class != "group" && origin._class != "slice"){
-                        var path ;
+
                         var childNode ;
                         if(origin._class == "shapeGroup"){
                             if(origin.layers.length == 1){
                                 childNode = origin.layers[0];
+                                if(origin.do_objectID.indexOf("5F807C86-6D74-4F36-82FB-BBB4")>-1){
+                                    console.log(11);
+                                }
                                 path = await draw.image(origin,childNode);
+                                //如果图片含有旋转样式，则要重新计算图片的坐标
+                                this._handleRotation(item);
                                 if(that._isQMask(item)){
                                     item.maskPath = path;
                                 }else if(item.path){
@@ -142,15 +92,28 @@ module.exports = {
                                         path = item.path;
                                     }catch(e){
                                         console.error(e);
+                                        //如果绘图失败，则用原生绘图
+                                        // if(await this.isRecommendCombineShapeGroupNodeWithNative()){
+                                        path = await this.combineShapeGroupNodeWithNative(origin,false);
+                                        // }
+                                        isNeedCompositeAlpha = false;
                                     }
                                 }
+                                //若有需要，给合成的shapeGroup加透明度
+                                if(isNeedCompositeAlpha){
+                                    await that._compositeAlpha(origin,path);  
+                                }
                             }else{
-                                childNode = await this.combineShapeGroupNode(origin);
-                                path = childNode.image._ref;
+                                if(await that.isRecommendCombineShapeGroupNodeWithNative(origin)){//使用sketch原生合成
+                                    path = await this.combineShapeGroupNodeWithNative(origin);
+                                    //原生合成不再需要再处理额外的透明度等操作
+                                }else{
+                                    childNode = await this.combineShapeGroupNode(origin);
+                                    path = childNode.image._ref;
+                                    //若有需要，给合成的shapeGroup加透明度
+                                    await that._compositeAlpha(origin,path); 
+                                }
                             }
-                            //若有需要，给合成的shapeGroup加透明度
-                            await that._compositeAlpha(origin,path); 
-          
                         }else{
                             childNode = origin;
                             path = await draw.image(origin,childNode);
@@ -168,14 +131,14 @@ module.exports = {
                             i = maskData.lastMaskedIndex;
                             outputImage.in('-page', "+0+0").in(outputDir+that._getTmpFileName(newNode.path));
                         }
-                    }else if(isGroup){//如果遇到组，则递归合成组里的图片
-                        newNode = await this.combineNode(item);
-                        outputImage.in('-page', this._getLocationText(newNode.x,newNode.y)).in(outputDir+that._getTmpFileName(newNode.path));
-                    }else if(!isGroup && origin._class != "slice"){    //else if(item._class == "bitmap" || item._class == "shapeGroup" ){    
+                    }
+                    else if(origin._class != "slice"){    //else if(item._class == "bitmap" || item._class == "shapeGroup" ){    
                         outputImage.in('-page', this._getLocationText(item.x,item.y,isGroup)).in(outputDir+that._getTmpFileName(item.path));
                         //console.log("生成图片："+item.image._ref);
                     }
-                }        
+                }
+
+            // }  
                 
                 return new Promise(function (resolve, reject) {
                         var newNode = {};
@@ -198,42 +161,6 @@ module.exports = {
                             resolve(newNode);
                         });
                 });
-            // }
-             //否则如果第一层子层有slice图层，且该节点是根节点，且没有标明是忽略slice的图层合并，就做slice处理
-            // else if(sliceNodes.length > 0 && (typeof param == "undefined" || typeof param.isSlice == "undefined") && rootNode.do_objectID == node.do_objectID){
-            //     for(var i =0,ilen=sliceNodes.length;i<ilen;i++){
-            //         var newNode = await this.sliceNode(sliceNodes[i],node);
-            //         outputImage.in('-page', this._getLocationText(newNode.frame.x,newNode.frame.y)).in(newNode.image._ref);
-            //     }                   
-            //     return new Promise(function (resolve, reject) {
-
-            //         outputImage.mosaic().write(outputPath,function (e) {
-            //             if(e) {
-            //                 console.log(e.message)
-            //             }
-
-            //             var newNode = {
-            //                 "_class":"combineImg",
-            //                 "frame":{
-            //                     x : node.frame.x,
-            //                     y : node.frame.y,
-            //                     width : node.frame.width,
-            //                     height : node.frame.height,
-                                
-            //                 },
-            //                 "image" : {
-            //                     "_ref": outputPath
-            //                 }
-            //             };
-                        
-            //             console.log("裁剪后图片 x:"+newNode.frame.x+ " y:"+newNode.frame.y+"  ref:"+newNode.image._ref);
-
-            //             that._handleTmpFiles(node.do_objectID,outputPath)
-
-            //             resolve(newNode);
-            //         });
-            //     });  
-            // }
         }
         try{
             return main();
@@ -283,10 +210,7 @@ module.exports = {
                             continue;
                         }
                         //如果图片含有旋转样式，则要重新计算图片的坐标
-                        if(item.rotation){
-                            item.frame.x = item.frame.x + (0.5*item.frame.width-item.frame.height*Math.sin((360-item.rotation)/360*2*Math.PI));
-                            item.frame.y = item.frame.y + (0.5*item.frame.height-item.frame.height*Math.cos((360-item.rotation)/360*2*Math.PI));
-                        }
+                        this._handleRotation(item);
                         if(ilen>1){
                             item = await this._makePreComposeImage(item);
                         }
@@ -322,47 +246,6 @@ module.exports = {
                             if(e) {
                                 console.log(e.message)
                             }
-                            //若有需要，给合成的图片加透明度
-                            // if(node.do_objectID.indexOf("55B8987C-0E96")>-1){
-                            //     console.log(333)
-                            // }
-                            // if(node.style.contextSettings && node.style.contextSettings.opacity){
-                            //     var imageMagick = gm.subClass({ imageMagick: true });
-                            //     imageMagick(outputPath).opacity(node.style.contextSettings.opacity).write(outputPath,function(e){
-                            //         newNode._class = "combineImg";
-                            //         newNode.frame = {
-                            //             x : node.frame.x,
-                            //             y : node.frame.y,
-                            //             width : node.frame.width,
-                            //             height : node.frame.height
-                            //         }
-                            //         newNode.image = {
-                            //             "_ref": node.do_objectID+".png"
-                            //         }
-                            //         // console.log("合并图片 x:"+newNode.frame.x+ " y:"+newNode.frame.y+"  ref:"+newNode.image._ref);
-            
-                            //         // that._handleTmpFiles(node.do_objectID,outputPath,{"push":true});
-            
-                            //         resolve(newNode);
-                            //     });
-                            // }else{
-                            //     newNode._class = "combineImg";
-                            //     newNode.frame = {
-                            //         x : node.frame.x,
-                            //         y : node.frame.y,
-                            //         width : node.frame.width,
-                            //         height : node.frame.height
-                            //     }
-                            //     newNode.image = {
-                            //         "_ref": node.do_objectID+".png"
-                            //     }
-                            //     // console.log("合并图片 x:"+newNode.frame.x+ " y:"+newNode.frame.y+"  ref:"+newNode.image._ref);
-        
-                            //     // that._handleTmpFiles(node.do_objectID,outputPath,{"push":true});
-        
-                            //     resolve(newNode);
-                            // }
-
                             newNode._class = "combineImg";
                             newNode.frame = {
                                 x : node.frame.x,
@@ -373,16 +256,97 @@ module.exports = {
                             newNode.image = {
                                 "_ref": node.do_objectID+".png"
                             }
-                            // console.log("合并图片 x:"+newNode.frame.x+ " y:"+newNode.frame.y+"  ref:"+newNode.image._ref);
-    
-                            // that._handleTmpFiles(node.do_objectID,outputPath,{"push":true});
-    
                             resolve(newNode);
                             
                         });
                     }
                 });
             
+        }
+        try{
+            return main();
+        }catch(e){
+            console.log(e);
+        }
+    },
+    combineShapeGroupNodeWithNative:function(node,isReleaseFile){
+        // isReleaseFile = isReleaseFile || false;
+        // let dataParam = {
+        //     "sketchFile": projectName,
+        //     "imgId": node.do_objectID
+        // };
+        // var request = require('request');
+        // let url = serverUrl+'draw?' + require('querystring').stringify(dataParam);
+        // // console.log(url);
+        // return new Promise(function (resolve, reject) {
+        //     request(url, function (error, response, data) {
+        //         console.log("remote img url:"+data);
+        //         var filePath = "";
+        //         if(isReleaseFile){
+        //             filePath = node.do_objectID+".png";
+        //         }else{
+        //             filePath = that._getTmpFileName(node.do_objectID)+".png";
+        //         }
+        //         console.log(filePath);
+        //         request(data)
+        //             .on('response', (response) => {    
+        //             }).pipe(fs.createWriteStream(outputDir+filePath))
+        //             .on("error", (e) => {    
+        //                 console.log("pipe error", e)    
+        //                 resolve('');  
+        //             })    
+        //             .on("finish", () => {       
+        //                 logData.num.combineShapeGroupNodeWithNative++;
+        //                 resolve(node.do_objectID + ".png");
+        //             });
+        //     });
+        // });
+
+        var  main = async () => {
+            // var queryParam = req.query;
+            // sketchFile = "designFile/"+queryParam.sketchFile;
+            imgid = node.do_objectID;
+            var command = `${BIN} export layers --output=${outputDir} --formats=png ${'./data/upload_file/'+projectName} --item=${imgid}`;
+            // command = `./server_modules/designimage/Contents/Resources/sketchtool/bin/sketchtool export layers --output=./public/result/bc4f5440-cdcf-11e8-a39c-712f9937d34d/ --formats=png ./data/upload_file/20181012113433_1单页.sketch --item=14A47E63-7037-482D-843F-0B234D12A70C`;
+            console.log(command);
+            return new Promise(function (resolve, reject) {
+                exec(command, function(a,b,c){
+                    if(a){
+                        console.log(a);
+                    }
+                    var newFileName = b.substring(9,b.length-1);
+                    if(isReleaseFile){
+                        filePath = node.do_objectID+".png";
+                    }else{
+                        filePath = that._getTmpFileName(node.do_objectID)+".png";
+                    }
+                    fs.renameSync(outputDir+newFileName,outputDir+filePath,function(err){});
+                    
+                    resolve(node.do_objectID + ".png");
+                });
+            });
+        }
+        try{
+            return main();
+        }catch(e){
+            console.log(e);
+        }
+
+    },
+    isRecommendCombineShapeGroupNodeWithNative:function(origin){
+        var  main = async () => {
+            var result = false;
+            //如果是由几个形状合拼后再加描边，则交给原生合成
+            if(origin && origin._class=="shapeGroup" && origin.layers && origin.layers.length > 1 && origin.style && origin.style.borders && origin.style.borders.length > 0){
+                result = true;
+            }
+            //如果是由几个形状合拼成一个形状,则交给原生合成
+            // if(origin._class=="shapeGroup" && origin.layers && origin.layers.length > 1){
+            //     result = true;
+            // }
+            return new Promise(function (resolve, reject) {
+                resolve(result);
+            });
         }
         try{
             return main();
@@ -654,20 +618,23 @@ module.exports = {
     _getTmpFileName:function(path){
         return "t_"+path;
     },
-    //删除临时文件
+    //删除临时文件，返回剩余文件数组
     deleteTmpFiles:function(){
         console.log("开始删除临时图片");
         var files = [];
+        var remainFiles = [];
         if(fs.existsSync(outputDir)) {
             files = fs.readdirSync(outputDir);
             files.forEach(function(file, index) {
                 var curPath = outputDir + "/" + file;
                 if(file.indexOf("t_")>-1){
                     fs.unlinkSync(curPath);
+                }else{
+                    remainFiles.push(curPath);
                 }
-            });
+            });  
         }
-
+        return remainFiles;
     },
     //处理临时文件
     //如果node的id和根目录的id一样，则重命名目标图片名，以前的删除
@@ -688,283 +655,22 @@ module.exports = {
             result = true;
         }
         return result;
+    },
+    _handleRotation:function(item){
+        return ;
+        var _origin = item._origin || item;
+        if(_origin.rotation){
+            if(_origin.do_objectID.indexOf("70155375-2C7D-4F89-A4EA-")>-1){
+                console.log(333);
+            }
+            if(item._origin){
+                item.x = item.x + (0.5*_origin.frame.width-_origin.frame.height*Math.sin((360-_origin.rotation)/360*2*Math.PI));
+                item.y = item.y + (0.5*_origin.frame.height-_origin.frame.height*Math.cos((360-_origin.rotation)/360*2*Math.PI));
+            }else{
+                _origin.frame.x = _origin.frame.x + (0.5*_origin.frame.width-_origin.frame.height*Math.sin((360-_origin.rotation)/360*2*Math.PI));
+                _origin.frame.y = _origin.frame.y + (0.5*_origin.frame.height-_origin.frame.height*Math.cos((360-_origin.rotation)/360*2*Math.PI));
+            }
+            
+        }
     }
 } 
-
-//合图test
-// (function(){
-//     var layerNum = 4;
-//     var layers = pageJson.layers[0].layers[layerNum].layers;
-//     var outputImage =  gm(pageJson.layers[0].frame.width, pageJson.layers[0].frame.height);
-//     for(var i =0,ilen = layers.length;i<ilen;i++){
-//         var item = layers[i]; 
-//         var img = inputDir+item.image._ref;        
-//         outputImage.in('-page', '+'+item.frame.x+'+'+item.frame.y).in(img);
-//     }
-//     outputImage.mosaic().write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".jpg",function (e) {
-//         if(e) {
-//             console.log(e.message)
-//         }
-//     });
-// })();
-
-//sliceTest
-//不只是包含组元素
-// 先用preview，之后要合一张全图
-// (function(){
-//     var layerNum = 3;
-//     var layers = pageJson.layers[0].layers[layerNum].layers;
-//     var outputImage;
-    
-//     var item = layers[2].layers[0]; 
-//     if(item._class == "slice"){
-//         if(item.exportOptions.layerOptions == 0){ // 切片包含背景
-//             outputImage =gm(inputDir+"previews/preview.png").resize(pageJson.layers[0].frame.width,pageJson.layers[0].frame.height);
-//             //获取切片的绝对定位
-//             //从别处获得abX,abY
-//             item.frame.abX = 604;
-//             item.frame.abY = 2336;
-//             outputImage.crop(item.frame.width, item.frame.height, item.frame.abX,item.frame.abY);
-            
-//             outputImage.write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", function (e){
-//                 if(e) {
-//                     console.log(e.message)
-//                 }
-//             });
-            
-//         }       
-//     }
-// })();
-
-//sliceTest
-//只是包含组元素
-// (function(){
-//     var layerNum = 2;
-//     var layers = pageJson.layers[0].layers[layerNum].layers;
-//     var outputImage;
-    
-//     var sliceItem = layers[2].layers[0]; 
-//     if(sliceItem._class == "slice"){
-//         if(sliceItem.exportOptions.layerOptions == 2){ // 切片不包含背景
-
-//             //创建slice区域
-//             outputImage = gm(sliceItem.frame.width, sliceItem.frame.height)
-
-//             //合成组里所有图片
-//             for(var i =0,ilen = layers[2].layers.length;i<ilen;i++){
-//                 var item = layers[2].layers[i]; 
-//                 if(item._class == "bitmap"){
-//                     outputImage.in('-page', '+'+(item.frame.x-sliceItem.frame.x)+'+'+(item.frame.y-sliceItem.frame.y)).in(inputDir+item.image._ref);
-//                 }
-//             }
-            
-//             outputImage.mosaic().write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", function (e){
-//                 if(e) {
-//                     console.log(e.message)
-//                 }
-//             });
-            
-//         }       
-//     }
-// })();
-
-//maskTest
-//矩形mask
-// (function(){
-//     var layerNum = 1;
-//     var layers = pageJson.layers[0].layers[layerNum].layers;
-//     var outputImage =  gm(pageJson.layers[0].layers[layerNum].frame.width, pageJson.layers[0].layers[layerNum].frame.height);
-//     var maskImage ;
-//     var maskItem ; 
-
-//     for(var i =0,ilen = layers.length;i<ilen;i++){
-//         var item = layers[i]; 
-//         if(item.shouldBreakMaskChain == true){
-//             break;
-//         }
-//         if(typeof maskItem != "undefined" && item.shouldBreakMaskChain == false){
-//             var text =  "";
-//             if(item.frame.x>0){
-//                 text +="+";
-//             }
-//             text += item.frame.x;
-
-//             if(item.frame.y>0){
-//                 text +="+";
-//             }
-//             text += item.frame.y;
-
-//             outputImage.in('-page', text).in(inputDir+item.image._ref);
-            
-//         }
-//         if(item.clippingMaskMode == "0"){//这个图层是mask
-//             maskItem = item;
-//             // maskImage =  gm(maskItem.frame.width, maskItem.frame.height,"#ddff99f3").write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+"Mask.png", function (e){
-//             //     if(e) {
-//             //         console.log(e.message)
-//             //     }
-//             // });;
-//         }
-//     }
-//     // outputImage.mosaic()
-//     // // .crop(maskItem.frame.width, maskItem.frame.height, maskItem.frame.x,maskItem.frame.y)
-//     // .mask(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+"Mask.png")
-//     // .write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", function (e){
-//     //     if(e) {
-//     //         console.log(e.message)
-//     //     }
-//     // });
-
-//     outputImage.mosaic()
-//     .write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", function (e){
-//         if(e) {
-//             console.log(e.message)
-//         }
-//         // gm(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png").crop(maskItem.frame.width, maskItem.frame.height, maskItem.frame.x,maskItem.frame.y).write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", function (e){
-//         //     if(e) {
-//         //         console.log(e.message)
-//         //     }
-//         // });
-
-//         // gm().command("composite")
-//         // .in(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", outputDir+pageJson.layers[0].layers[layerNum].do_objectID+"Mask.png", "-matte").write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+"222.png", function (e){
-//         //     if(e) {
-//         //         console.log(e.message)
-//         //     }
-//         // });
-
-//         gm(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png").crop(maskItem.frame.width, maskItem.frame.height, maskItem.frame.x,maskItem.frame.y).write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", function (e){
-//             if(e) {
-//                 console.log(e.message)
-//             }
-//             gm().command("composite")
-//             .in(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", outputDir+pageJson.layers[0].layers[layerNum].do_objectID+"Mask.png", "-matte").write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+"222.png", function (e){
-//                 if(e) {
-//                     console.log(e.message)
-//                 }
-//             });
-//         });
-
-            
-        
-
-        
-//         // gm(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png").mask(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+"Mask.png").write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", function (e){
-//         //     if(e) {
-//         //         console.log(e.message)
-//         //     }
-//         // });
-//     });
-
-//     // outputImage = gm(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png")
-//     // .crop(maskItem.frame.width, maskItem.frame.height, maskItem.frame.x,maskItem.frame.y)
-//     // .write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", function (e){
-//     //     if(e) {
-//     //         console.log(e.message)
-//     //     }
-//     // });
-
-// })();
-
-//maskTest
-//不规则图形mask
-// (function(){
-    // var layerNum = 1;
-    // var layers = pageJson.layers[0].layers[layerNum].layers;
-    // var outputImage =  gm(pageJson.layers[0].layers[layerNum].frame.width, pageJson.layers[0].layers[layerNum].frame.height);
-    // var maskImage ;
-    // var maskItem ; 
-
-    // var exec = require('child_process').exec;
-    // function compositeMask(thumb, mask) {
-    //     var gmComposite = 'gm composite -compose in ' + thumb + ' ' + mask + ' ' + thumb
-    //     exec(gmComposite, function(err) {
-    //     if (err) throw err
-        
-    //     })
-    // }
-
-    // for(var i =5,ilen = layers.length;i<ilen;i++){
-    //     var item = layers[i]; 
-    //     if(item.shouldBreakMaskChain == true){
-    //         break;
-    //     }
-    //     if(typeof maskItem != "undefined" && item.shouldBreakMaskChain == false){
-    //         var text =  "";
-    //         if(item.frame.x>0){
-    //             text +="+";
-    //         }
-    //         text += item.frame.x;
-
-    //         if(item.frame.y>0){
-    //             text +="+";
-    //         }
-    //         text += item.frame.y;
-
-    //         outputImage.in('-page', text).in(inputDir+item.image._ref);
-            
-    //     }
-    //     if(item.clippingMaskMode == "0"){//这个图层是mask
-    //         maskItem = item;
-    //         // maskImage =  gm(maskItem.frame.width, maskItem.frame.height,"#ddff99f3").write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+"Mask.png", function (e){
-    //         //     if(e) {
-    //         //         console.log(e.message)
-    //         //     }
-    //         // });;
-    //     }
-    // }
-
-    // outputImage.mosaic()
-    // .write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", function (e){
-    //     if(e) {
-    //         console.log(e.message)
-    //     }
-
-    //     gm(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png").crop(maskItem.frame.width, maskItem.frame.height, maskItem.frame.x,maskItem.frame.y).write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", function (e){
-    //         if(e) {
-    //             console.log(e.message)
-    //         }
-    //         // gm().command("composite").compose("CopyOpacity")
-    //         // .in(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png", outputDir+"star.png", "-matte").write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+"33.png", function (e){
-    //         //     if(e) {
-    //         //         console.log(e.message)
-    //         //     }
-    //         // });
-    //         // gm()
-    //         // .in(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png").mask(outputDir+"star.png").write(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+"33.png", function (e){
-    //         //     if(e) {
-    //         //         console.log(e.message)
-    //         //     }
-    //         // });
-
-    //         compositeMask(outputDir+pageJson.layers[0].layers[layerNum].do_objectID+".png",outputDir+"star.png");
-    //     });
-
-    // });
-
-// })();
-
-// gm().in(outputDir+pageJson.layers[0].layers[1].do_objectID+".png").mask(outputDir+"star.png").write(outputDir+pageJson.layers[0].layers[1].do_objectID+"33.png", function (e){
-//     if(e) {
-//         console.log(e.message)
-//     }
-// });
-
-// var size = 100;
-// var output = outputDir+pageJson.layers[0].layers[1].do_objectID+".png";
-// // gm(size, size, 'none')
-// // .fill(output)
-// // .drawCircle(size/2,size/2, size/2, 0)
-// // .write(output, function(err) {
-// //    console.log(err || 'done');
-// // });
-
-// var exec = require('child_process').exec;
-// function compositeMask(thumb, mask) {
-//     var gmComposite = 'gm composite -compose in ' + thumb + ' ' + mask + ' ' + thumb
-//     exec(gmComposite, function(err) {
-//       if (err) throw err
-      
-//     })
-//   }
-

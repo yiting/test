@@ -14,27 +14,29 @@ module.exports.template = function(dom) {
 }
 module.exports.is = function(dom, parent, option, config) {
     if (
-        // dom.layout == Store.layout.INLINE &&
         dom.children && dom.children.length == 2 &&
-        dom.children.every(s => s.type == Store.model.TEXT)) {
-        let maxSize = 0,
-            minSize = 0,
-            maxObj = -1,
-            minObj = -1;
+        dom.children.every(s => s.type == Store.model.TEXT) &&
+        Common.isHorizontal(dom.children)
+    ) {
+        let maxSize = Number.NEGATIVE_INFINITY,
+            minSize = Number.POSITIVE_INFINITY,
+            maxObj,
+            minObj;
         dom.children.forEach((s, i) => {
             if (s.styles.maxSize > maxSize) {
                 maxSize = s.styles.maxSize;
                 maxObj = s;
-            } else {
+            }
+            if (s.styles.maxSize < minSize) {
                 minSize = s.styles.maxSize;
                 minObj = s;
             }
         });
-        // console.log(maxSize, minSize, maxObj, minObj)
+        // 如果最大字号比最小字号大于 文本对比系数 1.4倍，则模型成立
         if (maxSize / minSize > textCompareCoefficient) {
             dom.type = Store.model.NUMERICAL;
             // 创建包含最大节点的新节点
-            let newDom = Common.createDom({
+            /*let newDom = Common.createDom({
                 type: "layout",
                 layout: Store.layout.INLINE,
                 x: maxObj.x,
@@ -44,13 +46,14 @@ module.exports.is = function(dom, parent, option, config) {
                 width: maxObj.width,
                 height: maxObj.height,
                 children: dom.children
-            });
+            });*/
+
+            dom.contrains[Contrain.LayoutAbsolute] = true;
 
             // 调整最大子节点位置
-            dom.children = [newDom];
-            if (dom.layout==Store.layout.INLINE) {
+            // if (dom.layout == Store.layout.INLINE) {
                 dom.width = maxObj.width;
-            }
+            // }
             dom.x -= maxObj.x;
             minObj.x -= maxObj.x;
             minObj.y -= maxObj.y;

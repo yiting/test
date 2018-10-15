@@ -57,8 +57,55 @@ router.get('/', function (req, res, next) {
     })
 });
 
-//根据pageid、artboardID请求页面:调用项目生成
+//2018-10-10:根据pageid、artboardID请求页面结构
 router.post('/getPageById', function (req, res, next) {
+    console.log("获取当前artboard骨架请求")
+    getCurrentPageInfo(req, res, next, 0);
+});
+
+
+//2018-10-10:根据pageid、artboardID生成图片请求
+router.post('/getPageImgById', function (req, res, next) {
+    console.log("获取当前artboard图片素材请求")
+    getCurrentPageInfo(req, res, next, 1);
+});
+
+//2018-10-12:根据pageid、artboardID生成预览图请求
+router.post('/getArtBoardImg', function (req, res, next) {
+    console.log("获取当前artboard预览图片请求")
+    //根据artBoardId来获取对应的缩略图,返回url地址到页面上
+    //getImgsPrew(req.body.artboardId);
+
+
+    /*ImageCombine.combineShapeGroupNodeWithNative({
+     "do_objectID": req.body.artboardId
+     }, true)*/
+
+    let artBoardObj = {
+        "do_objectID": req.body.artboardId
+    };
+
+    Promise.all([getArtBoardUrl(artBoardObj)]).then((info) => {
+        res.send(JSON.stringify({
+            "artBoardImgName": artBoardObj.do_objectID
+        }));
+    });
+});
+/**
+ * 根据artBoardId获取对应的缩略图
+ * @param artBoardObj
+ * @returns {Promise.<void>}
+ */
+let getArtBoardUrl = async function (artBoardObj) {
+    let artBoardUrl = await ImageCombine.combineShapeGroupNodeWithNative(artBoardObj, true)
+}
+
+/*根据artBoard获取当前的designDom*
+ type:0----designjson
+ type:1----designimgs
+ */
+let getCurrentPageInfo = function (req, res, next, type) {
+    let currentDesignDom;
     //console.log("传到后台的pid为:" )
     let pageId = req.body.pageId;
     let artBoardId = req.body.artboardId;
@@ -91,16 +138,38 @@ router.post('/getPageById', function (req, res, next) {
                     //1.创建项目生成文件夹目录
                     //let fileFolder = './data/complie/' + projectUUID;
                     //进行任务:导出html、css任务;合并图片任务
-                    Promise.all([jsonToHtmlCss(artBoardId, designJson), combineImages(imageList)]).then((info) => {
-                        console.log("导出所有模块成功");
-                        console.log("图片数组:" + generateImgArr);
-                        //返回当前artBoard生成的素材资源
-                        //需要大雄返回删除临时图片后的图片路径数组
-                        resultURL.imgPaths = generateImgArr;
-                        //返回项目文件夹的id，可作为静态资源读取的路径拼接
-                        resultURL.projectId = projectUUID;
-                        res.send(JSON.stringify(resultURL));
-                    })
+                    /*Promise.all([jsonToHtmlCss(artBoardId, designJson), combineImages(imageList)]).then((info) => {
+                     console.log("导出所有模块成功");
+                     console.log("图片数组:" + generateImgArr);
+                     //返回当前artBoard生成的素材资源
+                     //需要大雄返回删除临时图片后的图片路径数组
+                     resultURL.imgPaths = generateImgArr;
+                     //返回项目文件夹的id，可作为静态资源读取的路径拼接
+                     resultURL.projectId = projectUUID;
+                     res.send(JSON.stringify(resultURL));
+                     })*/
+
+                    if (type == 0) {
+                        //2018-10-10:先出骨架，再等待图片生成后，再刷新页面
+                        Promise.all([jsonToHtmlCss(artBoardId, designJson)]).then((info) => {
+                            console.log("骨架输出成功");
+                            resultURL.projectId = projectUUID;
+                            res.send(JSON.stringify(resultURL));
+                        })
+                    }
+                    if (type == 1) {
+                        //生成图片
+                        Promise.all([combineImages(imageList)]).then((info) => {
+                            console.log("图片输出成功");
+                            console.log("图片数组:" + generateImgArr);
+                            //返回当前artBoard生成的素材资源
+                            //需要大雄返回删除临时图片后的图片路径数组
+                            resultURL.imgPaths = generateImgArr;
+                            //返回项目文件夹的id，可作为静态资源读取的路径拼接
+                            resultURL.projectId = projectUUID;
+                            res.send(JSON.stringify(resultURL));
+                        })
+                    }
                 } else {
                     res.send("Symbol，不解析");
                 }
@@ -111,18 +180,20 @@ router.post('/getPageById', function (req, res, next) {
             }
         });
     }
+}
 
-    //2018-09-19:生成缩略图
-    //getImgsPrew(artBoardId)
-});
 
-/*获取每个artBoard的缩略图，提供AI图片操作:放在俊标模块调用*/
+/**
+ * 获取每个artBoard的缩略图，提供AI图片操作:放在俊标模块调用
+ * @param artBoardId
+ * @returns {Promise}
+ */
 let getImgsPrew = function (artBoardId) {
     let dataParam = {
         "sketchFile": '20180919152936_0list.sketch',
         "imgId": artBoardId//664F0E6A-E2A5-48A2-A3B4-4B14201D785E
     };
-    var request = require('request');
+    let request = require('request');
     let url = 'http://10.65.90.93:8888/draw?' + require('querystring').stringify(dataParam);
     return new Promise(function (resolve, reject) {
         request(url, function (error, response, data) {
@@ -235,7 +306,8 @@ let combineImages = async (imageList) => {
     ImageCombine.init({
         "inputDir": "./data/unzip_file/" + projectName + "/",//源图片------'./unzip_file/' + projectName + "/images";
         "outputDir": "./data/complie/" + projectUUID + "/",//图片导出路径---let exportPath = './data/complie/' + projectUUID
-        "pageJson": imageList
+        "pageJson": imageList,
+        "projectName": projectName + ".sketch"
     });
     for (let i = 0, ilen = imageList.length; i < ilen; i++) {
         let newNode = await ImageCombine.combineNode(imageList[i]);

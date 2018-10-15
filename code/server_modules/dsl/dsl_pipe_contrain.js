@@ -57,7 +57,9 @@ function horizontal(json) {
             contrainsObj[CONTRAIN.LayoutJustifyContentBetween] = contrainsObj[CONTRAIN.LayoutJustifyContentBetween] !== false && Math.abs(info.margin_left - info.margin_right < Option.positionDeviation)
         }
     });
-    contrainsObj[CONTRAIN.LayoutJustifyContentCenter] = horizontalContrain[0].margin_left == horizontalContrain[horizontalContrain.length - 1].margin_right
+    if (horizontalContrain.length) {
+        contrainsObj[CONTRAIN.LayoutJustifyContentCenter] = horizontalContrain[0].margin_left == horizontalContrain[horizontalContrain.length - 1].margin_right
+    }
 
     return contrainsObj[CONTRAIN.LayoutHorizontal] && contrainsObj;
 }
@@ -139,7 +141,7 @@ function calChildrenContrain(json) {
         return;
     }
     // if (Object.values(Store.model).includes(json.type)) {
-        // return;
+    // return;
     // }
     let _x = json.x,
         _y = json.y,
@@ -152,6 +154,7 @@ function calChildrenContrain(json) {
      * 元素水平约束关系
      */
     let rels = horizontal(json) || vertical(json);
+
     // 其他约束关系
     if (rels) {
         contrainsObj = rels;
@@ -163,7 +166,7 @@ function calChildrenContrain(json) {
      */
     if (Object.keys(contrainsObj).length) {
         // json.contrains = Object.assign({}, json.contrains, contrainsObj);
-        json.contrains =Object.assign({},contrainsObj,json.contrains);
+        json.contrains = Object.assign({}, contrainsObj, json.contrains);
     }
 }
 

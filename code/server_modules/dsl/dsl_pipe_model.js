@@ -12,12 +12,13 @@ let Models = {
     textContain: require("./model/textContain"),
     inline: require("./model/inline"),
     block: require("./model/block"),
+    column: require("./model/column"),
     layoutEquality: require("./model/layoutEquality"),
     body: require("./model/body"),
-    list0: require("./model/list0"),
     listHorizontalItem: require("./model/list-horizontal-item"),
     numerical: require("./model/numerical"),
     ul: require("./model/ul"),
+    poster: require("./model/poster"),
 
 
 
@@ -33,10 +34,11 @@ function fn(dom) {
             [
                 'ul',
                 'inline',
+                'column',
                 'block'
-            ].some(c => { 
+            ].some(c => {
                 return Models[c].is(child, dom, Option, Config)
-            });       
+            });
             [
                 'textContain',
                 'image',
@@ -50,6 +52,7 @@ function fn(dom) {
                 'layoutEquality',
                 'body',
                 'listHorizontalItem',
+                'poster',
                 // 'list0'
             ].some(c => {
                 return Models[c].is(child, dom, Option, Config)

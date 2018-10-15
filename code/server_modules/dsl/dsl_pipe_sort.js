@@ -24,12 +24,16 @@ function _sort(newDom, children) {
     }
     let done = children.some((d, i) => {
         let dCenter, newCenter;
-        if (d.y < newDom.y + newDom.height && newDom.y < d.y + d.height) {
-            dCenter = d.x + d.width / 2;
-            newCenter = newDom.x + d.width / 2;
+        let newDom_y = newDom.textAbY||newDom.abY,
+            newDom_h = newDom.textHeight||newDom.height,
+            d_y = d.textAbY||d.abY,
+            d_h = d.textHeight||d.height
+        if (d_y < newDom_y + newDom_h && newDom_y < d_y + d_h) {
+            dCenter = d.abX + d.width / 2;
+            newCenter = newDom.abX + d.width / 2;
         } else {
-            dCenter = d.y + d.height / 2;
-            newCenter = newDom.y + newDom.height / 2;
+            dCenter = d_y + d_h / 2;
+            newCenter = newDom_y + newDom_h / 2;
         }
         if (newCenter < dCenter) {
             children.splice(i, 0, newDom);

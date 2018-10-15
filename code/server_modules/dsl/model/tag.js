@@ -23,12 +23,12 @@ module.exports.is = function(dom, parent, option, config) {
             px = dom.width / 2,
             py = dom.height / 2,
             padding = (dom.width - child.width) / 2
-
         // 如果中心点偏移小于2
         if (dom.height / child.height < 3 &&
             Math.abs(vx - px) < 2 &&
             Math.abs(vy - py) < 2 &&
-            maxSize * 1.5 > padding) {
+            maxSize * 1.5 > padding &&
+            padding > 6) {
             if (!dom.padding) {
                 dom.padding = {};
             }

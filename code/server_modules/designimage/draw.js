@@ -18,6 +18,8 @@ gm.prototype.opacity=function(opacity){
 // l result.png
 // };
 const draw = {
+	width:null,
+	height:null,
 	/**
 	 * 图片倍率，多倍图，暂时只支持矢量图
 	 * @type {Number}
@@ -25,10 +27,14 @@ const draw = {
 	 */
 	ratio:1,
 	/**
+	 * 绘图数据偏移量{x,y}
+	 */
+	offset:{x:0,y:0,w:0,h:0},
+	/**
 	 * 测试图片输出
 	 * @type {Boolean}
 	 */
-	testExportImage: true,
+	testExportImage: false,
 	/**
 	 * 当前绘制的对象，由gm生成
 	 * @type {[type]}
@@ -57,26 +63,6 @@ const draw = {
 	// 	return gm;
 	// },
 	/**
-	 * 创建空白图
-	 * @param  {[type]} width  [description]
-	 * @param  {[type]} height [description]
-	 * @return {[type]}        [description]
-	 */
-	createImage(imageData) {
-		console.log(">当前绘制的类型:", imageData["_class"],",名称:", imageData["name"]);
-		let width = imageData.frame.width + sketchToGm.getBorderWidth(imageData);
-		let height = imageData.frame.height + sketchToGm.getBorderWidth(imageData);
-		draw.drawImage = gm(width*draw.ratio, height*draw.ratio, "#000000ff");
-		//填充
-		draw.fill(sketchToGm.getFillColor(imageData));
-		//暂时只支持居中描边（sketch默认）
-		draw.stroke(
-			sketchToGm.getBorderColor(imageData),
-			sketchToGm.getBorderWidth(imageData)
-		);
-		// convert 11.png -alpha set  -channel A -evaluate multiply 0.5 +channel 22.png
-	},
-	/**
 	 * 初始化配置
 	 * @param  {[type]} config [description]
 	 * @return {[type]}     [description]
@@ -97,10 +83,10 @@ const draw = {
 	 * 描边
 	 * @return {[type]} [description]
 	 */
-	stroke(color, width) {
-		if (color && width) {
-			draw.drawImage.stroke(color);
-			draw.drawImage.strokeWidth(width*draw.ratio);
+	stroke(border) {
+		if (border.width) {
+			draw.drawImage.stroke(border.color);
+			draw.drawImage.strokeWidth(border.width);
 		}
 	},
 	/**
@@ -119,6 +105,15 @@ const draw = {
 		if(imageData.rotation){
 			draw.drawImage.rotate("rgba(255,255,255,255)", (360-imageData.rotation)).trim()
 		}
+		if(imageData.isFlippedHorizontal){
+			draw.drawImage.rotate("rgba(255,255,255,255)", (180)).trim()
+		}
+		if(imageData.parentNode && imageData.parentNode.rotation){
+			draw.drawImage.rotate("rgba(255,255,255,255)", (360-imageData.parentNode.rotation)).trim()
+		}
+		if(imageData.parentNode && imageData.parentNode.isFlippedHorizontal){
+			draw.drawImage.rotate("rgba(255,255,255,255)", (180)).trim()
+		}
 	},
 	/**
 	 * 三角形绘制
@@ -133,15 +128,93 @@ const draw = {
 	 * @param  {[type]} imageData [description]
 	 * @return {[type]}           [description]
 	 */
-	rectangle(imageData) {
-		draw.createImage(imageData)
-		//绘制
-		draw.drawImage.out("-draw", "roundrectangle " + sketchToGm.getRectangle(imageData,draw.ratio))
-		//保存图片
-		draw.testExportImage && draw.exportImage(draw.outputDir + imageData.do_objectID + ".png")
-		//返回绘制的对象
-		return draw.drawImage;
-		// -draw "roundrectangle 20,10 80,50 20,15"
+	// rectangle(imageData) {
+	// 	draw.createImage(imageData)
+	// 	//绘制
+	// 	draw.drawImage.out("-draw", "roundrectangle " + sketchToGm.getRectangle(imageData,draw.ratio))
+	// 	//保存图片
+	// 	draw.testExportImage && draw.exportImage(draw.outputDir + imageData.do_objectID + ".png")
+	// 	//返回绘制的对象
+	// 	return draw.drawImage;
+	// 	// -draw "roundrectangle 20,10 80,50 20,15"
+	// },
+	/**
+	 * 创建空白图
+	 * @param  {[type]} width  [description]
+	 * @param  {[type]} height [description]
+	 * @return {[type]}        [description]
+	 */
+	createImage(imageData) {
+		draw.offset={x:0,y:0,w:0,h:0};
+		console.log(">当前绘制的类型:", imageData["_class"],",名称:", imageData["name"]);
+		var border=sketchToGm.getBorder(imageData);
+		border.width=border.width*draw.ratio;
+		border.height=border.height*draw.ratio;
+		draw.width = imageData.frame.width*draw.ratio;
+		draw.height = imageData.frame.height*draw.ratio;
+
+
+
+		//inner:1 center:0 outside:2
+ 		// 描边的处理
+		switch(border.type){
+			case 0:
+				//center
+				draw.offset.x+=border.width/2;
+				draw.offset.y+=border.width/2;
+				// draw.offset.w=border.width;
+				// draw.offset.h=border.width;
+				draw.width+=border.width;
+				draw.height+=border.width;
+				break;
+			case 1:
+				//inner
+				draw.offset.x+=border.width/2;
+				draw.offset.y+=border.width/2;
+				draw.offset.w-=border.width;
+				draw.offset.h-=border.width;
+				break;
+			case 2:
+				//outer
+				draw.offset.x+=border.width;
+				draw.offset.y+=border.width;
+				// draw.offset.w+=border.width;
+				// draw.offset.h+=border.width;
+				draw.width+=border.width*2;
+				draw.height+=border.width*2;
+				break;
+		}
+
+		//开始绘图
+		draw.drawImage = gm(draw.width, draw.height, "#000000ff");
+
+
+
+		//如果含有fill图像的情况，则需要把图像也画上去
+		var hasFillImage =false;
+		var fillImageIndex = -1;
+		if(imageData.style&&imageData.style.fills&&imageData.style.fills.length>0){
+			var fills = imageData.style.fills;
+			for(var i=0,ilen=fills.length;i<ilen;i++){
+				if(fills[i].image){
+					hasFillImage = true;
+					fillImageIndex = i ;
+				}
+			}
+		}
+		//填充操作分图片正常情况和图片在fill中两种，
+		if(hasFillImage == true){
+			draw.fill("rgba(255,255,255,255)");
+			var command = 'image Over 0, 0, '+draw.width +','+ draw.height +',"'+ draw.inputDir+fills[fillImageIndex].image._ref + '"';
+			draw.drawImage.draw(command);
+		}else{
+			draw.fill(sketchToGm.getFillColor(imageData));
+		}
+
+		//填充
+		// draw.fill(sketchToGm.getFillColor(imageData));
+		//暂时只支持居中描边（sketch默认）
+		draw.stroke(border);
 	},
 	/**
 	 * 路径绘制
@@ -151,11 +224,11 @@ const draw = {
 	path(imageData) {
 		draw.createImage(imageData)
 		//绘制
-		draw.drawImage.out("-draw", "stroke-linecap round path '" + sketchToGm.getPath(imageData,draw.ratio) + "'")
+		draw.drawImage.out("-draw", "stroke-linecap round path '" + sketchToGm.getPath(imageData,draw.ratio,draw.offset) + "'")
 		//transform
 		draw.transform(imageData);
 		//保存图片
-		draw.testExportImage && draw.exportImage(draw.outputDir + imageData.do_objectID + ".png")
+		// draw.testExportImage && draw.exportImage(draw.outputDir + imageData.do_objectID + ".png")
 		//返回绘制的对象
 		return draw.drawImage;
 	},
@@ -176,7 +249,6 @@ const draw = {
 		try{
 			if(imageData.style.fills && imageData.style.fills[imageData.style.fills.length - 1].color.alpha!=0){
 				var color=sketchToGm.getFillColor(imageData);
-				delete imageData.style.fills[imageData.style.fills.length - 1].color;
 				draw.drawImage.out("\(","-clone","0","-fill",color,"-colorize","100%","\)","-alpha","set","8","-transparent","none","-compose","Over","-composite" )
 			}
 		}catch(e){}
@@ -199,6 +271,12 @@ const draw = {
 	image(imageParentNode, imageNode, callback) {
 		let imageFullPath = draw.outputDir + imageNode.do_objectID + ".png";
 		imageNode["style"] = imageParentNode.style;
+		if(imageNode != imageParentNode){
+			imageNode["parentNode"] = {};
+			imageNode["parentNode"]["rotation"] = imageParentNode.rotation;
+			imageNode["parentNode"]["isFlippedHorizontal"] = imageParentNode.isFlippedHorizontal;
+		}
+		imageNode.parentName=imageParentNode.name;
 		return new Promise(function(resolve, reject) {
 			//图片类型判断，差异处理
 			switch (imageNode["_class"]) {

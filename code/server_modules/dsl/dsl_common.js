@@ -113,7 +113,12 @@ function calRange(doms) {
     o.width = right - o.x;
     return o;
 }
+/**
+ * 计算中心偏移
+ */
+function calOffset(cur){
 
+}
 
 /**
  * 计算margin
@@ -169,8 +174,13 @@ function isHorizontal(arr, errorCoefficient = 0) {
             prev = meta;
             return true;
         }
-        let res = meta.abY <= prev.abY + prev.height + errorCoefficient &&
-            prev.abY <= meta.abY + meta.height + errorCoefficient;
+        const meta_abY = meta.textAbY||meta.abY,
+            prev_abY = prev.textAbY||prev.abY,
+            meta_height = meta.textHeight||meta.height,
+            prev_height = prev.textHeight||prev.height;
+
+        let res = (meta_abY <= prev_abY + prev_height + errorCoefficient) &&
+            (prev_abY <= meta_abY + meta_height + errorCoefficient);
         prev = meta;
         return res;
     })
