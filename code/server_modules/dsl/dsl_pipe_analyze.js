@@ -1,4 +1,4 @@
-let Store = require("./dsl_store.js");
+let Dom = require("./dsl_dom.js");
 let Matrixs = require("./dsl_matrixs.js");
 
 
@@ -20,7 +20,7 @@ function serialize(json) {
 function getChildDom(json) {
     let nodes = [];
     json.children.forEach(child => {
-        // if (Object.values(Store.layout).includes(child.layout)) {
+        // if (Object.values(Dom.layout).includes(child.layout)) {
         if (child.type == 'layout') {
             nodes = nodes.concat(getChildDom(child));
         } else {
@@ -39,8 +39,6 @@ function matrix(obj) {
         matrix: []
     }
     obj.children.forEach((o) => {
-        // let w = (o.type == Store.model.TEXT || o.type == Store.model.PARAGRAPH) ? o.styles.maxSize : o.width,
-        // h = (o.type == Store.model.TEXT || o.type == Store.model.PARAGRAPH) ? o.styles.maxSize : o.height
         m.matrix.push({
             width: o.width,
             height: o.height,
@@ -83,9 +81,6 @@ function matchMatrix(arr) {
     arr.forEach((a, i) => {
         arr.slice(i + 1).forEach((b) => {
             let o = matching(a.matrix, b.matrix);
-            // if(a.id==29&&b.id==34){
-            // debugger;
-            // }
             matchResult.push({
                 id1: a.id,
                 id2: b.id,

@@ -1,5 +1,7 @@
 let Common = require("./dsl_common.js");
+let Dom = require("./dsl_dom.js");
 let Store = require("./dsl_store.js");
+let Logger = require("./logger.js");
 /**
  * Design-Dom 转为 一维数组
  * @param  {[type]} cur [description]
@@ -7,21 +9,25 @@ let Store = require("./dsl_store.js");
  * @return {[type]}     [description]
  */
 function serialize(cur, arr) {
-    arr.push(cur);
-    cur.abX = cur.abX || 0;
-    cur.abY = cur.abY || 0;
-    cur.contrains = {};
-    delete cur.parent;
+    arr.push(new Dom(cur));
+    // delete cur.parent;
     if (cur.children) {
         cur.children.forEach((c, i) => {
-            // c.abX = parseInt(cur.abX || 0) + parseInt(c.x || 0);
-            // c.abY = parseInt(cur.abY || 0) + parseInt(c.y || 0);
-            if (c.abX < 0) {
+            /*
+            // 部分超出范围处理
+                if (c.abX < 0) {
                 c.abX = 0;
                 c.width -= c.abX;
             }
             if (c.abX + c.width > Config.device.width) {
                 c.width = Config.device.width - c.abX;
+            }*/
+            // 剔除完全超出范围元素
+            if (c.abX > Config.device.width ||
+                c.abY > Config.device.height ||
+                c.abX + c.width < 0 ||
+                c.abY + c.height < 0) {
+                return false;
             }
             serialize(c, arr);
         });
@@ -34,7 +40,7 @@ function serialize(cur, arr) {
 function sortBySize(arr) {
     let _sort = [],
         area
-    arr.forEach(function(dom) {
+    arr.forEach(function (dom) {
         area = dom.width * dom.height;
         dom.children = [];
         if (!_sort[area]) {
@@ -48,27 +54,6 @@ function sortBySize(arr) {
     return domArr;
 }
 
-
-const designDomAttrs = /^(id|type|name|x|y|width|height|children)$/;
-
-function assign(...objects) {
-    let json = objects.shift();
-    while (objects.length) {
-        let obj = objects.shift()
-        for (var i in obj) {
-            if (designDomAttrs.test(i)) {
-                continue;
-            };
-            if (!obj[i] ||
-                obj[i] == '<null>'
-            ) {
-                continue;
-            }
-            json[i] = obj[i];
-        }
-    }
-    return json;
-}
 
 // 清洗行高，使行高为1.4
 // 赋值 textHeight,textY
@@ -149,7 +134,7 @@ function mergeBySize(arr) {
                 d.abX == o.abX &&
                 d.abY == o.abY) {
                 // 与父节点大小相同
-                assign(o, d);
+                Dom.assign(o, d);
                 return true;
             }
         });
@@ -170,7 +155,7 @@ function filterUselessGroup(arr) {
                 d.styles.opacity != 1 ||
                 d.styles.border ||
                 d.styles.borderRadius ||
-                d.styles.background ||
+                (d.styles.background && d.styles.background.color && d.styles.background.color.a != 0) ||
                 d.styles.shadows ||
                 d.styles.blending))
         );
@@ -184,16 +169,17 @@ function filterUselessGroup(arr) {
 function relayer(arr, body) {
     var coms = [body],
         doms = [];
-    arr.forEach(function(o, i) {
+    arr.forEach(function (o, i) {
         if (!o || o == body) {
             return;
         }
-        let done = coms.some(function(d, j) {
+        let done = coms.some(function (d, j) {
             // 在父节点上
             if (d.abX + d.width >= o.abX + o.width &&
                 d.abY + d.height >= o.abY + o.height &&
                 d.abX <= o.abX &&
-                d.abY <= o.abY
+                d.abY <= o.abY &&
+                d.type != 'QText'
             ) {
                 o.x = o.abX - d.abX;
                 o.y = o.abY - d.abY;
@@ -235,22 +221,42 @@ let Config = {},
     };
 
 function fn(json) {
+    Logger.log('[pipe - cleanse] start')
+
     let data = JSON.parse(JSON.stringify(json)); // 深复制数据
     data.x = 0;
     data.y = 0;
-    let arr = serialize(data, []); // 序列化树
-    arr = sortBySize(arr); // 按面积排序
+
+    Logger.log('[pipe - cleanse] serialize')
+    // 序列化树
+    let arr = serialize(data, []);
+    // 按面积排序
+    Logger.log('[pipe - cleanse] sortBySize')
+    arr = sortBySize(arr);
     let body = arr[0];
-    arr = filterUselessGroup(arr); // 移除无用组
-    arr = mergeBySize(arr); // 合并同大小元素
-    arr = cleanLineHeight(arr); // 清洗属性-行高
-    // arr = identifyColourful(arr); // 识别彩色的
-    let arr2 = arr.concat([]);
-    relayer(arr, body); // 重组父子结构
-    markerSegmenting(body); // 标记分割线
+
+    Logger.log('[pipe - cleanse] filterUselessGroup')
+    // 移除无用组
+    arr = filterUselessGroup(arr);
+
+    Logger.log('[pipe - cleanse] mergeBySize')
+    // 合并同大小元素
+    arr = mergeBySize(arr);
+    Logger.log('[pipe - cleanse] cleanLineHeight')
+    // 清洗属性-行高
+    arr = cleanLineHeight(arr);
+    /* // 识别彩色的
+    arr = identifyColourful(arr);  */
+    Logger.log('[pipe - cleanse] relayer')
+    // 重组父子结构
+    relayer(arr, body);
+    // 标记分割线
+    Logger.log('[pipe - cleanse] markerSegmenting')
+    markerSegmenting(body);
+    Logger.log('[pipe - cleanse] end')
     return body;
 }
-module.exports = function(data, conf, opt) {
+module.exports = function (data, conf, opt) {
     Object.assign(Option, opt);
     Object.assign(Config, conf);
     return fn(data);

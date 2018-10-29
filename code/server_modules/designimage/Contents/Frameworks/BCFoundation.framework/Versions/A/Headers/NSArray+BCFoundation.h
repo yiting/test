@@ -1,6 +1,13 @@
 //  Created by Pieter Omvlee on 31/03/2016.
 //  Copyright © 2016 Bohemian Coding. All rights reserved.
 
+/**
+ Signature of simple block for enumerating through objects returning items.
+ Used by map:, etc.
+ */
+
+typedef CGFloat (^BCSumBlock)(id object);
+
 @interface NSArray<ObjectType> (BCFoundation)
 
 /** Returns all but the last item of the array. */
@@ -22,7 +29,7 @@
 - (NSArray *)map:(id (^)(__kindof ObjectType object))block;
 
 /** Returns an array containing the non-nil results of calling the given block with each item in the receiver. I.e. like map, but ommits nil results. */
-- (NSArray *)flatMap:(id (^)(ObjectType object))block;
+- (NSArray *)flatMap:(id (^)(__kindof ObjectType object))block;
 
 /**  Call a block for every item in the array, passing in the index of each item, and returning a new array with the items returned by the block. */
 - (NSArray *)mapWithIndex:(id (^)(ObjectType object, NSUInteger index))block;
@@ -36,6 +43,15 @@
 /** Call a block for every item in the array, returning a new array with the items where the block returned YES. */
 - (NSArray <ObjectType> *)filter:(BOOL (^)(ObjectType object))block;
 
+/** Returns YES if there is one object in the array that passes the test. */
+- (BOOL)containsObjectPassingTest:(BOOL (^)(ObjectType obj))predicate;
+
+/** Returns the first object passing the test */
+- (ObjectType)firstObjectPassingTest:(BOOL (^)(ObjectType obj))predicate;
+
+/** Returns the index of the first object passing the test */
+- (NSUInteger)indexOfFirstObjectPassingTest:(BOOL (^)(ObjectType obj))predicate;
+
 /** Call a block for every item in the array, passing in the index, and returning a new array with the items where the block returned YES.*/
 - (NSArray <ObjectType> *)filterWithIndex:(BOOL (^)(ObjectType object, NSUInteger index))block;
 
@@ -44,6 +60,10 @@
 
 - (BOOL)containsObjectOfClass:(Class)aClass;
 - (BOOL)containsOnlyObjectsOfClass:(Class)aClass;
+- (id)firstObjectOfClass:(Class)aClass;
+
+- (CGFloat)sum:(BCSumBlock)block;
++ (id)arrayWithCapacity:(NSUInteger)count fill:(id (^)(NSUInteger index))block;
 
 - (NSArray <ObjectType> *)arrayByRemovingNull;
 

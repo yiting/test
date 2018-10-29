@@ -1,14 +1,10 @@
-//
-//  SCKArtboard.h
-//  SketchCloudKit
-//
 //  Created by Robin Speijer on 01-02-17.
-//  Copyright © 2017 Awkward. All rights reserved.
-//
+//  Copyright © 2017 Bohemian Coding. 
 
 @import CoreGraphics.CGGeometry;
 
 #import "SCKObject.h"
+#import "SCKFileImageType.h"
 
 @class SCKFile, SCKPage, SCKLayer;
 
@@ -22,7 +18,8 @@ typedef NS_OPTIONS(NSUInteger, SCKArtboardAttributes) {
     SCKArtboardFilesAttribute = 1 << 5,
     SCKArtboardLayersAttribute = 1 << 6,
     SCKArtboardIsFlowHomeAttribute = 1 << 7,
-    SCKArtboardViewportAttribute = 1 << 8
+    SCKArtboardViewportAttribute = 1 << 8,
+    SCKArtboardPossibleFileTypesAttribute = 1 << 9
 };
 
 typedef struct SCKArtboardViewport {
@@ -31,6 +28,7 @@ typedef struct SCKArtboardViewport {
 } SCKArtboardViewport;
 
 /// An artboard inside a SCKPage.
+NS_SWIFT_NAME(Artboard)
 @interface SCKArtboard : SCKObject
 
 /// The page that this artboard is part of.
@@ -57,6 +55,9 @@ typedef struct SCKArtboardViewport {
 /// The possible files that represent the artboard's image. Generally, those files only differ in scales.
 @property (nonatomic, nonnull, readonly) NSArray<SCKFile *> *files;
 
+/// File types that are possible to query from the Sketch webserver. Only available when getting the manifest from Sketch itself.
+@property (nonatomic, readonly) SCKFileImageType possibleFileTypes;
+
 /// All relevant layers for this artboard, for example for wireflows. This property does not neccesarily contain all layers of the artboard.
 @property (nonatomic, nullable, strong) NSArray<SCKLayer *> *layers;
 
@@ -69,6 +70,6 @@ typedef struct SCKArtboardViewport {
  @param scale The optimal scale to use for the image file.
  @return An image file.
  */
-- (nullable SCKFile *)fileAtScale:(CGFloat)scale NS_SWIFT_NAME(file(atScale:));
+- (nullable SCKFile *)fileAtScale:(CGFloat)scale ofType:(SCKFileImageType)type NS_SWIFT_NAME(file(atScale:type:));
 
 @end

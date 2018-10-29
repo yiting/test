@@ -15,6 +15,14 @@ typedef void(^BCConcurrentMapCompletionBlock)(NSArray *mappedArray);
 - (void)mapWithMaxConcurrencyCount:(NSInteger)maxConcurrentCount
                         usingBlock:(id (^)(ObjectType object))block
                    completionBlock:(BCConcurrentMapCompletionBlock)completionBlock;
+
+/**
+ Loops over the entire array and applies the block on each object in the array.
+ The method only returns when all blocks are finished
+ The returned integer is a count of all the blocks that returned YES. So 0 = all blocks returned NO (failure)
+ */
+- (NSUInteger)applyBlockConcurrentlyAndCountSuccess:(BOOL (^)(ObjectType object))block;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -10,17 +10,17 @@ $color_java_approx: #1cbcb4;
 $white: #fff;
 $color_science_blue_approx: #126ee1;
 $color_mine_shaft_approx: #333;
-$color_mine_shaft_95_approx: rgba(51, 51, 51, .95);
+$color_mine_shaft_95_approx: rgba(51, 51, 51, 0.95);
 $color_gravel_approx: #42464c;
 $color_delta_approx: #a3a3a3;
 $color_bon_jour_approx: #e2e2e2;
 $concrete: #f2f2f2;
-$white_50: rgba(255, 255, 255, .5);
+$white_50: rgba(255, 255, 255, 0.5);
 $color_solitude_approx: #e8f2ff;
 $color_silver_chalice_approx: #aaa;
-$black_80: rgba(0, 0, 0, .8);
-$color_concrete_approx: rgba(#000, .8);
-$black_15: rgba(0, 0, 0, .15);
+$black_80: rgba(0, 0, 0, 0.8);
+$color_concrete_approx: rgba(#000, 0.8);
+$black_15: rgba(0, 0, 0, 0.15);
 $color_oslo_gray_approx: #87898e;
 $gray: gray;
 $color_celeste_approx: #ccc;
@@ -51,7 +51,7 @@ $url_5: url(https://yyb.gtimg.com/ai/sprite/sprite-b304711140.case.dingdang.png?
 //original selectors
 //.clearfix:after, .clearfix:before
 %extend_1 {
-  content: '';
+  content: "";
   display: table;
   font: 0/0 a;
 }
@@ -216,14 +216,14 @@ textarea {
 }
 
 .disabled {
-  opacity: .5;
+  opacity: 0.5;
   filter: alpha(opacity=50);
   cursor: default; //Instead of the line below you could use @include user-select($select)
   user-select: none;
 }
 
 :disabled {
-  opacity: .5;
+  opacity: 0.5;
   filter: alpha(opacity=50);
   cursor: default; //Instead of the line below you could use @include user-select($select)
   user-select: none;
@@ -293,7 +293,7 @@ textarea {
     &:before {
       display: inline-block;
       vertical-align: top;
-      content: '';
+      content: "";
       width: 36px;
       height: 36px;
       margin-top: 7px;
@@ -364,7 +364,7 @@ textarea {
   border-radius: 3px;
   line-height: 1;
   display: inline-block;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   vertical-align: middle;
   font-size: 14px;
   margin-right: 20px;
@@ -381,7 +381,7 @@ textarea {
   box-sizing: border-box;
   color: $white;
   z-index: 100; //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-  transition: background .3s ease;
+  transition: background 0.3s ease;
   .layout {
     width: 1200px;
     position: relative;
@@ -455,8 +455,10 @@ textarea {
     top: 60px;
     left: 0;
     text-align: left; //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-    transition: transform .3s ease-out; //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
-    transform: scaleY(0); //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
+    transition: transform 0.3s ease-out; //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: scaleY(
+      0
+    ); //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
     transform-origin: center top;
     &.active {
       //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
@@ -562,8 +564,10 @@ textarea {
     top: 60px;
     left: 0;
     text-align: center; //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-    transition: transform .3s ease-out; //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
-    transform: scaleY(0); //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
+    transition: transform 0.3s ease-out; //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: scaleY(
+      0
+    ); //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
     transform-origin: center top;
   }
   .case-menu-row {
@@ -659,7 +663,7 @@ textarea {
     height: 12px;
     background-image: $url_0;
     background-position: -327px -124px; //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-    transition: transform .3s ease; //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transition: transform 0.3s ease; //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
     transform: rotate(180deg);
     display: inline-block;
     vertical-align: bottom;
@@ -673,7 +677,7 @@ textarea {
     width: auto;
     height: 3px;
     background-color: $white; //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-    transition: transform .3s ease-out, width .3s ease-out;
+    transition: transform 0.3s ease-out, width 0.3s ease-out;
   }
   a:hover {
     text-decoration: none;
@@ -706,7 +710,7 @@ textarea {
   overflow: hidden;
   z-index: 10;
   background-color: $color_mine_shaft_approx;
-  color: #A3A6AB;
+  color: #a3a6ab;
   font-weight: 200;
   padding-bottom: 60px;
   .col {
@@ -745,15 +749,14 @@ textarea {
         line-height: 38px;
         font-size: 12px;
         font-family: FZLTXHK--GBK1-0;
-
       }
     }
   }
   .col-title {
-    color: #FFF;
+    color: #fff;
     font-size: 18px;
     padding-bottom: 18px;
-    border-bottom: 1px solid #45464B;
+    border-bottom: 1px solid #45464b;
   }
   .col-content {
     padding-top: 30px;
@@ -784,7 +787,7 @@ textarea {
   }
 }
 
-html[lang=en] {
+html[lang="en"] {
   body {
     font-family: $font_0, $font_1;
   }
@@ -848,13 +851,13 @@ html[lang=en] {
   overflow: hidden;
   ul {
     &:after {
-      content: '';
+      content: "";
       display: table;
       font: 0/0 a;
       clear: both;
     }
     &:before {
-      content: '';
+      content: "";
       display: table;
       font: 0/0 a;
     }
@@ -889,7 +892,7 @@ html[lang=en] {
     width: 100%;
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -907,7 +910,7 @@ html[lang=en] {
 .banner {
   .advan-layout,
   .banner-intro {
-    -webkit-transition: opacity .3s ease;
+    -webkit-transition: opacity 0.3s ease;
   }
   &:hover {
     .play-video {
@@ -922,18 +925,19 @@ html[lang=en] {
     opacity: 1;
   }
   .play-video {
+    display: none;
     z-index: 10;
     position: absolute;
-    -webkit-transition: opacity .3s ease;
-    opacity: .8;
+    -webkit-transition: opacity 0.3s ease;
+    opacity: 0.8;
     left: 50%;
     cursor: pointer;
     top: 50%;
     $h: 100px;
     width: $h;
     height: $h;
-    margin-top: - $h/2;
-    margin-left: - $h/2;
+    margin-top: -$h/2;
+    margin-left: -$h/2;
     background: url(/img/play.png) no-repeat center;
     background-size: contain;
   }
@@ -945,7 +949,7 @@ html[lang=en] {
   top: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(#000, .8);
+  background-color: rgba(#000, 0.8);
   opacity: 0;
   display: none;
   z-index: 10000;
@@ -953,7 +957,7 @@ html[lang=en] {
     position: fixed;
     right: 30px;
     top: 30px;
-    opacity: .4;
+    opacity: 0.4;
     background: url(/img/close.png) no-repeat center;
     background-size: contain;
     width: 40px;
@@ -965,7 +969,7 @@ html[lang=en] {
     }
   }
   &.on {
-    -webkit-transition: opacity .3s ease;
+    -webkit-transition: opacity 0.3s ease;
     opacity: 1;
   }
   video {
@@ -1007,7 +1011,7 @@ html[lang=en] {
     box-sizing: border-box; //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
     border-radius: 3px;
     border: 1px solid $white; //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-    transition: background .3s ease;
+    transition: background 0.3s ease;
   }
   .btn-consult:hover {
     background-color: $white;
@@ -1019,7 +1023,7 @@ html[lang=en] {
   position: absolute;
   bottom: 70px;
   font-size: 12px;
-  opacity: .6;
+  opacity: 0.6;
   p {
     display: inline-block;
     vertical-align: middle;
@@ -1098,7 +1102,7 @@ html[lang=en] {
   background-color: $white;
   margin-bottom: 20px;
   margin-left: 20px; //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   &:hover {
     //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
     box-shadow: 0 4px 20px 0 $black_15;
@@ -1125,7 +1129,7 @@ html[lang=en] {
     display: block;
     width: 100%;
     height: 100%; //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-    transition: transform .3s ease; //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
+    transition: transform 0.3s ease; //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
     transform-origin: 50% 50%;
   }
   h5 {
@@ -1311,7 +1315,7 @@ html[lang=en] {
     //font-size: 14px;
     //color: gray;
     position: absolute;
-    left: -24px;
+    //left: -24px;
     width: 100%;
     top: 131px;
     color: #fff;
@@ -1327,6 +1331,7 @@ html[lang=en] {
     vertical-align: top;
     color: #fff;
     background-color: #126ee1;
+    background: linear-gradient(to right, #0080ff, #53d1fd);
     border-color: #126ee1;
     border-radius: 3px;
     width: 180px;
@@ -1339,7 +1344,7 @@ html[lang=en] {
     box-sizing: border-box;
     overflow: hidden;
     &:hover {
-      opacity: .7;
+      opacity: 0.7;
     }
     input {
       position: absolute;
@@ -1369,7 +1374,7 @@ html[lang=en] {
     cursor: default;
     &:hover {
       cursor: pointer;
-      opacity: .7;
+      opacity: 0.7;
     }
   }
 }
@@ -1377,4 +1382,3 @@ html[lang=en] {
 .upload-tips {
   top: 138px !important;
 }
-

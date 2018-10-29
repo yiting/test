@@ -11,7 +11,7 @@ const sketchToGm = {
 	 * @param  {sketchColor} sketchColor [description]
 	 * @return {gmcolor}             [description]
 	 */
-	parseColor(sketchColor) {
+	getColor(sketchColor) {
 		return "rgba(" +
 			Math.round(sketchColor.red * 255) + "," +
 			Math.round(sketchColor.green * 255) + "," +
@@ -28,32 +28,39 @@ const sketchToGm = {
 		if (data.style.fills && data.style.fills[data.style.fills.length - 1].isEnabled) {
 			// let color = data.style.fills[0].color;
 			let color = data.style.fills[data.style.fills.length - 1].color;
-			return this.parseColor(color)
+			return this.getColor(color)
 		} else {
 			return "rgba(255,255,255,255)"
 		}
 	},
 	/**
-	 * 获取描边数据
+	 * 获取描边宽度
 	 * @param  {[type]} data [description]
 	 * @return {[type]}      [description]
 	 */
-	getBorder(data){
-		var border={
-			width:0,
-			color:"rgba(255,255,255,0)",
-			type:1
-		}
+	getBorderWidth(data) {
+		// position
 		if (data.style.borders && data.style.borders[0].isEnabled) {
-			//width
-			border.width=data.style.borders[0].thickness
-			//color
-			let color = data.style.borders[0].color;
-			border.color = this.parseColor(color);
-			//描边位置
-			border.type=data.style.borders[0].position
-		};
-		return border;
+			return data.style.borders[0].thickness
+		} else {
+			return 0
+		}
+	},
+	/**
+	 * 获取描边颜色
+	 * @param  {[type]} data [description]
+	 * @return {[type]}      [description]
+	 */
+	getBorderColor(data) {
+		if (!data.style.borders || !data.style.borders[0].isEnabled) {
+			return null
+		}
+		if (data.style.borders) {
+			let borders = data.style.borders[0].color;
+			return this.getColor(borders)
+		} else {
+			return "rgba(255,255,255,0)"
+		}
 	},
 	//圆形的绘制
 	circle(data) {
@@ -68,10 +75,10 @@ const sketchToGm = {
 	 * @return {[type]}        [description]
 	 */
 	getDrawPoint(w, h, data, offset) {
-		offset = offset || {x:0,y:0,w:0,h:0};
 		let point = data.match(/([-.e\d]+)/g);
-		return (Math.round(parseFloat(point[0]) * (w-0+offset.w) * 10000) / 10000 + offset.x) + "," +
-			(Math.round(parseFloat(point[1]) * (h-0+offset.h) * 10000) / 10000 + offset.y)
+		offset = offset || 0;
+		return (Math.round(parseFloat(point[0]) * w * 100) / 100 + offset) + "," +
+			(Math.round(parseFloat(point[1]) * h * 100) / 100 + offset)
 	},
 	/**
 	 * 圆角的处理,对路径进行2次变幻
@@ -196,17 +203,18 @@ const sketchToGm = {
 	 * @param  {[type]} offset    偏移量number
 	 * @return {[type]}           [description]
 	 */
-	getPath(imageData, ratio,offset) {
+	getPath(imageData, ratio) {
 		let data = JSON.parse(JSON.stringify(imageData));
 		let width = data.frame.width * ratio;
 		let height = data.frame.height * ratio;
 		let isClosed = imageData.isClosed;
 		//绘制的point，和绘制命令
 		let points, command;
-		//im的bug
+		//sketh 特殊bug修复 "oval"
 		width--;
 		height--;
-		//im的bug
+		//暂时只支持居中描边（sketch默认）
+		let offset = this.getBorderWidth(imageData) * ratio / 2;
 		//异常处理
 		if(data.points.length<2){
 			return "";
@@ -226,28 +234,28 @@ const sketchToGm = {
 	 * @param  {[type]} data [description]
 	 * @return {[type]}      [description]
 	 */
-	// getRectangle(imageData, ratio) {
-	// 	let data = JSON.parse(JSON.stringify(imageData));
-	// 	let width = data.frame.width * ratio;
-	// 	let height = data.frame.height * ratio;
-	// 	//暂时只支持居中描边（sketch默认）
-	// 	let offset = this.getBorder(imageData).width / 2;
-	// 	//倒序
-	// 	let points = data.points.reverse();
-	// 	let pathCommand = "";
-	// 	try {
-	// 		pathCommand += this.getDrawPoint(width, height, points[3].point, offset) + " ";
-	// 		pathCommand += this.getDrawPoint(width, height, points[1].point, offset) + " ";
-	// 	} catch (error) {}
-	// 	if (data.fixedRadius) {
-	// 		pathCommand += data.fixedRadius * ratio + ",";
-	// 		pathCommand += data.fixedRadius * ratio;
-	// 	} else {
-	// 		pathCommand += "1" + ",";
-	// 		pathCommand += "1"
-	// 	}
-	// 	return pathCommand;
-	// },
+	getRectangle(imageData, ratio) {
+		let data = JSON.parse(JSON.stringify(imageData));
+		let width = data.frame.width * ratio;
+		let height = data.frame.height * ratio;
+		//暂时只支持居中描边（sketch默认）
+		let offset = this.getBorderWidth(imageData) / 2;
+		//倒序
+		let points = data.points.reverse();
+		let pathCommand = "";
+		try {
+			pathCommand += this.getDrawPoint(width, height, points[3].point, offset) + " ";
+			pathCommand += this.getDrawPoint(width, height, points[1].point, offset) + " ";
+		} catch (error) {}
+		if (data.fixedRadius) {
+			pathCommand += data.fixedRadius * ratio + ",";
+			pathCommand += data.fixedRadius * ratio;
+		} else {
+			pathCommand += "1" + ",";
+			pathCommand += "1"
+		}
+		return pathCommand;
+	},
 	/**
 	 * @param  {sketch data}
 	 * @return {draw data}

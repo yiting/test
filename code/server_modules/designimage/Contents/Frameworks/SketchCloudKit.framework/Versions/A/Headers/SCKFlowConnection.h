@@ -1,10 +1,5 @@
-//
-//  SCKFlowConnection.h
-//  SketchCloudKit
-//
 //  Created by Robin Speijer on 16-08-17.
-//  Copyright © 2017 Awkward. All rights reserved.
-//
+//  Copyright © 2017 Bohemian Coding. 
 
 #import "SCKObject.h"
 
@@ -17,6 +12,7 @@ typedef NS_OPTIONS(NSUInteger, SCKFlowConnectionAttributes) {
     SCKFlowConnectionAnimationTypeAttribute = 1 << 2
 };
 
+NS_SWIFT_NAME(FlowConnection)
 @interface SCKFlowConnection : SCKObject
 
 @property (nonatomic, assign, readonly) BOOL isBackAction;

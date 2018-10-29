@@ -1,33 +1,28 @@
 {
-  "_args": [
-    [
-      "@skpm/util@0.1.8",
-      "/Users/Shared/Jenkins/workspace/Stage/Modules/SketchAPI/core-modules"
-    ]
-  ],
-  "_from": "@skpm/util@0.1.8",
-  "_id": "@skpm/util@0.1.8",
+  "_from": "@skpm/util@0.1.19",
+  "_id": "@skpm/util@0.1.19",
   "_inBundle": false,
-  "_integrity": "sha512-yIE/ElyHhdEAqT4ap3VSzkLRwsZxqcRt/TX55feBDswpJBDD25IC+jUHYpf8nDcK07t3aNhbrYXxa6+yDNSz+Q==",
+  "_integrity": "sha512-vJm8T0M5cvegKIgRyV5VQTBF/cJHyMpT4uqE7EnTO7P0Wuhh1UBm6rxsf011Bt43NYNlGJiP6U7ajeXt0Jbkmg==",
   "_location": "/@skpm/util",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@skpm/util@0.1.8",
+    "raw": "@skpm/util@0.1.19",
     "name": "@skpm/util",
     "escapedName": "@skpm%2futil",
     "scope": "@skpm",
-    "rawSpec": "0.1.8",
+    "rawSpec": "0.1.19",
     "saveSpec": null,
-    "fetchSpec": "0.1.8"
+    "fetchSpec": "0.1.19"
   },
   "_requiredBy": [
     "/",
     "/@skpm/console"
   ],
-  "_resolved": "https://registry.npmjs.org/@skpm/util/-/util-0.1.8.tgz",
-  "_spec": "0.1.8",
+  "_resolved": "https://registry.npmjs.org/@skpm/util/-/util-0.1.19.tgz",
+  "_shasum": "dc5d8490394dca67c3a4ef0b4b15f427077f2a9d",
+  "_spec": "@skpm/util@0.1.19",
   "_where": "/Users/Shared/Jenkins/workspace/Stage/Modules/SketchAPI/core-modules",
   "author": {
     "name": "Mathieu Dutour",
@@ -37,6 +32,8 @@
   "bugs": {
     "url": "https://github.com/skpm/util/issues"
   },
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "A drop in replacement for the util NodeJS module",
   "devDependencies": {
     "@skpm/test-runner": "^0.2.0"
@@ -57,5 +54,5 @@
   "scripts": {
     "test": "skpm-test"
   },
-  "version": "0.1.8"
+  "version": "0.1.19"
 }

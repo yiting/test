@@ -1,6 +1,11 @@
 //  Created by Pieter Omvlee on 15/01/2015.
 //  Copyright (c) 2015 Bohemian Coding. All rights reserved.
 
+
+// It's a bit ugly but we need to declare a typedef so CF_SWIFT_NAME has something to grip onto, so to speak
+typedef CGSize BCSize;
+
+
 #pragma mark - Axis
 typedef NS_OPTIONS(NSUInteger, BCAxis) {
   BCAxisNone = 0,
@@ -15,10 +20,10 @@ BCAxis BCAxisMake(BOOL x, BOOL y);
 /// Swaps axes. This works for the simple case of a single value: BCAxisX => BCAxisY and visa versa
 /// But you can also use it a more bitwise fashion, pass in a bitwise combination of BCAxisX and
 /// BCAxisY and it will flip the individual axes on or off.
-BCAxis BCAxisFlip(BCAxis axis);
+BCAxis BCAxisFlip(BCAxis axis) CF_SWIFT_NAME(getter:BCAxis.flipped(self:));
 
 #pragma mark - Edges
-typedef NS_ENUM(NSUInteger, BCEdge) {
+typedef NS_OPTIONS(NSUInteger, BCEdge) {
   BCEdgeLeft   = 1<<0,
   BCEdgeRight  = 1<<1,
   BCEdgeTop    = 1<<2,
@@ -43,22 +48,10 @@ extern const BCEdgePaddings BCEdgePaddingsZero;
 
 BCEdgePaddings BCEdgePaddingsMake(CGFloat maxY, CGFloat minX, CGFloat minY, CGFloat maxX);
 BCEdgePaddings BCEdgePaddingsExpand(BCEdgePaddings paddings, CGFloat expandBy);
+BCEdgePaddings BCEdgePaddingsAdd(BCEdgePaddings a, BCEdgePaddings b);
 BCEdgePaddings BCEdgePaddingsScale(BCEdgePaddings paddings, CGFloat scale);
 CGRect BCPaddedRect(CGRect rect, BCEdgePaddings paddings);
 BCEdgePaddings BCEdgePaddingsMakeWithRects(CGRect innerRect, CGRect outerRect);
-
-#pragma mark - Line
-
-/**
- A simple structure defining a vertical or horizontal line. If occupies a position on \c axis
- (i.e. BCAxisX = a vertical line/edge, BCAxisY = a horizontal line/edge.) and extends infinitely
- from there.
- */
-typedef struct _BCLine {
-  CGFloat position;
-  BCAxis axis;
-} BCLine;
-
 
 #pragma mark - Logging
 void BCLogRect(CGRect rect);
@@ -69,6 +62,7 @@ void BCLogPoint(CGPoint point);
 CGRect BCRectByRoundingRect(CGRect rect);
 CGSize BCSizeByRoundingSize(CGSize size);
 CGPoint BCPointByRoundingPoint(CGPoint point);
+/// Rounds x and y values using the specified step amount.
 CGPoint BCPointByRoundingPointToStep(CGPoint point, CGFloat step);
 CGRect BCRectByRoundingRectToStep(CGRect rect, CGFloat step);
 CGFloat BCFloatRoundToStep(CGFloat number, CGFloat step);
@@ -88,7 +82,10 @@ CGRect BCRectFromSize(CGSize size);
 CGPoint BCPointBetweenPoints(CGPoint p1, CGPoint p2);
 CGFloat BCSlopeBetweenPoints(CGPoint a, CGPoint b);
 CGFloat BCNormalizeRadians(CGFloat radians);
+
+/// Rounds \c slope to the nearest 90º or 45º angle. Arguments and result are in radians.
 CGFloat BCSlopeToStraightAngles(CGFloat slope);
+
 CGFloat BCRadiansToDegrees(CGFloat radians);
 CGFloat BCDegreesToRadians(CGFloat degrees);
 CGFloat BCReversedDegrees(CGFloat degrees);
@@ -106,6 +103,15 @@ CGFloat BCFloatMakeNotInfOrNan(CGFloat value);
  */
 CGFloat BCFloatMakeAbsGreaterThanOrEqual(CGFloat value, CGFloat absMin);
 
+
+#pragma mark Sizes
+
+/// Directly translates vector into a size, including carrying through negative values. Consider
+/// \c BCVectorGetSize if you want only positive values.
+CG_INLINE CGSize BCSizeFromVector(CGVector vec) {
+  return CGSizeMake(vec.dx, vec.dy);
+}
+
 /// Multiplies \c width and \c height by \c scale
 CGSize BCSizeScale(CGSize s, CGFloat scale);
 
@@ -122,7 +128,8 @@ CGSize BCSizeNormalise(CGSize size);
 BOOL BCSizeContainsSize(CGSize container, CGSize contained);
 
 /// Returns a union of 2 sizes - in the same way that NSUnionRect would work with 0,0 origins.
-CGSize BCUnionSize(CGSize sizeA, CGSize sizeB);
+CGSize BCUnionSize(CGSize sizeA, CGSize sizeB) CF_SWIFT_NAME(BCSize.union(self:_:));
+
 
 #pragma mark - Ranges
 BOOL BCRangeContainsRange(NSRange outerRange, NSRange innerRange);
@@ -144,5 +151,11 @@ CGRect BCRectFromString(NSString* string);
  the original of the parent is not inclunded because it should not matter
  */
 NSEdgeInsets BCEdgeInsetsCalculate(CGRect childRect, CGSize parentSize);
+
+
+/**
+ Subtracts the NSEdgeInsets from the given rect. The edge insets must not be larger than the original rect.
+ */
+CGRect BCRectInset(CGRect rect, NSEdgeInsets insets);
 
 #endif

@@ -13,7 +13,7 @@
 
 extern const NSUInteger BCObjectPoolMaximumPoolCountUnlimited;
 
-@interface BCObjectPool : NSObject <NSDiscardableContent>
+@interface BCObjectPool : NSObject
 
 /// The maximum number of objects allowed in the pool. When the number of objects in the pool is
 /// equal to this number, recycling additional objects does nothing. If maximumPoolCount is

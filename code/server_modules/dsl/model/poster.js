@@ -1,16 +1,20 @@
-let CONTRAIN = require('../dsl_contrain.js');
-let STORE = require("../dsl_store.js");
+let Contrain = require('../dsl_contrain.js');
+let Dom = require("../dsl_dom.js");
 /**
- * 图标入口
- * 规则：上图标下文案布局
+ * 海报poster
  */
-module.exports.template = function() {
+module.exports.name = 'POSTER';
+module.exports.type = Dom.type.IMAGE;
+module.exports.textCount = 0;
+module.exports.imageCount = 0;
+module.exports.mixCount = -1;//-1，即为任意混合数
+module.exports.template = function () {
 
 }
-module.exports.is = function(dom, parent, option, config) {
-    if (dom.children && dom.children.length > 0 && (dom.path||(dom.styles&&dom.styles.background))) {
-        dom.contrains[CONTRAIN.LayoutFixedHeight] = true;
-        dom.contrains[CONTRAIN.LayoutFixedWidth] = true;
-        dom.type = STORE.model.BG;
-    }
+module.exports.is = function (dom, parent, option, config) {
+    return dom.children && dom.children.length > 0 && (dom.path || (dom.styles && dom.styles.background))
+}
+module.exports.adjust = function (dom, parent, option, config) {
+    dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedHeight.Fixed;
+    dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
 }

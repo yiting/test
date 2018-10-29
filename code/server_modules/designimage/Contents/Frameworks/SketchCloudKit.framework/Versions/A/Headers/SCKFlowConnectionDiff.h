@@ -1,10 +1,5 @@
-//
-//  SCKFlowConnectionDiff.h
-//  SketchCloudKit
-//
 //  Created by Robin Speijer on 16-08-17.
-//  Copyright © 2017 Awkward. All rights reserved.
-//
+//  Copyright © 2017 Bohemian Coding. 
 
 #import "SCKDiff.h"
 #import "SCKFlowConnection.h"

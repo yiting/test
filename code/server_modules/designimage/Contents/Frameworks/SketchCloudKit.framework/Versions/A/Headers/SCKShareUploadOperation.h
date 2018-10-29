@@ -1,20 +1,16 @@
-//
-//  SCKShareUploadOperation.h
-//  SketchCloudKit
-//
 //  Created by Robin Speijer on 18-07-17.
-//  Copyright © 2017 Awkward. All rights reserved.
-//
+//  Copyright © 2017 Bohemian Coding. 
 
 #import "SCKOperation.h"
 
-@class SCKShareAPIRequest;
+@class SCKShareAPIURLRequest;
 @class SCKShareUploadOperation;
 @class SCKShare;
 
 /**
  A data source that provides all required data for uploading a Cloud Share appropriately.
  */
+NS_SWIFT_NAME(ShareUploadDataSource)
 @protocol SCKShareUploadDataSource <NSObject>
 
 /**
@@ -49,15 +45,16 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  An operation that uploads a Cloud share to the Sketch Cloud API. It handles the initial manifest upload, as well as all the resources that are needed to upload a valid share.
  */
-@interface SCKShareUploadOperation : SCKOperation <NSProgressReporting>
+NS_SWIFT_NAME(ShareUploadOperation)
+@interface SCKShareUploadOperation : SCKAPIOperation <NSProgressReporting>
 
 /**
  Initializes a new share upload operation.
 
- @param request The share upload request, created by `-[SCKShareAPIRequest shareCreationRequestWithManifest:]` or `-[SCKShareAPIRequest shareUpdateRequestWithManifest: existingShare:]`.
+ @param request The share upload request, created by `-[SCKShareAPIURLRequest shareCreationRequestWithManifest:]` or `-[SCKShareAPIURLRequest shareUpdateRequestWithManifest: existingShare:]`.
  @return The newly created share upload operation.
  */
-- (instancetype)initWithRequest:(SCKShareAPIRequest *)request;
+- (instancetype)initWithRequest:(SCKShareAPIURLRequest *)request;
 
 /// A data source that provides all required data for uploading a Cloud Share appropriately.
 @property (nonatomic, nullable, weak) id<SCKShareUploadDataSource> dataSource;

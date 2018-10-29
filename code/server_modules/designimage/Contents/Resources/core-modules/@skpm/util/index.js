@@ -276,8 +276,31 @@ function formatValue(ctx, value, recurseTimes, ln) {
     } catch (err) {}
   }
 
+  var base = '';
+  var formatter = formatObject;
+  var braces = ['{', '}'];
+  var noIterator = true;
+  var raw;
+
+  // if it's a MOStruct, we need to catch it early so that it doesn't fail
+  if (getNativeClass(value) === 'MOStruct') {
+    braces = [value.name() + ' {', '}']
+    value = toObject(value)
+  }
+
   if (value && value._isWrappedObject) {
-    value = value.toJSON()
+    const propertyList = value.constructor._DefinedPropertiesKey
+    const json = {}
+    Object.keys(propertyList).forEach(k => {
+      if (!propertyList[k].exportable) {
+        return
+      }
+      json[k] = value[k]
+      if (json[k] && !json[k]._isWrappedObject && json[k].toJSON) {
+        json[k] = json[k].toJSON()
+      }
+    })
+    value = json
   }
 
   var keys;
@@ -293,12 +316,6 @@ function formatValue(ctx, value, recurseTimes, ln) {
   var constructor = getIdentificationOf(value);
   var prefix = constructor ? (constructor + ' ') : '';
 
-  var base = '';
-  var formatter = formatObject;
-  var braces = ['{', '}'];
-  var noIterator = true;
-  var raw;
-
   if (isArray(value)) {
     noIterator = false
     // Only set the constructor for non ordinary ("Array [...]") arrays.
@@ -306,15 +323,15 @@ function formatValue(ctx, value, recurseTimes, ln) {
     if (value.length === 0 && keyLength === 0)
       return braces[0] + ']';
     formatter = formatArray;
+  } else if (isFunction(value)) {
+    var name = (constructor === 'Object' ? 'function MOMethod' : constructor) + (value.name ? (': ' + value.name) : '');
+    if (keyLength === 0)
+      return ctx.stylize(`[${name}]`, 'special');
+    base = '[' + name + ']';
   } else if (prefix === 'Object ') {
     // Object fast path
     if (keyLength === 0)
       return '{}';
-  } else if (isFunction(value)) {
-    var name = constructor + (value.name ? (': ' + value.name) : '');
-    if (keyLength === 0)
-      return ctx.stylize(`[${name}]`, 'special');
-    base = '[' + name + ']';
   } else if (isRegExp(value)) {
     // Make RegExps say that they are RegExps
     if (keyLength === 0 || recurseTimes < 0)
@@ -345,7 +362,7 @@ function formatValue(ctx, value, recurseTimes, ln) {
     } else {
       return ctx.stylize('<' + getNativeClass(value) + '>', 'special')
     }
-  } else  if (isObject(value) && getNativeClass(value)) {
+  } else if (isObject(value) && getNativeClass(value)) {
     braces = [prefix + '{', '}'];
   }
 
@@ -478,7 +495,7 @@ function formatPrimitive(fn, value, ctx) {
     return formatNumber(fn, Number(value));
   }
   if (isBoolean(value)) {
-    return fn('' + value, 'boolean');
+    return fn('' + Boolean(Number(value)), 'boolean');
   }
   if (isNull(value)) {
     return fn('null', 'null');
@@ -500,7 +517,7 @@ function formatArray(ctx, value, recurseTimes, keys) {
   var remaining = valLen - len;
   var output = new Array(len + (remaining > 0 ? 1 : 0) + hidden);
   for (var i = 0; i < len; i++)
-    output[i] = formatProperty(ctx, value, recurseTimes, keys[i], 1);
+    output[i] = formatProperty(ctx, value, recurseTimes, keys[i] || i, 1);
   if (remaining > 0)
     output[i++] = '... ' + remaining + ' more item' + (remaining > 1 ? 's' : '');
   if (ctx.showHidden === true)
@@ -608,9 +625,41 @@ function getNativeClass(arg) {
     return undefined
   }
 }
+exports.getNativeClass = getNativeClass
 
+function isNativeObject(arg) {
+  return !!getNativeClass(arg)
+}
+exports.isNativeObject = isNativeObject
 
-var assimilatedArrays = ['NSArray', 'NSMutableArray', '__NSArrayM', '__NSSingleObjectArrayI', '__NSArray0']
+/**
+ * Coerce common NSObjects to their JS counterparts
+ * @param arg Any object
+ *
+ * Converts NSDictionary, NSArray, NSString, and NSNumber to
+ * native JS equivilents.
+ *
+ * Note that NSDictionary and NSArray elements are not recursively converted
+ */
+function toJSObject(arg) {
+  if (arg) {
+    if (isObject(arg)) {
+      return toObject(arg)
+    } else if (isArray(arg)) {
+      return toArray(arg)
+    } else if (isString(arg)) {
+      return String(arg)
+    } else if (isNumber(arg)) {
+      return Number(arg)
+    } else if (isBoolean(arg)) {
+      return Boolean(Number(arg))
+    }
+  }
+  return arg
+}
+exports.toJSObject = toJSObject
+
+var assimilatedArrays = ['NSArray', 'NSMutableArray', '__NSArrayM', '__NSSingleObjectArrayI', '__NSArray0', '__NSArrayI', '__NSArrayReversed', '__NSCFArray', '__NSPlaceholderArray']
 function isArray(ar) {
   if (Array.isArray(ar)) {
     return true
@@ -632,8 +681,13 @@ function toArray(object) {
 }
 exports.toArray = toArray;
 
+var assimilatedBooleans = ['__NSCFBoolean']
 function isBoolean(arg) {
-  return typeof arg === 'boolean';
+  if (typeof arg === 'boolean') {
+    return true
+  }
+  var type = getNativeClass(arg)
+  return assimilatedBooleans.indexOf(type) !== -1
 }
 exports.isBoolean = isBoolean;
 
@@ -657,7 +711,7 @@ function isNumber(arg) {
 }
 exports.isNumber = isNumber;
 
-var assimilatedStrings = ['NSString', '__NSCFString', 'NSTaggedPointerString', '__NSCFConstantString']
+var assimilatedStrings = ['NSString', 'NSMutableString', '__NSCFString', 'NSTaggedPointerString', '__NSCFConstantString']
 function isString(arg) {
   if (typeof arg === 'string') {
     return true
@@ -682,7 +736,7 @@ function isRegExp(re) {
 }
 exports.isRegExp = isRegExp;
 
-var assimilatedObjects = ['NSDictionary', '__NSDictionaryM', '__NSSingleEntryDictionaryI', '__NSDictionaryI', '__NSCFDictionary', 'MOStruct']
+var assimilatedObjects = ['NSDictionary', 'NSMutableDictionary', '__NSDictionaryM', '__NSSingleEntryDictionaryI', '__NSDictionaryI', '__NSCFDictionary', 'MOStruct', '__NSFrozenDictionaryM', '__NSDictionary0', '__NSPlaceholderDictionary']
 function isObject(arg) {
   var type = getNativeClass(arg)
   if (typeof arg === 'object' && arg !== null && !type) {
@@ -693,15 +747,14 @@ function isObject(arg) {
 exports.isObject = isObject;
 
 function toObject(obj) {
-  if (typeof obj === 'object') {
-    return obj
-  }
   var type = getNativeClass(obj)
   if (type === 'MOStruct') {
     return obj.memberNames().reduce(function(prev, k) {
-      prev[k] = value[k]
+      prev[k] = obj[k]
       return prev
     }, {})
+  } else if (typeof obj === 'object') {
+    return obj
   }
   return Object(obj)
 }
@@ -719,7 +772,7 @@ function isError(e) {
 exports.isError = isError;
 
 function isFunction(arg) {
-  return typeof arg === 'function';
+  return typeof arg === 'function' || arg instanceof MOMethod;
 }
 exports.isFunction = isFunction;
 

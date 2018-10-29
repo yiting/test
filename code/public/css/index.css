@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .clearfix:after, .clearfix:before {
-  content: '';
+  content: "";
   display: table;
   font: 0/0 a;
 }
@@ -164,14 +164,14 @@ textarea {
 }
 
 .disabled {
-  opacity: .5;
+  opacity: 0.5;
   filter: alpha(opacity=50);
   cursor: default;
   user-select: none;
 }
 
 :disabled {
-  opacity: .5;
+  opacity: 0.5;
   filter: alpha(opacity=50);
   cursor: default;
   user-select: none;
@@ -237,7 +237,7 @@ textarea {
 .fixed-bar .item:before {
   display: inline-block;
   vertical-align: top;
-  content: '';
+  content: "";
   width: 36px;
   height: 36px;
   margin-top: 7px;
@@ -296,7 +296,7 @@ textarea {
   border-radius: 3px;
   line-height: 1;
   display: inline-block;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   vertical-align: middle;
   font-size: 14px;
   margin-right: 20px;
@@ -313,7 +313,7 @@ textarea {
   box-sizing: border-box;
   color: #fff;
   z-index: 100;
-  transition: background .3s ease;
+  transition: background 0.3s ease;
 }
 .mod-header .layout {
   width: 1200px;
@@ -382,7 +382,7 @@ textarea {
   top: 60px;
   left: 0;
   text-align: left;
-  transition: transform .3s ease-out;
+  transition: transform 0.3s ease-out;
   transform: scaleY(0);
   transform-origin: center top;
 }
@@ -487,7 +487,7 @@ textarea {
   top: 60px;
   left: 0;
   text-align: center;
-  transition: transform .3s ease-out;
+  transition: transform 0.3s ease-out;
   transform: scaleY(0);
   transform-origin: center top;
 }
@@ -574,7 +574,7 @@ textarea {
   height: 12px;
   background-image: url(/img/sprite-ad720473bfcommon.png);
   background-position: -327px -124px;
-  transition: transform .3s ease;
+  transition: transform 0.3s ease;
   transform: rotate(180deg);
   display: inline-block;
   vertical-align: bottom;
@@ -588,7 +588,7 @@ textarea {
   width: auto;
   height: 3px;
   background-color: #fff;
-  transition: transform .3s ease-out, width .3s ease-out;
+  transition: transform 0.3s ease-out, width 0.3s ease-out;
 }
 .mod-header-nav a:hover {
   text-decoration: none;
@@ -620,7 +620,7 @@ textarea {
   overflow: hidden;
   z-index: 10;
   background-color: #333;
-  color: #A3A6AB;
+  color: #a3a6ab;
   font-weight: 200;
   padding-bottom: 60px;
 }
@@ -662,10 +662,10 @@ textarea {
   font-family: FZLTXHK--GBK1-0;
 }
 .ai-footer .col-title {
-  color: #FFF;
+  color: #fff;
   font-size: 18px;
   padding-bottom: 18px;
-  border-bottom: 1px solid #45464B;
+  border-bottom: 1px solid #45464b;
 }
 .ai-footer .col-content {
   padding-top: 30px;
@@ -693,7 +693,7 @@ textarea {
   background-position: -233px 27px;
 }
 
-html[lang=en] body {
+html[lang="en"] body {
   font-family: Arial, sans-serif;
 }
 
@@ -750,13 +750,13 @@ html[lang=en] body {
   overflow: hidden;
 }
 .sec ul:after {
-  content: '';
+  content: "";
   display: table;
   font: 0/0 a;
   clear: both;
 }
 .sec ul:before {
-  content: '';
+  content: "";
   display: table;
   font: 0/0 a;
 }
@@ -790,7 +790,7 @@ html[lang=en] body {
   width: 100%;
 }
 .banner:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -807,7 +807,7 @@ html[lang=en] body {
 .advan .banner-intro,
 .banner .advan-layout,
 .banner .banner-intro {
-  -webkit-transition: opacity .3s ease;
+  -webkit-transition: opacity 0.3s ease;
 }
 .advan:hover,
 .banner:hover {
@@ -826,10 +826,11 @@ html[lang=en] body {
 }
 .advan .play-video,
 .banner .play-video {
+  display: none;
   z-index: 10;
   position: absolute;
-  -webkit-transition: opacity .3s ease;
-  opacity: .8;
+  -webkit-transition: opacity 0.3s ease;
+  opacity: 0.8;
   left: 50%;
   cursor: pointer;
   top: 50%;
@@ -856,7 +857,7 @@ html[lang=en] body {
   position: fixed;
   right: 30px;
   top: 30px;
-  opacity: .4;
+  opacity: 0.4;
   background: url(/img/close.png) no-repeat center;
   background-size: contain;
   width: 40px;
@@ -868,7 +869,7 @@ html[lang=en] body {
   opacity: 1;
 }
 .video-wrap.on {
-  -webkit-transition: opacity .3s ease;
+  -webkit-transition: opacity 0.3s ease;
   opacity: 1;
 }
 .video-wrap video {
@@ -908,7 +909,7 @@ html[lang=en] body {
   box-sizing: border-box;
   border-radius: 3px;
   border: 1px solid #fff;
-  transition: background .3s ease;
+  transition: background 0.3s ease;
 }
 .banner-btns .btn-consult:hover {
   background-color: #fff;
@@ -919,7 +920,7 @@ html[lang=en] body {
   position: absolute;
   bottom: 70px;
   font-size: 12px;
-  opacity: .6;
+  opacity: 0.6;
 }
 .banner-powerby p {
   display: inline-block;
@@ -996,7 +997,7 @@ html[lang=en] body {
   background-color: #fff;
   margin-bottom: 20px;
   margin-left: 20px;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .scene-item:hover {
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
@@ -1023,7 +1024,7 @@ html[lang=en] body {
   display: block;
   width: 100%;
   height: 100%;
-  transition: transform .3s ease;
+  transition: transform 0.3s ease;
   transform-origin: 50% 50%;
 }
 .scene-item-img h5 {
@@ -1198,7 +1199,6 @@ html[lang=en] body {
 .upload-panel .file-info {
   display: none;
   position: absolute;
-  left: -24px;
   width: 100%;
   top: 131px;
   color: #fff;
@@ -1214,6 +1214,7 @@ html[lang=en] body {
   vertical-align: top;
   color: #fff;
   background-color: #126ee1;
+  background: linear-gradient(to right, #0080ff, #53d1fd);
   border-color: #126ee1;
   border-radius: 3px;
   width: 180px;
@@ -1227,7 +1228,7 @@ html[lang=en] body {
   overflow: hidden;
 }
 .upload-panel .choose-file-btn:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 .upload-panel .choose-file-btn input {
   position: absolute;
@@ -1257,7 +1258,7 @@ html[lang=en] body {
 }
 .upload-panel .upload-btn:hover {
   cursor: pointer;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .upload-tips {

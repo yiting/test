@@ -4,12 +4,12 @@ const Store = require("./dsl_store.js");
 
 function fn(data) {
     data.contrains = {}
-    data.contrains[CONTRAIN.LayoutSelfAbsolute] = true;
-    data.contrains[CONTRAIN.LayoutFixedHeight] = true;
-    data.contrains[CONTRAIN.LayoutFixedWidth] = true;
-    data.contrains[CONTRAIN.LayoutSelfLeft] = true;
-    data.contrains[CONTRAIN.LayoutSelfTop] = true;
-    data.contrains[CONTRAIN.LayoutAbsolute] = true;
+    data.contrains["LayoutSelfPosition"] = CONTRAIN.LayoutSelfPosition.Absolute;
+    data.contrains["LayoutFixedHeight"] = CONTRAIN.LayoutFixedHeight.Fixed;
+    data.contrains["LayoutFixedWidth"] = CONTRAIN.LayoutFixedWidth.Fixed;
+    data.contrains["LayoutSelfHorizontal"] = CONTRAIN.LayoutSelfHorizontal.Left;
+    data.contrains["LayoutSelfVertical"] = CONTRAIN.LayoutSelfVertical.Top;
+    data.contrains["LayoutPosition"] = CONTRAIN.LayoutPosition.Absolute;
 
     if (data.children) {
         data.children.forEach(child => {

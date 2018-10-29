@@ -1,14 +1,10 @@
-//
-//  SCKObject.h
-//  SketchCloudKit
-//
 //  Created by Robin Speijer on 30-01-17.
-//  Copyright © 2017 Awkward. All rights reserved.
-//
+//  Copyright © 2017 Bohemian Coding. 
 
-typedef NSUUID SCKObjectID;
+typedef NSString SCKObjectID;
 
 /// A generic Cloud object. Contains some attributes that are part of all objects on the Cloud server.
+NS_SWIFT_NAME(Object)
 @interface SCKObject : NSObject <NSSecureCoding>
 
 /// Initializes the object using the given server response data.

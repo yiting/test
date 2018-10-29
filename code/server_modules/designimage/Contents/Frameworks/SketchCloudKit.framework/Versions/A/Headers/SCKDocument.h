@@ -1,10 +1,5 @@
-//
-//  SCKDocument.h
-//  SketchCloudKit
-//
 //  Created by Robin Speijer on 01-02-17.
-//  Copyright © 2017 Awkward. All rights reserved.
-//
+//  Copyright © 2017 Bohemian Coding. 
 
 #import "SCKObject.h"
 #import "SCKColorSpace.h"
@@ -23,6 +18,7 @@ typedef NS_OPTIONS(NSUInteger, SCKDocumentAttributes) {
 };
 
 /// Represents a Sketch document.
+NS_SWIFT_NAME(Document)
 @interface SCKDocument : SCKObject
 
 /// A user readable document name. This might not be the same as the filename for the document.

@@ -1,30 +1,10 @@
 const CONTRAIN = require('./dsl_contrain.js');
 const Common = require('./dsl_common.js');
 const Store = require("./dsl_store.js");
+const Dom = require("./dsl_dom.js");
 // domtree
 const DOM_NULL = '<null>';
-const FONT_WEIGHT = {
-    "thin": 100, //Thin
-    "extra": 200, //Extra Light (Ultra Light)
-    "light": 300, //Light
-    "regular": 400, //Regular (Normal、Book、Roman)
-    "medium": 500, //Medium
-    "semibold": 600, //Semi Bold (Demi Bold)
-    "bold": 700, //Bold
-    "extra": 800, //Extra Bold (Ultra Bold)
-    "black": 900, //Black (Heavy)
-}
-const ALIGN_MAP = {
-    0: "left",
-    1: "right",
-    2: "center"
-}
-const STYLE_MAP = {
-    'height': 'height',
-    'width': 'width',
-}
 const CLOSING_TAGS = ['img', 'input', 'br'];
-
 
 
 class Render {
@@ -35,10 +15,12 @@ class Render {
         this.className = [];
         this.children = [];
         this.tagName = '';
-        this._data = o;
+        this.data = o;
         this.parentNode = parentNode;
+        this.SelfContrain = this.data.contrains;
+        this.ParentContrains = parentNode && parentNode.data.contrains || {};
     }
-
+    /* 节点样式 */
     get css() {
         // 第一期，返回当前节点所有样式
         let str = `.${this.className}{`
@@ -53,6 +35,7 @@ class Render {
         return str;
         // 第二期，根据类，返回样式
     }
+    /* 节点html */
     get html() {
         let attr = this.attrObj,
             style = this.inlineStyle || '',
@@ -61,17 +44,20 @@ class Render {
         let styleArr = Object.keys(style).map((key, i) => {
             return `${key}:${style[key]}`;
         });
+        // 样式名
         if (className.length) {
             attrArr.push('class="' + className.join(' ') + '"');
         }
+        // 行内属性
         Object.keys(attr).forEach((key, i) => {
             attrArr.push(`${key}="${attr[key]}"`);
         });
+        // 行内样式
         if (styleArr.length) {
             attrArr.push('style="' + styleArr.join(';') + '"')
         }
         let attrStr = attrArr.join(' ');
-
+        // 结束标签
         if (this.isClosingTag) {
             return {
                 start: `<${this.tagName} ${attrStr}/>`,
@@ -86,8 +72,8 @@ class Render {
     }
     get filter() {
         let filter = [];
-        if (this._data.styles && this._data.styles.shadows) {
-            this._data.styles.shadows.forEach((s, i) => {
+        if (this.data.styles && this.data.styles.shadows) {
+            this.data.styles.shadows.forEach((s, i) => {
                 filter.push('drop-shadow(' + [
                     Render.unit(s.x),
                     Render.unit(s.y),
@@ -104,10 +90,366 @@ class Render {
     }
 
     get prevData() {
-        return this.parentNode && this.parentNode._data.children[this.parentNode._data.children.indexOf(this._data) - 1];
+        return this.parentNode && this.parentNode.data.children[this.parentNode.data.children.indexOf(this.data) - 1];
     }
     get nextData() {
-        return this.parentNode && this.parentNode._data.children[this.parentNode._data.children.indexOf(this._data) + 1];
+        return this.parentNode && this.parentNode.data.children[this.parentNode.data.children.indexOf(this.data) + 1];
+    }
+    /**
+     * style
+     */
+    get width() {
+        // 固定宽度
+        if (this.SelfContrain["LayoutFixedWidth"] == CONTRAIN.LayoutFixedWidth.Fixed) {
+            return Render.unit(this.data.width)
+        } else {
+            return 'auto'
+        }
+
+    }
+    get height() {
+        // 固定高度
+        if (this.SelfContrain["LayoutFixedHeight"] == CONTRAIN.LayoutFixedHeight.Fixed) {
+            return Render.unit(this.data.height);
+        } else {
+            return 'auto';
+        }
+
+    }
+    get marginLeft() {
+
+        // 自身约束
+        if (this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
+            return;
+        }
+        // 自身约束
+        if (this.SelfContrain["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Left) {
+            let margin = Dom.calMargin(this.data, this.parentNode.data);
+            return Render.unit(margin["left"]);
+        } else if (this.SelfContrain["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Right) {
+            return;
+        }
+        // 父级约束
+        if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal) {
+            // 水平
+            if (this.ParentContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Center) {
+                return this.prevData ? Render.unit(this.data.x - this.prevData.x - this.prevData.width) : null;
+            } else if (this.ParentContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Start) {
+                return Render.unit(this.data.x - (this.prevData ? (this.prevData.x + this.prevData.width) : 0));
+            }
+        } else if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Vertical &&
+            this.ParentContrains["LayoutAlignItems"] != CONTRAIN.LayoutAlignItems.Start &&
+            this.ParentContrains["LayoutAlignItems"] != CONTRAIN.LayoutAlignItems.Center &&
+            this.ParentContrains["LayoutAlignItems"] != CONTRAIN.LayoutAlignItems.End) {
+            return Render.unit(this.data.x);
+        }
+
+    }
+    get marginTop() {
+
+        if (this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
+            return;
+        }
+        // 自身约束
+        if (this.SelfContrain["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Top) {
+            let margin = Dom.calMargin(this.data, this.parentNode.data);
+            return Render.unit(margin["top"]);
+        }
+        // 父级约束
+        if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal &&
+            this.ParentContrains["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.Start) {
+            return Render.unit(this.data.y);
+        } else if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Vertical) {
+            // 垂直
+            if (this.ParentContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Start) {
+                return Render.unit(this.data.y - (this.prevData ? (this.prevData.y + this.prevData.height) : 0));
+            } else if (this.ParentContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Center) {
+                return this.prevData ? Render.unit(this.data.y - this.prevData.y - this.prevData.height) : null;
+            }
+        }
+        return;
+    }
+    get marginRight() {
+        // 自身约束
+        if (this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
+            return;
+        }
+        // 自身约束
+        if (this.SelfContrain["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Right) {
+            let margin = Dom.calMargin(this.data, this.parentNode.data);
+            return Render.unit(margin["right"]);
+        }
+        if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal &&
+            this.ParentContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.End) {
+            return Render.unit((this.nextData ? this.nextData.x : this.parentNode.data.width) - this.data.x - this.data.width);
+        } else if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Vertical &&
+            this.ParentContrains["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.End) {
+            return Render.unit(parent.width - this.data.x - this.data.width);
+        }
+
+    }
+    get marginBottom() {
+
+        if (this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
+            return;
+        }
+        // 自身约束
+        if (this.SelfContrain["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Bottom) {
+            let margin = Dom.calMargin(this.data, this.parentNode.data);
+            return Render.unit(margin["bottom"]);
+        }
+        // 父级约束
+        if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Vertical &&
+            this.ParentContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.End) {
+            return Render.unit((this.nextData ? this.nextData.y : this.parentNode.data.height) - this.data.y - this.data.height);
+        }
+    }
+    get color() {
+        return Render.toRGBA(this.data.color)
+    }
+    get backgroundColor() {
+        if (this.data.styles && this.data.styles.background &&
+            this.data.styles.background.type == 'color') {
+            return Render.toRGBA(this.data.styles.background.color);
+        }
+    }
+    get backgroundSize() {
+        if (this.data.type == Dom.type.IMAGE &&
+            this.data.model != Store.model.IMAGE.name
+        ) {
+            return 'contain';
+        }
+    }
+    get backgroundRepeat() {
+        if (this.data.type == Dom.type.IMAGE &&
+            this.data.model != Store.model.IMAGE.name
+        ) {
+            return 'no-repeat';
+        }
+    }
+    get padding() {
+        if (this.data.styles.padding) {
+            return '0 ' + Render.unit(this.data.styles.padding);
+        }
+    }
+    get backgroundImage() {
+        if (this.data.type == Dom.type.IMAGE &&
+            this.data.model != Store.model.IMAGE.name&&
+            this.data.model != Store.model.POSTER.name
+        ) {
+            return `url(${this.data.path})`;
+        }
+        if (this.data.styles && this.data.styles.background &&
+            this.data.styles.background.type == 'linear') {
+            return Render.calLinearGradient(this.data.styles.background, this.data.width, this.data.height);
+        }
+    }
+    get left() {
+        const Pos = Dom.calPosition(this.data, this.parentNode && this.parentNode.data);
+
+        if ((this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute ||
+                Object.keys(this.ParentContrains).length == 0) &&
+            this.SelfContrain["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Left) {
+            return Render.unit(Pos.left);
+        }
+    }
+    get right() {
+        const Pos = Dom.calPosition(this.data, this.parentNode && this.parentNode.data);
+
+        if ((this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute ||
+                Object.keys(this.ParentContrains).length == 0) &&
+            this.SelfContrain["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Right) {
+            return Render.unit(Pos.right);
+        }
+
+    }
+    get top() {
+        const Pos = Dom.calPosition(this.data, this.parentNode && this.parentNode.data);
+
+        if ((this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute ||
+                Object.keys(this.ParentContrains).length == 0) &&
+            this.SelfContrain["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Top) {
+            return Render.unit(Pos.top);
+        }
+    }
+    get bottom() {
+        const Pos = Dom.calPosition(this.data, this.parentNode && this.parentNode.data);
+        if ((this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute ||
+                Object.keys(this.ParentContrains).length == 0) &&
+            this.SelfContrain["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Bottom) {
+            return Render.unit(Pos.bottom);
+        }
+    }
+    get fontFamily() {
+        return this.data.font;
+    }
+    get fontSize() {
+        if (this.data.size) {
+            return Render.unit(this.data.size);
+        }
+    }
+    get position() {
+        if (this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
+            return "absolute";
+        }
+        if (this.SelfContrain["LayoutPosition"] == CONTRAIN.LayoutPosition.Absolute) {
+            return "relative";
+        }
+    }
+    get border() {
+        if (this.data.styles && this.data.styles.border && this.data.styles.border.width) {
+            // let type = this.data.border["position"] == "outside" ? "outline" : "border",
+            let borderType = Render.borderType(this.data.styles.border.type),
+                borderWidth = Render.unit(this.data.styles.border.width),
+                borderColor = Render.toRGBA(this.data.styles.border.color);
+            return [borderWidth, borderType, borderColor].join(' ');
+        }
+    }
+    get boxSizing() {
+        if (this.data.styles && this.data.styles.border && this.data.styles.border.width) {
+            return "border-box";
+        }
+    }
+    get borderRadius() {
+        if (this.data.styles && this.data.styles.borderRadius) {
+            return Render.unit(this.data.styles.borderRadius);
+        }
+    }
+    get shadow() {
+
+        if (this.data.styles && this.data.styles.shadows) {
+            let shadows = []
+            this.data.styles.shadows.forEach((s, i) => {
+                shadows.push('drop-shadow(' + [
+                    Render.unit(s.x),
+                    Render.unit(s.y),
+                    Render.unit(s.blur),
+                    // Render.unit(s.spread),
+                    Render.toRGBA(s.color)
+                ].join(' ') + ')');
+            });
+            return shadows;
+        }
+    }
+    /* get flex() {
+        if (this.SelfContrain["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto) {
+            return 'auto';
+        } else if (this.SelfContrain["LayoutFlex"] == CONTRAIN.LayoutFlex.None) {
+            return 'none';
+        } else {
+            return 'unset';
+        }
+    } */
+    /*  get flexDirection() {
+         if (this.SelfContrain["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal) {
+             return 'row';
+         }
+     } */
+    /* get justifyContent() {
+
+        if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Between) {
+            return 'space-between';
+        } else if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Center) {
+            return 'center';
+        } else if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.End) {
+            return 'end';
+        } else if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Start) {
+            return 'start';
+        }
+    } */
+    /* get alignItems() {
+
+        // 纵轴
+        if (this.SelfContrain["LayoutAlignItems"] == CONTRAIN.LayoutJustifyContent.Start) {
+            return 'flex-start';
+        } else if (this.SelfContrain["LayoutAlignItems"] == CONTRAIN.LayoutJustifyContent.End) {
+            return 'flex-end';
+        } else if (this.SelfContrain["LayoutAlignItems"] == CONTRAIN.LayoutJustifyContent.Center) {
+            return 'center';
+        }
+    } */
+    get overflow() {
+        /* hidden 规则
+           1. 文字限制 
+           2. 垂直布局
+        */
+        if (this.isEllipsis() ||
+            this.SelfContrain["LayoutPosition"] == CONTRAIN.LayoutPosition.Vertical
+        ) {
+            return 'hidden';
+        } else {
+            return 'visible'
+        }
+    }
+    get textOverflow() {
+        if (this.isEllipsis()) {
+            return 'ellipsis';
+        } else {
+            return 'clip';
+        }
+    }
+    get boxFlex() {
+        if (this.SelfContrain["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto) {
+            return 1;
+            // } else if (this.SelfContrain["LayoutFlex"] == CONTRAIN.LayoutFlex.Default) {
+        } else {
+            return 0;
+        }
+    }
+    get boxOrient() {
+        if (this.SelfContrain["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal) {
+            return 'horizontal'
+        }
+    }
+    get boxPack() {
+        if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Start) {
+            return "start"
+        } else if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Center) {
+            return "center"
+        } else if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.End) {
+            return "end"
+        }
+    }
+    get boxAlign() {
+        if (this.SelfContrain["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.Start) {
+            return "start"
+        } else if (this.SelfContrain["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.Center) {
+            return "center"
+        } else if (this.SelfContrain["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.End) {
+            return "end"
+        }
+    }
+    get display() {
+
+        if (this.SelfContrain["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal) {
+            // return 'flex';
+            return 'box';
+        } else if (this.SelfContrain["LayoutPosition"] == CONTRAIN.LayoutPosition.Vertical) {
+            return 'block';
+        }
+    }
+    get textAlign() {
+        if (this.SelfContrain["LayoutAlign"]) {
+            // 对齐约束值 比 对齐配置值 大1
+            return Render.align(this.SelfContrain["LayoutAlign"] - 1);
+        } else if (this.data.styles && this.data.styles.textAlign) {
+            return Render.align(this.data.styles.textAlign);
+        }
+    }
+    get whiteSpace() {
+        if (this.data.lines == 1) {
+            return "nowrap";
+        }
+    }
+    get lineHeight() {
+        if (this.data.styles && this.data.styles.lineHeight) {
+            return Render.unit(this.data.styles.lineHeight);
+        }
+    }
+    get opacity() {
+        if (this.data.styles && this.data.styles.opacity) {
+            return this.data.styles.opacity;
+        }
     }
     /**
      * dom输出html
@@ -150,6 +492,12 @@ class Render {
         typeof cb == 'function' && cb(rt);
         return base + rt;
     }
+    /*  
+        判断是否需要省略号
+    */
+    isEllipsis() {
+        return this.data.model == Store.model.TEXT.name && this.SelfContrain["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto
+    }
     /**
      * 转换sketch中border类型
      * @param  {Number} dash sketch边框宽度
@@ -186,7 +534,7 @@ class Render {
         }
     }
     static fontWeight(weight) {
-        return FONT_WEIGHT[weight]
+        return Dom.fontWeight[weight]
 
     }
 
@@ -239,35 +587,8 @@ class Render {
         return null;
     }
     static align(index) {
-        return ALIGN_MAP[index];
+        return Object.keys(Dom.align).find(k => Dom.align[k] == index);
     }
-}
-/**
- * 计算margin
- */
-function calMargin(cur, parent, prev, next, direction) {
-    // 水平布局
-    if (!parent) {
-        return {};
-    }
-    let o = {};
-    if (parent.contrains[CONTRAIN.LayoutHorizontal]) {
-        o["left"] = cur.x - (prev ? (prev.x + prev.width) : 0)
-        o["right"] = (next ? next.x : parent.width) - cur.x - cur.width;
-        o["top"] = cur.y;
-        o["bottom"] = parent.height - cur.y - cur.height;
-    } else if (parent.contrains[CONTRAIN.LayoutVertical]) {
-        o["top"] = cur.y - (prev ? (prev.y + prev.height) : 0)
-        o["bottom"] = (next ? next.y : parent.height) - cur.y - cur.height;
-        o["left"] = cur.x;
-        o["right"] = parent.width - cur.x - cur.width;
-    } else {
-        o["left"] = o.x;
-        o["right"] = parent.width - o.x - o.width;
-        o["top"] = o.y;
-        o["bottom"] = parent.height - o.y - o.height;
-    }
-    return o;
 }
 
 let domIndex = 0;
@@ -289,7 +610,7 @@ class Text extends Render {
         return this;
     }
     get innerText() {
-        return this._data.string;
+        return this.data.string;
     }
 
     // 返回Dom相关样式对象
@@ -303,13 +624,13 @@ class DOM extends Render {
             parentNode.children.push(this);
         }
 
-        if (this._data.text && this._data.styles.texts.length > 1) {
-            this._data.styles.texts.forEach((t) => {
+        if (this.data.text && this.data.styles.texts.length > 1) {
+            this.data.styles.texts.forEach((t) => {
                 _render.children.push(new Text(t));
             });
-            this._data.text = '';
-        } else if (this._data.text) {
-            Object.assign(this.styleObj, getTextStyleObj(this._data.styles.texts[0]))
+            this.data.text = '';
+        } else if (this.data.text) {
+            Object.assign(this.styleObj, getTextStyleObj(this.data.styles.texts[0]))
         }
         this.getClassName();
         this.getTagName();
@@ -319,297 +640,104 @@ class DOM extends Render {
         return this;
     }
     get innerText() {
-        return this._data.text || '';
+        return this.data.text || '';
     }
     getClassName() {
-        this.className.push((this._data.type || this._data.layout) + '-' + this.index);
-        // this.className.push('sk' + this._data.id);
+        // console.log(this.data.model)
+        this.className.push((this.data.model).toLowerCase() + '-' + this.index);
+        // this.className.push('sk' + this.data.id);
         // 第二期，根据dom结构输出class
     }
     getAttrObj() {
-        if (this._data.type == Store.model.IMAGE) {
-            let bgImage = this._data.path;
-            this.attrObj["src"] = bgImage;
+        if (this.data.model == Store.model.IMAGE.name) {
+            this.attrObj["src"] = this.data.path;
         }
-        this.attrObj["data-id"] = this._data.id;
-        this.attrObj["data-layout"] = this._data.layout;
+        // if (Config.debug) {
+        //this.attrObj["data-id"] = this.data.id;
+        // }
     }
     getInlineStyle() {
-        if (this._data.path && this._data.type != Store.model.IMAGE) {
-            this.inlineStyle["background-image"] = `url(${this._data.path})`;
-            this.inlineStyle["white-space"] = "pre";
+        if (this.data.model == Store.model.POSTER.name) {
+            this.inlineStyle["background-image"] = `url(${this.data.path})`;
         };
+
     }
     getTagName() {
         this.tagName = "div";
-        if (this._data.layout == Store.layout.UL) {
-            this.tagName = 'ul'
-        } else if (this._data.type == Store.model.TEXT) {
+        if (this.data.model == Store.model.TEXT.name) {
             this.tagName = 'div';
-        } else if (this._data.type == Store.model.IMAGE) {
+        } else if (this.data.model == Store.model.IMAGE.name) {
             this.tagName = "img";
-        } else if (this.parentNode && this.parentNode._data.layout == Store.layout.UL) {
-            this.tagName = 'li';
         }
         return this.tagName
     }
     // 返回Dom相关样式对象
     getStyleObj() {
-        /**
-         * contrains
-         */
-        /**
-         *  父节点有约束
-         */
-        let curData = this._data,
-            parentData = this.parentNode && this.parentNode._data,
-            prevData = this.prevData,
-            nextData = this.nextData
-        const SelfContrain = curData.contrains || {},
-            ParentContrains = this.parentNode && this.parentNode._data.contrains || {};
-        if (this.parentNode && Object.keys(ParentContrains).length) {
-            if (ParentContrains[CONTRAIN.LayoutHorizontal]) {
-                // 水平
-                if (ParentContrains[CONTRAIN.LayoutJustifyContentCenter]) {
-                    if (prevData) {
-                        this.styleObj['margin-left'] = Render.unit(curData.x - prevData.x - prevData.width);
-                    }
-                } else if (ParentContrains[CONTRAIN.LayoutJustifyContentStart]) {
-                    this.styleObj['margin-left'] = Render.unit(curData.x - (prevData ? (prevData.x + prevData.width) : 0));
-                } else if (ParentContrains[CONTRAIN.LayoutJustifyContentEnd]) {
-                    this.styleObj['margin-right'] = Render.unit((nextData ? nextData.x : parentData.width) - curData.x - curData.width);
-                } else {
-                    this.styleObj['margin-left'] = Render.unit(curData.x - (prevData ? (prevData.x + prevData.width) : 0));
-                }
-                if (!ParentContrains[CONTRAIN.LayoutAlignItemsStart] &&
-                    !ParentContrains[CONTRAIN.LayoutAlignItemsCenter] &&
-                    !ParentContrains[CONTRAIN.LayoutAlignItemsEnd] &&
-                    !SelfContrain[CONTRAIN.LayoutSelfAbsolute]
-                ) {
-                    this.styleObj['margin-top'] = Render.unit(curData.y);
-                }
-            } else if (ParentContrains[CONTRAIN.LayoutVertical]) {
-                // 垂直
-                if (ParentContrains[CONTRAIN.LayoutJustifyContentStart]) {
-                    this.styleObj['margin-top'] = Render.unit(curData.y - (prevData ? (prevData.y + prevData.height) : 0));
-                } else if (ParentContrains[CONTRAIN.LayoutJustifyContentCenter]) {
-                    if (prevData) {
-                        this.styleObj['margin-top'] = Render.unit(curData.y - prevData.y - prevData.height);
-                    }
-                } else if (ParentContrains[CONTRAIN.LayoutJustifyContentEnd]) {
-                    this.styleObj['margin-bottom'] = Render.unit((nextData ? nextData.y : parentData.height) - curData.y - curData.height);
-                } else {
-                    this.styleObj['margin-top'] = Render.unit(curData.y - (prevData ? (prevData.y + prevData.height) : 0));
-                }
-                if (!ParentContrains[CONTRAIN.LayoutAlignItemsStart] &&
-                    !ParentContrains[CONTRAIN.LayoutAlignItemsCenter] &&
-                    !ParentContrains[CONTRAIN.LayoutAlignItemsEnd] &&
-                    !SelfContrain[CONTRAIN.LayoutSelfAbsolute]
-                ) {
-                    this.styleObj['margin-left'] = Render.unit(curData.x);
-                }
+        let render = this,
+            val;
+        [
+            "overflow",
+            "width",
+            "height",
+            "marginLeft",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "padding",
+            "color",
+            "backgroundColor",
+            "backgroundImage",
+            "backgroundSize",
+            "backgroundRepeat",
+            "left",
+            "right",
+            "top",
+            "bottom",
+            "fontFamily",
+            "fontSize",
+            "position",
+            "border",
+            "boxSizing",
+            "borderRadius",
+            "shadow",
+            // "flex",
+            // "flexBasis",
+            // "flexDirection",
+            // "flexGrow",
+            // "flexShrink",
+            // "justifyContent",
+            // "alignItems",
+            "overflow",
+            "textOverflow",
+            "boxFlex",
+            "boxOrient",
+            "boxPack",
+            "boxAlign",
+            "display",
+            "textAlign",
+            "whiteSpace",
+            "lineHeight",
+            "opacity"
+        ].forEach(key => {
+            let value = render[key]
+            if (value == undefined) {
+                return;
+            }
+            let name = nameTrans(key);
+            if (CompatibleKey.includes(name)) {
+                render.styleObj['-webkit-' + name] = value;
             } else {
-                this.styleObj['position'] = 'absolute';
-                this.styleObj['left'] = Render.unit(curData.x);
-                this.styleObj['top'] = Render.unit(curData.y);
+                render.styleObj[name] = value;
             }
-        } else if (curData.type != Store.model.BODY) {
-            this.styleObj['position'] = 'absolute';
-            this.styleObj['left'] = Render.unit(curData.x);
-            this.styleObj['top'] = Render.unit(curData.y);
-        }
-        /**
-         * 自约束转换
-         */
-        if (Object.keys(SelfContrain).length) {
-            // 布局方向
-            if (SelfContrain[CONTRAIN.LayoutHorizontal]) {
-                this.styleObj["display"] = 'flex';
-                this.styleObj['flex-direction'] = 'row';
-            } else if (SelfContrain[CONTRAIN.LayoutVertical]) {
-                this.styleObj["display"] = 'block';
-                // this.styleObj["display"] = "flex";
-                // this.styleObj['flex-direction'] = 'column';
+            if (CompatibleValue.includes(value)) {
+                render.styleObj[name] = '-webkit-' + value;
             }
-            // 横轴
-            if (SelfContrain[CONTRAIN.LayoutJustifyContentBetween]) {
-                this.styleObj['justify-content'] = 'space-between';
-            } else if (SelfContrain[CONTRAIN.LayoutJustifyContentCenter]) {
-                this.styleObj['justify-content'] = 'center';
-            } else if (SelfContrain[CONTRAIN.LayoutJustifyContentEnd]) {
-                this.styleObj['justify-content'] = 'end';
-            } else if (SelfContrain[CONTRAIN.LayoutJustifyContentStart]) {
-                this.styleObj['justify-content'] = 'start';
-            }
-            // 纵轴
-            if (SelfContrain[CONTRAIN.LayoutAlignItemsStart]) {
-                this.styleObj['align-items'] = 'flex-start';
-            } else if (SelfContrain[CONTRAIN.LayoutAlignItemsEnd]) {
-                this.styleObj['align-items'] = 'flex-end';
-            } else if (SelfContrain[CONTRAIN.LayoutAlignItemsCenter]) {
-                this.styleObj['align-items'] = 'center';
-            }
-            if (SelfContrain[CONTRAIN.LayoutFlexGrow]) {
-                this.styleObj['flex-grow'] = '1';
-            }
-            if (SelfContrain[CONTRAIN.LayoutFlexShrink]) {
-                this.styleObj['flex-shrink'] = '1';
-            }
-
-
-            /**
-             * 绝对定位
-             */
-            if (SelfContrain[CONTRAIN.LayoutAbsolute]) {
-                this.styleObj["position"] = "relative";
-            }
-            if (SelfContrain[CONTRAIN.LayoutSelfAbsolute]) {
-                this.styleObj["position"] = "absolute";
-                let pos = Common.calPosition(curData, parentData);
-                if (SelfContrain[CONTRAIN.LayoutSelfLeft]) {
-                    this.styleObj['left'] = Render.unit(pos.left);
-                }
-                if (SelfContrain[CONTRAIN.LayoutSelfRight]) {
-                    this.styleObj['right'] = Render.unit(pos.right);
-                }
-                if (SelfContrain[CONTRAIN.LayoutSelfTop]) {
-                    this.styleObj['top'] = Render.unit(pos.top);
-                }
-                if (SelfContrain[CONTRAIN.LayoutSelfBottom]) {
-                    this.styleObj['bottom'] = Render.unit(pos.bottom);
-                }
-            } else {
-                /**
-                 * 自身相关描述 - Margin
-                 */
-                let margin = Common.calMargin(curData, parentData, prevData, nextData,
-                    (ParentContrains[CONTRAIN.LayoutHorizontal] && 'x') ||
-                    (ParentContrains[CONTRAIN.LayoutVertical] && 'y')
-                );
-                // 上边距
-                if (SelfContrain[CONTRAIN.LayoutSelfTop]) {
-                    this.styleObj["margin-top"] = Render.unit(margin["top"]);
-                } else if (SelfContrain[CONTRAIN.LayoutSelfTop] === false) {
-                    this.styleObj["margin-top"] = '0'
-                }
-                // 右边距
-                if (SelfContrain[CONTRAIN.LayoutSelfRight]) {
-                    this.styleObj["margin-right"] = Render.unit(margin["right"]);
-                } else if (SelfContrain[CONTRAIN.LayoutSelfRight] === false) {
-                    this.styleObj["margin-right"] = '0'
-                }
-                // 下边距
-                if (SelfContrain[CONTRAIN.LayoutSelfBottom]) {
-                    this.styleObj["margin-bottom"] = Render.unit(margin["bottom"]);
-                } else if (SelfContrain[CONTRAIN.LayoutSelfBottom] === false) {
-                    this.styleObj["margin-bottom"] = '0'
-                }
-                // 左边距
-                if (SelfContrain[CONTRAIN.LayoutSelfLeft]) {
-                    this.styleObj["margin-left"] = Render.unit(margin["left"]);
-                } else if (SelfContrain[CONTRAIN.LayoutSelfLeft] === false) {
-                    this.styleObj["margin-left"] = '0'
-                }
-            }
-
-            if (SelfContrain[CONTRAIN.LayoutAlignCenter]) {
-                this.styleObj["text-align"] = "center";
-            } else if (SelfContrain[CONTRAIN.LayoutAlignRight]) {
-                this.styleObj["text-align"] = "right";
-            } else {
-                this.styleObj["text-align"] = "left";
-            }
-        }
-
-        // height,width
-        // if (SelfContrain[CONTRAIN.LayoutFixedHeight] || SelfContrain[CONTRAIN.LayoutAbsolute]) {
-        if (SelfContrain[CONTRAIN.LayoutFixedHeight] ||
-            (SelfContrain[CONTRAIN.LayoutAbsolute] &&
-                !SelfContrain[CONTRAIN.LayoutHorizontal] &&
-                !SelfContrain[CONTRAIN.LayoutVertical])) {
-            // 固定高度
-            this.styleObj["height"] = Render.unit(curData.height);
-        }
-        // if (SelfContrain[CONTRAIN.LayoutFixedWidth] || SelfContrain[CONTRAIN.LayoutAbsolute]) {
-        if (SelfContrain[CONTRAIN.LayoutFixedWidth] ||
-            (SelfContrain[CONTRAIN.LayoutAbsolute] &&
-                !SelfContrain[CONTRAIN.LayoutHorizontal] &&
-                !SelfContrain[CONTRAIN.LayoutVertical])) {
-            // 固定宽度
-            this.styleObj["width"] = Render.unit(curData.width)
-        }
-        /**
-         * box
-         */
-        if (curData.type == Store.model.BODY) {
-            this.styleObj['width'] = '100%';
-        }
-        /**
-         * background
-         */
-        if (curData.path && curData.type != Store.model.IMAGE) {
-            this.styleObj["background-position"] = "center";
-            this.styleObj["background-repeat"] = "no-repeat";
-            this.styleObj["background-size"] = "contain";
-        }
-        if (curData.padding) {
-            this.styleObj.padding = [
-                Render.unit(curData.padding.top),
-                Render.unit(curData.padding.right),
-                Render.unit(curData.padding.bottom),
-                Render.unit(curData.padding.left),
-            ].join(' ');
-        }
-
-        // 通过行高判断是否换行
-        if (curData.lines == 1) {
-            this.styleObj["white-space"] = "nowrap";
-            this.styleObj["overflow"] = "hidden";
-            this.styleObj["text-overflow"] = "ellipsis";
-        }
-        /**
-         * styles 处理
-         */
-        if (!curData.styles) {
-            return;
-        }
-        if (curData.styles.background) {
-            if (curData.styles.background.type == 'color') {
-                this.styleObj["background-color"] = Render.toRGBA(curData.styles.background.color);
-            } else if (curData.styles.background.type == 'linear') {
-                this.styleObj["background-image"] = Render.calLinearGradient(curData.styles.background, curData.width, curData.height);
-            }
-        }
-        if (curData.styles.lineHeight) {
-            this.styleObj["line-height"] = Render.unit(curData.styles.lineHeight);
-        }
-        if (curData.styles.textAlign) {
-            this.styleObj["text-align"] = Render.align(curData.styles.textAlign);
-        }
-
-        /**
-         * opacity
-         */
-        if (curData.styles.opacity) {
-            this.styleObj["opacity"] = curData.styles.opacity;
-        }
-
-        /**
-         * box
-         */
-        if (curData.styles.borderRadius) {
-            this.styleObj["border-radius"] = Render.unit(curData.styles.borderRadius);
-        }
-        if (curData.styles.border && curData.styles.border.width) {
-            // let type = curData.border["position"] == "outside" ? "outline" : "border",
-            let borderType = Render.borderType(curData.styles.border.type),
-                borderWidth = Render.unit(curData.styles.border.width),
-                borderColor = Render.toRGBA(curData.styles.border.color);
-            this.styleObj['border'] = [borderWidth, borderType, borderColor].join(' ');
-            this.styleObj["box-sizing"] = "border-box";
-        }
-
+        });
     }
+}
+
+function nameTrans(str) {
+    return str.replace(/([A-Z])/mg, '-$1').toLowerCase();
 }
 /**
  * Sketch树转为dom树
@@ -617,12 +745,15 @@ class DOM extends Render {
  * @return {JSON}      dom树
  */
 
+const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align']
+const CompatibleValue = ['box']
+
 var Config = {};
 
 function fn(json, parentNode) {
     var dom = new DOM(json, parentNode);
     if (json.children) {
-        json.children.forEach(function(j, i) {
+        json.children.forEach(function (j, i) {
             fn(j, dom);
         });
     }

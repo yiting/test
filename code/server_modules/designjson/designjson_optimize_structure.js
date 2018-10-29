@@ -11,8 +11,8 @@ const {serialize,walkin,walkout,hasMaskChild,hasCompleteSytle} = require('./desi
 let process = function(_document) {
     // 树层级关系预处理
     const processor = new _StructureProcessor(_document);
-    processor.justify() // 调整层级
     processor.clear() // 清洗元素
+    processor.justify() // 调整层级
 
 }
 // 树结构预处理  先清洗被覆盖的节点，再根据视觉嵌套关系层级调整
@@ -75,7 +75,7 @@ class _StructureProcessor {
         const {_document} = this;
         const _arr = this._getTargetList(_document);
         walkout(_document._tree,node => {
-            if(!node.parent) return;
+            if (!node.parent) return;
             const parent = _document.getNode(node.parent);
             if(hasMaskChild(parent)) return; // 如果自身或者兄弟有mask节点，则不参与调整
             const visual_parent = this._getVisualParent(node,_arr); // 获取视觉面积最小的嵌套节点
@@ -84,8 +84,8 @@ class _StructureProcessor {
                 // Skbase.action.moveLayer(node,visual_parent);
                 // 移动节点
                 const nodelist = serialize(_document._tree);
-                const isInsert = nodelist.indexOf(parent) < nodelist.indexOf(visual_parent);
-                _document.moveNode(node.id, visual_parent, isInsert);
+                let index = nodelist.indexOf(node) > nodelist.indexOf(visual_parent) ?  visual_parent.children.length : 0;
+                _document.moveNode(node.id, visual_parent, index);
                 console.log(node.name,'从',parent.name,'移动到',visual_parent.name);
             }
         })
@@ -99,7 +99,7 @@ class _StructureProcessor {
             const parentList = _document.getParentList(n.id);
             return !~parentList.indexOf(node);
         }); // 越往后节点的z-index越大
-        return arr2.some(brother => is_A_belong_B(node,brother) && !hasCompleteSytle(brother)); // 如果节点被兄弟覆盖，并且自己没有其它属性（shadow）影响到兄弟，则移除该节点
+        return arr2.some(brother => brother.type !==QLayer.name && is_A_belong_B(node,brother) && !hasCompleteSytle(brother)); // 如果节点被兄弟覆盖，并且自己没有其它属性（shadow）影响到兄弟，则移除该节点
         // const res = arr2.find(brother => is_A_belong_B(node,brother) && !hasCompleteSytle(brother)); // 如果节点被兄弟覆盖，并且自己没有其它属性（shadow）影响到兄弟，则移除该节点
         // if(res) {
         //     _document.removeNode(node.id);

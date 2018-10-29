@@ -29,7 +29,7 @@ const draw = {
 	/**
 	 * 绘图数据偏移量{x,y}
 	 */
-	offset:{x:0,y:0,w:0,h:0},
+	offset:{x:0,y:0,w:0,h:0}, 
 	/**
 	 * 测试图片输出
 	 * @type {Boolean}
@@ -184,7 +184,7 @@ const draw = {
 				draw.height+=border.width*2;
 				break;
 		}
-
+		
 		//开始绘图
 		draw.drawImage = gm(draw.width, draw.height, "#000000ff");
 
@@ -193,7 +193,7 @@ const draw = {
 		//如果含有fill图像的情况，则需要把图像也画上去
 		var hasFillImage =false;
 		var fillImageIndex = -1;
-		if(imageData.style&&imageData.style.fills&&imageData.style.fills.length>0){
+		if(imageData.style && imageData.style.fills && imageData.style.fills.length>0){
 			var fills = imageData.style.fills;
 			for(var i=0,ilen=fills.length;i<ilen;i++){
 				if(fills[i].image){
@@ -268,8 +268,8 @@ const draw = {
 	 * @param  {Function} callback        [description]
 	 * @return {[type]}                   [description]
 	 */
-	image(imageParentNode, imageNode, callback) {
-		let imageFullPath = draw.outputDir + imageNode.do_objectID + ".png";
+	image(imageParentNode, imageNode, outputDir , callback) {
+		let imageFullPath = outputDir + "t_"+imageNode.do_objectID + ".png";
 		imageNode["style"] = imageParentNode.style;
 		if(imageNode != imageParentNode){
 			imageNode["parentNode"] = {};

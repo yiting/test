@@ -11,8 +11,10 @@ const {
     QMask, 
     QSlice
 } = require('./designjson_node');
+const {walkin,walkout,hasMaskChild,hasCompleteSytle,generateGroupAttr} = require('./designjson_utils');
 // layer类型
-const [Artboard,Group, Bitmap,Text,ShapeGroup,SymbolInstance,SymbolMaster,SliceLayer] = ['artboard','group', 'bitmap','text','shapeGroup','symbolInstance','symbolMaster','slice'];
+const BORDER_TYPES = {Center: 0,Outside: 2,Inside: 1};
+const [Artboard,Group, Bitmap,Text,ShapeGroup,SymbolInstance,SymbolMaster,SliceLayer,Rectangle,Oval,Line,Triangle,Polygon,Star,Rounded,Arrow,ShapePath] = ['artboard','group', 'bitmap','text','shapeGroup','symbolInstance','symbolMaster','slice','rectangle','oval','line','triangle','polygon','star','rounded','arrow','shapePath'];
 /**
  * 传入json并解析
  * @param {Json} data 通过sk,ps,xd解析得到的json数据
@@ -32,20 +34,24 @@ let parse = function(artboradId, inputList) {
     const artboardLayer = getArtboardLayer(artboradId,inputList);
     if (!artboardLayer) return null; // symbol
     const _document = _parseFromArtboard(artboardLayer,symbolMasterLayerMap);
+    modifySize(_document)
     return _document;
 }
 
 const styleParser = {
-    getSyle({ _class, style, rotation, attributedString, frame }) {
+    getSyle({ _class, style, rotation, attributedString, frame, points, hasBackgroundColor,  backgroundColor }) {
         const opacity = style.contextSettings ? (+style.contextSettings.opacity).toFixed(4) : 1;
-        const { borders, fixedRadius, shadows: outterShadows, innerShadows, fills, textStyle } = style;
-        const shadows = this._getShadows([...(outterShadows || []),...(innerShadows || [])]);
-        const border = this._getBorder(borders);
-        let background = null;
-        background =  this._getBackground(fills)
+        const { borders, shadows: outterShadows, innerShadows, fills, textStyle } = style;
+        let background = null, shadows, border, borderRadius;
+        background =  this._getBackground(hasBackgroundColor,backgroundColor,fills)
+        if (!background || background.type != 'image') {
+            shadows = this._getShadows([...(outterShadows || []),...(innerShadows || [])]);
+            border = this._getBorder(borders);
+            borderRadius =  this._getBorderRadius(_class,points);
+        }
         // const backgroundColor = bgColor ? this._getColor(bgColor) : fills[0];
         const styles = {
-            borderRadius: fixedRadius || 0,
+            borderRadius,
             border,
             opacity,
             rotation,
@@ -57,54 +63,76 @@ const styleParser = {
         }
         return styles;
     },
-    _getBackground(fills) {
-        if (!fills || !fills.length) return null;
-        const background = {
-            type: 'image',
-            color: null
-        };
-        fills = fills.filter(({isEnabled}) => !!isEnabled);
-        if (!fills.length) return null;
-        else if (fills.length > 1 ) return background;
-        const fill = fills[0];
-        const opacity = fill.contextSettings && fill.contextSettings.opacity ;
-        switch(fill.fillType) {
-            case 0: {
-                background.type = 'color';
-                background.color = this._getColor(fill.color);
-            } break; // 纯色背景
-            case 1: {
-                const { stops, gradientType, elipseLength } = fill.gradient;
-                if (gradientType === 0) { // 线性渐变
-                    background.type = 'linear';
-                } else if (gradientType === 1) { // 径向渐变
-                    background.type = 'radical';
-                    background.r = elipseLength;
-                }
-                const [from,to] = [fill.gradient.from.slice(1,-1).split(','),fill.gradient.to.slice(1,-1).split(',')];
-                background.x = from[0], background.y = from[1],
-                background.x1 = to[0], background.y1 = to[1];
-                background.colorStops = stops.map(stop => {
-                    const color = this._getColor(stop.color);
-                    if (!isNaN(opacity)) color.a *= opacity; // 如果存在opacity，则与颜色alpha通道进行合并
-                    return {
-                        color,
-                        offset: stop.position
-                    }
-                });
-            }; break; // 渐变
-            default: break;
+    _getBorderRadius(_class,points) {
+        if (_class === Rectangle) {
+            return points[0].cornerRadius;
         }
-        return background;
+        return 0;
     },
-    _getBorder(borders) {
+    __getBorderRadius(layers) {
+        if (layers && layers.length && layers[0]._class === Rectangle) {
+            return layers[0].points[0].cornerRadius;
+        }
+        return 0;
+    },
+    _getBackground(hasBackgroundColor,backgroundColor,fills) {
+        let background = {
+            type: 'image',
+            color: null,
+            hasOpacity: false
+        };
+        if (hasBackgroundColor) {
+            background.type = 'color';
+            background.color = this._getColor(backgroundColor);
+            return background;
+        }
+        if (fills && fills.length) {
+            fills = fills.filter(({isEnabled}) => !!isEnabled);
+            if (!fills.length) return null;
+            else if (fills.length > 1 ) return background;
+            const fill = fills[0];
+            const opacity = fill.contextSettings && fill.contextSettings.opacity ;
+            switch(fill.fillType) {
+                case 0: {
+                    background.type = 'color';
+                    background.color = this._getColor(fill.color);
+                    if (background.color.a !== 1) background.hasOpacity = true;
+                } break; // 纯色背景
+                case 1: {
+                    const { stops, gradientType, elipseLength } = fill.gradient;
+                    if (gradientType === 0) { // 线性渐变
+                        background.type = 'linear';
+                    } else if (gradientType === 1) { // 径向渐变
+                        background.type = 'radical';
+                        background.r = elipseLength;
+                    }
+                    const [from,to] = [fill.gradient.from.slice(1,-1).split(','),fill.gradient.to.slice(1,-1).split(',')];
+                    background.x = from[0], background.y = from[1],
+                    background.x1 = to[0], background.y1 = to[1];
+                    background.colorStops = stops.map(stop => {
+                        const color = this._getColor(stop.color);
+                        if (!isNaN(opacity)) color.a *= opacity; // 如果存在opacity，则与颜色alpha通道进行合并
+                        if (color.a !== 1) background.hasOpacity = true;
+                        return {
+                            color,
+                            offset: stop.position
+                        }
+                    });
+                }; break; // 渐变
+                default: break;
+            }
+            return background;
+        } else return null;
+    },
+    _getBorder(borders) { // 获取边框 （坑点：多个边框叠加暂未考虑）
         if(!borders || !borders.length) return null;
         borders = borders.filter(({isEnabled}) => !!isEnabled);
         if (!borders.length) return null;
         return {
             type: 'solid',
             color: this._getColor(borders[0].color),
-            width: borders[0].thickness
+            width: borders[0].thickness,
+            position: borders[0].position
         }
     },
     _getShadows(shadowList) {
@@ -218,29 +246,6 @@ let _parseLayer = function(_document, layer, pnode = null, brotherLayers = null)
             obj = new QText();
             obj.text = layer.attributedString.string;
             break;
-        case ShapeGroup:
-            //log('MSShapeGroup: ' + uin);
-            // 这里判断这个ShapeGroup是一个Mask还是一个图形
-            if (layer.hasClippingMask) {
-                obj = new QMask();
-                const maskedNodes = [];
-                //收集mask关联的图层
-                if (brotherLayers && brotherLayers.length) {
-                    const index = brotherLayers.indexOf(layer);
-                    for(let i = index + 1; i < brotherLayers.length; i++) {
-                        const brotherLayer = brotherLayers[i];
-                        if(brotherLayer.shouldBreakMaskChain) break;
-                        if(brotherLayer.isVisible) maskedNodes.push(brotherLayer.do_objectID);
-                        brotherLayer.maskNode = uin;
-                    }
-                }
-                obj.maskedNodes = maskedNodes;
-            } else {
-                obj = new QShape();
-                _setSketchShapeType(layer, obj);
-                //log('shapetype: ' + obj.shapeType + ': ' + uin);
-            }
-            break;
         case SliceLayer:
             // 切图标识
             //log('MSSliceLayer: ' + uin);
@@ -256,9 +261,21 @@ let _parseLayer = function(_document, layer, pnode = null, brotherLayers = null)
             
             break;
         default:
-            // 迭代不需要的
-            console.log('遇到没有处理的类型: ' + layerType);
-            return;
+            if (~[ShapeGroup,Rectangle,Oval,Line,Triangle,Polygon,Star,Rounded,Arrow,ShapePath].indexOf(layerType)) {
+                if (layer.hasClippingMask) {
+                    // 这里判断这个Layer是一个Mask还是一个图形
+                    obj = new QMask();
+                    maskProcess(obj,layer, brotherLayers);
+                } else {
+                    obj = new QShape();
+                    //log('shapetype: ' + obj.shapeType + ': ' + uin);
+                }
+                _setSketchShapeType(layer, obj);
+                break;
+            } else {
+                console.log('遇到没有处理的类型: ' + layerType);
+                return;
+            }
     }
     if(layer.maskNode){
         obj.isMasked = true;
@@ -267,16 +284,17 @@ let _parseLayer = function(_document, layer, pnode = null, brotherLayers = null)
         obj.isMasked = false;
     }
     
-    // 设置样式属性（共有属性、私有属性）
-    setAttrByLayer(obj,layer);
     // Symbol合并
     if (layerType === SymbolInstance) {
+        setAttrByLayer(obj,layer);
         layer = _document._symbolMasterLayers[layer.symbolID];
         if(!layer) throw '找不到Symbol';
-        // const {x,y} = obj;
-        // setAttrByLayer(obj,layer);
-        // Object.assign(obj,{x,y});
-    }
+        const {x,y} = obj;
+        setAttrByLayer(obj,layer);
+        Object.assign(obj,{x,y});
+    } else setAttrByLayer(obj,layer);
+    // 设置样式属性（共有属性、私有属性）
+    
     if (layerType === Bitmap) obj.styles = {};
     setAbsoulutePostion(obj,pnode);
     // 创建根节点
@@ -290,6 +308,20 @@ let _parseLayer = function(_document, layer, pnode = null, brotherLayers = null)
             _parseLayer(_document, sblayer, curNode,sublayers);
         }
     }
+}
+let maskProcess = function(obj, layer, brotherLayers) {
+    const maskedNodes = [];
+    //收集mask关联的图层
+    if (brotherLayers && brotherLayers.length) {
+        const index = brotherLayers.indexOf(layer);
+        for(let i = index + 1; i < brotherLayers.length; i++) {
+            const brotherLayer = brotherLayers[i];
+            if(brotherLayer.shouldBreakMaskChain) break;
+            if(brotherLayer.isVisible) maskedNodes.push(brotherLayer.do_objectID);
+            brotherLayer.maskNode = layer.do_objectID;
+        }
+    }
+    obj.maskedNodes = maskedNodes;
 }
 // 设置QNode属性
 let setAttrByLayer = function(obj,layer) {
@@ -330,7 +362,22 @@ let setAbsoulutePostion = function(obj,pnodeObj) {
  * @param {Layer} layer Sketch对象
  * @param {QShape} qShape QShape对象
  */
-let _setSketchShapeType = function(layer, qShape) {
+let _setSketchShapeType = function(layer, obj) {
+    // let shapes = layer.layers;
+    obj.shapeType = layer._class;
+
+    // // 如果shape group由多个shape组成则当成是一个
+    // // 矢量图组
+    // if (shapes.length > 1) {
+    //     qShape.shapeType = 'combineShape';
+    // }
+}
+/** 
+ * 设置QShape的shapeType属性，线、矩形、圆，多边形等
+ * @param {Layer} layer Sketch对象
+ * @param {QShape} qShape QShape对象
+ */
+let __setSketchShapeType = function(layer, qShape) {
     // 这里只获取第一个图形来做判断(通常设计师在ShapeGroup里只放一个shape?)
     let shapes = layer.layers;
     let shape = shapes[0];
@@ -343,8 +390,51 @@ let _setSketchShapeType = function(layer, qShape) {
         qShape.shapeType = 'combineShape';
     }
 }
-
-
+let modifySize = function(_document) {
+    walkout(_document._tree,pnode => {
+        if(!pnode.children || !pnode.children.length) return;
+        const arr1 = [...pnode.children].filter(node => !node.isMasked);
+        
+        arr1.forEach(node => {
+            if (node.children && node.children.length && node.needRecaculate) {
+                let frame = generateGroupAttr(pnode,node.children);
+                Object.assign(node,frame);
+                node.children.forEach(n => {
+                    n.x = n.abX - node.abX;
+                    n.y = n.abY - node.abY;
+                });
+                pnode.needRecaculate = true;
+            } else {
+                const { border } = node.styles;
+                if (!border) return;
+                switch(border.position) {
+                    case BORDER_TYPES.Center: { 
+                        if (_expand(node,border.width/2)) {
+                            border.width /= 2;
+                            pnode.needRecaculate = true;
+                        }
+                    } break;
+                    case BORDER_TYPES.Outside: { 
+                        if (_expand(node,border.width)) {
+                            pnode.needRecaculate = true; 
+                        }
+                    } break;
+                }
+                delete border.position;
+            }
+        })
+    });
+}
+let _expand = function(node,val) {
+    node.abX -= val;
+    node.abY -= val;
+    node.width += 2 * val;
+    node.height += 2 * val;
+    let [overflowX,overflowY] = [node.x - val < 0,node.y - val < 0]
+    node.x = node.x - val;
+    node.y = node.y - val;
+    return overflowX || overflowY;
+}
 // 对外接口
 module.exports = {
     parse

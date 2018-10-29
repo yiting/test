@@ -4,28 +4,18 @@
 #import "BCGeometry.h"
 #import "BCRectGeometry.h"
 
-static inline BCLine BCLineMake(CGFloat position, BCAxis axis) {
-  BCLine line;
-  line.position = position;
-  line.axis = axis;
 
-  return line;
-}
+/**
+ A simple structure defining a vertical or horizontal line. It occupies a position on \c axis
+ (i.e. BCAxisX = a vertical line/edge, BCAxisY = a horizontal line/edge.) and extends infinitely
+ from there.
+ */
+typedef struct {
+  CGFloat position;
+  BCAxis axis;
+} BCOrthogonalLine;
 
-static inline BOOL GKLineSnapToPosition(BCLine line, CGFloat pos, CGFloat margin, CGFloat *snapped) {
-  if (ABS(pos - line.position) < margin) {
-    *snapped = pos;
-    return YES;
-  } else
-    return NO;
-}
 
-static inline BOOL GKLineSnapsToRect(BCLine line, CGRect rect, CGFloat margin, CGFloat *snapped) {
-  BCAxis axis = line.axis;
-  if (GKLineSnapToPosition(line, BCRectMinForAxis(rect, axis), margin, snapped))
-    return YES;
-  else if (GKLineSnapToPosition(line, BCRectMaxForAxis(rect, axis), margin, snapped))
-    return YES;
-  else
-    return NO;
+static inline BCOrthogonalLine BCOrthogonalLineMake(CGFloat position, BCAxis axis) {
+  BCOrthogonalLine line; line.position = position; line.axis = axis; return line;
 }

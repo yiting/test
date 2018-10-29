@@ -12,8 +12,6 @@ function fn(json) {
             _sort(j, children);
         });
         json.children = children;
-        // children.forEach((j, i) => {
-        // })
     }
 }
 
@@ -24,14 +22,16 @@ function _sort(newDom, children) {
     }
     let done = children.some((d, i) => {
         let dCenter, newCenter;
-        let newDom_y = newDom.textAbY||newDom.abY,
-            newDom_h = newDom.textHeight||newDom.height,
-            d_y = d.textAbY||d.abY,
-            d_h = d.textHeight||d.height
+        let newDom_y = newDom.textAbY || newDom.abY,
+            newDom_h = newDom.textHeight || newDom.height,
+            d_y = d.textAbY || d.abY,
+            d_h = d.textHeight || d.height
+        // 水平关系
         if (d_y < newDom_y + newDom_h && newDom_y < d_y + d_h) {
             dCenter = d.abX + d.width / 2;
             newCenter = newDom.abX + d.width / 2;
         } else {
+            // 垂直关系
             dCenter = d_y + d_h / 2;
             newCenter = newDom_y + newDom_h / 2;
         }
@@ -44,9 +44,37 @@ function _sort(newDom, children) {
         children.push(newDom);
     }
 }
+/* function fn(json) {
+    if (json.children) {
+        json.children.forEach((j, i) => {
+            fn(j);
+        });
+        json.children = _sort(json.children);
+    }
+}
+
+function _sort(children){
+    return children.sort((prev,next)=>{
+        let prevCenter, nextCenter;
+        let next_y = next.textAbY||next.abY,
+            next_h = next.textHeight||next.height,
+            prev_y = prev.textAbY||prev.abY,
+            prev_h = prev.textHeight||prev.height
+            // 水平关系
+        if (prev_y < next_y + next_h && next_y < prev_y + prev_h) {
+            prevCenter = prev.abX + prev.width / 2;
+            nextCenter = next.abX + prev.width / 2;
+        } else {
+            // 垂直关系
+            prevCenter = prev_y + prev_h / 2;
+            nextCenter = next_y + next_h / 2;
+        }
+        return prevCenter-nextCenter;
+    })
+} */
 let Config = {},
     Option = {}
-module.exports = function(data, conf, opt) {
+module.exports = function (data, conf, opt) {
     Object.assign(Option, opt);
     Object.assign(Config, conf);
     return fn(data);

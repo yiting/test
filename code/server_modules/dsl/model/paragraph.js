@@ -1,21 +1,22 @@
 let Contrain = require('../dsl_contrain.js');
-let Store = require("../dsl_store.js");
+let Dom = require("../dsl_dom.js");
 /**
- * paragraph.js 段落
+ * 段落paragraph
  * 规则：多行纯文本
  */
-module.exports.template = function(dom) {
-    let o = {};
-    // o.contrains[CONTRAIN.LayoutAutoHeight] = true;
-    o.tagStart = "p";
-    o.tagEnd = "p";
-    o.innerHTML = dom.text;
-    return o;
+module.exports.name = 'PARAGRAPH';
+module.exports.type = Dom.type.TEXT;
+module.exports.textCount = 0;
+module.exports.imageCount = 0;
+module.exports.mixCount = 0; //-1，即为任意混合数
+module.exports.template = function () {
+
 }
-module.exports.is = function(dom, parent, option, config) {
-    if (dom.text && dom.lines > 1 && (!dom.children || dom.children.length == 0)) {
-        dom.type = Store.model.PARAGRAPH;
-        dom.contrains[Contrain.LayoutFixedHeight]=false;
-        return true;
-    }
+module.exports.is = function (dom, parent, option, config) {
+    return dom.lines > 1;
+}
+module.exports.adjust = function (dom, parent, option, config) {
+    dom.text = dom.text.replace(/ /img, '&nbsp;');
+    dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
+    // dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedHeight.Fixed;
 }

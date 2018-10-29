@@ -8,10 +8,6 @@
 		<data>
 		Jst5Ws/Omqtx+H4mxvIMgJ9GD+o=
 		</data>
-		<key>Resources/archived-expanded-entitlements.xcent</key>
-		<data>
-		Jst5Ws/Omqtx+H4mxvIMgJ9GD+o=
-		</data>
 		<key>Resources/en.lproj/InfoPlist.strings</key>
 		<dict>
 			<key>hash</key>
@@ -26,21 +22,6 @@
 	<dict>
 		<key>Resources/SketchQuicklook.entitlements</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Jst5Ws/Omqtx+H4mxvIMgJ9GD+o=
-			</data>
-			<key>hash2</key>
-			<data>
-			iB9C8leN9vleSiOvkKkQqnXXy+4hdulLfvs9rT6jri8=
-			</data>
-		</dict>
-		<key>Resources/archived-expanded-entitlements.xcent</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Jst5Ws/Omqtx+H4mxvIMgJ9GD+o=
-			</data>
 			<key>hash2</key>
 			<data>
 			iB9C8leN9vleSiOvkKkQqnXXy+4hdulLfvs9rT6jri8=
@@ -48,10 +29,6 @@
 		</dict>
 		<key>Resources/en.lproj/InfoPlist.strings</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			MiLKDDnrUKr4EmuvhS5VQwxHGK8=
-			</data>
 			<key>hash2</key>
 			<data>
 			Oc8u4Ht7Mz58F50L9NeYpbcq9qTlhPUeZCcDu/pPyCg=

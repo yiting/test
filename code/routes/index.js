@@ -11,8 +11,9 @@ const unzip = require('unzip');
 const uuidv1 = require('uuid/v1');
 //工具类
 let Utils = require('../server_modules/util/utils');
-//上传文件及新的文件名称变量
-let originFileName, potIndex;
+//上传文件及新的文件名称变量;//生成的uuid字符串及返回前台页面的json
+let originFileName, potIndex, uuidStr, responseJson;
+
 //上传文件配置
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -27,14 +28,17 @@ let storage = multer.diskStorage({
     }
 })
 //上传文件对象
-let upload = multer({storage: storage})
+let upload = multer({
+    storage: storage
+})
 /*业务逻辑*/
 //渲染页面路由
 router.get('/', function (req, res, next) {
-    res.render('index', {title: '首页'});
+    res.render('index', {
+        title: '设计编译 - 内测版'
+    });
 });
-//生成的uuid字符串及返回前台页面的json
-let uuidStr, responseJson
+
 /*文件上传及对应上传记录*/
 router.post('/upload', upload.any(), function (req, res, next) {
     //请求ip
@@ -44,16 +48,16 @@ router.post('/upload', upload.any(), function (req, res, next) {
     uuidStr = uuidv1()
     responseJson = {
         message: '上传文件成功',
-        filename: originFileName.substring(0, potIndex),//无后缀
+        filename: originFileName.substring(0, potIndex), //无后缀
         uuid: uuidStr
     }
     //将生成的uuid写入到文本中，作为生成url的标示
     fs.appendFile('./data/upload_data/上传标识数据.txt', JSON.stringify({
-            ip: reqIP,
-            name: originFileName,
-            uuid: uuidStr,
-            time: new Date().toLocaleString()
-        }) + '\r\n', function (err) {
+        ip: reqIP,
+        name: originFileName,
+        uuid: uuidStr,
+        time: new Date().toLocaleString()
+    }) + '\r\n', function (err) {
         if (err) {
             // 读文件是不存在报错
             // 意外错误
@@ -65,7 +69,9 @@ router.post('/upload', upload.any(), function (req, res, next) {
         }
     })
     //2018-08-17:解压zip文件到指定文件夹
-    let extract = unzip.Extract({path: './data/unzip_file/' + originFileName.substring(0, potIndex)})
+    let extract = unzip.Extract({
+        path: './data/unzip_file/' + originFileName.substring(0, potIndex)
+    })
     //解压异常处理
     extract.on('error', function (err) {
         console.log(err)
@@ -79,4 +85,3 @@ router.post('/upload', upload.any(), function (req, res, next) {
 })
 
 module.exports = router
-

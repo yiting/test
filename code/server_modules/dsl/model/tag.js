@@ -1,47 +1,36 @@
-const CONTRAIN = require('../dsl_contrain.js');
-const STORE = require("../dsl_store.js");
-const COMMON = require("../dsl_common.js");
+const Contrain = require('../dsl_contrain.js');
+const Dom = require("../dsl_dom.js");
 /**
  * 文本标签
  * 规则：内容只有一行文案且内容水平、垂直居中
  */
-module.exports.template = function() {
+module.exports.name = 'TAG';
+module.exports.type = Dom.type.IMAGE;
+module.exports.textCount = 1;
+module.exports.imageCount = 0;
+module.exports.mixCount = 0;//-1，即为任意混合数
+module.exports.template = function () {
 
 }
-module.exports.is = function(dom, parent, option, config) {
-    if (dom.children && dom.children.length == 1 &&
-        dom.children[0].text &&
-        dom.children[0].lines == 1) {
-        // Text和Parent中心点
-        let child = dom.children[0],
-            maxSize = 0;
-        child.styles.texts.forEach((t, i) => {
-            maxSize = maxSize < t.size ? t.size : maxSize;
-        });
-        let vx = child.x + child.width / 2,
-            vy = child.y + child.height / 2,
-            px = dom.width / 2,
-            py = dom.height / 2,
-            padding = (dom.width - child.width) / 2
-        // 如果中心点偏移小于2
-        if (dom.height / child.height < 3 &&
-            Math.abs(vx - px) < 2 &&
-            Math.abs(vy - py) < 2 &&
-            maxSize * 1.5 > padding &&
-            padding > 6) {
-            if (!dom.padding) {
-                dom.padding = {};
-            }
-            COMMON.assign(dom, child);
-            // dom reset
-            dom.type = STORE.model.TAG;
-            dom.padding["left"] = dom.padding["right"] = padding;
-            dom.lineHeight = dom.height;
-            dom.textAlign = "center";
-            dom.children = [];
-            // dom.styleAuto["width"] = true;
-            // dom.contrains[CONTRAIN.LayoutAutoWidth] = true;
-            return true;
-        }
-    }
+module.exports.is = function (dom, parent, option, config) {
+    let child = dom.children[0]
+    let margin = Dom.calMargin(child, dom);
+    // 如果中心点偏移小于2
+    return child.lines == 1 &&
+        (dom.path || dom.styles.background || dom.styles.border) &&
+        dom.height / child.height < 3 &&
+        Math.abs(margin.left - margin.right) < config.dsl.operateErrorCoefficient &&
+        Math.abs(margin.top - margin.bottom) < config.dsl.operateErrorCoefficient &&
+        child.styles.maxSize * 1.5 > margin.left
+}
+module.exports.adjust = function (dom, parent, option, config) {
+    let child = dom.children[0];
+    let margin = Dom.calMargin(child, dom);
+    Dom.assign(dom, child);
+    // dom reset
+    dom.styles.lineHeight = dom.height;
+    dom.styles.padding = margin.left;
+    // dom.styles.textAlign = Dom.align["center"];
+    dom.children = [];
+    dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedHeight.Fixed;
 }

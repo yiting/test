@@ -1,21 +1,31 @@
-//
-//  SCKAPIAuthentication.h
-//  SketchCloudKit
-//
-//  Created by Robin Speijer on 30-01-17.
-//  Copyright © 2017 Awkward. All rights reserved.
-//
+//  Created by Robin Speijer on 14-08-18.
+//  Copyright © 2018 Bohemian Coding. All rights reserved.
 
-/// A protocol describing all information that could be used by the API to be authenticated.
-@protocol SCKAPIAuthentication <NSObject>
+/// The user default key to store the relative time period before the authentication becomes stale and needs to be refreshed.
+extern NSString * _Nonnull const SCKAPIAuthenticationStalenessDefaultsKey;
 
-/// A permanent token to be authenticated with the API.
-@property (nonatomic, nullable, readonly) NSString *authToken;
+/**
+ An authentication session of a user in Sketch Cloud. It can be used for adding authorization headers to HTTP requests to the Sketch Cloud API. An authentication object could be created by performing a signin request. It can be persisted by setting it the `current` authentication From that point, the session should be persisted into the keychain for later reuse.
+ */
+NS_SWIFT_NAME(APIAuthentication)
+@interface SCKAPIAuthentication : NSObject <NSCopying>
 
-/// A one-time token to be used for retreiving an authToken. When using such a token, it becomes invalid. Use `consumeAccessToken` to nillify the access token after using it.
-@property (nonatomic, nullable, readonly) NSString *accessToken;
+/// The identifier of the user that has been signed in.
+@property (nonatomic, copy, nonnull, readonly) NSString *userID;
 
-/// A one-time token to be used for retreiving an authToken. When using such a token, it becomes invalid. Therefore, the next time you call this method will return nil. The user endpoint needs to be called again in order to retreive a new consumeable access token. The implementation of SCKAuthenticatedUser does this automatically.
-- (nullable NSString *)consumeAccessToken;
+/// The date at what point this authentication session is not valid anymore. At that point, this authentication cannot be renewed anymore.
+@property (nonatomic, strong, nullable, readonly) NSDate *expirationDate;
+
+/// Whether this authentication session is part of the legacy authentication method. This typically means that there's no expiration date, and the HTTP authorization header value is slightly different.
+@property (nonatomic, readonly) BOOL isLegacy;
+
+/// Whether this authentication session should still be valid. If not, you should use the Cloud API to refresh it.
+@property (nonatomic, readonly) BOOL isValid;
+
+/// The HTTP authorization header value to include to HTTP requests against the Sketch Cloud API.
+@property (nonatomic, nonnull, readonly) NSString *httpAuthorizationValue;
+
+/// Checks if the given authentication is a refreshed version of the receiver.
+- (BOOL)isRefreshedByAuthentication:(nonnull SCKAPIAuthentication *)authentication;
 
 @end

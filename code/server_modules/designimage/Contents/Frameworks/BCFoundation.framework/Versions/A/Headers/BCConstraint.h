@@ -2,7 +2,7 @@
 //  Copyright © 2017 Bohemian Coding. All rights reserved.
 //
 
-typedef NS_ENUM(NSUInteger, BCConstraint) {
+typedef NS_OPTIONS(NSUInteger, BCConstraint) {
   // See https://github.com/BohemianCoding/Sketch/issues/14271
   // Originally a constraint of BCConstraintNone mean nothing was sizeable.
   // However, as 0 is often a default value this, in hindsight, was a bad choice.
@@ -45,8 +45,9 @@ CGRect BCRectScaledRelativeToSizeWithConstraints( CGRect rectToScale, CGSize rel
  @param containerSize The size of the container for which the minimum size is required.
  @param inner The CGRect to which the constraints apply.
  @param constraints The constrains applied to \c inner.
+ @param minSize The smallest \c inner is allowed to become.
  @return The minumum size container can be without breaking the current constraints on inner.
  Depending on the constraints the width and/or height could be zero.
  */
-CGSize BCMinumumSizeForRectWithConstraints( CGSize containerSize, CGRect inner, BCConstraint constraints );
+CGSize BCMinumumSizeForRectWithConstraints( CGSize containerSize, CGRect inner, BCConstraint constraints, CGSize minSize );
 

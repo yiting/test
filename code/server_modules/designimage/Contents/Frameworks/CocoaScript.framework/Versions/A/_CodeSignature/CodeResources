@@ -14,7 +14,7 @@
 		</data>
 		<key>Resources/Info.plist</key>
 		<data>
-		C/OzOc/sHd1/oRb5TggZewKHg5g=
+		9N3HPApK0rNaJ6xdnLQm4BWmv/s=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -23,22 +23,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NqrSqOereLmtwUj/xvjiuaQGujA=
+			yrN25yRAeS9WJVfGWtNnEgzULNo=
 			</data>
 			<key>hash2</key>
 			<data>
-			LFGmfaKCejzF1SCvXklABDpQPfaHaO0PPXfp1JPsfao=
+			zk3VXplcdXbk585jIpgjT/1K8KHvA29de/yPyHc8qDY=
 			</data>
 		</dict>
 		<key>Headers/JSTTextView.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			XW9CJSj5pjkn72W4bgPha5KDGpI=
+			WEgedV5FPGNFtK7aOM9YxwoZ+Qc=
 			</data>
 			<key>hash2</key>
 			<data>
-			XKH18aRUHFHSaB1LGzkI7Gt0qa/UbcBDa9t4CZzzbPg=
+			+pqY61l8dhvN2aE6g+hYDwNpeDUXV8OCAVkPTgxeoLQ=
+			</data>
+		</dict>
+		<key>Headers/MOJavaScriptObject.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			0wYsFfCjQ1keMe2AT0bjLZYULDI=
+			</data>
+			<key>hash2</key>
+			<data>
+			+eG22kbMTkE9INN9Qez6eXnCa/PErOLDE66w/g7FxJU=
 			</data>
 		</dict>
 		<key>Resources/BridgeSupport/CocoaScript.bridgesupport</key>
@@ -67,11 +78,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			C/OzOc/sHd1/oRb5TggZewKHg5g=
+			9N3HPApK0rNaJ6xdnLQm4BWmv/s=
 			</data>
 			<key>hash2</key>
 			<data>
-			vweJXLfeTxTdqWIz0rmFp34dTF2OSdIyQQnjInLGgwQ=
+			XClFt5khJQOT7tLd3MOlXzCoxpnrmxfvqANur0E1MpU=
 			</data>
 		</dict>
 	</dict>

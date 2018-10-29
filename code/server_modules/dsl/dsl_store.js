@@ -1,25 +1,27 @@
-module.exports.model = {
-    TEXT: 'text', // 文本
-    PARAGRAPH: 'paragraph', // 段落
-    BUTTON: 'button', // 按钮
-    TEXT_BUTTON: 'text-button', // 按钮
-    TAG: 'tag', // 按钮
-    IMAGE: 'image', // 图案
-    ICONENTER: 'iconEnter', // 图标入口
-    LEGEND: 'legend', // 图例
-    SEGMENTING_HORIZONTAL: 'segmenting_horizontal', // 水平分割线
-    SEGMENTING_VERTICAL: 'segmenting_vertical', // 垂直分割线
-    LAYOUT_EQUALITY: 'layout-equality', //等分布局
-    BODY: 'body', // Qbody
-    LIST0: 'list0', // list0
-    NUMERICAL: 'numerical', // 数值
-    POSTER:'poster',// 背景
-    LISTHORIZONTALITEM: 'list-horizontal-item',
-}
-module.exports.layout = {
-    BLOCK: 'block', // 组织
-    COLUMN: 'column', // 列
-    ROW: 'row', // 行
-    UL: 'ul', // Unordered List
-    INLINE: 'inline', // 行内
-}
+let Models = {};
+[
+    require("./model/text.js"),
+    require("./model/image.js"),
+    require("./model/poster.js"),
+    require("./model/body.js"),
+    require("./model/legend.js"),
+    require("./model/block.js"),
+    require("./model/column.js"),
+    require("./model/inline.js"),
+    require("./model/tag.js"),
+    require("./model/textButton.js"),
+    require("./model/paragraph.js"),
+    require("./model/layout-list-item.js"),
+    require("./model/layout-equality.js"),
+    require("./model/numerical.js"),
+    require("./model/layout.js"),
+    require("./model/layout-text.js"),
+    require("./model/layout-image.js"),
+    require("./model/icon-enter.js"),
+    require("./model/image-descript.js"),
+].forEach(m => {
+    Models[m.name] = m
+});
+
+// 模型
+module.exports.model = Models;

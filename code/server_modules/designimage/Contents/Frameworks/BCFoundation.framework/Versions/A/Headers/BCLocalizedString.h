@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern NSString* BCLocalizedString(NSString* key);
+extern NSString* BCLocalizedString(NSString* key, NSString* _Nullable comment);
 
 /**
  

@@ -5,12 +5,8 @@
 // we've used in the past but its about GCD. So now we have our own
 typedef void(^BCVoidBlock)(void);
 
-/**
- Signature of simple block for enumerating through objects returning items.
- Used by map:, etc.
- */
-
-typedef CGFloat (^BCSumBlock)(id object);
+// Like BCVoidBlock, but with an object return value
+typedef id (^BCObjectReturnBlock)(void);
 
 @interface NSObject (NSObject_SmallBlocks)
 - (void)changeKey:(NSString *)aKey inBlock:(BCVoidBlock)block;
@@ -72,16 +68,6 @@ static inline void BCDispatchToThread(NSThread *thread, BOOL wait, BCVoidBlock b
 @interface NSSet (NSSet_SmallBlocks)
 - (void)each:(void (^)(id object))block;
 - (instancetype)map:(id (^)(id object))block;
-- (BOOL)containsObjectPassingTest:(BOOL (^)(id obj))predicate;
-@end
-
-@interface NSArray (NSArray_Blocks)
-
-- (CGFloat)sum:(BCSumBlock)block;
-
-+ (id)arrayWithCapacity:(NSUInteger)count fill:(id (^)(NSUInteger index))block;
-- (id)firstObjectPassingTest:(BOOL (^)(id obj))predicate;
-- (NSUInteger)indexOfFirstObjectPassingTest:(BOOL (^)(id obj))predicate;
 - (BOOL)containsObjectPassingTest:(BOOL (^)(id obj))predicate;
 @end
 

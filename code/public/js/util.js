@@ -35,6 +35,23 @@ var CommonTool = {
             + seperator2 + seconds;
         return currentdate;
     },
+    //Es6 + ES5去重办法
+    ES6duplicate: function (arr, attr) {
+        if (arr.length == 0) {
+            return arr;
+        } else {
+            if (attr) {
+                var obj = {}
+                var newArr = arr.reduce((cur, next) => {
+                    obj[next[attr]] ? "" : obj[next[attr]] = true && cur.push(next);
+                    return cur;
+                }, [])
+                return newArr;
+            } else {
+                return Array.from(new Set(arr));
+            }
+        }
+    },
     //网络请求公共方法
     uploadFile: function (actionUrl, param, callback, callbackError) {
         $.ajax({
@@ -58,12 +75,15 @@ var CommonTool = {
         });
     },
     httpRequest: function (actionUrl, param, callback, callbackError) {
-        $.ajax({
+        let ajaxObj;
+        if (ajaxObj != null) ajaxObj.abort();
+        ajaxObj = $.ajax({
             type: 'POST',
             url: actionUrl,
             data: param,
             dataType: "json",
             success: function (result) {
+                if (result.length == 0) return true;
                 //根据返回结果进行操作
                 callback(result);
             },
@@ -72,5 +92,7 @@ var CommonTool = {
                 console.log("请求错误")
             }
         });
+
+        return ajaxObj;
     }
 };

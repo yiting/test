@@ -1,10 +1,5 @@
-//
-//  NSURL+Cloud.h
-//  SketchCloudKit
-//
 //  Created by Robin Speijer on 03-03-17.
-//  Copyright © 2017 Awkward. All rights reserved.
-//
+//  Copyright © 2017 Bohemian Coding. All rights reserved.
 
 #if TARGET_OS_OSX
 #import <Cocoa/Cocoa.h>
@@ -12,13 +7,16 @@
 
 #import "SCKAPIAuthentication.h"
 
-@class SCKArtboard, SCKPage, SCKEnvironment;
+@class SCKArtboard, SCKPage, SCKAPIEnvironment;
 
 /// Helpers to identify Sketch Cloud URLs and their components.
 @interface NSURL (Cloud)
 
 /// Checks the URL's components if it is a valid Cloud share.
 @property (nonatomic, readonly) BOOL isCloudShare;
+
+/// Constructs a Cloud Share URL based on the Cloud environment and the share's shortID.
++ (nonnull NSURL *)cloudShareURLWithShortID:(nonnull NSString *)shortID environment:(nullable SCKAPIEnvironment *)environment;
 
 /// The URL of only the cloud share itself, if the receiver is a Cloud share. This might come in handy if the receiver contains additional path components like a page and artboard slug.
 @property (nonatomic, nullable, readonly) NSURL *cloudShareURL NS_SWIFT_NAME(cloudShareURL);
@@ -36,7 +34,7 @@
 @property (nonatomic, nullable, readonly) NSString *cloudAPIName;
 
 /// If the URL points to a Cloud API endpoint, this will return the referenced environement.
-@property (nonatomic, nullable, readonly) SCKEnvironment *cloudAPIEnvironment;
+@property (nonatomic, nullable, readonly) SCKAPIEnvironment *cloudAPIEnvironment;
 
 /**
  Constructs a URL by appending Cloud deeplink components to a given artboard inside the document. To create a valid Cloud URL, the following conditions must be met:
@@ -66,7 +64,7 @@
  @param authentication The authentication to provide to the frontend to sign in.
  @return The url including the authentication in the query items. If no token could be added for some reason, the same URL would just be returned.
  */
-- (nonnull NSURL *)appendingCloudAuthentication:(nullable id<SCKAPIAuthentication>)authentication;
+- (nonnull NSURL *)appendingCloudAuthentication:(nullable SCKAPIAuthentication *)authentication;
 
 @end
 
@@ -74,7 +72,7 @@
 @interface NSWorkspace (Cloud)
 
 /**
- Open the given URL in the default browser, after adding the current user's access token to maintain the Cloud sign in session.
+ Open the given URL in the default browser, after adding the current user's authentication to maintain the Cloud sign in session in the browser.
 
  @param url The URL to add authentication to and opening it.
  */

@@ -1,16 +1,13 @@
-//
-//  SCKShare.h
-//  SketchCloudKit
-//
 //  Created by Robin Speijer on 30-01-17.
-//  Copyright © 2017 Awkward. All rights reserved.
-//
+//  Copyright © 2017 Bohemian Coding. 
 
 #import "SCKObject.h"
 
 @class SCKShareVersion;
+@class SCKUser;
 
 /// A Cloud share for a Sketch document.
+NS_SWIFT_NAME(Share)
 @interface SCKShare : SCKObject
 
 /// The shortID that's used within the public URL to represent this share.
@@ -22,13 +19,13 @@
 /// Whether the share requires a password to be shown for unauthorized users.
 @property (nonatomic, readonly) BOOL isPrivate;
 
-/// The owner's userID. This is typically the person who uploaded it to Cloud.
-@property (nonatomic, nullable, readonly) SCKObjectID *userID;
-
-/// Whether the user is able to leave comments to the share.
-@property (nonatomic, readonly) BOOL commentsEnabled;
-
 /// The latest share revision.
 @property (nonatomic, nullable, readonly) SCKShareVersion *currentVersion;
+
+/// Whether the current user has permissions to update the share.
+@property (nonatomic, assign, readonly) BOOL canUpdate;
+
+/// The user that owns this share, usually the one that originally created it.
+@property (nonatomic, nullable, readonly) SCKUser *owner;
 
 @end

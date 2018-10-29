@@ -1,64 +1,30 @@
-let Common = require("./dsl_common.js");
-let Models = {
-    appStateNav: require("./model/appStateNav"),
-    banner: require("./model/banner"),
-    iconEnter: require("./model/iconEnter"),
-    image: require("./model/image"),
-    legend: require("./model/legend"),
-    paragraph: require("./model/paragraph"),
-    tag: require("./model/tag"),
-    text: require("./model/text"),
-    textButton: require("./model/textButton"),
-    textContain: require("./model/textContain"),
-    inline: require("./model/inline"),
-    block: require("./model/block"),
-    column: require("./model/column"),
-    layoutEquality: require("./model/layoutEquality"),
-    body: require("./model/body"),
-    listHorizontalItem: require("./model/list-horizontal-item"),
-    numerical: require("./model/numerical"),
-    ul: require("./model/ul"),
-    poster: require("./model/poster"),
+let Store = require("./dsl_store.js");
+let Model = require("./dsl_model.js");
+let Logger = require("./logger.js");
 
-
-
-}
 /**
- * 模型分析+处理
+ * 模型序列化，按节点数低到高排序
  */
-function fn(dom) {
+const mixCoefficient = 10000;
+
+let modelList = Object.keys(Store.model).map(k => Store.model[k]).sort((n, p) => {
+    return (n.textCount + n.imageCount + Math.abs(n.mixCount < 0 ? n.mixCount * mixCoefficient : n.mixCount) * 100) - (p.textCount + p.imageCount + Math.abs(p.mixCount < 0 ? p.mixCount * mixCoefficient : p.mixCount) * 100);
+});
+
+function fn(dom, parent) {
     if (dom.children) {
         // 从子孙节点开始遍历
         dom.children.forEach((child, i) => {
-            fn(child);
-            [
-                'ul',
-                'inline',
-                'column',
-                'block'
-            ].some(c => {
-                return Models[c].is(child, dom, Option, Config)
-            });
-            [
-                'textContain',
-                'image',
-                'text',
-                'paragraph',
-                'tag',
-                'iconEnter',
-                'legend',
-                'textButton',
-                'numerical',
-                'layoutEquality',
-                'body',
-                'listHorizontalItem',
-                'poster',
-                // 'list0'
-            ].some(c => {
-                return Models[c].is(child, dom, Option, Config)
-            });
+            fn(child, dom);
         });
     }
+    modelList.some(model => {
+        if (Model.is(model, dom, parent, Option, Config)) {
+            Logger.log(`[pipe - model] ${model.name}\t fit Dom: "${dom.id}" `)
+            Model.adjust(model, dom, parent, Option, Config)
+            return true;
+        }
+    });
     return dom;
 }
 
@@ -69,7 +35,7 @@ let Option = {
         deviationCoefficient: .05, // 偏差系数
     },
     Config = {}
-module.exports = function(data, conf, opt) {
+module.exports = function (data, conf, opt) {
     Object.assign(Option, opt);
     Object.assign(Config, conf);
     return fn(data);

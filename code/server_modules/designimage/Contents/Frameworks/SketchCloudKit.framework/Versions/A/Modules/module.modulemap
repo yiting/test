@@ -6,3 +6,8 @@ framework module SketchCloudKit {
   export *
   module * { export * }
 }
+
+module SketchCloudKit.Swift {
+    header "SketchCloudKit-Swift.h"
+    requires objc
+}

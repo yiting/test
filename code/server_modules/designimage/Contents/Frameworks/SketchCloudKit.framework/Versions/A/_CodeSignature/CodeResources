@@ -10,435 +10,363 @@
 		</data>
 		<key>Resources/Info.plist</key>
 		<data>
-		O4ozfqyevc/yk73fuv/HVoY5G1A=
+		zkthhCrdc219gdzubIi4Fc5VQB8=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
 		<key>Headers/NSError+Cloud.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			MjVAa2hTxQwq07F3D/NLWMU6oFg=
-			</data>
 			<key>hash2</key>
 			<data>
-			XYD7P6Zkyoz5TfjFyd+YNKFxeMBljQm5rthOTdn2Sag=
+			onuT1glOA3UsENFJMS/M9mUfuoIniKFZQtsq3FWZ2UE=
 			</data>
 		</dict>
 		<key>Headers/NSURL+Cloud.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			jGbvcdOorGGJT78sjSUf34xLLwo=
-			</data>
 			<key>hash2</key>
 			<data>
-			cf4csTwCPIltN+Sq1Le2BaphFuR1VU71/hu6zLSgKDk=
+			K/HkW45a2QBfXG9/enKuAOXKm3a2M7gip8KGD2adXTo=
+			</data>
+		</dict>
+		<key>Headers/SCKAPIAuthentication+Current.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			neOSICjKV0khz4HRnEJ+dqbVSbFgk4xTXE9rhb0aJeA=
 			</data>
 		</dict>
 		<key>Headers/SCKAPIAuthentication.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			7VzXffCVMRZtw745OQobYzMkwcc=
-			</data>
 			<key>hash2</key>
 			<data>
-			pno/zoLksS1aOrk2yBHbX0cSw7yUcG5s6h+5fKKeqaY=
+			Wxad1dYYstKcWcb55pB9+z1E3uiP7MQoE7dB/8gRNh8=
+			</data>
+		</dict>
+		<key>Headers/SCKAPIEnvironment+Linking.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			yJjajrorsjn4Y9Z5gu/DikfzczT+kS0J927Jem+I6Go=
+			</data>
+		</dict>
+		<key>Headers/SCKAPIEnvironment.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			z6vGu77BJqCmyj0z0TylK2qYapOYFgbLD5kaYcNJlXg=
 			</data>
 		</dict>
 		<key>Headers/SCKAPIOperation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			0Ree518vb3tTPtqKu48BfFrh0qQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			wm5qDtUpijBnuEDRALAcTVTzxYFdqpmZPvXQQ99+wgk=
+			ATAmprobCGteUgpC9cPz1BDBafBwjVGOEutuJSLpGzE=
 			</data>
 		</dict>
 		<key>Headers/SCKAPIProtocol.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			XmzeqjNNGC1wQCkKZP5U7SA9VkU=
-			</data>
 			<key>hash2</key>
 			<data>
-			YFvNJmKWQ3c0+Mmv2LXmmpGfVPwlR7MBn0vT3msdo/4=
+			8AWkKLSrh3hggoLoD1LYr1ZpWmyM4+eHNroX7lYmtMo=
 			</data>
 		</dict>
 		<key>Headers/SCKAPIRequest.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			jGS24ATKie6KQscMws7Ja8IWn0M=
-			</data>
 			<key>hash2</key>
 			<data>
-			CgMMbxzTjeCv3tKvPVRA9rS9r6ycpPXbmTi3aJBHCPY=
+			AFNbLexJPxoQ1ZAxeHsDR3lAkkcPDa+61teJmvkxN3Y=
 			</data>
 		</dict>
 		<key>Headers/SCKAPISignable.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			yFYtOuPUmEpj1aO45YMtXLytLHg=
-			</data>
 			<key>hash2</key>
 			<data>
-			FftrK0uM/xs1Z3Fue+L4CoQYJ1pGmHV4U15xU5mp124=
+			BfaBsX4Ed06ifUuceKfJW4y80je0zFZGxjwC6ZRgees=
+			</data>
+		</dict>
+		<key>Headers/SCKAPIURLRequest.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			yEOus1rlQTsuq3XtAUTkU8uWsVSptXwfSF6qNw6KYCI=
 			</data>
 		</dict>
 		<key>Headers/SCKArtboard.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			cz5Iq6MNeJ59lhUh7sJc5YpAl1I=
-			</data>
 			<key>hash2</key>
 			<data>
-			8V2knLQ7xaDoErFzKylSeWjG2YrlKdLqeFvbiBa2zVo=
+			s06MO9y7vq/z5lfQmggGdcUub12W6P+AwAaJjHUf3fo=
 			</data>
 		</dict>
 		<key>Headers/SCKArtboardDiff.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			viWh4uLuxZ660aWV0QiYNv6A0a8=
-			</data>
 			<key>hash2</key>
 			<data>
-			E3xk2DLpVEVpeKRQBeeE+D1kXMzCoRTJyODGyXinoIs=
+			rkPOlsQkG1mgyKYwT4uGlRTYRS7QxId0KyUj9+vpBac=
 			</data>
 		</dict>
-		<key>Headers/SCKAuthAPIRequest.h</key>
+		<key>Headers/SCKAuthAPIURLRequest.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			prpxg7HZaQ6Ob0928dMuEJcC+FI=
-			</data>
 			<key>hash2</key>
 			<data>
-			np6moW3EyAqS8VVi3liMjqZ7aCQF6NnuOPpfD2m9R7U=
-			</data>
-		</dict>
-		<key>Headers/SCKAuthenticatedUser.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			rmXbm7x3+h/Sdkg2BVbMszNb+WY=
-			</data>
-			<key>hash2</key>
-			<data>
-			kTHa7a+I4s/H/BUM1/GrG4soAGZPSSYxwgzMBpPrml8=
+			lgUQ+GincgLlnVquCGCEYOAIcXATm4y76z8YCo8tyD8=
 			</data>
 		</dict>
 		<key>Headers/SCKAvatar.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			R+bApeyK7JWEtGaBgFMBkwo0UZg=
-			</data>
 			<key>hash2</key>
 			<data>
-			u7ofrI44kngVtZELtKsEuXV2VwpCfdKr1yjH6AjS/NQ=
+			jqd2qWz1aRnxOI7kApY4m4EEAjRT+nVO3MoPtWZ5+hs=
 			</data>
 		</dict>
 		<key>Headers/SCKCloudDocument.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			JTt1P5xj4HkEV469pbNG8VTMb1M=
-			</data>
 			<key>hash2</key>
 			<data>
-			DJ7/4Y/yPznZ66aX6CuZZH44iwhTnBLom036F5n3XOw=
+			rzl71+/hV7+jFtUoyBtyF9mPpVT8KWi0AAxNGzOwnPk=
 			</data>
 		</dict>
 		<key>Headers/SCKCloudDocumentDiff.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			4FP/SEAf+LY7QYN1PkKWXONQny4=
-			</data>
 			<key>hash2</key>
 			<data>
-			Kw7reBtl3qSiHE7nkrc8wiZpre00Khzxt22u7vAv8tQ=
+			1LjdP96oKDZf3Rp/DwaZTKwb9zlpEc23q5RDfYJ8G4Y=
 			</data>
 		</dict>
 		<key>Headers/SCKCollectionDiff.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			YhRNL8z+3EKz13qCKnOiEUN2XAw=
-			</data>
 			<key>hash2</key>
 			<data>
-			89+wICkzoROySaN8w5TeE2kTFUt5GjDVaTl6OD0nsjo=
+			MF/LwqJbdojR5i+VJ6tOk1O6X25qGKaiqAdz6lWzJ58=
 			</data>
 		</dict>
 		<key>Headers/SCKColorSpace.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			zwR25IEusjl//iylkvZnIja52zE=
-			</data>
 			<key>hash2</key>
 			<data>
-			DmWd3SRftooxn71/KWBiCamF0SKmMbuERDxaIgR8XKo=
+			v5F/YLa4jRC3mgK1LX9x8/YahWYeyFgMqoWNQCEMqo8=
 			</data>
 		</dict>
 		<key>Headers/SCKDiff.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			4FexilUnGrwpX+oTyeoeNDizZc0=
-			</data>
 			<key>hash2</key>
 			<data>
-			P1tc1G6VV8k9q+17DBUt4Hnav6lD+tJoCeuJtBy+Kdk=
+			P8VHcevm/w63epGDJMufGMKigVASWpyUnU1TmTqOtg8=
 			</data>
 		</dict>
 		<key>Headers/SCKDocument.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			iXlJnmmEMCJ6PCWGJQXIZt4igeA=
-			</data>
 			<key>hash2</key>
 			<data>
-			S9rPcyAcjqwDCBfho0p2Alqz2TLym+NiOS+DIbdrWy8=
+			FwfA/oYepKeB8VFJZtnQCk4kywtDp4CTBvkpC9VuJr8=
 			</data>
 		</dict>
 		<key>Headers/SCKDocumentDiff.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ciCwAe+Y4FSPrvldiTstvnoDmdQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			UnODYQHKP3zdDf2p5mFSucbAKmlrKohHrlx2/mysSnw=
+			BhLXKH73YLTAn5EFFfD5oeECx/qpb3m0SXVuO0Jpsgg=
 			</data>
 		</dict>
-		<key>Headers/SCKEnvironment+Linking.h</key>
+		<key>Headers/SCKDownloadOperation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			qiFs6qTFNliB0kH39ks06NgE5wA=
-			</data>
 			<key>hash2</key>
 			<data>
-			GDOL+i7nP2TU7e+7mWsreLP8vcEpL6GIKFZhxsGHlz8=
-			</data>
-		</dict>
-		<key>Headers/SCKEnvironment.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			WEahH+Eao16BUyrm1+1dWxCDnqk=
-			</data>
-			<key>hash2</key>
-			<data>
-			VfHbRjP2isd+SXoN7870xQmZVe1E/OIIkXw0X22wliI=
+			As0yfNNLJ4PM9YuYgm1oJw9MJ/HxLhK9FvNVhDlNz1k=
 			</data>
 		</dict>
 		<key>Headers/SCKFile.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			/ntT+Uv80XwEP3zHtemZGF5N8ZY=
-			</data>
 			<key>hash2</key>
 			<data>
-			fAFc5pVs+RY7jQ78kjBxdf7P5LCxfFaizBrgcx7xr10=
+			0lOdS4NL92r6zKajOK5qd4d1WInt09nTao8ids44SrE=
+			</data>
+		</dict>
+		<key>Headers/SCKFileImageType.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2zDdQmOd3FpUkMlOq8fIoTF9gD058r5SzBf6anR4rEA=
 			</data>
 		</dict>
 		<key>Headers/SCKFlowConnection.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			wCar9ykCyo1GS9PJdF/l96wgTz8=
-			</data>
 			<key>hash2</key>
 			<data>
-			dmeGm1jtwx3CH5NJzXjB0CUpbt6v6rdCpOy2aH9Cum0=
+			3W+29oMiJegezRHrxzcTD5LwskHPEZQUOvwyn2vZO3M=
 			</data>
 		</dict>
 		<key>Headers/SCKFlowConnectionDiff.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			mXUIQPFancF0RCOHNGrkdeEMNjY=
-			</data>
 			<key>hash2</key>
 			<data>
-			muhc+8MZpvqgvH+ELE8HhnP875G78Mqxf2et4lpq7Os=
+			3qDvq2zIKIAOpt5FhA7q6dI3pS7/0CIB7NJRENlAW+A=
 			</data>
 		</dict>
 		<key>Headers/SCKLayer.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Z8nO7e9q7QEVIyi98RxRjKUCLKI=
-			</data>
 			<key>hash2</key>
 			<data>
-			B+bUJc0Zay0k7nPdDzcKM2DYRF17F3Fe1o80/NAiunw=
+			qFkHfk3LkK1Wdfm6bF7Xo1HI1xXxqFdNoGsn1syS/9g=
 			</data>
 		</dict>
 		<key>Headers/SCKLayerDiff.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			w5IoqRPy0YbrBPLdEZoSv68rTzw=
-			</data>
 			<key>hash2</key>
 			<data>
-			GmCiIHcSKAuVN+sVV5LBaT2VLd/eSWf32JmwDl2Zv8U=
+			Ho9f4LhaVJVtYrHZAVFN3RVaQXEYaZAX1BWbxCsQL+w=
+			</data>
+		</dict>
+		<key>Headers/SCKOAuthAPIOperation.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			e7Zr6AF3YP4ZDBgfSnAat2lloOhd3WHjCMn0laBHHUg=
+			</data>
+		</dict>
+		<key>Headers/SCKOAuthAPIURLRequest.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2LoJ6fPuJDnhBE7PrjPHtYdxOMmrTlUkIdUB3N4+hlc=
 			</data>
 		</dict>
 		<key>Headers/SCKObject.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			KZRY/DbE2iD6PCl8UqC3JlBPF94=
-			</data>
 			<key>hash2</key>
 			<data>
-			4JHtglmVJ70knyRoR5JDTVHcnvq2VjIUVDIkm8Q5Auw=
+			aM54h+X8dWiTnZ0D0YkgJBGnvxXtWAZMQ13Wz5N1aYg=
 			</data>
 		</dict>
 		<key>Headers/SCKOperation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Lw6xmc5Hy7FuAgDfivPqqyaiKvs=
-			</data>
 			<key>hash2</key>
 			<data>
-			jOLEiJqA/Z5iPxsJRY+3RE7qjRo+02IDB4lB3HxSLMg=
+			S3pUk4GMmWX22XTDUZROHOo8hijga+ZGoEwbb0zdnT8=
+			</data>
+		</dict>
+		<key>Headers/SCKOrganization.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			GtPB9r9BD4zUVAcu+Nfib0hawQaJrh5SMXpFbiuea04=
 			</data>
 		</dict>
 		<key>Headers/SCKPage.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			a7kCp5TBoBT9+Ezz+rphHybLIlI=
-			</data>
 			<key>hash2</key>
 			<data>
-			Qj6R8CuNTUwSjOr6yAdqLxXJ3jBwdPgYEFd9u1Tu5ok=
+			LXxD0adlWKvqYRz8icuWHOJUoHh2LryJ8N0falJvPTc=
 			</data>
 		</dict>
 		<key>Headers/SCKPageDiff.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			aHVGCXp75cEZ5ODw1T93L4Bnhck=
-			</data>
 			<key>hash2</key>
 			<data>
-			CLBAaDNxcsFDHH7GnlkZM3YxlRa6tmHjoPp9BU9/KA4=
+			qdhF0AuXXxTjeUZWs5T/DfkyMg26MXpYZojsu8YIx8o=
+			</data>
+		</dict>
+		<key>Headers/SCKRestAPIOperation.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			exjMq37iYpqbn0smz/P+cXOC/Y8Vu2/eHL0u9sh8R64=
+			</data>
+		</dict>
+		<key>Headers/SCKShare+Deprecation.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			bozh0tjV7iHUkdHAZhuEtCv6KY8t/NDgY7ILql2tWV8=
 			</data>
 		</dict>
 		<key>Headers/SCKShare.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			EF4mDSADNLMpYOHpwQw1DnOKreQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			oKcciDNLtLzmVx1L46/9zZoXL36t241KWni1dNAax6o=
+			UfLV6wBuI8RX7vgnbFADh84xWdynPpfA3/hF9BwEYsw=
 			</data>
 		</dict>
-		<key>Headers/SCKShareAPIRequest.h</key>
+		<key>Headers/SCKShareAPIURLRequest.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			8XHXkffbf4aboQZlyC02WUSozJw=
-			</data>
 			<key>hash2</key>
 			<data>
-			5zlw6qi5GhXrXcV/6A+8F9u3SNdxRP15dj9sn1G/JdE=
+			4m2jSANn/rJ6UI6rxQz9nvC6evxGpiIFDV+IPcIKxho=
 			</data>
 		</dict>
 		<key>Headers/SCKShareUploadOperation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			QjvhHQSgvIjUwMSwBXR6W2oTwXU=
-			</data>
 			<key>hash2</key>
 			<data>
-			jNPd0EhcS/uEPU6N/IkdOpUdMDv33Oom+hobtP4Xq3A=
+			nIOAHbbcjdNWQnM0j0tjHWdCSfMBIRTsfSNH/YUxV50=
 			</data>
 		</dict>
 		<key>Headers/SCKShareVersion.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			FDtA5A6cHaI27URwn1d/w240SEk=
-			</data>
 			<key>hash2</key>
 			<data>
-			3qxPaM+f4ilSRaQfg0REU/qWR7atJVAUxzZMgJaMoMk=
+			WuPyJIrNfJuXhgw0AyUuSevC0cVQemmqmGHa3zNvUAE=
 			</data>
 		</dict>
 		<key>Headers/SCKThumbnail.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			jJzbQtUOIg2hTEqseYOeY42H3sY=
-			</data>
 			<key>hash2</key>
 			<data>
-			Q7j3UbQeR3SHaSPiAqnjTJibPXNpzmTBBZs1iHVEdfU=
+			1QORoQTExzV8NTnZNBLamOVFS7CJsuuO6uLfCovhe7o=
+			</data>
+		</dict>
+		<key>Headers/SCKURLOperation.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			p8UD+KXj6i/bzSD5VLizqDpbm+mlAYwerdV8LOKz9L4=
 			</data>
 		</dict>
 		<key>Headers/SCKUser.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Kjr5Lr/ifBEWMiJ95cPGQ6E0SJw=
-			</data>
 			<key>hash2</key>
 			<data>
-			Rg4OH4oKBM2Z0J4TtRHY2rOqgQx9sU9tpzkGDObvrvE=
+			66DdVhQ9vxAMmMC5daGxgzwdNMvRMCsnXoTiWXYJoFg=
+			</data>
+		</dict>
+		<key>Headers/SketchCloudKit-Swift.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			MZXQUVzxlc87rkusr/4sqloX6n0vp/fto/v226wTC4o=
 			</data>
 		</dict>
 		<key>Headers/SketchCloudKit.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			d5l8xFSm09ORjXk8rhmmru4xlGk=
-			</data>
 			<key>hash2</key>
 			<data>
-			K3zOZb1gLj7+yAdhGGiLNNPh53uDi9b+WkDv45gwHmE=
+			9v6mF6gzTNK0w/+eDIT2CybbqwxXygOaT5tmJoWd/G4=
+			</data>
+		</dict>
+		<key>Modules/SketchCloudKit.swiftmodule/x86_64.swiftdoc</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			w/FtPgg/5oiS2oZ8O79TF+ZXymZDW6HraL6qWTQ0tW0=
+			</data>
+		</dict>
+		<key>Modules/SketchCloudKit.swiftmodule/x86_64.swiftmodule</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			LQZeWEg+hgeSulC6oduvr1Wo8ZxyE0bkeSq4sKq9BZk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			jQ43Yg9s6siH2dkTXuZMXoWRZHs=
-			</data>
 			<key>hash2</key>
 			<data>
-			L5uSfRZfSqMyRxK7n/2af39eKF+X/UuBcxQMdQINhko=
+			hehzTYplTogk0MPr3I1j2x5i07UZ5UodmCtCdfeh/CU=
 			</data>
 		</dict>
 		<key>Resources/Errors.strings</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			NP8o0E+l52gThjZiCBlWQPVa3AE=
-			</data>
 			<key>hash2</key>
 			<data>
 			xHdpjVVA5JxyhJ+cH1aYx0OnWb6GdgV0bt5Ex38ZBxI=
@@ -446,13 +374,9 @@
 		</dict>
 		<key>Resources/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			O4ozfqyevc/yk73fuv/HVoY5G1A=
-			</data>
 			<key>hash2</key>
 			<data>
-			+oKIkO3SNN/t7LZYrd6HdLDiXnVXZHgGXeUkZO9V91Q=
+			nQrBUx0QW+u25FFf7Bk7PVtdhXrFwaX1JqPTqmgVXlw=
 			</data>
 		</dict>
 	</dict>

@@ -2,7 +2,8 @@
 
 
 // 依赖的模块
-const {serialize,walkin} = require('./designjson_utils');
+const {serialize,walkin,hasStyle} = require('./designjson_utils');
+let RepeatProcessor = require('./designjson_repeat_processor');
 /**
  * 基础节点类
  */
@@ -143,16 +144,17 @@ class QDocument {
      * 移动节点
      * @param {Sketch ID} id 
      * @param {父节点} parent 
+     * @param {Number} index 移到父节点下索引为index的位置，默认为末端
      */
-    moveNode(id,parent,isInsert = false) {
+    moveNode(id,parent,index = Array.isArray(parent.children) && parent.children.length) {
         const currentNode = this.getNode(id);
         this.removeNode(id);
         currentNode.x = currentNode.abX - parent.abX;
         currentNode.y = currentNode.abY - parent.abY;
         currentNode.parent = parent.id;
+        parent.isModified = true;
         if(Array.isArray(parent.children)) {
-            if (isInsert) parent.children.unshift(currentNode);
-            else parent.children.push(currentNode)
+            parent.children.splice(index,0,currentNode); // 在特定位置添加元素
         } else parent.children = [currentNode];
         parent.childnum = parent.children.length;
         parent.isLeaf = false;
@@ -164,6 +166,7 @@ class QDocument {
      */
     removeNode(id,parent) {
         parent = parent || this.getParentNode(id);
+        parent.isModified = true;
         const currentNode = parent.children.find(node => node.id === id);
         if(currentNode.isMasked) {
             const maskNode = parent.children.find(node => node.id === currentNode.maskNode);
@@ -175,6 +178,7 @@ class QDocument {
         parent.children = parent.children.filter(node => node.id !== id);
         parent.childnum = parent.children.length;
         if (parent.childnum === 0) parent.isLeaf = true;
+        currentNode.parent = null;
     }
     /**
      * 获取节点
@@ -223,9 +227,11 @@ class QDocument {
         walkin(this._tree,node => {
             if(node.type === QImage.name) _images.push(node);
         })
+        //2018.10.25:去掉去重注释
+        RepeatProcessor(_images);
         // const rules = ['children','styles','parent','childnum','isLeaf','constraints'];break;
         return _images.map(({
-            id, name, type, width, height, x, y, abX, abY, isMasked, maskedNodes, maskNode, path, _imageChildren, _origin
+            id, name, type, width, height, x, y, abX, abY, isMasked, maskedNodes, maskNode, path, _imageChildren, _origin,isModified
         }) => {
         // if(node.type != QShape.name) delete node._origin.layers;
 
@@ -235,7 +241,7 @@ class QDocument {
         }
             return {
                 id, name, type, width, height, x, y, abX, abY, isMasked, maskedNodes, maskNode, path, _imageChildren,
-                _origin
+                _origin,isModified
             }
         });
     }
@@ -266,6 +272,7 @@ class QDocument {
                 if (key === 'children') res[key] = node[key].map(({id}) => id);
                 else res[key] = node[key];
             }
+            res.hasStyle = hasStyle(node);
             return res;
         })
     }

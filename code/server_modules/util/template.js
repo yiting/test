@@ -2,7 +2,7 @@
 
 
 // h5头
-let html5 = function(cssName) {
+let htmlStart = function(cssName) {
     let str = '<!DOCTYPE html>'
             + '<html data-use-rem="750">'
             + '<head>'
@@ -11,23 +11,23 @@ let html5 = function(cssName) {
             + '<title></title>'
             + '<link rel="stylesheet" href="'+cssName+'.css">'
             + '<script src="http://imgcache.qq.com/push/js/grid.js"></script>'
-            + '</head>';
+            + '</head><body>';
 
     return str;
 }
 
 
-let end = function() {
+let htmlEnd = function() {
     // let str = '<script src="https://coderjunb.github.io/Contrast/dist/contrast.js"></script>'
     //         + '<script>Contrast.setBg({src: "./images/bg.png"});</script>'
     //         + '</html>';
-    let str = '</html>';
+    let str = '</body></html>';
 
     return str;
 }
 
 
 module.exports={
-    html5,
-    end
+    htmlStart,
+    htmlEnd
 }

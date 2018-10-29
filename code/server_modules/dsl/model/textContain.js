@@ -1,5 +1,5 @@
 let Common = require("../dsl_common.js");
-let STORE = require("../dsl_store.js");
+let Dom = require("../dsl_dom.js");
 
 /**
  * 文案层叠模型
@@ -10,8 +10,8 @@ module.exports.template = function() {
 }
 module.exports.is = function(dom, parent, option, config) {
     if (dom.text && dom.children && dom.children.length > 0) {
-        let child = Common.createDom({
-            type: STORE.model.TEXT,
+        let child = new Dom({
+            type: Store.model.TEXT,
             x: dom.x,
             y: dom.y,
             width: dom.width,

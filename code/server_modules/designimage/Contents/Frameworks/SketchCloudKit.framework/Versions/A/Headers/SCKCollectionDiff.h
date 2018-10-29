@@ -1,10 +1,5 @@
-//
-//  SCKCollectionDiff.h
-//  SketchCloudKit
-//
 //  Created by Robin Speijer on 06-02-17.
-//  Copyright © 2017 Awkward. All rights reserved.
-//
+//  Copyright © 2017 Bohemian Coding. 
 
 #import "SCKDiff.h"
 @class SCKObject;

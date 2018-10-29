@@ -1,47 +1,33 @@
-//
-//  SCKAPIOperation.h
-//  SketchCloudKit
-//
 //  Created by Robin Speijer on 08-05-17.
-//  Copyright © 2017 Awkward. All rights reserved.
-//
+//  Copyright © 2017 Bohemian Coding. 
 
-#import "SCKOperation.h"
+#import "SCKURLOperation.h"
 
-@class SCKAPIRequest, SCKObject;
+@class SCKAPIURLRequest, SCKObject;
+@protocol SCKAPIRequest;
 
 NS_ASSUME_NONNULL_BEGIN
-
-@interface SCKAPIOperation : SCKOperation
+NS_SWIFT_NAME(APIOperation)
+@interface SCKAPIOperation : SCKURLOperation
 
 #pragma mark - Request
-
-/// The default Cloud URLSession that's used for executing API requests.
-+ (NSURLSession *)sharedURLSession;
 
 /**
  Initializes a new operation with an API request to be executed by this operation.
 
- @param request The API request to be executed.
+ @param request The API request to be executed. Could either be a Rest API request, or a GraphQL API request.
  @return The new operation.
  */
-- (instancetype)initWithRequest:(SCKAPIRequest *)request;
+- (instancetype)initWithRequest:(id<SCKAPIRequest>)request NS_DESIGNATED_INITIALIZER NS_SWIFT_NAME(init(_:));
 
-/// The API request to be executed. This can be set during execution.
-@property (nonatomic, strong, readonly) SCKAPIRequest *request;
-
-/// The URLSession to use when executing URL requests. By default, this is a dedicated URLSession. When the operation starts executing, the data task will be created using this session.
-@property (atomic, strong) NSURLSession *session;
-
-#pragma mark - Response
+/// The API request to be executed. Could either be a Rest API request, or a GraphQL API request.
+@property (nonatomic, strong, readonly) id<SCKAPIRequest> request;
 
 /// An error that occured while executing the request.
-@property (atomic, strong, nullable, readonly) NSError *error;
+@property (atomic, strong, nullable) NSError *error;
 
-/// The objects that have been returned by the API. Those are guarenteed to be of type [self.class objectType]. This will be a single object for the most requests.
-@property (atomic, strong, nullable, readonly) NSArray<SCKObject *> *result;
-
-#pragma mark - Overridable
+/// Synchronously refresh the request's authentication. Will be called during executed if needed.
+- (void)refreshAuthentication;
 
 /**
  Processes a Cloud API response and sets the appropriate attributes of the operation. This method can be overridden to customize its behavior.
@@ -51,14 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param error The error that occured while executing the request.
  */
 - (void)processData:(nullable NSData *)data response:(nullable NSHTTPURLResponse *)response error:(nullable NSError *)error;
-
-/**
- Directly executes a Cloud API request on the default Cloud URLSession.
-
- @param request The request to execute.
- @param handler The completion handler to be executed when the request has been finished and parsed. The completion handler will always be called on the main queue.
- */
-+ (void)executeRequest:(SCKAPIRequest *)request completionHandler:(void (^ _Nullable)(NSArray<SCKObject *>  * _Nullable objects, NSError * _Nullable error))handler;
 
 @end
 

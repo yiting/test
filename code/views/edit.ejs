@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>预览</title>
+    <title>设计编译 - 内测版</title>
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/jquery.magnify.css">
     <link rel="stylesheet" href="/css/edit.css">
@@ -13,7 +13,7 @@
     <div class="header-left">
         <ul class="tab">
             <li class="icon-logo"></li>
-            <li class="current">页面</li>
+            <!-- <li class="current">页面</li> -->
         </ul>
     </div>
     <div class="qr">
@@ -81,20 +81,20 @@
             <div class="design-coding-panel">
                 <!-- 2018-10-12：设计稿图-->
                 <div class="design-img-panel">
-                    <h1 class="design-title">设计图</h1>
-                    <div class="design-img" style="width:375px; height: 667px;overflow-y: auto;">
+                    <h1 class="design-title">设计稿</h1>
+                    <div class="design-img" style="width:420px; height: 747px;overflow-y: auto;">
                         <img src="" id="design-img-prew">
                     </div>
                 </div>
                 <!-- 编译结果-->
                 <div class="compile-result-panel">
                     <h1 class="compile-title">编译结果</h1>
-                    <iframe frameborder="0" scrolling="auto" style="width:375px; height: 667px;" class="screen"
+                    <iframe frameborder="0" scrolling="auto" style="width:420px; height: 747px;" class="screen"
                             src="" id="screen"></iframe>
                 </div>
             </div>
             <!--获取当前设计稿图按钮-->
-            <div class="design-img-btn">获取设计图</div>
+            <div class="design-img-btn" data-show="0">比对设计稿</div>
             <!--生成模式:1.普通规则   2.AI模式-->
             <!--<ul class="compilation-mode-list">
                 <li class="compilation-mode-item ordinary-mode-item">
@@ -116,7 +116,7 @@
     <!-- 素材库/编辑-->
     <aside class="inspector active">
         <ul class="func-tab-list">
-            <li class="tab-item material-tab active">图片素材库</li>
+            <li class="tab-item material-tab active">images</li>
             <!--2018-09-30:先屏蔽掉-->
             <!--<li class="tab-item edit-tab">编辑</li>-->
         </ul>
@@ -132,7 +132,7 @@
                 </div>
             </li>
             <!--操作区域-->
-            <li class="content-item edit-content-panel">
+            <!--<li class="content-item edit-content-panel active">
                 <section>
                     <h3>属性</h3>
                     <ul class="features-list">
@@ -172,13 +172,75 @@
                         </li>
                     </ul>
                 </section>
-            </li>
+            </li>-->
         </ul>
+    </aside>
+    <!--侧边栏属性显示 -->
+    <aside class="sidebar attribute-show-panel">
+        <h3 class="node-name">d</h3>
+        <!-- 属性-->
+        <section class="attribute-panel">
+            <h3 class="section-title">属性</h3>
+            <ul class="attribute-list">
+                <li class="attribute-item">
+                    <span class="attribute-title">位置</span>
+                    <input type="text" class="x-val" readonly/>
+                    <input type="text" class="y-val" readonly/>
+                </li>
+                <li class="attribute-item">
+                    <span class="attribute-title">大小</span>
+                    <input type="text" class="width-val" readonly/>
+                    <input type="text" class="height-val" readonly/>
+                </li>
+                <li class="attribute-item">
+                    <span class="attribute-title">不透明度</span>
+                    <input type="text" class="opacity-val" readonly/>
+                </li>
+            </ul>
+        </section>
+        <!--字体-->
+        <section class="fontSize-panel">
+            <h3 class="section-title">字体</h3>
+            <ul class="attribute-list">
+                <li class="attribute-item">
+                    <span class="attribute-title">字体</span>
+                    <input type="text" class="font-val" readonly/>
+                </li>
+                <li class="attribute-item">
+                    <span class="attribute-title">颜色</span>
+                    <span class="color-bac"></span>
+                    <input type="text" class="color-val" readonly/>
+                </li>
+                <li class="attribute-item">
+                    <span class="attribute-title">大小</span>
+                    <input type="text" class="fontSize-val" readonly/>
+                </li>
+                <li class="attribute-item">
+                    <span class="attribute-title">空间</span>
+                    <input type="text" class="letterSpace-val" readonly/>
+                    <input type="text" class="lineHeight-val" readonly/>
+                </li>
+            </ul>
+        </section>
+        <!-- 代码-->
+        <section class="code-panel">
+            <h3 class="section-title">&bull; 代码</h3>
+            <h3 class="copy-code-btn" data-clipboard-target="#language-attr-list">复制代码</h3>
+            <div class="language-panel">
+                <div class="language">
+                    <ul class="language-attr-list" id="language-attr-list">
+
+                    </ul>
+                </div>
+            </div>
+        </section>
     </aside>
 </main>
 <script src="js/lib/jquery.min.js"></script>
+<!--复制剪切板插件 -->
+<script src="js/lib/clipboard.min.js"></script>
 <!--瀑布流插件-->
-<script src="js/lib/masonry-docs.min.js"></script>
+<!--<script src="js/lib/masonry-docs.min.js"></script>-->
 <!--图片查看器-->
 <script src="js/lib/jquery.magnify.js"></script>
 <!--二维码插件 -->

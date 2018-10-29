@@ -27,7 +27,6 @@ class _ImageMergeProcessor {
         this._updateTreeImages(this._document);
     }
     _nodeMerge(pnode) { // 规则判断
-        // if(pnode.type != QShape.name) delete pnode._origin.layers;
         if (pnode.children && pnode.children.length > 1 && !pnode.isMasked) {
             if(hasMaskChild(pnode)) {
                 const maskNodes = pnode.children.filter(({type,isMasked}) => type === QMask.name && !isMasked);
@@ -38,18 +37,31 @@ class _ImageMergeProcessor {
                 this._mergeGroupToParent(pnode.children,pnode)
             }
         }
+        if (pnode.children && pnode.children.length === 1) {
+            
+            const {type,shapeType,styles} = pnode.children[0];
+            if ((type === QShape.name || type === QMask.name) && shapeType != 'rectangle') { // QShape -> QImage
+                this._convertToImageNode(pnode);
+            }
+        }
     }
     _maskMerge(maskNode,pnode) {
         const {_document} = this;
         const maskedCollection = maskNode.maskedNodes.map(id => _document.getNode(id));
         maskedCollection.unshift(maskNode);
-        this._insertImageNode(pnode,maskedCollection); // mask关联的节点立即合成新组
+        if (maskedCollection.length === pnode.children.length) {
+            this._convertToImageNode(pnode);
+        } else this._insertImageNode(pnode,maskedCollection); // mask关联的节点立即合成新组
     }
     _mergeGroupToParent(nodes,pnode) {
         if(!nodes || !nodes.length) return;
-        const targetNodes = nodes.filter((node) => node.type !== QText.name && node.type !== QLayer.name && !isBigNode(node,pnode,this._document._tree)); // 过滤掉文字节点、组节点、与父级重合的矩形
+        const targetNodes = nodes.filter((node) => node.type !== QText.name && node.type !== QLayer.name && !isBigNode(node,this._document._tree)); // 过滤掉文字节点、组节点、与父级重合的矩形
         if(!targetNodes.length) return;
         const groupArr = mergeJudge(targetNodes); // 根据规则输出 成组列表 [[node1,node2],[node3,node4],node5]
+        if (groupArr.length === 1 && groupArr[0].length === pnode.children.length) {
+            this._convertToImageNode(pnode);
+            return;
+        }
         groupArr.map(item => {
             (Array.isArray(item) && item.length > 1) && this._insertImageNode(pnode,item);
         });
@@ -57,24 +69,32 @@ class _ImageMergeProcessor {
     // 将多个节点合并成QImage节点，并插入到父节点
     _insertImageNode(pnode,nodes) {
         const obj = new QImage();
+
+        obj.isModified = true;
         const [id,name] = nodes.reduce((p,c) => [ `${p[0]}_${c.id.slice(0,4)}`,`${p[1]}_${c.name}`],['','']);
         console.log('合并图片',name);
         obj.name = name;
         // obj.backgroundColor = null;
         obj.path = `${id}.png`;
         // 设置组的样式
-        Object.assign(obj,generateGroupAttr(nodes));
+        Object.assign(obj,generateGroupAttr(pnode,nodes));
         const new_node = this._document.addNode(id, obj, pnode); // 插入新节点
-        if (nodes.length) new_node._imageChildren = [...nodes];
+        if (nodes.length) new_node._imageChildren = [...nodes].map(n => {
+            n.x = n.abX - new_node.abX;
+            n.y = n.abY - new_node.abY;
+            return n;
+        });
         Object.assign(new_node,{children:[],childnum: 0,isLeaf: true});
         nodes.forEach(({id}) => this._document.removeNode(id, pnode)); // 删除旧节点
     }
     // 将节点转换成QImage
     _convertToImageNode(node) {
+        console.log('转化为图片',node.name);
         // const {id,name,}
         // Object.assign(node,new QImage(),{ path, type: QImage.name, id: node.id, name: node.name });
         node.type = QImage.name;
         node.path = `${node.id}.png`;
+        node.shapeType && delete node.shapeType;
         node.styles = {};
         if (node.children && node.children.length) node._imageChildren = [...node.children];
         node.children = [];
@@ -86,13 +106,12 @@ class _ImageMergeProcessor {
     }
     // 将树的QImage和QShape的id插入列表，等待export.js输出
     _updateTreeImages(_document) {
-        const images = [];
         walkout(_document._tree,node => {
             const {type,shapeType,styles} = node;
-            if (type === QShape.name && shapeType != 'rectangle') { // QShape -> QImage
+            if ((type === QShape.name || type === QMask.name) && shapeType != 'rectangle') { // QShape -> QImage
                 this._convertToImageNode(node);
             }
-            // if (node.name === 'Rectangle 353 Copy 5') debugger
+            // 如果是没有背景图的矩形，可以直接转化为纯css的QLayer，否则转为合图的QImage
             if (shapeType === 'rectangle') {
                 if (styles.background && styles.background.type === 'image') this._convertToImageNode(node); // QShape -> QLayer
                 else this._convertToLayerNode(node);
@@ -102,10 +121,10 @@ class _ImageMergeProcessor {
         // _document._images = images; // 生成图片信息列表，待export
     }
 }
-function isBigNode(node,pnode,rnode,threshold = 1/200) {
+function isBigNode(node,rnode,threshold = 1.5/200) {
     const {width,height,abX,abY} = node;
     const size = width * height;
-    return size >= rnode.width ** 2 * threshold || size >= pnode.width * pnode.height;
+    return width > rnode.width * 0.8 || height > rnode.height * 0.8 || size >= rnode.width ** 2 * threshold;
 }
 const mergeJudge = (boxArray,threshold=20) => {
     //分组

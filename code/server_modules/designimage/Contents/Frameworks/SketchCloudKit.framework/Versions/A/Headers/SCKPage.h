@@ -1,10 +1,5 @@
-//
-//  SCKPage.h
-//  SketchCloudKit
-//
 //  Created by Robin Speijer on 01-02-17.
-//  Copyright © 2017 Awkward. All rights reserved.
-//
+//  Copyright © 2017 Bohemian Coding. 
 
 #import "SCKObject.h"
 
@@ -19,6 +14,7 @@ typedef NS_OPTIONS(NSUInteger, SCKPageAttributes) {
 };
 
 /// A page inside a SCKDocument.
+NS_SWIFT_NAME(Page)
 @interface SCKPage : SCKObject
 
 /// The document where this page is part of.

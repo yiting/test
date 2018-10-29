@@ -38,7 +38,10 @@ const operatePage = function () {
                 //let msgIndex = layer.msg("正在上传中，请稍后...", {time: 30000});;
 
                 let formData = new FormData($('#uploadForm')[0])//表单id
-                CommonTool.uploadFile("/upload", formData, function (data) {
+                //在线上传
+                //let onlineServer = "http://111.231.239.66:8080";
+                //CommonTool.uploadFile(onlineServer+"/upload", formData, function (data) {
+                CommonTool.uploadFile("/upload", formData, function (data) {    
                     layer.msg('正在解析中，请稍后', {shift: -1}, function () {
                         //结果区域显示
                         $(".file-info").hide();

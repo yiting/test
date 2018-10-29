@@ -46,10 +46,13 @@ typedef BOOL(^BCCornerEnumeratorPredicate)(BCCorner corner);
 void BCCornerEnumerate(BCCornerEnumeratorBlock block);
 BCCorner BCCornerByRotating45DegreesCounterClockwise(BCCorner corner);
 BCCorner BCCornerByRotatingByDegrees(BCCorner corner, CGFloat degrees);
+
+/// @result The opposite corner to \c corner.
 BCCorner BCCornerFlip(BCCorner corner);
+
 BOOL BCCornerSatisfiesMask(BCCorner corner, NSUInteger mask);
 BOOL BCCornerIsInMidHorizontal(BCCorner corner);
 BOOL BCCornerIsInMidVertical(BCCorner corner);
 BCCorner BCCornerFlipByAxis(BCCorner corner, BCAxis axis);
-NSUInteger BCCornerRectEdgesMask(BCCorner type);
+BCEdge BCCornerRectEdgesMask(BCCorner type);
 BCCorner BCCornerFirstCornerSatisfyingPredicate(BCCornerEnumeratorPredicate block);

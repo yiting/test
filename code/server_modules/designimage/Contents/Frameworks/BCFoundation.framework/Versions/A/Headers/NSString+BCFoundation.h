@@ -27,6 +27,31 @@
 
 - (NSArray *)words;
 
+/**
+ Like substringToIndex:, but ensures that we don't split 4 byte characters, combining characters, grapheme clusters, etc in half.
+ @param index The index at which to split the string.
+ @return Returns a new string containing the characters of the receiver up to, but not including, the one at \c index. Where
+ \c index splits a character the result will "round up" to include the full character.
+ */
+- (NSString *)safeSubstringToIndex_ms:(NSUInteger)index;
+
+/**
+ Like substringFromIndex:, but ensures that we don't split 4 byte characters, combining characters, grapheme clusters, etc in half.
+ @param index The index at which to split the string.
+ @return Returns a new string containing the characters of the receiver coming after and including the one at \c index. Where
+ \c index splits a character the result will "round up" to the start of the next character.
+ */
+- (NSString *)safeSubstringFromIndex_ms:(NSUInteger)index;
+
+/**
+ Like safeSubstringWithRange_ms:, but ensures that we don't split 4 byte characters, combining characters, grapheme clusters, etc in half.
+ @param range The range of characters required.
+ @return Returns a new string containing the characters within \c range. Where a character is split at the start of the range the result
+ will "round up" to start on the next character. Where a character is split at the end the result will "round up" to include the whole
+ character.
+ */
+- (NSString *)safeSubstringWithRange_ms:(NSRange)range;
+
 #pragma mark - Path Utilities
 
 - (NSString *)parent;

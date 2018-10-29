@@ -6,17 +6,27 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		cAPue6kM0CSrXek6QmPtrp/4Jfg=
+		UhC8athBwrOQfzW4leMwoGlfOP0=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Headers/BCAssertion.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			lHCmLkK+styfjNUoq+cQi4144SY0QNcMn34FQKOnTJU=
+			</data>
+		</dict>
+		<key>Headers/BCAtomicCalculatedProperty.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			DLkqSliKZloK6SCR9u/criZGOgk0YUhyCA8eez95LWI=
+			</data>
+		</dict>
 		<key>Headers/BCAttributedStringFunctions.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			LvmOBrE2Zl5qTBj/CgGmo6H3Lgk=
-			</data>
 			<key>hash2</key>
 			<data>
 			L+VBNsL4MuR2a86+uwV0sQjsmO1nnmsVODGi/5i4kkQ=
@@ -24,98 +34,90 @@
 		</dict>
 		<key>Headers/BCBlocks.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			AXIWLxCdK6+HZuXpK4bgeCk9cfM=
-			</data>
 			<key>hash2</key>
 			<data>
-			S9Z5qHPXewFiV4VrXecxT+fYDhlQU+SRQTJbQjFBl2w=
+			h7YwaB+KfOaQZl/dolxn/5A9GMbHnZGb1XvxocvtDzc=
 			</data>
 		</dict>
 		<key>Headers/BCCache.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ees9MDzvmq+JqyK93RgjKjWqYcA=
-			</data>
 			<key>hash2</key>
 			<data>
-			4ehTrFG2vhvYZg6QBAKuLSRsa3bUTjxm3Ssog+dINYg=
+			bFlB31Z6SLaRY1PCFQfNmIXFX/iDYeUUUdomM0TJCkE=
 			</data>
 		</dict>
 		<key>Headers/BCCheckerboardPattern.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			mNx2smrjGRVsgmtH800aB2NkBRA=
-			</data>
 			<key>hash2</key>
 			<data>
-			htSbkLhADj/EG8Z47+MVXVTgdiZG+kjpLgMe0wdCCqY=
+			vNT2E+n+/L0GGGya1DEo5STFpE6ymyQAhxwokRFsSe0=
 			</data>
 		</dict>
 		<key>Headers/BCConstraint.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			IfN4hgsI6BxyHyPf613ULQcxcy4=
-			</data>
 			<key>hash2</key>
 			<data>
-			Nt7Wzyg4RBQu4uhUK3ACUO0NZcYyoW+WafLM9u3ssWA=
+			E3J2gP0YPuCIgYJuFkvjRw9ay8SsjTAH6C4HxweDKZs=
 			</data>
 		</dict>
 		<key>Headers/BCCornerGeometry.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			YrCzSKsCXb5D3VvMY5rYkphaefw=
-			</data>
 			<key>hash2</key>
 			<data>
-			dxBBeLxiSr7yAnCJq/4flV8AIj8JoNEHELk16/mV9Cg=
+			NMbaicASP5td1OKSR3dSUJxoCxLkfDLa4s1ScPZ4Ks0=
+			</data>
+		</dict>
+		<key>Headers/BCDebugMacros.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			XOdR5fPSL9LuEYzYZexo63IpYwktXliXvrWcP5D+850=
 			</data>
 		</dict>
 		<key>Headers/BCDownloadManager.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			PCmoMnyKOAtNP2yAt4Gm9B4p+hU=
-			</data>
 			<key>hash2</key>
 			<data>
 			ajefEthGP9PvzjOAS0nw8Uth7tFFnsG8EjD7ZfBKEDc=
 			</data>
 		</dict>
-		<key>Headers/BCFoundation.h</key>
+		<key>Headers/BCFloatRange.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			oOIBJTHWyHxj1MNMClcqL/Eaol4=
-			</data>
 			<key>hash2</key>
 			<data>
-			z5zTPDexEv0hrGA2BK5dKhJnPTih1DM1rgh5LW0FbiY=
+			oCWHfwUpb3KTFfXBo541d3VgK8fPjOlvbBVeatD3jws=
+			</data>
+		</dict>
+		<key>Headers/BCFoundation.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			143MV+nbfIEZqtSPygcgKtZTCDRIKmJyXz5J3G7sNCs=
 			</data>
 		</dict>
 		<key>Headers/BCGeometry.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Pq5inxbMuwo07Mv5NrxaLJzJ1AY=
-			</data>
 			<key>hash2</key>
 			<data>
-			fsccAX50D++ZKB1J0EpibnbB/jQO+ISqOHGL/mcxmmI=
+			YjmFmMTsFs+V6GLYGfgY5LZ0QjUaCVbSG2IzTLF0sYs=
+			</data>
+		</dict>
+		<key>Headers/BCIntPoint.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			kGaUB8OhvszkMssrUJP0mJwZ1oaWrE4YyyqhshWZyCs=
+			</data>
+		</dict>
+		<key>Headers/BCIntRect.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			7fXDCaDSQfFbH0k6ZpLvUNi3A7MnoTWkxUDYDjB+L0I=
 			</data>
 		</dict>
 		<key>Headers/BCJSONDataEncoder.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			WlnGxlGwehOpALf5iCslC68EetI=
-			</data>
 			<key>hash2</key>
 			<data>
 			RMefGLgsBVVRanWdB8GmvKS8oA5JWioQyHEmfS0Yk7c=
@@ -123,10 +125,6 @@
 		</dict>
 		<key>Headers/BCJSONDecoder.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			iQcNxlES8JTmQRCgEbS+mmd4+WY=
-			</data>
 			<key>hash2</key>
 			<data>
 			m49NsGuDsQYZW4W4sboAoLZfZH2u6i+YCuplMUfZ8K0=
@@ -134,10 +132,6 @@
 		</dict>
 		<key>Headers/BCJSONEncoder.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			qMbeAX6gC+Cx6dWHJWaWDBXjrLc=
-			</data>
 			<key>hash2</key>
 			<data>
 			izUMHGAutk7FHHWTn+BkVg897oZ5+TLZrLowrVEuZdg=
@@ -145,10 +139,6 @@
 		</dict>
 		<key>Headers/BCJSONFileEncoder.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			TxZmUo/FZhhspAr/IIcRivKhQXg=
-			</data>
 			<key>hash2</key>
 			<data>
 			BScFF0KrpJw9iymL39S9SkZc2FjaiFp0NDxdUHUtYVg=
@@ -156,10 +146,6 @@
 		</dict>
 		<key>Headers/BCJSONStringEncoder.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			gL4UP2hQvCId4rmA8VB8PqW4h1w=
-			</data>
 			<key>hash2</key>
 			<data>
 			7riarJHUqcGJTa7/wO0rMoOoJ01ANTHHeEaFHOhQsKQ=
@@ -167,32 +153,20 @@
 		</dict>
 		<key>Headers/BCLineGeometry.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			vgK853c1nkaFvdhnDGuXE45XYBQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			zjcZvzcKEdfoh6qI6OpSEijrzbHNeOyyU+pi3oox90A=
+			db4v2WOKWwzmF0Og1/+hs8tIh0YrpS+TvYdHXG0X6Bc=
 			</data>
 		</dict>
 		<key>Headers/BCLocalizedString.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			IvGr8Xj6h73DoVaHC6FOXppTOac=
-			</data>
 			<key>hash2</key>
 			<data>
-			0wY1vggvv0nAbXTqVprSlKXajhK3bNPnF1e21FyU5JU=
+			6xd1Y8Mw4HaYCWRrJWoa6k0IF5QX1PAk4uYcBH5EIRw=
 			</data>
 		</dict>
 		<key>Headers/BCMachine.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			AwAJCMjeF3d41QUNMgxeNl9LN9E=
-			</data>
 			<key>hash2</key>
 			<data>
 			J1o9zELYrand4u0eskAiQBbm0g1EyiMxNrBuDSDoeKg=
@@ -200,21 +174,13 @@
 		</dict>
 		<key>Headers/BCMacros.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ZX4fzN2ZO+FaoHtON3QvEyG6vBE=
-			</data>
 			<key>hash2</key>
 			<data>
-			APeXhwRPLPR6lcPu+Tf/M3wIUDj0KFcQ+TkiRkoE49A=
+			k9844lQ8k9GwkNd2wP3c64LOmDXIuAmT0REcl38j7JM=
 			</data>
 		</dict>
 		<key>Headers/BCNetworkManager.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			4qOHjBqjSsB2iWhv8yNfB0upBYM=
-			</data>
 			<key>hash2</key>
 			<data>
 			xeEzPyMMuWi2pP5fZc9VbgJvCIXWBU6SUEC7otJCh0c=
@@ -222,21 +188,13 @@
 		</dict>
 		<key>Headers/BCObjectPool.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			RNoAI442ARGUGiCyjEL5uA69P7Y=
-			</data>
 			<key>hash2</key>
 			<data>
-			gq/3U2x9y6Ptuyako2+zOJfcEl91xj6Jn6re+jkxOjY=
+			WlhYKASgbSbqjsUAD7mjW7kqYCsqocTNKQ1S6KFZYTg=
 			</data>
 		</dict>
 		<key>Headers/BCObjectSorting.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			CfILpHckC80FV6Z0OvB51N4lajk=
-			</data>
 			<key>hash2</key>
 			<data>
 			43mThAgQsGkQnBbDrOqi0ykwqe9rPtwzywD7R5nakMY=
@@ -244,10 +202,6 @@
 		</dict>
 		<key>Headers/BCPerformanceTimer.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			N0UlRzYr7gZpiTWqz0zo33gtibE=
-			</data>
 			<key>hash2</key>
 			<data>
 			9AGQ7cQFZ1F5DGMBwNM2V7eufBU7mkkEZVGthXYV4Qc=
@@ -255,21 +209,13 @@
 		</dict>
 		<key>Headers/BCPointGeometry.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			6QJYBMFv8FhavIW9x6sUOydUOt0=
-			</data>
 			<key>hash2</key>
 			<data>
-			2n7WiMax48lAcVxU2gbxy5RA0KlU9ZmBvlwjVO526Hw=
+			53WXIJI+3Ejvg8s8Ob1xxdhxKpPd7zTG7DaGoWjJ4JQ=
 			</data>
 		</dict>
 		<key>Headers/BCPolynomialFunctions.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			e4Jzzuq2NYJXDeOV0A2+n7CD2P0=
-			</data>
 			<key>hash2</key>
 			<data>
 			IPuXZEJT0DUOsXYDLe0mRUJsu8atYoNyk2dvur4m308=
@@ -277,21 +223,13 @@
 		</dict>
 		<key>Headers/BCPrimitiveFunctions.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			8JClWRnXbK1A81rcvACtUjOJlbg=
-			</data>
 			<key>hash2</key>
 			<data>
-			FtdMNPGykibsDd2he3eQpEfSwAtNAx3XkUP10kQ/UTA=
+			kq2aTsZMpOxi5sHXMcGBaUOaCqMaahYLTBT/clPztK4=
 			</data>
 		</dict>
 		<key>Headers/BCRangeMap.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			PdrMJ49/SJ6JkpOBovrhi6E3LNQ=
-			</data>
 			<key>hash2</key>
 			<data>
 			B4v0sGu2nVbtpiKfOzu2jEef6WLmf5MTlsLniCVbxh0=
@@ -299,10 +237,6 @@
 		</dict>
 		<key>Headers/BCReadWriteLock.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			6e5A3Niphffks0IUPusMW+lrS1s=
-			</data>
 			<key>hash2</key>
 			<data>
 			X2gpFv9mC8nt4Ttl7Co7HXL2mE4CkySUGrNX0rNwqo0=
@@ -310,10 +244,6 @@
 		</dict>
 		<key>Headers/BCRect.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			U1FdCpFcUJuMdZ9iTXBRW5cFO9I=
-			</data>
 			<key>hash2</key>
 			<data>
 			s7C72NwBEoPJqGo4TeEIcvg0mn9bD4NG5dhA26oqD0w=
@@ -321,21 +251,13 @@
 		</dict>
 		<key>Headers/BCRectGeometry.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			kpyAuSMk+kLeNHEWM7uaKK62etY=
-			</data>
 			<key>hash2</key>
 			<data>
-			tt/hRgdT5PWpj0NsceDRDtDeVYYct/HveVWkI46/hbg=
+			NyYDO9F9SyXILdirR+eXhvVd7GksMuHyRMQBmjb3dnI=
 			</data>
 		</dict>
 		<key>Headers/BCSandboxFunctions.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			fhpGCTYqd3AQce9dRiZeA/vGDz4=
-			</data>
 			<key>hash2</key>
 			<data>
 			kf0eEuh1P+JD8XnstAUFNb+uWnFPpd55YLegHSUHblk=
@@ -343,10 +265,6 @@
 		</dict>
 		<key>Headers/BCSingleton.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			h7rlMkDzX8HOhHC4gJivX7sM8jk=
-			</data>
 			<key>hash2</key>
 			<data>
 			0bvt12EP554GVZa4yhUPQPUFVH+x2P2i0x3CbiV5rn0=
@@ -354,10 +272,6 @@
 		</dict>
 		<key>Headers/BCTime.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			XJZSE7qiW+me8H5eYwWBlMldLis=
-			</data>
 			<key>hash2</key>
 			<data>
 			hW0SYjZKW+SAjhsfqd1vBXgIZiwK/eW6NcOf3kXikn8=
@@ -365,10 +279,6 @@
 		</dict>
 		<key>Headers/BCToolRunner.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			0wx0XdCvgK63XMJWNWmEO4poP0Y=
-			</data>
 			<key>hash2</key>
 			<data>
 			+nx8NOJiQjGtyZefLt848g4sELg52+SWc6dtgAzowHA=
@@ -376,21 +286,20 @@
 		</dict>
 		<key>Headers/BCTypes.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			5GrRzjWiuhWRgWIdl3ZXlKLm+y0=
-			</data>
 			<key>hash2</key>
 			<data>
 			hSuCWPemoyZfHIsgm99LpZOXJF7Rl/ao99mDktyaRA4=
 			</data>
 		</dict>
+		<key>Headers/BCVectorGeometry.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			cYU1OQs2zbdhfONJnF4DVDe5MJ3n3BcwQpfUQoi+OD0=
+			</data>
+		</dict>
 		<key>Headers/BCVersionComparison.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			FCNfQJi2GhGI0yZI4jbCIWLzGjY=
-			</data>
 			<key>hash2</key>
 			<data>
 			vEVDIXsoTgvc1Oj5c/ncsOdG49G3D9mWotOjZwHKK3Y=
@@ -398,10 +307,6 @@
 		</dict>
 		<key>Headers/CGPath+BCFoundation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			v9zoh0wU18JdqAAuCsTomYqE4Qo=
-			</data>
 			<key>hash2</key>
 			<data>
 			sMvciIKUkng6diPBhGhClipB/Zkkh6fORgtHQOisdCQ=
@@ -409,32 +314,20 @@
 		</dict>
 		<key>Headers/NSArray+BCFoundation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			vxpfD9qqgsgOVr8LRxJGWe2dqlM=
-			</data>
 			<key>hash2</key>
 			<data>
-			67HEabww/bv6Nx9xSI6hUUJYSQpWPatZCqRcYEzYvkc=
+			AGfDGHLhLhlXbH9f+tAy5oLeQ8BzZzT/dKebwCyOM2o=
 			</data>
 		</dict>
 		<key>Headers/NSArray+ConcurrentMap.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			e4WwjtFkw9FV02sEBdVJu/5ZOvQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			eK5Yfy1zTG1Fr4T4Cc6hzQfKQpxysZIaaIHf8D3d3ec=
+			x3izelaLrrRi4cj41eZLE2UXT351acYKwAIqsyzm7+k=
 			</data>
 		</dict>
 		<key>Headers/NSData+AppleCompression.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			7vA7gv7J+lX17octKCmhSVz5Nvo=
-			</data>
 			<key>hash2</key>
 			<data>
 			b/0uhlr5o4otXQVmhfAERx522YogzlY9m0BxFOTb6Tg=
@@ -442,10 +335,6 @@
 		</dict>
 		<key>Headers/NSDate+BCFoundation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			G8fQ+Y1fiWSjIFk4K/vKkTwxywo=
-			</data>
 			<key>hash2</key>
 			<data>
 			KloMpb08aMjAVe0sqONEworWlvB8PElsVLRuK2pPbNg=
@@ -453,10 +342,6 @@
 		</dict>
 		<key>Headers/NSDictionary+BCFoundation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			F0xNNFfE0LIzkqDffaxc6ClQ4UA=
-			</data>
 			<key>hash2</key>
 			<data>
 			NtEIa+ehAtVRrRGFbu9tlyWGq3VC5spyZvefXH/9El4=
@@ -464,10 +349,6 @@
 		</dict>
 		<key>Headers/NSFileManager+BCFoundation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			FZ22d3WK/fqiF2ucunijQlaYE/I=
-			</data>
 			<key>hash2</key>
 			<data>
 			M+EFipAEsBrRf7D9Ub/4qwtFlQKb51kvoIkhVORQZWA=
@@ -475,10 +356,6 @@
 		</dict>
 		<key>Headers/NSFileManager+TemporaryFiles.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			nlbTJ2q1gYF8Lgit5bTHr4GrvXw=
-			</data>
 			<key>hash2</key>
 			<data>
 			WF+xNqYSMurqRr4GgGK9TZLUF7dt1e7cvRws+Y3vTdg=
@@ -486,10 +363,6 @@
 		</dict>
 		<key>Headers/NSFileManager+TemporaryFilesTestingSupport.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ZLLm9jiA/djs0hRqZ7LM4gKVmio=
-			</data>
 			<key>hash2</key>
 			<data>
 			NXJ+uuiirG73oRnMaNB7Me02kv3U0R5PtEB1M3SKlE4=
@@ -497,10 +370,6 @@
 		</dict>
 		<key>Headers/NSMapTable+BCFoundation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			w1kZCMQcqca/Lbw3FN93u6Rov10=
-			</data>
 			<key>hash2</key>
 			<data>
 			3y1gkUrC4pU36Rix7aiIl76zARX/vHNxPr9bPVgl6E8=
@@ -508,32 +377,20 @@
 		</dict>
 		<key>Headers/NSObject+BCFoundation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			BQMqxTCTRvuuDvyNSY67Dl947+0=
-			</data>
 			<key>hash2</key>
 			<data>
-			geyVVSoU+rgEeJXv6xuisj0nJsSXXfukxnz0boSmqIs=
+			c+xTJK36kJxEtIO8TfRvnc2742bbnMfw/fcfjdpPhaI=
 			</data>
 		</dict>
 		<key>Headers/NSSet+BCFoundation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ZGcaE52PGMW/vh6HsNoNt5rJTCA=
-			</data>
 			<key>hash2</key>
 			<data>
-			+VEp15qkkId7gjCT2egoz94/iLNyrWa3I0aWL6B5UB4=
+			IyzUCLZEGjdPrONWv8rsOnyqi90pmqPquKPf/Z/rEXA=
 			</data>
 		</dict>
 		<key>Headers/NSSortDescriptor+BCFoundation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			IH4T5dDCcB3bbP1HxVPOMu1x6HE=
-			</data>
 			<key>hash2</key>
 			<data>
 			NQ+mfZHQHj1dXeP3M/r0wRRhmJWz0RV6gmas5SP5xLg=
@@ -541,21 +398,20 @@
 		</dict>
 		<key>Headers/NSString+BCFoundation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Y69xpVFvth9b1R0fPfuSCCpx8zc=
-			</data>
 			<key>hash2</key>
 			<data>
-			2GxkiBnoTB7FTHOntF5bjHCNMLK3wGwBxfK91C+Vbx8=
+			z2idn+38ajm6C0Z2tEu/GZekasmKDV5hqsrUfLVxh98=
+			</data>
+		</dict>
+		<key>Headers/NSString+ECLogging.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Pg5ieK9P19VGt3bqUlfBwN8DxXLAIVnIF5OmGsgnBhE=
 			</data>
 		</dict>
 		<key>Headers/NSURL+BCFoundation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			nNkLomNY77GZyweGMtvz6cO4/1I=
-			</data>
 			<key>hash2</key>
 			<data>
 			UF7Ix2QAZIHgw89YbUNIzMXYQOL0VPy6Vfy7VBEhU0Q=
@@ -563,10 +419,6 @@
 		</dict>
 		<key>Headers/NSUserDefaults+BCFoundation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			MmFQpDeu9L6gMBs/3C1dPANeIjk=
-			</data>
 			<key>hash2</key>
 			<data>
 			7aKtVHNYuTgoU20kuloX1aqBi38+WzoD3eJsB+ZfYeA=
@@ -574,10 +426,6 @@
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			hbACfP4Xp6YNS0pvgrTkoAca6oM=
-			</data>
 			<key>hash2</key>
 			<data>
 			X9MTg9sVsSzvmg0bVF6sAM1QlLM+UHT+tuSeNB1z1uQ=
@@ -585,13 +433,9 @@
 		</dict>
 		<key>Resources/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			cAPue6kM0CSrXek6QmPtrp/4Jfg=
-			</data>
 			<key>hash2</key>
 			<data>
-			gYCanXAPf0MFHs2W8ZoYXrrc0pUWLG05j67ossnPc7Q=
+			beqynMgkVJBjjBnqXDWKGtDLaBV4xyG/w81uiKitxdI=
 			</data>
 		</dict>
 	</dict>

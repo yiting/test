@@ -1,37 +1,32 @@
 let Contrain = require('../dsl_contrain.js');
-let Store = require("../dsl_store.js");
-let Common = require("../dsl_common.js");
+let Dom = require("../dsl_dom.js");
 /**
  * 聚合
  */
+module.exports.name = 'BLOCK';
+module.exports.type = Dom.type.LAYOUT;
+module.exports.textCount = 0;
+module.exports.imageCount = 0;
+module.exports.mixCount = -10;// -1，即为任意混合数
 module.exports.template = function() {
 
 }
 module.exports.is = function(dom, parent, option, config) {
-    if ((dom.layout == Store.layout.BLOCK || dom.layout == Store.layout.ROW)) {
-        let range = Common.calRange(dom.children);
-        if (dom.height > range.height) {
-            dom.contrains[Contrain.LayoutFixedHeight] = true;
+    return dom.layout == Dom.layout.BLOCK || dom.layout == Dom.layout.ROW
+}
+module.exports.adjust = function(dom, parent, option, config){
+    dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
+    let range = Dom.calRange(dom.children);
+    if (dom.height > range.height) {
+        dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedHeight.Fixed;
+    }
+    if (dom.text) {
+        if (Math.abs(dir - d) < config.dsl.operateErrorCoefficient) {
+            dom.contrains["LayoutAlign"] = Contrain.LayoutAlign.Center;
+        } else if (d > dir) {
+            dom.contrains["LayoutAlign"] = Contrain.LayoutAlign.Right;
+        } else {
+            dom.contrains["LayoutAlign"] = Contrain.LayoutAlign.Left;
         }
-        dom.contrains[Contrain.LayoutFixedWidth] = true;
-        // let paddingLeft = dom.x;
-        // let d = dom.x,
-        //     dir = parent.width - d - dom.width;
-        // dom.x = 0;
-        // dom.abX -= d;
-        // dom.width = parent.width;
-        // dom.children.forEach((child, i) => {
-        //     child.x += paddingLeft;
-        // });
-        if (dom.text) {
-            if (Math.abs(dir - d) < config.dsl.operateErrorCoefficient) {
-                dom.contrains[Contrain.LayoutAlignCenter] = true;
-            } else if (d > dir) {
-                dom.contrains[Contrain.LayoutAlignRight] = true;
-            } else {
-                dom.contrains[Contrain.LayoutAlignLeft] = true;
-            }
-        }
-        return true;
     }
 }

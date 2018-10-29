@@ -1,41 +1,35 @@
-const CONTRAIN = require('../dsl_contrain.js');
-const STORE = require("../dsl_store.js");
-const COMMON = require("../dsl_common.js");
+const Contrain = require('../dsl_contrain.js');
+const Dom = require("../dsl_dom.js");
 /**
  * 文本按钮
- * 规则：内容只有一行文案且内容水平、垂直居中，且两边距大于1.5倍字号
+ * 规则：内容只有一行文案且内容水平、垂直居中，且两边距大于1.5倍字号，有边框或背景或图片
  */
-module.exports.template = function() {
+module.exports.name = 'TEXT-BUTTON';
+module.exports.type = Dom.type.IMAGE;
+module.exports.textCount = 1;
+module.exports.imageCount = 0;
+module.exports.mixCount = 0; //-1，即为任意混合数
+module.exports.template = function () {
 
 }
-module.exports.is = function(dom, parent, option, config) {
-    if (dom.children && dom.children.length == 1 &&
-        dom.children[0].text &&
-        dom.children[0].lines == 1) {
-        // 获取最大字号
-        let child = dom.children[0],
-            maxSize = 0;
-        child.styles.texts.forEach((t, i) => {
-            maxSize = maxSize < t.size ? t.size : maxSize;
-        });
+module.exports.is = function (dom, parent, option, config) {
+    let child = dom.children[0]
+    if (child.lines == 1) {
         // Text和Parent中心点
-        let vx = child.x + child.width / 2,
-            vy = child.y + child.height / 2,
-            px = dom.width / 2,
-            py = dom.height / 2,
-            padding = (dom.width - child.width) / 2;
+        let margin = Dom.calMargin(child, dom);
 
         // 如果中心点偏移小于2
-        if (dom.height / child.height < 3 &&
-            Math.abs(vx - px) < 2 &&
-            Math.abs(vy - py) < 2 &&
-            maxSize * 1.5 < padding) {
-            child.lineHeight = dom.height;
-            child.textAlign = "center";
-            dom.type = STORE.model.TEXT_BUTTON;
-            COMMON.assign(dom, child);
-            dom.children = [];
-            return true;
-        }
+        return (dom.path || dom.styles.background || dom.styles.border) &&
+            dom.height / child.height < 3 &&
+            Math.abs(margin.left - margin.right) < config.dsl.operateErrorCoefficient &&
+            Math.abs(margin.top - margin.bottom) < config.dsl.operateErrorCoefficient &&
+            child.styles.maxSize * 1.5 < margin.left
     }
+}
+module.exports.adjust = function (dom, parent, option, config) {
+    let child = dom.children[0]
+    Dom.assign(dom, child);
+    dom.styles.lineHeight = dom.height;
+    dom.styles.textAlign = Dom.align.center;
+    dom.children = [];
 }

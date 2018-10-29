@@ -19,10 +19,12 @@ class _TransferProcessor {
              // 父子重合时，将子元素属性合并到父元素上
             console.log(node.name,'合并到',parent.name)
             mergeStyle(parent,node);
+
             // if(node.path) parent.path = node.path;
             if (node.children && node.children.length) {
-                node.children.forEach(n => {
-                    _document.moveNode(n.id,parent)
+                let index = parent.children.indexOf(node);
+                node.children.forEach((n,i) => {
+                    _document.moveNode(n.id,parent,index + i);
                 });
             }
             _document.removeNode(node.id,parent);

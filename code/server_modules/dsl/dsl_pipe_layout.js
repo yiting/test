@@ -1,59 +1,24 @@
 const Common = require("./dsl_common.js");
+const Dom = require("./dsl_dom.js");
 const Store = require("./dsl_store.js");
-
-
-/**
- * 创建新组
- */
-/*function groupByArray(newArr, layout, elseLayout) {
-    var children = [];
-    if (newArr.length == 1) {
-        return newArr[0];
-    }
-    newArr.forEach((crr, i) => {
-        if (crr.length == 1) {
-            if (elseLayout && !Object.values(Store.layout).includes(crr[0].layout)) {
-                crr[0].layout = elseLayout;
-            }
-            children.push(crr[0])
-        } else {
-            let pos = Common.calRange(crr),
-                child = Common.createDom({
-                    type: "layout",
-                    layout: layout,
-                    x: pos.x,
-                    y: pos.y,
-                    width: pos.width,
-                    height: pos.height,
-                    abX: pos.abX,
-                    abY: pos.abY,
-                    children: crr
-                });
-            crr.forEach((d, j) => {
-                d.x -= pos.x;
-                d.y -= pos.y;
-            });
-            children.push(child);
-        }
-    });
-    return children;
-}
-*/
-
+const Logger = require("./logger.js");
 
 let LAYOUT_MAP = {}
-LAYOUT_MAP[Store.layout.INLINE] = 0;
-LAYOUT_MAP[Store.layout.COLUMN] = 1;
-LAYOUT_MAP[Store.layout.ROW] = 1;
-LAYOUT_MAP[Store.layout.BLOCK] = 2;
+LAYOUT_MAP[Dom.layout.INLINE] = 0;
+LAYOUT_MAP[Dom.layout.ROW] = 1;
+LAYOUT_MAP[Dom.layout.COLUMN] = 2;
+LAYOUT_MAP[Dom.layout.BLOCK] = 3;
 
 function groupByArray(newArr, parent, layout) {
     let children = [];
-    if (newArr.length == 1) {
+    if (newArr.length == 1 &&
+        layout != Dom.layout.INLINE &&
+        layout != Dom.layout.COLUMN
+    ) {
         return newArr[0];
     }
     newArr.forEach((crr, i) => {
-        let pos = Common.calRange(crr),
+        let pos = Dom.calRange(crr),
             dirX = pos.x,
             dirY = pos.y;
         /**
@@ -62,10 +27,10 @@ function groupByArray(newArr, parent, layout) {
         if (crr.length == 1 &&
             (
                 // 行内布局
-                layout == Store.layout.INLINE ||
+                layout == Dom.layout.INLINE ||
                 // 列布局
-                layout == Store.layout.COLUMN ||
-                // 包裹节点】权重小于【被包裹节点】
+                layout == Dom.layout.COLUMN ||
+                // 包裹节点权重小于【被包裹节点】
                 (crr[0].type == 'layout' && LAYOUT_MAP[crr[0].layout] >= LAYOUT_MAP[layout]) ||
                 // 包裹节点与被包裹节点大小一致
                 (pos.x == 0 && pos.width == parent.width)
@@ -74,14 +39,13 @@ function groupByArray(newArr, parent, layout) {
             children.push(crr[0])
             return;
         }
-        if (layout == Store.layout.BLOCK || layout == Store.layout.ROW) {
+        if (layout == Dom.layout.BLOCK || layout == Dom.layout.ROW) {
             dirX = 0;
             pos.x = 0;
             pos.abX = parent.abX;
             pos.width = parent.width;
         }
-        let child = Common.createDom({
-            type: "layout",
+        let child = new Dom({
             layout: layout,
             x: pos.x,
             y: pos.y,
@@ -112,17 +76,22 @@ function calYH(meta) {
 // 聚合
 function block(domArr, parent) {
     let newArr = Common.gatherByLogic(domArr, (meta, target) => {
-        let s = meta.height < target.height ? meta : target;
+        if (meta.type == Store.model.SEGMENTING_HORIZONTAL ||
+            target.type == Store.model.SEGMENTING_HORIZONTAL) {
+            return;
+        }
+
+        const s = meta.height < target.height ? meta : target;
         const textSpacing = s.text && (s.styles.lineHeight * Config.dsl.textSpacingCoefficient),
             verticalSpacing = textSpacing < Config.dsl.verticalSpacing ? textSpacing : Config.dsl.verticalSpacing
 
         let meta_yh = calYH(meta),
             target_yh = calYH(target)
-        return meta_yh.y <= target_yh.y + target_yh.h + verticalSpacing &&
-            target_yh.y <= meta_yh.y + meta_yh.h + verticalSpacing
+        return meta_yh.y < target_yh.y + target_yh.h + verticalSpacing &&
+            target_yh.y < meta_yh.y + meta_yh.h + verticalSpacing
 
     });
-    let children = groupByArray(newArr, parent, Store.layout.BLOCK);
+    let children = groupByArray(newArr, parent, Dom.layout.BLOCK);
     return children;
 }
 
@@ -133,36 +102,59 @@ function column(domArr, parent) {
         return meta.abX + meta.width > target.abX &&
             target.abX + target.width > meta.abX
     });
-    let children = groupByArray(newArr, parent, Store.layout.COLUMN);
+
+    let children = groupByArray(newArr, parent, Dom.layout.COLUMN);
     return children;
 }
 // 横向相邻元素
+/* function inline(domArr, parent) {
+    let newArr = Common.gatherByLogic(domArr, (meta, target) => {
+        let horizontalSpacing = Config.dsl.horizontalSpacing;
+        return (meta.text || target.text) &&
+            Math.abs(meta.abY + meta.height / 2 - target.abY - target.height / 2) < Config.dsl.operateErrorCoefficient &&
+            ((meta.abX + meta.width - target.abX <= Config.dsl.operateErrorCoefficient &&
+                    meta.abX + meta.width + horizontalSpacing >= target.abX) ||
+                (target.abX + target.width - meta.abX <= Config.dsl.operateErrorCoefficient &&
+                    target.abX + target.width + horizontalSpacing >= meta.abX))
+    });
+    let children = groupByArray(newArr, parent, Dom.layout.INLINE);
+    return children;
+} */
 function inline(domArr, parent) {
     let newArr = Common.gatherByLogic(domArr, (meta, target) => {
-        let horizontalSpacing = meta.text && target.text ?
-            Math.max(meta.styles.maxSize, target.styles.maxSize) :
-            Config.dsl.horizontalSpacing;
-        let meta_yh = calYH(meta),
-            target_yh = calYH(target)
-        return ((meta_yh.y + meta_yh.h > target_yh.y) &&
-                (target_yh.y + target_yh.h > meta_yh.y)) &&
-            ((meta.abX + meta.width <= target.abX &&
-                    meta.abX + meta.width + horizontalSpacing > target.abX) ||
-                (target.abX + target.width <= meta.abX &&
-                    target.abX + target.width + horizontalSpacing > meta.abX))
+        /**
+         * 水平阀值规则：
+         * 1.含有文案：最小字号
+         * 2.没有文案：最小图片大小
+         */
+        let horizontalSpacing =  Config.dsl.horizontalSpacing;
+        /**
+         * 规则：
+         * 1.中心对齐
+         * 2.水平间隙小于阀值
+         */
+        return Math.abs(meta.abY + meta.height / 2 - target.abY - target.height / 2) < Config.dsl.operateErrorCoefficient &&
+            ((meta.abX + meta.width <= target.abX - Config.dsl.operateErrorCoefficient &&
+                    meta.abX + meta.width + horizontalSpacing >= target.abX) ||
+                (target.abX + target.width <= meta.abX - Config.dsl.operateErrorCoefficient &&
+                    target.abX + target.width + horizontalSpacing >= meta.abX))
     });
-    let children = groupByArray(newArr, parent, Store.layout.INLINE);
+    let children = groupByArray(newArr, parent, Dom.layout.INLINE);
     return children;
 }
 
 function row(domArr, parent) {
     let newArr = Common.gatherByLogic(domArr, (meta, target) => {
+        if (meta.type == Store.model.SEGMENTING_HORIZONTAL ||
+            target.type == Store.model.SEGMENTING_HORIZONTAL) {
+            return;
+        }
         let meta_yh = calYH(meta),
             target_yh = calYH(target)
         return meta_yh.y + meta_yh.h > target_yh.y &&
             target_yh.y + target_yh.h > meta_yh.y;
     });
-    let children = groupByArray(newArr, parent, Store.layout.ROW);
+    let children = groupByArray(newArr, parent, Dom.layout.ROW);
     return children
 
 }
@@ -170,26 +162,16 @@ function row(domArr, parent) {
 /**
  * 重组横向、纵向节点位置
  */
-function ergodic(json, func) {
-    if (json.layout && LAYOUT_MAP[func.name] > LAYOUT_MAP[json.layout]) {
-        return
-    }
+function ergodic(json, func, type) {
+    // 高权重布局不进入低权重布局进行布局计算
+    type = json.layout || type;
     if (json.children) {
-        let arr = [],
-            ignore = [];
-        json.children.forEach((child, i) => {
-            if (child.type == Store.model.SEGMENTING_HORIZONTAL ||
-                child.type == Store.model.SEGMENTING_VERTICAL
-            ) {
-                ignore.push(child)
-            } else {
-                arr.push(child);
-            }
-        });
-        arr = func(arr, json);
-        json.children = arr.concat(ignore);
-        arr.forEach((child) => {
-            ergodic(child, func)
+        if (LAYOUT_MAP[func.name] < LAYOUT_MAP[type] ||
+            (type != func.name && func.name == 'block')) {
+            json.children = func(json.children, json);
+        }
+        json.children.forEach((child) => {
+            ergodic(child, func, type);
         });
     }
     return json;
@@ -202,11 +184,20 @@ let Config = {},
     Option = {
         errorSpacing: 3
     }
-module.exports = function(data, conf, opt) {
+module.exports = function (data, conf, opt) {
+    Logger.log('[pipe - layout] start')
     Object.assign(Option, opt);
     Object.assign(Config, conf);
-    ergodic(data, inline);
+
+    Logger.log('[pipe - layout] block')
     ergodic(data, block);
+
+    Logger.log('[pipe - layout] inline')
+    ergodic(data, inline);
+
+    Logger.log('[pipe - layout] column')
     ergodic(data, column);
+
+    Logger.log('[pipe - layout] row')
     ergodic(data, row);
 }

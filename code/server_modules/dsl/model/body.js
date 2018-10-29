@@ -1,17 +1,24 @@
-let CONTRAIN = require('../dsl_contrain.js');
-let STORE = require("../dsl_store.js");
+let Contrain = require('../dsl_contrain.js');
+let Dom = require("../dsl_dom.js");
 /**
- * 图标标签
- * 规则：左右结构，左图标，右文本，文本单行
+ * Body
+ * 规则：无父节点
  */
-module.exports.template = function() {
+module.exports.name = 'BODY';
+module.exports.type = Dom.type.LAYOUT;
+module.exports.textCount = 0;
+module.exports.imageCount = 0;
+module.exports.mixCount = -1;//-1，即为任意混合数
+module.exports.template = function () {
 
 }
-module.exports.is = function(dom, parent, option, config) {
+module.exports.is = function (dom, parent, option, config) {
     // 判断：只有两个节点
-    if (dom.type == 'Qbody') {
-        dom.type = STORE.model.BODY;
-        dom.contrains[CONTRAIN.LayoutFixedWidth] = true;
-        return true;
-    }
+    return !parent;
+}
+module.exports.adjust = function(dom, parent, option, config){
+    dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
+    dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedWidth.Default;
+    dom.contrains["LayoutPosition"] = Contrain.LayoutPosition.Vertical;
+    return dom;
 }

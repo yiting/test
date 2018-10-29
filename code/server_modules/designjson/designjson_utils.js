@@ -37,17 +37,23 @@ function isCoincide(node,pnode) {
 function mergeStyle(targetNode,node) {
     // TODO
     for(key in node.styles) {
-        if (!targetNode.styles[key]) targetNode.styles[key] = node.styles[key];
+        if (!targetNode.styles[key] || key === 'background') targetNode.styles[key] = node.styles[key];
     }
+}
+function hasStyle(node) { // 节点是否包具有样式
+    if (!node.styles) return false;
+    const {opacity,rotation,border,borderRadius,shadows,background} = node.styles;
+    return !!(background || opacity != 1 || rotation!= 0 || border || shadows || (borderRadius && borderRadius!=0));
 }
 function hasCompleteSytle(node) { // 节点是否包含影响子元素的属
     // TODO 性：opacity,transform
     if (!node.styles) return false;
     const {opacity,rotation,border,borderRadius,shadows,background} = node.styles;
-    const isBgComplex = background && !(background.type === 'color' && background.color.a === 1)
-    return opacity != 1 || rotation!= 0 || border || shadows || borderRadius!=0 || isBgComplex ;
+    const isBgComplex = background && background.hasOpacity;
+    // return opacity != 1 || rotation!= 0 || border || shadows || borderRadius!=0 || isBgComplex ;
+    return !!(opacity != 1 || rotation!= 0 || border || shadows || (borderRadius && borderRadius!=0) || isBgComplex);
 }
-function generateGroupAttr(nodes) {
+function generateGroupAttr(pnode,nodes) {
      // 如果是mask，则合并的图片为mask的位置大小信息
     const maskList = nodes.filter(({type}) => type === 'QMask');
     if(maskList.length) {
@@ -55,12 +61,12 @@ function generateGroupAttr(nodes) {
         return { x,y,abX,abY,width,height };
     }
     // 通过子元素计算合成图片的位置大小信息
-    const x = Math.min(...nodes.map(({x}) => x));
-    const y = Math.min(...nodes.map(({y}) => y));
     const abX = Math.min(...nodes.map(({abX}) => abX));
     const abY = Math.min(...nodes.map(({abY}) => abY));
     const abX1 = Math.max(...nodes.map(({abX,width}) => abX + width));
     const abY1 = Math.max(...nodes.map(({abY,height}) => abY + height));
+    const x = abX - pnode.abX;
+    const y = abY - pnode.abY;
     return {
         abX,
         abY,
@@ -77,6 +83,7 @@ module.exports = {
     serialize,
     isCoincide,
     mergeStyle,
+    hasStyle,
     hasCompleteSytle,
     generateGroupAttr
 }

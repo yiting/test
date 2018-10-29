@@ -6,8 +6,6 @@
 CGFloat BCPointPositionForAxis(CGPoint point, BCAxis axis);
 CGPoint BCPointWithPositionForAxis(CGPoint point, CGFloat value, BCAxis axis);
 
-CGPoint BCPointRelative(CGPoint p, CGRect outer);
-CGPoint BCPointAbsolute(CGPoint point, CGRect outer);
 BOOL BCPointsEqualWithMargin(CGPoint p1, CGPoint p2, CGFloat margin);
 
 CGPoint BCPointInvert(CGPoint point);
@@ -17,7 +15,6 @@ CGPoint BCPointMultiply(CGPoint point, CGFloat scale);
 CGPoint BCPointDivide(CGPoint point, CGFloat div);
 CGSize BCOffsetBetweenPoints(CGPoint point1, CGPoint point2);
 CGPoint BCPointWithOffset(CGPoint point, CGSize offset);
-CGPoint BCPointFromCoordinateSpaceRectToRect(CGPoint point, CGRect fromRect, CGRect toRect);
 
 CGFloat BCDistanceBetweenPoints(CGPoint p1, CGPoint p2);
 
@@ -35,3 +32,12 @@ CGPoint BCPointSnapToRectWithMargin(CGPoint point, CGRect rect, CGFloat margin);
 
 /** Returns the index of a point inside an array of points that lies closest to the \c targetPoint. If the array is empty the result is NSNotFound */
 NSUInteger BCIndexOfPointClosestToPoint(CGPoint *points, NSUInteger count, CGPoint targetPoint);
+
+
+#pragma mark Unit Coordinates
+
+/// Converts \c p from \c outer coordinate space to unit coordinates.
+CGPoint BCPointConvertToUnitCoordinates(CGPoint p, CGRect outer);
+
+/// Converts a \c point expressed in unit coordinate space to the space defined by \c outer.
+CGPoint BCPointConvertFromUnitCoordinates(CGPoint point, CGRect outer);
