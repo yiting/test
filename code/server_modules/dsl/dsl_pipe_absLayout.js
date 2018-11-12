@@ -10,6 +10,7 @@ function fn(data) {
     data.contrains["LayoutSelfHorizontal"] = CONTRAIN.LayoutSelfHorizontal.Left;
     data.contrains["LayoutSelfVertical"] = CONTRAIN.LayoutSelfVertical.Top;
     data.contrains["LayoutPosition"] = CONTRAIN.LayoutPosition.Absolute;
+    data.contrains["LayoutDirection"] = CONTRAIN.LayoutDirection.Default;
 
     if (data.children) {
         data.children.forEach(child => {

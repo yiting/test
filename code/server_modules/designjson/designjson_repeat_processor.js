@@ -55,9 +55,6 @@ let getDuplicateImage = (images) => {
     }
     //重复的
     let isDuplicate = (data) => {
-        console.log("-----------*");
-        console.log(data.length);
-        console.log("-----------*");
         let r = false;
         for (let y = 0; y < imgs.length; y++) {
             if (imgs[y].data == data) {
@@ -107,9 +104,12 @@ function replacePath(imageList) {
         id,
         replaceId
     }) => {
-        let node = imageList.find(node => node.id === id);
+        let [index,masterIndex] = [imageList.findIndex(node => node.id === id),imageList.findIndex(node => node.id === replaceId)];
+        let [node,masterNode] = [imageList[index],imageList[masterIndex]];
+
         console.log(node.path, '被', replaceId, '替换');
-        node.path = `${replaceId}.png`;
+        node.path = masterNode.path;
+        imageList.splice(index,1);
     });
 }
 module.exports = replacePath;

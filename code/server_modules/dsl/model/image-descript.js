@@ -26,6 +26,6 @@ module.exports.is = function (dom, parent, option, config) {
         Dom.isVertical(dom.children);
 }
 module.exports.adjust = function (dom, parent, option, config) {
-    dom.contrains["LayoutPosition"] = Contrain.LayoutPosition.Vertical;
+    dom.contrains["LayoutDirection"] = Contrain.LayoutDirection.Vertical;
     dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
 }

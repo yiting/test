@@ -13,15 +13,15 @@ module.exports.template = function () {
 
 }
 module.exports.is = function (dom, parent, option, config) {
-    let child = dom.children[0]
-    let margin = Dom.calMargin(child, dom);
+    const child = dom.children[0]
+    const margin = Dom.calMargin(child, dom);
     // 如果中心点偏移小于2
     return child.lines == 1 &&
         (dom.path || dom.styles.background || dom.styles.border) &&
-        dom.height / child.height < 3 &&
+        dom.height / child.styles.maxSize < 3.5 &&
         Math.abs(margin.left - margin.right) < config.dsl.operateErrorCoefficient &&
         Math.abs(margin.top - margin.bottom) < config.dsl.operateErrorCoefficient &&
-        child.styles.maxSize * 1.5 > margin.left
+        child.styles.maxSize * 1.5 > margin.left // 边距小于1.5个字号
 }
 module.exports.adjust = function (dom, parent, option, config) {
     let child = dom.children[0];

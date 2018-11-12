@@ -8,32 +8,27 @@ let Logger = require("./logger.js");
  * @param  {[type]} arr [description]
  * @return {[type]}     [description]
  */
-function serialize(cur, arr) {
-    arr.push(new Dom(cur));
-    // delete cur.parent;
-    if (cur.children) {
-        cur.children.forEach((c, i) => {
-            /*
-            // 部分超出范围处理
-                if (c.abX < 0) {
-                c.abX = 0;
-                c.width -= c.abX;
-            }
-            if (c.abX + c.width > Config.device.width) {
-                c.width = Config.device.width - c.abX;
-            }*/
-            // 剔除完全超出范围元素
-            if (c.abX > Config.device.width ||
-                c.abY > Config.device.height ||
-                c.abX + c.width < 0 ||
-                c.abY + c.height < 0) {
-                return false;
-            }
-            serialize(c, arr);
-        });
-        delete cur.children;
-    }
-    return arr;
+function serialize(arr) {
+    let res = []
+    arr.forEach((child => {
+        // 剔除完全超出范围元素
+        if (child.abX > Config.device.width ||
+            child.abY > Config.device.height ||
+            child.abX + child.width < 0 ||
+            child.abY + child.height < 0) {
+            return;
+        } else {
+            delete child.children;
+            res.push(new Dom(child, {
+                isRoot: child.type == 'QBody'
+            }))
+        }
+    }))
+    return res;
+}
+
+function getRoot(arr) {
+    return arr.find(dom => dom.isRoot)
 }
 
 // 按面积从大到小排序
@@ -59,38 +54,7 @@ function sortBySize(arr) {
 // 赋值 textHeight,textY
 // 赋值行数lines
 function cleanLineHeight(arr) {
-    arr.forEach((d, i) => {
-        if (d.text) {
-            // fontSize
-            let maxSize = Number.NEGATIVE_INFINITY,
-                minSize = Number.POSITIVE_INFINITY
-            d.styles.texts.forEach((s) => {
-                maxSize = s.size > maxSize ? s.size : maxSize;
-                minSize = s.size < minSize ? s.size : minSize;
-            });
-            d.styles.maxSize = Math.round(maxSize);
-            d.styles.minSize = Math.round(minSize);
-            // 当前真实行高
-            const lineHeight = d.styles.lineHeight || maxSize * 1.4;
-            // 目标行高
-            const targetLineHeight = maxSize * Config.dsl.lineHeight
-            // 根据高度处以行高，如果多行，则不处理行高
-            if (d.height / lineHeight > 1.1) {
-                d.lines = Math.round(d.height / lineHeight);
-                return;
-            }
-            d.lines = 1;
-            // 当前行高差
-            let dir = (lineHeight - maxSize);
-            d.textHeight = Math.round(maxSize);
-            d.textAbY = Math.round(d.abY + dir / 2);
-            // 设置目标行高、高度、Y
-            let dif = Math.floor((targetLineHeight - d.height) / 2);
-            d.height = d.styles.lineHeight = Math.round(targetLineHeight);
-            d.y -= dif;
-            d.abY -= dif;
-        }
-    });
+    arr.forEach(dom => Dom.cleanLineHeight(dom, Config.dsl.lineHeight));
     return arr;
 }
 /**
@@ -149,6 +113,7 @@ function mergeBySize(arr) {
 function filterUselessGroup(arr) {
     return arr.filter((d, i) => {
         return (
+            d.special ||
             d.text ||
             d.path ||
             (d.styles && (
@@ -173,13 +138,13 @@ function relayer(arr, body) {
         if (!o || o == body) {
             return;
         }
-        let done = coms.some(function (d, j) {
+        let done = coms.some(function (d) {
             // 在父节点上
             if (d.abX + d.width >= o.abX + o.width &&
                 d.abY + d.height >= o.abY + o.height &&
                 d.abX <= o.abX &&
                 d.abY <= o.abY &&
-                d.type != 'QText'
+                d.type != Dom.type.TEXT
             ) {
                 o.x = o.abX - d.abX;
                 o.y = o.abY - d.abY;
@@ -224,32 +189,32 @@ function fn(json) {
     Logger.log('[pipe - cleanse] start')
 
     let data = JSON.parse(JSON.stringify(json)); // 深复制数据
-    data.x = 0;
-    data.y = 0;
 
-    Logger.log('[pipe - cleanse] serialize')
     // 序列化树
-    let arr = serialize(data, []);
+    Logger.log('[pipe - cleanse] serialize')
+    let arr = serialize(data);
+
+    let body = getRoot(arr);
     // 按面积排序
     Logger.log('[pipe - cleanse] sortBySize')
     arr = sortBySize(arr);
-    let body = arr[0];
 
-    Logger.log('[pipe - cleanse] filterUselessGroup')
     // 移除无用组
+    Logger.log('[pipe - cleanse] filterUselessGroup')
     arr = filterUselessGroup(arr);
 
-    Logger.log('[pipe - cleanse] mergeBySize')
-    // 合并同大小元素
-    arr = mergeBySize(arr);
-    Logger.log('[pipe - cleanse] cleanLineHeight')
     // 清洗属性-行高
+    Logger.log('[pipe - cleanse] cleanLineHeight')
     arr = cleanLineHeight(arr);
-    /* // 识别彩色的
-    arr = identifyColourful(arr);  */
-    Logger.log('[pipe - cleanse] relayer')
+
+    // 合并同大小元素
+    Logger.log('[pipe - cleanse] mergeBySize')
+    arr = mergeBySize(arr);
+
     // 重组父子结构
+    Logger.log('[pipe - cleanse] relayer')
     relayer(arr, body);
+
     // 标记分割线
     Logger.log('[pipe - cleanse] markerSegmenting')
     markerSegmenting(body);

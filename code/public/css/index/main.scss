@@ -1,0 +1,590 @@
+.upgrade-box {
+    width: 700px;
+    height: 400px; //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    padding-top: 64px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -350px;
+    margin-top: -200px;
+    background-color: $color_science_blue_approx;
+    color: $white;
+    font-size: 16px;
+  }
+  
+  .upgrade-box-close {
+    width: 23px;
+    height: 24px;
+    position: absolute;
+    right: 21px;
+    top: 16px;
+    background-image: url($data_uri_6);
+    background-repeat: no-repeat;
+  }
+  
+  .ie-placeholder {
+    color: $color_silver_chalice_approx;
+  }
+  
+  @media screen and(max-width: 1500px) {
+    .mod-header .cat-box {
+      padding-left: 200px;
+    }
+  }
+  
+  @media screen and(max-width: 1450px) {
+    .mod-header .cat-box {
+      padding-left: 160px;
+    }
+  }
+  
+  @media screen and(max-width: 1400px) {
+    .mod-header {
+      .cat-box {
+        padding-left: 20px;
+      }
+      .cat-group {
+        margin-left: 5px;
+      }
+    }
+  }
+  
+  .sec {
+    padding: 64px 0;
+    overflow: hidden;
+    ul {
+      &:after {
+        content: "";
+        display: table;
+        font: 0/0 a;
+        clear: both;
+      }
+      &:before {
+        content: "";
+        display: table;
+        font: 0/0 a;
+      }
+    }
+    h1 {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 44px;
+      line-height: 1;
+    }
+  }
+  
+  .banner-fixed {
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  
+  .banner {
+    width: 100%;
+    height: 520px;
+    color: $white;
+    position: relative;
+    overflow: hidden;
+    background-size: 100% auto !important;
+    background-image: url(/img/banner1.jpg);
+    .banner-video {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 520px;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .layout {
+      position: relative;
+      z-index: 2;
+    }
+  }
+  
+  .advan,
+  .banner {
+    .advan-layout,
+    .banner-intro {
+      -webkit-transition: opacity 0.3s ease;
+    }
+    &:hover {
+      .play-video {
+        opacity: 1;
+      }
+      /*.advan-layout,
+      .banner-intro {
+          opacity: 0;
+      }*/
+    }
+    .banner-intro:hover {
+      opacity: 1;
+    }
+    .play-video {
+      display: none;
+      z-index: 10;
+      position: absolute;
+      -webkit-transition: opacity 0.3s ease;
+      opacity: 0.8;
+      left: 50%;
+      cursor: pointer;
+      top: 50%;
+      $h: 100px;
+      width: $h;
+      height: $h;
+      margin-top: -$h/2;
+      margin-left: -$h/2;
+      background: url(/img/play.png) no-repeat center;
+      background-size: contain;
+    }
+  }
+  
+  .video-wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(#000, 0.8);
+    opacity: 0;
+    display: none;
+    z-index: 10000;
+    .play-close {
+      position: fixed;
+      right: 30px;
+      top: 30px;
+      opacity: 0.4;
+      background: url(/img/close.png) no-repeat center;
+      background-size: contain;
+      width: 40px;
+      height: 40px;
+      z-index: 10001;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+      }
+    }
+    &.on {
+      -webkit-transition: opacity 0.3s ease;
+      opacity: 1;
+    }
+    video {
+      //margin: 0 auto;
+      width: 80%;
+      height: 80%;
+      position: absolute;
+      left: 50%;
+      margin-left: -40%;
+      top: 10%;
+      //margin-top: -40%;
+    }
+  }
+  
+  .banner-intro {
+    float: left;
+  }
+  
+  .banner-name {
+    font-size: 30px;
+    line-height: 1;
+    margin-top: 180px;
+    margin-bottom: 40px;
+  }
+  
+  .banner-des {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  
+  .banner-btns {
+    margin-top: 26px;
+    .btn {
+      width: 140px;
+      line-height: 48px;
+      text-align: center;
+      font-size: 16px;
+      display: inline-block; //Instead of the line below you could use @include box-sizing($bs)
+      box-sizing: border-box; //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 3px;
+      border: 1px solid $white; //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+      transition: background 0.3s ease;
+    }
+    .btn-consult:hover {
+      background-color: $white;
+      color: $color_mine_shaft_approx;
+    }
+  }
+  
+  .banner-powerby {
+    position: absolute;
+    bottom: 70px;
+    font-size: 12px;
+    opacity: 0.6;
+    p {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  
+  .banner-brand {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 18px;
+    &.is-dd {
+      width: 75px;
+      height: 19px;
+      background-image: $url_4;
+      background-position: 0 0;
+    }
+    &.is-bello {
+      width: 58px;
+      height: 18px;
+      background-image: $url_4;
+      background-position: 0 -23px;
+    }
+  }
+  
+  .advan {
+    background-color: $color_concrete_approx;
+    color: $white;
+    position: relative;
+    h1 {
+      margin-bottom: 90px;
+    }
+    .advan-video {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  .advan-item {
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    width: 240px;
+    padding: 0 27px;
+    float: left;
+    i {
+      width: 60px;
+      height: 60px;
+      display: block;
+      margin: 0 auto 40px;
+    }
+    h3 {
+      font-size: 20px;
+      line-height: 1;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    p {
+      font-size: 14px;
+      line-height: 24px;
+      text-align: justify;
+      color: $color_alto_approx;
+    }
+  }
+  
+  .scene {
+    background-color: $concrete;
+  }
+  
+  .scene-item {
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    width: 386px;
+    float: left;
+    background-color: $white;
+    margin-bottom: 20px;
+    margin-left: 20px; //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: all 0.3s ease;
+    &:hover {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: 0 4px 20px 0 $black_15;
+    }
+    &:nth-child(3n + 1) {
+      margin-left: 0;
+    }
+  }
+  
+  .scene-item-des {
+    font-size: 16px;
+    line-height: 30px;
+    height: 100px;
+    padding: 18px 24px 0;
+  }
+  
+  .scene-item-img {
+    position: relative;
+    overflow: hidden;
+    line-height: 1;
+    width: 386px;
+    height: 226px;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%; //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+      transition: transform 0.3s ease; //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
+      transform-origin: 50% 50%;
+    }
+    h5 {
+      font-size: 20px;
+      color: $white;
+      position: absolute;
+      bottom: 20px;
+      left: 26px;
+      letter-spacing: 5px;
+    }
+    p {
+      color: $color_oslo_gray_approx;
+      font-size: 20px;
+      position: absolute;
+      bottom: 20px;
+      left: 26px;
+      font-family: $font_2;
+    }
+    &:hover img {
+      //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+      transform: scale(1.1);
+    }
+  }
+  
+  .support {
+    background-color: #fff;
+    padding-bottom: 26px;
+  }
+  
+  .support-item {
+    width: 390px;
+    height: 180px; //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    margin-left: 15px;
+    margin-bottom: 38px;
+    padding: 32px 22px 0;
+    float: left;
+    .i {
+      float: left;
+      margin-right: 26px;
+      width: 80px;
+      height: 80px;
+      color: #f00;
+    }
+    h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #000;
+    }
+    p {
+      font-size: 14px;
+      line-height: 24px;
+      color: $gray;
+      display: inline-block;
+      width: 240px;
+    }
+    &:nth-child(3n + 1) {
+      margin-left: 0;
+    }
+  }
+  
+  .case-list {
+    position: relative;
+    border: 1px dashed $color_celeste_approx;
+    /*height: 220px;*/
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background-color: $white;
+    margin-bottom: 20px;
+    .btn {
+      position: absolute;
+      left: 44%;
+      top: 85px;
+      color: $white;
+      font-size: 18px;
+      width: 182px;
+      line-height: 50px;
+      background-color: $color_science_blue_approx;
+      text-align: center; //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 3px;
+    }
+    p {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      top: 150px;
+      color: $white;
+      font-size: 14px;
+      color: $gray;
+    }
+    //当有数据时，初始化页面，有结果显示样式
+    &.result {
+      padding-bottom: 80px;
+      .result-panel {
+        margin-top: 20px;
+      }
+    }
+    //生成中
+    &.generate {
+      padding-bottom: 20px !important;
+    }
+  }
+  
+  .ico-advan-1 {
+    background-image: $url_5;
+    background-position: -840px -192px;
+  }
+  
+  .ico-advan-2 {
+    background-image: $url_5;
+    background-position: -714px -684px;
+  }
+  
+  .ico-advan-3 {
+    background-image: $url_5;
+    background-position: -840px -128px;
+  }
+  
+  .ico-advan-4 {
+    background-image: $url_5;
+    background-position: -840px -64px;
+  }
+  
+  .ico-advan-5 {
+    background-image: $url_5;
+    background-position: -840px 0;
+  }
+  
+  .ico-support-1 {
+    background-image: $url_5;
+    background-position: -630px -684px;
+  }
+  
+  .ico-support-2 {
+    background-image: $url_5;
+    background-position: -462px -684px;
+  }
+  
+  .ico-support-3 {
+    background-image: $url_5;
+    background-position: -294px -684px;
+  }
+  
+  .ico-support-4 {
+    background-image: $url_5;
+    background-position: -210px -684px;
+  }
+  
+  .ico-support-5 {
+    background-image: $url_5;
+    background-position: -546px -684px;
+  }
+  
+  .ico-support-6 {
+    background-image: $url_5;
+    background-position: -378px -684px;
+  }
+  
+  .upgrade-box-btm .ico-ff {
+    width: 21px;
+    height: 20px;
+    background-image: url($data_uri_7);
+    background-repeat: no-repeat;
+  }
+  
+  .case h1 {
+    margin-bottom: 64px;
+  }
+  
+  /*文件上传区域*/
+  .upload-panel {
+    .upload-form {
+      //margin-left: 370px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .file-info {
+      display: none;
+      //text-align: left;
+      //margin-top: 10px;
+      //margin-left: 505px;
+      //font-size: 14px;
+      //color: gray;
+      position: absolute;
+      //left: -24px;
+      width: 100%;
+      top: 131px;
+      color: #fff;
+      font-size: 14px;
+      color: gray;
+      .file-size {
+        margin-left: 10px;
+      }
+    }
+    .choose-file-btn {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      color: #fff;
+      background-color: #126ee1;
+      background: linear-gradient(to right, #0080ff, #53d1fd);
+      border-color: #126ee1;
+      border-radius: 3px;
+      width: 180px;
+      height: 50px;
+      line-height: 50px;
+      text-decoration: none;
+      font-size: 18px;
+      text-align: center;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      overflow: hidden;
+      &:hover {
+        opacity: 0.7;
+      }
+      input {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 180px;
+        opacity: 0;
+      }
+    }
+    .upload-btn {
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 50px;
+      color: #ffffff;
+      background-color: #126ee1;
+      border-color: #126ee1;
+      width: 120px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 18px;
+      text-align: center;
+      border-radius: 3px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      cursor: default;
+      &:hover {
+        cursor: pointer;
+        opacity: 0.7;
+      }
+    }
+  }
+  
+  .upload-tips {
+    top: 138px !important;
+  }
+  

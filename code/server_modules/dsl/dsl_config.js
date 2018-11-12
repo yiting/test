@@ -1,6 +1,5 @@
 module.exports.create = function (designWidth) {
-    let debug = true,
-        width, // 设计稿宽
+    let width, // 设计稿宽
         verticalSpacing, // 垂直间距，小于间距为一组
         horizontalSpacing, // 水平间距，小于间距为一组
         // horizontalCrack, // 水平缝隙
@@ -81,7 +80,6 @@ module.exports.create = function (designWidth) {
             };
     }
     return {
-        debug,
         device: {
             width
         },
@@ -101,6 +99,9 @@ module.exports.create = function (designWidth) {
             segmentingCoefficient,
             segmentingVerticalWidth,
             operateErrorCoefficient,
+        },
+        output: {
+            debug: true
         }
     }
 }

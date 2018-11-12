@@ -7,12 +7,14 @@ let Dom = require("../dsl_dom.js");
 module.exports.name = 'LAYOUT-IMAGE';
 module.exports.type = Dom.type.IMAGE;
 module.exports.textCount = 0;
-module.exports.imageCount = 0;
+module.exports.imageCount = 2;
 module.exports.mixCount = -9; //负值，即为任意混合数
 module.exports.template = function () {
 
 }
 module.exports.is = function (dom, parent, option, config) {
-    return dom.children.every(child => child.type == Dom.type.IMAGE);
+    return dom.children.length && dom.children.every(child => child.type == Dom.type.IMAGE);
 }
-module.exports.adjust = function (dom, parent, option, config) {}
+module.exports.adjust = function (dom, parent, option, config) {
+
+}

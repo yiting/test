@@ -25,13 +25,13 @@ const [Artboard,Group, Bitmap,Text,ShapeGroup,SymbolInstance,SymbolMaster,SliceL
  * @param {Object} designStyle 解析完的样式对象
  * @param {Array} designImage 需要合并的节点记录
  */
-let parse = function(artboradId, inputList) {
+let parse = function(artboradId, inputList,pageArtBoardIndex) {
     // Sketch的数据解析逻辑
     // 传入的数据只能是Artboard类型为根节点或者Symbol类型为根节点
     // _parseFromArtboard
     // _parseFromSymbol
     const symbolMasterLayerMap = getSymbolMasterLayerMap(inputList);
-    const artboardLayer = getArtboardLayer(artboradId,inputList);
+    const artboardLayer = getArtboardLayer(artboradId,inputList,pageArtBoardIndex);
     if (!artboardLayer) return null; // symbol
     const _document = _parseFromArtboard(artboardLayer,symbolMasterLayerMap);
     modifySize(_document)
@@ -47,7 +47,7 @@ const styleParser = {
         if (!background || background.type != 'image') {
             shadows = this._getShadows([...(outterShadows || []),...(innerShadows || [])]);
             border = this._getBorder(borders);
-            borderRadius =  this._getBorderRadius(_class,points);
+            borderRadius =  this._getBorderRadius(_class,points,frame);
         }
         // const backgroundColor = bgColor ? this._getColor(bgColor) : fills[0];
         const styles = {
@@ -63,9 +63,12 @@ const styleParser = {
         }
         return styles;
     },
-    _getBorderRadius(_class,points) {
+    _getBorderRadius(_class,points,frame) {
         if (_class === Rectangle) {
             return points[0].cornerRadius;
+        }
+        if (_class === Oval && frame.width === frame.height) { // 圆形可以使用borderradius
+            return frame.width/2;
         }
         return 0;
     },
@@ -174,7 +177,7 @@ const styleParser = {
             texts,
             verticalAlign,
             textAlign: encodedAttributes.paragraphStyle.alignment || 0,
-            lineHeight: encodedAttributes.paragraphStyle.maximumLineHeight || height
+            lineHeight: encodedAttributes.paragraphStyle.maximumLineHeight || null
         }
     }
 }
@@ -185,11 +188,13 @@ const styleParser = {
 // let _parseFromArtboard = function(data, designArtboard, designStyle, designImage) {
 
 // }
-let getArtboardLayer = function(artboradId,inputList) {
+let getArtboardLayer = function(artboradId,inputList,pageArtBoardIndex) {
     for(let json of inputList) {
-        const arr = json.layers.filter(({do_objectID, _class}) => do_objectID === artboradId && _class === Artboard);
-        if (arr.length) {
-            return arr[0];
+        const index = json.layers.findIndex(({do_objectID, _class}) => do_objectID === artboradId && _class === Artboard);
+        if (~index) {
+            let artboard = json.layers[index];
+            artboard.index = pageArtBoardIndex;
+            return artboard;
         }
     }
     return null
@@ -229,6 +234,7 @@ let _parseLayer = function(_document, layer, pnode = null, brotherLayers = null)
         case Artboard:
             //log('MSArtboardGroup: ' + uin);
             obj = new QBody();
+            obj.bodyIndex = layer.index;
             break;
         case Group:
             //log('MSLayerGroup: ' + uin);

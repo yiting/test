@@ -1,0 +1,538 @@
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 导出html成功
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 结构骨架输出成功
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 导出css成功
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 10:38:39 DEBUG default 20181112103835_0list.sketch 平台模块 开始生成图片
+
+2018-11-12 10:38:40 DEBUG default 20181112103835_0list.sketch 平台模块 生成目标图片，用时0.822秒
+
+2018-11-12 10:38:40 DEBUG default 20181112103835_0list.sketch 平台模块 图片输出成功,图片数组个数:19
+
+2018-11-12 10:38:40 DEBUG default 20181112103835_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 10:38:40 DEBUG default 20181112103835_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 10:38:41 DEBUG default 20181112103835_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 10:39:02 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 10:39:02 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 10:39:02 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:39:02 DEBUG default 20181112103835_0list.sketch 平台模块 导出html成功
+
+2018-11-12 10:39:02 DEBUG default 20181112103835_0list.sketch 平台模块 骨架输出成功
+
+2018-11-12 10:39:02 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 10:39:02 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 10:39:02 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:39:02 DEBUG default 20181112103835_0list.sketch 平台模块 导出css成功
+
+2018-11-12 10:39:05 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 10:39:05 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 10:39:05 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:39:05 DEBUG default 20181112103835_0list.sketch 平台模块 导出html成功
+
+2018-11-12 10:39:05 DEBUG default 20181112103835_0list.sketch 平台模块 骨架输出成功
+
+2018-11-12 10:39:05 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 10:39:05 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 10:39:05 DEBUG default 20181112103835_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:39:05 DEBUG default 20181112103835_0list.sketch 平台模块 导出css成功
+
+2018-11-12 10:48:16 DEBUG default 20181112104813_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 10:48:16 DEBUG default 20181112104813_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 导出html成功
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 结构骨架输出成功
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 开始生成图片
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:48:17 DEBUG default 20181112104813_0list.sketch 平台模块 导出css成功
+
+2018-11-12 10:48:18 DEBUG default 20181112104813_0list.sketch 平台模块 生成目标图片，用时0.9秒
+
+2018-11-12 10:48:18 DEBUG default 20181112104813_0list.sketch 平台模块 图片输出成功,图片数组个数:19
+
+2018-11-12 10:48:18 DEBUG default 20181112104813_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 10:48:18 DEBUG default 20181112104813_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 10:48:19 DEBUG default 20181112104813_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 10:52:59 DEBUG default 20181112104813_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 10:52:59 DEBUG default 20181112104813_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 10:52:59 DEBUG default 20181112104813_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 10:52:59 DEBUG default 20181112104813_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 10:53:00 DEBUG default 20181112104813_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 10:53:00 DEBUG default 20181112104813_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 10:53:23 DEBUG default 20181112104813_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 10:53:23 DEBUG default 20181112104813_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 10:53:23 DEBUG default 20181112104813_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 10:53:23 DEBUG default 20181112104813_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 10:53:23 DEBUG default 20181112104813_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 10:53:23 DEBUG default 20181112104813_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 10:53:36 DEBUG default 20181112104813_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 10:53:36 DEBUG default 20181112104813_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 10:53:36 DEBUG default 20181112104813_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 10:53:36 DEBUG default 20181112104813_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 10:53:37 DEBUG default 20181112104813_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 10:53:37 DEBUG default 20181112104813_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 10:53:49 DEBUG default 20181112104813_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 10:53:49 DEBUG default 20181112104813_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 10:53:49 DEBUG default 20181112104813_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 10:53:49 DEBUG default 20181112104813_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 10:53:50 DEBUG default 20181112104813_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 10:53:50 DEBUG default 20181112104813_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 10:54:07 DEBUG default 20181112105404_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 10:54:07 DEBUG default 20181112105404_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 导出html成功
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 结构骨架输出成功
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 导出css成功
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 10:54:08 DEBUG default 20181112105404_0list.sketch 平台模块 开始生成图片
+
+2018-11-12 10:54:09 DEBUG default 20181112105404_0list.sketch 平台模块 生成目标图片，用时0.891秒
+
+2018-11-12 10:54:09 DEBUG default 20181112105404_0list.sketch 平台模块 图片输出成功,图片数组个数:19
+
+2018-11-12 10:54:09 DEBUG default 20181112105404_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 10:54:09 DEBUG default 20181112105404_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 10:54:09 DEBUG default 20181112105404_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 10:54:28 DEBUG default 20181112105404_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 10:54:28 DEBUG default 20181112105404_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 10:54:28 DEBUG default 20181112105404_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 10:54:28 DEBUG default 20181112105404_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 10:54:28 DEBUG default 20181112105404_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 10:54:29 DEBUG default 20181112105404_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 导出html成功
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 结构骨架输出成功
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 导出css成功
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 10:55:43 DEBUG default 20181112105540_0list.sketch 平台模块 开始生成图片
+
+2018-11-12 10:55:44 DEBUG default 20181112105540_0list.sketch 平台模块 生成目标图片，用时0.896秒
+
+2018-11-12 10:55:44 DEBUG default 20181112105540_0list.sketch 平台模块 图片输出成功,图片数组个数:19
+
+2018-11-12 10:55:44 DEBUG default 20181112105540_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 10:55:45 DEBUG default 20181112105540_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 10:55:45 DEBUG default 20181112105540_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 10:56:59 DEBUG default 20181112105654_1单页.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 10:56:59 DEBUG default 20181112105654_1单页.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 10:57:04 DEBUG default 20181112105654_1单页.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 10:57:04 DEBUG default 20181112105654_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 10:57:04 DEBUG default 20181112105654_1单页.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 10:57:04 DEBUG default 20181112105654_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:57:04 DEBUG default 20181112105654_1单页.sketch 平台模块 导出html成功
+
+2018-11-12 10:57:04 DEBUG default 20181112105654_1单页.sketch 平台模块 结构骨架输出成功
+
+2018-11-12 10:57:04 DEBUG default 20181112105654_1单页.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 10:57:04 DEBUG default 20181112105654_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 10:57:04 DEBUG default 20181112105654_1单页.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 10:57:04 DEBUG default 20181112105654_1单页.sketch 平台模块 开始生成图片
+
+2018-11-12 10:57:05 DEBUG default 20181112105654_1单页.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 10:57:05 DEBUG default 20181112105654_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:57:05 DEBUG default 20181112105654_1单页.sketch 平台模块 导出css成功
+
+2018-11-12 10:57:08 DEBUG default 20181112105654_1单页.sketch 平台模块 生成目标图片，用时4.317秒
+
+2018-11-12 10:57:08 DEBUG default 20181112105654_1单页.sketch 平台模块 图片输出成功,图片数组个数:48
+
+2018-11-12 10:57:08 DEBUG default 20181112105654_1单页.sketch 平台模块 进入上传代码模块
+
+2018-11-12 10:57:09 DEBUG default 20181112105654_1单页.sketch 平台模块 ftp开始上传
+
+2018-11-12 10:57:11 DEBUG default 20181112105654_1单页.sketch 平台模块 ftp上传成功
+
+2018-11-12 10:59:54 DEBUG default 20181112105951_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 10:59:54 DEBUG default 20181112105951_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 导出html成功
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 结构骨架输出成功
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 开始生成图片
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 10:59:55 DEBUG default 20181112105951_0list.sketch 平台模块 导出css成功
+
+2018-11-12 10:59:56 DEBUG default 20181112105951_0list.sketch 平台模块 生成目标图片，用时0.785秒
+
+2018-11-12 10:59:56 DEBUG default 20181112105951_0list.sketch 平台模块 图片输出成功,图片数组个数:19
+
+2018-11-12 10:59:56 DEBUG default 20181112105951_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 10:59:56 DEBUG default 20181112105951_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 10:59:57 DEBUG default 20181112105951_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 11:02:03 DEBUG default 20181112105951_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 11:02:03 DEBUG default 20181112105951_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 11:02:03 DEBUG default 20181112105951_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 11:02:03 DEBUG default 20181112105951_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 11:02:04 DEBUG default 20181112105951_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 11:02:05 DEBUG default 20181112105951_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 导出html成功
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 结构骨架输出成功
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 开始生成图片
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:03:38 DEBUG default 20181112105951_0list.sketch 平台模块 导出css成功
+
+2018-11-12 11:03:39 DEBUG default 20181112105951_0list.sketch 平台模块 生成目标图片，用时1.016秒
+
+2018-11-12 11:03:39 DEBUG default 20181112105951_0list.sketch 平台模块 图片输出成功,图片数组个数:19
+
+2018-11-12 11:03:39 DEBUG default 20181112105951_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 11:03:40 DEBUG default 20181112105951_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 11:03:41 DEBUG default 20181112105951_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 11:07:06 DEBUG default 20181112105951_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 11:07:06 DEBUG default 20181112105951_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 11:07:06 DEBUG default 20181112105951_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 11:07:06 DEBUG default 20181112105951_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 11:07:08 DEBUG default 20181112105951_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 11:07:09 DEBUG default 20181112105951_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 11:07:16 DEBUG default 20181112105951_0list.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 11:07:16 DEBUG default 20181112105951_0list.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 11:07:16 DEBUG default 20181112105951_0list.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 11:07:16 DEBUG default 20181112105951_0list.sketch 平台模块 进入上传代码模块
+
+2018-11-12 11:07:17 DEBUG default 20181112105951_0list.sketch 平台模块 ftp开始上传
+
+2018-11-12 11:07:18 DEBUG default 20181112105951_0list.sketch 平台模块 ftp上传成功
+
+2018-11-12 11:07:50 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 11:07:50 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 11:07:50 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:07:50 DEBUG default 20181112105951_0list.sketch 平台模块 导出html成功
+
+2018-11-12 11:07:50 DEBUG default 20181112105951_0list.sketch 平台模块 骨架输出成功
+
+2018-11-12 11:07:50 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 11:07:50 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 11:07:50 DEBUG default 20181112105951_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:07:50 DEBUG default 20181112105951_0list.sketch 平台模块 导出css成功
+
+2018-11-12 11:08:14 DEBUG default 20181112110810_1单页.sketch 平台模块 获取当前artboard骨架请求
+
+2018-11-12 11:08:14 DEBUG default 20181112110810_1单页.sketch 平台模块 获取到的artBoard index:1_1
+
+2018-11-12 11:08:19 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 11:08:19 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 11:08:19 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 11:08:19 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:08:19 DEBUG default 20181112110810_1单页.sketch 平台模块 导出html成功
+
+2018-11-12 11:08:19 DEBUG default 20181112110810_1单页.sketch 平台模块 结构骨架输出成功
+
+2018-11-12 11:08:19 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-12 11:08:19 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-12 11:08:19 DEBUG default 20181112110810_1单页.sketch 平台模块 获取当前artboard图片素材请求
+
+2018-11-12 11:08:19 DEBUG default 20181112110810_1单页.sketch 平台模块 开始生成图片
+
+2018-11-12 11:08:20 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-12 11:08:20 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:08:20 DEBUG default 20181112110810_1单页.sketch 平台模块 导出css成功
+
+2018-11-12 11:08:23 DEBUG default 20181112110810_1单页.sketch 平台模块 生成目标图片，用时4.013秒
+
+2018-11-12 11:08:24 DEBUG default 20181112110810_1单页.sketch 平台模块 图片输出成功,图片数组个数:48
+
+2018-11-12 11:08:24 DEBUG default 20181112110810_1单页.sketch 平台模块 进入上传代码模块
+
+2018-11-12 11:08:24 DEBUG default 20181112110810_1单页.sketch 平台模块 ftp开始上传
+
+2018-11-12 11:08:28 DEBUG default 20181112110810_1单页.sketch 平台模块 ftp上传成功
+
+2018-11-12 11:08:57 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 11:08:57 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 11:08:57 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:08:57 DEBUG default 20181112110810_1单页.sketch 平台模块 导出html成功
+
+2018-11-12 11:08:57 DEBUG default 20181112110810_1单页.sketch 平台模块 骨架输出成功
+
+2018-11-12 11:08:57 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 11:08:57 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 11:08:57 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:08:57 DEBUG default 20181112110810_1单页.sketch 平台模块 导出css成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 导出html成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 骨架输出成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 导出html成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 骨架输出成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 导出html成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 骨架输出成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 导出css成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 导出css成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-12 11:10:27 DEBUG default 20181112110810_1单页.sketch 平台模块 导出css成功
+

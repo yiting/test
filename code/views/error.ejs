@@ -1,3 +1,17 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>提示</title>
+    <link rel="stylesheet" href="/css/error.css" />
+  </head>
+  <body>
+    <!-- 头部 -->
+    <%- include("./template/index/header.ejs") %>
+
+    <div class="error-info">
+      <h1><%= message %></h1>
+      <h2><%= error.status %></h2>
+      <pre><%= error.stack %></pre>
+    </div>
+  </body>
+</html>

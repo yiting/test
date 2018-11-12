@@ -5,61 +5,59 @@ module.exports = {
      */
     // 以x,y方式定位
     LayoutSelfPosition: {
-        Static: 1,
-        Absolute: 2
+        Static: 'Static',
+        Absolute: 'Absolute'
     },
     // 排版中自身方式（优于父容器的排版）
     LayoutSelfHorizontal: {
-        Left: 1,
-        Right: 2
+        Left: 'Left',
+        Right: 'Right'
     },
     // 排版中自身方式（优于父容器的排版）
     LayoutSelfVertical: {
-        Top: 1,
-        Bottom: 2
-    },
-    // 文本左对齐
-    LayoutAlign: {
-        Left: 1,
-        Right: 2,
-        Center: 3
+        Top: 'Top',
+        Bottom: 'Bottom'
     },
     // 固定高度
     LayoutFixedHeight: {
-        Default: 1,
-        Fixed: 2
+        Default: 'Default',
+        Fixed: 'Fixed'
     },
     // 固定宽度
     LayoutFixedWidth: {
-        Default: 1,
-        Fixed: 2,
+        Default: 'Default',
+        Fixed: 'Fixed',
     },
     // flex:1
     LayoutFlex: {
-        Default: 1,
-        Auto: 2,
-        None: 3,
+        Default: 'Default',
+        Auto: 'Auto',
+        None: 'None',
     },
     /**
      * 父容器排版方式描述
      */
     // 父类中所有子类已x,y方式定位
     LayoutPosition: {
-        Absolute: 1,
-        Horizontal: 2,
-        Vertical: 3,
+        Static: 'Static',
+        Absolute: 'Absolute'
+    },
+    LayoutDirection: {
+        Default: 'Default',
+        Horizontal: 'Horizontal',
+        Vertical: 'Vertical',
     },
     // 横轴从开头开始排
     LayoutJustifyContent: {
-        Start: 1,
-        End: 2,
-        Center: 3,
+        Start: 'Start',
+        End: 'End',
+        Center: 'Center',
         // Between: 4
     },
     // 纵轴居开始
     LayoutAlignItems: {
-        Start: 1,
-        End: 2,
-        Center: 3
+        Start: 'Start',
+        End: 'End',
+        Center: 'Center'
     }
 }

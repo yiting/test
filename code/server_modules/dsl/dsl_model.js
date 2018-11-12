@@ -35,8 +35,8 @@ module.exports.adjust = function (model, dom, parent, Option, Config) {
     dom.model = model.name; // 赋予模型名称
     dom.type = model.type; // 赋予模型类型
     if (dom.type == Dom.type.TEXT) {
-        dom.styles.maxSize = dom.styles.maxSize || Math.max(dom.children.map(c => c.styles.maxSize));
-        dom.styles.minSize = dom.styles.minSize || Math.min(dom.children.map(c => c.styles.minSize));
+        dom.styles.maxSize = dom.styles.maxSize || Math.max(...dom.children.map(c => c.styles.maxSize));
+        dom.styles.minSize = dom.styles.minSize || Math.min(...dom.children.map(c => c.styles.minSize));
     }
     model.adjust(dom, parent, Option, Config);
 }

@@ -284,7 +284,7 @@ class DOM extends Render {
             let bgImage = this._data.path;
             this.attrObj["src"] = bgImage;
         }
-        //this.attrObj["data-id"] = this._data.id;
+        this.attrObj["data-id"] = this._data.id;
         this.attrObj["data-layout"] = this._data.layout;
     }
     getInlineStyle() {

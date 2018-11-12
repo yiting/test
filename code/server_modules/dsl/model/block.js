@@ -22,11 +22,11 @@ module.exports.adjust = function(dom, parent, option, config){
     }
     if (dom.text) {
         if (Math.abs(dir - d) < config.dsl.operateErrorCoefficient) {
-            dom.contrains["LayoutAlign"] = Contrain.LayoutAlign.Center;
+            dom.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.Center;
         } else if (d > dir) {
-            dom.contrains["LayoutAlign"] = Contrain.LayoutAlign.Right;
+            dom.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.End;
         } else {
-            dom.contrains["LayoutAlign"] = Contrain.LayoutAlign.Left;
+            dom.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.Start;
         }
     }
 }

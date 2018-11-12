@@ -1,0 +1,120 @@
+/*中:预览
+-----------------------------------------------------------------------*/
+.screen-viewer {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 60px);
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAAAAAClZ7nPAAAAAnRSTlMAUvP2/eAAAAARSURBVAjXY6ASYD6ATlAHAADy5gMN0fCqFwAAAABJRU5ErkJggg==)
+    #191919;
+  background-size: 16px 16px;
+  overflow: auto;
+  display: -webkit-box;
+}
+
+.screen-viewer-inner {
+  position: relative;
+  margin: 20px auto;
+  //cursor: pointer;
+  //2018-08-24
+  display: -webkit-box;
+  width: 100%;
+  text-align: center;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: vertical;
+
+  //height: 100%;
+  //2018-09-27：编译模式
+  .compilation-mode-list {
+    margin-top: 30px;
+
+    .compilation-mode-item {
+      position: relative;
+      list-style: none;
+      display: inline-block;
+      height: 26px;
+      line-height: 26px;
+
+      &.ai-mode-item {
+        margin-left: 30px;
+      }
+
+      input {
+        position: relative;
+        visibility: visible;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+      }
+
+      label {
+        font-size: 15px;
+        vertical-align: top;
+      }
+    }
+  }
+}
+
+.design-coding-panel {
+  display: -webkit-box;
+  text-align: center;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+
+  /*当前artBoard对应的预览图*/
+  .design-img-panel {
+    display: none;
+    margin-right: 20px;
+
+    .design-title {
+      color: #ffffff;
+    }
+
+    .design-img {
+      margin-top: 10px;
+
+      img {
+        background-color: #ffffff;
+        width: 100%;
+      }
+    }
+  }
+
+  .compile-result-panel {
+    .compile-title {
+      color: #ffffff;
+    }
+
+    .screen {
+      //2018-08-24
+      //margin: 20px auto;
+      margin-top: 10px;
+      background: #fff;
+      //pointer-events:auto;
+    }
+  }
+}
+
+.design-img-btn {
+  width: 150px;
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  background: #3484f5;
+  background: linear-gradient(to right, #0080ff, #53d1fd);
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+  vertical-align: middle;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}

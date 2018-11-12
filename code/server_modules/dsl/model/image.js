@@ -9,12 +9,12 @@ module.exports.name = 'IMAGE';
 module.exports.type = Dom.type.IMAGE;
 module.exports.textCount = 0;
 module.exports.imageCount = 0;
-module.exports.mixCount = 0;//-1，即为任意混合数
+module.exports.mixCount = 0; //-1，即为任意混合数
 module.exports.template = function () {
 
 }
 module.exports.is = function (dom, parent, option, config) {
-    return !dom.text && dom.path && (!dom.children || dom.children.length == 0)
+    return !dom.text && dom.path;
 }
 module.exports.adjust = function (dom, parent, option, config) {
     dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;

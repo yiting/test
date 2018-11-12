@@ -1,0 +1,68 @@
+<!-- 右:编辑区 -->
+<!-- 素材库/编辑 -->
+<!-- 侧边栏属性显示 -->
+<aside class="sidebar attribute-show-panel">
+  <h3 class="node-name"></h3>
+  <!-- 属性 -->
+  <section class="attribute-panel">
+    <h3 class="section-title">属性</h3>
+    <ul class="attribute-list">
+      <li class="attribute-item">
+        <span class="attribute-title">位置</span>
+        <input type="text" class="x-val" readonly data-need="unit" />
+        <input type="text" class="y-val" readonly data-need="unit" />
+      </li>
+      <li class="attribute-item">
+        <span class="attribute-title">大小</span>
+        <input type="text" class="width-val" readonly data-need="unit" />
+        <input type="text" class="height-val" readonly data-need="unit" />
+      </li>
+      <li class="attribute-item">
+        <span class="attribute-title">不透明度</span>
+        <input type="text" class="opacity-val" readonly />
+      </li>
+    </ul>
+  </section>
+  <!-- 字体 -->
+  <section class="fontSize-panel">
+    <h3 class="section-title">字体</h3>
+    <ul class="attribute-list">
+      <li class="attribute-item">
+        <span class="attribute-title">字体</span>
+        <input type="text" class="font-val" readonly />
+      </li>
+      <li class="attribute-item">
+        <span class="attribute-title">颜色</span>
+        <span class="color-bac"></span>
+        <input type="text" class="color-val" readonly />
+      </li>
+      <li class="attribute-item">
+        <span class="attribute-title">大小</span>
+        <input
+          type="text"
+          class="fontSize-val"
+          readonly
+          data-need="unit"
+          data-needFont="unit"
+        />
+      </li>
+      <li class="attribute-item">
+        <span class="attribute-title">空间</span>
+        <input type="text" class="letterSpace-val" readonly data-need="unit" />
+        <input type="text" class="lineHeight-val" readonly data-need="unit" />
+      </li>
+    </ul>
+  </section>
+  <!-- 代码 -->
+  <section class="code-panel">
+    <h3 class="section-title">&bull; 代码</h3>
+    <h3 class="copy-code-btn" data-clipboard-target="#language-attr-list">
+      复制代码
+    </h3>
+    <div class="language-panel">
+      <div class="language">
+        <ul class="language-attr-list" id="language-attr-list"></ul>
+      </div>
+    </div>
+  </section>
+</aside>

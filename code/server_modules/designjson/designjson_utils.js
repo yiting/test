@@ -34,9 +34,10 @@ function isCoincide(node,pnode) {
     return node.width === pnode.width && node.height === pnode.height && node.abX === pnode.abX && node.abY === pnode.abY
 }
 // 元素合并样式属性
-function mergeStyle(targetNode,node) {
+function mergeStyle(targetNode,node,targetKeys) {
     // TODO
-    for(key in node.styles) {
+    let keys = targetKeys || Object.keys(node.styles);
+    for(key of keys) {
         if (!targetNode.styles[key] || key === 'background') targetNode.styles[key] = node.styles[key];
     }
 }

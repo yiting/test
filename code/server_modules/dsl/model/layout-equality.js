@@ -15,7 +15,7 @@ module.exports.name = 'LAYOUT-EQUALITY';
 module.exports.type = Dom.type.LAYOUT;
 module.exports.textCount = 0;
 module.exports.imageCount = 0;
-module.exports.mixCount = -1; //-1，即为任意混合数
+module.exports.mixCount = -5; //-1，即为任意混合数
 module.exports.is = function (dom, parent, option, config) {
     if (dom.children.length < 2) {
         return false;
@@ -24,16 +24,19 @@ module.exports.is = function (dom, parent, option, config) {
         isHorizontal = Dom.isHorizontal(dom.children),
         isSameType = Dom.isSameType(children),
         lastIndex = children.length - 1,
+        firstMargin = children[0].x,
+        lastMargin = dom.width - children[lastIndex].x - children[lastIndex].width,
         firstOffsetLeft = children[0].x + children[0].width / 2,
         lastOffsetRight = dom.width - children[lastIndex].x - children[lastIndex].width / 2
     return isHorizontal &&
         isSameType &&
         Math.abs(firstOffsetLeft - lastOffsetRight) < config.dsl.operateErrorCoefficient &&
+        firstMargin > 0 &&
+        lastMargin > 0 &&
         children.every((child, i) => {
             const offset = Dom.calOffset(child, dom, 'x');
             return i == 0 || i == lastIndex ||
                 Math.abs(offset.left - offset.right) < config.dsl.operateErrorCoefficient;
-
         })
 }
 module.exports.adjust = function (dom, parent, option, config) {
@@ -57,7 +60,8 @@ module.exports.adjust = function (dom, parent, option, config) {
     // 等差值
     equalWidth -= (equalWidth % config.dsl.dpr);
 
-    dom.contrains["LayoutPosition"] = Contrain.LayoutPosition.Horizontal;
+    dom.contrains["LayoutDirection"] = Contrain.LayoutDirection.Horizontal;
+    dom.contrains["LayoutPosition"] = Contrain.LayoutPosition.Static;
     dom.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.Center;
     dom.children.forEach(c => correctWidth(equalWidth, c, dom, option, config))
     dom.type = dom.children[0].type;
@@ -83,6 +87,7 @@ function correctWidth(width, dom, parent, option, config) {
         newDom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
         Dom.replaceWith(dom, parent, newDom);
         Model.adjust(ColumnModel, newDom, parent, option, config);
+        newDom.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.Center;
     } else {
         dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
         dom.width = width;
@@ -92,8 +97,6 @@ function correctWidth(width, dom, parent, option, config) {
             child.abX += dir;
             child.x += dir;
         });
-    }
-    if (dom.type == Dom.type.TEXT) {
-        dom.contrains["LayoutAlign"] = Contrain.LayoutAlign.Center;
+        dom.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.Center;
     }
 }

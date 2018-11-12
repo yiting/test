@@ -30,5 +30,11 @@ module.exports.is = function (dom, parent, option, config) {
 }
 module.exports.adjust = function (dom, parent, option, config) {
     dom.contrains["LayoutPosition"] = Contrain.LayoutPosition.Vertical;
-    dom.contrains["LayoutJustifyContentStart"] = Contrain.LayoutJustifyContent.center;
+    // dom.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.Center;
+    dom.contrains["LayoutAlignItems"] = Contrain.LayoutAlignItems.Center;
+    
+    const txt = dom.children.find((child) => {
+        return child.type == Dom.type.TEXT;
+    });
+    txt.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.Center;
 }

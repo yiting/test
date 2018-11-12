@@ -1,4 +1,5 @@
 let Dom = require("../dsl_dom.js");
+let Contrain = require('../dsl_contrain.js');
 
 /**
  * 文本
@@ -8,15 +9,15 @@ module.exports.name = 'TEXT';
 module.exports.type = Dom.type.TEXT;
 module.exports.textCount = 0;
 module.exports.imageCount = 0;
-module.exports.mixCount = 0;//-1，即为任意混合数
- module.exports.template = function() {
+module.exports.mixCount = 0; //-1，即为任意混合数
+module.exports.template = function () {
 
 }
-module.exports.is = function(dom, parent, option, config) {
-    if ( dom.text && !dom.path && dom.lines == 1) {
+module.exports.is = function (dom, parent, option, config) {
+    if (dom.text && !dom.path && dom.lines == 1) {
         return true;
     }
 }
-module.exports.adjust=function(dom){
-
+module.exports.adjust = function (dom) {
+    dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Default;
 }

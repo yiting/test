@@ -4,6 +4,7 @@
 // 依赖的模块
 const {serialize,walkin,hasStyle} = require('./designjson_utils');
 let RepeatProcessor = require('./designjson_repeat_processor');
+const OUTPUT_PATH = 'images';
 /**
  * 基础节点类
  */
@@ -227,9 +228,11 @@ class QDocument {
         walkin(this._tree,node => {
             if(node.type === QImage.name) _images.push(node);
         })
-        //2018.10.25:去掉去重注释
-        RepeatProcessor(_images);
         // const rules = ['children','styles','parent','childnum','isLeaf','constraints'];break;
+        _images.forEach((node,i) => {
+            node.path = `${OUTPUT_PATH}/${this._tree.bodyIndex}-${i}.png`
+        });
+        RepeatProcessor(_images);
         return _images.map(({
             id, name, type, width, height, x, y, abX, abY, isMasked, maskedNodes, maskNode, path, _imageChildren, _origin,isModified
         }) => {

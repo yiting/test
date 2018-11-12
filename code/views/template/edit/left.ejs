@@ -1,0 +1,67 @@
+<% let pagesData = JSON.parse(data);
+let pageFirstData = pagesData[0];
+let artBoardsData = pageFirstData.artBoards
+%>
+<aside class="navbar on">
+    <ul class="section-list">
+        <!-- 页面列表面板 -->
+        <li class="section-item page-list-panel current">
+            <section id="artboards">
+                <!--pages下拉操作-->
+                <div class="pages-select">
+                    <h3 class="page-title" data-pid="<%= pageFirstData.pageId %>">
+                        <%= pageFirstData.pageName %>
+                        <em>(
+                            <%= artBoardsData.length %>)</em>
+                    </h3>
+                    <ul class="pages-list">
+                        <% for(var i = 0;i < pagesData.length;i++){ %>
+                        <li class="pages-item" data-id="<%= pagesData[i].pageId %>">
+                            <label>
+                                <input type="radio" name="pages-item" data-id="<%= pagesData[i].pageId %>" <% if (i==0)
+                                    { %>
+                                checked
+                                <% } %>
+                                />
+                                <span>
+                                    <%= pagesData[i].pageName.trim() %>
+                                    <em>(
+                                        <%= pagesData[i].artBoards.length %>)</em>
+                                </span>
+                            </label>
+                        </li>
+                        <% } %>
+                    </ul>
+                </div>
+                <!--artBoards列表数据-->
+                <ul class="artboard-list">
+                    <% for(var i = 0;i < artBoardsData.length;i++){ %>
+                    <li class="artboard<%= i == 0 ? " active" : "" %>" data-id=
+                        <%= artBoardsData[i].artboardId %>>
+                        <!--<picture class="preview-img"><img
+                                        src="https://xshow.tencent.com/s/guide/180517/111532_557573_72b269d86795358003fb2adf75effecc_s.jpg">
+                            </picture>-->
+                        <div>
+                            <h3>
+                                <%= artBoardsData[i].artboardName.trim() %>
+                            </h3>
+                            <small>ArtBoard
+                                <%= i + 1 %></small>
+                        </div>
+                    </li>
+                    <% } %>
+                </ul>
+            </section>
+            <div class="btn download-btn">下载项目</div>
+        </li>
+        <!-- 图片列表面板 -->
+        <li class="section-item img-list-panel">
+            <div class="img-item-list" id="masonry">
+            </div>
+        </li>
+        <!-- dom层级结构调整面板 -->
+        <li class="section-item structure-panel">
+            <button class="btn-operate" id="btn-group">合并</button>
+        </li>
+    </ul>
+</aside>

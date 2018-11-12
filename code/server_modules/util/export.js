@@ -9,7 +9,8 @@ let Utils=require('./utils');
  */
 let exportStr = function (filePath, str, callback) {
   if (!filePath || !str) {
-    log('export.js - exportStr: 参数有误')
+    //log('export.js - exportStr: 参数有误')
+    logger.warn('[export.js-exportStr]参数有误');
     return
   }
   Utils.writeToFile(filePath, str, callback)
@@ -23,7 +24,8 @@ let exportStr = function (filePath, str, callback) {
  */
 let exportHtml = function (path, name, str, callback) {
   if (!path || !name || !str) {
-    log('export.js - exportHtml: 参数有误')
+    //log('export.js - exportHtml: 参数有误')
+    logger.warn('[export.js-exportHtml]参数有误');
     return
   }
   let filePath = path + '/' + name + '.html'
@@ -38,7 +40,8 @@ let exportHtml = function (path, name, str, callback) {
  */
 let exportCss = function (path, name, str, callback) {
   if (!path || !name || !str) {
-    log('export.js - exportCss: 参数有误')
+    //log('export.js - exportCss: 参数有误')
+    logger.warn('[export.js-exportCss]参数有误');
     return
   }
   let filePath = path + '/' + name + '.css'
@@ -53,7 +56,8 @@ let exportCss = function (path, name, str, callback) {
  */
 let exportJade = function (path, name, str, callback) {
   if (!path || !name || !str) {
-    log('export.js - exportJade: 参数有误')
+    //log('export.js - exportJade: 参数有误')
+    logger.warn('[export.js-exportJade]参数有误');
     return
   }
   let filePath = path + '/' + name + '.jade'
@@ -68,7 +72,8 @@ let exportJade = function (path, name, str, callback) {
  */
 let exportSass = function (path, name, str, callback) {
   if (!path || !name || !str) {
-    log('export.js - exportSass: 参数有误')
+    //log('export.js - exportSass: 参数有误')
+    logger.warn('[export.js-exportSass]参数有误');
     return
   }
   let filePath = path + '/' + name + '.sass'

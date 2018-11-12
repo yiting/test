@@ -17,7 +17,9 @@ class Render {
         this.tagName = '';
         this.data = o;
         this.parentNode = parentNode;
-        this.SelfContrain = this.data.contrains;
+        this.prevData = Dom.findPrevDom(this.data, parentNode && parentNode.data);
+        this.nextData = Dom.findNextDom(this.data, parentNode && parentNode.data);
+        this.SelfContrains = this.data.contrains;
         this.ParentContrains = parentNode && parentNode.data.contrains || {};
     }
     /* 节点样式 */
@@ -50,7 +52,13 @@ class Render {
         }
         // 行内属性
         Object.keys(attr).forEach((key, i) => {
-            attrArr.push(`${key}="${attr[key]}"`);
+            if (!attr[key]) {
+                return
+            } else if (attr[key] === true) {
+                attrArr.push(key);
+            } else {
+                attrArr.push(`${key}="${attr[key]}"`);
+            }
         });
         // 行内样式
         if (styleArr.length) {
@@ -58,9 +66,9 @@ class Render {
         }
         let attrStr = attrArr.join(' ');
         // 结束标签
-        if (this.isClosingTag) {
+        if (CLOSING_TAGS.includes(this.tagName)) {
             return {
-                start: `<${this.tagName} ${attrStr}/>`,
+                start: `<${this.tagName} ${attrStr}\/>`,
                 end: ''
             }
         } else {
@@ -85,22 +93,19 @@ class Render {
         }
         return filter.join(' ');
     }
-    get isClosingTag() {
-        return CLOSING_TAGS.includes(this.tagName);
-    }
 
-    get prevData() {
-        return this.parentNode && this.parentNode.data.children[this.parentNode.data.children.indexOf(this.data) - 1];
-    }
-    get nextData() {
-        return this.parentNode && this.parentNode.data.children[this.parentNode.data.children.indexOf(this.data) + 1];
-    }
+    // get prevData() {
+    // return this.parentNode && this.parentNode.data.children[this.parentNode.data.children.indexOf(this.data) - 1];
+    // }
+    // get nextData() {
+    // return this.parentNode && this.parentNode.data.children[this.parentNode.data.children.indexOf(this.data) + 1];
+    // }
     /**
      * style
      */
     get width() {
         // 固定宽度
-        if (this.SelfContrain["LayoutFixedWidth"] == CONTRAIN.LayoutFixedWidth.Fixed) {
+        if (this.SelfContrains["LayoutFixedWidth"] == CONTRAIN.LayoutFixedWidth.Fixed) {
             return Render.unit(this.data.width)
         } else {
             return 'auto'
@@ -109,7 +114,7 @@ class Render {
     }
     get height() {
         // 固定高度
-        if (this.SelfContrain["LayoutFixedHeight"] == CONTRAIN.LayoutFixedHeight.Fixed) {
+        if (this.SelfContrains["LayoutFixedHeight"] == CONTRAIN.LayoutFixedHeight.Fixed) {
             return Render.unit(this.data.height);
         } else {
             return 'auto';
@@ -117,49 +122,52 @@ class Render {
 
     }
     get marginLeft() {
-
         // 自身约束
-        if (this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
+        if (this.SelfContrains["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
             return;
         }
         // 自身约束
-        if (this.SelfContrain["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Left) {
+        if (this.SelfContrains["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Left) {
             let margin = Dom.calMargin(this.data, this.parentNode.data);
             return Render.unit(margin["left"]);
-        } else if (this.SelfContrain["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Right) {
+        } else if (this.SelfContrains["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Right) {
             return;
         }
         // 父级约束
-        if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal) {
+        if (this.ParentContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Horizontal) {
             // 水平
             if (this.ParentContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Center) {
                 return this.prevData ? Render.unit(this.data.x - this.prevData.x - this.prevData.width) : null;
             } else if (this.ParentContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Start) {
                 return Render.unit(this.data.x - (this.prevData ? (this.prevData.x + this.prevData.width) : 0));
             }
-        } else if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Vertical &&
-            this.ParentContrains["LayoutAlignItems"] != CONTRAIN.LayoutAlignItems.Start &&
+        } else if (this.ParentContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Vertical) {
+            /* this.ParentContrains["LayoutAlignItems"] != CONTRAIN.LayoutAlignItems.Start &&
             this.ParentContrains["LayoutAlignItems"] != CONTRAIN.LayoutAlignItems.Center &&
             this.ParentContrains["LayoutAlignItems"] != CONTRAIN.LayoutAlignItems.End) {
-            return Render.unit(this.data.x);
+            return Render.unit(this.data.x); */
+            if (this.ParentContrains["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.Center) {
+                return 'auto'
+            } else if (this.ParentContrains["LayoutAlignItems"] != CONTRAIN.LayoutAlignItems.End) {
+                return Render.unit(this.data.x);
+            }
         }
 
     }
     get marginTop() {
-
-        if (this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
+        if (this.SelfContrains["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
             return;
         }
         // 自身约束
-        if (this.SelfContrain["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Top) {
+        if (this.SelfContrains["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Top) {
             let margin = Dom.calMargin(this.data, this.parentNode.data);
             return Render.unit(margin["top"]);
         }
         // 父级约束
-        if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal &&
+        if (this.ParentContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Horizontal &&
             this.ParentContrains["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.Start) {
             return Render.unit(this.data.y);
-        } else if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Vertical) {
+        } else if (this.ParentContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Vertical) {
             // 垂直
             if (this.ParentContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Start) {
                 return Render.unit(this.data.y - (this.prevData ? (this.prevData.y + this.prevData.height) : 0));
@@ -171,35 +179,38 @@ class Render {
     }
     get marginRight() {
         // 自身约束
-        if (this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
+        if (this.SelfContrains["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
             return;
         }
         // 自身约束
-        if (this.SelfContrain["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Right) {
+        if (this.SelfContrains["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Right) {
             let margin = Dom.calMargin(this.data, this.parentNode.data);
             return Render.unit(margin["right"]);
         }
-        if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal &&
+        if (this.ParentContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Horizontal &&
             this.ParentContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.End) {
             return Render.unit((this.nextData ? this.nextData.x : this.parentNode.data.width) - this.data.x - this.data.width);
-        } else if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Vertical &&
-            this.ParentContrains["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.End) {
-            return Render.unit(parent.width - this.data.x - this.data.width);
+        } else if (this.ParentContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Vertical) {
+            if (this.ParentContrains["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.Center) {
+                return 'auto'
+            } else if (this.ParentContrains["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.End) {
+                return Render.unit(parent.width - this.data.x - this.data.width);
+            }
         }
 
     }
     get marginBottom() {
 
-        if (this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
+        if (this.SelfContrains["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
             return;
         }
         // 自身约束
-        if (this.SelfContrain["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Bottom) {
+        if (this.SelfContrains["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Bottom) {
             let margin = Dom.calMargin(this.data, this.parentNode.data);
             return Render.unit(margin["bottom"]);
         }
         // 父级约束
-        if (this.ParentContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Vertical &&
+        if (this.ParentContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Vertical &&
             this.ParentContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.End) {
             return Render.unit((this.nextData ? this.nextData.y : this.parentNode.data.height) - this.data.y - this.data.height);
         }
@@ -233,32 +244,32 @@ class Render {
         }
     }
     get backgroundImage() {
+        if (this.data.styles.background &&
+            this.data.styles.background.type == 'linear') {
+            return Render.calLinearGradient(this.data.styles.background, this.data.width, this.data.height);
+        }
         if (this.data.type == Dom.type.IMAGE &&
-            this.data.model != Store.model.IMAGE.name&&
+            this.data.model != Store.model.IMAGE.name &&
             this.data.model != Store.model.POSTER.name
         ) {
             return `url(${this.data.path})`;
-        }
-        if (this.data.styles && this.data.styles.background &&
-            this.data.styles.background.type == 'linear') {
-            return Render.calLinearGradient(this.data.styles.background, this.data.width, this.data.height);
         }
     }
     get left() {
         const Pos = Dom.calPosition(this.data, this.parentNode && this.parentNode.data);
 
-        if ((this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute ||
+        if ((this.SelfContrains["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute ||
                 Object.keys(this.ParentContrains).length == 0) &&
-            this.SelfContrain["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Left) {
+            this.SelfContrains["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Left) {
             return Render.unit(Pos.left);
         }
     }
     get right() {
         const Pos = Dom.calPosition(this.data, this.parentNode && this.parentNode.data);
 
-        if ((this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute ||
+        if ((this.SelfContrains["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute ||
                 Object.keys(this.ParentContrains).length == 0) &&
-            this.SelfContrain["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Right) {
+            this.SelfContrains["LayoutSelfHorizontal"] == CONTRAIN.LayoutSelfHorizontal.Right) {
             return Render.unit(Pos.right);
         }
 
@@ -266,17 +277,17 @@ class Render {
     get top() {
         const Pos = Dom.calPosition(this.data, this.parentNode && this.parentNode.data);
 
-        if ((this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute ||
+        if ((this.SelfContrains["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute ||
                 Object.keys(this.ParentContrains).length == 0) &&
-            this.SelfContrain["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Top) {
+            this.SelfContrains["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Top) {
             return Render.unit(Pos.top);
         }
     }
     get bottom() {
         const Pos = Dom.calPosition(this.data, this.parentNode && this.parentNode.data);
-        if ((this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute ||
+        if ((this.SelfContrains["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute ||
                 Object.keys(this.ParentContrains).length == 0) &&
-            this.SelfContrain["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Bottom) {
+            this.SelfContrains["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Bottom) {
             return Render.unit(Pos.bottom);
         }
     }
@@ -289,11 +300,13 @@ class Render {
         }
     }
     get position() {
-        if (this.SelfContrain["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
+        if (this.SelfContrains["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
             return "absolute";
         }
-        if (this.SelfContrain["LayoutPosition"] == CONTRAIN.LayoutPosition.Absolute) {
+        if (this.SelfContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Absolute) {
             return "relative";
+        } else if (this.SelfContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Static) {
+            return "static"
         }
     }
     get border() {
@@ -332,39 +345,39 @@ class Render {
         }
     }
     /* get flex() {
-        if (this.SelfContrain["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto) {
+        if (this.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto) {
             return 'auto';
-        } else if (this.SelfContrain["LayoutFlex"] == CONTRAIN.LayoutFlex.None) {
+        } else if (this.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.None) {
             return 'none';
         } else {
             return 'unset';
         }
     } */
     /*  get flexDirection() {
-         if (this.SelfContrain["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal) {
+         if (this.SelfContrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal) {
              return 'row';
          }
      } */
     /* get justifyContent() {
 
-        if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Between) {
+        if (this.SelfContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Between) {
             return 'space-between';
-        } else if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Center) {
+        } else if (this.SelfContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Center) {
             return 'center';
-        } else if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.End) {
+        } else if (this.SelfContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.End) {
             return 'end';
-        } else if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Start) {
+        } else if (this.SelfContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Start) {
             return 'start';
         }
     } */
     /* get alignItems() {
 
         // 纵轴
-        if (this.SelfContrain["LayoutAlignItems"] == CONTRAIN.LayoutJustifyContent.Start) {
+        if (this.SelfContrains["LayoutAlignItems"] == CONTRAIN.LayoutJustifyContent.Start) {
             return 'flex-start';
-        } else if (this.SelfContrain["LayoutAlignItems"] == CONTRAIN.LayoutJustifyContent.End) {
+        } else if (this.SelfContrains["LayoutAlignItems"] == CONTRAIN.LayoutJustifyContent.End) {
             return 'flex-end';
-        } else if (this.SelfContrain["LayoutAlignItems"] == CONTRAIN.LayoutJustifyContent.Center) {
+        } else if (this.SelfContrains["LayoutAlignItems"] == CONTRAIN.LayoutJustifyContent.Center) {
             return 'center';
         }
     } */
@@ -373,8 +386,11 @@ class Render {
            1. 文字限制 
            2. 垂直布局
         */
+        if (this.data.styles.borderRadius) {
+            return 'hidden';
+        }
         if (this.isEllipsis() ||
-            this.SelfContrain["LayoutPosition"] == CONTRAIN.LayoutPosition.Vertical
+            this.SelfContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Vertical
         ) {
             return 'hidden';
         } else {
@@ -389,49 +405,52 @@ class Render {
         }
     }
     get boxFlex() {
-        if (this.SelfContrain["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto) {
+        if (this.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto) {
             return 1;
-            // } else if (this.SelfContrain["LayoutFlex"] == CONTRAIN.LayoutFlex.Default) {
+            // } else if (this.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Default) {
         } else {
             return 0;
         }
     }
     get boxOrient() {
-        if (this.SelfContrain["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal) {
+        if (this.SelfContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Horizontal) {
             return 'horizontal'
         }
     }
     get boxPack() {
-        if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Start) {
+        if (this.SelfContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Start) {
             return "start"
-        } else if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Center) {
+        } else if (this.SelfContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.Center) {
             return "center"
-        } else if (this.SelfContrain["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.End) {
+        } else if (this.SelfContrains["LayoutJustifyContent"] == CONTRAIN.LayoutJustifyContent.End) {
             return "end"
         }
     }
     get boxAlign() {
-        if (this.SelfContrain["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.Start) {
+        if (this.SelfContrains["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.Start) {
             return "start"
-        } else if (this.SelfContrain["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.Center) {
+        } else if (this.SelfContrains["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.Center) {
             return "center"
-        } else if (this.SelfContrain["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.End) {
+        } else if (this.SelfContrains["LayoutAlignItems"] == CONTRAIN.LayoutAlignItems.End) {
             return "end"
         }
     }
     get display() {
-
-        if (this.SelfContrain["LayoutPosition"] == CONTRAIN.LayoutPosition.Horizontal) {
-            // return 'flex';
+        if (this.SelfContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Horizontal) {
             return 'box';
-        } else if (this.SelfContrain["LayoutPosition"] == CONTRAIN.LayoutPosition.Vertical) {
+        } else if (this.SelfContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Vertical) {
             return 'block';
         }
+
+
     }
     get textAlign() {
-        if (this.SelfContrain["LayoutAlign"]) {
+        if (!this.data.text) {
+            return;
+        }
+        if (this.SelfContrains["LayoutJustifyContent"]) {
             // 对齐约束值 比 对齐配置值 大1
-            return Render.align(this.SelfContrain["LayoutAlign"] - 1);
+            return this.SelfContrains["LayoutJustifyContent"].toLowerCase();
         } else if (this.data.styles && this.data.styles.textAlign) {
             return Render.align(this.data.styles.textAlign);
         }
@@ -462,9 +481,7 @@ class Render {
         dom.children.forEach((d, i) => {
             str += this._toHtml(d, level + 1 || 1);
         });
-        if (!dom.isClosingTag) {
-            str += dom.html.end;
-        }
+        str += dom.html.end;
         return str;
     }
 
@@ -496,7 +513,19 @@ class Render {
         判断是否需要省略号
     */
     isEllipsis() {
-        return this.data.model == Store.model.TEXT.name && this.SelfContrain["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto
+        // return this.data.model == Store.model.TEXT.name && this.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto
+        return this.data.text && !!Render.findUntil(this, function (d) {
+            return d.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto;
+        })
+    }
+    static findUntil(dom, func) {
+        if (func(dom)) {
+            return dom
+        }
+        if (dom.parentNode) {
+            return Render.findUntil(dom.parentNode, func);
+        }
+        return null;
     }
     /**
      * 转换sketch中border类型
@@ -589,6 +618,13 @@ class Render {
     static align(index) {
         return Object.keys(Dom.align).find(k => Dom.align[k] == index);
     }
+    static alignJustify(index) {
+        return {
+            1: "left",
+            2: "right",
+            3: "center"
+        } [index]
+    }
 }
 
 let domIndex = 0;
@@ -643,18 +679,17 @@ class DOM extends Render {
         return this.data.text || '';
     }
     getClassName() {
-        // console.log(this.data.model)
-        this.className.push((this.data.model).toLowerCase() + '-' + this.index);
-        // this.className.push('sk' + this.data.id);
-        // 第二期，根据dom结构输出class
+        this.className.push((this.data.model || 'default').toLowerCase() + '-' + this.index);
     }
     getAttrObj() {
         if (this.data.model == Store.model.IMAGE.name) {
             this.attrObj["src"] = this.data.path;
         }
-        // if (Config.debug) {
-        //this.attrObj["data-id"] = this.data.id;
-        // }
+        if (Config.output.debug) {
+            this.attrObj["data-id"] = this.data.id;
+            this.attrObj["data-layout"] = this.data.layout;
+            this.attrObj["isSource"] = this.data.isSource;
+        }
     }
     getInlineStyle() {
         if (this.data.model == Store.model.POSTER.name) {
@@ -748,10 +783,10 @@ function nameTrans(str) {
 const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align']
 const CompatibleValue = ['box']
 
-var Config = {};
+let Config = {};
 
 function fn(json, parentNode) {
-    var dom = new DOM(json, parentNode);
+    let dom = new DOM(json, parentNode);
     if (json.children) {
         json.children.forEach(function (j, i) {
             fn(j, dom);

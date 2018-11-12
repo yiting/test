@@ -13,7 +13,10 @@ module.exports.template = function () {
 
 }
 module.exports.is = function (dom, parent, option, config) {
-    return dom.children.every(child => child.type == Dom.type.TEXT);
+    return !(dom.path || dom.styles.border || dom.styles.background) &&
+        dom.children.length && dom.children.every(child => child.type == Dom.type.TEXT);
     // return true;
 }
-module.exports.adjust = function (dom, parent, option, config) {}
+module.exports.adjust = function (dom, parent, option, config) {
+    dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Default;
+}

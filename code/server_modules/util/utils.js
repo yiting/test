@@ -16,21 +16,26 @@ let writeToFile = function (filePath, str, callback) {
         //判断文件夹目录是否存在
         isFileExist(fileFolder, function (existFlag) {
             //文件不存在的话
-            console.log('检测文件是否存在标识:' + existFlag)
+            //console.log('检测文件是否存在标识:' + existFlag)
+            logger.debug('[util.js-writeToFile]检测文件是否存在标识:' + existFlag);
 
             if (!existFlag) {
                 fs.mkdir(fileFolder, function (err) {
                     if (err) {
                         //console.log(err)
-                        console.log('创建目录失败')
+                        //console.log('创建目录失败')
+                        logger.error('[util.js-writeToFile]创建目录失败:'+err);
                     } else {
-                        console.log('创建目录成功')
+                        //console.log('创建目录成功')
+                        logger.debug('[util.js-writeToFile]创建目录成功');
                         //写入目录
                         fs.writeFile(filePath, str, function (err) {
                             if (err) {
-                                console.log(err)
+                                //console.log(err)
+                                logger.error('[util.js-writeToFile]写入文件失败:'+err);
                             } else {
-                                console.log('写入文件成功')
+                                //console.log('写入文件成功')
+                                logger.debug('[util.js-writeToFile]写入文件成功');
                                 callback()
                             }
                         })
@@ -40,9 +45,11 @@ let writeToFile = function (filePath, str, callback) {
                 //写入文件到已存在的目录
                 fs.writeFile(filePath, str, function (err) {
                     if (err) {
-                        console.log(err)
+                        //console.log(err)
+                        logger.error('[util.js-writeToFile]写入文件失败:'+err);
                     } else {
-                        console.log('写入文件成功')
+                        //console.log('写入文件成功')
+                        logger.debug('[util.js-writeToFile]写入文件成功');
                         callback()
                     }
                 })
@@ -51,7 +58,8 @@ let writeToFile = function (filePath, str, callback) {
 
     }
     catch (e) {
-        console.log('utils.js - writeToFile: 写入文件内容异常')
+        //console.log('utils.js - writeToFile: 写入文件内容异常')
+        logger.error('[util.js-writeToFile]写入文件内容异常');
     }
 }
 
@@ -64,10 +72,12 @@ let isFileExist = function (filePath, callback) {
     var existFlag = false
     fs.exists(filePath, function (exists) {
         if (exists) {
-            console.log('判断目录存在')
+            //console.log('判断目录存在')
+            logger.debug('[util.js-isFileExist]判断目录存在');
             existFlag = true
         } else {
-            console.log('判断目录不存在')
+            //console.log('判断目录不存在')
+            logger.debug('[util.js-isFileExist]判断目录不存在');
             existFlag = false
         }
         callback(existFlag)

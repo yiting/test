@@ -9,7 +9,10 @@ const {
     QMask, 
     QSlice
 } = require('./designjson_node');
-const {walkin,walkout,hasMaskChild,hasCompleteSytle,generateGroupAttr} = require('./designjson_utils');
+// const qlog = require('../log/qlog');
+// const logger = qlog.getInstance(qlog.moduleData.img);
+const [Artboard,Group, Bitmap,Text,ShapeGroup,SymbolInstance,SymbolMaster,SliceLayer,Rectangle,Oval,Line,Triangle,Polygon,Star,Rounded,Arrow,ShapePath] = ['artboard','group', 'bitmap','text','shapeGroup','symbolInstance','symbolMaster','slice','rectangle','oval','line','triangle','polygon','star','rounded','arrow','shapePath'];
+const {walkin,walkout,hasMaskChild,hasCompleteSytle,generateGroupAttr,mergeStyle} = require('./designjson_utils');
 /**
  * 优化树的结构
  * @param {QDocument} _document 
@@ -40,7 +43,7 @@ class _ImageMergeProcessor {
         if (pnode.children && pnode.children.length === 1) {
             
             const {type,shapeType,styles} = pnode.children[0];
-            if ((type === QShape.name || type === QMask.name) && shapeType != 'rectangle') { // QShape -> QImage
+            if ((type === QShape.name || type === QMask.name) && shapeType != Rectangle && !isCircle(pnode.children[0])) { // QShape -> QImage
                 this._convertToImageNode(pnode);
             }
         }
@@ -50,8 +53,9 @@ class _ImageMergeProcessor {
         const maskedCollection = maskNode.maskedNodes.map(id => _document.getNode(id));
         maskedCollection.unshift(maskNode);
         if (maskedCollection.length === pnode.children.length) {
+            mergeStyle(pnode,maskNode,['borderRadius']);
             this._convertToImageNode(pnode);
-        } else this._insertImageNode(pnode,maskedCollection); // mask关联的节点立即合成新组
+        } else this._insertImageNode(pnode,maskedCollection,maskNode); // mask关联的节点立即合成新组
     }
     _mergeGroupToParent(nodes,pnode) {
         if(!nodes || !nodes.length) return;
@@ -67,7 +71,7 @@ class _ImageMergeProcessor {
         });
     }
     // 将多个节点合并成QImage节点，并插入到父节点
-    _insertImageNode(pnode,nodes) {
+    _insertImageNode(pnode,nodes,maskNode) {
         const obj = new QImage();
 
         obj.isModified = true;
@@ -84,7 +88,8 @@ class _ImageMergeProcessor {
             n.y = n.abY - new_node.abY;
             return n;
         });
-        Object.assign(new_node,{children:[],childnum: 0,isLeaf: true});
+        Object.assign(new_node,{children:[],childnum: 0,isLeaf: true,styles: {}});
+        if (maskNode) Object.assign(new_node.styles,{borderRadius: maskNode.styles.borderRadius});
         nodes.forEach(({id}) => this._document.removeNode(id, pnode)); // 删除旧节点
     }
     // 将节点转换成QImage
@@ -95,7 +100,7 @@ class _ImageMergeProcessor {
         node.type = QImage.name;
         node.path = `${node.id}.png`;
         node.shapeType && delete node.shapeType;
-        node.styles = {};
+        node.styles = {borderRadius: node.styles.borderRadius || 0};
         if (node.children && node.children.length) node._imageChildren = [...node.children];
         node.children = [];
         node.isLeaf = true, node.childnum = 0;
@@ -108,11 +113,11 @@ class _ImageMergeProcessor {
     _updateTreeImages(_document) {
         walkout(_document._tree,node => {
             const {type,shapeType,styles} = node;
-            if ((type === QShape.name || type === QMask.name) && shapeType != 'rectangle') { // QShape -> QImage
+            if ((type === QShape.name || type === QMask.name) && shapeType != Rectangle && !isCircle(node)) { // QShape -> QImage
                 this._convertToImageNode(node);
             }
             // 如果是没有背景图的矩形，可以直接转化为纯css的QLayer，否则转为合图的QImage
-            if (shapeType === 'rectangle') {
+            if (shapeType === Rectangle || isCircle(node)) {
                 if (styles.background && styles.background.type === 'image') this._convertToImageNode(node); // QShape -> QLayer
                 else this._convertToLayerNode(node);
             }
@@ -120,6 +125,9 @@ class _ImageMergeProcessor {
         });
         // _document._images = images; // 生成图片信息列表，待export
     }
+}
+function isCircle({shapeType,styles}) {
+    return shapeType === Oval && styles.borderRadius;
 }
 function isBigNode(node,rnode,threshold = 1.5/200) {
     const {width,height,abX,abY} = node;

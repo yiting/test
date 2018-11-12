@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+.ai-footer {
+  position: relative; //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+  padding-top: 33px;
+  font-size: 14px;
+  overflow: hidden;
+  z-index: 10;
+  background-color: $color_mine_shaft_approx;
+  color: #a3a6ab;
+  font-weight: 200;
+  padding-bottom: 60px;
+  .col {
+    margin-top: 78px;
+    float: left;
+    &:nth-child(1) {
+      width: 160px;
+    }
+    &:nth-child(2) {
+      margin-left: 153px;
+      width: 537px;
+    }
+    &:nth-child(3) {
+      margin-left: 153px;
+      width: 158px;
+    }
+    p {
+      line-height: 26px;
+      margin: 0 0 6px 0;
+    }
+  }
+  .members {
+    li {
+      float: left;
+      width: 73px;
+      text-align: center;
+      margin-bottom: 14px;
+      margin-left: 2px;
+      img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      span {
+        line-height: 38px;
+        font-size: 12px;
+        font-family: FZLTXHK--GBK1-0;
+      }
+    }
+  }
+  .col-title {
+    color: #fff;
+    font-size: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #45464b;
+  }
+  .col-content {
+    padding-top: 30px;
+  }
+  .mail {
+    white-space: nowrap;
+  }
+  .layout {
+    position: relative;
+  }
+  .qrcode {
+  }
+  .guidance {
+    float: left;
+    margin-right: 68px;
+    a {
+      display: block;
+    }
+  }
+  .contact {
+    float: left;
+  }
+  .qrcode {
+    width: 120px;
+    height: 90px;
+    background-image: $url_0;
+    background-position: -233px 27px;
+  }
+}
+//底部浮动工具条
+.fixed-bar {
+  position: fixed;
+  right: 53px;
+  bottom: 225px;
+  z-index: 21;
+  .item {
+    display: block;
+    width: 48px;
+    height: 48px;
+    background: $white;
+    margin-top: -1px;
+    position: relative;
+    border: 1px solid $color_bon_jour_approx;
+    cursor: pointer;
+    text-align: center;
+    &:hover {
+      background-color: $color_desert_storm_approx;
+    }
+    &:before {
+      display: inline-block;
+      vertical-align: top;
+      content: "";
+      width: 36px;
+      height: 36px;
+      margin-top: 7px;
+    }
+  }
+  .code {
+    &:before {
+      background-image: url($data_uri_0);
+      background-repeat: no-repeat;
+    }
+    &:hover {
+      &:before {
+        background-image: url($data_uri_1);
+        background-repeat: no-repeat;
+      }
+      .code-layer {
+        display: block;
+      }
+    }
+  }
+  .code-layer {
+    position: absolute;
+    bottom: 0;
+    right: 59px;
+    background: $white;
+    border: 1px solid $color_bon_jour_approx;
+    text-align: left;
+    cursor: default;
+    padding: 15px;
+    font-size: 16px;
+    display: none;
+    width: 266px;
+    img {
+      float: left;
+      margin-right: 8px;
+    }
+    h5 {
+      margin-top: 30px;
+    }
+    .intro {
+      font-size: 14px;
+      color: $color_suva_gray_approx;
+      margin-top: 4px;
+    }
+  }
+  .qq {
+    &:before {
+      background-image: url($data_uri_3);
+      background-repeat: no-repeat;
+    }
+  }
+  .backtop:before {
+    // font: 0/0 a;
+    // color: transparent; //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    // text-shadow: none;
+    // background-color: transparent;
+    border: 0;
+    background-image: $url_3;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}

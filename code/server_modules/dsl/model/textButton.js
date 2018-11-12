@@ -13,23 +13,25 @@ module.exports.template = function () {
 
 }
 module.exports.is = function (dom, parent, option, config) {
-    let child = dom.children[0]
-    if (child.lines == 1) {
-        // Text和Parent中心点
-        let margin = Dom.calMargin(child, dom);
-
-        // 如果中心点偏移小于2
-        return (dom.path || dom.styles.background || dom.styles.border) &&
-            dom.height / child.height < 3 &&
-            Math.abs(margin.left - margin.right) < config.dsl.operateErrorCoefficient &&
-            Math.abs(margin.top - margin.bottom) < config.dsl.operateErrorCoefficient &&
-            child.styles.maxSize * 1.5 < margin.left
-    }
+    const child = dom.children[0]
+    const margin = Dom.calMargin(child, dom);
+    // 如果中心点偏移小于误差值
+    return child.lines == 1 &&
+        (dom.path || dom.styles.background || dom.styles.border) &&
+        dom.height / child.styles.maxSize < 3.5 &&
+        Math.abs(margin.left - margin.right) < config.dsl.operateErrorCoefficient &&
+        Math.abs(margin.top - margin.bottom) < config.dsl.operateErrorCoefficient &&
+        child.styles.maxSize * 1.5 < margin.left // 边距大于1.5个字号
 }
 module.exports.adjust = function (dom, parent, option, config) {
     let child = dom.children[0]
+    let margin = Dom.calMargin(child, dom);
     Dom.assign(dom, child);
+    // dom.styles.padding = margin.left;
     dom.styles.lineHeight = dom.height;
     dom.styles.textAlign = Dom.align.center;
     dom.children = [];
+    dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed
+    dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedHeight.Fixed
+    dom.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.Center;
 }

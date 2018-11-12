@@ -8,10 +8,11 @@ const contrain = require("./dsl_pipe_contrain.js");
 const model = require("./dsl_pipe_model.js");
 const absLayout = require("./dsl_pipe_absLayout.js");
 const analyze = require("./dsl_pipe_analyze.js");
-const restructure = require("./dsl_pipe_restructure.js");
-
+const repeatAnalyze = require("./dsl_pipe_repeatAnalyze.js");
 // import render
 const H5Render = require("./dsl_render_h5.js");
+// import base
+const Dom = require("./dsl_dom.js");
 
 function Klotski(json, conf) {
     if (!this || this.constructor != Klotski) {
@@ -31,43 +32,78 @@ function Klotski(json, conf) {
     }
 }
 
-function mobileHtml(designDom) {
-    let Config = config.create(750);
+function insertJson(designDom, ...idss) {
+    let Config = Object.assign({}, config.create(750));
+    let jsons = [];
+    idss.forEach(ids => {
+        if (ids.length < 2) {
+            return
+        }
+        let doms = designDom.filter(dom => {
+            return ids.includes(dom.id);
+        });
+        doms = JSON.parse(JSON.stringify(doms));
+        doms.forEach(dom => Dom.cleanLineHeight(dom, Config.dsl.lineHeight));
+        let {
+            x,
+            y,
+            abX,
+            abY,
+            width,
+            height
+        } = Dom.calRange(doms);
+        const res = {
+            id: ids.join('|'),
+            x,
+            y,
+            abX,
+            abY,
+            width,
+            height,
+            special: true,
+        };
+        jsons.push(res);
+    })
+    return designDom.concat(jsons);
+}
+/**
+ * 输出HTML
+ * @param {Array} designDom 设计数据
+ * @param {Object} conf 配置项
+ */
+function mobileHtml(designDom, conf) {
+    let Config = Object.assign({}, config.create(750), conf);
     var json = Klotski(designDom, Config)
         .pipe(cleanse) // 清洗
         .pipe(layout) // 行列组合
         .pipe(sort) // 排序
         // .pipe(analyze) // 结构分析
         .pipe(model) // 模型处理
+        .pipe(repeatAnalyze) // 重复模型分析
         .pipe(contrain) // 约束处理
-        // .pipe(restructure)
         // .pipe(absLayout)
         .get(); // 获取json
     return H5Render(json, Config);
 }
-
-//2018-10-24
 /**
- * 获取页面json
- * @param designDom
+ * ct输出展示
+ * @param {Array} designDom 设计数据
+ * @param {Object} conf 配置项
  */
-function getHtmlJson(designDom) {
-    let Config = config.create(750);
+function ctHtml(designDom, conf) {
+    let Config = Object.assign({}, config.create(750), conf);
     var json = Klotski(designDom, Config)
         .pipe(cleanse) // 清洗
-        .pipe(layout) // 行列组合
-        // .pipe(sort) // 排序
-        // .pipe(analyze) // 结构分析
-        // .pipe(model) // 模型处理
-        // .pipe(contrain) // 约束处理
-        //.pipe(absLayout)
-        .get(); // 获取json
-    return json;
+        .pipe(absLayout)
+        .get()
+
+    return H5Render(json, Config)
+
 }
 
-function analyzeDom(designDom) {
+function analyzeDom(designDom, conf) {
     let res = {};
-    let Config = config.create(750);
+    let Config = Object.assign({}, config.create(750), conf);
     var json = Klotski(designDom, Config)
         .pipe(cleanse) // 清洗
         .pipe(layout) // 行列组合
@@ -83,7 +119,8 @@ function analyzeDom(designDom) {
     return res;
 }
 module.exports = {
+    insertJson,
     mobileHtml,
-    getHtmlJson,
-    analyzeDom
+    analyzeDom,
+    ctHtml
 }

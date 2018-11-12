@@ -19,6 +19,8 @@ module.exports.is = function (dom, parent, option, config) {
 module.exports.adjust = function(dom, parent, option, config){
     dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
     dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedWidth.Default;
-    dom.contrains["LayoutPosition"] = Contrain.LayoutPosition.Vertical;
+    dom.contrains["LayoutDirection"] = Contrain.LayoutDirection.Vertical;
+    dom.contrains["LayoutPosition"] = Contrain.LayoutPosition.Static;
+
     return dom;
 }

@@ -1,15 +1,17 @@
 /**
  * 创建空Dom
  */
-const designDomAttrs = /^(id|model|type|name|abX|abY|x|y|width|height|children|contrains)$/;
+const designDomAttrs = /^(id|model|type|name|abX|abY|x|y|styles|width|height|children|contrains)$/;
 
 let Contrain = require('./dsl_contrain.js');
 let createDomIndex = 0;
 
 
 class Dom {
-    constructor(o) {
+    constructor(o, ...extend) {
+        Object.assign(o, ...extend);
         this.id = o.id || (createDomIndex++);
+        this.isSource = !!o.id;
         this.name = o.name || '';
         this.styles = o.styles || {};
         this.path = o.path || null;
@@ -27,6 +29,7 @@ class Dom {
         this.type = Dom.getType(this); // Dom基础类型
         this.layout = o.layout || ''; // 布局结构
         this.model = o.model || ''; // 模型
+        this.isRoot = o.isRoot || false;
     }
     static getType(dom) {
         if (dom.text) {
@@ -44,7 +47,13 @@ class Dom {
     static assign(...doms) {
         let dom = doms.shift();
         while (doms.length) {
-            let obj = doms.shift()
+            let obj = doms.shift();
+            for (var s in obj.styles) {
+                if (!obj.styles[s]) {
+                    continue
+                }
+                dom.styles[s] = obj.styles[s]
+            }
             for (var i in obj) {
                 if (designDomAttrs.test(i)) {
                     continue;
@@ -73,31 +82,65 @@ class Dom {
         let right = 0,
             bottom = 0
         doms.forEach((d, i) => {
+            let height = d.height
             o.x = d.x < o.x ? d.x : o.x;
             o.y = d.y < o.y ? d.y : o.y;
             o.abX = d.abX < o.abX ? d.abX : o.abX;
             o.abY = d.abY < o.abY ? d.abY : o.abY;
-            right = right < (d.x + d.width) ? d.x + d.width : right;
-            bottom = bottom < (d.y + d.height) ? d.y + d.height : bottom;
-            // o.height = (o.y + o.height) < (d.y + d.height) ? (d.y + d.height - o.y) : o.height;
+            right = right < (d.abX + d.width) ? (d.abX + d.width) : right;
+            bottom = bottom < (d.abY + d.height) ? (d.abY + d.height) : bottom;
+            // console.log(d.abX+d.width,d.abY+d.height);
         });
-        o.height = bottom - o.y;
-        o.width = right - o.x;
+        // console.log(o)
+        o.height = bottom - o.abY;
+        o.width = right - o.abX;
         return o;
+    }
+    static findPrevDom(dom, parentNode) {
+        if (!parentNode) {
+            return null;
+        }
+        let res;
+        parentNode.children.some((child => {
+            if (child != dom && child.contrains["LayoutSelfPosition"] != Contrain.LayoutSelfPosition.Absolute) {
+                res = child;
+            }
+            return child == dom;
+        }))
+        return res;
+    }
+    static findNextDom(dom, parentNode) {
+        if (!parentNode) {
+            return null;
+        }
+        let res;
+        parentNode.children.reverse().some(((child, i) => {
+            if (child != dom && child.contrains["LayoutSelfPosition"] != Contrain.LayoutSelfPosition.Absolute) {
+                res = child;
+            }
+            return child == dom;
+        }));
+        parentNode.children.reverse();
+        return res;
     }
     /**
      * 计算margin
      */
     static calMargin(cur, parentNode, dir) {
-        let prev = parentNode.children[parentNode.children.indexOf(cur) - 1];
-        let next = parentNode.children[parentNode.children.indexOf(cur) + 1];
-        let direction = dir || (parentNode.contrains["LayoutPosition"] == Contrain.LayoutPosition.Horizontal && 'x') ||
-            (parentNode.contrains["LayoutPosition"] == Contrain.LayoutPosition.Vertical && 'y') ||
+        let direction = dir || (parentNode.contrains["LayoutDirection"] == Contrain.LayoutDirection.Horizontal && 'x') ||
+            (parentNode.contrains["LayoutDirection"] == Contrain.LayoutDirection.Vertical && 'y') ||
             false;
+        let prev, next
 
         // 水平布局
         if (!parentNode) {
             return {};
+        }
+        if (direction) {
+            // let prev = parentNode.children[parentNode.children.indexOf(cur) - 1];
+            // let next = parentNode.children[parentNode.children.indexOf(cur) + 1];
+            prev = Dom.findPrevDom(cur, parentNode)
+            next = Dom.findNextDom(cur, parentNode)
         }
         let o = {};
         if (direction == 'x') {
@@ -124,8 +167,8 @@ class Dom {
     static calOffset(cur, parentNode, dir) {
         let prev = parentNode.children[parentNode.children.indexOf(cur) - 1];
         let next = parentNode.children[parentNode.children.indexOf(cur) + 1];
-        let direction = dir || (parentNode.contrains["LayoutPosition"] == Contrain.LayoutPosition.Horizontal && 'x') ||
-            (parentNode.contrains["LayoutPosition"] == Contrain.LayoutPosition.Vertical && 'y') ||
+        let direction = dir || (parentNode.contrains["LayoutDirection"] == Contrain.LayoutDirection.Horizontal && 'x') ||
+            (parentNode.contrains["LayoutDirection"] == Contrain.LayoutDirection.Vertical && 'y') ||
             false;
         // 水平布局
         if (!parentNode) {
@@ -177,15 +220,13 @@ class Dom {
             domA.abX <= domB.abX &&
             domA.abY <= domB.abY
     }
-    /* 
-        是否水平
+    /**
+     * 是否水平
+     * 当doms数量只有一个,返回true
      */
     static isHorizontal(doms, errorCoefficient = 0) {
         let prev;
         errorCoefficient = parseFloat(errorCoefficient) || 0;
-        if (doms.length < 2) {
-            return false;
-        }
         return doms.every(meta => {
             if (!prev) {
                 prev = meta;
@@ -194,9 +235,13 @@ class Dom {
             const meta_abY = meta.textAbY || meta.abY,
                 prev_abY = prev.textAbY || prev.abY,
                 meta_height = meta.textHeight || meta.height,
-                prev_height = prev.textHeight || prev.height;
+                prev_height = prev.textHeight || prev.height,
+                meta_centerX = meta.abX + meta.width / 2,
+                prev_centerX = prev.abX + prev.width / 2
 
-            let res = (meta_abY <= prev_abY + prev_height + errorCoefficient) &&
+            let res = (meta_centerX < prev.abX && prev_centerX > (meta.abX + meta.width) ||
+                    prev_centerX < meta.abX && meta_centerX > (prev.abX + prev.width)) &&
+                (meta_abY <= prev_abY + prev_height + errorCoefficient) &&
                 (prev_abY <= meta_abY + meta_height + errorCoefficient);
             prev = meta;
             return res;
@@ -212,6 +257,7 @@ class Dom {
 
     /**
      * 是否垂直
+     * 当doms数量只有一个,返回true
      */
     static isVertical(arr, errorCoefficient = 0) {
         let prev;
@@ -250,6 +296,38 @@ class Dom {
         let offset = Dom.calOffset(dom, parent, undefined);
         return Math.abs(offset.top - offset.bottom) <= errorCoefficient * 3;
     }
+    static cleanLineHeight(dom,lineHeightCoe) {
+        if (dom.text) {
+            // fontSize
+            let maxSize = Number.NEGATIVE_INFINITY,
+                minSize = Number.POSITIVE_INFINITY
+            dom.styles.texts.forEach((s) => {
+                maxSize = s.size > maxSize ? s.size : maxSize;
+                minSize = s.size < minSize ? s.size : minSize;
+            });
+            dom.styles.maxSize = Math.round(maxSize);
+            dom.styles.minSize = Math.round(minSize);
+            // 当前真实行高
+            const lineHeight = dom.styles.lineHeight || maxSize * 1.4;
+            // 目标行高
+            const targetLineHeight = maxSize * lineHeightCoe
+            // 根据高度处以行高，如果多行，则不处理行高
+            if (dom.height / lineHeight > 1.1) {
+                dom.lines = Math.round(dom.height / lineHeight);
+                return;
+            }
+            dom.lines = 1;
+            // 当前行高差
+            let dir = (lineHeight - maxSize);
+            dom.textHeight = Math.round(maxSize);
+            dom.textAbY = Math.round(dom.abY + dir / 2);
+            // 设置目标行高、高度、Y
+            let dif = Math.floor((targetLineHeight - dom.height) / 2);
+            dom.height = dom.styles.lineHeight = Math.round(targetLineHeight);
+            dom.y -= dif;
+            dom.abY -= dif;
+        }
+    }
 }
 Dom.type = {
     TEXT: "text",
@@ -258,6 +336,7 @@ Dom.type = {
 }
 
 Dom.layout = {
+    // DEFAULT: 'default', // 原生默认
     BLOCK: 'block', // 组织
     COLUMN: 'column', // 列
     ROW: 'row', // 行

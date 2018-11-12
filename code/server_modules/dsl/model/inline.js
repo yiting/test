@@ -17,6 +17,6 @@ module.exports.is = function(dom, parent, option, config) {
     return dom.layout == Dom.layout.INLINE;
 }
 module.exports.adjust = function(dom, parent, option, config){
-    dom.contrains["LayoutPosition"] = Contrain.LayoutPosition.Horizontal;
-    dom.contrains["LayoutJustifyContentStart"] = Contrain.LayoutJustifyContent.Start;
+    dom.contrains["LayoutDirection"] = Contrain.LayoutDirection.Horizontal;
+    dom.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.Start;
 }
