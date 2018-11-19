@@ -233,15 +233,12 @@ textarea {
   line-height: 24px;
   margin: 20px auto;
 }
-
 .mod-crumb a {
   color: #323232;
 }
-
 .mod-crumb a:hover {
   color: #1cbcb4;
 }
-
 .mod-crumb span {
   color: #878787;
 }
@@ -276,79 +273,62 @@ textarea {
   z-index: 100;
   transition: background 0.3s ease;
 }
-
 .mod-header .layout {
   width: 1200px;
   position: relative;
 }
-
 .mod-header.active {
   background-color: #333;
 }
-
 .mod-header.active .mod-header-logo {
   background-image: url(/img/sprite-ad720473bfcommon.png);
   background-position: 0 -128px;
 }
-
 .mod-header.active .mod-header-user .try {
   color: #fff;
   background-color: #126ee1;
 }
-
 .mod-header.active .mod-header-user .user i:after {
   border-top-color: #333;
 }
-
 .mod-header.hover {
   background-color: #333;
 }
-
 .mod-header.hover .mod-header-logo {
   background-image: url(/img/sprite-ad720473bfcommon.png);
   background-position: 0 -128px;
 }
-
 .mod-header.hover .mod-header-user .try {
   color: #fff;
   background-color: #126ee1;
 }
-
 .mod-header.hover .mod-header-user .user i:after {
   border-top-color: #333;
 }
-
 .mod-header:hover {
   background-color: #333;
 }
-
 .mod-header:hover .mod-header-logo {
   background-image: url(/img/sprite-ad720473bfcommon.png);
   background-position: 0 -128px;
 }
-
 .mod-header:hover .mod-header-user .try {
   color: #fff;
   background-color: #126ee1;
 }
-
 .mod-header:hover .mod-header-user .user i:after {
   border-top-color: #333;
 }
-
 .mod-header .cat {
   position: relative;
 }
-
 .mod-header .cat .layout {
   min-width: 0;
 }
-
 .mod-header .cat-ico {
   display: inline-block;
   width: 49px;
 }
-
 .mod-header .cat-box {
   color: #fff;
   font-size: 0;
@@ -364,15 +344,12 @@ textarea {
   transform: scaleY(0);
   transform-origin: center top;
 }
-
 .mod-header .cat-box.active {
   transform: scaleY(1);
 }
-
 .mod-header .cat-box:hover {
   transform: scaleY(1);
 }
-
 .mod-header .cat-group {
   display: inline-block;
   vertical-align: top;
@@ -380,22 +357,18 @@ textarea {
   margin-left: 12px;
   padding: 20px 0;
 }
-
 .mod-header .cat-group:first-child {
   margin-left: 0;
 }
-
 .mod-header .cat-tit {
   font-size: 16px;
   padding-bottom: 7px;
 }
-
 .mod-header .cat-tit i {
   display: inline-block;
   vertical-align: middle;
   margin-right: 16px;
 }
-
 .mod-header .cat-item {
   display: block;
   width: 390px;
@@ -405,24 +378,19 @@ textarea {
   font-size: 14px;
   line-height: 1;
 }
-
 .mod-header .cat-item:hover {
   background-color: #42464c;
 }
-
 .mod-header .cat-item a {
   color: #fff;
 }
-
 .mod-header .cat-item a:hover {
   color: #126ee1;
 }
-
 .mod-header .cat-item-sub {
   margin-top: 7px;
   font-size: 12px;
 }
-
 .mod-header .cat-item-sub a {
   display: inline-block;
   vertical-align: middle;
@@ -431,11 +399,9 @@ textarea {
   padding-right: 24px;
   line-height: 22px;
 }
-
 .mod-header .cat-item-sub a:last-child {
   padding-right: 0;
 }
-
 .mod-header .cat-item-sub a.disabled {
   color: #a3a3a3;
   cursor: default;
@@ -443,15 +409,12 @@ textarea {
   opacity: 1;
   filter: alpha(opacity=100);
 }
-
 .mod-header .cat-item-row {
   display: table-row;
 }
-
 .mod-header .cat-item-row a {
   display: table-cell;
 }
-
 .mod-header .cat-tag {
   display: inline-block;
   vertical-align: middle;
@@ -460,22 +423,18 @@ textarea {
   margin-left: 6px;
   margin-top: -2px;
 }
-
 .mod-header .cat-tag.is-beta {
   background-image: url(https://yyb.gtimg.com/ai/sprite/sprite-ad720473bf.common.png?max_age=31536000);
   background-position: -295px -124px;
 }
-
 .mod-header .cat-tag.is-hot {
   background-image: url(https://yyb.gtimg.com/ai/sprite/sprite-ad720473bf.common.png?max_age=31536000);
   background-position: -295px -140px;
 }
-
 .mod-header .cat-tag.is-new {
   background-image: url(https://yyb.gtimg.com/ai/sprite/sprite-ad720473bf.common.png?max_age=31536000);
   background-position: -267px -158px;
 }
-
 .mod-header .case-menu {
   color: #fff;
   box-sizing: border-box;
@@ -490,31 +449,26 @@ textarea {
   transform: scaleY(0);
   transform-origin: center top;
 }
-
 .mod-header .case-menu-row {
   display: block;
   padding: 10px 0;
 }
-
 .mod-header .case-menu-row:hover {
   background-color: #42464c;
   color: #126ee1;
 }
-
 .mod-header .ico-lan {
   width: 24px;
   height: 30px;
   background-image: url(https://yyb.gtimg.com/ai/sprite/sprite-ad720473bf.common.png?max_age=31536000);
   background-position: -267px -124px;
 }
-
 .mod-header .ico-voice {
   width: 33px;
   height: 30px;
   background-image: url(https://yyb.gtimg.com/ai/sprite/sprite-ad720473bf.common.png?max_age=31536000);
   background-position: -267px -90px;
 }
-
 .mod-header .ico-image {
   width: 33px;
   height: 30px;
@@ -537,52 +491,41 @@ textarea {
   position: relative;
   float: left;
 }
-
 .mod-header-nav li {
   position: relative;
   float: left;
   line-height: 1;
 }
-
 .mod-header-nav .top-cat {
   text-align: center;
   padding: 24px 8px;
   margin-right: 40px;
 }
-
 .mod-header-nav .top-cat:first-child {
   margin: 0 40px 0 50px;
 }
-
 .mod-header-nav .top-cat h2 {
   position: relative;
 }
-
 .mod-header-nav .top-cat h2 a {
   padding: 0;
   position: relative;
 }
-
 .mod-header-nav .top-cat h2:hover {
   color: #126ee1;
 }
-
 .mod-header-nav .top-cat.hassub:active .case-menu {
   transform: scaleY(1);
 }
-
 .mod-header-nav .top-cat.hassub:active .top-cat-arrow {
   transform: rotate(0deg);
 }
-
 .mod-header-nav .top-cat.hassub:hover .case-menu {
   transform: scaleY(1);
 }
-
 .mod-header-nav .top-cat.hassub:hover .top-cat-arrow {
   transform: rotate(0deg);
 }
-
 .mod-header-nav .top-cat-arrow {
   content: "";
   width: 20px;
@@ -595,7 +538,6 @@ textarea {
   vertical-align: bottom;
   margin-left: 4px;
 }
-
 .mod-header-nav .slider {
   position: absolute;
   bottom: 0;
@@ -606,7 +548,6 @@ textarea {
   background-color: #fff;
   transition: transform 0.3s ease-out, width 0.3s ease-out;
 }
-
 .mod-header-nav a:hover {
   text-decoration: none;
 }
@@ -622,6 +563,9 @@ body {
 
 .mod-header {
   background-color: #000000;
+}
+.mod-header .mod-header-nav {
+  display: none;
 }
 
 .error-info {

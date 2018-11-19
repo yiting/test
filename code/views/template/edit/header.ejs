@@ -1,11 +1,24 @@
-<header>
+<header id="app">
   <div class="header-left">
     <ul class="tab header-list">
       <li class="icon-logo"></li>
       <li class="header-item current">页面</li>
       <li class="header-item">images</li>
-      <li class="header-item">结构</li>
+      <li class="header-item structure">结构</li>
     </ul>
+  </div>
+  <div class="header-center">
+    <ul class="navbar-nav">
+      <!-- 激活态样式:router-link-active -->
+      <li class="nav-item"><a href="/person" class="nav-link">个人中心</a></li>
+    </ul>
+    <div v-if="user.staffname!=''" class="user-info">
+      <span
+        v-bind:style="{backgroundImage: 'url(http://dcloud.oa.com/Public/Avatar/'+user.staffname+'.png)'}"
+        class="avatar"
+      ></span
+      ><span class="user-name">{{ user.staffname }}</span>
+    </div>
   </div>
   <div class="header-right">
     <div id="unit" class="unit-box" tabindex="0">XHDPI @2x (dp/sp)</div>

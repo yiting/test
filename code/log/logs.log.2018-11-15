@@ -1,0 +1,104 @@
+2018-11-15 11:15:30 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-15 11:15:30 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getCurrentPageInfo]获取到的artBoard index:1_1
+
+2018-11-15 11:15:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-15 11:15:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-15 11:15:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-15 11:15:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-15 11:15:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getCurrentPageInfo]结构骨架输出成功
+
+2018-11-15 11:15:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-15 11:15:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-15 11:15:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-15 11:15:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-15 11:15:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-15 11:15:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-15 11:15:38 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时5.016秒
+
+2018-11-15 11:15:38 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:51
+
+2018-11-15 11:15:41 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-15 11:15:41 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getCurrentPageInfo]获取到的artBoard index:1_1
+
+2018-11-15 11:15:41 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-15 11:15:41 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-15 11:15:52 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-15 11:15:52 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getCurrentPageInfo]获取到的artBoard index:1_1
+
+2018-11-15 11:15:52 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-15 11:15:53 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-15 11:18:59 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-15 16:53:23 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-15 16:53:23 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getCurrentPageInfo]获取到的artBoard index:1_1
+
+2018-11-15 16:53:23 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-15 16:53:23 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-15 16:53:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-15 16:53:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getCurrentPageInfo]获取到的artBoard index:1_1
+
+2018-11-15 16:53:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-15 16:53:33 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-15 16:53:54 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-15 16:53:54 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getCurrentPageInfo]获取到的artBoard index:1_1
+
+2018-11-15 16:53:54 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-15 16:53:54 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-15 17:15:01 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-15 17:15:01 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getCurrentPageInfo]获取到的artBoard index:1_2
+
+2018-11-15 17:15:04 DEBUG default 20181114104029_3多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-15 17:15:04 DEBUG default 20181114104029_3多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-15 17:15:04 DEBUG default 20181114104029_3多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-15 17:15:04 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-15 17:15:04 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getCurrentPageInfo]结构骨架输出成功
+
+2018-11-15 17:15:04 DEBUG default 20181114104029_3多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-15 17:15:04 DEBUG default 20181114104029_3多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-15 17:15:04 DEBUG default 20181114104029_3多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-15 17:15:04 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-15 17:15:04 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-15 17:15:04 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-15 17:15:11 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时6.753秒
+
+2018-11-15 17:15:11 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:40
+
+2018-11-15 17:15:11 DEBUG default 20181114104029_3多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+

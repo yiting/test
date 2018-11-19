@@ -8,6 +8,10 @@ var bodyParser = require("body-parser");
 var index = require("./routes/index");
 var edit = require("./routes/edit");
 
+var login = require("./routes/login");
+var person = require("./routes/person");
+var project = require("./routes/project");
+
 var app = express();
 //设置跨域访问
 app.all("*", function(req, res, next) {
@@ -30,6 +34,9 @@ app.use(express.static(path.join(__dirname, "data")));
 
 app.use("/", index);
 app.use("/edit", edit);
+app.use("/login", login);
+app.use("/person", person);
+/* app.use("/project", project);   */
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

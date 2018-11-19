@@ -6,7 +6,6 @@ const multer = require("multer");
 const router = express.Router();
 //依赖文件下载包
 const archiver = require("archiver");
-let Utils = require("../server_modules/util/utils");
 //上传文件及新的文件名称变量
 let originFileName, uploadTimeStamp;
 //上传文件配置
@@ -27,6 +26,9 @@ let upload = multer({
 //2018-11-11
 let artBoardList = []; // Yone
 /*2.base modules*/
+//日志模块(2018-11-09)
+const qlog = require("../server_modules/log/qlog");
+let Utils = require("../server_modules/util/utils");
 //模板类
 const Template = require("../server_modules/util/template");
 //导出类
@@ -40,9 +42,6 @@ const DSL = require("../server_modules/dsl/dsl");
 //3.引入图片模块
 let ImageCombine = require("../server_modules/designimage/img_combine")
   .ImageCombine;
-
-//4.日志模块(2018-11-09)
-const qlog = require("../server_modules/log/qlog");
 //2018-10-21:线上云服务上传地址
 let ftpConfig = require("../config/config.js");
 
@@ -82,7 +81,7 @@ router.get("/", function(req, res, next) {
 //2018-10-10:根据pageid、artboardID请求页面结构
 router.post("/getPageById", function(req, res, next) {
   //console.log("获取当前artboard骨架请求");
-  logger.debug("获取当前artboard骨架请求");
+  logger.debug("[edit.js-getPageById]获取当前artboard骨架请求");
   //每次请求生成新的文件命名:html和css命名使用
   uploadTimeStamp = Utils.getDateStr();
   getCurrentPageInfo(req, res, next);
@@ -91,7 +90,7 @@ router.post("/getPageById", function(req, res, next) {
 //2018-10-10:根据pageid、artboardID生成图片请求
 router.post("/getPageImgById", function(req, res, next) {
   //console.log("获取当前artboard图片素材请求");
-  logger.debug("获取当前artboard图片素材请求");
+  logger.debug("[edit.js-getPageImgById]获取当前artboard图片素材请求");
   //getCurrentPageInfo(req, res, next, 1);
   let pageId = req.body.pageId;
   let artBoardId = req.body.artboardId;
@@ -137,7 +136,7 @@ router.post("/getPageImgById", function(req, res, next) {
       }
       //设置标识为false，代表已生成，下次不需要再次生成
       //console.log("图片输出成功,图片数组个数:" + generateImgArr.length);
-      logger.debug("图片输出成功,图片数组个数:" + generateImgArr.length);
+      logger.debug("[edit.js-getPageImgById]图片输出成功,图片数组个数:" + generateImgArr.length);
       //返回当前artBoard生成的素材资源
       //需要大雄返回删除临时图片后的图片路径数组
       imgsResultJson.imgPaths = generateImgArr;
@@ -155,7 +154,7 @@ router.post("/getPageImgById", function(req, res, next) {
 //2018-10-12:根据pageid、artboardID生成预览图请求
 router.post("/getArtBoardImg", function(req, res, next) {
   //console.log("获取当前artboard预览图片请求");
-  logger.debug("获取当前artboard预览图片请求");
+  logger.debug("[edit.js-getArtBoardImg]获取当前artboard预览图片请求");
   //根据artBoardId来获取对应的缩略图,返回url地址到页面上
   //getImgsPrew(req.body.artboardId);
   let artBoardID = req.body.artboardId;
@@ -178,7 +177,7 @@ router.post("/getArtBoardImg", function(req, res, next) {
 //2018-10-16:上传本地生成的编译代码文件夹，上传到线上，返回对应的url
 router.post("/getOnlineUrl", function(req, res, next) {
   //console.log("进入上传代码模块");
-  logger.debug("进入上传代码模块");
+  logger.debug("[edit.js-getOnlineUrl]进入上传代码模块");
   let artId = req.body.artboardId;
   let ftpServer = ftpConfig.ftpConfig.host,
     ftpUserName = ftpConfig.ftpConfig.username,
@@ -199,7 +198,7 @@ router.post("/getOnlineUrl", function(req, res, next) {
     })
     .then(function() {
       //console.log("ftp开始上传");
-      logger.debug("ftp开始上传");
+      logger.debug("[edit.js-getOnlineUrl]ftp开始上传");
       //上传整个目录
       const failed = [];
       const successful = [];
@@ -225,7 +224,7 @@ router.post("/getOnlineUrl", function(req, res, next) {
         .then(
           function(status) {
             //console.log("ftp上传成功");
-            logger.debug("ftp上传成功");
+            logger.debug("[edit.js-getOnlineUrl]ftp上传成功");
             //上传成功
             //2018-10-29:返回页面命名简短为时间戳命名
             let responseJson = {
@@ -240,7 +239,7 @@ router.post("/getOnlineUrl", function(req, res, next) {
           function(error) {
             //console.log("Something's wrong")
             //console.log(error)
-            logger.error("ftp上传错误:" + error);
+            logger.error("[edit.js-getOnlineUrl]ftp上传错误:" + error);
           }
         );
     });
@@ -252,7 +251,7 @@ router.post("/getOnlineUrl", function(req, res, next) {
 //目前是根据已有生成的文件进行打包：如果没有生成：1.尽量全部生成后在下载 2.空闲时间：来进行默默写入文件到工程目录
 router.post("/download", function(req, res, next) {
   //console.log("进入下载")
-  logger.debug("进入编译项目下载");
+  logger.debug("[edit.js-download]进入编译项目下载");
   let desZipPath = "./data/download_file/" + projectName + ".zip";
   let srcPojectPath = "./data/complie/" + projectName;
   res.set({
@@ -306,7 +305,7 @@ let getCurrentPageInfo = (req, res, next) => {
   let artBoardId = req.body.artboardId;
   pageArtBoardIndex = req.body.pageArtBoardIndex;
   //console.log("获取到的artBoard index:" + pageArtBoardIndex);
-  logger.debug("获取到的artBoard index:" + pageArtBoardIndex);
+  logger.debug("[edit.js-getCurrentPageInfo]获取到的artBoard index:" + pageArtBoardIndex);
   //页面是否需要生成标识
   let isHtmlGenerate = true,
     generateFileName;
@@ -430,7 +429,7 @@ let getCurrentPageInfo = (req, res, next) => {
           //2018-10-10:先出骨架，再等待图片生成后，再刷新页面
           Promise.all([jsonToHtmlCss(artBoardId, designJson)]).then(info => {
             //console.log("骨架输出成功");
-            logger.debug("结构骨架输出成功");
+            logger.debug("[edit.js-getCurrentPageInfo]结构骨架输出成功");
             resultURL.projectId = projectUUID;
             resultURL.projectName = projectName;
             resultURL.htmlFileName = uploadTimeStamp;
@@ -443,7 +442,7 @@ let getCurrentPageInfo = (req, res, next) => {
         }
       } catch (e) {
         //console.log("报错，不解析：" + e);
-        logger.warn("报错，不解析：" + e);
+        logger.error("[edit.js-getCurrentPageInfo]报错，不解析：" + e);
         res.send(e.toString());
       }
     });
@@ -475,7 +474,7 @@ router.post("/adjust", function(req, res) {
   return Promise.all([jsonToHtmlCss(artboardId, artboard.designJson)]).then(
     info => {
       //console.log("骨架输出成功");
-      logger.debug("骨架输出成功");
+      logger.debug("[edit.js-adjust]骨架输出成功");
       //输出对应处理好的artBoard数据
       // resultURL.htmlJson = h5Json;
       res.send(
@@ -576,7 +575,7 @@ let jsonToHtmlCss = (artBoardId, currentDesignDom) => {
       if (html) {
         Export.exportHtml(exportPath, cssHtmlfileName, html, function() {
           //console.log("导出html成功");
-          logger.debug("导出html成功");
+          logger.debug("[edit.js-jsonToHtmlCss]导出html成功");
           resolve("success");
         });
       }
@@ -585,13 +584,13 @@ let jsonToHtmlCss = (artBoardId, currentDesignDom) => {
       if (css) {
         Export.exportCss(exportPath + "/css", cssHtmlfileName, css, function() {
           //console.log("导出css成功");
-          logger.debug("导出css成功");
+          logger.debug("[edit.js-jsonToHtmlCss]导出css成功");
         });
       }
     });
   } catch (e) {
     //console.log("导出文件出错！");
-    logger.error("导出html或css出错!");
+    logger.error("[edit.js-jsonToHtmlCss]导出html或css出错!");
   }
   return htmlCssPromise;
 };
@@ -605,7 +604,7 @@ let imageCombineConfig;
 let combineImages = async imageList => {
   let startTime = new Date().getTime();
   //console.log("开始生成图片");
-  logger.debug("开始生成图片");
+  logger.debug("[edit.js-combineImages]开始生成图片");
   let promiselist = [];
   for (let i = 0, ilen = imageList.length; i < ilen; i++) {
     let imageCombine = new ImageCombine();
@@ -632,7 +631,7 @@ let combineImages = async imageList => {
   return Promise.all(promiselist).then(newNodes => {
     var costTime = (new Date().getTime() - startTime) / 1000;
     //console.log("生成目标图片，用时" + costTime + "秒");
-    logger.debug("生成目标图片，用时" + costTime + "秒");
+    logger.debug("[edit.js-combineImages]生成目标图片，用时" + costTime + "秒");
     var imageCombine = new ImageCombine();
     imageCombineConfig = {
       outputDir: "./data/complie/" + projectName + "/images/"

@@ -1,6 +1,7 @@
 /*header
 -----------------------------------------------------------------------*/
 header {
+  position: relative;
   display: block;
   text-align: right;
   height: 60px;
@@ -58,12 +59,82 @@ header {
 
 .header-center {
   position: absolute;
-  left: 240px;
-  right: 240px;
+  left: 280px;
+  right: 300px;
   display: inline-block;
   text-align: right;
-  margin: 12px 10px 0 0;
   height: 60px;
+  line-height: 60px;
+  font-size: 16px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  .navbar-nav {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    padding-left: 0;
+    margin-right: 20px;
+    text-align: right;
+    list-style: none;
+    letter-spacing: -0.3em;
+    .nav-item {
+      position: relative;
+      display: inline-block;
+      letter-spacing: normal;
+      height: 100%;
+      vertical-align: top;
+      .nav-link {
+        color: #999;
+        display: block;
+        padding: 0 20px;
+        line-height: 60px;
+        text-decoration: none;
+        -webkit-transition: all 0.2s ease-out;
+        transition: all 0.2s ease-out;
+        &.router-link-active,
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+  .user-info {
+    position: relative;
+    margin-right: 10px;
+    font-size: 15px;
+    .avatar {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      border-radius: 32px;
+      vertical-align: middle;
+      margin-right: 8px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+    .user-name {
+      display: inline-block;
+      height: 60px;
+      line-height: 60px;
+      color: #fff;
+      vertical-align: middle;
+      font-weight: lighter;
+    }
+  }
 }
 
 .header-right {

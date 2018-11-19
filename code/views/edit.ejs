@@ -1,66 +1,69 @@
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>设计编译 - 内测版</title>
+    <link rel="stylesheet" href="/css/edit.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>设计编译 - 内测版</title>
-  <link rel="stylesheet" href="/css/edit.css" />
-</head>
+  <body class="page-list">
+    <!-- 顶部 -->
+    <%- include("./template/edit/header.ejs") %>
+    <!-- 主要内容区域 -->
+    <main>
+      <!-- 左:导航 -->
+      <%- include("./template/edit/left.ejs") %>
+      <!-- 中:预览 -->
+      <%- include("./template/edit/center.ejs") %>
+      <!-- 右:编辑区 -->
+      <!-- 素材库/编辑 -->
+      <!-- 侧边栏属性显示 -->
+      <%- include("./template/edit/right.ejs") %>
+    </main>
+    <!-- seajs -->
+    <script src="js/lib/seajs/sea.js"></script>
+    <script>
+      //获取当前所有结构数据：需要单引号去引用值——'<%- data %>',不要用双引号
+      let pagesData = JSON.parse('<%- data %>');
+    </script>
 
-<body id="app" class="page-list">
-  <!-- 顶部 -->
-  <%- include("./template/edit/header.ejs") %>
-  <!-- 主要内容区域 -->
-  <main>
-    <!-- 左:导航 -->
-    <%- include("./template/edit/left.ejs") %>
-    <!-- 中:预览 -->
-    <%- include("./template/edit/center.ejs") %>
-    <!-- 右:编辑区 -->
-    <!-- 素材库/编辑 -->
-    <!-- 侧边栏属性显示 -->
-    <%- include("./template/edit/right.ejs") %>
-  </main>
-
-  <!--seajs-->
-  <script src="js/lib/seajs/sea.js"></script>
-
-  <!-- <script src="js/lib/jquery.min.js"></script> -->
-  <!-- 复制剪切板插件 -->
-  <!-- <script src="js/lib/clipboard.min.js"></script> -->
-  <!-- 图片查看器 -->
-  <!--  <script src="js/lib/jquery.magnify.js"></script> -->
-  <!-- 二维码插件 -->
-  <!-- <script src="js/lib/jquery.qrcode.min.js"></script> -->
-  <!-- 页面弹框插件 -->
-  <!-- <script src="layer.js"></script> -->
-  <!-- <script src="js/util.js"></script> -->
-  <script>
-    //获取当前所有结构数据：需要单引号去引用值——'<%- data %>',不要用双引号
-    let pagesData = JSON.parse('<%- data %>');
-  </script>
-  <!-- <script src="js/group.js"></script> -->
-  <!-- <script src="js/edit.js"></script> -->
-
-  <script>
-    // Set configuration
-    seajs.config({
-      base: "/",
-      alias: {
-        "jquery": "js/lib/jquery.min.js",
-        "clipboard": "js/lib/clipboard.min.js",
-        "magnify": "js/lib/jquery.magnify.js",
-        "qrcode": "js/lib/jquery.qrcode.min.js",
-        "layer": "layer.js"
-      },
-      preload: 'jquery'
-    });
-    seajs.use(['jquery', 'clipboard', 'magnify', 'qrcode', 'layer', 'js/util.js', 'js/group.js', 'js/edit.js'],
-      function ($, Clipboard, edit) {
-        TOSEEAPP.initPage();
+    <script>
+      // Set configuration
+      seajs.config({
+        base: "/",
+        alias: {
+          jquery: "js/lib/jquery.min.js",
+          //复制剪切板插件
+          clipboard: "js/lib/clipboard.min.js",
+          //图片查看器
+          magnify: "js/lib/jquery.magnify.js",
+          //二维码插件
+          qrcode: "js/lib/jquery.qrcode.min.js",
+          //页面弹框插件
+          layer: "layer.js"
+        },
+        preload: "jquery"
       });
-  </script>
-</body>
-
+      seajs.use(
+        [
+          "jquery",
+          "js/vue.js",
+          "clipboard",
+          "magnify",
+          "qrcode",
+          "layer",
+          "js/util/config.js",
+          "js/util/util.js",
+          "js/edit/group.js",
+          "js/edit/ai.js",
+          "js/edit/edit.js"
+        ],
+        function($, Clipboard, edit) {
+          AIService.getDataByImg();
+          TOSEEAPP.initPage();
+        }
+      );
+    </script>
+  </body>
 </html>
