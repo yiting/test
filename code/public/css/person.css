@@ -1074,6 +1074,7 @@ body {
   right: 4rem;
   bottom: 4rem;
   cursor: pointer;
+  z-index: 100;
 }
 .upload-panel .upload-form {
   position: relative;

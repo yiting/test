@@ -342,7 +342,7 @@ header {
 }
 .qr:hover i {
   position: absolute;
-  top: 32px;
+  top: 45px;
   right: 11px;
   z-index: 2;
   display: inline-block;

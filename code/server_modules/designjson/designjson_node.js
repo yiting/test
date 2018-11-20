@@ -187,15 +187,16 @@ class QDocument {
      */
     getNode(id) {
         const nodes = serialize(this._tree);
-        return nodes.find(node => node.id === id);
+        return this._getNodeByList(id,nodes);
     }
     /**
      * 获取父节点
      * @param {Sketch ID} id 
      */
     getParentNode(id) {
-        const node = this.getNode(id);
-        const parent = this.getNode(node.parent);
+        const nodes = serialize(this._tree);
+        const node = this._getNodeByList(id,nodes);
+        const parent = this._getNodeByList(node.parent,nodes);
         return parent;
     }
     /**
@@ -204,13 +205,18 @@ class QDocument {
      * @return {Array.<QNode>}
      */
     getParentList(id) {
+        const nodes = serialize(this._tree);
+        const node = this._getNodeByList(id,nodes);
+        let parent = this._getNodeByList(node.parent,nodes);
         const parentList = [];
-        let parent = this.getParentNode(id)
         while(parent) {
             parentList.push(parent);
-            parent = this.getParentNode(parent.id)
+            parent = this._getNodeByList(parent.parent,nodes);
         }
         return parentList;
+    }
+    _getNodeByList(id,nodes) {
+        return nodes.find(n => n.id === id);
     }
     /**
      * 储存图片

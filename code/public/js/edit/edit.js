@@ -1276,7 +1276,10 @@ let TOSEEAPP = {
         //关闭之前所有的信息窗口
         layer.closeAll();
         //console.log("新页面，需要重新请求:" + data)
+        //本机url地址
         currentArtBoardUrl = data.url;
+        //线上url地址
+        currentArtBoardOnlineUrl = data.onelineUrl;
         projectId = data.projectId;
         projectName = data.projectName;
         //获取对应页面的json数据
@@ -1298,12 +1301,32 @@ let TOSEEAPP = {
         //将生成的url存储在缓存数据中
         artboardsUrlArr.push({
           artboardId: currentArtboardId,
-          artBoardUrl: currentArtBoardUrl
+          artBoardUrl: currentArtBoardUrl,
+          artBoardOnlineUrl: currentArtBoardOnlineUrl
         });
         //对应artBoard生成的url数组
         //console.log(artboardsUrlArr)
         //显示iframe页面后，绑定对应的事件
         _this.bindIframeDom();
+
+        let isHtmlGenerate = data.isHtmlGenerate;
+        //无需生成
+        if (isHtmlGenerate == false) {
+          //清除生成图片生成定时器
+          clearInterval(imgsInterval);
+          //关闭之前所有的信息窗口
+          layer.closeAll();
+          imgsPathArr = data.imgPaths;
+          //2018-10-10:如果图片生成了，再次进行排序，显示图片，且重新加载页面
+          //设置显示当前artBoardId对应的素材库
+          artboardsUrlArr.forEach((item, i) => {
+            if (item.artboardId == currentArtboardId) {
+              artboardsUrlArr[i].artBoardImgs = imgsPathArr;
+            }
+          });
+          _this.getImgsByArtBoardId();
+          return;
+        }
         //2018-10-10：请求图片资源
         _this.imgAjaxFun(
           postData,
@@ -1333,8 +1356,7 @@ let TOSEEAPP = {
                 postData,
                 function(resultData) {
                   //拼接而成，防止后台重复生成新的时间戳链接
-                  currentArtBoardOnlineUrl =
-                    resultData.urlHeader + h5FileName + resultData.lastSuffix;
+                  currentArtBoardOnlineUrl = resultData.artUrl;
                   artboardsUrlArr.forEach((item, i) => {
                     if (item.artboardId == currentArtboardId) {
                       artboardsUrlArr[

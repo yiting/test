@@ -34,11 +34,13 @@ var vm = new Vue({
         },
         function() {
           var id = event.srcElement.id;
+          var projectId=$(event.srcElement).closest(".mask-wrap").data("projectid");
           $.ajax({
             url: "/person/deleteProjectById",
             type: "post",
             data: {
-              id: id
+              id: id,
+              pid:projectId
             },
             dataType: "json",
             success: function(res) {
@@ -154,7 +156,7 @@ let PersonApp = {
           //let onlineServer = "http://111.231.239.66:8080";
           //CommonTool.uploadFile(onlineServer+"/upload", formData, function (data) {
           CommonTool.uploadFile(
-            "/upload",
+            "/person/upload",
             formData,
             function(data) {
               layer.msg("创建项目中", { shift: -1 }, function() {

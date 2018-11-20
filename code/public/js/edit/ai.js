@@ -21,6 +21,7 @@ let AIService = {
       });
       CommonTool.AIRequest("/upload/image/", formData, function(data) {
         layer.msg("AI返回结果:" + data);
+        return data;
         //console.log(data)
         //上传成功后，获取图片地址url。请求AI服务地址(可以在后台进行，拿到的数据，直接结合俊标模型规则，进行组装页面)
       });
