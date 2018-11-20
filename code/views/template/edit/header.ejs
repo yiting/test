@@ -3,21 +3,18 @@
     <ul class="tab header-list">
       <li class="icon-logo"></li>
       <li class="header-item current">页面</li>
-      <li class="header-item">images</li>
+      <li class="header-item">img</li>
       <li class="header-item structure">结构</li>
     </ul>
   </div>
   <div class="header-center">
-    <ul class="navbar-nav">
-      <!-- 激活态样式:router-link-active -->
-      <li class="nav-item"><a href="/person" class="nav-link">个人中心</a></li>
-    </ul>
-    <div v-if="user.staffname!=''" class="user-info">
+
+    <div v-if="user.staffname!=''" class="user-info"><a href="/person" class="nav-link">
       <span
         v-bind:style="{backgroundImage: 'url(http://dcloud.oa.com/Public/Avatar/'+user.staffname+'.png)'}"
         class="avatar"
       ></span
-      ><span class="user-name">{{ user.staffname }}</span>
+      ><span class="user-name">{{ user.staffname }}</span></a>
     </div>
   </div>
   <div class="header-right">

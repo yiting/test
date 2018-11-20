@@ -1,5 +1,6 @@
 body {
   margin:0;
+  background-color: #f2f2f2;
 }
 
 nav {
@@ -139,10 +140,9 @@ body {
 }
 
 .mod-title {
-  margin: 0;
+  padding:20px 0;
   font-weight: 400;
-  font-size: 18px;
-  margin-bottom: 20px;
+  font-size: 16px;
 }
 
 .navbar-nav {
@@ -224,7 +224,8 @@ body {
 }
 
 .resource-navbar {
-  border-bottom: 1px solid #efefef;
+  display: none;
+  border-bottom: 1px solid #ccc;
 }
 
 .resource-navbar .navbar-nav {
@@ -284,7 +285,6 @@ body {
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
-  height: 64px;
 }
 
 .navbar-control .mod-title {
@@ -292,10 +292,7 @@ body {
 }
 
 .navbar-control__sub {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  flex: 1;
-  line-height: 64px;
+  display:block;overflow: hidden;
 }
 
 .resource-list {
@@ -306,13 +303,14 @@ body {
 .resource-list .resource-item {
   display: inline-block;
   vertical-align: top;
-  margin-bottom: 48px;
+  margin-bottom: 38px;
   letter-spacing: normal;
   position: relative;
 }
 
 .resource-list .resource-item__inner {
-  padding: 12px 12px 16px;
+  background-color: #fff;
+  padding: 0 0 0 0;
   width: 100%;
   height: 100%;
   position: relative;
@@ -473,29 +471,22 @@ body {
 }
 
 .resource-list .info-bar .name {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
+  position: relative;
   .time {
     font-size: 14px;
-    line-height: 20px;
-    color: #a8a7a5;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
-    line-height: 22px;
-    text-align: right;
+    width:77px;
+    overflow: hidden;
+    height: 25px;
+    line-height: 25px;
+    float: right;
+    margin-right: 8px;
+    color: #888;
   }
 }
 
 .resource-list .info-bar .name .txt {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  flex: 1;
-  min-width: 0;
+  width: 170px;
+  padding-left: 17px;
   font-size: 18px;
   color: #1c1d1d;
   white-space: nowrap;
@@ -503,10 +494,16 @@ body {
   text-overflow: ellipsis;
   font-weight: 700;
   line-height: 25px;
+  display: inline-block;
 }
 
 .resource-list .info-bar .info {
-  margin-top: 3px;
+  width: 92%;
+  text-align: center;
+  overflow: hidden;
+  height:40px;
+  line-height: 40px;
+  margin-left:4%;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -534,11 +531,11 @@ body {
 }
 
 .resource-list.project .resource-item {
-  width: 31.62%;
-  margin-right: 2.56%;
+  width:24%;
+  margin-left:1%;
 }
 
-.resource-list.project .resource-item:nth-child(3n) {
+.resource-list.project .resource-item:nth-child(4n) {
   margin-right: 0;
 }
 
@@ -838,7 +835,8 @@ body {
 }
 
 .header-navbar {
-  height: 100px;
+  height:62px;
+  line-height: 62px;
   box-sizing: border-box;
   color: #999;
   font-size: 16px;
@@ -972,6 +970,7 @@ body {
   color: #fff;
   vertical-align: middle;
   font-weight: lighter;
+  padding-right:10px;
 }
 
 .header-main {
