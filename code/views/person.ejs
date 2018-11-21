@@ -81,7 +81,7 @@
                 <ul class="resource-list project">
                   <!-- item -->
                   <!-- item -->
-                  <li class="resource-item" v-for="pro in projects">
+                  <li class="resource-item" v-for="(pro,index) in projects">
                     <div
                       class="resource-item__inner"
                       v-bind:data-pid="pro.projectId"
@@ -125,8 +125,8 @@
                                 {{ new Date(pro.modifytime).toLocaleString() }}
                               </div>
                           </div>
-                          <div class="info">
-                              <span v-bind:href="'http://10.65.90.36:8080/edit?id='+ pro.projectId + '&name=' + pro.projectName" class="url">{{
+                          <div class="info" v-on:click="copyUrl" data-clipboard-action="copy" :data-clipboard-target="'#copy-'+index">
+                              <span v-bind:href="'http://10.65.90.36:8080/edit?id='+ pro.projectId + '&name=' + pro.projectName" class="url" :id="'copy-'+index">{{
                                 'http://10.65.90.36:8080/edit?id='+ pro.projectId + '&name=' + pro.projectName
                               }}</a>
                             <!---->
@@ -182,6 +182,7 @@
     <!-- seajs -->
     <script src="js/lib/seajs/sea.js"></script>
     <script src="/js/lib/jquery.min.js"></script>
+    <script src="/js/lib/clipboard.min.js"></script>
     <script src="/js/vue.js"></script>
     <script src="layer.js"></script>
     <script src="js/util/config.js"></script>

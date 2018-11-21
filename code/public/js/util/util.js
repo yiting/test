@@ -144,6 +144,9 @@ var CommonTool = {
       },
       error: function(error) {
         callbackError(error);
+        /* let result="icondesc:0.8908779;width:39.01144;height:32.714066;x:45.84377;y:71.73392 icondesc:0.81280094;width:42.86695;height:35.45552;x:31.431587;y:28.644827 icon:0.9470467;width:30.57344;height:30.467134;x:41.523926;y:20.308249";
+        result = _this.AIDataHandle(result);
+        callback(result) */
         console.log("请求错误");
       }
     });
@@ -153,21 +156,34 @@ var CommonTool = {
    * @param {*} AIData
    */
   AIDataHandle: function(AIData) {
-    AIData = AIData.split(/\s/);
-    var arr = [];
-    for (let i in AIData) {
-      let AIOne = AIData[i];
-      let AIOneArr = AIOne.split(";");
-      let AIOneArrFirst = AIOneArr[0].split(":");
-      //第一个元素
-      let o = {
-        id: new Date().getTime(),
-        name: AIOneArrFirst[0],
-        rate: AIOneArrFirst[1]
-      };
-      arr.push(o);
+    let arr = [];
+    try {
+      AIData = AIData.trim().split(/\s/);
+      let n = 0;
+      for (let i in AIData) {
+        let AIOne = AIData[i];
+        let AIOneArr = AIOne.split(";");
+        let AIOneArrFirst = AIOneArr[0].split(":");
+        let AIOneArrSec = AIOneArr[1].split(":");
+        let AIOneArrThird = AIOneArr[2].split(":");
+        let AIOneArrFourth = AIOneArr[3].split(":");
+        let AIOneArrFifth = AIOneArr[4].split(":");
+        //第一个元素
+        let o = {
+          id: "ai-" + n++,
+          name: AIOneArrFirst[0],
+          rate: AIOneArrFirst[1],
+          width: AIOneArrSec[1],
+          height: AIOneArrThird[1],
+          x: AIOneArrFourth[1],
+          y: AIOneArrFifth[1]
+        };
+        arr.push(o);
+      }
+      console.log(arr);
+    } catch (e) {
+      arr = [];
     }
-    console.log(arr);
     return arr;
   },
   /**

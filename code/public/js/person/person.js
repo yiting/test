@@ -34,13 +34,15 @@ var vm = new Vue({
         },
         function() {
           var id = event.srcElement.id;
-          var projectId=$(event.srcElement).closest(".mask-wrap").data("projectid");
+          var projectId = $(event.srcElement)
+            .closest(".mask-wrap")
+            .data("projectid");
           $.ajax({
             url: "/person/deleteProjectById",
             type: "post",
             data: {
               id: id,
-              pid:projectId
+              pid: projectId
             },
             dataType: "json",
             success: function(res) {
@@ -56,6 +58,24 @@ var vm = new Vue({
         },
         function() {}
       );
+    },
+    /**
+     * 复制链接url
+     * @param {*} event
+     */
+    copyUrl: function(event) {
+      let clipboard = new ClipboardJS(".info");
+      clipboard.on("success", function(e) {
+        /* console.info("Action:", e.action);
+        console.info("Text:", e.text);
+        console.info("Trigger:", e.trigger); */
+        e.clearSelection();
+        layer.msg("复制链接成功");
+      });
+      clipboard.on("error", function(e) {
+        //console.error("Action:", e.action);
+        //console.error("Trigger:", e.trigger);
+      });
     }
   }
 });

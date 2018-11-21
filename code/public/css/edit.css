@@ -711,7 +711,8 @@ header {
   background: #fff;
 }
 
-.design-img-btn {
+.btn-operate-group .design-img-btn,
+.btn-operate-group .ai-rate-btn {
   position: relative;
   width: 150px;
   display: inline-block;
@@ -728,11 +729,16 @@ header {
   cursor: pointer;
   z-index: 50;
 }
-.design-img-btn:hover {
+.btn-operate-group .design-img-btn:hover,
+.btn-operate-group .ai-rate-btn:hover {
   opacity: 0.9;
 }
-.design-img-btn:active {
+.btn-operate-group .design-img-btn:active,
+.btn-operate-group .ai-rate-btn:active {
   opacity: 0.7;
+}
+.btn-operate-group .ai-rate-btn {
+  margin-left: 10px;
 }
 
 .attribute-show-panel {

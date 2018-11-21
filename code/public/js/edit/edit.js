@@ -984,6 +984,12 @@ let TOSEEAPP = {
    * 隐藏右侧属性边框面板
    */
   hideAttrPanel: function() {
+    if (
+      !$(".attribute-show-panel").hasClass("slideInRight") &&
+      !$(".attribute-show-panel").hasClass("fadeOutRight")
+    ) {
+      return;
+    }
     $(".attribute-show-panel")
       .removeClass("slideInRight")
       .addClass("fadeOutRight");

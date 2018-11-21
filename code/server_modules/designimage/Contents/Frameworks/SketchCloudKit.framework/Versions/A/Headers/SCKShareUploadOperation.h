@@ -56,8 +56,8 @@ NS_SWIFT_NAME(ShareUploadOperation)
  */
 - (instancetype)initWithRequest:(SCKShareAPIURLRequest *)request;
 
-/// A data source that provides all required data for uploading a Cloud Share appropriately.
-@property (nonatomic, nullable, weak) id<SCKShareUploadDataSource> dataSource;
+/// A data source that provides all required data for uploading a Cloud Share appropriately. The operation keeps a strong reference to it, and nillifies it after the operation has finished.
+@property (nonatomic, nullable, strong) id<SCKShareUploadDataSource> dataSource;
 
 /// The overall upload progress.
 @property (nonatomic, strong, readonly) NSProgress *progress;

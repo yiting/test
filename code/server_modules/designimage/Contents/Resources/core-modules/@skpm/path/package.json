@@ -19,7 +19,7 @@
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@skpm/path/-/path-0.1.0.tgz",
+  "_resolved": "http://registry.npmjs.org/@skpm/path/-/path-0.1.0.tgz",
   "_shasum": "ae853e0641834de84cbdc03a89c55a6a1f76c7c4",
   "_spec": "@skpm/path@0.1.0",
   "_where": "/Users/Shared/Jenkins/workspace/Stage/Modules/SketchAPI/core-modules",
