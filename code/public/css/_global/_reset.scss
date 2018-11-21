@@ -5,9 +5,8 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 //滚动条样式
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 8px;
   height: 8px;
   background: #202123;
@@ -21,7 +20,7 @@
 ::-webkit-scrollbar-corner,
 ::-webkit-resizer {
   background: #202123;
-} */
+}
 
 body {
   position: relative;
