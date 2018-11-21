@@ -319,11 +319,10 @@ header {
 }
 
 .qr {
-  margin-top: 15px;
   vertical-align: middle;
   cursor: pointer;
-  width: 52px;
-  height: 32px;
+  width: 60px;
+  height: 60px;
   display: inline-block;
   position: absolute;
   right: 0;
@@ -342,7 +341,7 @@ header {
 }
 .qr:hover i {
   position: absolute;
-  top: 45px;
+  top: 58px;
   right: 11px;
   z-index: 2;
   display: inline-block;
@@ -372,7 +371,7 @@ header {
 }
 
 /*左:导航
------------------------------------------------------------------------*/
+----------------------------------------------------------------------*/
 .navbar {
   position: absolute;
   top: 0;
@@ -400,6 +399,9 @@ header {
 }
 .navbar .section-list .section-item.current {
   display: block;
+}
+.navbar .section-list .section-item .img-list-panel {
+  margin-bottom: 100px;
 }
 .navbar .section-list .section-item .img-item-list .img-item {
   height: 80px;
@@ -588,15 +590,11 @@ header {
 
 .btn {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
+  bottom: 30px;
+  left: 5%;
+  width: 90%;
   display: inline-block;
-  /* margin-right: 20px; */
-  /* margin-top: 15px; */
   padding: 10px 15px;
-  /* border-radius: 20px; */
   background: #3484f5;
   background: linear-gradient(to right, #0080ff, #53d1fd);
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;

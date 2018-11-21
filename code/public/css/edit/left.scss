@@ -1,5 +1,5 @@
 /*左:导航
------------------------------------------------------------------------*/
+----------------------------------------------------------------------*/
 .navbar {
   position: absolute;
   top: 0;
@@ -31,6 +31,11 @@
       &.current {
         display: block;
       }
+
+      //图片列
+     .img-list-panel{
+        margin-bottom: 100px;
+     }
 
       //图片素材面板
       .img-item-list {
@@ -264,15 +269,11 @@
 //下载项目按钮
 .btn {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
+  bottom: 30px;
+  left: 5%;
+  width: 90%;
   display: inline-block;
-  /* margin-right: 20px; */
-  /* margin-top: 15px; */
   padding: 10px 15px;
-  /* border-radius: 20px; */
   background: #3484f5;
   background: linear-gradient(to right, rgb(0, 128, 255), rgb(83, 209, 253));
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -282,11 +283,9 @@
   vertical-align: middle;
   cursor: pointer;
   box-sizing: border-box;
-
   &:hover {
     opacity: 0.9;
   }
-
   &:active {
     opacity: 0.7;
   }

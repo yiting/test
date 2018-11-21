@@ -284,20 +284,18 @@ header {
 }
 
 .qr {
-  margin-top: 15px;
-  vertical-align: middle;
-  cursor: pointer;
-  width: 52px;
-  height: 32px;
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  background-image: url(../img/qr.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.7;
-  z-index: 100;
-
+    vertical-align: middle;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    background-image: url(../img/qr.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    z-index: 100;
   input {
     position: absolute;
     visibility: hidden;
@@ -307,7 +305,7 @@ header {
     opacity: 1;
     i {
       position: absolute;
-      top: 45px;
+      top: 58px;
       right: 11px;
       z-index: 2;
       display: inline-block;
