@@ -146,15 +146,16 @@ AIService.prototype = {
         `<div class="ai-rate-show ${rateObjName}" data-id=${rateObjId} style="position:absolute;left:${TOSEEAPP.unitSize(
           rateObjX * AIScale
         )};
-       top:${TOSEEAPP.unitSize(iframeH - rateObjY * AIScale)};
+       top:${TOSEEAPP.unitSize(rateObjY * AIScale)};
        width:${TOSEEAPP.unitSize(rateObjWidth * AIScale)};
        height:${TOSEEAPP.unitSize(rateObjHeight * AIScale)};
-       background-color:${currentModelColor};color:#fff;opacity:0.6;text-align:center;font-size:20px;box-shadow: 0 0 ${++i}px #000;z-index:${++i}">
-       <div class="rate-model-name" style="position:absolute;left:0;top:0;color:${currentModelColor};font-size:20px;font-weight:bold;margin-top:-28px;">${rateObjName}</div>
-       <div class="rate-model-rate" style="line-height:${TOSEEAPP.unitSize(
-         rateObjHeight * AIScale
-       )};">
-       ${new Number(rateObjRate).toFixed(2)}</div>
+       border:1px solid ${currentModelColor};color:#fff;text-align:center;z-index:${++i}">
+       <div class="rate-info-panel" style="position:absolute;left:-20px;right:-20px;top:0;background-color:${currentModelColor};opacity:0.8;font-size:12px;font-weight:bold;margin-top:-20px;">
+       <span class="rate-model-name" >${rateObjName}</span>
+       <span class="rate-model-rate"">(${new Number(rateObjRate).toFixed(
+         2
+       )})</span>
+       </div>
        </div>`
       );
     });

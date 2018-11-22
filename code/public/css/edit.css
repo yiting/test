@@ -169,6 +169,7 @@ header {
   position: relative;
   margin-right: 10px;
   font-size: 15px;
+  cursor: pointer;
 }
 .header-center .user-info .avatar {
   display: inline-block;

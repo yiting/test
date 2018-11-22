@@ -13,5 +13,13 @@
       <h2><%= error.status %></h2>
       <pre><%= error.stack %></pre>
     </div>
+    <script src="/js/lib/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $(".mod-header-logo").on("click", function() {
+          top.postMessage("/", "http://uitocode.oa.com");
+        });
+      });
+    </script>
   </body>
 </html>

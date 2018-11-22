@@ -9,11 +9,18 @@ var vm = new Vue({
   },
   methods: {
     /**
+     * 返回到首页
+     */
+    backIndex: function() {
+      top.postMessage("/", "http://uitocode.oa.com");
+    },
+    /**
      * 编辑项目
      * @param {*} url
      */
     editUrl: function(url) {
-      window.location.href = url;
+      //window.location.href = url;
+      top.postMessage(url, "http://uitocode.oa.com");
     },
     /**
      * 查看项目详情
@@ -22,7 +29,11 @@ var vm = new Vue({
       var projectId = $(event.srcElement).data("projectid");
       var projectName = $(event.srcElement).data("projectname");
       //点击查看项目详情
-      window.location.href = "/edit?id=" + projectId + "&name=" + projectName;
+      //window.location.href = "/edit?id=" + projectId + "&name=" + projectName;
+      top.postMessage(
+        "/edit?id=" + projectId + "&name=" + projectName,
+        "http://uitocode.oa.com"
+      );
     },
     deleteProjectById: function(event) {
       var that = this;
@@ -215,7 +226,11 @@ let PersonApp = {
       let _thisProItem = $(this).find(".resource-item__inner");
       let _thisProId = _thisProItem.data("pid");
       let _thisProName = _thisProItem.data("pname");
-      window.location.href = "/edit?id=" + _thisProId + "&name=" + _thisProName;
+      //window.location.href = "/edit?id=" + _thisProId + "&name=" + _thisProName;
+      top.postMessage(
+        "/edit?id=" + _thisProId + "&name=" + _thisProName,
+        "http://uitocode.oa.com"
+      );
     });
   },
   /**

@@ -63,7 +63,8 @@ let fileType = "";
 const operatePage = function() {
   //2018-11-12
   $("#nav-header-info,.btn-consult").click(function() {
-    window.location.href = "/person";
+    // window.location.href = "/person";
+    top.postMessage("/person","http://uitocode.oa.com");
   });
 
   //选择文件,获取文件信息
