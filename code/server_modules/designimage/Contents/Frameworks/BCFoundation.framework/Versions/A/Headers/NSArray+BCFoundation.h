@@ -26,13 +26,17 @@ typedef CGFloat (^BCSumBlock)(id object);
 - (NSArray <ObjectType> *)reversedArray;
 
 /** Call a block for every item in the array, returning a new array with the items returned by the block. */
-- (NSArray *)map:(id (^)(__kindof ObjectType object))block;
+- (NSArray *)map:(nonnull id (^)(__kindof ObjectType object))block;
 
 /** Returns an array containing the non-nil results of calling the given block with each item in the receiver. I.e. like map, but ommits nil results. */
-- (NSArray *)flatMap:(id (^)(__kindof ObjectType object))block;
+- (NSArray *)compactMap:(nullable id (^)(__kindof ObjectType object))block;
 
 /**  Call a block for every item in the array, passing in the index of each item, and returning a new array with the items returned by the block. */
 - (NSArray *)mapWithIndex:(id (^)(ObjectType object, NSUInteger index))block;
+
+/** Returns an array with the concatenated contents of arrays inside the 'arrays' variable.
+ */
++ (NSArray *)flattenedArrays:(NSArray<NSArray *> *)arrays;
 
 /** Call a block for every item in the array. */
 - (void)enumerate:(void (^)(ObjectType object))block;

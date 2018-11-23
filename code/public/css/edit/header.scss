@@ -115,6 +115,7 @@ header {
     position: relative;
     margin-right: 10px;
     font-size: 15px;
+    cursor: pointer;
     .avatar {
       display: inline-block;
       width: 32px;
@@ -130,7 +131,7 @@ header {
       display: inline-block;
       height: 60px;
       line-height: 60px;
-      color:#989a9c;
+      color: #989a9c;
       vertical-align: middle;
       font-weight: lighter;
     }
@@ -284,18 +285,18 @@ header {
 }
 
 .qr {
-    vertical-align: middle;
-    cursor: pointer;
-    width: 60px;
-    height: 60px;
-    display: inline-block;
-    position: absolute;
-    right: 0;
-    background-image: url(../img/qr.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.7;
-    z-index: 100;
+  vertical-align: middle;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  background-image: url(../img/qr.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  z-index: 100;
   input {
     position: absolute;
     visibility: hidden;

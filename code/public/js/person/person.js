@@ -9,11 +9,18 @@ var vm = new Vue({
   },
   methods: {
     /**
+     * 返回到首页
+     */
+    backIndex: function() {
+      top.postMessage("/", "http://uitocode.oa.com");
+    },
+    /**
      * 编辑项目
      * @param {*} url
      */
     editUrl: function(url) {
-      window.location.href = url;
+      //window.location.href = url;
+      top.postMessage(url, "http://uitocode.oa.com");
     },
     /**
      * 查看项目详情
@@ -22,7 +29,11 @@ var vm = new Vue({
       var projectId = $(event.srcElement).data("projectid");
       var projectName = $(event.srcElement).data("projectname");
       //点击查看项目详情
-      window.location.href = "/edit?id=" + projectId + "&name=" + projectName;
+      //window.location.href = "/edit?id=" + projectId + "&name=" + projectName;
+      top.postMessage(
+        "/edit?id=" + projectId + "&name=" + projectName,
+        "http://uitocode.oa.com"
+      );
     },
     deleteProjectById: function(event) {
       var that = this;
@@ -34,13 +45,15 @@ var vm = new Vue({
         },
         function() {
           var id = event.srcElement.id;
-          var projectId=$(event.srcElement).closest(".mask-wrap").data("projectid");
+          var projectId = $(event.srcElement)
+            .closest(".mask-wrap")
+            .data("projectid");
           $.ajax({
             url: "/person/deleteProjectById",
             type: "post",
             data: {
               id: id,
-              pid:projectId
+              pid: projectId
             },
             dataType: "json",
             success: function(res) {
@@ -56,6 +69,24 @@ var vm = new Vue({
         },
         function() {}
       );
+    },
+    /**
+     * 复制链接url
+     * @param {*} event
+     */
+    copyUrl: function(event) {
+      let clipboard = new ClipboardJS(".info");
+      clipboard.on("success", function(e) {
+        /* console.info("Action:", e.action);
+        console.info("Text:", e.text);
+        console.info("Trigger:", e.trigger); */
+        e.clearSelection();
+        layer.msg("复制链接成功");
+      });
+      clipboard.on("error", function(e) {
+        //console.error("Action:", e.action);
+        //console.error("Trigger:", e.trigger);
+      });
     }
   }
 });
@@ -195,7 +226,11 @@ let PersonApp = {
       let _thisProItem = $(this).find(".resource-item__inner");
       let _thisProId = _thisProItem.data("pid");
       let _thisProName = _thisProItem.data("pname");
-      window.location.href = "/edit?id=" + _thisProId + "&name=" + _thisProName;
+      //window.location.href = "/edit?id=" + _thisProId + "&name=" + _thisProName;
+      top.postMessage(
+        "/edit?id=" + _thisProId + "&name=" + _thisProName,
+        "http://uitocode.oa.com"
+      );
     });
   },
   /**

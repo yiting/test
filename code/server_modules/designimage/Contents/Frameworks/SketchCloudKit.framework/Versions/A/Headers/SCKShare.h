@@ -25,6 +25,9 @@ NS_SWIFT_NAME(Share)
 /// Whether the current user has permissions to update the share.
 @property (nonatomic, assign, readonly) BOOL canUpdate;
 
+/// A copy of the receiver, but by changing the canUpdate property to 'NO'.
+- (nonnull instancetype)readOnlyCopy;
+
 /// The user that owns this share, usually the one that originally created it.
 @property (nonatomic, nullable, readonly) SCKUser *owner;
 

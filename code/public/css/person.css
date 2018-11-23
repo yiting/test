@@ -516,6 +516,7 @@ body {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
+  cursor: default;
 }
 .resource-list .info-bar .info .url {
   width: 100%;

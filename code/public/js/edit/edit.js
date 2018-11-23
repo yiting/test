@@ -97,6 +97,10 @@ let TOSEEAPP = {
       }
       // Yone end
     });
+    //跳转到个人中心
+    $(".back-person-btn").on("click", function() {
+      top.postMessage("/person", "http://uitocode.oa.com");
+    });
     //2018-11-05:各端单位代码切换
     _this.initUnit();
   },
@@ -316,7 +320,7 @@ let TOSEEAPP = {
     let _this = this;
     //跳转到主页
     $(".icon-logo").click(function() {
-      window.location = "/index";
+      top.postMessage("/", "http://uitocode.oa.com");
     });
     //下垃框点击，显示当前page下拉框
     $(".pages-select").click(function() {
@@ -984,6 +988,12 @@ let TOSEEAPP = {
    * 隐藏右侧属性边框面板
    */
   hideAttrPanel: function() {
+    if (
+      !$(".attribute-show-panel").hasClass("slideInRight") &&
+      !$(".attribute-show-panel").hasClass("fadeOutRight")
+    ) {
+      return;
+    }
     $(".attribute-show-panel")
       .removeClass("slideInRight")
       .addClass("fadeOutRight");

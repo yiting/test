@@ -60,8 +60,9 @@
           "js/edit/edit.js"
         ],
         function($, Clipboard, edit) {
-          AIService.getDataByImg();
           TOSEEAPP.initPage();
+          //AI服务
+          new AIService().init();
         }
       );
     </script>

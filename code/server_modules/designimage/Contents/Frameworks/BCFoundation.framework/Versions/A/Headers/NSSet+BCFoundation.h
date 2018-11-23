@@ -13,7 +13,7 @@
 - (NSSet *)setMinusSet:(NSSet *)otherSet;
 
 /** Returns an array containing the non-nil results of calling the given block with each item in the receiver. I.e. like map, but ommits nil results. */
-- (NSSet *)flatMap:(id (^)(ObjectType object))block;
+- (NSSet *)compactMap:(nullable id (^)(ObjectType object))block;
 
 @end
 
