@@ -102,6 +102,20 @@ body {
     Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
 }
 
+.try {
+    background-color: #fff;
+    color: #126ee1;
+    padding: 8px 18px;
+    border-radius: 3px;
+    line-height: 1;
+    display: inline-block;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+    font-size: 14px;
+    margin:0 10px 0 5px;
+}
+
+
 .container {
   max-width: 1170px;
   width: 95%;
