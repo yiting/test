@@ -1,0 +1,75 @@
+//隐藏顶部header标签
+.mod-header-nav {
+  display: none;
+}
+
+.visitor-list-panel {
+  padding-top: 30px;
+  width: 1200px;
+  margin: 0 auto;
+  color: #ffffff;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  -moz-user-select: text;
+  -khtml-user-select: text;
+  user-select: text;
+
+  .visitor-num {
+    color: #000000;
+    font-size: 17px;
+
+    .num-val {
+      font-size: 25px;
+      font-weight: bold;
+    }
+  }
+
+  .visitor-list {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+    /*CSS3样式，支持webkit，ms*/
+    -ms-flex-wrap: wrap;
+
+    .visitor-item {
+      position: relative;
+      margin-bottom: 20px;
+      width: 380px;
+      height: 100px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      display: flex;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.48);
+
+      .visitor-avatar {
+        display: block;
+        width: 100px;
+        height: 100px;
+      }
+
+      .user-info {
+        position: relative;
+        flex: 1;
+        vertical-align: top;
+        padding: 5px 10px;
+        height: 100%;
+        background-color: #3b83cc;
+
+        .user-name {
+          font-size: 16px;
+        }
+
+        .user-deptname {
+          position: absolute;
+          left: 10px;
+          bottom: 5px;
+        }
+
+        .last-login-time {
+        }
+      }
+    }
+  }
+}

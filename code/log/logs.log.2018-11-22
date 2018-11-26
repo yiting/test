@@ -1,0 +1,2772 @@
+2018-11-22 10:05:52 DEBUG default 20181120110650_A空白页推荐游戏.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:05:52 DEBUG default 20181120110650_A空白页推荐游戏.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:08:42 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:08:42 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:08:43 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 10:08:56 DEBUG default 20181121162258_1单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:08:56 DEBUG default 20181121162258_1单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:16:01 DEBUG default 20181121162258_1单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:16:01 DEBUG default 20181121162258_1单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时0.149秒
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:1
+
+2018-11-22 10:24:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 10:24:13 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getOnlineUrl]ftp开始上传
+
+2018-11-22 10:24:13 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传成功
+
+2018-11-22 10:24:16 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:24:47 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 10:26:33 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:26:33 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:26:51 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:26:51 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:26:53 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:28:05 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:28:05 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:28:06 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:29:15 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:29:15 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:29:16 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:34:31 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:34:31 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:34:32 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:36:53 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:36:53 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:36:54 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:37:27 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:37:27 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:37:28 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:37:49 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:37:49 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:37:49 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:42:01 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:42:01 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:42:02 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:42:54 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:42:54 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:42:55 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:44:38 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:44:38 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:44:39 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:46:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:46:12 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:46:13 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:47:37 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:47:37 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:47:38 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:48:22 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:48:22 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 10:48:23 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 10:48:27 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时3.917秒
+
+2018-11-22 10:48:27 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:46
+
+2018-11-22 10:48:27 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 10:48:28 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getOnlineUrl]ftp开始上传
+
+2018-11-22 10:48:29 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传成功
+
+2018-11-22 10:48:30 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:48:42 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 10:50:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 10:50:07 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时6.744秒
+
+2018-11-22 10:50:07 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:42
+
+2018-11-22 10:50:07 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 10:50:07 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp开始上传
+
+2018-11-22 10:50:08 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:50:08 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传成功
+
+2018-11-22 10:50:22 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 10:51:14 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:51:14 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:51:15 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:52:59 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:52:59 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:53:01 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:53:21 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 10:53:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 10:53:34 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时3.458秒
+
+2018-11-22 10:53:34 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:23
+
+2018-11-22 10:53:34 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 10:53:34 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp开始上传
+
+2018-11-22 10:53:35 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:53:36 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传成功
+
+2018-11-22 10:54:49 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:54:49 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:54:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:54:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+
+2018-11-22 10:54:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 10:54:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 10:54:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:54:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 10:54:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 10:54:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 10:54:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 10:54:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:54:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 10:54:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 10:54:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 10:54:56 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时5.588秒
+
+2018-11-22 10:54:56 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:43
+
+2018-11-22 10:54:56 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 10:54:58 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp开始上传
+
+2018-11-22 10:55:01 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传成功
+
+2018-11-22 10:55:01 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:55:15 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:55:15 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 10:55:17 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:56:20 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:56:20 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:56:21 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:56:21 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_4
+
+2018-11-22 10:56:22 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 10:56:22 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 10:56:22 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:56:22 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 10:56:22 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 10:56:22 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 10:56:22 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 10:56:22 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:56:22 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 10:56:22 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 10:56:22 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 10:56:25 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时3.693秒
+
+2018-11-22 10:56:25 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:30
+
+2018-11-22 10:56:25 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 10:56:27 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp开始上传
+
+2018-11-22 10:56:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传成功
+
+2018-11-22 10:56:31 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:56:42 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:56:42 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_5
+
+2018-11-22 10:56:43 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 10:56:43 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 10:56:43 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:56:43 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 10:56:43 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 10:56:43 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 10:56:43 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 10:56:43 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:56:43 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 10:56:43 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 10:56:43 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 10:56:47 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时4.422秒
+
+2018-11-22 10:56:47 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:28
+
+2018-11-22 10:56:47 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 10:56:48 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp开始上传
+
+2018-11-22 10:56:49 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:56:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 10:56:56 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传成功
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_6
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 10:58:12 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 10:58:16 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时3.761秒
+
+2018-11-22 10:58:16 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:19
+
+2018-11-22 10:58:16 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 10:58:16 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp开始上传
+
+2018-11-22 10:58:21 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传成功
+
+2018-11-22 10:58:34 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:58:34 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+
+2018-11-22 10:58:35 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:58:46 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:58:46 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 10:58:48 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 10:59:36 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:59:36 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 10:59:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 10:59:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 10:59:40 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 11:01:17 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 11:01:20 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 11:01:24 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 11:01:37 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 11:04:10 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:04:10 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:04:13 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 11:04:50 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 11:05:21 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:05:21 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:05:28 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:05:28 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:05:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:05:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:05:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:05:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 11:05:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 11:05:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:05:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:05:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:05:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 11:05:44 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:05:44 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:05:44 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:05:44 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 11:05:44 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 11:05:44 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:05:44 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:05:44 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:05:44 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 11:05:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:05:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:05:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:05:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 11:05:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 11:05:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:05:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:05:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:05:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 11:05:55 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 11:06:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 11:26:08 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:26:08 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:26:09 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:26:09 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:26:09 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:26:09 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 11:26:09 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 11:26:09 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:26:09 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:26:09 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:26:09 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 11:26:09 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 11:26:09 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 11:26:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时6.594秒
+
+2018-11-22 11:26:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:42
+
+2018-11-22 11:26:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 11:26:16 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp开始上传
+
+2018-11-22 11:26:24 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传成功
+
+2018-11-22 11:26:45 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 11:27:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:27:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:27:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:27:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 11:27:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 11:27:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:27:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:27:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:27:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 11:27:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:27:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:27:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:27:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 11:27:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 11:27:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:27:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:27:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:27:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 11:27:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:27:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:27:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:27:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 11:27:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 11:27:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:27:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:27:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:27:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 11:27:20 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:27:20 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:27:20 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:27:20 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 11:27:20 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 11:27:20 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:27:20 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:27:20 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:27:20 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 11:27:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:27:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:27:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:27:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 11:27:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 11:27:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 11:27:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 11:27:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 11:27:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 11:27:24 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 11:42:00 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:42:00 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:42:08 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:42:08 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:42:31 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:42:31 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:43:36 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:43:36 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:43:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:43:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:43:58 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:43:58 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:44:06 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:44:06 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:44:09 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:44:09 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:46:21 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:46:21 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:46:52 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:46:52 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:47:02 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:47:02 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:47:08 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:47:08 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:47:22 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:47:22 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:49:52 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:49:52 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:50:08 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:50:08 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:50:11 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:50:11 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:50:21 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:50:21 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:51:24 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:51:24 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:51:34 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:51:34 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:51:49 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:51:49 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:52:03 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:52:03 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:52:07 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:52:07 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:53:55 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:53:55 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:53:59 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:53:59 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:54:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:54:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:54:20 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:54:20 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:54:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:54:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 11:59:12 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 11:59:12 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:00:20 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:00:20 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:01:07 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:01:07 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:01:12 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 12:01:37 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:01:37 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:03:32 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:03:32 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:03:40 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:03:40 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:04:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:04:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:04:25 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 12:04:40 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 12:04:52 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 12:04:52 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 12:04:52 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 12:04:52 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 12:04:52 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 12:04:52 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 12:04:52 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 12:04:52 DEBUG default 20181121162339_4多页.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 12:04:52 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 12:05:48 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:05:48 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:06:34 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:06:34 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:06:43 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:06:43 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:08:11 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:08:11 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:08:16 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:08:16 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:08:22 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:08:22 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:11:48 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:11:48 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:11:51 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:11:51 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:13:31 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:13:31 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:13:40 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:13:40 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:13:42 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:13:42 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 12:13:44 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:13:44 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+
+2018-11-22 12:13:45 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:13:45 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_4
+
+2018-11-22 12:13:46 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:13:46 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_5
+
+2018-11-22 12:13:47 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:13:47 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_6
+
+2018-11-22 12:14:00 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 12:14:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:14:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:14:10 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:14:10 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 12:14:15 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 12:19:30 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:19:30 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:19:34 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:19:34 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:19:38 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:19:38 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:19:42 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:19:42 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:20:01 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:20:01 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:20:40 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 12:20:42 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 12:21:11 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 12:21:14 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 12:21:22 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 12:26:31 DEBUG default 20181120110650_A空白页推荐游戏.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:26:31 DEBUG default 20181120110650_A空白页推荐游戏.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:27:18 DEBUG default 20181121102251_游戏城.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:27:18 DEBUG default 20181121102251_游戏城.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:27:40 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:27:40 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:45:31 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:45:31 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:45:32 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 12:45:50 DEBUG default 20181121102251_游戏城.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:45:50 DEBUG default 20181121102251_游戏城.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:45:52 DEBUG default 20181121102251_游戏城.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 12:46:09 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:46:09 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:46:14 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:46:14 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:46:15 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 12:46:19 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 12:46:26 DEBUG default 20181120110650_A空白页推荐游戏.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:46:26 DEBUG default 20181120110650_A空白页推荐游戏.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:46:29 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:46:29 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 12:46:32 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 12:46:32 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+
+2018-11-22 12:46:35 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 12:46:46 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 14:03:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:03:07 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:03:10 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:03:10 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:03:11 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:03:11 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 14:03:13 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:03:13 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+
+2018-11-22 14:03:21 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:03:21 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:03:24 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:03:24 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 14:03:27 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:03:27 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:03:31 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:03:31 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:03:36 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:03:36 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:03:45 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 14:07:12 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:07:12 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:43:02 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:43:02 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:43:06 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:43:06 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:43:07 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 14:43:09 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 14:43:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:43:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:43:38 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 14:46:31 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:46:31 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:55:26 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:55:26 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时0.773秒
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:19
+
+2018-11-22 14:55:27 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 14:55:28 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getOnlineUrl]ftp开始上传
+
+2018-11-22 14:55:28 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传成功
+
+2018-11-22 14:55:52 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 14:56:55 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:56:55 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 14:56:56 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 14:57:58 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 14:57:58 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:06:00 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:06:00 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:07:17 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:07:17 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:08:14 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:08:14 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:09:20 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:09:20 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:09:36 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:09:36 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:09:38 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:09:41 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:09:41 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:09:49 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:10:21 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:10:21 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:10:22 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:11:43 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:11:43 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:11:44 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:12:39 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:12:39 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:12:40 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:15:37 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:15:37 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:15:38 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:16:44 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:16:44 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:16:45 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:22:43 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:22:43 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:22:53 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 15:22:53 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 15:22:53 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 15:22:53 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 15:22:53 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 15:22:53 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 15:22:53 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 15:22:53 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 15:22:53 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 15:22:54 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 15:22:54 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 15:22:54 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 15:22:54 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 15:23:07 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时12.865秒
+
+2018-11-22 15:23:07 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:64
+
+2018-11-22 15:23:07 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 15:23:08 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-getOnlineUrl]ftp开始上传
+
+2018-11-22 15:23:11 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传成功
+
+2018-11-22 15:24:07 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:24:07 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:24:09 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:27:12 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:27:12 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:32:01 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:32:01 DEBUG default 20181122152229_游戏城_page1.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:39:53 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:39:53 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:39:55 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:46:09 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:46:09 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:46:10 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:46:59 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:46:59 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:47:00 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:47:20 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:47:20 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:47:21 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:48:03 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:48:03 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:48:05 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:49:17 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:49:17 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:49:19 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:52:39 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:52:39 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:52:42 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:54:34 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:54:34 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:54:40 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:55:11 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 15:55:11 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 15:55:15 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 15:55:34 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 16:02:29 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 16:02:29 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 16:02:31 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 16:03:05 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 16:03:05 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 16:03:07 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 16:04:16 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 16:04:16 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 16:04:17 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 16:04:45 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 16:04:45 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 16:04:47 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:11:48 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:11:48 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:11:50 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:13:31 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:13:31 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:13:32 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:14:02 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:14:02 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:15:02 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:16:16 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:16:16 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:16:18 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:17:16 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:19:18 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:19:18 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:19:19 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:20:18 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:20:18 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:20:19 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 17:20:41 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 17:20:42 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时0.785秒
+
+2018-11-22 17:20:42 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:19
+
+2018-11-22 17:20:42 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 17:20:43 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:21:25 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:21:25 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:21:26 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:22:30 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:22:48 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:22:48 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:22:50 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:26:09 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:26:09 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:26:10 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:29:51 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:29:51 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:29:52 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:37:06 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:37:06 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:37:07 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:38:09 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:38:09 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:38:10 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:38:24 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:38:24 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:38:25 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:38:58 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:38:58 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:38:59 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:40:02 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:40:02 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:40:03 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:40:54 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:40:54 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:40:55 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:44:56 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:44:56 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:44:57 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:46:00 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:46:00 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:46:01 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:46:09 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:46:09 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:46:10 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:46:22 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:46:22 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:46:22 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:49:49 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:49:49 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:49:51 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:50:31 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:50:31 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:50:33 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:52:08 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:52:08 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:52:08 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:52:58 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:52:58 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:52:59 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 17:58:41 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 17:58:41 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 17:58:42 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 18:00:00 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:00:00 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:00:00 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 18:00:02 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 18:00:14 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:00:14 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:00:15 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 18:04:44 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:04:44 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:04:45 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 18:06:20 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:06:20 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:06:21 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 18:06:33 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:06:33 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:06:33 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 18:10:54 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:10:54 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:11:04 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:11:04 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:11:08 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:11:08 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:26:35 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:26:35 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:26:36 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 18:26:50 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:26:50 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:26:51 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 18:30:32 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:30:32 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:31:11 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:31:11 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:2_1
+
+2018-11-22 18:31:17 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:31:17 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:2_1
+
+2018-11-22 18:47:33 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:47:33 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:47:34 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 18:48:37 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:48:37 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:48:38 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 18:53:51 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 18:53:51 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 18:53:52 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:05:42 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:05:42 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:05:43 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:13:44 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:13:44 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:13:44 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:14:13 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:14:13 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:14:14 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:16:52 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:16:52 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:16:53 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:17:59 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:17:59 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:17:59 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:21:21 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:21:21 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:21:25 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:21:25 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:21:39 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:22:03 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:22:03 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:22:03 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:25:48 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:25:48 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:25:49 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:29:41 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:29:41 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:29:42 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:29:55 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:29:55 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:29:56 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:33:37 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:33:37 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:33:38 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:35:25 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:35:25 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:35:27 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:35:57 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:36:19 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:37:22 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:37:22 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:37:29 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:37:29 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:37:30 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 19:38:16 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 19:38:55 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:38:55 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:47:59 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:47:59 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:48:00 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:53:03 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:53:03 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:53:04 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:53:10 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:53:21 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:53:21 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:53:26 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:53:26 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:53:27 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:53:59 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:53:59 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:54:01 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:54:01 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:54:05 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:54:05 DEBUG default 20181122172036_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:54:12 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:54:12 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:54:17 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:54:17 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:54:18 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:56:59 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:56:59 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:57:00 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 19:58:43 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 19:58:43 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 19:59:10 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:06:31 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:06:31 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:06:31 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:07:54 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:07:54 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:07:54 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:08:25 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:08:25 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:08:26 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:09:40 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:09:40 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:09:42 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:14:19 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:14:19 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:14:19 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:16:11 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:16:11 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:16:12 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:16:46 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:16:46 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:16:48 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:18:13 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:18:13 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:18:14 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:19:42 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:19:42 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:19:43 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:21:47 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:21:47 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:21:48 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:23:09 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:23:09 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:23:10 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:24:49 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:24:49 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:24:50 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:26:17 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:26:17 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:26:26 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:26:26 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:26:27 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:27:48 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:27:48 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:27:49 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:29:11 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:29:11 DEBUG default 20181121194419_A空白页推荐游戏.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:29:12 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:29:12 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:29:13 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:29:37 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:29:37 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:29:40 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 20:30:30 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:30:30 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:30:31 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:31:09 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:31:09 DEBUG default 20181120164731_5多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:33:39 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:33:39 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:33:40 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:35:55 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:35:55 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:35:57 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:37:53 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:37:53 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:37:54 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:38:28 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:38:28 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:38:30 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:38:45 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:38:45 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:38:46 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:46:41 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:46:41 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:46:42 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:46:54 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:48:04 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:48:04 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:48:05 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:48:47 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:48:47 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:48:48 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:49:21 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:49:21 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:49:22 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:50:34 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:50:34 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:50:35 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:52:12 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:52:12 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:52:12 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 20:52:48 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:52:48 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:52:49 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:52:49 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 20:52:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:52:50 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+
+2018-11-22 20:52:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:52:51 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_4
+
+2018-11-22 20:52:52 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:52:52 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_5
+
+2018-11-22 20:52:53 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:52:53 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_6
+
+2018-11-22 20:53:02 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:53:02 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 20:53:03 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:53:03 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 20:53:04 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:53:04 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_4
+
+2018-11-22 20:53:04 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:53:04 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_5
+
+2018-11-22 20:53:05 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 20:53:05 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_6
+
+2018-11-22 20:53:06 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:00:13 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:00:13 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:00:14 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:00:14 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 21:00:16 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:00:16 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+
+2018-11-22 21:00:17 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:00:17 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_4
+
+2018-11-22 21:00:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:00:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_5
+
+2018-11-22 21:00:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:00:18 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_6
+
+2018-11-22 21:00:20 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:01:41 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:41 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:01:44 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:44 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:01:44 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:44 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 21:01:45 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:45 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_4
+
+2018-11-22 21:01:45 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:45 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+
+2018-11-22 21:01:46 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:46 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_5
+
+2018-11-22 21:01:47 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:47 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_6
+
+2018-11-22 21:01:50 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:50 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:01:56 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:56 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:01:57 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:57 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 21:01:57 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:57 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+
+2018-11-22 21:01:58 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:58 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_4
+
+2018-11-22 21:01:58 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:58 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_5
+
+2018-11-22 21:01:58 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:01:58 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_6
+
+2018-11-22 21:02:00 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:02:34 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:02:34 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:02:35 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:03:38 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:03:38 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:03:39 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:05:02 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:05:02 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:05:03 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:06:21 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:06:21 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:06:21 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:06:21 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 21:06:22 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:06:22 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+
+2018-11-22 21:06:23 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:06:25 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getAIData]获取当前artboard预览图片对应的AI数据
+
+2018-11-22 21:06:26 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:06:26 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_4
+
+2018-11-22 21:06:27 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:06:27 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_5
+
+2018-11-22 21:06:28 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:06:28 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_6
+
+2018-11-22 21:06:29 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:07:06 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:06 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:07:08 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:08 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:2_1
+
+2018-11-22 21:07:09 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:09 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:2_2
+
+2018-11-22 21:07:09 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:09 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:2_3
+
+2018-11-22 21:07:10 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:10 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:2_4
+
+2018-11-22 21:07:11 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:11 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:2_5
+
+2018-11-22 21:07:12 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:12 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:2_6
+
+2018-11-22 21:07:14 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:14 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:4_6
+
+2018-11-22 21:07:15 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:15 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:4_2
+
+2018-11-22 21:07:15 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:15 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:4_3
+
+2018-11-22 21:07:17 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:17 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:5_3
+
+2018-11-22 21:07:18 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:18 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:5_2
+
+2018-11-22 21:07:18 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:18 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:5_3
+
+2018-11-22 21:07:19 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:19 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:5_4
+
+2018-11-22 21:07:20 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:20 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:5_5
+
+2018-11-22 21:07:21 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:21 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:5_6
+
+2018-11-22 21:07:21 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:21 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:5_7
+
+2018-11-22 21:07:22 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:22 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:5_8
+
+2018-11-22 21:07:23 ERROR default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'isMasked' of undefined
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:5_9
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 21:07:25 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 21:07:27 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时1.703秒
+
+2018-11-22 21:07:27 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:7
+
+2018-11-22 21:07:27 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 21:07:27 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:27 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:5_10
+
+2018-11-22 21:07:28 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:07:28 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:07:28 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:07:28 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 21:07:28 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 21:07:28 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:07:28 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:07:28 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:07:28 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 21:07:28 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 21:07:28 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 21:07:29 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时1.301秒
+
+2018-11-22 21:07:29 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:8
+
+2018-11-22 21:07:29 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:5_11
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 21:07:30 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 21:07:31 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时1.09秒
+
+2018-11-22 21:07:31 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:5
+
+2018-11-22 21:07:31 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 21:07:36 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:07:36 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:07:36 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:07:36 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 21:07:36 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 21:07:36 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:07:36 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:07:36 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:07:36 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 21:07:39 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:07:39 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:07:39 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:07:39 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 21:07:39 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-adjust]骨架输出成功
+
+2018-11-22 21:07:39 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:07:39 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:07:39 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:07:39 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 21:07:42 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:07:47 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:07:49 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:11:58 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:11:58 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:12:03 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:12:03 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:12:05 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:12:07 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:12:07 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-download]生成编译文件夹拷贝完毕
+
+2018-11-22 21:12:25 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:12:25 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:12:27 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:12:27 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-download]生成编译文件夹拷贝完毕
+
+2018-11-22 21:15:14 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:15:14 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:15:15 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:15:15 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-download]生成编译文件夹拷贝完毕
+
+2018-11-22 21:17:16 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:17:19 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:17:19 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-download]生成编译文件夹拷贝完毕
+
+2018-11-22 21:19:39 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:19:39 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:19:42 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:19:45 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:19:49 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:19:49 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:19:50 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:19:59 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:19:59 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:19:59 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:20:03 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:20:03 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:20:04 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:20:10 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:20:10 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:20:12 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:20:15 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:20:15 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:20:16 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:20:18 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:20:39 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:20:39 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:20:40 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:20:43 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:23:04 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:23:04 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:23:18 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:23:18 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:23:20 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:23:20 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-download]生成编译文件夹拷贝完毕
+
+2018-11-22 21:23:48 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:23:49 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:24:08 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:24:08 DEBUG default 20181121194138_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:24:11 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:24:11 DEBUG default 20181122104817_1单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:24:14 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:24:14 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:24:16 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:24:16 DEBUG default 20181122145521_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:24:19 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:24:19 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:34:28 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:34:28 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:34:34 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:34:34 DEBUG default 20181121162339_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:34:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:34:38 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:34:42 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:34:42 DEBUG default 20181122102401_测试模型.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:34:52 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:34:52 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:34:53 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:34:53 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+
+2018-11-22 21:34:54 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:34:54 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_4
+
+2018-11-22 21:34:55 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:34:55 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_6
+
+2018-11-22 21:34:56 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-download]进入编译项目下载
+
+2018-11-22 21:34:56 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-download]生成编译文件夹拷贝完毕
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]创建目录成功
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 21:35:49 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 21:35:50 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时0.753秒
+
+2018-11-22 21:35:50 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:9
+
+2018-11-22 21:35:50 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 21:35:51 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 21:35:52 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时1.008秒
+
+2018-11-22 21:35:52 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:12
+
+2018-11-22 21:35:53 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 21:35:54 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:35:57 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 21:36:00 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 21:36:01 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时0.952秒
+
+2018-11-22 21:36:01 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:13
+
+2018-11-22 21:36:01 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 21:36:02 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_4
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 21:36:03 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 21:36:04 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时0.768秒
+
+2018-11-22 21:36:04 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:9
+
+2018-11-22 21:36:04 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 21:36:05 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_5
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时0.577秒
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:8
+
+2018-11-22 21:36:07 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 21:36:08 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_6
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+
+2018-11-22 21:36:10 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-combineImages]开始生成图片
+
+2018-11-22 21:36:11 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时1.105秒
+
+2018-11-22 21:36:11 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:14
+
+2018-11-22 21:36:11 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getOnlineUrl]进入上传代码模块
+
+2018-11-22 21:36:36 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:36:36 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 21:36:38 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:36:38 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_6
+
+2018-11-22 21:36:40 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+
+2018-11-22 21:36:56 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:36:56 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_5
+
+2018-11-22 21:36:58 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:36:58 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_4
+
+2018-11-22 21:37:01 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 21:37:01 DEBUG default 20181122213537_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 23:54:07 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 23:54:07 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 23:54:14 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 23:54:14 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+
+2018-11-22 23:54:53 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 23:54:53 DEBUG default 20181122104948_4多页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+
+2018-11-22 23:55:18 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+
+2018-11-22 23:55:18 DEBUG default 20181121164031_6极限测试.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+

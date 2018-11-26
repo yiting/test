@@ -34,6 +34,21 @@ User.prototype={
         callback && callback({code: 0, msg: '查找新用户成功：',data: result});
       }
     });
+  },
+  /**
+   * 查询所有用户
+   */
+  getAllUsers:function(staffid,callback){
+    var that=this;
+    var sql = "SELECT * FROM user order by last_login_time desc";
+    // make the query
+    connection.query(sql, function(err, result) {
+      if (err) {
+        callback && callback({code: 1, msg: '查找所有用户失败 ',err: err});
+      }else{  
+        callback && callback({code: 0, msg: '查找所有用户成功：',data: result});
+      }
+    });
   }
 }
 module.exports = User;

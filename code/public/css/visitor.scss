@@ -1,0 +1,12 @@
+@charset "UTF-8";
+@import "_global/reset";
+@import "person/header.scss";
+//中间区域
+@import "visitor/main.scss";
+
+body {
+  background-color: #f2f2f2;
+}
+.user-info-panel {
+  cursor: pointer;
+}

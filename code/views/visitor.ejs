@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/css/visitor.css" />
+</head>
+
+<body>
+  <div id="visitorApp">
+    <!-- 顶部 -->
+    <%- include("./template/person/header.ejs") %>
+    <!-- 中间区域 -->
+    <%- include("./template/visitor/main.ejs") %>
+  </div>
+  <!-- seajs -->
+  <script src="js/lib/seajs/sea.js"></script>
+  <script>
+    // Set configuration
+    seajs.config({
+      base: "/",
+      alias: {
+        jquery: "js/lib/jquery.min.js",
+        vue: "js/vue.js",
+        util: "js/util/util.js"
+      },
+      preload: ["jquery", "util", "vue"]
+    });
+    seajs.use(
+      [
+        "jquery",
+        "vue",
+        "util",
+        "js/visitor/visitor.js"
+      ],
+      function ($) {
+
+      }
+    );
+  </script>
+</body>
+</html>

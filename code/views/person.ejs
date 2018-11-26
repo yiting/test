@@ -1,193 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title><%= title %></title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <link rel="stylesheet" href="css/person.css" />
-  </head>
-  <body>
-    <script>
-      //console.dir(window.top.window.document.location.href)
-    </script>
-    <div class="page-personal" id="app">
 
-      <!-- header -->
-      <div class="page-header">
-        <nav class="header-navbar">
-          <div class="container">
-            <a href="#" class="navbar-logo router-link-active" v-on:click.stop="backIndex"></a>
-            <div class="header-navbar__main">
-              <!--<ul class="navbar-nav">
-                <li class="nav-item">
-                  <a href="/index" class="nav-link">返回官网</a>
-                </li>
-                <li class="nav-item"><a href="/search" class="nav-link search"></a></li>
-              </ul>-->
-            </div>
-            <div class="user-info dropdown hide">
-              <div class="dropdown-toggle">
-                <span
-                  v-bind:style="{backgroundImage: 'url(http://dcloud.oa.com/Public/Avatar/'+user.staffname+'.png)'}"
-                  class="avatar"
-                ></span
-                ><span class="user-name">{{ user.staffname }}</span>
-              </div>
-             <!--  <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">退出登录</a>
-              </div> -->
-              <a href="http://support.qq.com/products/33596" class="try jmod-header-try" target="_blank">意见反馈</a>
-            </div>
-          </div>
-        </nav>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <title>
+    <%= title %>
+  </title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <link rel="stylesheet" href="css/person.css" />
+</head>
 
-      <!-- 添加 -->
-      <div class="upload-panel">
-        <form class="upload-form" enctype="multipart/form-data" method="post" name="fileinfo" id="uploadForm">
-          <a href="javascript:;" class="choose-file-btn"> </a>
-            <input type="file" name="content" class="choose-file-input" />
-          </a>
-          <!--
-            <div class="upload-btn" id="upload-btn">上传文件</div>
-          -->
-          <!-- <div class="file-info">
-            <span class="file-name"></span>
-            <span class="file-size"></span>
-          </div> -->
-        </form>
-      </div>
+<body>
+  <script>
+    //console.dir(window.top.window.document.location.href)
+  </script>
+  <div class="page-personal" id="personApp">
+    <!-- 顶部 -->
+    <%- include("./template/person/header.ejs") %>
+    <!-- 主面板区域 -->
+    <%- include("./template/person/main.ejs") %>
+  </div>
+  <!-- seajs -->
+  <script src="js/lib/seajs/sea.js"></script>
+  <script>
+    // Set configuration
+    seajs.config({
+      base: "/",
+      alias: {
+        jquery: "js/lib/jquery.min.js",
+        clipboard: "js/lib/clipboard.min.js",
+        util: "js/util/util.js",
+        vue: "js/vue.js",
+        //页面弹框插件
+        layer: "layer.js"
+      },
+      preload: ["jquery", "clipboard", "util", "vue"]
+    });
+    seajs.use(
+      [
+        "jquery",
+        "clipboard",
+        "util",
+        "vue",
+        "layer",
+        "js/person/person.js"
+      ],
+      function ($) {
 
-      <!-- main -->
-      <div class="page-main">
-        <div class="resource-area">
-          <div class="resource-navbar">
-            <div class="container">
-              <ul class="navbar-nav">
-                <li class="nav-item"><span class="nav-link"></span></li>
-                <li class="nav-item"><span class="nav-link"></span></li>
-              </ul>
-            </div>
-          </div>
-          <div class="container">
-            <div class="navbar-control">
-              <div class="navbar-control__sub">
-                <h2 class="mod-title">我的项目（{{ projects.length }}）</h2>
-              </div>
-            </div>
-            <div class="resource-main">
-              <div class="resource-wrap">
-                <ul class="resource-list project">
-                  <!-- item -->
-                  <!-- item -->
-                  <li class="resource-item" v-for="(pro,index) in projects">
-                    <div
-                      class="resource-item__inner"
-                      v-bind:data-pid="pro.projectId"
-                      v-bind:data-pname="pro.projectName"
-                    >
-                      <div class="img-wrap">
-                        <div
-                          v-bind:style="{backgroundImage: 'url(http://10.65.90.36:8080/unzip_file/'+pro.projectName+'/previews/preview.png)'}"
-                          class="imgs less"
-                        >
-                          <b class="mask"></b>
-                          <div class="imgs-inner">
-                            <span class="img" style="opacity:0;"></span>
-                          </div>
-                        </div>
-                        <div class="mask-wrap" v-on:click="viewProjectById" v-bind:data-projectid="pro.projectId" v-bind:data-projectname="pro.projectName">
-                          <div class="btn-more-wrap dropdown">
-                            <button class="btn-more"></button>
-                            <ul class="dropdown-menu">
-                              <li class="dropdown-item" v-on:click.stop="editUrl('/edit?id='+pro.projectId+'&name='+pro.projectName)">编辑</li>
-                              <li
-                                class="dropdown-item"
-                                v-on:click.stop="deleteProjectById"
-                                :id="pro.id"
-                              >
-                                删除
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="info-bar">
-                        <!--
-                          <span style="background-image: url(&quot;https://xshow.tencent.com/s/avatar/5f5f4e144b73f9fc.png&quot;);" class="avatar">
-                          </span>
-                        -->
-                        <div class="content">
-                          <div class="name">
-                            <span class="txt">{{ pro.projectName.substring(pro.projectName.indexOf("_")+1) }}</span>
-                            <div class="time">
-                                {{ new Date(pro.modifytime).toLocaleString() }}
-                              </div>
-                          </div>
-                          <div class="info" v-on:click="copyUrl" data-clipboard-action="copy" :data-clipboard-target="'#copy-'+index">
-                              <span v-bind:href="'http://uitocode.oa.com/edit?id='+ pro.projectId + '&name=' + pro.projectName" class="url" :id="'copy-'+index">{{
-                                'http://uitocode.oa.com/edit?id='+ pro.projectId + '&name=' + pro.projectName
-                              }}</a>
-                            <!---->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- item -->
-                  <!-- item -->
-                </ul>
-              </div>
-            </div>
-          </div>
-          <!-- 新增项目 -->
-          <!--
-            <button role="button" class="btn-main btn-main-add btn"></button>
-          -->
-        </div>
-      </div>
-    </div>
+      }
+    );
+  </script>
 
-    <!-- 上传组建 -->
-    <!--
-      <div class="modal-mod hidden">
-        <div class="modal-box">
-          <div class="modal-inner">
-            <div class="creat-proj">
-              <div class="modal__title">
-              </div>
-              <div class="modal__body">
-                <div class="proj-name">
-                  <input type="text" placeholder="文件夹名称" autocomplete="off" class="proj-name-input input-txt">
-                </div>
-                <div class="proj-cover">
-                  <div class="proj-cover-main">
-                    <div class="cover-wrap">
-                      <div class="upload-tips"><span class="txt">将sketch/xd拖到此处上传（体积少于200M）!</span></div>
-                      <form id="projCoverUpload" action="https://xshow.tencent.com/s/file/upload" options="[object Object]" class="vue-dropzone dropzone dz-clickable">
-                        <input type="hidden" name="token" value="xxx">
-                        <div class="dz-default dz-message"><span><i class="material-icons">cloud_upload</i><br>Drop files here to upload</span></div>
-                      </form>
-                    </div>
-                    <div style="display: none;" class="cover-view-wrap"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    -->
-    <!-- seajs -->
-    <script src="js/lib/seajs/sea.js"></script>
-    <script src="/js/lib/jquery.min.js"></script>
-    <script src="/js/lib/clipboard.min.js"></script>
-    <script src="/js/vue.js"></script>
-    <script src="layer.js"></script>
-    <script src="js/util/config.js"></script>
-    <script src="js/util/util.js"></script>
-    <script src="/js/person/person.js"></script>
-  </body>
+</body>
+
 </html>

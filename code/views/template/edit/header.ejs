@@ -10,11 +10,8 @@
   <div class="header-center">
 
     <div v-if="user.staffname!=''" class="user-info back-person-btn"><a href="#" class="nav-link">
-      <span
-        v-bind:style="{backgroundImage: 'url(http://dcloud.oa.com/Public/Avatar/'+user.staffname+'.png)'}"
-        class="avatar"
-      ></span
-      ><span class="user-name">{{ user.staffname }}</span></a>
+        <span v-bind:style="{backgroundImage: 'url(http://dcloud.oa.com/Public/Avatar/'+user.staffname+'.png)'}" class="avatar"></span><span
+          class="user-name" v-text="user.staffname"></span></a>
     </div>
   </div>
   <div class="header-right">
