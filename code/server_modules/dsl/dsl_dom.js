@@ -4,6 +4,7 @@
 const designDomAttrs = /^(id|model|type|name|abX|abY|x|y|styles|width|height|children|contrains)$/;
 
 let Contrain = require('./dsl_contrain.js');
+let CSSDom = require('./dsl_CSSDom.js');
 let createDomIndex = 0;
 
 
@@ -11,10 +12,10 @@ class Dom {
     constructor(o, ...extend) {
         Object.assign(o, ...extend);
         this.id = o.id || (createDomIndex++);
-        this.isSource = !!o.id;
+        this.source = o.source || (!!o.id ? 'design' : null);
         this.name = o.name || '';
-        this.styles = o.styles || {};
-        this.path = o.path || null;
+        this.texts = o.styles && o.styles.texts || null;
+        this.styles = new CSSDom(o.styles);
         this.x = o.x || 0;
         this.y = o.y || 0;
         this.abX = o.abX || 0;
@@ -34,7 +35,8 @@ class Dom {
     static getType(dom) {
         if (dom.text) {
             return Dom.type.TEXT;
-        } else if (dom.children.length == 0 && (dom.path || (dom.styles && dom.styles.background))) {
+            // } else if (dom.children.length == 0 && (dom.path || (dom.styles && dom.styles.background))) {
+        } else if (dom.children.length == 0 && dom.path) {
             return Dom.type.IMAGE;
         } else {
             return Dom.type.LAYOUT;
@@ -89,9 +91,7 @@ class Dom {
             o.abY = d.abY < o.abY ? d.abY : o.abY;
             right = right < (d.abX + d.width) ? (d.abX + d.width) : right;
             bottom = bottom < (d.abY + d.height) ? (d.abY + d.height) : bottom;
-            // console.log(d.abX+d.width,d.abY+d.height);
         });
-        // console.log(o)
         o.height = bottom - o.abY;
         o.width = right - o.abX;
         return o;
@@ -211,14 +211,23 @@ class Dom {
         }
         return o;
     }
-    /* 
-        是否包含
+    /**
+     * 是否垂直
+     * 当doms数量只有一个,返回true
      */
-    static isContain(domA, domB) {
-        return domA.abX + domA.width >= domB.abX + domB.width &&
-            domA.abY + domA.height >= domB.abY + domB.height &&
-            domA.abX <= domB.abX &&
-            domA.abY <= domB.abY
+    static isVertical(arr, errorCoefficient = 0) {
+        let prev;
+        errorCoefficient = parseFloat(errorCoefficient) || 0;
+        return arr.every(dom => {
+            if (!prev) {
+                prev = dom;
+                return true;
+            }
+            let res = dom.abX < prev.abX + prev.width + errorCoefficient &&
+                prev.abX < dom.abX + dom.width + errorCoefficient;
+            prev = dom;
+            return res;
+        })
     }
     /**
      * 是否水平
@@ -235,44 +244,32 @@ class Dom {
             const meta_abY = meta.textAbY || meta.abY,
                 prev_abY = prev.textAbY || prev.abY,
                 meta_height = meta.textHeight || meta.height,
-                prev_height = prev.textHeight || prev.height,
-                meta_centerX = meta.abX + meta.width / 2,
-                prev_centerX = prev.abX + prev.width / 2
+                prev_height = prev.textHeight || prev.height
 
-            let res = (meta_centerX < prev.abX && prev_centerX > (meta.abX + meta.width) ||
-                    prev_centerX < meta.abX && meta_centerX > (prev.abX + prev.width)) &&
-                (meta_abY <= prev_abY + prev_height + errorCoefficient) &&
-                (prev_abY <= meta_abY + meta_height + errorCoefficient);
+            let res = (meta_abY < prev_abY + prev_height + errorCoefficient) &&
+                (prev_abY < meta_abY + meta_height + errorCoefficient);
             prev = meta;
             return res;
         })
     }
+    /**
+     * 节点替换
+     * @param {Dom} domA 被替换节点
+     * @param {Dom} parent 被替换节点父节点
+     * @param {Dom} domB 替换节点
+     */
     static replaceWith(domA, parent, domB) {
-        const index = parent.children.indexOf(domA);
-        if (index < 0) {
-            return false;
+        if (parent.children.includes(domA)) {
+            // 替换节点索引
+            const domBIndex = parent.children.indexOf(domB);
+            if (domBIndex > -1) {
+                parent.children.splice(domBIndex, 1);
+            }
+            const domAIndex = parent.children.indexOf(domA);
+            parent.children.splice(domAIndex, 1, domB);
         }
-        parent.children.splice(index, 1, domB);
     }
 
-    /**
-     * 是否垂直
-     * 当doms数量只有一个,返回true
-     */
-    static isVertical(arr, errorCoefficient = 0) {
-        let prev;
-        errorCoefficient = parseFloat(errorCoefficient) || 0;
-        return arr.every(dom => {
-            if (!prev) {
-                prev = dom;
-                return true;
-            }
-            let res = dom.abX <= prev.abX + prev.width + errorCoefficient &&
-                prev.abX <= dom.abX + dom.width + errorCoefficient;
-            prev = dom;
-            return res;
-        })
-    }
     static isSameModel(doms) {
         if (doms.length < 2) {
             return false;
@@ -296,12 +293,36 @@ class Dom {
         let offset = Dom.calOffset(dom, parent, undefined);
         return Math.abs(offset.top - offset.bottom) <= errorCoefficient * 3;
     }
-    static cleanLineHeight(dom,lineHeightCoe) {
-        if (dom.text) {
+    // 判断相连,但中心不再某节点内
+    static isConnect(a, b, dir = 0) {
+        const aCx = a.abX + a.width / 2,
+            bCx = b.abX + b.width / 2,
+            aCy = a.abY + a.height / 2,
+            bCy = b.abY + b.height / 2;
+
+        return Math.abs(aCx - bCx) <= (a.width + b.width) / 2 + dir &&
+            Math.abs(aCy - bCy) <= (a.height + b.height) / 2 + dir;
+    }
+    // 判断包含，inner中心在outer内
+    static isInclude(outer, inner) {
+        return outer.abX + outer.width >= inner.abX + inner.width / 2 &&
+            outer.abY + outer.height >= inner.abY + inner.height / 2 &&
+            outer.abX <= inner.abX + inner.width / 2 &&
+            outer.abY <= inner.abY + inner.height / 2
+    }
+    // 判断完全包含，inner边界在outer内
+    static isWrap(outer, inner) {
+        return outer.abX + outer.width >= inner.abX + inner.width &&
+            outer.abY + outer.height >= inner.abY + inner.height &&
+            outer.abX <= inner.abX &&
+            outer.abY <= inner.abY
+    }
+    static cleanLineHeight(dom, lineHeightCoe) {
+        if (!dom.lines && dom.text && (dom.texts || dom.styles.texts)) {
             // fontSize
             let maxSize = Number.NEGATIVE_INFINITY,
-                minSize = Number.POSITIVE_INFINITY
-            dom.styles.texts.forEach((s) => {
+                minSize = Number.POSITIVE_INFINITY;
+            (dom.texts || dom.styles.texts).forEach((s) => {
                 maxSize = s.size > maxSize ? s.size : maxSize;
                 minSize = s.size < minSize ? s.size : minSize;
             });
@@ -341,23 +362,5 @@ Dom.layout = {
     COLUMN: 'column', // 列
     ROW: 'row', // 行
     INLINE: 'inline', // 行内
-}
-// 对齐方式
-Dom.align = {
-    "left": 0,
-    "right": 1,
-    "center": 2
-}
-
-Dom.fontWeight = {
-    "thin": 100, //Thin
-    "extra": 200, //Extra Light (Ultra Light)
-    "light": 300, //Light
-    "regular": 400, //Regular (Normal、Book、Roman)
-    "medium": 500, //Medium
-    "semibold": 600, //Semi Bold (Demi Bold)
-    "bold": 700, //Bold
-    "extra": 800, //Extra Bold (Ultra Bold)
-    "black": 900, //Black (Heavy)
 }
 module.exports = Dom;

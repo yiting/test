@@ -11,11 +11,11 @@ module.exports.mixCount = -3; //-1，即为任意混合数
 module.exports.template = function () {
 
 }
-module.exports.is = function (dom, parent, option, config) {
+module.exports.is = function (dom, parent, config) {
     // return dom.children && dom.children.length > 0 && (dom.path || (dom.styles && dom.styles.background))
     return dom.children && dom.children.length > 0 && dom.path;
 }
-module.exports.adjust = function (dom, parent, option, config) {
+module.exports.adjust = function (dom, parent, config) {
     dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedHeight.Fixed;
     dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
 }

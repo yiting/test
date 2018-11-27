@@ -23,7 +23,6 @@ body {
   color: #989a9c;
   background: #191919;
   letter-spacing: 1px;
-  overflow: hidden;
 }
 
 .z-hidden,
@@ -196,7 +195,7 @@ main {
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
   padding-left: 0;
-  margin: 0;
+  margin: 0 10px 0;
   text-align: right;
 }
 .page-header .header-navbar .container .header-navbar__main .navbar-nav .nav-item {
@@ -207,6 +206,7 @@ main {
   vertical-align: top;
 }
 .page-header .header-navbar .container .header-navbar__main .navbar-nav .nav-item .nav-link {
+  opacity: 0;
   color: #999;
   display: block;
   padding: 0 20px;
@@ -266,6 +266,16 @@ main {
   margin-left: auto;
   margin-right: auto;
   position: relative;
+}
+.page-main .resource-area .container .project-list-panel,
+.page-main .resource-area .container .history-list-panel,
+.page-main .resource-area .container .no-project-panel {
+  display: none;
+}
+.page-main .resource-area .container .no-project-panel {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 220px;
 }
 .page-main .resource-area .container .navbar-control .navbar-control__sub .mod-title {
   padding: 20px 0;
@@ -406,6 +416,10 @@ main {
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
+  margin-top: 10px;
+}
+.navbar-control:first-child {
+  margin-top: 0;
 }
 
 .navbar-control .mod-title {
@@ -880,4 +894,8 @@ body {
   font-size: 12px;
   font-family: -apple-system, PingFang SC, SF UI Text, Arial, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
   overflow-y: auto;
+}
+
+[v-cloak] {
+  display: none;
 }

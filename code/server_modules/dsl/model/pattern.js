@@ -10,13 +10,14 @@ module.exports.type = Dom.type.IMAGE;
 module.exports.textCount = 0;
 module.exports.imageCount = 0;
 module.exports.mixCount = 0; //-1，即为任意混合数
-module.exports.template = function () {
+module.exports.isSimilar = function () {
+    
 
 }
-module.exports.is = function (dom, parent, option, config) {
+module.exports.is = function (dom, parent, config) {
     return !dom.text && !dom.path && dom.styles.background;
 }
-module.exports.adjust = function (dom, parent, option, config) {
+module.exports.adjust = function (dom, parent, config) {
     dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
     dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedHeight.Fixed;
 }

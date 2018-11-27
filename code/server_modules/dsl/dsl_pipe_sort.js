@@ -3,8 +3,9 @@
  * @param  {Object} option 主流程传进来的参数
  * @return {Optimize}        返回原对象
  */
+const Dom = require("./dsl_dom.js");
 
-function fn(json) {
+/* function fn(json) {
     if (json.children) {
         let children = [];
         json.children.forEach((j, i) => {
@@ -43,39 +44,20 @@ function _sort(newDom, children) {
     if (!done) {
         children.push(newDom);
     }
-}
-/* function fn(json) {
+} */
+function fn(json) {
     if (json.children) {
-        json.children.forEach((j, i) => {
-            fn(j);
+        json.children.forEach(fn);
+        json.children = json.children.sort((a, b) => {
+            // 如果是同一水平上
+            if (Dom.isHorizontal([a, b])) {
+                return a.abX - b.abX;
+            } else {
+                return a.abY - b.abY;
+            }
         });
-        json.children = _sort(json.children);
     }
 }
-
-function _sort(children){
-    return children.sort((prev,next)=>{
-        let prevCenter, nextCenter;
-        let next_y = next.textAbY||next.abY,
-            next_h = next.textHeight||next.height,
-            prev_y = prev.textAbY||prev.abY,
-            prev_h = prev.textHeight||prev.height
-            // 水平关系
-        if (prev_y < next_y + next_h && next_y < prev_y + prev_h) {
-            prevCenter = prev.abX + prev.width / 2;
-            nextCenter = next.abX + prev.width / 2;
-        } else {
-            // 垂直关系
-            prevCenter = prev_y + prev_h / 2;
-            nextCenter = next_y + next_h / 2;
-        }
-        return prevCenter-nextCenter;
-    })
-} */
-let Config = {},
-    Option = {}
-module.exports = function (data, conf, opt) {
-    Object.assign(Option, opt);
-    Object.assign(Config, conf);
+module.exports = function (data) {
     return fn(data);
 }

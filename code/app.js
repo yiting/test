@@ -12,6 +12,7 @@ var login = require("./routes/login");
 var person = require("./routes/person");
 var project = require("./routes/project");
 var visitor = require("./routes/visitor");
+var material = require("./routes/material");
 
 var app = express();
 //设置跨域访问
@@ -39,6 +40,7 @@ app.use("/login", login);
 app.use("/person", person);
 /* app.use("/project", project);   */
 app.use("/visitor", visitor);
+app.use("/material", material);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

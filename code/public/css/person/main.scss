@@ -10,6 +10,16 @@
       margin-right: auto;
       position: relative;
 
+      .project-list-panel,
+      .history-list-panel,
+      .no-project-panel {
+        display: none;
+      }
+      .no-project-panel {
+        font-size: 20px;
+        text-align: center;
+        margin-top: 220px;
+      }
       .navbar-control {
         .navbar-control__sub {
           .mod-title {
@@ -188,6 +198,10 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
+  margin-top: 10px;
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 .navbar-control .mod-title {

@@ -1,6 +1,7 @@
-let Store = require("./dsl_store.js");
-let Model = require("./dsl_model.js");
-let Logger = require("./logger.js");
+const Store = require("./dsl_store.js");
+const Model = require("./dsl_model.js");
+const Logger = require('./logger');
+const Common = require('./dsl_common');
 
 /**
  * 模型序列化，按节点数低到高排序
@@ -19,9 +20,19 @@ function fn(dom, parent) {
         });
     }
     modelList.some(model => {
-        if (Model.is(model, dom, parent, Option, Config)) {
-            Logger.log(`[pipe - model] ${model.name}\t fit Dom: "${dom.id}" `)
-            Model.adjust(model, dom, parent, Option, Config)
+        // 判断是否符合模型
+        if (Model.is(model, dom, parent, Config)) {
+            Logger.debug(`[pipe - model] ${model.name}\t fit Dom: "${dom.id}" `)
+            // 符合模型，做模型调整
+            Model.adjust(model, dom, parent, Config)
+            // 找到同组相似模型组
+            let arr = similarModels.find(arr => arr[0].model == dom.model && model.isSimilar && model.isSimilar(arr[0], dom, Config));
+            if (!arr) {
+                similarModels.push([dom]);
+            } else {
+                arr.push(dom);
+                dom.styles = arr[0].styles;
+            }
             return true;
         }
     });
@@ -31,12 +42,12 @@ function fn(dom, parent) {
 /**
  * 逻辑：组内左对齐，居中对齐为一列
  */
-let Option = {
-        deviationCoefficient: .05, // 偏差系数
-    },
-    Config = {}
-module.exports = function (data, conf, opt) {
-    Object.assign(Option, opt);
-    Object.assign(Config, conf);
-    return fn(data);
+let Config = {},
+    similarModels = []
+module.exports = function (data) {
+    Config = this.attachment.config;
+    similarModels = [];
+    let dom = fn(data, null);
+    this.similarModels = similarModels;
+    return dom;
 }

@@ -12,6 +12,7 @@ let Models = {};
     require("./model/textButton.js"),
     require("./model/paragraph.js"),
     require("./model/text-guide.js"),
+    require("./model/spacer.js"),
     require("./model/layout-list-item.js"),
     require("./model/layout-equality.js"),
     require("./model/numerical.js"),

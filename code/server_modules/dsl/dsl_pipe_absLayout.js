@@ -1,8 +1,9 @@
 const CONTRAIN = require('./dsl_contrain.js');
-const Common = require('./dsl_common.js');
-const Store = require("./dsl_store.js");
+const Logger = require('./logger');
 
 function fn(data) {
+
+
     data.contrains = {}
     data.contrains["LayoutSelfPosition"] = CONTRAIN.LayoutSelfPosition.Absolute;
     data.contrains["LayoutFixedHeight"] = CONTRAIN.LayoutFixedHeight.Fixed;
@@ -19,12 +20,10 @@ function fn(data) {
     }
 }
 let Config = {},
-    Option = {
-        structureMatching: .7
-    }
+    Option = {}
 
-module.exports = function(data, conf, opt) {
-    Object.assign(Option, opt);
-    Object.assign(Config, conf);
+module.exports = function (data) {
+    Logger.debug("[pipe absoute layout] start");
+    Config = this.attachment.config;
     fn(data);
 }

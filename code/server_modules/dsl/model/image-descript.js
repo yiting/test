@@ -12,20 +12,33 @@ module.exports.type = Dom.type.IMAGE;
 module.exports.textCount = 1;
 module.exports.imageCount = 1;
 module.exports.mixCount = -1; //-1，即为任意混合数
-module.exports.template = function () {
-
+module.exports.isSimilar = function (a, b, config) {
+    const aImg = a.children.find((child) => {
+        return child.type == Dom.type.IMAGE;
+    });
+    const aTxt = a.children.find((child) => {
+        return child.type == Dom.type.TEXT;
+    });
+    const bImg = b.children.find((child) => {
+        return child.type == Dom.type.IMAGE;
+    });
+    const bTxt = b.children.find((child) => {
+        return child.type == Dom.type.TEXT;
+    });
+    return Math.abs(aImg.width - bImg.width) < config.dsl.operateErrorCoefficient * 2 &&
+        Math.abs(aTxt.styles.maxSize - bTxt.styles.maxSize) < config.dsl.operateErrorCoefficient;
 }
-module.exports.is = function (dom, parent, option, config) {
+module.exports.is = function (dom, parent, config) {
     const txt = dom.children.filter((child) => {
         return child.type == Dom.type.TEXT;
     });
     const img = dom.children.find((child) => {
         return child.type == Dom.type.IMAGE;
     });
-    return img.abY < Math.min(...txt.map(t=>t.abY)) &&
+    return img.abY < Math.min(...txt.map(t => t.abY)) &&
         Dom.isVertical(dom.children);
 }
-module.exports.adjust = function (dom, parent, option, config) {
+module.exports.adjust = function (dom, parent, config) {
     dom.contrains["LayoutDirection"] = Contrain.LayoutDirection.Vertical;
     dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
 }

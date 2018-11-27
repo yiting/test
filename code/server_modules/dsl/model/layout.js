@@ -12,13 +12,13 @@ module.exports.mixCount = -9; //-1，即为任意混合数
 module.exports.template = function () {
 
 }
-module.exports.is = function (dom, parent, option, config) {
+module.exports.is = function (dom, parent, config) {
     // return dom.layout != Dom.layout.BLOCK &&
     //     dom.layout != Dom.layout.ROW &&
     //     dom.layout != Dom.layout.COLUMN;
     return false;
 }
-module.exports.adjust = function (dom, parent, option, config) {
+module.exports.adjust = function (dom, parent, config) {
     dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedHeight.Fixed;
     dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
 }

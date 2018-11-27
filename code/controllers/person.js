@@ -12,6 +12,7 @@ let Utils = require("../server_modules/util/utils");
 
 //业务类
 const project = require("../models/project");
+const history = require("../models/history");
 const user = require("../models/user");
 const artboard = require("../models/artboard");
 
@@ -43,15 +44,6 @@ router.get("/", function(req, res, next) {
     title: "设计编译 - 个人中心"
   });
 });
-
-//获取所有项目
-router.post("/getAllProjectById", function(req, res, next) {
-  let p = new project();
-  p.getAllProjectById(req.body.userid, function(result) {
-    res.json(result);
-  });
-});
-
 //创建项目:文件上传及对应上传记录
 router.post("/upload", upload.any(), function(req, res, next) {
   //上传文件时，获取当前用户id
@@ -66,33 +58,73 @@ router.post("/upload", upload.any(), function(req, res, next) {
   };
   let proId = projectId,
     proName = originFileName.substring(0, potIndex);
-  //插入创建的项目数据到数据库
-  let p = new project({
+  let projectInsert = {
     userid: userid,
     isdel: 0,
     projectId: proId,
     projectName: proName,
     unzipPath: "http://" + req.headers.host + "/unzip_file/" + proName,
     compliePath: "http://" + req.headers.host + "/complie/" + proName
-  });
+  };
+  //插入创建的项目数据到数据库
+  let p = new project(projectInsert);
   p.create(function(result) {
+    projectInsert.id = result.data.insertId;
     //console.log("创建项目成功");
+    responseJson.projectData = projectInsert;
+    //插入数据库成功后，再解压数据
+    //2018-08-17:解压zip文件到指定文件夹
+    let extract = unzip.Extract({
+      path: "./data/unzip_file/" + originFileName.substring(0, potIndex)
+    });
+    //解压异常处理
+    extract.on("error", function(err) {
+      console.log(err);
+    });
+    //解压完成处理
+    extract.on("finish", function() {
+      console.log("解压完成!!");
+      res.end(JSON.stringify(responseJson));
+    });
+    fs.createReadStream(newDesFile).pipe(extract);
   });
+});
+//获取所有项目
+router.post("/getAllProjectById", function(req, res, next) {
+  let p = new project();
+  p.getAllProjectById(req.body.userid, function(result) {
+    res.json(result);
+  });
+});
+//获取所有浏览过的项目
+router.post("/getAllViewHistoryProjectById", function(req, res, next) {
+  let h = new history();
+  h.getAllHistoryById(req.body.userid, function(result) {
+    if (result.code != 0) {
+      res.json({});
+      return;
+    }
+    //拿到所有的projectid
+    var projectsId = [];
+    for (var i = 0; i < result.data.length; i++) {
+      projectsId.push(result.data[i]["projectId"]);
+    }
+    //查找项目
+    let p = new project();
+    p.getAllProjectByProjectId(projectsId, function(result) {
+      res.json(result);
+    });
 
-  //2018-08-17:解压zip文件到指定文件夹
-  let extract = unzip.Extract({
-    path: "./data/unzip_file/" + originFileName.substring(0, potIndex)
+    // res.json(result);
   });
-  //解压异常处理
-  extract.on("error", function(err) {
-    console.log(err);
+});
+//根据id删除浏览过的历史记录
+router.post("/deleteHistoryById", function(req, res, next) {
+  let h = new history();
+  //根据项目id删除当前历史记录表的浏览记录
+  h.deleteHistoryById(req.body.pid, function(result) {
+    res.json(result);
   });
-  //解压完成处理
-  extract.on("finish", function() {
-    console.log("解压完成!!");
-    res.end(JSON.stringify(responseJson));
-  });
-  fs.createReadStream(newDesFile).pipe(extract);
 });
 
 //根据id删除一个项目及其当前项目下生成的artBoard记录

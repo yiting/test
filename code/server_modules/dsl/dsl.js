@@ -1,5 +1,5 @@
 // import config
-const config = require("./dsl_config.js");
+const Config = require("./dsl_config.js");
 // import pipe
 const cleanse = require("./dsl_pipe_cleanse.js");
 const layout = require("./dsl_pipe_layout.js");
@@ -8,32 +8,66 @@ const contrain = require("./dsl_pipe_contrain.js");
 const model = require("./dsl_pipe_model.js");
 const absLayout = require("./dsl_pipe_absLayout.js");
 const analyze = require("./dsl_pipe_analyze.js");
-const repeatAnalyze = require("./dsl_pipe_repeatAnalyze.js");
+const cyclicAnalyze = require("./dsl_pipe_cyclicAnalyze.js");
 // import render
 const H5Render = require("./dsl_render_h5.js");
 // import base
 const Dom = require("./dsl_dom.js");
+// common
+const Common = require("./dsl_common.js");
 
-function Klotski(json, conf) {
+
+function Klotski(json) {
     if (!this || this.constructor != Klotski) {
-        return new Klotski(json, conf);
+        return new Klotski(json);
     }
     let data = json;
-    let config = conf;
+    this.attachment = {};
     this.get = function () {
         return data;
     }
-    this.pipe = function (fn, option) {
-        let rt = fn.call(this, data, config, option);
+    this.attach = function (key, value) {
+        this.attachment[key] = value;
+        return this;
+    }
+    this.pipe = function (fn) {
+        let rt = fn.call(this, data);
         if (rt && rt != this) {
             data = rt;
         }
         return this;
     }
 }
+/**
+ * 插入AI数据
+ * @param {Array} designDom 设计数据
+ * @param {Array} aiData AI数据
+ */
+function insertAI(designDom, aiData) {
+    let config = Object.assign({}, config.create(750));
+    let aiGroup = []
+    aiData.forEach(a => {
+        if (a.rate < .85) {
+            return;
+        }
+        a.abX = a.x;
+        a.abY = a.y;
+        designDom.forEach(dom => Dom.cleanLineHeight(dom, config.dsl.lineHeight));
+        const doms = designDom.filter(dom => {
+            return Dom.wrap(a, dom);
+        });
+        if (doms.length > 1) {
+            aiGroup.push(
+                doms.map(s => s.id)
+            );
+        }
+    });
+    return insertJson(designDom, ...aiGroup);;
+
+}
 
 function insertJson(designDom, ...idss) {
-    let Config = Object.assign({}, config.create(750));
+    let config = Object.assign({}, Config.create(750));
     let jsons = [];
     idss.forEach(ids => {
         if (ids.length < 2) {
@@ -42,8 +76,7 @@ function insertJson(designDom, ...idss) {
         let doms = designDom.filter(dom => {
             return ids.includes(dom.id);
         });
-        doms = JSON.parse(JSON.stringify(doms));
-        doms.forEach(dom => Dom.cleanLineHeight(dom, Config.dsl.lineHeight));
+        doms.forEach(dom => Dom.cleanLineHeight(dom, config.dsl.lineHeight));
         let {
             x,
             y,
@@ -53,14 +86,14 @@ function insertJson(designDom, ...idss) {
             height
         } = Dom.calRange(doms);
         const res = {
-            id: ids.join('|'),
+            id:Common.guid(),
+            source: "insert",
             x,
             y,
             abX,
             abY,
             width,
             height,
-            special: true,
         };
         jsons.push(res);
     })
@@ -72,55 +105,58 @@ function insertJson(designDom, ...idss) {
  * @param {Object} conf 配置项
  */
 function mobileHtml(designDom, conf) {
-    let Config = Object.assign({}, config.create(750), conf);
-    var json = Klotski(designDom, Config)
+    let config = Object.assign({}, Config.create(750), conf);
+    var json = Klotski(designDom)
+        .attach("config", config)
         .pipe(cleanse) // 清洗
         .pipe(layout) // 行列组合
         .pipe(sort) // 排序
-        // .pipe(analyze) // 结构分析
         .pipe(model) // 模型处理
-        .pipe(repeatAnalyze) // 重复模型分析
+        .pipe(cyclicAnalyze) // 重复模型分析
         .pipe(contrain) // 约束处理
-        // .pipe(absLayout)
         .get(); // 获取json
-    return H5Render(json, Config);
+    return H5Render(json, config);
 }
 /**
  * ct输出展示
  * @param {Array} designDom 设计数据
  * @param {Object} conf 配置项
  */
-function ctHtml(designDom, conf) {
-    let Config = Object.assign({}, config.create(750), conf);
-    var json = Klotski(designDom, Config)
+function absoluteHtml(designDom, conf) {
+    let config = Object.assign({}, Config.create(750), conf);
+    var json = Klotski(designDom)
+        .attach("config", config)
         .pipe(cleanse) // 清洗
         .pipe(absLayout)
         .get()
 
-    return H5Render(json, Config)
-
+    return H5Render(json, config)
 }
 
 function analyzeDom(designDom, conf) {
     let res = {};
-    let Config = Object.assign({}, config.create(750), conf);
-    var json = Klotski(designDom, Config)
+    let config = Object.assign({}, Config.create(750), conf);
+    var json = Klotski(designDom, config)
+        .attach("config", config)
         .pipe(cleanse) // 清洗
         .pipe(layout) // 行列组合
-        .pipe(analyze, {
-            matchGroup: function (r) {
-                res.matchGroupResult = r
-            },
-            matchModel: function (r) {
-                res.matchModelResult = r;
-            }
-        })
+        .pipe(analyze
+            /* , {
+                        matchGroup: function (r) {
+                            res.matchGroupResult = r
+                        },
+                        matchModel: function (r) {
+                            res.matchModelResult = r;
+                        }
+                    } */
+        )
         .get(); // 获取json
-    return res;
+    // return res;
 }
 module.exports = {
     insertJson,
+    insertAI,
     mobileHtml,
     analyzeDom,
-    ctHtml
+    absoluteHtml
 }

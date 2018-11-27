@@ -7,25 +7,29 @@ let AIServiceUrl = "http://10.65.90.45:8080";
 let AIDataHandle = function(AIData) {
   let arr = [];
   try {
-    AIData = AIData.trim().split(/\s/);
+    AIData = AIData.trim()
+      .replace(/"/g, "")
+      .split(/\s/);
     let n = 0;
     for (let i in AIData) {
       let AIOne = AIData[i];
-      let AIOneArr = AIOne.split(";");
+      let AIOneArr = AIOne.split(",");
       let AIOneArrFirst = AIOneArr[0].split(":");
       let AIOneArrSec = AIOneArr[1].split(":");
       let AIOneArrThird = AIOneArr[2].split(":");
       let AIOneArrFourth = AIOneArr[3].split(":");
       let AIOneArrFifth = AIOneArr[4].split(":");
+      let AIOneArrSixth = AIOneArr[5].split(":");
       //第一个元素
       let o = {
         id: "ai-" + n++,
-        name: AIOneArrFirst[0],
-        rate: AIOneArrFirst[1],
-        width: AIOneArrSec[1],
-        height: AIOneArrThird[1],
-        x: AIOneArrFourth[1],
-        y: AIOneArrFifth[1]
+        det: AIOneArrFirst[1],
+        name: AIOneArrSec[0],
+        rate: AIOneArrSec[1],
+        width: AIOneArrThird[1],
+        height: AIOneArrFourth[1],
+        x: AIOneArrFifth[1],
+        y: AIOneArrSixth[1]
       };
       arr.push(o);
     }

@@ -2,14 +2,17 @@ const CONTRAIN = require('./dsl_contrain.js');
 const Common = require('./dsl_common.js');
 const Store = require("./dsl_store.js");
 const Dom = require("./dsl_dom.js");
+const CSSDom = require("./dsl_cssdom.js");
 // domtree
-const DOM_NULL = '<null>';
 const CLOSING_TAGS = ['img', 'input', 'br'];
+let cssStyle_cache = [];
 
 
 class Render {
     constructor(o, parentNode) {
-        this.styleObj = {}
+        this.index = domIndex++;
+        this.positionStyleObj = {};
+        this.cssStyleObj = {};
         this.attrObj = {}
         this.inlineStyle = {};
         this.className = [];
@@ -23,19 +26,25 @@ class Render {
         this.ParentContrains = parentNode && parentNode.data.contrains || {};
     }
     /* 节点样式 */
-    get css() {
+    get cssStyle() {
         // 第一期，返回当前节点所有样式
-        let str = `.${this.className}{`
-        let style = this.styleObj;
+        let str = `.${this.cssClassName}{`
+        let style = this.cssStyleObj;
         for (var i in style) {
             str += i + ':' + style[i] + ';\n'
         }
-        if (this.filter) {
-            str += 'filter:' + this.filter;
+        str += '}';
+        return str;
+    }
+    get positionStyle() {
+        // 第一期，返回当前节点所有样式
+        let str = `.${this.positionClassName}{`
+        let style = this.positionStyleObj;
+        for (var i in style) {
+            str += i + ':' + style[i] + ';\n'
         }
         str += '}';
         return str;
-        // 第二期，根据类，返回样式
     }
     /* 节点html */
     get html() {
@@ -100,6 +109,11 @@ class Render {
     // get nextData() {
     // return this.parentNode && this.parentNode.data.children[this.parentNode.data.children.indexOf(this.data) + 1];
     // }
+    get innerText() {
+        if (this.data.texts) {
+            return this.data.texts[0].string;
+        }
+    }
     /**
      * style
      */
@@ -215,9 +229,6 @@ class Render {
             return Render.unit((this.nextData ? this.nextData.y : this.parentNode.data.height) - this.data.y - this.data.height);
         }
     }
-    get color() {
-        return Render.toRGBA(this.data.color)
-    }
     get backgroundColor() {
         if (this.data.styles && this.data.styles.background &&
             this.data.styles.background.type == 'color') {
@@ -249,6 +260,7 @@ class Render {
             return Render.calLinearGradient(this.data.styles.background, this.data.width, this.data.height);
         }
         if (this.data.type == Dom.type.IMAGE &&
+            this.data.path &&
             this.data.model != Store.model.IMAGE.name &&
             this.data.model != Store.model.POSTER.name
         ) {
@@ -291,12 +303,19 @@ class Render {
             return Render.unit(Pos.bottom);
         }
     }
+    get color() {
+        if (this.data.texts) {
+            return Render.toRGBA(this.data.texts[0].color);
+        }
+    }
     get fontFamily() {
-        return this.data.font;
+        if (this.data.texts) {
+            return this.data.texts[0].font;
+        }
     }
     get fontSize() {
-        if (this.data.size) {
-            return Render.unit(this.data.size);
+        if (this.data.texts) {
+            return Render.unit(this.data.texts[0].size);
         }
     }
     get position() {
@@ -310,7 +329,7 @@ class Render {
         }
     }
     get border() {
-        if (this.data.styles && this.data.styles.border && this.data.styles.border.width) {
+        if (this.data.styles.border && this.data.styles.border.width) {
             // let type = this.data.border["position"] == "outside" ? "outline" : "border",
             let borderType = Render.borderType(this.data.styles.border.type),
                 borderWidth = Render.unit(this.data.styles.border.width),
@@ -319,16 +338,17 @@ class Render {
         }
     }
     get boxSizing() {
-        if (this.data.styles && this.data.styles.border && this.data.styles.border.width) {
+        if (this.data.styles.border && this.data.styles.border.width ||
+            this.data.styles.padding) {
             return "border-box";
         }
     }
     get borderRadius() {
-        if (this.data.styles && this.data.styles.borderRadius) {
+        if (this.data.styles.borderRadius) {
             return Render.unit(this.data.styles.borderRadius);
         }
     }
-    get shadow() {
+    /* get shadow() {
 
         if (this.data.styles && this.data.styles.shadows) {
             let shadows = []
@@ -343,7 +363,7 @@ class Render {
             });
             return shadows;
         }
-    }
+    } */
     /* get flex() {
         if (this.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto) {
             return 'auto';
@@ -393,6 +413,11 @@ class Render {
             this.SelfContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Vertical
         ) {
             return 'hidden';
+        }
+        if (this.SelfContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Horizontal &&
+            Dom.calRange(this.data.children).width > this.data.width
+        ) {
+            return "auto";
         } else {
             return 'visible'
         }
@@ -476,38 +501,37 @@ class Render {
      * @param  {Number} level 层级
      * @return {HTML}       HTML
      */
-    _toHtml(dom, level = 0) {
-        let str = dom.html.start;
-        dom.children.forEach((d, i) => {
-            str += this._toHtml(d, level + 1 || 1);
-        });
-        str += dom.html.end;
-        return str;
-    }
-
     toHtml(cb) {
-        let rt = this._toHtml(this)
-        typeof cb == 'function' && cb(rt);
-        return rt;
+        let html = this.html.start;
+        this.children.forEach((d, i) => {
+            html += d.toHtml()
+        });
+        html += this.html.end;
+
+        return html;
+
     }
     /**
      * 输出Css
      * @param  {Render} dom dom节点
      * @return {Css}     Css
      */
-    _toCss(dom) {
-        let str = dom.css;
-        dom.children.forEach((d, i) => {
-            str += this._toCss(d);
-        });
-        return str;
-    }
-
     toCss(cb) {
-        let base = 'html{font-size:13.33333vw;}body{font-size:0;margin:0;}img{font-size:0;display:block;}ul,li{list-style:none;margin:0;padding:0;}';
-        let rt = this._toCss(this)
-        typeof cb == 'function' && cb(rt);
-        return base + rt;
+        let css = '';
+        if (this.data.isRoot) {
+            css += 'html{font-size:13.33333vw;}body{font-size:0;margin:0;}img{font-size:0;display:block;}ul,li{list-style:none;margin:0;padding:0;}';
+        }
+        if (!cssStyle_cache.includes(this.cssClassName)) {
+            cssStyle_cache.push(this.cssClassName);
+            css += this.cssStyle;
+        }
+        css += this.positionStyle;
+
+
+        this.children.forEach(d => {
+            css += d.toCss();
+        });
+        return css;
     }
     /*  
         判断是否需要省略号
@@ -517,6 +541,88 @@ class Render {
         return this.data.text && !!Render.findUntil(this, function (d) {
             return d.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto;
         })
+    }
+    // 返回Dom相关样式对象
+    getPositionStyleObj() {
+        let render = this;
+        [
+            "overflow",
+            "width",
+            "height",
+            "marginLeft",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "padding",
+            "left",
+            "right",
+            "top",
+            "bottom",
+            "position",
+            // "flex",
+            // "flexBasis",
+            // "flexDirection",
+            // "flexGrow",
+            // "flexShrink",
+            // "justifyContent",
+            // "alignItems",
+            "lineHeight",
+            "overflow",
+            "boxFlex",
+            "boxOrient",
+            "boxPack",
+            "boxAlign",
+            "display",
+        ].forEach(key => {
+            let value = render[key]
+            if (value == undefined) {
+                return;
+            }
+            let name = Common.nameLower(key);
+            if (CompatibleKey.includes(name)) {
+                render.positionStyleObj['-webkit-' + name] = value;
+            } else {
+                render.positionStyleObj[name] = value;
+            }
+            if (CompatibleValue.includes(value)) {
+                render.positionStyleObj[name] = '-webkit-' + value;
+            }
+        });
+    }
+    getCssStyleObj() {
+        let render = this;
+        [
+            "color",
+            "fontFamily",
+            "fontSize",
+            "backgroundColor",
+            "backgroundImage",
+            "backgroundSize",
+            "backgroundRepeat",
+            "border",
+            "boxSizing",
+            "borderRadius",
+            "shadow",
+            "textOverflow",
+            "textAlign",
+            "whiteSpace",
+            "opacity"
+        ].forEach(key => {
+            let value = render[key]
+            if (value == undefined) {
+                return;
+            }
+            let name = Common.nameLower(key);
+            if (CompatibleKey.includes(name)) {
+                render.cssStyleObj['-webkit-' + name] = value;
+            } else {
+                render.cssStyleObj[name] = value;
+            }
+            if (CompatibleValue.includes(value)) {
+                render.cssStyleObj[name] = '-webkit-' + value;
+            }
+        });
+
     }
     static findUntil(dom, func) {
         if (func(dom)) {
@@ -553,8 +659,12 @@ class Render {
     static unit(number, unit = Config.dsl.unit) {
         number = parseInt(number) || 0;
         // 1像素特殊处理
-        if (number == 1) {
-            return '1px';
+        // if (number == 1) {
+        // return '1px';
+        // }
+        if (Math.abs(number) <= Config.dsl.dpr) {
+            number = Math.ceil(number / Config.dsl.dpr);
+            unit = 'px';
         }
         if (unit == 'rem') {
             return number / 100 + 'rem';
@@ -616,7 +726,7 @@ class Render {
         return null;
     }
     static align(index) {
-        return Object.keys(Dom.align).find(k => Dom.align[k] == index);
+        return Object.keys(CSSDom.align).find(k => CSSDom.align[k] == index);
     }
     static alignJustify(index) {
         return {
@@ -629,57 +739,83 @@ class Render {
 
 let domIndex = 0;
 
-function getTextStyleObj(data) {
-    let styleObj = {}
-    styleObj["font-size"] = Render.unit(data.size);
-    styleObj["font-family"] = data.font;
-    styleObj["white-space"] = "pre-line";
-    styleObj['color'] = Render.toRGBA(data.color);
-    return styleObj
-}
-class Text extends Render {
+class TextRender extends Render {
     constructor(o, parentNode) {
         super(o, parentNode);
-        this.index = domIndex++;
         this.tagName = 'span';
-        this.inlineStyle = getTextStyleObj(o);
+        this.className = [this.cssClassName];
+        this.data.styles = {};
+        this.getCssStyleObj();
         return this;
     }
-    get innerText() {
-        return this.data.string;
+    get cssClassName() {
+        return 'span-' + this.index;
     }
+    get innerText() {
+        return this.data.string || '';
+    }
+    get color() {
+        if (this.data.color) {
+            return Render.toRGBA(this.data.color);
+        }
+    }
+    get fontFamily() {
+        if (this.data.font) {
+            return this.data.font;
+        }
+    }
+    get fontSize() {
+        if (this.data.size) {
+            return Render.unit(this.data.size);
+        }
+    }
+
 
     // 返回Dom相关样式对象
 }
-class DOM extends Render {
+class HtmlRender extends Render {
     constructor(o, parentNode) {
         super(o, parentNode);
         let _render = this;
-        this.index = domIndex++;
         if (parentNode) {
             parentNode.children.push(this);
         }
-
-        if (this.data.text && this.data.styles.texts.length > 1) {
-            this.data.styles.texts.forEach((t) => {
-                _render.children.push(new Text(t));
+        // 如果文本样式多于1个，则文本拆分成多个节点
+        if (this.data.texts && this.data.texts.length > 1) {
+            this.data.texts.forEach((t) => {
+                _render.children.push(new TextRender(t));
             });
-            this.data.text = '';
-        } else if (this.data.text) {
-            Object.assign(this.styleObj, getTextStyleObj(this.data.styles.texts[0]))
+            this.data.texts = null;
+            this.data.text = null;
         }
+        // 获取样式名
         this.getClassName();
+        // 获取标签名
         this.getTagName();
-        this.getStyleObj();
+        // 获取定位样式
+        this.getPositionStyleObj();
+        // 获取表现样式
+        this.getCssStyleObj();
+        // 获取行内属性
         this.getAttrObj();
+        // 获取行内样式
         this.getInlineStyle();
         return this;
     }
     get innerText() {
-        return this.data.text || '';
+        return this.data.texts && this.data.texts[0].string || '';
+    }
+    get positionClassName() {
+        return (this.data.model || 'default').toLowerCase() + '-' + this.index;
+    }
+    get cssClassName() {
+        return 'style-' + this.data.styles.id;
     }
     getClassName() {
-        this.className.push((this.data.model || 'default').toLowerCase() + '-' + this.index);
+        this.className.push(
+            this.positionClassName,
+            this.cssClassName
+        )
     }
     getAttrObj() {
         if (this.data.model == Store.model.IMAGE.name) {
@@ -688,11 +824,13 @@ class DOM extends Render {
         if (Config.output.debug) {
             this.attrObj["data-id"] = this.data.id;
             this.attrObj["data-layout"] = this.data.layout;
-            this.attrObj["isSource"] = this.data.isSource;
+            this.attrObj["isSource"] = this.data.source == 'design';
         }
     }
     getInlineStyle() {
-        if (this.data.model == Store.model.POSTER.name) {
+        if (this.data.path &&
+            this.data.type == Dom.type.IMAGE &&
+            this.data.model !== Store.model.IMAGE.name) {
             this.inlineStyle["background-image"] = `url(${this.data.path})`;
         };
 
@@ -706,87 +844,22 @@ class DOM extends Render {
         }
         return this.tagName
     }
-    // 返回Dom相关样式对象
-    getStyleObj() {
-        let render = this,
-            val;
-        [
-            "overflow",
-            "width",
-            "height",
-            "marginLeft",
-            "marginTop",
-            "marginRight",
-            "marginBottom",
-            "padding",
-            "color",
-            "backgroundColor",
-            "backgroundImage",
-            "backgroundSize",
-            "backgroundRepeat",
-            "left",
-            "right",
-            "top",
-            "bottom",
-            "fontFamily",
-            "fontSize",
-            "position",
-            "border",
-            "boxSizing",
-            "borderRadius",
-            "shadow",
-            // "flex",
-            // "flexBasis",
-            // "flexDirection",
-            // "flexGrow",
-            // "flexShrink",
-            // "justifyContent",
-            // "alignItems",
-            "overflow",
-            "textOverflow",
-            "boxFlex",
-            "boxOrient",
-            "boxPack",
-            "boxAlign",
-            "display",
-            "textAlign",
-            "whiteSpace",
-            "lineHeight",
-            "opacity"
-        ].forEach(key => {
-            let value = render[key]
-            if (value == undefined) {
-                return;
-            }
-            let name = nameTrans(key);
-            if (CompatibleKey.includes(name)) {
-                render.styleObj['-webkit-' + name] = value;
-            } else {
-                render.styleObj[name] = value;
-            }
-            if (CompatibleValue.includes(value)) {
-                render.styleObj[name] = '-webkit-' + value;
-            }
-        });
-    }
 }
 
-function nameTrans(str) {
-    return str.replace(/([A-Z])/mg, '-$1').toLowerCase();
-}
 /**
  * Sketch树转为dom树
  * @param  {JSON} json Sketch树
  * @return {JSON}      dom树
  */
-
+// 兼容属性关键词
 const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align']
+// 兼容属性关键值
 const CompatibleValue = ['box']
 
 let Config = {};
 
 function fn(json, parentNode) {
-    let dom = new DOM(json, parentNode);
+    let dom = new HtmlRender(json, parentNode);
     if (json.children) {
         json.children.forEach(function (j, i) {
             fn(j, dom);
@@ -795,8 +868,8 @@ function fn(json, parentNode) {
     return dom;
 }
 
-function render(data, conf) {
-    Config = conf;
+function render(data, config) {
+    Config = config;
     return fn(data);
 }
 

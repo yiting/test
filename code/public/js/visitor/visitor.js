@@ -6,6 +6,13 @@ var vm = new Vue({
     visitor: {},
     visitors: []
   },
+  filters: {
+    //格式化时间
+    formatDate(time) {
+      var date = new Date(time);
+      return CommonTool.formatDate(date);
+    }
+  },
   created() {
     this.getUserInfo();
     this.getVisitorList();
@@ -63,7 +70,14 @@ var vm = new Vue({
         dataType: "json",
         success: function(res) {
           //console.dir(res.data);
-          vm.visitors = res.data;
+          let visitorList = res.data;
+          visitorList.forEach(function(item, index) {
+            if (item.staffid == CommonTool.getCookie("staffid")) {
+              visitorList.splice(index, 1);
+            }
+          });
+
+          vm.visitors = visitorList;
           //成功后的回调方法
           callback && callback(res.data);
         },

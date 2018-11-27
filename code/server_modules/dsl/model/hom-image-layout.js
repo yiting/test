@@ -9,13 +9,17 @@ module.exports.type = Dom.type.LAYOUT;
 module.exports.textCount = 0;
 module.exports.imageCount = 1;
 module.exports.mixCount = -1; //-1，即为任意混合数
-module.exports.is = function (dom, parent, option, config) {
+
+module.exports.isSimilar = function (a,b) {
+
+}
+module.exports.is = function (dom, parent, config) {
     return (dom.layout == Dom.layout.Column ||
             dom.layout == Dom.layout.ROW) &&
         dom.children.length > 1 &&
         Dom.isHorizontal(dom.children)
 }
-module.exports.adjust = function (dom, parent, option, config) {
+module.exports.adjust = function (dom, parent, config) {
     dom.contrains["LayoutDirection"] = Contrain.LayoutDirection.Horizontal;
     // 修正子节点
     dom.children.forEach((child, i) => {

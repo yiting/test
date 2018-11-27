@@ -12,9 +12,9 @@ module.exports.mixCount = -9; //负值，即为任意混合数
 module.exports.template = function () {
 
 }
-module.exports.is = function (dom, parent, option, config) {
+module.exports.is = function (dom, parent, config) {
     return dom.children.length && dom.children.every(child => child.type == Dom.type.IMAGE);
 }
-module.exports.adjust = function (dom, parent, option, config) {
+module.exports.adjust = function (dom, parent, config) {
 
 }

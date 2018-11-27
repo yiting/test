@@ -7,9 +7,15 @@
 const CONTRAIN = require('./dsl_contrain.js');
 const Common = require('./dsl_common.js');
 const Dom = require('./dsl_dom.js');
+const Logger = require('./logger');
+
 
 function horizontal(json) {
+    if (!Dom.isHorizontal(json.children)) {
+        return;
+    }
     let contrainsObj = {};
+    contrainsObj["LayoutHorizontal"] = true;
     // 水平排序
     let hJSON = Common.sortByLogic(json.children, function (dom) {
         return dom.x
@@ -43,24 +49,17 @@ function horizontal(json) {
         });
     });
 
+    let isConnerted = true;
 
     let firstContrain = horizontalContrain[0],
         lastContrain = horizontalContrain[horizontalContrain.length - 1],
-        maxDomSpacing = 0,
         minMarginTop = Number.MAX_VALUE,
         minMarginBottom = Number.MAX_VALUE,
         lastIndex = horizontalContrain.length - 1;
     // 遍历判断约束关系
     horizontalContrain.forEach((info, i) => {
         // direction
-        // contrainsObj["LayoutHorizontal"] = contrainsObj["LayoutHorizontal"] !== false && info.margin_left > -1;
-        // justify start
-        contrainsObj["LayoutJustifyContentStart"] = contrainsObj["LayoutJustifyContentStart"] !== false && info.margin_left < Config.dsl.horizontalSpacing;
-        // justify end
-        contrainsObj["LayoutJustifyContentEnd"] = contrainsObj["LayoutJustifyContentEnd"] !== false && info.margin_left > 0 && info.margin_right < Config.dsl.horizontalSpacing;
-        contrainsObj["LayoutJustifyContentCenter"] = contrainsObj["LayoutJustifyContentCenter"] !== false &&
-            ((lastIndex - i == i) ? (info.center_offset < Config.dsl.operateErrorCoefficient * 2) :
-                (Math.abs(info.center_offset - horizontalContrain[lastIndex - i].center_offset) < Config.dsl.operateErrorCoefficient * 2));
+        isConnerted = (i == 0) || info.margin_left <= Config.dsl.horizontalSpacing;
 
         // align
         contrainsObj["LayoutAlignItemsStart"] = contrainsObj["LayoutAlignItemsStart"] !== false && info.margin_top < Config.dsl.operateErrorCoefficient;
@@ -69,30 +68,28 @@ function horizontal(json) {
 
         contrainsObj["LayoutAlignItemsCenter"] = contrainsObj["LayoutAlignItemsCenter"] !== false && Math.abs(info.offset_top - info.offset_bottom) < Config.dsl.operateErrorCoefficient;
         // center 获取内容间距
-        if (i != 0) {
-            maxDomSpacing = maxDomSpacing > info.margin_left ? maxDomSpacing : info.margin_left;
-        }
         // fixed height
         minMarginTop = minMarginTop < info.margin_top ? minMarginTop : info.margin_top;
         minMarginBottom = minMarginBottom < info.margin_bottom ? minMarginBottom : info.margin_bottom;
     });
-
     if (horizontalContrain.length) {
+        if (isConnerted) {
+            contrainsObj["LayoutJustifyContentCenter"] = firstContrain.margin_left >= Config.dsl.horizontalSpacing &&
+                lastContrain.margin_right >= Config.dsl.horizontalSpacing &&
+                Math.abs(firstContrain.margin_left - lastContrain.margin_right) < Config.dsl.operateErrorCoefficient * 2;
+            contrainsObj["LayoutJustifyContentStart"] = !contrainsObj["LayoutJustifyContentCenter"] && firstContrain.margin_left < lastContrain.margin_right;
+            contrainsObj["LayoutJustifyContentEnd"] = !contrainsObj["LayoutJustifyContentCenter"] && firstContrain.margin_left > lastContrain.margin_right;
+        }
         /* LayoutJustifyContentCenter
             1. 两端差值在0～误差之间
             2. 元素间距小于两端间距
          */
         // 偏移系数为误操作值，误操作1px，两端差值则会乘以2
-        contrainsObj["LayoutJustifyContentCenter"] = contrainsObj["LayoutJustifyContentCenter"] && Math.abs(firstContrain.margin_left - lastContrain.margin_right) < Config.dsl.operateErrorCoefficient * 2
-
-        // 计算Fixed：如果最小间距大于操作误差，则固定高或宽
-        contrainsObj["LayoutFixedHeight"] = json.path || json.styles.background || json.styles.border || minMarginTop > Config.dsl.operateErrorCoefficient || minMarginBottom > Config.dsl.operateErrorCoefficient;
-
-        contrainsObj["LayoutFixedWidth"] = json.path || json.styles.background || json.styles.border || firstContrain.margin_left > Config.dsl.operateErrorCoefficient || lastContrain.margin_right > Config.dsl.operateErrorCoefficient;
     }
-    contrainsObj["LayoutHorizontal"] = Dom.isHorizontal(json.children);
-    return contrainsObj["LayoutHorizontal"] && contrainsObj
+    return contrainsObj
 }
+
+
 /* 
     计算文案定位
  */
@@ -109,7 +106,12 @@ function calYH(dom, parent) {
  * 元素垂直约束关系
  */
 function vertical(json) {
+
+    if (!Dom.isVertical(json.children)) {
+        return;
+    }
     let contrainsObj = {};
+    contrainsObj["LayoutVertical"] = true;
     // 垂直排序
     let vJSON = Common.sortByLogic(json.children, function (dom) {
         return dom.textAb || dom.abY;
@@ -151,47 +153,39 @@ function vertical(json) {
         minMarginLeft = Number.MAX_VALUE,
         minMarginRight = Number.MAX_VALUE
     verticalContrain.forEach((info, i) => {
-        // justify
-        contrainsObj["LayoutJustifyContentStart"] = contrainsObj["LayoutJustifyContentStart"] !== false && info.magrin_top < Config.dsl.verticalSpacing;
-
-        contrainsObj["LayoutJustifyContentEnd"] = contrainsObj["LayoutJustifyContentEnd"] !== false && info.margin_top > 0 && info.margin_bottom < Config.dsl.verticalSpacing;
-
-        // contrainsObj["LayoutJustifyContentCenter"] = contrainsObj["LayoutJustifyContentCenter"] !== false && Math.abs(info.center_offset - horizontalContrain[lastIndex - i].center_offset) < Config.dsl.horizontalSpacing * 2;
-        // align
-        contrainsObj["LayoutAlignItemsStart"] = contrainsObj["LayoutAlignItemsStart"] !== false && info.margin_left < Config.dsl.operateErrorCoefficient;
-
-        contrainsObj["LayoutAlignItemsEnd"] = contrainsObj["LayoutAlignItemsEnd"] !== false && info.margin_left > 0 && info.margin_right < Config.dsl.operateErrorCoefficient;
-
-        contrainsObj["LayoutAlignItemsCenter"] = contrainsObj["LayoutAlignItemsCenter"] !== false && Math.abs(info.margin_left - info.margin_right) < Config.dsl.operateErrorCoefficient;
         // center 获取内容间距
         if (i != 0) {
             maxDomSpacing = maxDomSpacing > info.magrin_top ? maxDomSpacing : info.margin_bottom;
         }
         // fixed width
         minMarginLeft = minMarginLeft < info.margin_left ? minMarginLeft : info.margin_left;
-
         minMarginRight = minMarginRight < info.margin_right ? minMarginRight : info.margin_right;
+        // align
+        contrainsObj["LayoutAlignItemsStart"] = contrainsObj["LayoutAlignItemsStart"] !== false &&
+            info.margin_left < Config.dsl.operateErrorCoefficient;
+
+        contrainsObj["LayoutAlignItemsEnd"] = contrainsObj["LayoutAlignItemsEnd"] !== false &&
+            info.margin_left > Config.dsl.operateErrorCoefficient &&
+            info.margin_right < Config.dsl.operateErrorCoefficient;
+
+        contrainsObj["LayoutAlignItemsCenter"] = contrainsObj["LayoutAlignItemsCenter"] !== false &&
+            info.margin_left >= Config.dsl.horizontalSpacing &&
+            info.margin_right >= Config.dsl.horizontalSpacing &&
+            Math.abs(info.margin_left - info.margin_right) < Config.dsl.operateErrorCoefficient;
 
     });
-    if (verticalContrain.length) {
-        // 计算JustifyContent： 偏移系数为误操作值，误操作1px，两端差值则会乘以2
-        // contrainsObj["LayoutJustifyContentCenter"] =contrainsObj["LayoutJustifyContentCenter"]&& Math.abs(firstContrain.margin_top - lastContrain.margin_bottom) < Config.dsl.operateErrorCoefficient * 2 
-        // 计算Fixed：如果最小间距大于操作误差，则固定高或宽
-        contrainsObj["LayoutFixedWidth"] = json.path || json.styles.background || json.styles.border ||
-            minMarginLeft > Config.dsl.operateErrorCoefficient || minMarginRight > Config.dsl.operateErrorCoefficient;
-        contrainsObj["LayoutFixedHeight"] = json.path || json.styles.background || json.styles.border ||
-            firstContrain.magrin_top > Config.dsl.operateErrorCoefficient || lastContrain.margin_bottom > Config.dsl.operateErrorCoefficient;
-    }
-    contrainsObj["LayoutVertical"] = Dom.isVertical(json.children);
-    return contrainsObj["LayoutVertical"] && contrainsObj;
+    contrainsObj["LayoutJustifyContentStart"] = true;
+    contrainsObj["LayoutJustifyContentEnd"] = false;
+    contrainsObj["LayoutJustifyContentCenter"] = false;
+    return contrainsObj;
 }
 
 function absolute(json) {
     let contrainsObj = {};
     if (!json.contrains["LayoutPosition"] || json.contrains["LayoutPosition"] == CONTRAIN.LayoutPosition.Absolute) {
         contrainsObj["LayoutAbsolute"] = true;
-        contrainsObj["LayoutFixedWidth"] = true;
-        contrainsObj["LayoutFixedHeight"] = true;
+        // contrainsObj["LayoutFixedWidth"] = true;
+        // contrainsObj["LayoutFixedHeight"] = true;
         json.children.forEach(child => {
             child.contrains["LayoutSelfPosition"] = CONTRAIN.LayoutSelfPosition.Absolute;
             child.contrains["LayoutSelfHorizontal"] = CONTRAIN.LayoutSelfHorizontal.Left;
@@ -202,6 +196,20 @@ function absolute(json) {
     }
 
     return contrainsObj["LayoutAbsolute"] && contrainsObj;
+}
+
+function fixed(json) {
+
+    const minTop = Math.min(...json.children.map(s => s.y)),
+        minBottom = Math.min(...json.children.map(s => (json.height - s.y - s.height))),
+        minLeft = Math.min(...json.children.map(s => s.x)),
+        minRight = Math.min(...json.children.map(s => (json.width - s.x - s.width)));
+    // 计算Fixed：如果最小间距大于操作误差，则固定高或宽
+    let contrainsObj = {};
+    contrainsObj["LayoutFixedHeight"] = json.path || json.styles.background || json.styles.border || minTop > Config.dsl.operateErrorCoefficient || minBottom > Config.dsl.operateErrorCoefficient;
+
+    contrainsObj["LayoutFixedWidth"] = json.path || json.styles.background || json.styles.border || minLeft > Config.dsl.operateErrorCoefficient || minRight > Config.dsl.operateErrorCoefficient;
+    return contrainsObj;
 }
 
 
@@ -218,48 +226,42 @@ function calChildrenContrain(json) {
     if (!firstChild) {
         return;
     }
-    let _x = json.x,
-        _y = json.y,
-        _width = json.width,
-        _height = json.height,
-        _centerX = _width / 2,
-        _centerY = _height / 2,
-        contrainsObj = {};
     /**
      * 元素水平约束关系
      */
-    let rels = horizontal(json) ||
+    let posRels = horizontal(json) ||
         vertical(json) ||
         absolute(json) || {};
+    let fixedRel = fixed(json);
+
     let relsObj = {
-        LayoutDirection: (rels.LayoutHorizontal && CONTRAIN.LayoutDirection.Horizontal)||  
-            (rels.LayoutVertical&&CONTRAIN.LayoutDirection.Vertical),
-        LayoutPosition: (rels.LayoutAbsolute && CONTRAIN.LayoutPosition.Absolute) ||
+        "LayoutDirection": (posRels.LayoutHorizontal && CONTRAIN.LayoutDirection.Horizontal) ||
+            (posRels.LayoutVertical && CONTRAIN.LayoutDirection.Vertical),
+        "LayoutPosition": (posRels.LayoutAbsolute && CONTRAIN.LayoutPosition.Absolute) ||
             CONTRAIN.LayoutPosition.Static,
-        LayoutJustifyContent: (rels.LayoutJustifyContentCenter && CONTRAIN.LayoutJustifyContent.Center) ||
-            (rels.LayoutJustifyContentEnd && CONTRAIN.LayoutJustifyContent.End) ||
-            (rels.LayoutJustifyContentStart && CONTRAIN.LayoutJustifyContent.Start) ||
+        "LayoutJustifyContent": (posRels.LayoutJustifyContentCenter && CONTRAIN.LayoutJustifyContent.Center) ||
+            (posRels.LayoutJustifyContentEnd && CONTRAIN.LayoutJustifyContent.End) ||
+            (posRels.LayoutJustifyContentStart && CONTRAIN.LayoutJustifyContent.Start) ||
             CONTRAIN.LayoutJustifyContent.Start,
-        LayoutAlignItems: (rels.LayoutAlignItemsCenter && CONTRAIN.LayoutAlignItems.Center) ||
-            (rels.LayoutAlignItemsStart && CONTRAIN.LayoutAlignItems.Start) ||
-            (rels.LayoutAlignItemsEnd && CONTRAIN.LayoutAlignItems.End) ||
+        "LayoutAlignItems": (posRels.LayoutAlignItemsCenter && CONTRAIN.LayoutAlignItems.Center) ||
+            (posRels.LayoutAlignItemsStart && CONTRAIN.LayoutAlignItems.Start) ||
+            (posRels.LayoutAlignItemsEnd && CONTRAIN.LayoutAlignItems.End) ||
             CONTRAIN.LayoutAlignItems.Start,
-        LayoutFixedWidth: (rels.LayoutFixedWidth && CONTRAIN.LayoutFixedWidth.Fixed) ||
+        "LayoutFixedWidth": ((posRels.LayoutAbsolute || fixedRel.LayoutFixedWidth) && CONTRAIN.LayoutFixedWidth.Fixed) ||
             CONTRAIN.LayoutFixedWidth.Default,
-        LayoutFixedHeight: (rels.LayoutFixedHeight && CONTRAIN.LayoutFixedHeight.Fixed) ||
+        "LayoutFixedHeight": ((posRels.LayoutAbsolute || fixedRel.LayoutFixedHeight) && CONTRAIN.LayoutFixedHeight.Fixed) ||
             CONTRAIN.LayoutFixedHeight.Default
 
     };
     // 合并约束关系
-    contrainsObj = Object.assign({}, relsObj, json.contrains);
+    let contrainsObj = Object.assign({}, relsObj, json.contrains);
     // 调整约束结果
     json.contrains = contrainsObj;
 }
 
-let Option = {},
-    Config = {}
-module.exports = function (data, conf, opt) {
-    Object.assign(Option, opt);
-    Object.assign(Config, conf);
+let Config = {}
+module.exports = function (data) {
+    Config = this.attachment.config;
+    Logger.debug('[pipe - contrain] start')
     calChildrenContrain(data);
 }

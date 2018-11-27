@@ -15,7 +15,7 @@ module.exports.mixCount = 0; //-1，即为任意混合数
 module.exports.template = function () {
 
 }
-module.exports.is = function (dom, parent, option, config) {
+module.exports.is = function (dom, parent, config) {
     // 判断：只有两个节点
     const txt = dom.children.find((child) => {
         return child.type == Dom.type.TEXT;

@@ -7,7 +7,7 @@ let STORE = require("../dsl_store.js");
 module.exports.template = function() {
 
 }
-module.exports.is = function(dom, parent, option, config) {
+module.exports.is = function(dom, parent, config) {
     if (!dom.children) {
         return;
     }

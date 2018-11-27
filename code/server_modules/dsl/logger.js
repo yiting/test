@@ -1,16 +1,22 @@
 let Level = 0;
-module.exports.level = function(level){
+let obj = {};
+
+obj.level = function (level) {
     console.info(`Logger level is ${Level}`);
 }
-module.exports.log = function(info){
-    console.log(info)
-}
-module.exports.trace = function(info){
-    console.trace(info)
-}
-module.exports.debug = function(info){
+obj.debug = function (info) {
     console.debug(info)
 }
-module.exports.error = function(error){
+obj.warn = function (error) {
+    console.warn(error);
+}
+obj.error = function (error) {
     console.error(error);
+}
+const isWeb = (typeof self == 'object' && self.self == self);
+if (isWeb) {
+    module.exports = obj
+} else {
+    let qlog = require("../log/qlog.js");
+    module.exports = qlog.getInstance(qlog.moduleData.img);
 }

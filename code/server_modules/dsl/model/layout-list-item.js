@@ -11,7 +11,7 @@ module.exports.textCount = 1;
 module.exports.imageCount = 1;
 // module.exports.imageCount = 0;
 module.exports.mixCount = -5; //-1，即为任意混合数
-module.exports.is = function (dom, parent, option, config) {
+module.exports.is = function (dom, parent, config) {
     return (dom.layout == Dom.layout.BLOCK ||
             dom.layout == Dom.layout.ROW) &&
         dom.children.length > 2 &&
@@ -21,7 +21,7 @@ module.exports.is = function (dom, parent, option, config) {
     // return child.type == Dom.type.TEXT && margin.right > margin.left
     // })
 }
-module.exports.adjust = function (dom, parent, option, config) {
+module.exports.adjust = function (dom, parent, config) {
     dom.contrains["LayoutDirection"] = Contrain.LayoutDirection.Horizontal;
     dom.contrains["LayoutPoLayoutJustifyContentsition"] = Contrain.LayoutJustifyContent.Start;
     // 获取目标节点

@@ -148,7 +148,6 @@ function markModel(json, matchResult, rate) {
         if (r.id == json.id && r.rate > rate) {
             json._model = r.model;
             json._modelRate = r.rate;
-            console.log(json)
         }
     })
     if (!json.children) {
@@ -200,8 +199,8 @@ let Config = {},
         groupRate: .9,
         modelRate: .5
     }
-module.exports = function(data, conf, opt) {
-    Object.assign(Option, opt);
-    Object.assign(Config, conf);
+module.exports = function(data) {
+    Logger.debug("[pipe analyze] start");
+    Config = this.attachment.config;
     return fn(data);
 }

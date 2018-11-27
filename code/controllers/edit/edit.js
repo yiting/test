@@ -48,6 +48,7 @@ let ImageCombine = require("../../server_modules/designimage/img_combine")
 let ftpConfig = require("../../config/config.js");
 //数据库业务类
 const artboard = require("../../models/artboard");
+const history = require("../../models/history");
 
 //3.声明页面数据;生成的图片名数组
 let pageArtboardsData = [],
@@ -340,19 +341,6 @@ router.post("/download", function(req, res, next) {
       });
     });
   });
-});
-
-/**
- * AI模式上传图片，返回结果，结合俊标规则，生成页面
- */
-router.post("/uploadAIImg", upload.any(), function(req, res, next) {
-  let responseJson = {
-    message: "上传文件成功",
-    imgName: originFileName,
-    imgUrl: "http://" + req.headers.host + "/upload_ai_img/" + originFileName
-  };
-  //可以在服务端请求萝莉AI服务，将返回结果给俊标，再生成AI页面
-  res.end(JSON.stringify(responseJson));
 });
 
 /**
@@ -714,5 +702,13 @@ let getArtBoardImg = async artBoardObj => {
     true
   );
 };
+
+//创建新项目
+router.post("/createViewhistory", function(req, res, next) {
+  var h = new history(req.body);
+  var user = h.create(function(result) {
+    res.json(result);
+  });
+});
 
 module.exports = router;

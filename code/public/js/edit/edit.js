@@ -26,7 +26,7 @@ let TOSEEConfig = {
   zoom: 1
 };
 let TOSEEAPP = {
-  initPage: function () {
+  initPage: function() {
     currentPageId = $(".page-title").data("pid");
     currentArtboardId = $(".artboard-list .artboard:first").data("id");
     //默认加载第一个
@@ -37,7 +37,7 @@ let TOSEEAPP = {
   /**
    * 清空初始化dom
    */
-  initFunc: function () {
+  initFunc: function() {
     $(".design-img-btn")
       .data("show", 0)
       .text("比对设计稿");
@@ -49,7 +49,7 @@ let TOSEEAPP = {
   /**
    * 页面操作
    */
-  operatePage: function () {
+  operatePage: function() {
     this.topOperate();
     this.leftOperate();
     this.centerOperate();
@@ -58,9 +58,9 @@ let TOSEEAPP = {
   /**
    * 顶部header区域操作
    */
-  topOperate: function () {
+  topOperate: function() {
     let _this = this;
-    $(".header-list .header-item").on("click", function () {
+    $(".header-list .header-item").on("click", function() {
       let headerItem = $(this);
       //tab分为：页面、images、结构
       let headerItemIndex = headerItem.index();
@@ -82,14 +82,14 @@ let TOSEEAPP = {
         case 1:
         case 2:
           //添加事件监听点击移动事件
-          iframeBody.on("mousemove click", function (e) {});
+          iframeBody.on("mousemove click", function(e) {});
           _this.removeRectChoosen();
           break;
         case 3:
           {
             //取消操作页面点击移动事件
             _this.hideIframeInfoDom();
-            iframeBody.off("mousemove click", function (e) {});
+            iframeBody.off("mousemove click", function(e) {});
             _this.initRectChosen();
             _this.hideAttrPanel();
           }
@@ -98,7 +98,7 @@ let TOSEEAPP = {
       // Yone end
     });
     //跳转到个人中心
-    $(".back-person-btn").on("click", function () {
+    $(".back-person-btn").on("click", function() {
       top.postMessage("/person", "http://uitocode.oa.com");
     });
     //2018-11-05:各端单位代码切换
@@ -107,7 +107,7 @@ let TOSEEAPP = {
   /**
    * 单位转换
    */
-  unitSize: function (length, isText) {
+  unitSize: function(length, isText) {
     var length = Math.round((length / TOSEEConfig.scale) * 10) / 10,
       units = TOSEEConfig.unit.split("/"),
       unit = units[0];
@@ -119,18 +119,22 @@ let TOSEEAPP = {
   /**
    * 初始化单位面板
    */
-  initUnit: function () {
+  initUnit: function() {
     let _this = this;
-    (unitsData = [{
-        units: [{
-          name: "标准",
-          unit: "px",
-          scale: 1
-        }]
+    (unitsData = [
+      {
+        units: [
+          {
+            name: "标准",
+            unit: "px",
+            scale: 1
+          }
+        ]
       },
       {
         name: "iOS",
-        units: [{
+        units: [
+          {
             name: "Points" + " @1x",
             unit: "pt",
             scale: 1
@@ -149,7 +153,8 @@ let TOSEEAPP = {
       },
       {
         name: "Android",
-        units: [{
+        units: [
+          {
             name: "LDPI @0.75x",
             unit: "dp/sp",
             scale: 0.75
@@ -183,7 +188,8 @@ let TOSEEAPP = {
       },
       {
         name: "Web",
-        units: [{
+        units: [
+          {
             name: "CSS Rem 12px",
             unit: "rem",
             scale: 12
@@ -202,14 +208,14 @@ let TOSEEAPP = {
         ]
       }
     ]),
-    (unitHtml = []),
-    (unitList = []),
-    (unitCurrent = ""),
-    (hasCurrent = "");
-    $.each(unitsData, function (index, data) {
+      (unitHtml = []),
+      (unitList = []),
+      (unitCurrent = ""),
+      (hasCurrent = "");
+    $.each(unitsData, function(index, data) {
       if (data.name)
         unitList.push('<li class="sub-title">' + data.name + "</li>");
-      $.each(data.units, function (index, unit) {
+      $.each(data.units, function(index, unit) {
         var checked = "";
         if (unit.unit == TOSEEConfig.unit && unit.scale == TOSEEConfig.scale) {
           checked = ' checked="checked"';
@@ -217,16 +223,16 @@ let TOSEEAPP = {
         }
         unitList.push(
           '<li><label><input type="radio" name="resolution" data-name="' +
-          unit.name +
-          '" data-unit="' +
-          unit.unit +
-          '" data-scale="' +
-          unit.scale +
-          '"' +
-          checked +
-          "><span>" +
-          unit.name +
-          "</span></label></li>"
+            unit.name +
+            '" data-unit="' +
+            unit.unit +
+            '" data-scale="' +
+            unit.scale +
+            '"' +
+            checked +
+            "><span>" +
+            unit.name +
+            "</span></label></li>"
         );
       });
     });
@@ -265,7 +271,7 @@ let TOSEEAPP = {
 
     //监听unit
     $("#unit")
-      .on("change", "input[name=resolution]", function () {
+      .on("change", "input[name=resolution]", function() {
         var $checked = $("input[name=resolution]:checked");
         TOSEEConfig.unit = $checked.attr("data-unit");
         TOSEEConfig.scale = Number($checked.attr("data-scale"));
@@ -276,11 +282,11 @@ let TOSEEAPP = {
         //重新设置对应的单位转换
         _this.resetUnit();
       })
-      .on("click", "h3, .overlay", function () {
+      .on("click", "h3, .overlay", function() {
         $("#unit").blur();
       });
   },
-  resetUnit: function () {
+  resetUnit: function() {
     let _this = this;
     let needChangeDomList1 = $("#screen")
       .contents()
@@ -294,9 +300,9 @@ let TOSEEAPP = {
         .find('*[data-need="unit"]') | $('*[data-need="unit"]');
     _this.domChangeUnit(needChangeDomList); */
   },
-  domChangeUnit: function (domList) {
+  domChangeUnit: function(domList) {
     let _this = this;
-    domList.each(function () {
+    domList.each(function() {
       let _thisDom = $(this);
       let _thisDomVal = parseFloat(_thisDom.data("real"));
       let fontAttrFlag = false;
@@ -310,23 +316,23 @@ let TOSEEAPP = {
   /**
    * 左侧面板操作
    */
-  leftOperate: function () {
+  leftOperate: function() {
     let _this = this;
     //跳转到主页
-    $(".icon-logo").click(function () {
+    $(".icon-logo").click(function() {
       top.postMessage("/", "http://uitocode.oa.com");
     });
     //下垃框点击，显示当前page下拉框
-    $(".pages-select").click(function () {
+    $(".pages-select").click(function() {
       $(".pages-list").show();
     });
     //页面下拉框选择后，隐藏前page下拉框
-    $(".pages-list").on("click", ".pages-item", function (e) {
+    $(".pages-list").on("click", ".pages-item", function(e) {
       e.stopPropagation();
       $(".pages-list").hide();
     });
     //切换page
-    $(".pages-list").on("change", ".pages-item input", function () {
+    $(".pages-list").on("change", ".pages-item input", function() {
       _this.initFunc();
       let inputObj = $(this);
       //当前选中page页面的id，根据pageid，切换下面的数据,并请求第一个artBoard，合成html网页
@@ -337,7 +343,7 @@ let TOSEEAPP = {
         $(".pages-list .pages-item[data-id=" + currentPageId + "]").index() + 1;
       $(".pages-list").hide();
       //根据pageid，切换对应的artBoard列表
-      _this.getArtBoardsByPageId(currentPageId, function () {
+      _this.getArtBoardsByPageId(currentPageId, function() {
         //切换pages，成功填充artBoard list后，然后选中第一个节点的id
         currentArtboardId = $(".artboard-list .artboard:first").data("id");
       });
@@ -346,7 +352,7 @@ let TOSEEAPP = {
     });
 
     //切换artBoard：根据选择artBoardId来加载对应的ardBoard页面
-    $(".artboard-list").on("click", ".artboard", function () {
+    $(".artboard-list").on("click", ".artboard", function() {
       _this.initFunc();
       let currentArtboard = $(this);
       currentArtboard
@@ -373,9 +379,9 @@ let TOSEEAPP = {
   /**
    * 中间面板操作
    */
-  centerOperate: function () {
+  centerOperate: function() {
     //切换编译模式：默认使用普通模式
-    $(".compilation-mode-item input[type=radio]").click(function () {
+    $(".compilation-mode-item input[type=radio]").click(function() {
       let _this = $(this);
       //当前选中值
       let _thisVal = _this.val();
@@ -390,7 +396,7 @@ let TOSEEAPP = {
       }
     });
     //获取当前artBoard设计图
-    $(".design-img-btn").click(function () {
+    $(".design-img-btn").click(function() {
       let _this = $(this);
       let showPanelFlag = _this.data("show");
       //0:默认隐藏，点击请求预览图，显示面板；1：已显示预览图，点击隐藏面板
@@ -405,7 +411,7 @@ let TOSEEAPP = {
         CommonTool.httpRequest(
           "/edit/getArtBoardImg",
           postData,
-          function (data) {
+          function(data) {
             let artBoardImgUrl =
               `../complie/${projectName}/images/` + data.artBoardImgName;
             //设置显示当前artBoardId对应的预览图
@@ -419,7 +425,7 @@ let TOSEEAPP = {
               rectChosen_update();
             }
           },
-          function (error) {
+          function(error) {
             layer.msg("生成预览图失败:" + error.responseText);
           }
         );
@@ -438,19 +444,19 @@ let TOSEEAPP = {
   /**
    * 对iframe dom操作，显示具体信息
    */
-  bindIframeDom: function () {
+  bindIframeDom: function() {
     let _this = this;
     //2018-10-24:选中元素操作
-    $("#screen").load(function (event) {
+    $("#screen").load(function(event) {
       //let val = $("#screen").contents().find("div[data-id=11F1A381-992E-475F-ABA2-7BC1FF08FEEF]").text();
       //alert(val)
       //获取当前缩放的font-size基数
       let baseFontSize = parseFloat(
         $("#screen")
-        .contents()
-        .find("html")
-        .css("font-size")
-        .replace("px", "")
+          .contents()
+          .find("html")
+          .css("font-size")
+          .replace("px", "")
       );
       let iframeBody = $("#screen")
         .contents()
@@ -487,7 +493,7 @@ let TOSEEAPP = {
         iframeBody.append(hoverDomStyle);
       }
       //hover
-      iframeBody.mousemove(function (e) {
+      iframeBody.mousemove(function(e) {
         e = window.event || e; // 兼容IE7
         //当前选中的节点
         hoverElement = $(e.srcElement || e.target);
@@ -500,10 +506,10 @@ let TOSEEAPP = {
         if (
           mouseX >= positionXReal &&
           mouseX <=
-          positionXReal + ElementWidthReal + ElementPLReal + ElementPRReal &&
+            positionXReal + ElementWidthReal + ElementPLReal + ElementPRReal &&
           mouseY >= positionYReal &&
           mouseY <=
-          positionYReal + ElementHeightReal + ElementPTReal + ElementPBReal
+            positionYReal + ElementHeightReal + ElementPTReal + ElementPBReal
         ) {
           return false;
         }
@@ -583,7 +589,7 @@ let TOSEEAPP = {
         }
       });
       //click
-      iframeBody.on("click", function (e) {
+      iframeBody.on("click", function(e) {
         //当前选中的节点:移入即为将要点击的对象,在去除移入样式前获取该对象
         chooseElement = iframeBody.find(".hover-dom-show");
         if (chooseElement.length == 0) {
@@ -677,9 +683,9 @@ let TOSEEAPP = {
             );
             let ElementFontSize = _this.unitSize(ElementFontSizeReal);
 
-            let ElementLetterSpaceReal = chooseElement.css("letter-space") ?
-              parseFloat(chooseElement.css("letter-space").replace("px", "")) :
-              0;
+            let ElementLetterSpaceReal = chooseElement.css("letter-space")
+              ? parseFloat(chooseElement.css("letter-space").replace("px", ""))
+              : 0;
             let ElementLetterSpace = _this.unitSize(ElementLetterSpaceReal);
 
             let ElementLineHeightReal = parseFloat(
@@ -717,7 +723,7 @@ let TOSEEAPP = {
         }
       });
       //点击其他地方
-      $(".screen-viewer-inner").on("click", function () {
+      $(".screen-viewer-inner").on("click", function() {
         //1.去掉选中样式
         //给未选中的节点删除样式和属性
         _this.hideChooseDom();
@@ -733,7 +739,7 @@ let TOSEEAPP = {
   /**
    * 测量当前choose Dom与hover Dom的距离
    */
-  measureDistance: function () {
+  measureDistance: function() {
     let _this = this;
     //将测量dom初始化到iframe页面中
     _this.initMeasureDom();
@@ -743,7 +749,7 @@ let TOSEEAPP = {
   /**
    * 显示choose dom和hover dom的距离
    */
-  domDistance: function () {
+  domDistance: function() {
     let _this = this;
     //初始化隐藏测距dom
     _this.hideDistance();
@@ -896,7 +902,7 @@ let TOSEEAPP = {
   /**
    *
    */
-  initMeasureDom: function () {
+  initMeasureDom: function() {
     //2018-11-07:移入测量相对距离
     //顶部距离dom
     let measureTopDomHtml = `<div id='td' class='distance top-d' style='position:absolute;left:100px;top:10px;width:1px;height:100px;display:none;'><div class="line-t-before" style="position:absolute;width: 5px;height:1px;background:#ff3366;left:-2px;top:0;"></div><div class="line-t-after" style="position:absolute;width: 5px;height:1px;background:#ff3366;left:-2px;bottom:0;"></div><div class='line-t' style='position:absolute;top:0;bottom:0;width:1px;background:#ff3366;'></div><div class='top-d-v' style="position:absolute;left:3.5px;top:30px;padding:0 3px;color:#fff;background:#ff3366;font-size: 12px;">上</div></div>`;
@@ -916,16 +922,16 @@ let TOSEEAPP = {
     }
     iframeBody.append(
       measureTopDomHtml +
-      measureRightDomHtml +
-      measureBottomDomHtml +
-      measureLeftDomHtml
+        measureRightDomHtml +
+        measureBottomDomHtml +
+        measureLeftDomHtml
     );
   },
 
   /**
    * 隐藏iframe上显示信息的dom节点
    */
-  hideIframeInfoDom: function () {
+  hideIframeInfoDom: function() {
     this.hideHoverDom();
     this.hideChooseDom();
     this.hideDistance();
@@ -935,7 +941,7 @@ let TOSEEAPP = {
   /**
    * 隐藏标线
    */
-  hideDistance: function () {
+  hideDistance: function() {
     let iframeBody = $("#screen")
       .contents()
       .find("body");
@@ -944,7 +950,7 @@ let TOSEEAPP = {
   /**
    *隐藏选中dom的长短信息
    */
-  hideChooseDistance: function () {
+  hideChooseDistance: function() {
     let iframeBody = $("#screen")
       .contents()
       .find("body");
@@ -953,7 +959,7 @@ let TOSEEAPP = {
   /**
    * 清除移入样式
    */
-  hideHoverDom: function () {
+  hideHoverDom: function() {
     let iframeBody = $("#screen")
       .contents()
       .find("body");
@@ -963,7 +969,7 @@ let TOSEEAPP = {
   /**
    * 清除选中样式:给未选中的节点删除样式和属性
    */
-  hideChooseDom: function () {
+  hideChooseDom: function() {
     let iframeBody = $("#screen")
       .contents()
       .find("body");
@@ -973,7 +979,7 @@ let TOSEEAPP = {
   /**
    * 显示右侧属性边框面板
    */
-  showAttrPanel: function () {
+  showAttrPanel: function() {
     $(".attribute-show-panel")
       .removeClass("fadeOutRight")
       .addClass("slideInRight");
@@ -981,7 +987,7 @@ let TOSEEAPP = {
   /**
    * 隐藏右侧属性边框面板
    */
-  hideAttrPanel: function () {
+  hideAttrPanel: function() {
     if (
       !$(".attribute-show-panel").hasClass("slideInRight") &&
       !$(".attribute-show-panel").hasClass("fadeOutRight")
@@ -995,8 +1001,8 @@ let TOSEEAPP = {
   /**
    *  右侧面板操作
    * */
-  rightOperate: function () {
-    $(".func-tab-list").on("click", "li", function () {
+  rightOperate: function() {
+    $(".func-tab-list").on("click", "li", function() {
       let currentLi = $(this);
       let currentIndex = currentLi.index();
       //tab切换
@@ -1007,20 +1013,21 @@ let TOSEEAPP = {
       currentContentLi.addClass("active");
       currentContentLi.siblings().removeClass("active");
       //素材tab
-      if (currentLi.hasClass("material-tab")) {} else if (currentLi.hasClass("edit-tab")) {
+      if (currentLi.hasClass("material-tab")) {
+      } else if (currentLi.hasClass("edit-tab")) {
         //操作tab
       }
     });
 
     //2018-10-25:复制按钮
     let clipboard = new ClipboardJS(".copy-code-btn");
-    clipboard.on("success", function (e) {
+    clipboard.on("success", function(e) {
       console.info("Action:", e.action);
       console.info("Text:", e.text);
       console.info("Trigger:", e.trigger);
       //e.clearSelection();
     });
-    clipboard.on("error", function (e) {
+    clipboard.on("error", function(e) {
       console.error("Action:", e.action);
       console.error("Trigger:", e.trigger);
     });
@@ -1031,7 +1038,7 @@ let TOSEEAPP = {
    * @returns {boolean}
    * @constructor
    */
-  isImg: function (imgUrl) {
+  isImg: function(imgUrl) {
     let postfix = "";
     let index = imgUrl.indexOf("."); //得到"."在第几位
     postfix = imgUrl.substring(index); //截断"."之前的，得到后缀
@@ -1050,12 +1057,12 @@ let TOSEEAPP = {
   },
   //拉取图片素材:iframe加载完成后，当前pageID里面对应的artBoardId，拉取本地素材(对应的项目文件夹名称：projectId)
   //need:还需素材全部下载操作；图片布局操作
-  getImgsByArtBoardId: function () {
+  getImgsByArtBoardId: function() {
     let _this = this;
     //每次请求，清空上次的设置
     let imgListHtml = [];
     //给图片大小重新排个序，从小图到大图排序
-    imgsPathArr.sort(function (a, b) {
+    imgsPathArr.sort(function(a, b) {
       return a.width - b.width;
     });
     //图片前端去重过滤：利用path属性过滤
@@ -1114,14 +1121,14 @@ let TOSEEAPP = {
       title: true,
       callbacks: {
         //刚刚打开时
-        beforeOpen: function (el) {
+        beforeOpen: function(el) {
           // Will fire before modal is opened
           let currentDom = $(el);
           //点击的图对象
           let o = currentDom.find("img");
           (viewImgW = o[0].naturalWidth), (viewImgH = o[0].naturalHeight);
         },
-        opened: function (el) {
+        opened: function(el) {
           //删除之前的图片查看弹框:如果存在多个的话，删除最后一个之前的：即为删除非最后一个
           if ($(".magnify-modal").length > 1) {
             $(".magnify-modal:last")
@@ -1139,19 +1146,19 @@ let TOSEEAPP = {
             `<div class="show-img-info"><div class="img-width">宽:${viewImgW}px</div><div class="img-height">高:${viewImgH}px</div></div>`
           );
         },
-        beforeChange: function (index) {
+        beforeChange: function(index) {
           // Will fire before image is changed
           // The arguments is the index of image group
         },
         //图片发生变化时
-        changed: function (el) {
+        changed: function(el) {
           //$(".show-img-info").remove();
           //获取当前预览图的url
           viewImgObj = $(".magnify-stage img");
           viewImgUrl = viewImgObj.attr("src");
           $(".magnify-foot-toolbar a").attr("href", viewImgUrl);
           (viewImgW = viewImgObj[0].naturalWidth),
-          (viewImgH = viewImgObj[0].naturalHeight);
+            (viewImgH = viewImgObj[0].naturalHeight);
           //设置宽高
           $(".show-img-info .img-width").html(`宽:${viewImgW}px`);
           $(".show-img-info .img-height").html(`高:${viewImgH}px`);
@@ -1162,7 +1169,7 @@ let TOSEEAPP = {
   /**
    * 根据pageid，切换对应的artBoard列表
    */
-  getArtBoardsByPageId: function (currentPid, callback) {
+  getArtBoardsByPageId: function(currentPid, callback) {
     //当前页面所有初步页面结构数据
     let currentPageData;
     let pagesLen = pagesData.length;
@@ -1200,7 +1207,7 @@ let TOSEEAPP = {
   /**
    * 请求当前artBoardId对应的url
    */
-  getPageUrlById: function () {
+  getPageUrlById: function() {
     let _this = this;
     //每次请求后台数据之前，需要检查当前链接是否已生成，即为已存储:若已生成，则不请求后台数据，直接在前端调取对应的页面
     let artBoardsArrLen = artboardsUrlArr.length;
@@ -1251,7 +1258,7 @@ let TOSEEAPP = {
     if ($(".layui-layer-msg").length > 0) {
       $(".layui-layer-msg").remove();
     }
-    structureInterval = setInterval(function () {
+    structureInterval = setInterval(function() {
       structureTime++;
       //console.log(structureTime);
       structureTxt = `页面结构正在生成中，耗时${structureTime}s...`;
@@ -1273,7 +1280,7 @@ let TOSEEAPP = {
     //2018-10-10:请求页面骨架结构
     _this.pageAjaxFun(
       postData,
-      function (data) {
+      function(data) {
         //清除生成骨架定时器
         clearInterval(structureInterval);
         //关闭之前所有的信息窗口
@@ -1290,7 +1297,7 @@ let TOSEEAPP = {
         h5FileName = data.htmlFileName;
         //console.log("页面数据为:" + currentArtBoardData);
         //开始生成图片定时器
-        imgsInterval = setInterval(function () {
+        imgsInterval = setInterval(function() {
           imgsTime++;
           //console.log(imgsTime);
           structureTxt = `页面图片正在生成中，耗时${imgsTime}s...`;
@@ -1333,7 +1340,7 @@ let TOSEEAPP = {
         //2018-10-10：请求图片资源
         _this.imgAjaxFun(
           postData,
-          function (data) {
+          function(data) {
             //清除生成图片生成定时器
             clearInterval(imgsInterval);
             //关闭之前所有的信息窗口
@@ -1357,7 +1364,7 @@ let TOSEEAPP = {
               //发送一个请求，将生成好的文件上传到后台服务器，返回在线url
               _this.onlineUrlAjaxFun(
                 postData,
-                function (resultData) {
+                function(resultData) {
                   //拼接而成，防止后台重复生成新的时间戳链接
                   currentArtBoardOnlineUrl = resultData.artUrl;
                   artboardsUrlArr.forEach((item, i) => {
@@ -1368,20 +1375,20 @@ let TOSEEAPP = {
                     }
                   });
                 },
-                function (error) {
+                function(error) {
                   layer.msg("生成二维码失败");
                 }
               );
             }
           },
-          function (error) {
+          function(error) {
             //清除生成骨架定时器
             clearInterval(imgsInterval);
             layer.msg("生成页面图片失败:" + error.responseText);
           }
         );
       },
-      function (error) {
+      function(error) {
         //清除生成骨架定时器
         clearInterval(structureInterval);
         layer.msg("生成页面结果失败:" + error.responseText);
@@ -1394,14 +1401,14 @@ let TOSEEAPP = {
    * @param successCallback
    * @param failCallback
    */
-  pageAjaxFun: function (postData, successCallback, failCallback) {
+  pageAjaxFun: function(postData, successCallback, failCallback) {
     let pageAjax = CommonTool.httpRequest(
       "/edit/getPageById",
       postData,
-      function (data) {
+      function(data) {
         successCallback(data);
       },
-      function (error) {
+      function(error) {
         failCallback(error);
       }
     );
@@ -1412,14 +1419,14 @@ let TOSEEAPP = {
    * @param successCallback
    * @param failCallback
    */
-  imgAjaxFun: function (postData, successCallback, failCallback) {
+  imgAjaxFun: function(postData, successCallback, failCallback) {
     let imgAjax = CommonTool.httpRequest(
       "/edit/getPageImgById",
       postData,
-      function (data) {
+      function(data) {
         successCallback(data);
       },
-      function (error) {
+      function(error) {
         failCallback(error);
       }
     );
@@ -1430,14 +1437,14 @@ let TOSEEAPP = {
    * @param successCallback
    * @param failCallback
    */
-  onlineUrlAjaxFun: function (postData, successCallback, failCallback) {
+  onlineUrlAjaxFun: function(postData, successCallback, failCallback) {
     let onlineUrlAjax = CommonTool.httpRequest(
       "/edit/getOnlineUrl",
       postData,
-      function (data) {
+      function(data) {
         successCallback(data);
       },
-      function (error) {
+      function(error) {
         failCallback(error);
       }
     );
@@ -1446,9 +1453,9 @@ let TOSEEAPP = {
    * 根据url显示对应的二维码
    * 需要获取线上生成地址的url
    */
-  showQrCodeAndUrl: function () {
+  showQrCodeAndUrl: function() {
     $(".qr").hover(
-      function () {
+      function() {
         if (!currentArtBoardOnlineUrl) {
           layer.msg("二维码正在生成中，请稍后...");
           //没有生成处理，则隐藏
@@ -1468,7 +1475,7 @@ let TOSEEAPP = {
         //设置显示文字：地址链接
         $(".current-url").val(currentArtBoardOnlineUrl);
       },
-      function () {
+      function() {
         //移出，清除下二维码
         $(".qr .qr-code").html("");
       }
@@ -1477,8 +1484,8 @@ let TOSEEAPP = {
   /**
    * 根据projectid来下载对应的工程压缩包到本地
    */
-  downloadProject: function () {
-    $(".download-btn").click(function () {
+  downloadProject: function() {
+    $(".download-btn").click(function() {
       var form = $("<form>"); //定义一个form表单
       form.attr("style", "display:none"); //在form表单中添加查询参数
       form.attr("target", "");
@@ -1492,7 +1499,7 @@ let TOSEEAPP = {
   /**
    * 2018-11-11:Yone start:初始化框选组件
    */
-  initRectChosen: function () {
+  initRectChosen: function() {
     let _this = this;
     rectChosen(
       document.querySelector(".screen-viewer"),
@@ -1501,14 +1508,14 @@ let TOSEEAPP = {
     );
     var btnGroup = document.querySelector("#btn-group");
     btnGroup.setAttribute("disabled", "");
-    $("#screen").load(function (event) {
+    $("#screen").load(function(event) {
       rectChosen(
         document.querySelector(".screen-viewer"),
         document.querySelector("#screen"),
         _this.reAdjust.bind(this, currentArtboardId)
       );
     });
-    btnGroup.addEventListener("click", function () {
+    btnGroup.addEventListener("click", function() {
       if (_chosenNodeIds.length < 2) return;
       btnGroup.setAttribute("disabled", "");
 
@@ -1520,10 +1527,10 @@ let TOSEEAPP = {
       CommonTool.httpRequest(
         "/edit/adjust",
         postData,
-        function (data) {
+        function(data) {
           document.querySelector("#screen").contentWindow.location.reload();
         },
-        function (error) {
+        function(error) {
           btnGroup.removeAttribute("disabled");
           console.error("操作失败");
         }
@@ -1535,7 +1542,7 @@ let TOSEEAPP = {
    * @param {*} artboardId
    * @param {*} nodeIds
    */
-  reAdjust: function (artboardId, nodeIds) {
+  reAdjust: function(artboardId, nodeIds) {
     if (!nodeIds || !nodeIds.length) {
       _chosenNodeIds = [];
       return;
@@ -1549,28 +1556,10 @@ let TOSEEAPP = {
   /**
    * 删除重组dom节点的结构
    */
-  removeRectChoosen: function () {
+  removeRectChoosen: function() {
     let chooseRectDom = $(".choose-rect-dom");
     if (chooseRectDom || chooseRectDom.length > 0) {
       chooseRectDom.remove();
     }
   }
 };
-
-
-/**
- * 获取用户名、用户头像
- */
-var vm = new Vue({
-  el: "#app",
-  data: {
-    user: {
-      staffid: CommonTool.getCookie("staffid") || "",
-      staffname: CommonTool.getCookie("staffname") || ""
-    }
-  },
-  computed: {
-    countProgressStyle: function () {}
-  },
-  methods: {}
-});

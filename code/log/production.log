@@ -1,10 +1,26 @@
-2018-11-23 16:34:12 ERROR 20181123163358_t1.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'alignment' of undefined
+2018-11-27 10:40:22 ERROR 20181127103842_Buff积分.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传错误:Error: Failure
 
-2018-11-23 16:34:16 ERROR 20181123163358_t1.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'alignment' of undefined
+2018-11-27 10:41:07 ERROR 20181127103813_游戏城.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传错误:Error: Failure
 
-2018-11-23 16:34:24 ERROR 20181123163358_t1.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'alignment' of undefined
+2018-11-27 14:44:21 ERROR 20181127144346_0list.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传错误:Error: Failure
 
-2018-11-23 16:34:51 ERROR 20181123163358_t1.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'alignment' of undefined
+2018-11-27 14:58:29 ERROR 20181127145818_0list.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传错误:Error: Failure
 
-2018-11-23 17:35:42 ERROR 20181123163358_t1.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'alignment' of undefined
+2018-11-27 15:09:06 ERROR 20181127150833_1单页.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传错误:Error: Failure
+
+2018-11-27 15:31:21 ERROR 20181127153112_赠送装扮-定稿.sketch 平台模块 [edit.js-getOnlineUrl]ftp上传错误:Error: Failure
+
+2018-11-27 15:31:26 ERROR 20181127153112_赠送装扮-定稿.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'map' of undefined
+
+2018-11-27 15:31:28 ERROR 20181127153112_赠送装扮-定稿.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'map' of undefined
+
+2018-11-27 15:31:34 ERROR 20181127153112_赠送装扮-定稿.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'map' of undefined
+
+2018-11-27 15:31:47 ERROR 20181127153112_赠送装扮-定稿.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'map' of undefined
+
+2018-11-27 15:31:49 ERROR 20181127153112_赠送装扮-定稿.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'map' of undefined
+
+2018-11-27 15:32:07 ERROR 20181127153112_赠送装扮-定稿.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'map' of undefined
+
+2018-11-27 15:38:20 ERROR 20181127153112_赠送装扮-定稿.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'map' of undefined
 

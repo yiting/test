@@ -18,7 +18,7 @@ module.exports.mixCount = 0; //-1，即为任意混合数
 module.exports.template = function () {
 
 }
-module.exports.is = function (dom, parent, option, config) {
+module.exports.is = function (dom, parent, config) {
     if (!Dom.isHorizontal(dom.children)) {
         return false;
     }
@@ -28,7 +28,7 @@ module.exports.is = function (dom, parent, option, config) {
     // 如果最大字号比最小字号大于 文本对比系数 1.4倍，则模型成立
     return maxSize / minSize > textCompareCoefficient
 }
-module.exports.adjust = function (dom, parent, option, config) {
+module.exports.adjust = function (dom, parent, config) {
     // 查找最大节点
     let maxSize = Number.NEGATIVE_INFINITY,
         minSize = Number.POSITIVE_INFINITY,
@@ -49,14 +49,17 @@ module.exports.adjust = function (dom, parent, option, config) {
     maxObj.children.push(minObj);
     dom.children.splice(dom.children.indexOf(minObj), 1);
     // 调整最大子节点位置
-    dom.width = maxObj.width;
-    dom.x += maxObj.x;
-    dom.abX += maxObj.x;
+    // 判断条件原因： 如果dom的type是block/row，则宽度须固定在两端
+    if (dom.layout != Dom.layout.BLOCK && dom.layout != Dom.layout.ROW) {
+        dom.width = maxObj.width;
+        dom.x += maxObj.x;
+        dom.abX += maxObj.x;
+        maxObj.x = 0;
+    }
     minObj.x -= maxObj.x;
     minObj.abX -= maxObj.x;
     minObj.y -= maxObj.y;
     minObj.abY -= maxObj.y;
-    maxObj.x = 0;
     // 约束赋予
     maxObj.contrains["LayoutPosition"] = Contrain.LayoutPosition.Absolute;
     maxObj.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Default;

@@ -11,3 +11,7 @@ body {
     Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
   overflow-y: auto;
 }
+//vue加载不出现括号
+[v-cloak] {
+   display: none;
+}

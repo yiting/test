@@ -8,7 +8,7 @@ let Dom = require("../dsl_dom.js");
 module.exports.template = function() {
 
 }
-module.exports.is = function(dom, parent, option, config) {
+module.exports.is = function(dom, parent, config) {
     if (dom.text && dom.children && dom.children.length > 0) {
         let child = new Dom({
             type: Store.model.TEXT,

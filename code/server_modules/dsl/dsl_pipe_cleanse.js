@@ -1,7 +1,6 @@
-let Common = require("./dsl_common.js");
-let Dom = require("./dsl_dom.js");
-let Store = require("./dsl_store.js");
-let Logger = require("./logger.js");
+const Dom = require("./dsl_dom.js");
+const Store = require("./dsl_store.js");
+const Logger = require('./logger');
 /**
  * Design-Dom 转为 一维数组
  * @param  {[type]} cur [description]
@@ -89,7 +88,7 @@ function markerSegmenting(json) {
 /**/
 function mergeBySize(arr) {
     let s = [];
-    let d = arr.shift();
+    arr.shift();
 
     arr.forEach((d, i) => {
         let done = s.some((o, j) => {
@@ -98,6 +97,7 @@ function mergeBySize(arr) {
                 d.abX == o.abX &&
                 d.abY == o.abY) {
                 // 与父节点大小相同
+                Logger.debug(`[pipe cleanse] mergeBySize ${d.id} to ${o.id}`)
                 Dom.assign(o, d);
                 return true;
             }
@@ -113,7 +113,7 @@ function mergeBySize(arr) {
 function filterUselessGroup(arr) {
     return arr.filter((d, i) => {
         return (
-            d.special ||
+            d.source != 'design' ||
             d.text ||
             d.path ||
             (d.styles && (
@@ -140,11 +140,10 @@ function relayer(arr, body) {
         }
         let done = coms.some(function (d) {
             // 在父节点上
-            if (d.abX + d.width >= o.abX + o.width &&
-                d.abY + d.height >= o.abY + o.height &&
-                d.abX <= o.abX &&
-                d.abY <= o.abY &&
-                d.type != Dom.type.TEXT
+            if (d.type != Dom.type.TEXT &&
+                ((d.type == Dom.type.LAYOUT && Dom.isConnect(d, o, -1)) ||
+                    Dom.isWrap(d, o))
+                // Dom.isWrap(d,o)
             ) {
                 o.x = o.abX - d.abX;
                 o.y = o.abY - d.abY;
@@ -169,60 +168,49 @@ function relayer(arr, body) {
     })
     return;
 }
-/**
- * 识别多彩内容
- */
-function identifyColourful(arr) {
-    arr.forEach(o => {
-        o.isColourful = o.path || o.styles.border || o.styles.background;
-    })
-    return arr;
-}
 
+function fn(json) {
+    Logger.debug('[pipe - cleanse] start')
+
+    let data = JSON.parse(JSON.stringify(json)); // 深复制数据
+
+    // 序列化树
+    Logger.debug('[pipe - cleanse] serialize')
+    let arr = serialize(data);
+
+    let body = getRoot(arr);
+    // 按面积排序
+    Logger.debug('[pipe - cleanse] sortBySize')
+    arr = sortBySize(arr);
+
+    // 移除无用组
+    Logger.debug('[pipe - cleanse] filterUselessGroup')
+    arr = filterUselessGroup(arr);
+
+    // 清洗属性-行高
+    Logger.debug('[pipe - cleanse] cleanLineHeight')
+    arr = cleanLineHeight(arr);
+
+    // 合并同大小元素
+    Logger.debug('[pipe - cleanse] mergeBySize')
+    arr = mergeBySize(arr);
+
+    // 重组父子结构
+    Logger.debug('[pipe - cleanse] relayer')
+    relayer(arr, body);
+
+    // 标记分割线
+    Logger.debug('[pipe - cleanse] markerSegmenting')
+    markerSegmenting(body);
+    Logger.debug('[pipe - cleanse] end')
+    return body;
+}
 let Config = {},
     Option = {
         segmentingProportion: 25,
         segmentingVerticalWidth: 2
     };
-
-function fn(json) {
-    Logger.log('[pipe - cleanse] start')
-
-    let data = JSON.parse(JSON.stringify(json)); // 深复制数据
-
-    // 序列化树
-    Logger.log('[pipe - cleanse] serialize')
-    let arr = serialize(data);
-
-    let body = getRoot(arr);
-    // 按面积排序
-    Logger.log('[pipe - cleanse] sortBySize')
-    arr = sortBySize(arr);
-
-    // 移除无用组
-    Logger.log('[pipe - cleanse] filterUselessGroup')
-    arr = filterUselessGroup(arr);
-
-    // 清洗属性-行高
-    Logger.log('[pipe - cleanse] cleanLineHeight')
-    arr = cleanLineHeight(arr);
-
-    // 合并同大小元素
-    Logger.log('[pipe - cleanse] mergeBySize')
-    arr = mergeBySize(arr);
-
-    // 重组父子结构
-    Logger.log('[pipe - cleanse] relayer')
-    relayer(arr, body);
-
-    // 标记分割线
-    Logger.log('[pipe - cleanse] markerSegmenting')
-    markerSegmenting(body);
-    Logger.log('[pipe - cleanse] end')
-    return body;
-}
-module.exports = function (data, conf, opt) {
-    Object.assign(Option, opt);
-    Object.assign(Config, conf);
+module.exports = function (data) {
+    Config = this.attachment.config;
     return fn(data);
 }

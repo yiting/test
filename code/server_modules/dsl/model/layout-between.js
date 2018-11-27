@@ -13,7 +13,10 @@ module.exports.type = Dom.type.LAYOUT;
 module.exports.textCount = 0;
 module.exports.imageCount = 0;
 module.exports.mixCount = -4; //-1，即为任意混合数
-module.exports.is = function (dom, parent, option, config) {
+module.exports.isSimilar = function (a, b, config) {
+    // return false;
+}
+module.exports.is = function (dom, parent, config) {
     if (dom.children.length == 3) {
         let children = dom.children,
             isHorizontal = Dom.isHorizontal(dom.children),
@@ -25,14 +28,17 @@ module.exports.is = function (dom, parent, option, config) {
         return isHorizontal &&
             children.some((child, i) => {
                 const offset = Dom.calOffset(child, dom, 'x');
+                const margin = Dom.calMargin(child, dom, 'x');
                 return i != 0 && i != lastIndex &&
-                    Math.abs(offset.left - offset.right) > config.dsl.operateErrorCoefficient;
+                    Math.abs(offset.left - offset.right) < config.dsl.operateErrorCoefficient &&
+                    margin.left > config.dsl.horizontalSpacing &&
+                    margin.right > config.dsl.horizontalSpacing;
             }) &&
             Math.abs(firstMarginLeft - lastMarginRight) < config.dsl.operateErrorCoefficient &&
             Math.abs(centerOffsetLeft - centerOffsetRight) < config.dsl.operateErrorCoefficient * 2
     }
 }
-module.exports.adjust = function (dom, parent, option, config) {
+module.exports.adjust = function (dom, parent, config) {
     let left = dom.children[0],
         center = dom.children[1],
         right = dom.children[2];

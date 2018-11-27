@@ -1,7 +1,7 @@
 const Common = require("./dsl_common.js");
 const Dom = require("./dsl_dom.js");
 const Store = require("./dsl_store.js");
-const Logger = require("./logger.js");
+const Logger = require('./logger');
 
 let LAYOUT_MAP = {
     inline: 0,
@@ -78,7 +78,8 @@ function block(domArr, parent) {
         }
         const small = meta.height < target.height ? meta : target;
         const textSpacing = small.text && (small.styles.lineHeight * Config.dsl.textSpacingCoefficient) || undefined,
-            verticalSpacing = textSpacing < Config.dsl.verticalSpacing ? textSpacing : Config.dsl.verticalSpacing
+            verticalSpacing = textSpacing < Config.dsl.verticalSpacing ? textSpacing : Config.dsl.verticalSpacing;
+        // verticalSpacing = 2;
 
 
         let meta_yh = calYH(meta),
@@ -118,7 +119,7 @@ function column(domArr, parent) {
         // 无交集组合元素，剔除
         if (inline.every(dom => lonelyArr.includes(dom))) {
             // return true;
-            aloneArr.push(...inline.map(s=>[s]));
+            aloneArr.push(...inline.map(s => [s]));
             return true;
         }
         // 完全交集组合元素，剔除
@@ -225,25 +226,21 @@ function ergodic(json, func, type) {
 /**
  * 逻辑：组内左对齐，居中对齐为一列
  */
-let Config = {},
-    Option = {
-        errorSpacing: 3
-    }
-module.exports = function (data, conf, opt) {
-    Logger.log('[pipe - layout] start')
-    Object.assign(Option, opt);
-    Object.assign(Config, conf);
+let Config = {}
+module.exports = function (data) {
+    Logger.debug('[pipe - layout] start')
+    Config = this.attachment.config;
 
-    Logger.log(`[pipe - layout] block ${data.id}`)
+    Logger.debug(`[pipe - layout] block ${data.id}`)
     ergodic(data, block);
 
 
-    Logger.log(`[pipe - layout] column ${data.id}`)
+    Logger.debug(`[pipe - layout] column ${data.id}`)
     ergodic(data, column);
 
-    Logger.log(`[pipe - layout] row ${data.id}`)
+    Logger.debug(`[pipe - layout] row ${data.id}`)
     ergodic(data, row);
 
-    Logger.log(`[pipe - layout] inline ${data.id}`)
+    Logger.debug(`[pipe - layout] inline ${data.id}`)
     ergodic(data, inline);
 }

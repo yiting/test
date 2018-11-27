@@ -8,25 +8,25 @@ const Dom = require("../dsl_dom.js");
 module.exports.name = 'LAYOUT-FLEX';
 module.exports.type = Dom.type.TEXT;
 module.exports.textCount = 1;
-module.exports.imageCount = 0;
+module.exports.imageCount = 1;
 module.exports.mixCount = -5; //-1，即为任意混合数
-module.exports.is = function (dom, parent, option, config) {
+module.exports.is = function (dom, parent, config) {
     return (dom.layout == Dom.layout.BLOCK ||
             dom.layout == Dom.layout.ROW) &&
         dom.children.length > 1 &&
         Dom.isHorizontal(dom.children) &&
         dom.children.some(child => {
             let margin = Dom.calMargin(child, dom, 'x');
-            return child.type == Dom.type.TEXT && (margin.right - margin.left > child.styles.maxSize)
+            return child.text && child.type == Dom.type.TEXT && (margin.right - margin.left > child.styles.maxSize)
         })
 }
-module.exports.adjust = function (dom, parent, option, config) {
+module.exports.adjust = function (dom, parent, config) {
     dom.contrains["LayoutDirection"] = Contrain.LayoutDirection.Horizontal;
     dom.contrains["LayoutPoLayoutJustifyContentsition"] = Contrain.LayoutJustifyContent.Start;
     // 获取目标节点
     let targetText = dom.children.find((child, i) => {
         let margin = Dom.calMargin(child, dom, 'x');
-        return child.type == Dom.type.TEXT && (margin.right - margin.left > child.styles.maxSize)
+        return child.text && child.type == Dom.type.TEXT && (margin.right - margin.left > child.styles.maxSize)
     });
     if (targetText) {
         // 设置目标节点约束

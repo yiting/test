@@ -36,12 +36,39 @@ Project.prototype = {
   //获取所有项目
   getAllProjectById: function(userid, callback) {
     var that = this;
-    var sql = "SELECT * FROM project WHERE userid =?";
+    var sql = "SELECT * FROM project WHERE userid =? order by modifytime desc";
     connection.query(sql, [userid], function(err, result) {
       if (err) {
         callback && callback({ code: 1, msg: "获取项目失败", err: err });
       } else {
         callback && callback({ code: 0, msg: "获取项目成功", data: result });
+      }
+    });
+  },
+  //通过projectID数组查项目
+  getAllProjectByProjectId: function(idArr, callback) {
+    var that = this;
+    var sql = "";
+    for (var i = 0; i < idArr.length; i++) {
+      sql += "SELECT * FROM project WHERE projectId =?;";
+    }
+    connection.query(sql, idArr, function(err, result) {
+      if (err) {
+        callback && callback({ code: 1, msg: "获取项目失败", err: err });
+      } else {
+        var projects = [];
+        if (result.length <= 1) {
+          projects = result;
+        } else {
+          for (var i = 0; i < result.length; i++) {
+            let oneRecord = result[i][0];
+            if (oneRecord) {
+              projects.push(oneRecord);
+            }
+          }
+        }
+
+        callback && callback({ code: 0, msg: "获取项目成功", data: projects });
       }
     });
   },

@@ -126,9 +126,19 @@ AIService.prototype = {
         "#009999",
         "#FF6600",
         "#CC0066",
-        "#CC3399"
+        "#CC3399",
+        "#FFFFCC"
       ],
-      rateModelList = ["icon", "icondesc"];
+      rateModelList = [
+        "banner",
+        "button",
+        "icon",
+        "icondesc",
+        "img",
+        "imgdesc",
+        "tab",
+        "text"
+      ];
     currentRateData.forEach((element, i) => {
       let rateObj = element;
       let {

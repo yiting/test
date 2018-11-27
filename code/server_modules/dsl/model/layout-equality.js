@@ -16,7 +16,16 @@ module.exports.type = Dom.type.LAYOUT;
 module.exports.textCount = 0;
 module.exports.imageCount = 0;
 module.exports.mixCount = -5; //-1，即为任意混合数
-module.exports.is = function (dom, parent, option, config) {
+module.exports.isSimilar = function (a, b, config) {
+    // return false;
+    return a.children.length == b.children.length &&
+        a.children.every((d, i) => {
+            return Math.abs(d.width - b.children[i].width) < config.dsl.operateErrorCoefficient &&
+                Math.abs(d.height - b.children[i].width) < config.dsl.operateErrorCoefficient;
+        })
+};
+
+module.exports.is = function (dom, parent, config) {
     if (dom.children.length < 2) {
         return false;
     }
@@ -39,7 +48,7 @@ module.exports.is = function (dom, parent, option, config) {
                 Math.abs(offset.left - offset.right) < config.dsl.operateErrorCoefficient;
         })
 }
-module.exports.adjust = function (dom, parent, option, config) {
+module.exports.adjust = function (dom, parent, config) {
 
     let lastIndex = dom.children.length - 1,
         widths = [];
@@ -63,11 +72,11 @@ module.exports.adjust = function (dom, parent, option, config) {
     dom.contrains["LayoutDirection"] = Contrain.LayoutDirection.Horizontal;
     dom.contrains["LayoutPosition"] = Contrain.LayoutPosition.Static;
     dom.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.Center;
-    dom.children.forEach(c => correctWidth(equalWidth, c, dom, option, config))
+    dom.children.forEach(c => correctWidth(equalWidth, c, dom, config))
     dom.type = dom.children[0].type;
 }
 
-function correctWidth(width, dom, parent, option, config) {
+function correctWidth(width, dom, parent, config) {
     let dir = (width - dom.width) / 2;
     // 如果是固定宽度，则包裹多一层
     if (dom.contrains["LayoutFixedWidth"] == Contrain.LayoutFixedWidth.Fixed) {
@@ -86,7 +95,7 @@ function correctWidth(width, dom, parent, option, config) {
         dom.y = 0;
         newDom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;
         Dom.replaceWith(dom, parent, newDom);
-        Model.adjust(ColumnModel, newDom, parent, option, config);
+        Model.adjust(ColumnModel, newDom, parent, config);
         newDom.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.Center;
     } else {
         dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed;

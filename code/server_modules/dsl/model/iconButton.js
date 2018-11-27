@@ -9,10 +9,10 @@ module.exports.type = Dom.type.IMAGE;
 module.exports.textCount = 1;
 module.exports.imageCount = 1;
 module.exports.mixCount = 0; //-1，即为任意混合数
-module.exports.template = function () {
+module.exports.isSimilar = function (a, b) {
 
 }
-module.exports.is = function (dom, parent, option, config) {
+module.exports.is = function (dom, parent, config) {
     // 判断：只有两个节点
     const txt = dom.children.find((child) => {
         return child.type == Dom.type.TEXT;
@@ -32,7 +32,7 @@ module.exports.is = function (dom, parent, option, config) {
         Math.abs(imgMargin.top - imgMargin.bottom) < config.dsl.operateErrorCoefficient && // 垂直居中
         Math.abs(txtMargin.top - txtMargin.bottom) < config.dsl.operateErrorCoefficient // 垂直居中
 }
-module.exports.adjust = function (dom, parent, option, config) {
+module.exports.adjust = function (dom, parent, config) {
     dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed
     dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedHeight.Fixed
     dom.contrains["LayoutJustifyContent"] = Contrain.LayoutJustifyContent.Center;
