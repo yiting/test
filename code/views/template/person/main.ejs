@@ -35,7 +35,7 @@
                                         <div class="btn-more-wrap dropdown">
                                             <button class="btn-more"></button>
                                             <ul class="dropdown-menu">
-                                                <li class="dropdown-item" v-on:click.stop="editUrl('/edit?id='+pro.projectId+'&name='+pro.projectName)">编辑</li>
+                                                <li class="dropdown-item" v-on:click.stop="editProject(pro.projectId,pro.projectName)">编辑</li>
                                                 <li class="dropdown-item" v-on:click.stop="deleteProjectById" :id="pro.id">
                                                     删除
                                                 </li>
@@ -56,7 +56,7 @@
                                             :data-clipboard-target="'#copy-'+index">
                                             <span class="url" :id="'copy-'+index" v-cloak>{{
                                                 'http://uitocode.oa.com/edit?id='+ pro.projectId + '&name=' +
-                                                pro.projectName
+                                                encodeURIComponent(encodeURIComponent(pro.projectName))
                                                 }}</span>
 
                                         </div>

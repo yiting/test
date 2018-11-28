@@ -88,9 +88,11 @@
     .screen {
       //2018-08-24
       //margin: 20px auto;
+      position: relative;
       margin-top: 10px;
       background: #fff;
       //pointer-events:auto;
+      z-index: 100;
     }
   }
 }

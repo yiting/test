@@ -16,6 +16,8 @@ const ControllerUtils = require("../util/utils");
 let downloadProject = function(projectUUID, projectName) {
   //目前是根据已有生成的文件进行打包：如果没有生成：1.尽量全部生成后在下载 2.空闲时间：来进行默默写入文件到工程目录
   router.post("/download", function(req, res, next) {
+    //是否下载sketch源文件
+    let isDownloadsketch = req.query.isDownloadsketch;
     //console.log("进入下载")
     logger.debug("[edit.js-download]进入编译项目下载");
     let desZipPath = "./data/download_file/" + projectName + ".zip";
@@ -67,6 +69,19 @@ let downloadProject = function(projectUUID, projectName) {
             });
           }
         });
+        //复制sketch文件到当前目录
+        if (isDownloadsketch == "true") {
+          fs.copyFile(
+            "./data/upload_file/" + projectName + ".sketch",
+            desProjectPath + "/" + projectName + ".sketch",
+            function(err) {
+              if (err) {
+                console.log(err);
+                return;
+              }
+            }
+          );
+        }
       }).then(data => {
         Utils.zipFolder(desZipPath, desProjectPath, function() {
           //下载去除属性后的临时项目

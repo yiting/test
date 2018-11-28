@@ -67,7 +67,8 @@ router.get("/", function(req, res, next) {
   pageArtboardsData = [];
   //获取参数
   projectUUID = req.query.id;
-  projectName = req.query.name;
+  //解码中文项目名
+  projectName = decodeURIComponent(req.query.name);
   //2018-11-09：日志模块初始化
   initLogConfig(req, res, next);
   //初始化请求，并渲染:先获得数据；再将数据传到页面上
@@ -184,6 +185,7 @@ router.post("/getAIData", function(req, res, next) {
       function optionalCallback(error, response, body) {
         if (!error && response.statusCode == 200) {
           AIImgData = ControllerUtils.AIDataHandle(body);
+          //AIImgData = JSON.parse("{" + body + "}");
         } else {
           AIImgData = [
             {
@@ -285,6 +287,8 @@ router.post("/getOnlineUrl", function(req, res, next) {
  */
 //目前是根据已有生成的文件进行打包：如果没有生成：1.尽量全部生成后在下载 2.空闲时间：来进行默默写入文件到工程目录
 router.post("/download", function(req, res, next) {
+  //是否下载sketch源文件
+  let isDownloadsketch = req.query.isDownloadsketch;
   //console.log("进入下载")
   logger.debug("[edit.js-download]进入编译项目下载");
   let desZipPath = "./data/download_file/" + projectName + ".zip";
@@ -332,6 +336,19 @@ router.post("/download", function(req, res, next) {
           });
         }
       });
+      //复制sketch文件到当前目录
+      if (isDownloadsketch == "true") {
+        fs.copyFile(
+          "./data/upload_file/" + projectName + ".sketch",
+          desProjectPath + "/" + projectName + ".sketch",
+          function(err) {
+            if (err) {
+              console.log(err);
+              return;
+            }
+          }
+        );
+      }
     }).then(data => {
       Utils.zipFolder(desZipPath, desProjectPath, function() {
         //下载去除属性后的临时项目

@@ -39,11 +39,14 @@ var vm = new Vue({
      */
     getUserInfo: function() {
       let _this = this;
+      let userid = CommonTool.getCookie("staffid");
+      let username = CommonTool.getCookie("staffname");
+      //如果cookie里面有数据的话，则直接从cookie里面获取用户信息
       $.ajax({
         url: "/person/findStaff",
         type: "post",
         data: {
-          staffid: CommonTool.getCookie("staffid")
+          staffid: userid
         },
         dataType: "json",
         success: function(res) {
@@ -202,9 +205,15 @@ var vm = new Vue({
      * 编辑项目
      * @param {*} url
      */
-    editProject: function(url) {
+    editProject: function(projectId, projectName) {
       //window.location.href = url;
-      top.postMessage(url, "http://uitocode.oa.com");
+      top.postMessage(
+        "/edit?id=" +
+          projectId +
+          "&name=" +
+          encodeURIComponent(encodeURIComponent(projectName)),
+        "http://uitocode.oa.com"
+      );
     },
     /**
      * 删除项目
@@ -254,7 +263,10 @@ var vm = new Vue({
       //点击查看项目详情
       //window.location.href = "/edit?id=" + projectId + "&name=" + projectName;
       top.postMessage(
-        "/edit?id=" + projectId + "&name=" + projectName,
+        "/edit?id=" +
+          projectId +
+          "&name=" +
+          encodeURIComponent(encodeURIComponent(projectName)),
         "http://uitocode.oa.com"
       );
     },

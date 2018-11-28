@@ -1486,12 +1486,17 @@ let TOSEEAPP = {
    */
   downloadProject: function() {
     $(".download-btn").click(function() {
+      //判断是否下载sketch源文件
+      let isDownloadsketch = $(".choose-sketch-chx input[type='checkbox']").is(
+        ":checked"
+      );
+
       var form = $("<form>"); //定义一个form表单
       form.attr("style", "display:none"); //在form表单中添加查询参数
       form.attr("target", "");
       form.attr("method", "post");
       //本地
-      form.attr("action", "/edit/download");
+      form.attr("action", "/edit/download?isDownloadsketch=" + isDownloadsketch);
       $("body").append(form); //将表单放置在web中
       form.submit(); //表单提交
     });

@@ -27,7 +27,6 @@ body {
   color: #989a9c;
   background: #191919;
   letter-spacing: 1px;
-  overflow: hidden;
 }
 
 .z-hidden,
@@ -210,10 +209,56 @@ header {
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-  align-items: center;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  justify-content: flex-end;
+}
+.header-center .zoom-widget {
+  display: flex;
+  width: 100px;
+  margin-left: 20px;
+}
+.header-center .zoom-widget button {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border: 0;
+  background: #3484f5;
+  cursor: pointer;
+}
+.header-center .zoom-widget button:after,
+.header-center .zoom-widget button:before {
+  position: absolute;
+  top: 9px;
+  left: 5px;
+  content: "";
+  display: block;
+  width: 10px;
+  height: 2px;
+  background: #fff;
+}
+.header-center .zoom-widget button:after {
+  top: 5px;
+  left: 9px;
+  width: 2px;
+  height: 10px;
+}
+.header-center .zoom-widget button:disabled {
+  background: #222;
+  cursor: default;
+}
+.header-center .zoom-widget button:disabled:after,
+.header-center .zoom-widget button:disabled:before {
+  background: #606264;
+}
+.header-center .zoom-widget button.zoom-in:after {
+  display: none;
+}
+.header-center .zoom-widget .zoom-text {
+  display: block;
+  text-align: center;
+  line-height: 20px;
+  flex: 1;
+  font-size: 12px;
 }
 .header-center .navbar-nav {
   display: -webkit-box;
@@ -251,8 +296,8 @@ header {
   color: #fff;
 }
 .header-center .user-info {
-  position: relative;
-  margin-right: 10px;
+  position: absolute;
+  right: 10px;
   font-size: 15px;
   cursor: pointer;
 }
@@ -679,7 +724,7 @@ header {
 
 .download-btn {
   position: fixed;
-  bottom: 30px;
+  bottom: 42px;
   left: 23px;
   width: 230px;
   display: inline-block;
@@ -701,6 +746,12 @@ header {
 }
 .download-btn:active {
   opacity: 0.7;
+}
+
+.choose-sketch-chx {
+  position: fixed;
+  left: 65px;
+  bottom: 17px;
 }
 
 .btn-operate {
@@ -793,8 +844,10 @@ header {
   color: #ffffff;
 }
 .design-coding-panel .compile-result-panel .screen {
+  position: relative;
   margin-top: 10px;
   background: #fff;
+  z-index: 100;
 }
 
 .btn-operate-group .design-img-btn,
@@ -1057,4 +1110,8 @@ header {
 
 .magnify-loading {
   background-color: transparent;
+}
+
+body {
+  overflow-x: hidden !important;
 }

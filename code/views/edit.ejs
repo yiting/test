@@ -58,6 +58,7 @@
           "js/edit/ai.js",
           "js/edit/userinfo.js",
           "js/edit/history.js",
+          "js/edit/zoom.js",
           "js/edit/edit.js"
         ],
         function($, Clipboard, edit) {
@@ -66,6 +67,8 @@
           new AIService().init();
           //历史记录
           new HistoryService().init();
+          //放大缩小操作类
+          new Zoom();
         }
       );
     </script>

@@ -8,3 +8,7 @@
 @import "edit/left.scss";
 @import "edit/center.scss";
 @import "edit/right.scss";
+
+body {
+  overflow-x: hidden !important;
+}

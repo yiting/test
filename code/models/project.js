@@ -29,6 +29,8 @@ Project.prototype = {
       if (err) {
         callback && callback({ code: 1, msg: "创建新项目失败", err: err });
       } else {
+        //新增插入时间
+        result.modifytime=that.modifytime;
         callback && callback({ code: 0, msg: "创建项目成功", data: result });
       }
     });

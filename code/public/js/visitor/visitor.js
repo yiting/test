@@ -38,23 +38,33 @@ var vm = new Vue({
      */
     getUserInfo: function() {
       let _this = this;
-      $.ajax({
-        url: "/person/findStaff",
-        type: "post",
-        data: {
-          staffid: CommonTool.getCookie("staffid")
-        },
-        dataType: "json",
-        success: function(res) {
-          if (res.code == 0) {
-            vm.user = res.data[0] || {};
-            //console.dir(vm);
+      let userid = CommonTool.getCookie("staffid");
+      let username = CommonTool.getCookie("staffname");
+      //如果cookie里面有数据的话，则直接从cookie里面获取用户信息
+      if (userid && username) {
+        _this.user = {
+          staffid: userid,
+          staffname: username
+        };
+      } else {
+        $.ajax({
+          url: "/person/findStaff",
+          type: "post",
+          data: {
+            staffid: userid
+          },
+          dataType: "json",
+          success: function(res) {
+            if (res.code == 0) {
+              vm.user = res.data[0] || {};
+              //console.dir(vm);
+            }
+          },
+          error: function(data) {
+            layer.msg("获取个人信息失败");
           }
-        },
-        error: function(data) {
-          layer.msg("获取个人信息失败");
-        }
-      });
+        });
+      }
     },
     /**
      *  获取访客列表

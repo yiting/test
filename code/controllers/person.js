@@ -70,6 +70,7 @@ router.post("/upload", upload.any(), function(req, res, next) {
   let p = new project(projectInsert);
   p.create(function(result) {
     projectInsert.id = result.data.insertId;
+    projectInsert.modifytime=result.data.modifytime;
     //console.log("创建项目成功");
     responseJson.projectData = projectInsert;
     //插入数据库成功后，再解压数据
