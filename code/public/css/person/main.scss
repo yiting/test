@@ -580,6 +580,28 @@
   cursor: pointer;
   z-index: 999;
 
+    &:after {
+    position: absolute;
+    z-index:1;
+    width:12.8rem;
+    height:12.8rem; 
+    left:50%;
+    top:50%;
+    background-color:#4138BA;
+    border-radius: 50%;
+    -webkit-animation:ripple 3s 0s ease infinite; 
+  }
+  @-webkit-keyframes ripple {
+     0% {
+      opcity:1;
+      -webkit-transform: scale(1); 
+    }
+     100% {
+      opcity:.2;
+      -webkit-transform: scale(1.4); 
+    }
+  }
+
   .upload-form {
     position: relative;
     margin: 0 auto;
@@ -681,4 +703,10 @@
       opacity: 0.7;
     }
   }
+}
+
+
+
+.page-demo{
+
 }

@@ -27,7 +27,7 @@ body {
   letter-spacing: 1px;
   overflow: hidden;
 }
-
+.page-demo{display: none}
 .z-hidden,
 .hidden {
   display: none !important;
