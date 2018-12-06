@@ -707,6 +707,20 @@
 
 
 
-.page-demo{
-
+.upload-form{z-index:2}
+.upload-panel:hover{transition:all .35s ease;-webkit-transform:rotate(270deg)}
+.upload-panel:after{position:absolute;top:0;left:0;z-index:1;width:100%;height:100%;border-radius:50%;background-color:rgba(0,0,0,.05);content:"";opcity:.5;-webkit-animation:ripple 3s 0s ease infinite}
+@-webkit-keyframes ripple{0%{-webkit-transform:scale(1);opcity:0}
+50%{-webkit-transform:scale(1.5);opcity:.5}
 }
+.demo-more{position:absolute;bottom:-15px;left:50%;z-index:2222;margin-left:-50px;width:0;height:0;border-top:15px solid #F9F9F9;border-right:15px solid transparent;border-left:15px solid transparent}
+.demo-more:after{position:absolute;top:-40px;left:-20px;z-index:1;width:100%;height:100%;content:"DEMO";text-align:center;font-size:14px}
+.page-demo:hover{background:#fff}
+.page-demo:hover .demo-more{border-top:15px solid #fff;border-right:15px solid transparent;border-left:15px solid transparent}
+.page-demo{position:relative;display:block;height:35px;background:#F9F9F9;transition:all .2s ease}
+.page-demo-display{height:350px}
+.page-demo ul{display:none;margin:auto;padding-top:40px;width:1170px}
+.page-demo-display ul{display:block}
+.page-demo-display .demo-more{display:none}
+.page-demo ul .resource-item{margin-bottom:20px}
+.page-demo ul .btn-more-wrap{display:none}
