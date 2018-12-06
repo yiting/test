@@ -6,8 +6,10 @@
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  /*  width: 8px;
+   height: 8px; */
+  width: 0;
+  height: 0;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -23,6 +25,7 @@ body {
   color: #989a9c;
   background: #191919;
   letter-spacing: 1px;
+  overflow: hidden;
 }
 
 .z-hidden,

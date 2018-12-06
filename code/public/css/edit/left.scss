@@ -14,7 +14,8 @@
   background: #232527;
   z-index: 50;
   left: -280px;
-
+  //与引入bootstrap样式相冲突
+  margin-bottom: 0 !important;
   &.on {
     left: 0;
   }
@@ -281,10 +282,13 @@
   font-size: 1rem;
   text-align: center;
   color: #fff;
+  font-size: 13.5px;
   vertical-align: middle;
   cursor: pointer;
   box-sizing: border-box;
   border-radius: 20px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   overflow: hidden;
   &:hover {
     opacity: 0.9;

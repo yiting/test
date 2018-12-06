@@ -33,6 +33,7 @@
         alias: {
           jquery: "js/lib/jquery.min.js",
           vue: "js/vue.js",
+          util: "js/util/util.js",
           //复制剪切板插件
           clipboard: "js/lib/clipboard.min.js",
           //图片查看器
@@ -40,9 +41,10 @@
           //二维码插件
           qrcode: "js/lib/jquery.qrcode.min.js",
           //页面弹框插件
-          layer: "layer.js"
+          layer: "layer.js",
+          slider: "js/lib/bootstrap-slider.js"
         },
-        preload: ["jquery", "vue"]
+        preload: ["jquery", "clipboard", "util", "vue"]
       });
       seajs.use(
         [
@@ -52,23 +54,26 @@
           "qrcode",
           "layer",
           "vue",
-          "js/util/config.js",
-          "js/util/util.js",
+          "slider",
+          "util",
           "js/edit/group.js",
           "js/edit/ai.js",
           "js/edit/userinfo.js",
           "js/edit/history.js",
           "js/edit/zoom.js",
+          "js/edit/compare.js",
           "js/edit/edit.js"
         ],
         function($, Clipboard, edit) {
           TOSEEAPP.initPage();
           //AI服务
-          new AIService().init();
+          //new AIService().init();
           //历史记录
           new HistoryService().init();
           //放大缩小操作类
           new Zoom();
+          //比对操作类
+          new Compare();
         }
       );
     </script>

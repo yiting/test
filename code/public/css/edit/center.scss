@@ -13,7 +13,8 @@
 
 .screen-viewer-inner {
   position: relative;
-  margin: 20px auto;
+  /* margin: 20px auto; */
+  padding: 120px 0;
   //cursor: pointer;
   //2018-08-24
   display: -webkit-box;
@@ -64,23 +65,355 @@
   /*当前artBoard对应的预览图*/
   .design-img-panel {
     display: none;
-    margin-right: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
 
+    //滑动条slider样式
+    .slider {
+      &.slider-horizontal {
+        .slider-track {
+          height: 2px;
+        }
+        .slider-handle {
+          margin-top: -9px;
+        }
+      }
+      &.slider-vertical {
+        .slider-track {
+          width: 2px;
+        }
+        .slider-handle {
+          margin-left: -9px;
+        }
+      }
+    }
     .design-title {
       color: #ffffff;
     }
 
     .design-img {
-      margin-top: 10px;
-
+      position: relative;
+      overflow: hidden !important;
       img {
-        background-color: #ffffff;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
         width: 100%;
+        background-color: #ffffff;
+        opacity: 1;
+        clip-path: inset(0 100% 0 0);
+      }
+    }
+  }
+
+  .operate-dom-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    //允许点击穿透
+    pointer-events: none;
+    z-index: 105;
+    //移入样式
+    .rules {
+      display: none;
+      //点击穿透
+      pointer-events: none;
+      .rule {
+        &.rule-v {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          border: 1.2px dashed #5393ff;
+          border-top: 0;
+          border-bottom: 0;
+          box-sizing: border-box;
+          overflow: hidden;
+          pointer-events: none;
+          z-index: 100;
+        }
+        &.rule-h {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: 1.2px dashed #5393ff;
+          border-left: 0;
+          border-right: 0;
+          box-sizing: border-box;
+          overflow: hidden;
+          pointer-events: none;
+          z-index: 100;
+        }
+      }
+    }
+    //选中样式
+    .choose-dom-style {
+      display: none;
+      position: absolute;
+      border: 1px solid #ff3366;
+      box-sizing: border-box;
+      z-index: 100;
+      pointer-events: none;
+      .dom-width-val {
+        position: absolute;
+        top: -19px;
+        left: -1px;
+        font-size: 12px;
+        line-height: 15px;
+        padding: 0 2px;
+        border: 1px solid #ff3366;
+        color: #ffffff;
+        font-weight: bolder;
+        background: #ff3366;
+        border-radius: 2px;
+        z-index: 100;
+      }
+      .dom-height-val {
+        position: absolute;
+        top: 0;
+        font-size: 12px;
+        line-height: 15px;
+        padding: 0 2px;
+        border: 1px solid #ff3366;
+        color: #ffffff;
+        font-weight: bolder;
+        background: #ff3366;
+        border-radius: 2px;
+        z-index: 100;
+      }
+      .lt {
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        width: 5px;
+        height: 5px;
+        border: 1px solid #ff3366;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background: #ffffff;
+      }
+      .lb {
+        position: absolute;
+        bottom: -3px;
+        left: -3px;
+        width: 5px;
+        height: 5px;
+        border: 1px solid #ff3366;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background: #ffffff;
+      }
+      .rt {
+        position: absolute;
+        right: -3px;
+        top: -3px;
+        width: 5px;
+        height: 5px;
+        border: 1px solid #ff3366;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background: #ffffff;
+      }
+      .rb {
+        position: absolute;
+        right: -3px;
+        bottom: -3px;
+        width: 5px;
+        height: 5px;
+        border: 1px solid #ff3366;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background: #ffffff;
+      }
+    }
+    //测距样式
+    #td {
+      &.top-d {
+        position: absolute;
+        left: 100px;
+        top: 10px;
+        width: 1px;
+        height: 100px;
+        display: none;
+        z-index: 100;
+      }
+      .line-t-before {
+        position: absolute;
+        width: 5px;
+        height: 1px;
+        background: #ff3366;
+        left: -2px;
+        top: 0;
+      }
+      .line-t-after {
+        position: absolute;
+        width: 5px;
+        height: 1px;
+        background: #ff3366;
+        left: -2px;
+        bottom: 0;
+      }
+      .line-t {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: #ff3366;
+      }
+      .top-d-v {
+        position: absolute;
+        left: 3.5px;
+        top: 30px;
+        padding: 0 3px;
+        color: #fff;
+        background: #ff3366;
+        font-size: 12px;
+      }
+    }
+    #rd {
+      &.right-d {
+        position: absolute;
+        left: 100px;
+        top: 200px;
+        width: 120px;
+        height: 1px;
+        display: none;
+        z-index: 100;
+      }
+      .line-t-before {
+        position: absolute;
+        width: 1px;
+        height: 5px;
+        background: #ff3366;
+        top: -2px;
+        left: 0;
+      }
+      .line-t-after {
+        position: absolute;
+        width: 1px;
+        height: 5px;
+        background: #ff3366;
+        right: 0;
+        top: -2px;
+      }
+      .line-r {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #ff3366;
+      }
+      .right-d-v {
+        position: absolute;
+        left: 50%;
+        top: -20px;
+        padding: 0 3px;
+        color: #fff;
+        background: #ff3366;
+        font-size: 12px;
+      }
+    }
+    #bd {
+      &.bottom-d {
+        position: absolute;
+        left: 100px;
+        top: 300px;
+        width: 1px;
+        height: 120px;
+        display: none;
+        z-index: 100;
+      }
+      .line-t-before {
+        position: absolute;
+        width: 5px;
+        height: 1px;
+        background: #ff3366;
+        left: -2px;
+        top: 0;
+      }
+      .line-t-after {
+        position: absolute;
+        width: 5px;
+        height: 1px;
+        background: #ff3366;
+        left: -2px;
+        bottom: 0;
+      }
+      .line-b {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: #ff3366;
+      }
+      .bottom-d-v {
+        position: absolute;
+        left: 3.5px;
+        top: 20px;
+        padding: 0 3px;
+        color: #fff;
+        background: #ff3366;
+        font-size: 12px;
+      }
+    }
+    #ld {
+      &.left-d {
+        position: absolute;
+        left: 150px;
+        top: 120px;
+        width: 120px;
+        height: 1px;
+        display: none;
+        z-index: 100;
+      }
+      .line-t-before {
+        position: absolute;
+        width: 1px;
+        height: 5px;
+        background: #ff3366;
+        top: -2px;
+        left: 0;
+      }
+      .line-t-after {
+        position: absolute;
+        width: 1px;
+        height: 5px;
+        background: #ff3366;
+        right: 0;
+        top: -2px;
+      }
+
+      .line-l {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #ff3366;
+      }
+
+      .left-d-v {
+        position: absolute;
+        left: 50%;
+        top: 3.5px;
+        padding: 0 3px;
+        color: #fff;
+        background: #ff3366;
+        font-size: 12px;
       }
     }
   }
 
   .compile-result-panel {
+    position: relative;
     .compile-title {
       color: #ffffff;
     }
@@ -89,41 +422,40 @@
       //2018-08-24
       //margin: 20px auto;
       position: relative;
-      margin-top: 10px;
       background: #fff;
+      transition: all .5s ease-in;
       //pointer-events:auto;
-      z-index: 100;
+      //放大缩小会被按钮遮住，但可能会影响调整结构选中输入框样式，样式在最下面
+      //z-index: 100;
     }
   }
 }
 
-.btn-operate-group {
-  .design-img-btn,
-  .ai-rate-btn {
+//比对操作区域
+#data-area-slider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -30px;
+  &.slider-horizontal {
+    width: 100% !important;
+  }
+  .slider-handle {
     position: relative;
-    width: 150px;
-    display: inline-block;
-    margin-top: 30px;
-    padding: 10px 15px;
-    border-radius: 20px;
-    background: #3484f5;
-    background: linear-gradient(to right, #0080ff, #53d1fd);
-    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    text-align: center;
-    color: #fff;
-    vertical-align: middle;
-    cursor: pointer;
-    z-index: 50;
-    &:hover {
-      opacity: 0.9;
-    }
-
-    &:active {
+    &:after {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 20px;
+      width: 6px;
+      height: 761px;
+      background: #0080ff;
       opacity: 0.7;
+      z-index: 100;
     }
   }
-  .ai-rate-btn {
-    margin-left: 10px;
-  }
+}
+#data-opacity-slider {
+  position: absolute;
+  right: -40px;
 }

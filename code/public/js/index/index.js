@@ -67,6 +67,14 @@ const operatePage = function () {
     // window.location.href = "/person";
     top.postMessage("/person", "http://uitocode.oa.com");
   });
+  $("#nav-structure-experience").click(function () {
+    // window.location.href = "/person";
+    top.postMessage("http://10.65.90.117:8080/#/check", "http://uitocode.oa.com");
+  });
+  $("#nav-img-experience").click(function () {
+    // window.location.href = "/person";
+    top.postMessage("http://10.65.95.52:8080/shitu", "http://uitocode.oa.com");
+  });
 
   //视频操作
   $(".play-video").on("click", function () {

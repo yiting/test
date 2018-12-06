@@ -85,7 +85,7 @@ var vm = new Vue({
             //如果记录为0，则展示无项目样式
             if (res.data.length == 0) {
               $(".page-main .no-project-panel").show();
-            }
+            } 
           });
           //成功后的回调方法
           callback && callback(res.data);

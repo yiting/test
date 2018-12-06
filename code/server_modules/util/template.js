@@ -13,7 +13,10 @@ let htmlStart = function(cssName) {
     cssName +
     '.css">' +
     '<script src="http://imgcache.qq.com/push/js/grid.js"></script>' +
-    "</head><body>";
+    "</head>";
+  str +=
+    "<style>::-webkit-scrollbar {width: 0;height: 0;}::-webkit-scrollbar-thumb {background-color: rgba(0, 0, 0, 0.7);border-radius: 4px;}</style>";
+  str += "<body>";
 
   return str;
 };

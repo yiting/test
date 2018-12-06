@@ -72,30 +72,6 @@ let TOSEEAPP = {
       );
       sectionItem.show();
       sectionItem.siblings().hide();
-      //2018-11-11
-      let iframeBody = $("#screen")
-        .contents()
-        .find("body");
-
-      // Yone start 点击结构按钮
-      switch (headerItemIndex) {
-        case 1:
-        case 2:
-          //添加事件监听点击移动事件
-          iframeBody.on("mousemove click", function(e) {});
-          _this.removeRectChoosen();
-          break;
-        case 3:
-          {
-            //取消操作页面点击移动事件
-            _this.hideIframeInfoDom();
-            iframeBody.off("mousemove click", function(e) {});
-            _this.initRectChosen();
-            _this.hideAttrPanel();
-          }
-          break;
-      }
-      // Yone end
     });
     //跳转到个人中心
     $(".back-person-btn").on("click", function() {
@@ -108,9 +84,11 @@ let TOSEEAPP = {
    * 单位转换
    */
   unitSize: function(length, isText) {
-    var length = Math.round((length / TOSEEConfig.scale) * 10) / 10,
-      units = TOSEEConfig.unit.split("/"),
-      unit = units[0];
+    //var length = Math.round((length / TOSEEConfig.scale) * 10) / 10,
+    var length =
+      Math.round((length / TOSEEConfig.scale) * Math.pow(10, 2)) /
+      Math.pow(10, 2);
+    (units = TOSEEConfig.unit.split("/")), (unit = units[0]);
     if (units.length > 1 && isText) {
       unit = units[1];
     }
@@ -294,11 +272,6 @@ let TOSEEAPP = {
     let needChangeDomList2 = $('*[data-need="unit"]');
     _this.domChangeUnit(needChangeDomList1);
     _this.domChangeUnit(needChangeDomList2);
-    /* let needChangeDomList =
-      $("#screen")
-        .contents()
-        .find('*[data-need="unit"]') | $('*[data-need="unit"]');
-    _this.domChangeUnit(needChangeDomList); */
   },
   domChangeUnit: function(domList) {
     let _this = this;
@@ -380,6 +353,7 @@ let TOSEEAPP = {
    * 中间面板操作
    */
   centerOperate: function() {
+    let that = this;
     //切换编译模式：默认使用普通模式
     $(".compilation-mode-item input[type=radio]").click(function() {
       let _this = $(this);
@@ -397,6 +371,15 @@ let TOSEEAPP = {
     });
     //获取当前artBoard设计图
     $(".design-img-btn").click(function() {
+      //清除操作区域样式
+      //1.去掉选中样式
+      that.hideChooseDom();
+      //2.去掉移入样式
+      that.hideHoverDom();
+      //3.初始化隐藏测距dom
+      that.hideDistance();
+      //4.选中面板其他区域，隐藏右侧属性边框面板
+      that.hideAttrPanel();
       let _this = $(this);
       let showPanelFlag = _this.data("show");
       //0:默认隐藏，点击请求预览图，显示面板；1：已显示预览图，点击隐藏面板
@@ -416,8 +399,7 @@ let TOSEEAPP = {
               `../complie/${projectName}/images/` + data.artBoardImgName;
             //设置显示当前artBoardId对应的预览图
             $("#design-img-prew").attr("src", artBoardImgUrl);
-            _this.data("show", 1);
-            _this.text("隐藏设计稿");
+            _this.data("show", 1).text("隐藏设计稿");
             $(".design-img-panel").show();
             //2018-11-13:重新计算偏移选中框位置
             //当选中结构tab时，才执行此方法
@@ -448,6 +430,18 @@ let TOSEEAPP = {
     let _this = this;
     //2018-10-24:选中元素操作
     $("#screen").load(function(event) {
+      let screenHeight = this.contentWindow.document.documentElement
+        .scrollHeight;
+      //this.height = screenHeight;
+      $(this).height(screenHeight);
+      $(".design-img").height(screenHeight);
+      let verticalLineHeight = screenHeight + 15;
+      //操作伪类，更改其高度
+      let modifyAfterHeight =
+        "<style>#data-area-slider .slider-handle::after{content:'';height:" +
+        verticalLineHeight +
+        "px;}</style>";
+      $("head").append(modifyAfterHeight);
       //let val = $("#screen").contents().find("div[data-id=11F1A381-992E-475F-ABA2-7BC1FF08FEEF]").text();
       //alert(val)
       //获取当前缩放的font-size基数
@@ -459,8 +453,9 @@ let TOSEEAPP = {
           .replace("px", "")
       );
       let iframeBody = $("#screen")
-        .contents()
-        .find("body");
+          .contents()
+          .find("body"),
+        operateBody = $(".operate-dom-panel");
       //2018-10-30:移入到元素效果
       //iframe内部监听事件
       //2018-10-29:移入iframe内部元素，出现边框线
@@ -485,13 +480,9 @@ let TOSEEAPP = {
         ElementTxt,
         ElementClass;
 
+      //2018-12-05:页面操作dom节点
+      let operatePanel = [];
       //iframe内部监听事件
-      //2018-10-29:移入iframe内部元素，出现边框线
-      let hoverDomStyle = `<div class="rules" style="display:none;"><div class="rule rule-v"  style="position:fixed;top:0;width:100%;height:100%;border:1.2px dashed #5393FF;border-top:0;border-bottom:0;box-sizing:border-box;overflow:hidden;"></div><div class="rule rule-h"  style="position:absolute;left:0;width:100%;height:100%;border:1.2px dashed #5393FF;border-left: 0;border-right: 0;box-sizing:border-box;overflow:hidden;"></div></div>`;
-      //如果不存在，则固定插入到body中
-      if (iframeBody.find(".rules").length == 0) {
-        iframeBody.append(hoverDomStyle);
-      }
       //hover
       iframeBody.mousemove(function(e) {
         e = window.event || e; // 兼容IE7
@@ -499,31 +490,8 @@ let TOSEEAPP = {
         hoverElement = $(e.srcElement || e.target);
         //移入在选中之前，将移入的对象赋值给选中对象
         chooseElement = hoverElement;
-        //console.log(hoverElement[0].className);
-        //监听：鼠标位置如果处于元素内部，则移动时候，位置线不动态改变，不执行下去
-        let mouseX = parseFloat(e.pageX).toFixed(2),
-          mouseY = parseFloat(e.pageY).toFixed(2);
-        if (
-          mouseX >= positionXReal &&
-          mouseX <=
-            positionXReal + ElementWidthReal + ElementPLReal + ElementPRReal &&
-          mouseY >= positionYReal &&
-          mouseY <=
-            positionYReal + ElementHeightReal + ElementPTReal + ElementPBReal
-        ) {
-          return false;
-        }
-        //如果移入在移入线上，隐藏位置线，并不执行下去
-        if (
-          hoverElement.hasClass("rule-h") ||
-          hoverElement.hasClass("rule-v")
-        ) {
-          _this.hideHoverDom();
-          return false;
-        }
-        let hoverElementChildLen = hoverElement.children().length;
         //没有子节点，针对最细粒度节点操作
-        if (hoverElementChildLen <= 2 && hoverElement[0].nodeName != "HTML") {
+        if (hoverElement[0].className.indexOf("body") <= -1) {
           //重新获取
           /*positionX = parseFloat(
               (parseFloat(hoverElement.offset().left) / baseFontSize).toFixed(2)
@@ -571,17 +539,17 @@ let TOSEEAPP = {
           //边框样式:显示样式边框
           //当前hover节点添加
           //边框样式:显示样式边框
-          iframeBody.find(".rules .rule-v").css({
+          operateBody.find(".rules .rule-v").css({
             left: `${positionXReal}px`,
             width: `${ElementWidthReal + ElementPLReal + ElementPRReal}px`
           });
-          iframeBody.find(".rules .rule-h").css({
+          operateBody.find(".rules .rule-h").css({
             top: `${positionYReal}px`,
             height: `${ElementHeightReal + ElementPTReal + ElementPBReal}px`
           });
-          iframeBody.find(".rules").show();
+          operateBody.find(".rules").show();
+          //$(hoverElement).css("background","rgba(0,0,0,.5)");
           $(hoverElement).addClass("hover-dom-show");
-          e.stopPropagation();
 
           //移入的时候，进行测量间距
           //调用测量方法
@@ -603,7 +571,7 @@ let TOSEEAPP = {
         _this.showAttrPanel();
         let chooseElementChildLen = chooseElement.children().length;
         //没有子节点，针对最细粒度节点操作
-        if (chooseElementChildLen <= 2 && hoverElement[0].nodeName != "HTML") {
+        if (hoverElement[0].className.indexOf("body") <= -1) {
           //1.dom节点属性信息
           //文本
           ElementTxt = chooseElement.text();
@@ -628,32 +596,36 @@ let TOSEEAPP = {
             .data("real", ElementHeightReal);
           $(".opacity-val").val(ElementOpacity);
           //2.dom样式信息
-          //设置选中节点部位不超出
           //选中节点样式2
-          let chooseColor = "#ff3366";
-          let chooseDomStyle = `<div class='choose-dom-style' style='position: absolute;left:${positionXReal}px;top: ${positionYReal}px;width:${ElementWidthReal +
-            ElementPLReal +
-            ElementPRReal}px;height:${ElementHeightReal +
-            ElementPTReal +
-            ElementPBReal}px;border:1px solid ${chooseColor};box-sizing:border-box;'>
-                    <span class="dom-width-val" data-need="unit" data-real="${ElementWidthReal +
-                      ElementPLReal +
-                      ElementPRReal}" style="position: absolute;top:-19px;left:-1px;font-size:12px;line-height:15px;padding:0 2px;border: 1px solid ${chooseColor};color:#FFFFFF;font-weight:bolder;background:${chooseColor};border-radius:2px;z-index: 100;">${ElementWidth}</span>
-                    <span class='lt' style='position: absolute;top:-3px;left:-3px;width: 5px;height: 5px;border: 1px solid ${chooseColor};border-radius:5px;box-sizing:border-box;background:#ffffff;'></span>
-                    <span class='lb' style='position: absolute;bottom:-3px;left:-3px;width: 5px;height: 5px;border: 1px solid ${chooseColor};border-radius:5px;box-sizing:border-box;background:#ffffff;'></span>
-                    <span class='rt' style='position: absolute;right:-3px;top:-3px;width: 5px;height: 5px;border: 1px solid ${chooseColor};border-radius:5px;box-sizing:border-box;background:#ffffff;'></span>
-                    <span class='rb' style='position: absolute;right:-3px;bottom:-3px;width: 5px;height: 5px;border: 1px solid ${chooseColor};border-radius:5px;box-sizing:border-box;background:#ffffff;'></span>
-                    <span class="dom-height-val" data-need="unit" data-real="${ElementHeightReal +
-                      ElementPTReal +
-                      ElementPBReal}" style="position: absolute;top:0;left:${ElementWidthReal +
-            ElementPLReal +
-            ElementPRReal}px;font-size:12px;line-height:15px;padding:0 2px;border: 1px solid ${chooseColor};color:#FFFFFF;font-weight:bolder;background:${chooseColor};border-radius:2px;z-index: 100;">${ElementHeight}</span>
-                    </div>`;
-          //给未选中的节点删除样式和属性
+          //首先给未选中的节点删除样式和属性
           _this.hideChooseDom();
-          //边框样式:添加边框等
-          iframeBody.append(chooseDomStyle);
-          //给选中的节点添加样式和属性
+          //初始化隐藏测距dom
+          _this.hideDistance();
+          //然后给选中的添加选中样式
+          $(".dom-width-val")
+            .data("real", `${ElementWidthReal + ElementPLReal + ElementPRReal}`)
+            .text(`${ElementWidth}`)
+            .show();
+          $(".dom-height-val")
+            .data(
+              "real",
+              `${ElementHeightReal + ElementPTReal + ElementPBReal}`
+            )
+            .text(`${ElementHeight}`)
+            .css({
+              left: `${ElementWidthReal + ElementPLReal + ElementPRReal}px`
+            })
+            .show();
+          $(".choose-dom-style")
+            .css({
+              left: `${positionXReal}px`,
+              top: `${positionYReal}px`,
+              width: `${ElementWidthReal + ElementPLReal + ElementPRReal}px`,
+              height: `${ElementHeightReal + ElementPTReal + ElementPBReal}px`
+            })
+            .show();
+
+          //给选中的节点元素添加样式和属性
           chooseElement.addClass("choose-dom-show");
           //设置显示的代码
           //声明选中节点生成的代码字符串
@@ -718,8 +690,6 @@ let TOSEEAPP = {
           }
           //设置对应的代码字符串
           $(".language-attr-list").html(codeStr);
-          //初始化隐藏测距dom
-          _this.hideDistance();
         }
       });
       //点击其他地方
@@ -741,8 +711,6 @@ let TOSEEAPP = {
    */
   measureDistance: function() {
     let _this = this;
-    //将测量dom初始化到iframe页面中
-    _this.initMeasureDom();
     //测量显示choose Dom与hover Dom的距离
     _this.domDistance();
   },
@@ -760,8 +728,9 @@ let TOSEEAPP = {
     let topData, rightData, bottomData, leftData;
     //获取当前选择的节点dom、移入的dom
     let iframeBody = $("#screen")
-      .contents()
-      .find("body");
+        .contents()
+        .find("body"),
+      operateBody = $(".operate-dom-panel");
     let distanceChooseDom = iframeBody.find(".choose-dom-show"),
       distanceHoverDom = iframeBody.find(".hover-dom-show");
     //如果选择dom和移入dom均不存在，则不执行
@@ -828,7 +797,7 @@ let TOSEEAPP = {
 
     //顶部距离
     if (topData) {
-      iframeBody
+      operateBody
         .find("#td")
         .css({
           left: topData.x,
@@ -837,7 +806,7 @@ let TOSEEAPP = {
         })
         .show();
       //动态计算线内容所在位置
-      let topDVDom = iframeBody.find(".top-d-v");
+      let topDVDom = operateBody.find(".top-d-v");
       topDVDom
         .css({
           top: (topData.h - topDVDom.height()) / 2
@@ -846,7 +815,7 @@ let TOSEEAPP = {
     }
     //右侧距离
     if (rightData) {
-      iframeBody
+      operateBody
         .find("#rd")
         .css({
           left: rightData.x,
@@ -855,7 +824,7 @@ let TOSEEAPP = {
         })
         .show();
       //动态计算线内容所在位置
-      let rightDVDom = iframeBody.find(".right-d-v");
+      let rightDVDom = operateBody.find(".right-d-v");
       rightDVDom
         .css({
           left: (rightData.w - rightDVDom.width()) / 2
@@ -864,7 +833,7 @@ let TOSEEAPP = {
     }
     //底部距离
     if (bottomData) {
-      iframeBody
+      operateBody
         .find("#bd")
         .css({
           left: bottomData.x,
@@ -873,7 +842,7 @@ let TOSEEAPP = {
         })
         .show();
       //动态计算线内容所在位置
-      let bottomDVDom = iframeBody.find(".bottom-d-v");
+      let bottomDVDom = operateBody.find(".bottom-d-v");
       bottomDVDom
         .css({
           top: (bottomData.h - bottomDVDom.height()) / 2
@@ -882,7 +851,7 @@ let TOSEEAPP = {
     }
     //左侧距离
     if (leftData) {
-      iframeBody
+      operateBody
         .find("#ld")
         .css({
           left: leftData.x,
@@ -891,41 +860,13 @@ let TOSEEAPP = {
         })
         .show();
       //动态计算线内容所在位置
-      let leftDVDom = iframeBody.find(".left-d-v");
+      let leftDVDom = operateBody.find(".left-d-v");
       leftDVDom
         .css({
           left: (leftData.w - leftDVDom.width()) / 2
         })
         .text(_this.unitSize(leftData.w));
     }
-  },
-  /**
-   *
-   */
-  initMeasureDom: function() {
-    //2018-11-07:移入测量相对距离
-    //顶部距离dom
-    let measureTopDomHtml = `<div id='td' class='distance top-d' style='position:absolute;left:100px;top:10px;width:1px;height:100px;display:none;'><div class="line-t-before" style="position:absolute;width: 5px;height:1px;background:#ff3366;left:-2px;top:0;"></div><div class="line-t-after" style="position:absolute;width: 5px;height:1px;background:#ff3366;left:-2px;bottom:0;"></div><div class='line-t' style='position:absolute;top:0;bottom:0;width:1px;background:#ff3366;'></div><div class='top-d-v' style="position:absolute;left:3.5px;top:30px;padding:0 3px;color:#fff;background:#ff3366;font-size: 12px;">上</div></div>`;
-    //右部距离dom
-    let measureRightDomHtml = `<div id='rd' class='distance right-d' style='position:absolute;left:100px;top:200px;width:120px;height:1px;display:none;'><div class="line-t-before" style="position:absolute;width: 1px;height:5px;background:#ff3366;top:-2px;left:0;"></div><div class="line-t-after" style="position:absolute;width: 1px;height:5px;background:#ff3366;right:0;top:-2px;"></div><div class='line-r' style='position:absolute;left:0;right:0;height:1px;background:#ff3366;'></div><div class='right-d-v' style="position:absolute;left:50%;top:-20px;padding:0 3px;color:#fff;background:#ff3366;font-size: 12px;">右</div></div>`;
-    //底部距离dom
-    let measureBottomDomHtml = `<div id='bd' class='distance bottom-d' style='position:absolute;left:100px;top:300px;width:1px;height:120px;display:none;'><div class="line-t-before" style="position:absolute;width: 5px;height:1px;background:#ff3366;left:-2px;top:0;"></div><div class="line-t-after" style="position:absolute;width: 5px;height:1px;background:#ff3366;left:-2px;bottom:0;"></div><div class='line-b' style='position:absolute;top:0;bottom:0;width:1px;background:#ff3366;'></div><div class='bottom-d-v' style="position:absolute;left:3.5px;top:20px;padding:0 3px;color:#fff;background:#ff3366;font-size: 12px;">下</div></div>`;
-    //左边距离dom
-    let measureLeftDomHtml = `<div id='ld' class='distance left-d' style='position:absolute;left:150px;top:120px;width:120px;height:1px;display:none;'><div class="line-t-before" style="position:absolute;width: 1px;height:5px;background:#ff3366;top:-2px;left:0;"></div><div class="line-t-after" style="position:absolute;width: 1px;height:5px;background:#ff3366;right:0;top:-2px;"></div><div class='line-l' style='position:absolute;left:0;right:0;height:1px;background:#ff3366;'></div><div class='left-d-v' style="position:absolute;left:50%;top:3.5px;padding:0 3px;color:#fff;background:#ff3366;font-size: 12px;">左</div></div>`;
-    //给页面添加测量线dom
-    let iframeBody = $("#screen")
-      .contents()
-      .find("body");
-    //页面不存在测距元素dom，则新增
-    if (iframeBody.find(".distance").length > 0) {
-      return;
-    }
-    iframeBody.append(
-      measureTopDomHtml +
-        measureRightDomHtml +
-        measureBottomDomHtml +
-        measureLeftDomHtml
-    );
   },
 
   /**
@@ -943,27 +884,30 @@ let TOSEEAPP = {
    */
   hideDistance: function() {
     let iframeBody = $("#screen")
-      .contents()
-      .find("body");
-    iframeBody.find("#td,#rd,#bd,#ld").hide();
+        .contents()
+        .find("body"),
+      operateBody = $(".operate-dom-panel");
+    operateBody.find("#td,#rd,#bd,#ld").hide();
   },
   /**
    *隐藏选中dom的长短信息
    */
   hideChooseDistance: function() {
     let iframeBody = $("#screen")
-      .contents()
-      .find("body");
-    iframeBody.find(".dom-width-val,.dom-height-val").hide();
+        .contents()
+        .find("body"),
+      operateBody = $(".operate-dom-panel");
+    operateBody.find(".dom-width-val,.dom-height-val").hide();
   },
   /**
    * 清除移入样式
    */
   hideHoverDom: function() {
     let iframeBody = $("#screen")
-      .contents()
-      .find("body");
-    iframeBody.find(".rules").hide();
+        .contents()
+        .find("body"),
+      operateBody = $(".operate-dom-panel");
+    operateBody.find(".rules").hide();
     iframeBody.find(".hover-dom-show").removeClass("hover-dom-show");
   },
   /**
@@ -971,9 +915,10 @@ let TOSEEAPP = {
    */
   hideChooseDom: function() {
     let iframeBody = $("#screen")
-      .contents()
-      .find("body");
-    iframeBody.find(".choose-dom-style").remove();
+        .contents()
+        .find("body"),
+      operateBody = $(".operate-dom-panel");
+    operateBody.find(".choose-dom-style").hide();
     iframeBody.find(".choose-dom-show").removeClass("choose-dom-show");
   },
   /**
@@ -1359,26 +1304,6 @@ let TOSEEAPP = {
               _this.getImgsByArtBoardId();
               //刷新页面
               $("#screen").attr("src", currentArtBoardUrl);
-              //再次请求生成url
-              //这个过程中可以去请求url
-              //发送一个请求，将生成好的文件上传到后台服务器，返回在线url
-              _this.onlineUrlAjaxFun(
-                postData,
-                function(resultData) {
-                  //拼接而成，防止后台重复生成新的时间戳链接
-                  currentArtBoardOnlineUrl = resultData.artUrl;
-                  artboardsUrlArr.forEach((item, i) => {
-                    if (item.artboardId == currentArtboardId) {
-                      artboardsUrlArr[
-                        i
-                      ].artBoardOnlineUrl = currentArtBoardOnlineUrl;
-                    }
-                  });
-                },
-                function(error) {
-                  layer.msg("生成二维码失败");
-                }
-              );
             }
           },
           function(error) {
@@ -1456,7 +1381,7 @@ let TOSEEAPP = {
   showQrCodeAndUrl: function() {
     $(".qr").hover(
       function() {
-        if (!currentArtBoardOnlineUrl) {
+        if (!currentArtBoardUrl) {
           layer.msg("二维码正在生成中，请稍后...");
           //没有生成处理，则隐藏
           $(".qr i").hide();
@@ -1470,10 +1395,10 @@ let TOSEEAPP = {
           render: "canvas", //也可以替换为table
           width: 360,
           height: 360,
-          text: encodeURI(currentArtBoardOnlineUrl)
+          text: encodeURI(currentArtBoardUrl)
         });
         //设置显示文字：地址链接
-        $(".current-url").val(currentArtBoardOnlineUrl);
+        $(".current-url").val(currentArtBoardUrl);
       },
       function() {
         //移出，清除下二维码
@@ -1496,7 +1421,10 @@ let TOSEEAPP = {
       form.attr("target", "");
       form.attr("method", "post");
       //本地
-      form.attr("action", "/edit/download?isDownloadsketch=" + isDownloadsketch);
+      form.attr(
+        "action",
+        "/edit/download?isDownloadsketch=" + isDownloadsketch
+      );
       $("body").append(form); //将表单放置在web中
       form.submit(); //表单提交
     });

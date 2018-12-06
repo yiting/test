@@ -6,8 +6,10 @@
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  /*  width: 8px;
+   height: 8px; */
+  width: 0;
+  height: 0;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -137,7 +139,6 @@ main {
   position: relative;
   z-index: 10;
 }
-
 .page-header .header-navbar {
   height: 62px;
   line-height: 62px;
@@ -148,7 +149,6 @@ main {
   position: relative;
   z-index: 2;
 }
-
 .page-header .header-navbar .container {
   position: relative;
   display: -webkit-box;
@@ -164,7 +164,6 @@ main {
   margin-left: auto;
   margin-right: auto;
 }
-
 .page-header .header-navbar .container .navbar-logo {
   margin-right: 48px;
   color: #fff;
@@ -173,7 +172,6 @@ main {
   font-family: Arial;
   font-weight: 700;
 }
-
 .page-header .header-navbar .container .navbar-logo::before {
   content: "";
   display: inline-block;
@@ -184,13 +182,11 @@ main {
   background-repeat: no-repeat;
   vertical-align: -7px;
 }
-
 .page-header .header-navbar .container .header-navbar__main {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
 }
-
 .page-header .header-navbar .container .header-navbar__main .navbar-nav {
   display: -webkit-box;
   display: -webkit-flex;
@@ -205,7 +201,6 @@ main {
   margin: 0 10px 0;
   text-align: right;
 }
-
 .page-header .header-navbar .container .header-navbar__main .navbar-nav .nav-item {
   display: inline-block;
   letter-spacing: normal;
@@ -213,7 +208,6 @@ main {
   height: 100%;
   vertical-align: top;
 }
-
 .page-header .header-navbar .container .header-navbar__main .navbar-nav .nav-item .nav-link {
   opacity: 0;
   color: #999;
@@ -223,21 +217,17 @@ main {
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
-
 .page-header .header-navbar .container .header-navbar__main .navbar-nav .nav-item .nav-link:hover {
   color: #fff;
 }
-
 .page-header .header-navbar .container .user-info {
   display: inline-block;
   position: relative;
   margin-left: 20px;
 }
-
 .page-header .header-navbar .container .user-info .user-info-panel {
   display: inline-block;
 }
-
 .page-header .header-navbar .container .user-info .user-info-panel .avatar {
   width: 32px;
   height: 32px;
@@ -249,7 +239,6 @@ main {
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
-
 .page-header .header-navbar .container .user-info .user-info-panel .user-name {
   display: inline-block;
   padding-right: 10px;
@@ -258,7 +247,6 @@ main {
   vertical-align: middle;
   font-weight: lighter;
 }
-
 .page-header .header-navbar .container .user-info .feed-back-btn {
   background-color: #fff;
   color: #126ee1;
@@ -281,6 +269,7 @@ main {
 
 .visitor-list-panel {
   padding-top: 30px;
+  padding-bottom: 100px;
   width: 1200px;
   margin: 0 auto;
   color: #ffffff;
@@ -291,17 +280,14 @@ main {
   -khtml-user-select: text;
   user-select: text;
 }
-
 .visitor-list-panel .visitor-num {
   color: #000000;
   font-size: 17px;
 }
-
 .visitor-list-panel .visitor-num .num-val {
   font-size: 25px;
   font-weight: bold;
 }
-
 .visitor-list-panel .visitor-list {
   margin-top: 20px;
   display: flex;
@@ -310,7 +296,6 @@ main {
   /*CSS3样式，支持webkit，ms*/
   -ms-flex-wrap: wrap;
 }
-
 .visitor-list-panel .visitor-list .visitor-item {
   position: relative;
   margin-bottom: 20px;
@@ -321,13 +306,11 @@ main {
   display: flex;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.48);
 }
-
 .visitor-list-panel .visitor-list .visitor-item .visitor-avatar {
   display: block;
   width: 100px;
   height: 100px;
 }
-
 .visitor-list-panel .visitor-list .visitor-item .user-info {
   position: relative;
   flex: 1;
@@ -336,23 +319,21 @@ main {
   height: 100%;
   background-color: #3b83cc;
 }
-
 .visitor-list-panel .visitor-list .visitor-item .user-info .user-name {
   font-size: 16px;
 }
-
 .visitor-list-panel .visitor-list .visitor-item .user-info .user-deptname {
   position: absolute;
   left: 10px;
   bottom: 5px;
 }
-
 .visitor-list-panel .visitor-list .visitor-item .user-info .last-login-time {
   margin-top: 3px;
 }
 
 body {
   background-color: #f2f2f2;
+  overflow-y: auto;
 }
 
 .user-info-panel {
