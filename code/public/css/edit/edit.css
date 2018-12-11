@@ -1,9 +1,9 @@
 @charset "UTF-8";
 /*加载第三方css*/
-@import url(lib/font-awesome.min.css);
-@import url(lib/jquery.magnify.css);
+@import url(../lib/font-awesome.min.css);
+@import url(../lib/jquery.magnify.css);
 /* @import "http://libs.baidu.com/bootstrap/3.2.0/css/bootstrap.min.css"; */
-@import url(lib/bootstrap-slider.min.css);
+@import url(../lib/bootstrap-slider.min.css);
 .tooltip {
   position: absolute;
   z-index: 1070;
