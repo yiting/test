@@ -134,18 +134,48 @@ router.post("/getArtBoardImg", function(req, res, next) {
   //getImgsPrew(req.body.artboardId);
   let artBoardID = req.body.artboardId;
   let artBoardImgName = artBoardID + ".png";
-  let artBoardObj = {
-    path: artBoardImgName,
-    _origin: {
-      do_objectID: artBoardID
+  //projectId和artBoard同时相同时，artBoardImg再次请求，不必再次图片生成
+  let artbd = new artboard({
+    artImg: artBoardImgName
+  });
+  //请求数据库，判断数据库是否已存入预览图地址
+  artbd.getArtboardImg(artBoardID, projectUUID, function(result) {
+    //查询数据库存在记录时，则不需要再次生成
+    if (result.code == 0) {
+      //数据库存在预览图地址
+      if (result.data.length != 0) {
+        let resultData = result.data[0];
+        //返回生成的预览图地址
+        res.send(
+          JSON.stringify({
+            artBoardImgName: artBoardImgName
+          })
+        );
+      } else {
+        //不存在数据库时，需要插入数据库
+        let artBoardObj = {
+          path: artBoardImgName,
+          _origin: {
+            do_objectID: artBoardID
+          }
+        };
+        Promise.all([getArtBoardImg(artBoardObj)]).then(info => {
+          //将地址存储到数据库中
+          //生成图片完成后，则将当前artBoard信息插入到数据库
+          //将生成预览图地址存入到数据库
+          artbd.updateArtBoardImg(artBoardID, projectUUID, function(result) {
+            //返回生成的预览图地址
+            res.send(
+              JSON.stringify({
+                artBoardImgName: artBoardImgName
+              })
+            );
+          });
+        });
+      }
+    } else {
+      console.log("查询结果失败");
     }
-  };
-  Promise.all([getArtBoardImg(artBoardObj)]).then(info => {
-    res.send(
-      JSON.stringify({
-        artBoardImgName: artBoardImgName
-      })
-    );
   });
 });
 
@@ -367,13 +397,19 @@ let initLogConfig = function(req, res, next) {
   //平台模块日志初始化
   qlog.init({
     projectName: projectName + ".sketch",
-    url:
+    //测试环境ip访问
+    /* url:
       "http://" +
       req.headers.host +
       "/edit?id=" +
       projectUUID +
       "&name=" +
-      projectName
+      encodeURIComponent(encodeURIComponent(projectName)) */
+    url:
+      "http://uitocode.oa.com/edit?id=" +
+      projectUUID +
+      "&name=" +
+      encodeURIComponent(encodeURIComponent(projectName))
   });
   logger = qlog.getInstance(qlog.moduleData.platform);
 };

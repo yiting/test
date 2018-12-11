@@ -35,6 +35,12 @@ var vm = new Vue({
       top.postMessage("/visitor", "http://uitocode.oa.com");
     },
     /**
+     * 查看所有项目
+     */
+    viewProjects: function() {
+      top.postMessage("/project", "http://uitocode.oa.com");
+    },
+    /**
      * 渲染个人信息
      */
     getUserInfo: function() {
@@ -62,6 +68,13 @@ var vm = new Vue({
     },
 
     /**
+     * 展示公共项目
+     * @param {*} event
+     */
+    showExampleDemo: function(event) {
+      $(".page-demo").addClass("page-demo-display");
+    },
+    /**
      *  获取项目列表
      */
     getProjectList: function(callback) {
@@ -85,7 +98,7 @@ var vm = new Vue({
             //如果记录为0，则展示无项目样式
             if (res.data.length == 0) {
               $(".page-main .no-project-panel").show();
-            } 
+            }
           });
           //成功后的回调方法
           callback && callback(res.data);

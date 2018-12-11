@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
-@import "_global/reset";
-@import "_global/header";
-@import "_global/footer";
+@import "../_global/reset";
+@import "../_global/header";
+@import "../_global/footer";
 
 //中间区域
-@import "index/main.scss";
+@import "main.scss";
 body {
   position: relative;
   font: 12px/1.5 microsoft yahei, arial, sans-serif;

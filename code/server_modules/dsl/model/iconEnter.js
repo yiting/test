@@ -33,6 +33,7 @@ module.exports.isSimilar = function (a, b, config) {
         Math.abs(aTxt.styles.maxSize - bTxt.styles.maxSize) < config.dsl.operateErrorCoefficient;
 }
 module.exports.is = function (dom, parent, config) {
+    return false;
     const txt = dom.children.find((child) => {
         return child.type == Dom.type.TEXT;
     });

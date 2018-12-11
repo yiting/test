@@ -7,6 +7,7 @@ class Compare {
     this.areaBtn = "";
     this.opacityBtn = "";
     this.designImgEle = $("#design-img-prew");
+    this.measureEle = $(".operate-dom-panel");
     this.init();
   }
   init() {
@@ -30,22 +31,35 @@ class Compare {
         }
       })
       .data("slider");
-    areaSlider.on("slide", function() {
-      //console.log(areaSlider.getValue());
+    areaSlider.on("slide", function(e) {
       let currentAreaVal = areaSlider.getValue();
       let maskWidth = 100 - currentAreaVal;
       that.setArea(that.designImgEle, maskWidth);
     });
+
+    areaSlider.on("slideStart", function(e) {
+      //滑动开始，不可以穿透
+      that.measureEle.css({
+        "pointer-events": "auto"
+      });
+    });
+    areaSlider.on("slideStop", function(e) {
+      //滑动停止，可穿透
+      that.measureEle.css({
+        "pointer-events": "none"
+      });
+    });
+
     //透明度设置
     var opacitySlider = $("#opacity-slider")
       .slider({
         formatter: function(value) {
           return "透明度: " + value + "%";
         },
-        reversed: true
+        reversed : true
       })
       .data("slider");
-    opacitySlider.on("slide", function() {
+    opacitySlider.on("slide", function(e) {
       //console.log(opacitySlider.getValue());
       let currentOpacityVal = opacitySlider.getValue() / 100;
       that.setOpacity(that.designImgEle, currentOpacityVal);

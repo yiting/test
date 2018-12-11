@@ -1,0 +1,13 @@
+@import "../_global/reset.scss";
+@import "../_global/header.scss";
+
+@import "../tips/main.scss";
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background: #ffffff;
+}

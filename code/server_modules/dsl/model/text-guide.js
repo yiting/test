@@ -12,8 +12,23 @@ module.exports.type = Dom.type.Layout;
 module.exports.textCount = 1;
 module.exports.imageCount = 1;
 module.exports.mixCount = 0; //-1，即为任意混合数
-module.exports.template = function () {
-
+module.exports.canShareStyle = true; // 如果为简易元素，则不与其他结构复用样式
+module.exports.isSimilar = function (a, b, config) {
+    const atxt = a.children.find((child) => {
+        return child.type == Dom.type.TEXT;
+    });
+    const aimg = a.children.find((child) => {
+        return child.type == Dom.type.IMAGE;
+    });
+    const btxt = b.children.find((child) => {
+        return child.type == Dom.type.TEXT;
+    });
+    const bimg = b.children.find((child) => {
+        return child.type == Dom.type.IMAGE;
+    });
+    return atxt.styles.maxSize == btxt.styles.maxSize &&
+        aimg.width == bimg.width &&
+        aimg.height == bimg.height
 }
 module.exports.is = function (dom, parent, config) {
     // 判断：只有两个节点

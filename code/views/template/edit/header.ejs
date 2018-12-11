@@ -13,10 +13,22 @@
       <button class="zoom-out"></button>
     </div>
     <!-- 获取当前设计稿图按钮 -->
-    <div class="btn-operate-group">
-      <div class="design-img-btn" data-show="0">比对设计稿</div>
-      <!-- <div class="ai-rate-btn" data-show="0">显示命中率</div> -->
+    <!--
+      <div class="btn-operate-group">
+        <div class="design-img-btn" data-show="0">比对设计稿</div>
+      </div>
+    -->
+    <!-- <div class="ai-rate-btn" data-show="0">显示命中率</div> -->
+
+    <div class="show-notes">
+      <label for="show-notes">设计稿</label>
+      <div class="slidebox">
+        <input id="show-notes" type="checkbox" name="show-notes" /><label
+          for="show-notes"
+        ></label>
+      </div>
     </div>
+
     <div v-if="user.staffname!=''" class="user-info back-person-btn">
       <a href="#" class="nav-link">
         <span

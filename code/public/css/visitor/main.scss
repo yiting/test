@@ -1,5 +1,6 @@
 //隐藏顶部header标签
-.mod-header-nav {
+.mod-header-nav,
+.page-demo {
   display: none;
 }
 
@@ -33,6 +34,10 @@
     flex-flow: wrap;
     /*CSS3样式，支持webkit，ms*/
     -ms-flex-wrap: wrap;
+    /* &:after {
+      content: "";
+      flex: auto;
+    } */
 
     .visitor-item {
       position: relative;

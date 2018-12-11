@@ -15,13 +15,14 @@ module.exports.name = 'LAYOUT-EQUALITY';
 module.exports.type = Dom.type.LAYOUT;
 module.exports.textCount = 0;
 module.exports.imageCount = 0;
-module.exports.mixCount = -5; //-1，即为任意混合数
+module.exports.mixCount = -10; //-1，即为任意混合数
+module.exports.canShareStyle = true;
 module.exports.isSimilar = function (a, b, config) {
     // return false;
     return a.children.length == b.children.length &&
         a.children.every((d, i) => {
             return Math.abs(d.width - b.children[i].width) < config.dsl.operateErrorCoefficient &&
-                Math.abs(d.height - b.children[i].width) < config.dsl.operateErrorCoefficient;
+                Math.abs(d.height - b.children[i].height) < config.dsl.operateErrorCoefficient;
         })
 };
 

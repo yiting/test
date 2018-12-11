@@ -2,6 +2,7 @@ const Common = require("./dsl_common.js");
 const Dom = require("./dsl_dom.js");
 const Store = require("./dsl_store.js");
 const Logger = require('./logger');
+const Segmenting = require('./model/segmenting');
 
 let LAYOUT_MAP = {
     inline: 0,
@@ -13,7 +14,11 @@ let LAYOUT_MAP = {
 
 function groupByArray(newArr, parent, layout) {
     let children = [];
-    if (newArr.length == 1) {
+    const range = Dom.calRange(newArr[0]);
+    if (newArr.length == 1 && (
+            layout != Dom.layout.COLUMN ||
+            range.width == parent.width
+        )) {
         parent.layout = parent.layout || layout;
         return newArr[0];
     }
@@ -72,10 +77,11 @@ function calYH(meta) {
 // 聚合
 function block(domArr, parent) {
     let newArr = Common.gatherByLogic(domArr, (meta, target) => {
-        if (meta.type == Store.model.SEGMENTING_HORIZONTAL ||
-            target.type == Store.model.SEGMENTING_HORIZONTAL) {
+        if (meta.model == Segmenting ||
+            target.model == Segmenting) {
             return;
         }
+
         const small = meta.height < target.height ? meta : target;
         const textSpacing = small.text && (small.styles.lineHeight * Config.dsl.textSpacingCoefficient) || undefined,
             verticalSpacing = textSpacing < Config.dsl.verticalSpacing ? textSpacing : Config.dsl.verticalSpacing;
@@ -190,8 +196,8 @@ function inline(domArr, parent) {
 
 function row(domArr, parent) {
     let newArr = Common.gatherByLogic(domArr, (meta, target) => {
-        if (meta.type == Store.model.SEGMENTING_HORIZONTAL ||
-            target.type == Store.model.SEGMENTING_HORIZONTAL) {
+        if (meta.model == Segmenting ||
+            target.model == Segmenting) {
             return;
         }
         let meta_yh = calYH(meta),
@@ -211,6 +217,7 @@ function ergodic(json, func, type) {
     // 高权重布局不进入低权重布局进行布局计算
     type = json.layout || type;
     if (json.children) {
+
         if (LAYOUT_MAP[func.name] < LAYOUT_MAP[type] ||
             (func.name == 'block')
         ) {
@@ -241,6 +248,6 @@ module.exports = function (data) {
     Logger.debug(`[pipe - layout] row ${data.id}`)
     ergodic(data, row);
 
-    Logger.debug(`[pipe - layout] inline ${data.id}`)
-    ergodic(data, inline);
+    // Logger.debug(`[pipe - layout] inline ${data.id}`)
+    // ergodic(data, inline);
 }

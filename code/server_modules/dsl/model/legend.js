@@ -9,8 +9,24 @@ module.exports.type = Dom.type.TEXT;
 module.exports.textCount = 1;
 module.exports.imageCount = 1;
 module.exports.mixCount = 0; //-1，即为任意混合数
-module.exports.template = function () {
 
+module.exports.canShareStyle = true;
+
+module.exports.isSimilar = function (a, b, config) {
+    const aImg = a.children.find((child) => {
+        return child.type == Dom.type.IMAGE;
+    });
+    const aTxt = a.children.find((child) => {
+        return child.type == Dom.type.TEXT;
+    });
+    const bImg = b.children.find((child) => {
+        return child.type == Dom.type.IMAGE;
+    });
+    const bTxt = b.children.find((child) => {
+        return child.type == Dom.type.TEXT;
+    });
+    return Math.abs(aImg.width - bImg.width) < config.dsl.operateErrorCoefficient &&
+        aTxt.styles.maxSize == bTxt.styles.maxSize;
 }
 module.exports.is = function (dom, parent, config) {
     // 判断：只有两个节点

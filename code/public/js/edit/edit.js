@@ -17,16 +17,8 @@ let currentPageIndex = 1,
 let currentArtBoardOnlineUrl, h5FileName;
 let structureInterval, imgsInterval;
 
-/**
- * 各端单位切换
- */
-let TOSEEConfig = {
-  scale: "56",
-  unit: "rem",
-  zoom: 1
-};
 let TOSEEAPP = {
-  initPage: function() {
+  init: function() {
     currentPageId = $(".page-title").data("pid");
     currentArtboardId = $(".artboard-list .artboard:first").data("id");
     //默认加载第一个
@@ -37,14 +29,8 @@ let TOSEEAPP = {
   /**
    * 清空初始化dom
    */
-  initFunc: function() {
-    $(".design-img-btn")
-      .data("show", 0)
-      .text("比对设计稿");
-    $(".design-img-panel").hide();
-    //关闭图片查看器
-    $(".magnify-modal").remove();
-    $(".img-item-list").html("");
+  initDomStatus: function() {
+    editUtil.hideIframeInfoDom();
   },
   /**
    * 页面操作
@@ -78,214 +64,9 @@ let TOSEEAPP = {
       top.postMessage("/person", "http://uitocode.oa.com");
     });
     //2018-11-05:各端单位代码切换
-    _this.initUnit();
+    unitSetting.initUnit();
   },
-  /**
-   * 单位转换
-   */
-  unitSize: function(length, isText) {
-    //var length = Math.round((length / TOSEEConfig.scale) * 10) / 10,
-    var length =
-      Math.round((length / TOSEEConfig.scale) * Math.pow(10, 2)) /
-      Math.pow(10, 2);
-    (units = TOSEEConfig.unit.split("/")), (unit = units[0]);
-    if (units.length > 1 && isText) {
-      unit = units[1];
-    }
-    return length + unit;
-  },
-  /**
-   * 初始化单位面板
-   */
-  initUnit: function() {
-    let _this = this;
-    (unitsData = [
-      {
-        units: [
-          {
-            name: "标准",
-            unit: "px",
-            scale: 1
-          }
-        ]
-      },
-      {
-        name: "iOS",
-        units: [
-          {
-            name: "Points" + " @1x",
-            unit: "pt",
-            scale: 1
-          },
-          {
-            name: "Retina" + " @2x",
-            unit: "pt",
-            scale: 2
-          },
-          {
-            name: "Retina HD" + " @3x",
-            unit: "pt",
-            scale: 3
-          }
-        ]
-      },
-      {
-        name: "Android",
-        units: [
-          {
-            name: "LDPI @0.75x",
-            unit: "dp/sp",
-            scale: 0.75
-          },
-          {
-            name: "MDPI @1x",
-            unit: "dp/sp",
-            scale: 1
-          },
-          {
-            name: "HDPI @1.5x",
-            unit: "dp/sp",
-            scale: 1.5
-          },
-          {
-            name: "XHDPI @2x",
-            unit: "dp/sp",
-            scale: 2
-          },
-          {
-            name: "XXHDPI @3x",
-            unit: "dp/sp",
-            scale: 3
-          },
-          {
-            name: "XXXHDPI @4x",
-            unit: "dp/sp",
-            scale: 4
-          }
-        ]
-      },
-      {
-        name: "Web",
-        units: [
-          {
-            name: "CSS Rem 12px",
-            unit: "rem",
-            scale: 12
-          },
-          {
-            name: "CSS Rem 14px",
-            unit: "rem",
-            scale: 14
-          },
-          //系统默认的
-          {
-            name: "CSS Rem 56px",
-            unit: "rem",
-            scale: 56
-          }
-        ]
-      }
-    ]),
-      (unitHtml = []),
-      (unitList = []),
-      (unitCurrent = ""),
-      (hasCurrent = "");
-    $.each(unitsData, function(index, data) {
-      if (data.name)
-        unitList.push('<li class="sub-title">' + data.name + "</li>");
-      $.each(data.units, function(index, unit) {
-        var checked = "";
-        if (unit.unit == TOSEEConfig.unit && unit.scale == TOSEEConfig.scale) {
-          checked = ' checked="checked"';
-          hasCurrent = unit.name;
-        }
-        unitList.push(
-          '<li><label><input type="radio" name="resolution" data-name="' +
-            unit.name +
-            '" data-unit="' +
-            unit.unit +
-            '" data-scale="' +
-            unit.scale +
-            '"' +
-            checked +
-            "><span>" +
-            unit.name +
-            "</span></label></li>"
-        );
-      });
-    });
-    if (!hasCurrent) {
-      unitCurrent =
-        '<li><label><input type="radio" name="resolution" data-name="' +
-        "Custom" +
-        " (" +
-        TOSEEConfig.scale +
-        ", " +
-        TOSEEConfig.unit +
-        ')" data-unit="' +
-        TOSEEConfig.unit +
-        '" data-scale="' +
-        TOSEEConfig.scale +
-        '" checked="checked"><span>' +
-        "Custom" +
-        " (" +
-        TOSEEConfig.scale +
-        ", " +
-        TOSEEConfig.unit +
-        ")</span></label></li>";
-      hasCurrent =
-        "Custom" + " (" + TOSEEConfig.scale + ", " + TOSEEConfig.unit + ")";
-    }
-    unitHtml.push(
-      '<div class="overlay"></div>',
-      "<h3>" + "分辨率" + "</h3>",
-      "<p>" + hasCurrent + "</p>",
-      "<ul>",
-      unitCurrent,
-      unitList.join(""),
-      "</ul>"
-    );
-    $("#unit").html(unitHtml.join(""));
 
-    //监听unit
-    $("#unit")
-      .on("change", "input[name=resolution]", function() {
-        var $checked = $("input[name=resolution]:checked");
-        TOSEEConfig.unit = $checked.attr("data-unit");
-        TOSEEConfig.scale = Number($checked.attr("data-scale"));
-        $("#unit")
-          .blur()
-          .find("p")
-          .text($checked.attr("data-name"));
-        //重新设置对应的单位转换
-        _this.resetUnit();
-      })
-      .on("click", "h3, .overlay", function() {
-        $("#unit").blur();
-      });
-  },
-  resetUnit: function() {
-    let _this = this;
-    let needChangeDomList1 = $("#screen")
-      .contents()
-      .find('*[data-need="unit"]');
-    let needChangeDomList2 = $('*[data-need="unit"]');
-    _this.domChangeUnit(needChangeDomList1);
-    _this.domChangeUnit(needChangeDomList2);
-  },
-  domChangeUnit: function(domList) {
-    let _this = this;
-    domList.each(function() {
-      let _thisDom = $(this);
-      let _thisDomVal = parseFloat(_thisDom.data("real"));
-      let fontAttrFlag = false;
-      if (_thisDom.data("needFont")) {
-        fontAttrFlag = true;
-      }
-      _thisDomVal = _this.unitSize(_thisDomVal, fontAttrFlag);
-      _thisDom.val(_thisDomVal).text(_thisDomVal);
-    });
-  },
   /**
    * 左侧面板操作
    */
@@ -306,7 +87,7 @@ let TOSEEAPP = {
     });
     //切换page
     $(".pages-list").on("change", ".pages-item input", function() {
-      _this.initFunc();
+      _this.initDomStatus();
       let inputObj = $(this);
       //当前选中page页面的id，根据pageid，切换下面的数据,并请求第一个artBoard，合成html网页
       let itemObj = inputObj.parent();
@@ -326,7 +107,7 @@ let TOSEEAPP = {
 
     //切换artBoard：根据选择artBoardId来加载对应的ardBoard页面
     $(".artboard-list").on("click", ".artboard", function() {
-      _this.initFunc();
+      _this.initDomStatus();
       let currentArtboard = $(this);
       currentArtboard
         .addClass("active")
@@ -354,36 +135,10 @@ let TOSEEAPP = {
    */
   centerOperate: function() {
     let that = this;
-    //切换编译模式：默认使用普通模式
-    $(".compilation-mode-item input[type=radio]").click(function() {
-      let _this = $(this);
-      //当前选中值
-      let _thisVal = _this.val();
-      //普通模式
-      if (_thisVal == "0") {
-        //请求普通模式，直接从缓存里面去读，第一次已经是普通模式
-      }
-      //AI模式
-      else if (_thisVal == "1") {
-        //弹出文件选择框
-        $("#upload-img").click();
-      }
-    });
     //获取当前artBoard设计图
-    $(".design-img-btn").click(function() {
-      //清除操作区域样式
-      //1.去掉选中样式
-      that.hideChooseDom();
-      //2.去掉移入样式
-      that.hideHoverDom();
-      //3.初始化隐藏测距dom
-      that.hideDistance();
-      //4.选中面板其他区域，隐藏右侧属性边框面板
-      that.hideAttrPanel();
+    $(".show-notes").on("change", "input[name=show-notes]", function() {
       let _this = $(this);
-      let showPanelFlag = _this.data("show");
-      //0:默认隐藏，点击请求预览图，显示面板；1：已显示预览图，点击隐藏面板
-      if (showPanelFlag == 0) {
+      if (_this.is(":checked")) {
         //显示预览图面板
         //请求后台数据
         let postData = {
@@ -399,550 +154,19 @@ let TOSEEAPP = {
               `../complie/${projectName}/images/` + data.artBoardImgName;
             //设置显示当前artBoardId对应的预览图
             $("#design-img-prew").attr("src", artBoardImgUrl);
-            _this.data("show", 1).text("隐藏设计稿");
-            $(".design-img-panel").show();
-            //2018-11-13:重新计算偏移选中框位置
-            //当选中结构tab时，才执行此方法
-            if ($(".header-list .structure").hasClass("current")) {
-              rectChosen_update();
-            }
+            $(".slider-compare-panel,.design-img-panel").show();
           },
           function(error) {
             layer.msg("生成预览图失败:" + error.responseText);
           }
         );
-      } else if (showPanelFlag == 1) {
+      } else {
         //隐藏预览图面板
-        _this.data("show", 0);
-        _this.text("比对设计稿");
-        $(".design-img-panel").hide();
-        //2018-11-13:重新计算偏移选中框位置
-        if ($(".header-list .structure").hasClass("current")) {
-          rectChosen_update();
-        }
+        $(".slider-compare-panel,.design-img-panel").hide();
       }
     });
   },
-  /**
-   * 对iframe dom操作，显示具体信息
-   */
-  bindIframeDom: function() {
-    let _this = this;
-    //2018-10-24:选中元素操作
-    $("#screen").load(function(event) {
-      let screenHeight = this.contentWindow.document.documentElement
-        .scrollHeight;
-      //this.height = screenHeight;
-      $(this).height(screenHeight);
-      $(".design-img").height(screenHeight);
-      let verticalLineHeight = screenHeight + 15;
-      //操作伪类，更改其高度
-      let modifyAfterHeight =
-        "<style>#data-area-slider .slider-handle::after{content:'';height:" +
-        verticalLineHeight +
-        "px;}</style>";
-      $("head").append(modifyAfterHeight);
-      //let val = $("#screen").contents().find("div[data-id=11F1A381-992E-475F-ABA2-7BC1FF08FEEF]").text();
-      //alert(val)
-      //获取当前缩放的font-size基数
-      let baseFontSize = parseFloat(
-        $("#screen")
-          .contents()
-          .find("html")
-          .css("font-size")
-          .replace("px", "")
-      );
-      let iframeBody = $("#screen")
-          .contents()
-          .find("body"),
-        operateBody = $(".operate-dom-panel");
-      //2018-10-30:移入到元素效果
-      //iframe内部监听事件
-      //2018-10-29:移入iframe内部元素，出现边框线
-      let hoverElement,
-        chooseElement,
-        positionX,
-        positionXReal,
-        positionY,
-        positionYReal,
-        ElementPT,
-        ElementPTReal,
-        ElementPR,
-        ElementPRReal,
-        ElementPB,
-        ElementPBReal,
-        ElementPL,
-        ElementPLReal,
-        ElementWidth,
-        ElementWidthReal,
-        ElementHeight,
-        ElementHeightReal,
-        ElementTxt,
-        ElementClass;
 
-      //2018-12-05:页面操作dom节点
-      let operatePanel = [];
-      //iframe内部监听事件
-      //hover
-      iframeBody.mousemove(function(e) {
-        e = window.event || e; // 兼容IE7
-        //当前选中的节点
-        hoverElement = $(e.srcElement || e.target);
-        //移入在选中之前，将移入的对象赋值给选中对象
-        chooseElement = hoverElement;
-        //没有子节点，针对最细粒度节点操作
-        if (hoverElement[0].className.indexOf("body") <= -1) {
-          //重新获取
-          /*positionX = parseFloat(
-              (parseFloat(hoverElement.offset().left) / baseFontSize).toFixed(2)
-            );*/
-          positionXReal = hoverElement.offset().left;
-          positionX = _this.unitSize(positionXReal);
-
-          positionYReal = hoverElement.offset().top;
-          positionY = _this.unitSize(positionYReal);
-
-          //获取当前的padding:padding-left、padding-right、padding-top、padding-bottom
-          ElementPTReal = parseFloat(
-            hoverElement.css("padding-top").replace("px", "")
-          );
-          ElementPT = _this.unitSize(ElementPTReal);
-
-          ElementPRReal = parseFloat(
-            hoverElement.css("padding-right").replace("px", "")
-          );
-          ElementPR = _this.unitSize(ElementPRReal);
-
-          ElementPBReal = parseFloat(
-            hoverElement.css("padding-bottom").replace("px", "")
-          );
-          ElementPB = _this.unitSize(ElementPBReal);
-
-          ElementPLReal = parseFloat(
-            hoverElement.css("padding-left").replace("px", "")
-          );
-          ElementPL = _this.unitSize(ElementPLReal);
-
-          ElementWidthReal = parseFloat(
-            hoverElement.css("width").replace("px", "")
-          );
-          ElementWidth = _this.unitSize(ElementWidthReal);
-
-          ElementHeightReal = parseFloat(
-            hoverElement.css("height").replace("px", "")
-          );
-          ElementHeight = _this.unitSize(ElementHeightReal);
-
-          //去除其他
-          _this.hideHoverDom();
-          //当前hover节点添加
-          //边框样式:显示样式边框
-          //当前hover节点添加
-          //边框样式:显示样式边框
-          operateBody.find(".rules .rule-v").css({
-            left: `${positionXReal}px`,
-            width: `${ElementWidthReal + ElementPLReal + ElementPRReal}px`
-          });
-          operateBody.find(".rules .rule-h").css({
-            top: `${positionYReal}px`,
-            height: `${ElementHeightReal + ElementPTReal + ElementPBReal}px`
-          });
-          operateBody.find(".rules").show();
-          //$(hoverElement).css("background","rgba(0,0,0,.5)");
-          $(hoverElement).addClass("hover-dom-show");
-
-          //移入的时候，进行测量间距
-          //调用测量方法
-          _this.measureDistance();
-        }
-      });
-      //click
-      iframeBody.on("click", function(e) {
-        //当前选中的节点:移入即为将要点击的对象,在去除移入样式前获取该对象
-        chooseElement = iframeBody.find(".hover-dom-show");
-        if (chooseElement.length == 0) {
-          return;
-        }
-        //清除hover样式节点、将标线隐藏
-        _this.hideHoverDom();
-        //隐藏测距样式
-        _this.hideDistance();
-        //选中节点后，弹出右侧属性边框面板
-        _this.showAttrPanel();
-        let chooseElementChildLen = chooseElement.children().length;
-        //没有子节点，针对最细粒度节点操作
-        if (hoverElement[0].className.indexOf("body") <= -1) {
-          //1.dom节点属性信息
-          //文本
-          ElementTxt = chooseElement.text();
-          ElementClass = chooseElement.attr("class");
-          //基础属性
-          //let positionX = (parseFloat(chooseElement.css("left")) / baseFontSize).toFixed(2);
-          //let positionY = (parseFloat(chooseElement.css("top")) / baseFontSize).toFixed(2);
-          let ElementOpacity =
-            Math.round(chooseElement.css("opacity") * 10000) / 100 + "%";
-          //设置基础属性&2018-11-06:真实px值
-          $(".x-val")
-            .val(positionX)
-            .data("real", positionXReal);
-          $(".y-val")
-            .val(positionY)
-            .data("real", positionYReal);
-          $(".width-val")
-            .val(ElementWidth)
-            .data("real", ElementWidthReal);
-          $(".height-val")
-            .val(ElementHeight)
-            .data("real", ElementHeightReal);
-          $(".opacity-val").val(ElementOpacity);
-          //2.dom样式信息
-          //选中节点样式2
-          //首先给未选中的节点删除样式和属性
-          _this.hideChooseDom();
-          //初始化隐藏测距dom
-          _this.hideDistance();
-          //然后给选中的添加选中样式
-          $(".dom-width-val")
-            .data("real", `${ElementWidthReal + ElementPLReal + ElementPRReal}`)
-            .text(`${ElementWidth}`)
-            .show();
-          $(".dom-height-val")
-            .data(
-              "real",
-              `${ElementHeightReal + ElementPTReal + ElementPBReal}`
-            )
-            .text(`${ElementHeight}`)
-            .css({
-              left: `${ElementWidthReal + ElementPLReal + ElementPRReal}px`
-            })
-            .show();
-          $(".choose-dom-style")
-            .css({
-              left: `${positionXReal}px`,
-              top: `${positionYReal}px`,
-              width: `${ElementWidthReal + ElementPLReal + ElementPRReal}px`,
-              height: `${ElementHeightReal + ElementPTReal + ElementPBReal}px`
-            })
-            .show();
-
-          //给选中的节点元素添加样式和属性
-          chooseElement.addClass("choose-dom-show");
-          //设置显示的代码
-          //声明选中节点生成的代码字符串
-          let codeStr = `<li><span class="property">width</span><span class="colon">:</span><span class="property-width" data-need="unit" data-real="${ElementWidthReal}">${ElementWidth}</span><span class="semicolon">;</span></li>
-                    <li><span class="property">height</span><span class="colon">:</span><span class="property-height" data-need="unit" data-real="${ElementHeightReal}">${ElementHeight}</span><span class="semicolon">;</span></li>
-                    <li><span class="property">opacity</span><span class="colon">:</span><span class="property-opacity">${ElementOpacity}</span><span class="semicolon">;</span></li>`;
-          //a.图层背景:优先检查背景
-          if (ElementClass.includes("image")) {
-            //隐藏字体属性面板
-            $(".fontSize-panel").hide();
-            //node节点名称: 需要设置图层名称
-            $(".node-name").text("图片");
-            //设置对应的代码字符串
-            $(".language-attr-list").html(codeStr);
-            return;
-          }
-          //b.文本内容
-          if (ElementTxt) {
-            //显示字体属性面板
-            $(".fontSize-panel").show();
-            //字体
-            let ElementColor = chooseElement.css("color");
-            let ElementFont = chooseElement.css("font-family");
-
-            let ElementFontSizeReal = parseFloat(
-              chooseElement.css("font-size").replace("px", "")
-            );
-            let ElementFontSize = _this.unitSize(ElementFontSizeReal);
-
-            let ElementLetterSpaceReal = chooseElement.css("letter-space")
-              ? parseFloat(chooseElement.css("letter-space").replace("px", ""))
-              : 0;
-            let ElementLetterSpace = _this.unitSize(ElementLetterSpaceReal);
-
-            let ElementLineHeightReal = parseFloat(
-              chooseElement.css("line-height").replace("px", "")
-            );
-            let ElementLineHeight = _this.unitSize(ElementLineHeightReal);
-            //node节点名称
-            $(".node-name").text(ElementTxt);
-            //颜色块
-            $(".color-bac").css({
-              "background-color": ElementColor
-            });
-            $(".color-val").val(ElementColor);
-            $(".font-val").val(ElementFont);
-            $(".fontSize-val")
-              .val(ElementFontSize)
-              .data("real", ElementFontSizeReal);
-            //空间
-            $(".letterSpace-val")
-              .val(ElementLetterSpace)
-              .data("real", ElementLetterSpaceReal);
-            $(".lineHeight-val")
-              .val(ElementLineHeight)
-              .data("real", ElementLineHeightReal);
-            //拼接属性
-            codeStr += `<li><span class="property">color</span><span class="colon">:</span><span class="property-color">${ElementColor}</span><span class="semicolon">;</span></li>
-                        <li><span class="property">font-family</span><span class="colon">:</span><span class="property-fontFamily">${ElementFont}</span><span class="semicolon">;</span></li>
-                        <li><span class="property">font-size</span><span class="colon">:</span><span class="property-size" data-need="unit" data-real="${ElementFontSizeReal}">${ElementFontSize}</span><span class="semicolon">;</span></li>
-                        <li><span class="property">line-height</span><span class="colon">:</span><span class="property-lineHeight" data-need="unit" data-real="${ElementLineHeightReal}">${ElementLineHeight}</span><span class="semicolon">;</span></li>`;
-          }
-          //设置对应的代码字符串
-          $(".language-attr-list").html(codeStr);
-        }
-      });
-      //点击其他地方
-      $(".screen-viewer-inner").on("click", function() {
-        //1.去掉选中样式
-        //给未选中的节点删除样式和属性
-        _this.hideChooseDom();
-        //2.去掉移入样式
-        _this.hideHoverDom();
-        //3.初始化隐藏测距dom
-        _this.hideDistance();
-        //4.选中面板其他区域，隐藏右侧属性边框面板
-        _this.hideAttrPanel();
-      });
-    });
-  },
-  /**
-   * 测量当前choose Dom与hover Dom的距离
-   */
-  measureDistance: function() {
-    let _this = this;
-    //测量显示choose Dom与hover Dom的距离
-    _this.domDistance();
-  },
-  /**
-   * 显示choose dom和hover dom的距离
-   */
-  domDistance: function() {
-    let _this = this;
-    //初始化隐藏测距dom
-    _this.hideDistance();
-    //隐藏选中节点的宽高信息
-    _this.hideChooseDistance();
-
-    //分为2种情况:1.所选择dom处于移入dom内侧  2.所选dom不在移入dom内侧
-    let topData, rightData, bottomData, leftData;
-    //获取当前选择的节点dom、移入的dom
-    let iframeBody = $("#screen")
-        .contents()
-        .find("body"),
-      operateBody = $(".operate-dom-panel");
-    let distanceChooseDom = iframeBody.find(".choose-dom-show"),
-      distanceHoverDom = iframeBody.find(".hover-dom-show");
-    //如果选择dom和移入dom均不存在，则不执行
-    if (distanceChooseDom.length == 0 || distanceHoverDom.length == 0) {
-      return;
-    }
-
-    let _distanceChooseDomData = {
-        x: distanceChooseDom.offset().left,
-        y: distanceChooseDom.offset().top,
-        w: distanceChooseDom.width(),
-        h: distanceChooseDom.height(),
-        maxX: distanceChooseDom.offset().left + distanceChooseDom.width(),
-        maxY: distanceChooseDom.offset().top + distanceChooseDom.height()
-      },
-      _distanceChooseHoverDomData = {
-        x: distanceHoverDom.offset().left,
-        y: distanceHoverDom.offset().top,
-        w: distanceHoverDom.width(),
-        h: distanceHoverDom.height(),
-        maxX: distanceHoverDom.offset().left + distanceHoverDom.width(),
-        maxY: distanceHoverDom.offset().top + distanceHoverDom.height()
-      };
-
-    //1.所选择dom处于移入dom内侧
-
-    //2.所选dom不在移入dom内侧
-
-    //上部
-    if (_distanceChooseHoverDomData.maxY < _distanceChooseDomData.y) {
-      topData = {
-        x: _distanceChooseDomData.x + _distanceChooseDomData.w / 2,
-        y: _distanceChooseHoverDomData.maxY,
-        h: _distanceChooseDomData.y - _distanceChooseHoverDomData.maxY
-      };
-    }
-
-    //右部
-    if (_distanceChooseHoverDomData.x > _distanceChooseDomData.maxX) {
-      rightData = {
-        x: _distanceChooseDomData.maxX,
-        y: _distanceChooseDomData.y + _distanceChooseDomData.h / 2,
-        w: _distanceChooseHoverDomData.x - _distanceChooseDomData.maxX
-      };
-    }
-
-    //底部
-    if (_distanceChooseHoverDomData.y > _distanceChooseDomData.maxY) {
-      bottomData = {
-        x: _distanceChooseDomData.x + _distanceChooseDomData.w / 2,
-        y: _distanceChooseDomData.maxY,
-        h: _distanceChooseHoverDomData.y - _distanceChooseDomData.maxY
-      };
-    }
-
-    //左侧
-    if (_distanceChooseHoverDomData.maxX < _distanceChooseDomData.x) {
-      leftData = {
-        x: _distanceChooseHoverDomData.maxX,
-        y: _distanceChooseDomData.y + _distanceChooseDomData.h / 2,
-        w: _distanceChooseDomData.x - _distanceChooseHoverDomData.maxX
-      };
-    }
-
-    //顶部距离
-    if (topData) {
-      operateBody
-        .find("#td")
-        .css({
-          left: topData.x,
-          top: topData.y,
-          height: topData.h
-        })
-        .show();
-      //动态计算线内容所在位置
-      let topDVDom = operateBody.find(".top-d-v");
-      topDVDom
-        .css({
-          top: (topData.h - topDVDom.height()) / 2
-        })
-        .text(_this.unitSize(topData.h));
-    }
-    //右侧距离
-    if (rightData) {
-      operateBody
-        .find("#rd")
-        .css({
-          left: rightData.x,
-          top: rightData.y,
-          width: rightData.w
-        })
-        .show();
-      //动态计算线内容所在位置
-      let rightDVDom = operateBody.find(".right-d-v");
-      rightDVDom
-        .css({
-          left: (rightData.w - rightDVDom.width()) / 2
-        })
-        .text(_this.unitSize(rightData.w));
-    }
-    //底部距离
-    if (bottomData) {
-      operateBody
-        .find("#bd")
-        .css({
-          left: bottomData.x,
-          top: bottomData.y,
-          height: bottomData.h
-        })
-        .show();
-      //动态计算线内容所在位置
-      let bottomDVDom = operateBody.find(".bottom-d-v");
-      bottomDVDom
-        .css({
-          top: (bottomData.h - bottomDVDom.height()) / 2
-        })
-        .text(_this.unitSize(bottomData.h));
-    }
-    //左侧距离
-    if (leftData) {
-      operateBody
-        .find("#ld")
-        .css({
-          left: leftData.x,
-          top: leftData.y,
-          width: leftData.w
-        })
-        .show();
-      //动态计算线内容所在位置
-      let leftDVDom = operateBody.find(".left-d-v");
-      leftDVDom
-        .css({
-          left: (leftData.w - leftDVDom.width()) / 2
-        })
-        .text(_this.unitSize(leftData.w));
-    }
-  },
-
-  /**
-   * 隐藏iframe上显示信息的dom节点
-   */
-  hideIframeInfoDom: function() {
-    this.hideHoverDom();
-    this.hideChooseDom();
-    this.hideDistance();
-    this.hideChooseDistance();
-  },
-
-  /**
-   * 隐藏标线
-   */
-  hideDistance: function() {
-    let iframeBody = $("#screen")
-        .contents()
-        .find("body"),
-      operateBody = $(".operate-dom-panel");
-    operateBody.find("#td,#rd,#bd,#ld").hide();
-  },
-  /**
-   *隐藏选中dom的长短信息
-   */
-  hideChooseDistance: function() {
-    let iframeBody = $("#screen")
-        .contents()
-        .find("body"),
-      operateBody = $(".operate-dom-panel");
-    operateBody.find(".dom-width-val,.dom-height-val").hide();
-  },
-  /**
-   * 清除移入样式
-   */
-  hideHoverDom: function() {
-    let iframeBody = $("#screen")
-        .contents()
-        .find("body"),
-      operateBody = $(".operate-dom-panel");
-    operateBody.find(".rules").hide();
-    iframeBody.find(".hover-dom-show").removeClass("hover-dom-show");
-  },
-  /**
-   * 清除选中样式:给未选中的节点删除样式和属性
-   */
-  hideChooseDom: function() {
-    let iframeBody = $("#screen")
-        .contents()
-        .find("body"),
-      operateBody = $(".operate-dom-panel");
-    operateBody.find(".choose-dom-style").hide();
-    iframeBody.find(".choose-dom-show").removeClass("choose-dom-show");
-  },
-  /**
-   * 显示右侧属性边框面板
-   */
-  showAttrPanel: function() {
-    $(".attribute-show-panel")
-      .removeClass("fadeOutRight")
-      .addClass("slideInRight");
-  },
-  /**
-   * 隐藏右侧属性边框面板
-   */
-  hideAttrPanel: function() {
-    if (
-      !$(".attribute-show-panel").hasClass("slideInRight") &&
-      !$(".attribute-show-panel").hasClass("fadeOutRight")
-    ) {
-      return;
-    }
-    $(".attribute-show-panel")
-      .removeClass("slideInRight")
-      .addClass("fadeOutRight");
-  },
   /**
    *  右侧面板操作
    * */
@@ -977,29 +201,7 @@ let TOSEEAPP = {
       console.error("Trigger:", e.trigger);
     });
   },
-  /**
-   * 判断是否是图片格式
-   * @param imgurl
-   * @returns {boolean}
-   * @constructor
-   */
-  isImg: function(imgUrl) {
-    let postfix = "";
-    let index = imgUrl.indexOf("."); //得到"."在第几位
-    postfix = imgUrl.substring(index); //截断"."之前的，得到后缀
-    if (
-      postfix != ".bmp" &&
-      postfix != ".png" &&
-      postfix != ".gif" &&
-      postfix != ".jpg" &&
-      postfix != ".jpeg"
-    ) {
-      //根据后缀，判断是否符合图片格式
-      return false;
-    } else {
-      return true;
-    }
-  },
+
   //拉取图片素材:iframe加载完成后，当前pageID里面对应的artBoardId，拉取本地素材(对应的项目文件夹名称：projectId)
   //need:还需素材全部下载操作；图片布局操作
   getImgsByArtBoardId: function() {
@@ -1022,7 +224,7 @@ let TOSEEAPP = {
       let imgW = imgOne.width;
       let imgH = imgOne.height;
       //检验图片是否是图片，如果是，则展示出来
-      if (_this.isImg(imgPath)) {
+      if (editUtil.isImg(imgPath)) {
         let imgOneUrl = `../complie/${projectName}/images/${imgPath}`;
         //imgListHtml.push(`<div class="img-item" data-magnify="gallery" data-src="${imgOneUrl}"><img src="${imgOneUrl}"   style="width:${imgsPathArr[i].width}px;"/></div>`)
         imgListHtml.push(
@@ -1125,7 +327,6 @@ let TOSEEAPP = {
         currentPageData = pagesData[i];
       }
     }
-
     //设置当前页名字
     currentPageName = currentPageData.pageName.trim();
     let currentArtBoards = currentPageData.artBoards;
@@ -1223,7 +424,9 @@ let TOSEEAPP = {
         `${currentPageIndex + "_" + currentArtBoardIndex}`
     ); */
     //2018-10-10:请求页面骨架结构
-    _this.pageAjaxFun(
+    //根据pageid、artboardId获取页面骨架数据方法
+    CommonTool.httpRequest(
+      "/edit/getPageById",
       postData,
       function(data) {
         //清除生成骨架定时器
@@ -1262,7 +465,7 @@ let TOSEEAPP = {
         //对应artBoard生成的url数组
         //console.log(artboardsUrlArr)
         //显示iframe页面后，绑定对应的事件
-        _this.bindIframeDom();
+        iframeDom.bindIframeDom();
 
         let isHtmlGenerate = data.isHtmlGenerate;
         //无需生成
@@ -1282,8 +485,9 @@ let TOSEEAPP = {
           _this.getImgsByArtBoardId();
           return;
         }
-        //2018-10-10：请求图片资源
-        _this.imgAjaxFun(
+        //2018-10-10：请求图片资源:根据pageid、artboardId获取页面图片方法
+        CommonTool.httpRequest(
+          "/edit/getPageImgById",
           postData,
           function(data) {
             //清除生成图片生成定时器
@@ -1320,60 +524,7 @@ let TOSEEAPP = {
       }
     );
   },
-  /**
-   *根据pageid、artboardId获取页面骨架数据方法
-   * @param postData
-   * @param successCallback
-   * @param failCallback
-   */
-  pageAjaxFun: function(postData, successCallback, failCallback) {
-    let pageAjax = CommonTool.httpRequest(
-      "/edit/getPageById",
-      postData,
-      function(data) {
-        successCallback(data);
-      },
-      function(error) {
-        failCallback(error);
-      }
-    );
-  },
-  /**
-   *根据pageid、artboardId获取页面图片方法
-   * @param postData
-   * @param successCallback
-   * @param failCallback
-   */
-  imgAjaxFun: function(postData, successCallback, failCallback) {
-    let imgAjax = CommonTool.httpRequest(
-      "/edit/getPageImgById",
-      postData,
-      function(data) {
-        successCallback(data);
-      },
-      function(error) {
-        failCallback(error);
-      }
-    );
-  },
-  /**
-   * 根据pageid、artboardId获取页面设计稿方法
-   * @param postData
-   * @param successCallback
-   * @param failCallback
-   */
-  onlineUrlAjaxFun: function(postData, successCallback, failCallback) {
-    let onlineUrlAjax = CommonTool.httpRequest(
-      "/edit/getOnlineUrl",
-      postData,
-      function(data) {
-        successCallback(data);
-      },
-      function(error) {
-        failCallback(error);
-      }
-    );
-  },
+
   /**
    * 根据url显示对应的二维码
    * 需要获取线上生成地址的url

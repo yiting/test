@@ -34,7 +34,6 @@ function reStructure(json, repeateItems) {
             if (newGroup.length < 2) {
                 return;
             }
-            console.log(newGroup)
             let range = Dom.calRange(newGroup);
             let newDom = new Dom(range);
             newDom.type = Dom.type.LAYOUT;
@@ -63,7 +62,7 @@ function reStructure(json, repeateItems) {
 }
 
 function repeateLogic(a, b) {
-    return a.model == b.model
+    return a.styles == b.styles
 
 }
 

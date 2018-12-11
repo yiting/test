@@ -128,7 +128,7 @@ var ImageCombine = function(){
                     else {
 
                         var childNode ;
-                        if(origin._class == "group" || origin._class == "shapeGroup" || origin._class == "symbolMaster" || origin._class == "oval" || origin._class == "bitmap" || origin._class == "rectangle" || origin._class == "shapePath"){
+                        if(origin._class == "group" || origin._class == "triangle" || origin._class == "shapeGroup" || origin._class == "symbolMaster" || origin._class == "oval" || origin._class == "bitmap" || origin._class == "rectangle" || origin._class == "shapePath"){
                             if(origin.layers && origin.layers.length == 1){
                                 childNode = origin.layers[0];
                                 if(origin.do_objectID.indexOf("B291364C-00E0-496B-9B00-055E84D8E69B")>-1){

@@ -4,7 +4,7 @@
 const designDomAttrs = /^(id|model|type|name|abX|abY|x|y|styles|width|height|children|contrains)$/;
 
 let Contrain = require('./dsl_contrain.js');
-let CSSDom = require('./dsl_CSSDom.js');
+let StyleDom = require('./dsl_styledom.js');
 let createDomIndex = 0;
 
 
@@ -15,22 +15,24 @@ class Dom {
         this.source = o.source || (!!o.id ? 'design' : null);
         this.name = o.name || '';
         this.texts = o.styles && o.styles.texts || null;
-        this.styles = new CSSDom(o.styles);
+        this.styles = new StyleDom(o.styles);
         this.x = o.x || 0;
         this.y = o.y || 0;
         this.abX = o.abX || 0;
         this.abY = o.abY || 0;
-        this.lines = 0;
         this.width = o.width || 0;
         this.height = o.height || 0;
         this.children = o.children || [];
         this.text = o.text || null;
+        this.lines = 0; // 内容行数
         this.path = o.path || null;
         this.contrains = o.contrains || {};
         this.type = Dom.getType(this); // Dom基础类型
-        this.layout = o.layout || ''; // 布局结构
-        this.model = o.model || ''; // 模型
-        this.isRoot = o.isRoot || false;
+        this.layout = o.layout || ''; // 布局描述
+        this.model = o.model || null; // 模型对象
+        this.isRoot = o.isRoot || false; // 是否跟节点
+        this.similarMarkId = -1; // 相似模型标示
+        this.zIndex = o.zIndex; // 表现层级，值越高，展示越靠前
     }
     static getType(dom) {
         if (dom.text) {
@@ -73,6 +75,9 @@ class Dom {
      * 计算组高宽
      */
     static calRange(doms) {
+        if (!doms) {
+            return {};
+        }
         let o = {
             x: Number.POSITIVE_INFINITY,
             y: Number.POSITIVE_INFINITY,
@@ -229,27 +234,31 @@ class Dom {
             return res;
         })
     }
+    static horizontalLogic(a, b, errorCoefficient) {
+        if (
+            // 如果水平方向相连
+            Dom.isXConnect(a, b, errorCoefficient) &&
+            // 如果垂直不包含
+            !Dom.isYWrap(a, b)) {
+            return false;
+        }
+
+        // return (a_abY < b_abY + b_height + errorCoefficient) &&
+        // (b_abY < a_abY + a_height + errorCoefficient);
+        return Dom.isYConnect(a, b, errorCoefficient);
+    }
     /**
      * 是否水平
+     * logic：若垂直方向不相交，则水平方向相交为水平
+     * 若垂直方向相交，则水平方向互相包含则水平
      * 当doms数量只有一个,返回true
      */
     static isHorizontal(doms, errorCoefficient = 0) {
-        let prev;
         errorCoefficient = parseFloat(errorCoefficient) || 0;
-        return doms.every(meta => {
-            if (!prev) {
-                prev = meta;
-                return true;
-            }
-            const meta_abY = meta.textAbY || meta.abY,
-                prev_abY = prev.textAbY || prev.abY,
-                meta_height = meta.textHeight || meta.height,
-                prev_height = prev.textHeight || prev.height
-
-            let res = (meta_abY < prev_abY + prev_height + errorCoefficient) &&
-                (prev_abY < meta_abY + meta_height + errorCoefficient);
-            prev = meta;
-            return res;
+        return doms.every((a, i) => {
+            return doms.every((b, j) => {
+                return j <= i || Dom.horizontalLogic(a, b, errorCoefficient)
+            })
         })
     }
     /**
@@ -283,40 +292,82 @@ class Dom {
         }
         const type = doms[0].type;
         return doms.every(d => d.type == type);
-
     }
-    static isCenter(dom, parent, errorCoefficient = 3) {
+    static isXCenter(dom, parent, errorCoefficient = 3) {
         let offset = Dom.calOffset(dom, parent, undefined);
         return Math.abs(offset.left - offset.right) <= errorCoefficient * 3;
     }
-    static isMiddle(dom, parent, errorCoefficient = 3) {
+    static isYCenter(dom, parent, errorCoefficient = 3) {
         let offset = Dom.calOffset(dom, parent, undefined);
         return Math.abs(offset.top - offset.bottom) <= errorCoefficient * 3;
     }
-    // 判断相连,但中心不再某节点内
-    static isConnect(a, b, dir = 0) {
-        const aCx = a.abX + a.width / 2,
-            bCx = b.abX + b.width / 2,
-            aCy = a.abY + a.height / 2,
-            bCy = b.abY + b.height / 2;
-
-        return Math.abs(aCx - bCx) <= (a.width + b.width) / 2 + dir &&
-            Math.abs(aCy - bCy) <= (a.height + b.height) / 2 + dir;
+    static isCenter(dom, parent, errorCoefficient = 3) {
+        let offset = Dom.calOffset(dom, parent, undefined);
+        return Math.abs(offset.left - offset.right) <= errorCoefficient * 3 &&
+            Math.abs(offset.top - offset.bottom) <= errorCoefficient * 3;
     }
-    // 判断包含，inner中心在outer内
-    static isInclude(outer, inner) {
+    static isXConnect(a, b, dir = 0) {
+        const aCx = a.abX + a.width / 2,
+            bCx = b.abX + b.width / 2;
+        return Math.abs(aCx - bCx) <= (a.width + b.width) / 2 + dir;
+    }
+    static isYConnect(a, b, dir = 0) {
+        const aCy = a.abY + a.height / 2,
+            bCy = b.abY + b.height / 2;
+        return Math.abs(aCy - bCy) <= (a.height + b.height) / 2 + dir;
+    }
+    /**
+     * 判断相连, 
+     * @param {Dom} a a
+     * @param {Dom} b b
+     * @param {Dom} dir 间距
+     */
+    static isConnect(a, b, dir = 0) {
+        return Dom.isXConnect(a, b, dir) &&
+            Dom.isYConnect(a, b, dir);
+    }
+    static isXOn(outer, inner, dir = 0) {
         return outer.abX + outer.width >= inner.abX + inner.width / 2 &&
-            outer.abY + outer.height >= inner.abY + inner.height / 2 &&
-            outer.abX <= inner.abX + inner.width / 2 &&
+            outer.abX <= inner.abX + inner.width / 2
+    }
+    static isYOn(outer, inner, dir = 0) {
+        return outer.abY + outer.height >= inner.abY + inner.height / 2 &&
             outer.abY <= inner.abY + inner.height / 2
     }
-    // 判断完全包含，inner边界在outer内
-    static isWrap(outer, inner) {
-        return outer.abX + outer.width >= inner.abX + inner.width &&
-            outer.abY + outer.height >= inner.abY + inner.height &&
-            outer.abX <= inner.abX &&
-            outer.abY <= inner.abY
+    static isYWrap(a, b) {
+        const a_abY = a.textAbY || a.abY,
+            b_abY = b.textAbY || b.abY,
+            a_height = a.textHeight || a.height,
+            b_height = b.textHeight || b.height
+        return Math.abs(a_abY + a_height / 2 - b_abY - b_height / 2) <=
+            Math.abs(a_height - b_height) / 2
     }
+    static isXWrap(a, b) {
+        return Math.abs(a.abX + a.width / 2 - b.abX - b.width / 2) <=
+            Math.abs(a.width - b.width) / 2
+    }
+    /* static isXWrap(outer, inner) {
+        return outer.abX + outer.width >= inner.abX + inner.width &&
+            outer.abX <= inner.abX
+
+    }
+    static isYWrap(outer, inner) {
+        return outer.abY + outer.height >= inner.abY + inner.height &&
+            outer.abY <= inner.abY;
+    } */
+    /**
+     * 判断完全包含， inner边界在outer内
+     * @param {Dom} outer 外
+     * @param {Dom} inner 内
+     */
+    static isWrap(outer, inner) {
+        return Dom.isXWrap(outer, inner) && Dom.isYWrap(outer, inner);
+    }
+    /**
+     * 行高清洗
+     * @param {Dom} dom dom
+     * @param {Dom} lineHeightCoe 行高系数，如1.1
+     */
     static cleanLineHeight(dom, lineHeightCoe) {
         if (!dom.lines && dom.text && (dom.texts || dom.styles.texts)) {
             // fontSize
@@ -331,7 +382,7 @@ class Dom {
             // 当前真实行高
             const lineHeight = dom.styles.lineHeight || maxSize * 1.4;
             // 目标行高
-            const targetLineHeight = maxSize * lineHeightCoe
+            const targetLineHeight = maxSize * lineHeightCoe;
             // 根据高度处以行高，如果多行，则不处理行高
             if (dom.height / lineHeight > 1.1) {
                 dom.lines = Math.round(dom.height / lineHeight);

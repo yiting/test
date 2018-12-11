@@ -26,12 +26,19 @@ function fn(dom, parent) {
             // 符合模型，做模型调整
             Model.adjust(model, dom, parent, Config)
             // 找到同组相似模型组
-            let arr = similarModels.find(arr => arr[0].model == dom.model && model.isSimilar && model.isSimilar(arr[0], dom, Config));
-            if (!arr) {
-                similarModels.push([dom]);
+            let targetGroup = similarModelGroups.find(arr => {
+                return arr[0].model == dom.model && model.isSimilar && model.isSimilar(arr[0], dom, Config)
+            });
+            if (!targetGroup) {
+                dom.similarMarkId = similarMarkIndex++;
+                similarModelGroups.push([dom]);
             } else {
-                arr.push(dom);
-                dom.styles = arr[0].styles;
+                targetGroup.push(dom);
+                if (model.canShareStyle) {
+                    // 如果可复用，单元素不能共用样式
+                    dom.styles = targetGroup[0].styles;
+                }
+                dom.similarMarkId = targetGroup[0].similarMarkId;
             }
             return true;
         }
@@ -43,11 +50,12 @@ function fn(dom, parent) {
  * 逻辑：组内左对齐，居中对齐为一列
  */
 let Config = {},
-    similarModels = []
+    similarMarkIndex = 0,
+    similarModelGroups = []
 module.exports = function (data) {
     Config = this.attachment.config;
-    similarModels = [];
+    similarMarkIndex = 0;
+    similarModelGroups = [];
     let dom = fn(data, null);
-    this.similarModels = similarModels;
     return dom;
 }

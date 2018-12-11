@@ -77,8 +77,10 @@ function horizontal(json) {
             contrainsObj["LayoutJustifyContentCenter"] = firstContrain.margin_left >= Config.dsl.horizontalSpacing &&
                 lastContrain.margin_right >= Config.dsl.horizontalSpacing &&
                 Math.abs(firstContrain.margin_left - lastContrain.margin_right) < Config.dsl.operateErrorCoefficient * 2;
-            contrainsObj["LayoutJustifyContentStart"] = !contrainsObj["LayoutJustifyContentCenter"] && firstContrain.margin_left < lastContrain.margin_right;
-            contrainsObj["LayoutJustifyContentEnd"] = !contrainsObj["LayoutJustifyContentCenter"] && firstContrain.margin_left > lastContrain.margin_right;
+            contrainsObj["LayoutJustifyContentEnd"] = !contrainsObj["LayoutJustifyContentCenter"] &&
+                // 所右边界与左边界的差大于误差操作值
+                firstContrain.margin_left - lastContrain.margin_right > Config.dsl.operateErrorCoefficient;
+            contrainsObj["LayoutJustifyContentStart"] = !contrainsObj["LayoutJustifyContentCenter"] && !contrainsObj["LayoutJustifyContentEnd"];
         }
         /* LayoutJustifyContentCenter
             1. 两端差值在0～误差之间
@@ -169,8 +171,8 @@ function vertical(json) {
             info.margin_right < Config.dsl.operateErrorCoefficient;
 
         contrainsObj["LayoutAlignItemsCenter"] = contrainsObj["LayoutAlignItemsCenter"] !== false &&
-            info.margin_left >= Config.dsl.horizontalSpacing &&
-            info.margin_right >= Config.dsl.horizontalSpacing &&
+            // info.margin_left >= Config.dsl.horizontalSpacing &&
+            // info.margin_right >= Config.dsl.horizontalSpacing &&
             Math.abs(info.margin_left - info.margin_right) < Config.dsl.operateErrorCoefficient;
 
     });

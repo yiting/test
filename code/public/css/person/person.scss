@@ -1,6 +1,6 @@
-@import "_global/reset";
-@import "person/header.scss";
-@import "material/main.scss";
+@import "../_global/reset";
+@import "../person/header.scss";
+@import "../person/main.scss";
 
 body {
   color: #20203a;
@@ -10,4 +10,8 @@ body {
   font-family: -apple-system, PingFang SC, SF UI Text, Arial, Hiragino Sans GB,
     Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
   overflow-y: auto;
+}
+//vue加载不出现括号
+[v-cloak] {
+   display: none;
 }

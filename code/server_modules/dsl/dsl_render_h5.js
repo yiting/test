@@ -2,7 +2,7 @@ const CONTRAIN = require('./dsl_contrain.js');
 const Common = require('./dsl_common.js');
 const Store = require("./dsl_store.js");
 const Dom = require("./dsl_dom.js");
-const CSSDom = require("./dsl_cssdom.js");
+const StyleDom = require("./dsl_styledom.js");
 // domtree
 const CLOSING_TAGS = ['img', 'input', 'br'];
 let cssStyle_cache = [];
@@ -135,6 +135,11 @@ class Render {
         }
 
     }
+    get zIndex() {
+        if (this.SelfContrains["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
+            return this.data.zIndex;
+        }
+    }
     get marginLeft() {
         // 自身约束
         if (this.SelfContrains["LayoutSelfPosition"] == CONTRAIN.LayoutSelfPosition.Absolute) {
@@ -237,14 +242,14 @@ class Render {
     }
     get backgroundSize() {
         if (this.data.type == Dom.type.IMAGE &&
-            this.data.model != Store.model.IMAGE.name
+            this.data.model != Store.model.IMAGE
         ) {
             return 'contain';
         }
     }
     get backgroundRepeat() {
         if (this.data.type == Dom.type.IMAGE &&
-            this.data.model != Store.model.IMAGE.name
+            this.data.model != Store.model.IMAGE
         ) {
             return 'no-repeat';
         }
@@ -259,10 +264,8 @@ class Render {
             this.data.styles.background.type == 'linear') {
             return Render.calLinearGradient(this.data.styles.background, this.data.width, this.data.height);
         }
-        if (this.data.type == Dom.type.IMAGE &&
-            this.data.path &&
-            this.data.model != Store.model.IMAGE.name &&
-            this.data.model != Store.model.POSTER.name
+        if (this.data.path &&
+            this.data.children
         ) {
             return `url(${this.data.path})`;
         }
@@ -301,6 +304,11 @@ class Render {
                 Object.keys(this.ParentContrains).length == 0) &&
             this.SelfContrains["LayoutSelfVertical"] == CONTRAIN.LayoutSelfVertical.Bottom) {
             return Render.unit(Pos.bottom);
+        }
+    }
+    get verticalAlign() {
+        if (this.data.string) {
+            return "middle";
         }
     }
     get color() {
@@ -345,7 +353,7 @@ class Render {
     }
     get borderRadius() {
         if (this.data.styles.borderRadius) {
-            return Render.unit(this.data.styles.borderRadius);
+            return Render.toRadius(this.data.styles.borderRadius, Math.min(this.data.height, this.data.width));
         }
     }
     /* get shadow() {
@@ -430,11 +438,10 @@ class Render {
         }
     }
     get boxFlex() {
-        if (this.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto) {
+        if (this.ParentContrains["LayoutDirection"] == CONTRAIN.LayoutDirection.Horizontal &&
+            this.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto) {
             return 1;
             // } else if (this.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Default) {
-        } else {
-            return 0;
         }
     }
     get boxOrient() {
@@ -473,9 +480,11 @@ class Render {
         if (!this.data.text) {
             return;
         }
-        if (this.SelfContrains["LayoutJustifyContent"]) {
+        if (this.SelfContrains["LayoutSelfHorizontal"]) {
+            return Render.align(this.SelfContrains["LayoutSelfHorizontal"].toLowerCase());
+        } else if (this.SelfContrains["LayoutJustifyContent"]) {
             // 对齐约束值 比 对齐配置值 大1
-            return this.SelfContrains["LayoutJustifyContent"].toLowerCase();
+            return Render.align(this.SelfContrains["LayoutJustifyContent"].toLowerCase());
         } else if (this.data.styles && this.data.styles.textAlign) {
             return Render.align(this.data.styles.textAlign);
         }
@@ -487,7 +496,9 @@ class Render {
     }
     get lineHeight() {
         if (this.data.styles && this.data.styles.lineHeight) {
-            return Render.unit(this.data.styles.lineHeight);
+            // return Render.unit(this.data.styles.lineHeight);
+            return this.data.styles.lineHeight / this.data.styles.maxSize;
+
         }
     }
     get opacity() {
@@ -537,7 +548,7 @@ class Render {
         判断是否需要省略号
     */
     isEllipsis() {
-        // return this.data.model == Store.model.TEXT.name && this.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto
+        // return this.data.model == Store.model.TEXT && this.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto
         return this.data.text && !!Render.findUntil(this, function (d) {
             return d.SelfContrains["LayoutFlex"] == CONTRAIN.LayoutFlex.Auto;
         })
@@ -559,6 +570,7 @@ class Render {
             "top",
             "bottom",
             "position",
+            "zIndex",
             // "flex",
             // "flexBasis",
             // "flexDirection",
@@ -594,6 +606,7 @@ class Render {
         [
             "color",
             "fontFamily",
+            "verticalAlign",
             "fontSize",
             "backgroundColor",
             "backgroundImage",
@@ -623,6 +636,15 @@ class Render {
             }
         });
 
+    }
+    static toRadius(vals, maxSize = 100) {
+        if (!(vals instanceof Array)) {
+            vals = [vals];
+        }
+        return vals.map(v => {
+            v = v < maxSize / 2 ? v : maxSize / 2;
+            return Render.unit(v);
+        }).join(' ');
     }
     static findUntil(dom, func) {
         if (func(dom)) {
@@ -658,10 +680,7 @@ class Render {
      */
     static unit(number, unit = Config.dsl.unit) {
         number = parseInt(number) || 0;
-        // 1像素特殊处理
-        // if (number == 1) {
-        // return '1px';
-        // }
+        // 1-2像素特殊处理
         if (Math.abs(number) <= Config.dsl.dpr) {
             number = Math.ceil(number / Config.dsl.dpr);
             unit = 'px';
@@ -726,7 +745,7 @@ class Render {
         return null;
     }
     static align(index) {
-        return Object.keys(CSSDom.align).find(k => CSSDom.align[k] == index);
+        return Object.keys(StyleDom.align).find(k => StyleDom.align[k] == index);
     }
     static alignJustify(index) {
         return {
@@ -806,7 +825,7 @@ class HtmlRender extends Render {
         return this.data.texts && this.data.texts[0].string || '';
     }
     get positionClassName() {
-        return (this.data.model || 'default').toLowerCase() + '-' + this.index;
+        return ((this.data.model && this.data.model.name) || 'default').toLowerCase() + '-' + this.index;
     }
     get cssClassName() {
         return 'style-' + this.data.styles.id;
@@ -818,7 +837,7 @@ class HtmlRender extends Render {
         )
     }
     getAttrObj() {
-        if (this.data.model == Store.model.IMAGE.name) {
+        if (this.data.model == Store.model.IMAGE) {
             this.attrObj["src"] = this.data.path;
         }
         if (Config.output.debug) {
@@ -830,16 +849,16 @@ class HtmlRender extends Render {
     getInlineStyle() {
         if (this.data.path &&
             this.data.type == Dom.type.IMAGE &&
-            this.data.model !== Store.model.IMAGE.name) {
+            this.data.model !== Store.model.IMAGE) {
             this.inlineStyle["background-image"] = `url(${this.data.path})`;
         };
 
     }
     getTagName() {
         this.tagName = "div";
-        if (this.data.model == Store.model.TEXT.name) {
+        if (this.data.model == Store.model.TEXT) {
             this.tagName = 'div';
-        } else if (this.data.model == Store.model.IMAGE.name) {
+        } else if (this.data.model == Store.model.IMAGE) {
             this.tagName = "img";
         }
         return this.tagName

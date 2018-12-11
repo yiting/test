@@ -7,7 +7,7 @@ module.exports.create = function (designWidth) {
         unit, // 设计长度单位
         fontSize, // 字体基础大小
         dpr, // 设备像素比 Device Pixel Ratio
-        lineHeight = 1.1, // 默认行高
+        lineHeight = 1.2, // 默认行高
         textSpacingCoefficient = 1 / 1.4, // 文案空间误差系数
         segmentingCoefficient = .7, // 分割线比例系数
         segmentingVerticalWidth = 2, // 垂直分割线宽度
