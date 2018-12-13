@@ -1,6 +1,6 @@
 const log4js = require('log4js');
 const request = require('request');
-const isSendMessage = false;
+const isSendMessage = true;
 const serverUrl = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send';
 const serverKey = '530aca1a-88b4-4a97-aa8b-ace476b9216c';
 const moduleData = {
