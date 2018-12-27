@@ -1,3 +1,7 @@
+let padDate = function(va) {
+  va = va < 10 ? "0" + va : va;
+  return va;
+};
 var vm = new Vue({
   el: "#personApp",
   data: {
@@ -6,6 +10,19 @@ var vm = new Vue({
     projects: [],
     historyProjects: []
   },
+  filters: {
+    formatDate: function(val) {
+      var value = new Date(val);
+      var year = value.getFullYear();
+      var month = padDate(value.getMonth() + 1);
+      var day = padDate(value.getDate());
+      /* var hour = padDate(value.getHours());
+      var minutes = padDate(value.getMinutes());
+      var seconds = padDate(value.getSeconds()); */
+      return year + "-" + month + "-" + day;
+    }
+  },
+
   created() {
     this.getUserInfo();
     this.getProjectList();
@@ -165,8 +182,8 @@ var vm = new Vue({
       let fileName = name.substr(0, potIndex);
       fileType = name.substr(potIndex + 1).toUpperCase();
       fileType = fileType.toLowerCase();
-      $(".file-name").text(name);
-      $(".file-size").text(CommonTool.convert(size));
+      //$(".file-name").text(name);
+      //$(".file-size").text(CommonTool.convert(size));
       //直接上传到后台
       if (fileType) {
         if (fileType == "sketch") {

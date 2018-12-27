@@ -4,7 +4,7 @@
             <li class="resource-item">
                 <div data-pid="5ec30c90-f949-11e8-bddc-713a8b346d24" data-pname="20181206192334_空白页推荐游戏" class="resource-item__inner">
                  <div class="img-wrap">
-                  <div class="imgs less" style="background-image: url(&quot;http://10.64.70.80:8080/unzip_file/20181206192334_空白页推荐游戏/previews/preview.png&quot;);">
+                  <div class="imgs less" style="background-image: url(&quot;http://10.64.70.68:8080/unzip_file/20181206192334_空白页推荐游戏/previews/preview.png&quot;);">
                    <b class="mask"></b> 
                    <div class="imgs-inner">
                     <span class="img" style="opacity: 0;"></span>
@@ -29,7 +29,7 @@
                 <li class="resource-item">
                     <div data-pid="bf841280-f94a-11e8-bddc-713a8b346d24" data-pname="20181206193327_列表" class="resource-item__inner">
                      <div class="img-wrap">
-                      <div class="imgs less" style="background-image: url(&quot;http://10.64.70.80:8080/unzip_file/20181206193327_列表/previews/preview.png&quot;);">
+                      <div class="imgs less" style="background-image: url(&quot;http://10.64.70.68:8080/unzip_file/20181206193327_列表/previews/preview.png&quot;);">
                        <b class="mask"></b> 
                        <div class="imgs-inner">
                         <span class="img" style="opacity: 0;"></span>
@@ -54,7 +54,7 @@
                     <li class="resource-item">
                         <div data-pid="bad87140-f9f9-11e8-bd87-27364fbe2046" data-pname="20181207162601_我的日迹" class="resource-item__inner">
                          <div class="img-wrap">
-                          <div class="imgs less" style="background-image: url(&quot;http://10.64.70.80:8080/unzip_file/20181207162601_我的日迹/previews/preview.png&quot;);">
+                          <div class="imgs less" style="background-image: url(&quot;http://10.64.70.68:8080/unzip_file/20181207162601_我的日迹/previews/preview.png&quot;);">
                            <b class="mask"></b> 
                            <div class="imgs-inner">
                             <span class="img" style="opacity: 0;"></span>
@@ -103,7 +103,7 @@
                         <li class="resource-item" v-for="(pro,index) in projects">
                             <div class="resource-item__inner" v-bind:data-pid="pro.projectId" v-bind:data-pname="pro.projectName">
                                 <div class="img-wrap">
-                                    <div v-bind:style="{backgroundImage: 'url(http://10.64.70.80:8080/unzip_file/'+pro.projectName+'/previews/preview.png)'}"
+                                    <div v-bind:style="{backgroundImage: 'url(http://10.64.70.68:8080/unzip_file/'+pro.projectName+'/previews/preview.png)'}"
                                          class="imgs less">
                                         <b class="mask"></b>
                                         <div class="imgs-inner">
@@ -129,7 +129,7 @@
                                             <span class="txt" v-cloak>{{
                                                 pro.projectName.substring(pro.projectName.indexOf("_")+1) }}</span>
                                             <div class="time" v-cloak>
-                                                {{ new Date(pro.modifytime).toLocaleString() }}
+                                                {{ new Date(pro.modifytime)|formatDate }}
                                             </div>
                                         </div>
                                         <div class="info" v-on:click="copyUrl" data-clipboard-action="copy"
@@ -171,7 +171,7 @@
                       >
                         <div class="img-wrap">
                           <div
-                            v-bind:style="{backgroundImage: 'url(http://10.64.70.80:8080/unzip_file/'+pro.projectName+'/previews/preview.png)'}"
+                            v-bind:style="{backgroundImage: 'url(http://10.64.70.68:8080/unzip_file/'+pro.projectName+'/previews/preview.png)'}"
                             class="imgs less"
                           >
                             <b class="mask"></b>

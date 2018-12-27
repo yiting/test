@@ -60,6 +60,9 @@ let pageArtboardsData = [],
   currentDesignJson,
   currentArtBoardUrl;
 
+//4.用户id、用户名
+let userId, userName;
+
 /*业务逻辑*/
 //渲染页面路由:初始化编辑查看页面,填充页面数据
 router.get("/", function(req, res, next) {
@@ -70,7 +73,7 @@ router.get("/", function(req, res, next) {
   //解码中文项目名
   projectName = decodeURIComponent(req.query.name);
   //2018-11-09：日志模块初始化
-  initLogConfig(req, res, next);
+  //initLogConfig(req, res, next);
   //初始化请求，并渲染:先获得数据；再将数据传到页面上
   getPagesAndArtBoards(projectName, res, function(pageData) {
     res.render("edit", {
@@ -81,6 +84,11 @@ router.get("/", function(req, res, next) {
 
 //2018-10-10:根据pageid、artboardID请求页面结构
 router.post("/getPageById", function(req, res, next) {
+  //用户id、用户名:用于记录日志信息
+  userId = req.body.userId;
+  userName = req.body.userName;
+  //2018-12-27：日志模块初始化
+  initLogConfig(req, res, next);
   //console.log("获取当前artboard骨架请求");
   logger.debug("[edit.js-getPageById]获取当前artboard骨架请求");
   //每次请求生成新的文件命名:html和css命名使用
@@ -397,6 +405,7 @@ let initLogConfig = function(req, res, next) {
   //平台模块日志初始化
   qlog.init({
     projectName: projectName + ".sketch",
+    userName,
     //测试环境ip访问
     /* url:
       "http://" +

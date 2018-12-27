@@ -267,7 +267,7 @@ class Render {
         if (this.data.path &&
             this.data.children
         ) {
-            return `url(${this.data.path})`;
+            return `url(../${this.data.path})`;
         }
     }
     get left() {

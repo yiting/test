@@ -38,6 +38,15 @@ let TOSEEINDEX = {
    * 初始化页面监听事件
    */
   eventListener: function() {
+    //2018-12-26:初始化用户信息
+    $(".mod-header-user .avatar").css(
+      "background-image",
+      "url(http://dcloud.oa.com/Public/Avatar/" +
+        CommonTool.getCookie("staffname") +
+        ".png"
+    );
+    $(".mod-header-user .name").text(CommonTool.getCookie("staffname"));
+
     //2018-11-12
     $("#nav-header-info,.btn-consult").click(function() {
       // window.location.href = "/person";
@@ -46,14 +55,14 @@ let TOSEEINDEX = {
     $("#nav-structure-experience").click(function() {
       // window.location.href = "/person";
       top.postMessage(
-        "http://10.65.90.117:8080/#/check",
+        "http://10.65.90.42:8080/#/check",
         "http://uitocode.oa.com"
       );
     });
     $("#nav-img-experience").click(function() {
       // window.location.href = "/person";
       top.postMessage(
-        "http://10.64.67.88:8080/shitu",
+        "http://10.64.67.35:8080/shitu",
         "http://uitocode.oa.com"
       );
     });

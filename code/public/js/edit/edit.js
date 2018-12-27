@@ -415,6 +415,9 @@ let TOSEEAPP = {
     });
     //请求后台数据
     let postData = {
+      //用户id、用户名:用于记录日志信息
+      userId: CommonTool.getCookie("staffid") || "",
+      userName: CommonTool.getCookie("staffname") || "",
       pageId: currentPageId,
       artboardId: currentArtboardId,
       pageArtBoardIndex: `${currentPageIndex + "_" + currentArtBoardIndex}`

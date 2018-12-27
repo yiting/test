@@ -1,8 +1,13 @@
-const {walkin,walkout,hasCompleteSytle,isCoincide,mergeStyle} = require('./designjson_utils');
+const Logger = require('./logger')
+const {walkin,walkout,hasComplexSytle,isCoincide,mergeStyle} = require('./designjson_utils');
 let process = function(_document) {
-    //虚拟树元素合并
-    const processor = new _TransferProcessor(_document);
-    processor.mix() // 合并元素属性
+    try {
+        //虚拟树元素合并
+        const processor = new _TransferProcessor(_document);
+        processor.mix() // 合并元素属性
+    } catch (err) {
+        Logger.error('属性合并报错！');
+    }
 
 }
 // 树元素处理，包括属性合并，
@@ -15,7 +20,7 @@ class _TransferProcessor {
         walkout(_document._tree,node => {
             if(!node.parent) return;
             const parent = _document.getNode(node.parent);
-            if (node.type === 'QText' || node.type === 'QImage' || hasCompleteSytle(node) || !isCoincide(node,parent)) return;
+            if (node.type === 'QText' || node.type === 'QImage' || hasComplexSytle(node) || !isCoincide(node,parent)) return;
              // 父子重合时，将子元素属性合并到父元素上
             console.log(node.name,'合并到',parent.name)
             mergeStyle(parent,node);

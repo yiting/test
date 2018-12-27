@@ -44,15 +44,24 @@ function mergeStyle(targetNode,node,targetKeys) {
 function hasStyle(node) { // 节点是否包具有样式
     if (!node.styles) return false;
     const {opacity,rotation,border,borderRadius,shadows,background} = node.styles;
-    return !!(background || opacity != 1 || rotation!= 0 || border || shadows || (borderRadius && borderRadius!=0));
+    // return !!(background || opacity != 1 || rotation!= 0 || border || shadows || (borderRadius && borderRadius!=0));
+    return !!(background || opacity != 1 || rotation!= 0 || border || shadows || (borderRadius && borderRadius.some(val => !!val)));
 }
-function hasCompleteSytle(node) { // 节点是否包含影响子元素的属
+function hasComplexSytle(node) { // 节点是否包含影响子元素的属
     // TODO 性：opacity,transform
     if (!node.styles) return false;
     const {opacity,rotation,border,borderRadius,shadows,background} = node.styles;
     const isBgComplex = background && background.hasOpacity;
     // return opacity != 1 || rotation!= 0 || border || shadows || borderRadius!=0 || isBgComplex ;
-    return !!(opacity != 1 || rotation!= 0 || border || shadows || (borderRadius && borderRadius!=0) || isBgComplex);
+    // return !!(opacity != 1 || rotation != 0 || border || shadows || (borderRadius && borderRadius!=0) || isBgComplex);
+    return !!(opacity != 1 || rotation != 0 || border || shadows || (borderRadius && borderRadius.some(val => !!val)) || isBgComplex);
+}
+function hasComplexColorStyle(node) {
+    if (!node.styles) return false;
+    const {opacity,rotation,border,shadows,background} = node.styles;
+    const isBgComplex = background && background.hasOpacity;
+    // return opacity != 1 || rotation!= 0 || border || shadows || borderRadius!=0 || isBgComplex ;
+    return !!(opacity != 1 || rotation != 0 || border || shadows || isBgComplex);
 }
 function generateGroupAttr(pnode,nodes) {
      // 如果是mask，则合并的图片为mask的位置大小信息
@@ -77,6 +86,10 @@ function generateGroupAttr(pnode,nodes) {
         height: abY1 - abY
     }
 }
+function isPureColor(node) {
+    const { background } = node.styles;
+    return node.type === 'QShape' && background && background.type === 'color' && !hasComplexColorStyle(node);
+}
 module.exports = {
     walkout,
     walkin,
@@ -85,6 +98,7 @@ module.exports = {
     isCoincide,
     mergeStyle,
     hasStyle,
-    hasCompleteSytle,
-    generateGroupAttr
+    hasComplexSytle,
+    generateGroupAttr,
+    isPureColor
 }
