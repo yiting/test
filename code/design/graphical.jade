@@ -1,0 +1,83 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title 视觉编译21
+    meta(name='keywords', content='')
+    meta(name='description', content='')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    link(rel='stylesheet', href='css/graphical.css')
+    script(src='jquery.js')
+    script.
+      $("html,body").animate({scrollTop: $("#elementid").offset().top}, 1000);
+  body.android
+    .header
+    .banner
+
+    .description
+      h2 功能介绍
+      p 通过提取人脸的特征，计算两张人脸的相似度，从而判断是否同一个人，并给出相似度评分。<br/>在已知用户ID的情况下帮助确认是否为用户本人的对比操作，即1：1身份验证。可用于真实身份验证、人证合一验证等场景
+      .img
+
+    .demonstration
+      h2 功能演示
+      .demonstration-demo
+        .demo-list
+          ul
+            li.active
+              img(src="img/ai/1.png")
+              h3 列表页面
+              p 多元组合
+            li
+              img(src="img/ai/1.png")
+              h3 游戏界面
+              p 单元素识别
+            li
+              img(src="img/ai/1.png")
+              h3 商城页面
+              p 文字识别
+            li
+              img(src="img/ai/1.png")
+              h3 活动页面
+              p 按钮区域识别
+        .demo-main
+        .demo-json
+        .demo-upload
+
+    .scene
+      h2 应用场景
+      .scene-cont
+
+    .features
+      h2 技术特色
+      .scene-cont
+
+    .footer
+
+
+
+
+
+  script(src="js/jquery.js")
+  script.
+    $(".play-video").on('click',function(){
+      $('.video-wrap').show();
+      $('.video-wrap')[0].offsetTop;
+      $('.video-wrap').addClass('on');
+      if($(this).hasClass('play-advan')){
+        $('#video').prop('src','video/d.ogv')[0].play();
+      }else if($(this).hasClass('play-banner')){
+        $('#video').prop('src','video/d.ogv')[0].play();
+      }
+    });
+    $(".play-close").on('click',function(){
+      $('#video')[0].pause();
+      $('.video-wrap').removeClass('on').hide();
+    });
+    $(window).on("scroll",function(){
+      if(window.scrollY>300){
+        $('#jmod-backtotop-wrap').css('visibility','visible');
+      }else{
+        $('#jmod-backtotop-wrap').css('visibility','hidden');
+      }
+    });

@@ -1,0 +1,163 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title 视觉编译
+    meta(name='keywords', content='')
+    meta(name='description', content='')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    link(rel='stylesheet', href='css/style.css')
+    script(src='jquery.js')
+    script.
+      $("html,body").animate({scrollTop: $("#elementid").offset().top}, 1000);
+  body
+    .mod-header
+      .layout
+        a.mod-header-logo(href='/', _stat_click_id='header_logo')
+        .mod-header-nav
+          ul
+            li
+              h2
+                a(href='##') UI元素识别
+            li
+              h2
+                a(href='##', _stat_click_id='header_accelerator') UI标注辅助
+            li
+              h2
+                a(href='##', _stat_click_id='header_info') 页面布局识别
+
+        .mod-header-user
+          .avatar(style="background-image: url(http://dcloud.oa.com/Public/Avatar/stevenpan.png")
+          .name stevenpan
+
+        .mod-header-other
+          ul
+            li
+              h2
+                a(href='##', _stat_click_id='header_info') 文档
+            li
+              h2
+                a(href='##', _stat_click_id='header_info') 注意
+
+
+
+
+    .banner(style="background-image: url(img/banner2.png);")
+
+      .layout
+        .banner-intro
+          h1.banner-name UI标注辅助
+          p.banner-des 快速准确地识别出设界面中图片、图标、文字等设计元素的区域。 
+            br
+            |  加快深度学习数据训练的标注速度。
+
+    .sec.support
+      .layout
+        h1 方案构成
+        p 这里用一句话，30~40个字，描述你的解决方案，可以参考baidu ai。
+        img(src='img/description.png')
+
+    .sec.scene
+      .layout
+        h1 功能演示
+        img(src='img/description2.png')
+
+    .sec.support
+      .layout
+        h1 使用场景
+        ul
+          li.support-item
+            //img.i(src="https://main.qcloudimg.com/raw/549cc6deb4887efb314b58b2673da568.svg")
+            img.i(src="img/4.svg")
+            h3 虚拟界面识别
+            p 区别于目前市面上绝大部分的实物识别功能，填补虚拟界面识别的空白。
+          li.support-item
+            //img.i(src="https://main.qcloudimg.com/raw/04936582cda984795c47104f3e36b011.svg")
+            img.i(src="img/5.svg")
+            h3 多平台界面支持
+            p 手机app界面、h5界面、平板界面、电脑界面都能支持识别。
+          li.support-item
+            //img.i(src="https://main.qcloudimg.com/raw/40dcdfd2fb235992aacd2c2f20743b91.svg")
+            img.i(src="img/3.svg")
+            h3 多类型内容支持
+            p 不限制界面内容，衣食住行各种界面都能支持识别。
+
+    .ai-footer
+      .layout
+        .col
+          .col-title 期待加入我们
+          .col-content
+            p 希望你对以下有研究，机器学习方向，计算机视觉方向，图像识别处理方向
+            br
+            p.mail 联系方式：<br/>stevenpan@tencent.com
+        .col
+          .col-title 团队成员
+          .col-content
+            ul.members
+              li 
+                img(src="img/members/kahnjin.jpg")
+                span kahnjin
+              li 
+                img(src="img/members/trevorpang.jpg")
+                span trevorpang
+              li 
+                img(src="img/members/skymlhuang.jpg")
+                span skymlhuang
+              li 
+                img(src="img/members/alltasxiao.jpg")
+                span alltasxiao
+              li 
+                img(src="img/members/bowentang.jpg")
+                span bowentang
+              li 
+                img(src="img/members/chironyang.jpg")
+                span chironyang
+              li 
+                img(src="img/members/chrisschen.jpg")
+                span chrisschen
+              li 
+                img(src="img/members/ralychen.jpg")
+                span ralychen
+              li 
+                img(src="img/members/yixionglin.jpg")
+                span yixionglin
+              li 
+                img(src="img/members/yonechen.jpg")
+                span yonechen
+              li 
+                img(src="img/members/stevenpan.jpg")
+                span stevenpan
+
+        .col
+          .col-content
+            .qrcode
+      #jmod-fixed-bar.fixed-bar
+        a.item.qq.jmod-contact-qq(href='https://support.qq.com/products/33596', title='意见反馈', _stat_click_id='fixedbar_contactqq')
+        a#jmod-backtotop-wrap.item.backtop(href='#', title='返回顶部', style='visibility: hidden;', _stat_click_id='fixedbar_backtotop')
+    .video-wrap
+      .play-close
+      video#video(src='video/d.ogv',width="100%",height="100%",loop,preload)
+
+  script(src="js/jquery.js")
+  script.
+    $(".play-video").on('click',function(){
+      $('.video-wrap').show();
+      $('.video-wrap')[0].offsetTop;
+      $('.video-wrap').addClass('on');
+      if($(this).hasClass('play-advan')){
+        $('#video').prop('src','video/d.ogv')[0].play();
+      }else if($(this).hasClass('play-banner')){
+        $('#video').prop('src','video/d.ogv')[0].play();
+      }
+    });
+    $(".play-close").on('click',function(){
+      $('#video')[0].pause();
+      $('.video-wrap').removeClass('on').hide();
+    });
+    $(window).on("scroll",function(){
+      if(window.scrollY>300){
+        $('#jmod-backtotop-wrap').css('visibility','visible');
+      }else{
+        $('#jmod-backtotop-wrap').css('visibility','hidden');
+      }
+    });

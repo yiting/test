@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+html(data-use-rem='750')
+  head
+    meta(charset="utf-8")
+    meta(name='viewport', content='width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no')
+    title 活动中心
+    link(rel="stylesheet", href="../css/actlist.css")
+    script(src="../js/rem.min.js")
+    script(src="../js/zepto.min.js")
+    script(src="../js/zepto.touchWipe.js")
+
+    script.
+          $(document).ready(function(){
+              //游戏
+              $('.tab1').click(function(){
+                  $('.pagewrap').removeClass("z-display");
+                  $('.page-gamelist').addClass("z-display");
+                  $('.md-tab li').removeClass("active");
+                  $(this).addClass("active");
+              });
+              //厘米秀
+              $('.tab2').click(function(){
+                  $('.pagewrap').removeClass("z-display");
+                  $('.page-cmshow').addClass("z-display");
+                  $('.md-tab li').removeClass("active");
+                  $(this).addClass("active");
+              });
+
+
+              //QQ好友在玩
+              $('.mod-qqfriend').click(function(){
+                  $('.pagewrap').removeClass("z-display");
+                  $('.page-friendlistmore').addClass("z-display");
+                  $('.page-friendlist').addClass("z-hide");
+                  $('.md-tab').addClass("z-hide");
+              });
+          });
+
+    // 滑动删除
+    script.
+        $(function () {
+            //滑动方法
+            $('.goods-item').touchWipe({itemDelete: '.delete-attention-btn'});
+            $("body").on("touchstart", function (e) {
+                e.stopPropagation();
+                //如果点击对象是取消按钮，则不平移，其余情况全部平移
+                if (e.target.className.indexOf('delete-attention-btn') > -1) {
+                    alert("点击删除取消按钮")
+                    return false;
+                }
+                $(".goods-item").css({
+                    "-webkit-transform": "translateX(0)",
+                    "transition": "all .2s"
+                });
+            });
+        });
+
+  body(class="" ontouchstart="")
+
+    .mod-lmnav
+      .lmback
+      .title 活动中心
+      .personal 个人中心
+
+    // 轮换tab
+    ul.md-tab.ui-border-b
+      li.tab1.active
+        span 轻游戏
+      li.tab2
+        span 厘米秀
+
+    //页面：匹配
+    div.pagewrap.page-cmshow
+        ul.item
+          li
+            .item-cont
+              .item-bg(style='background-image:url(../images/game2.png)')
+              .item-info
+                .pic(style='background-image:url(../images/game3.png)')
+                .title
+                  strong 厘米秀
+                span.text 厘米秀厘米秀厘米秀厘米秀厘米秀
+                .date 08.15-08.20
+            .item-sup-recommend
+              span 手游
+          li
+            .item-cont
+              .item-bg(style='background-image:url(../images/game2.png)')
+              .item-info
+                .pic(style='background-image:url(../images/game3.png)')
+                .title
+                  strong 厘米秀
+                  span.sup 角色
+                  span.sup 竞技
+                span.text 厘米秀厘米秀厘米秀厘米秀
+                .date 08.15-08.20
+            .item-sup-recommend
+              span 手游
+
+
+    //页面：游戏
+    div.pagewrap.page-gamelist.z-display
+        ul.item
+          li
+            .item-cont
+              .item-bg(style='background-image:url(../images/game2.png)')
+              .item-info
+                .pic(style='background-image:url(../images/game3.png)')
+                .title
+                  strong 游戏名称
+                  span.sup 角色
+                  span.sup 竞技
+                span.text 说明文字说明文字说明文字说说明文字说明文字
+                .date 08.15-08.20
+            .item-sup-recommend
+              span 手游
+          li
+            .item-cont
+              .item-bg(style='background-image:url(../images/game2.png)')
+              .item-info
+                .pic(style='background-image:url(../images/game3.png)')
+                .title
+                  strong 游戏名称游戏名称游戏名称游戏名称游戏名称
+                  span.sup 角色
+                  span.sup 竞技
+                span.text 说明文字说明文字说明文文字说说明文字说明文字说说明文字说明文字
+                .date 08.15-08.20
+            .item-sup-new
+              span 手游
+          li
+            .item-cont
+              .item-bg(style='background-image:url(../images/game2.png)')
+              .item-info
+                .pic(style='background-image:url(../images/game3.png)')
+                .title
+                  strong 游戏名称游戏名称游戏名称游戏名称游戏名称
+                  span.sup 角色
+                  span.sup 竞技
+                span.text 说明文字说明文字说文字说说明文字说明文明文字说说明文字说明文字
+                .date 08.15-08.20
+            .item-sup-recommend
+              span 手游
+
+    //页面：游戏
+    .popup-description.z-display
+      .mask
+      .main
+        .hd 标题标题标题标题
+        .bd 1.说明文字说明文明文字说文说明文字说文说文明文字说说字说说明文<br/>2.字说明文字说说明文字说说明文字说文说文明文字说说明<br/>3.文字说明文字说说明文字说说明文字文字说文说说明文字说<br/>4.明字说说明说说明文明文<br/>5.字说说明说明文字说文字说说明文字
+        .close
