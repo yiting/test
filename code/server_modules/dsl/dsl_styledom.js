@@ -1,6 +1,6 @@
 let Common = require("./dsl_common.js");
 let index = 0;
-class CSSDom {
+class StyleDom {
     constructor(o = {}, ...extend) {
         Object.assign(o, ...extend);
         // this.id = Common.guid();
@@ -16,7 +16,7 @@ class CSSDom {
         this.blending = o.blending || null;
         this.textAlign = o.textAlign || 0;
         this.maxSize = o.texts ? Math.max(...o.texts.map(t => t.size)) : null;
-        this.minSize = o.texts? Math.min(...o.texts.map(t=>t.size)):null;
+        this.minSize = o.texts ? Math.min(...o.texts.map(t => t.size)) : null;
     }
     get className() {
         return
@@ -26,13 +26,15 @@ class CSSDom {
     }
 }
 // 对齐方式
-CSSDom.align = {
+StyleDom.align = {
     "left": 0,
     "right": 1,
-    "center": 2
+    "center": 2,
+    "start": 0,
+    "end": 1
 }
 
-CSSDom.fontWeight = {
+StyleDom.fontWeight = {
     "thin": 100, //Thin
     "extra": 200, //Extra Light (Ultra Light)
     "light": 300, //Light
@@ -43,4 +45,4 @@ CSSDom.fontWeight = {
     "extra": 800, //Extra Bold (Ultra Bold)
     "black": 900, //Black (Heavy)
 }
-module.exports = CSSDom;
+module.exports = StyleDom;

@@ -1,0 +1,36 @@
+<div class="page-header">
+  <nav class="header-navbar">
+    <div class="container">
+      <a
+        href="#"
+        class="navbar-logo router-link-active"
+        v-on:click.stop="backIndex"
+      ></a>
+      <div class="header-navbar__main">
+        <ul class="navbar-nav" v-if="showNav&&user.groupname==1">
+          <li class="nav-item">
+            <a href="#" class="nav-link visitor-link" v-on:click="visitorNum"
+              >访问人数</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="user-info">
+        <div class="user-info-panel" v-on:click="backCenter">
+          <span
+            v-bind:style="{backgroundImage: 'url(http://dcloud.oa.com/Public/Avatar/'+user.staffname+'.png)'}"
+            class="avatar"
+            v-cloak
+          ></span>
+          <span class="user-name" v-text="user.staffname"></span>
+        </div>
+        <a
+          href="http://support.qq.com/products/33596"
+          class="feed-back-btn"
+          target="_blank"
+          >意见反馈</a
+        >
+      </div>
+    </div>
+  </nav>
+</div>

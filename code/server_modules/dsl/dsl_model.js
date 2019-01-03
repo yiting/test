@@ -12,7 +12,7 @@ function amountVerify(dom, textCountLimit, imageCountLimit, mixCountLimit) {
         if (c.type == Dom.type.TEXT && textCount < textCountLimit) {
             textCount++
         } else if (c.type == Dom.type.IMAGE && imgCount < imageCountLimit) {
-            imgCount++
+            imgCount++;
         } else {
             mixCount++;
         }
@@ -26,14 +26,17 @@ function amountVerify(dom, textCountLimit, imageCountLimit, mixCountLimit) {
 
 // 判断是否符合模型
 module.exports.is = function (model, dom, parent, Config) {
-    return amountVerify(dom, model.textCount, model.imageCount, model.mixCount) &&
+    return !dom.model &&
+        dom.model != model &&
+        amountVerify(dom, model.textCount, model.imageCount, model.mixCount) &&
         model.is(dom, parent, Config)
 }
 // 根据模型调整结构
 module.exports.adjust = function (model, dom, parent, Config) {
-    dom.model = model.name; // 赋予模型名称
+    dom.model = model; // 赋予模型名称
     dom.type = model.type; // 赋予模型类型
     if (dom.type == Dom.type.TEXT) {
+        // 更新模型字号
         dom.styles.maxSize = dom.styles.maxSize || Math.max(...dom.children.map(c => c.styles.maxSize));
         dom.styles.minSize = dom.styles.minSize || Math.min(...dom.children.map(c => c.styles.minSize));
     }

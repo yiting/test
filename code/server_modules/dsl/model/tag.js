@@ -9,11 +9,11 @@ module.exports.type = Dom.type.TEXT;
 module.exports.textCount = 1;
 module.exports.imageCount = 0;
 module.exports.mixCount = 0; //-1，即为任意混合数
+module.exports.canShareStyle = true; // 如果为简易元素，则不与其他结构复用样式
 module.exports.isSimilar = function (a, b, config) {
     return Math.abs(a.styles.padding - b.styles.padding) < config.dsl.operateErrorCoefficient &&
         Math.abs(a.height - b.height) < config.dsl.operateErrorCoefficient &&
         a.styles.maxSize == b.styles.maxSize
-
 }
 module.exports.is = function (dom, parent, config) {
     const child = dom.children[0]
@@ -33,7 +33,7 @@ module.exports.adjust = function (dom, parent, config) {
     // dom reset
     dom.styles.lineHeight = dom.height;
     dom.styles.padding = margin.left;
-    // dom.styles.textAlign = CSSDom.align["center"];
+    // dom.styles.textAlign = StyleDom.align["center"];
     dom.children = [];
     dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedHeight.Fixed;
 }

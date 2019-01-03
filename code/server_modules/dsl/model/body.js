@@ -12,6 +12,7 @@ module.exports.mixCount = -1; //-1，即为任意混合数
 module.exports.isSimilar = function () {
     return false;
 }
+module.exports.canShareStyle = false;
 module.exports.is = function (dom, parent, config) {
     // 判断：只有两个节点
     return !parent;

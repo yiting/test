@@ -358,10 +358,28 @@ textarea {
   position: absolute;
   top: 0;
   left: 0;
+  line-height: 60px;
   box-sizing: border-box;
   color: #fff;
+  background-color: #000;
   z-index: 100;
   transition: background 0.3s ease;
+  /*   &:hover {
+    background-color: $color_mine_shaft_approx;
+    .mod-header-logo {
+      background-image: $url_0;
+      background-position: 0 -128px;
+    }
+    .mod-header-user {
+      .try {
+        color: $white;
+        background-color: $color_science_blue_approx;
+      }
+      .user i:after {
+        border-top-color: $color_mine_shaft_approx;
+      }
+    }
+  } */
 }
 .mod-header .layout {
   width: 1200px;
@@ -393,20 +411,6 @@ textarea {
   background-color: #126ee1;
 }
 .mod-header.hover .mod-header-user .user i:after {
-  border-top-color: #333;
-}
-.mod-header:hover {
-  background-color: #333;
-}
-.mod-header:hover .mod-header-logo {
-  background-image: url(/img/sprite-ad720473bfcommon.png);
-  background-position: 0 -128px;
-}
-.mod-header:hover .mod-header-user .try {
-  color: #fff;
-  background-color: #126ee1;
-}
-.mod-header:hover .mod-header-user .user i:after {
   border-top-color: #333;
 }
 .mod-header .cat {
@@ -579,12 +583,14 @@ textarea {
 
 .mod-header-nav {
   position: relative;
-  float: left;
+  display: inline-block;
 }
 .mod-header-nav li {
   position: relative;
-  float: left;
   line-height: 1;
+  display: inline-block;
+  margin: 0 10px;
+  padding: 0 10px;
 }
 .mod-header-nav .top-cat {
   text-align: center;
@@ -640,6 +646,43 @@ textarea {
 }
 .mod-header-nav a:hover {
   text-decoration: none;
+}
+
+.mod-header-user {
+  float: right;
+  display: inline-block;
+  line-height: 60px;
+  height: 60px;
+}
+.mod-header-user .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  vertical-align: middle;
+  margin: 0 2px 0 28px;
+  display: inline-block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.mod-header-user .name {
+  vertical-align: middle;
+  display: inline-block;
+  padding-right: 30px;
+}
+
+.mod-header-other {
+  float: right;
+  position: relative;
+  display: inline-block;
+}
+.mod-header-other ul li {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 0 10px;
+}
+.mod-header-other ul li h2 a:hover {
+  color: #126ee1;
 }
 
 html {

@@ -7,10 +7,14 @@ module.exports.name = 'BLOCK';
 module.exports.type = Dom.type.LAYOUT;
 module.exports.textCount = 0;
 module.exports.imageCount = 0;
-module.exports.mixCount = -10; // -1，即为任意混合数
+module.exports.mixCount = -30; // -1，即为任意混合数
 module.exports.isSimilar = function (a, b, config) {
-    return false;
+    return a.children.length == b.children.length &&
+        a.children.every((d1, i) => {
+            return d1.similarMarkId == b.children[i].similarMarkId;
+        });
 }
+module.exports.canShareStyle = true;
 module.exports.is = function (dom, parent, config) {
     return dom.layout == Dom.layout.BLOCK || dom.layout == Dom.layout.ROW
 }

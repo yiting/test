@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/index/index.css" />
   </head>
   <body style="display: none;">
     <!-- 顶部 -->
@@ -20,20 +20,15 @@
         alias: {
           jquery: "js/lib/jquery.min.js",
           //页面弹框插件
-          layer: "layer.js"
+          layer: "layer.js",
+          util: "js/util/util.js"
         },
-        preload: "jquery"
+        preload: ["jquery", "util"]
       });
       seajs.use(
-        [
-          "jquery",
-          "layer",
-          "js/util/config.js",
-          "js/util/util.js",
-          "js/index/index.js"
-        ],
+        ["jquery", "layer", "js/util/config.js", "util", "js/index/index.js"],
         function($) {
-          operatePage();
+          TOSEEINDEX.init();
         }
       );
     </script>

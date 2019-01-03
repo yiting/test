@@ -1,6 +1,8 @@
 const Dom = require("./dsl_dom.js");
 const Store = require("./dsl_store.js");
 const Logger = require('./logger');
+const Segmenting = require("./model/segmenting");
+const Model = require("./dsl_model");
 /**
  * Design-Dom 转为 一维数组
  * @param  {[type]} cur [description]
@@ -9,7 +11,8 @@ const Logger = require('./logger');
  */
 function serialize(arr) {
     let res = []
-    arr.forEach((child => {
+    arr.forEach(((child, i) => {
+
         // 剔除完全超出范围元素
         if (child.abX > Config.device.width ||
             child.abY > Config.device.height ||
@@ -19,7 +22,8 @@ function serialize(arr) {
         } else {
             delete child.children;
             res.push(new Dom(child, {
-                isRoot: child.type == 'QBody'
+                isRoot: child.type == 'QBody',
+                zIndex: i
             }))
         }
     }))
@@ -50,8 +54,6 @@ function sortBySize(arr) {
 
 
 // 清洗行高，使行高为1.4
-// 赋值 textHeight,textY
-// 赋值行数lines
 function cleanLineHeight(arr) {
     arr.forEach(dom => Dom.cleanLineHeight(dom, Config.dsl.lineHeight));
     return arr;
@@ -59,29 +61,12 @@ function cleanLineHeight(arr) {
 /**
  *  标记水平分割线
  */
-function markerSegmenting(json) {
-    const horizontalLength = json.width * Config.dsl.segmentingCoefficient;
-    const verticalLength = json.height * Config.dsl.segmentingCoefficient;
-    let arr = [];
+function markerSegmenting(arr, body) {
     // let index = 0;
-    json.children.forEach((d, i) => {
-        if (!d.text && (!d.children || d.children.length == 0)) {
-            if (d.width / d.height >= Option.segmentingProportion &&
-                d.width >= horizontalLength &&
-                d.height < Config.dsl.verticalSpacing
-            ) {
-                // 水平分割线
-                d.type = Store.model.SEGMENTING_HORIZONTAL
-                arr.push(d);
-            } else if (d.width / d.height >= Option.segmentingProportion &&
-                d.height >= verticalLength &&
-                d.width < Config.dsl.segmentingVerticalWidth) {
-                // 垂直分割线
-                d.type = Store.model.SEGMENTING_VERTICAL
-                arr.push(d);
-            }
+    arr.forEach((d, i) => {
+        if (Segmenting.is(d, body, Config)) {
+            Model.adjust(Segmenting, d, body, Config);
         }
-        arr = arr.concat(markerSegmenting(d));
     });
     return arr;
 }
@@ -128,41 +113,46 @@ function filterUselessGroup(arr) {
 }
 /**
  * 重组父子结构
+ * 1. 元素边界不可变
+ * 推演： a.非完全包含元素不为父子结构
  * @param  {[type]} arr [description]
  * @return {[type]}     [description]
  */
 function relayer(arr, body) {
-    var coms = [body],
-        doms = [];
-    arr.forEach(function (o, i) {
-        if (!o || o == body) {
+    let coms = [body];
+        let doms = [];
+        //let segmentings = []
+    arr.forEach(function (childDom, i) {
+        if (!childDom || childDom == body) {
             return;
         }
-        let done = coms.some(function (d) {
-            // 在父节点上
-            if (d.type != Dom.type.TEXT &&
-                ((d.type == Dom.type.LAYOUT && Dom.isConnect(d, o, -1)) ||
-                    Dom.isWrap(d, o))
-                // Dom.isWrap(d,o)
-            ) {
-                o.x = o.abX - d.abX;
-                o.y = o.abY - d.abY;
+        let done = coms.some(function (parentDom) {
+            /**
+             * 在父节点上,
+             * 描述：parentDom面积必 大于等于 childDom面积，通过判断是否存在包含关系得出，childDom是否为parentDom子节点
+             */
+            if (parentDom.type != Dom.type.TEXT &&
+                // 如果超出横向屏幕范围，则相连则纳入包含
+                ((Dom.isXConnect(parentDom, childDom, -1) && Dom.isYWrap(parentDom, childDom)) ||
+                    Dom.isWrap(parentDom, childDom))) {
+                childDom.x = childDom.abX - parentDom.abX;
+                childDom.y = childDom.abY - parentDom.abY;
                 arr[i] = null;
-                o.parent = d.id;
-                coms.unshift(o);
-                d.children.push(o);
+                childDom.parent = parentDom.id;
+                coms.unshift(childDom);
+                parentDom.children.push(childDom);
                 return true;
             }
         });
         if (!done) {
-            o.x = o.abX;
-            o.y = o.abY;
-            coms.unshift(o);
-            doms.unshift(o);
+            childDom.x = childDom.abX;
+            childDom.y = childDom.abY;
+            coms.unshift(childDom);
+            doms.unshift(childDom);
             arr[i] = null;
         }
     });
-    body.children = body.children.concat(doms);
+    body.children = body.children.concat(doms)
     body.children.forEach((d, i) => {
         d.parent = body.id;
     })
@@ -194,21 +184,20 @@ function fn(json) {
     // 合并同大小元素
     Logger.debug('[pipe - cleanse] mergeBySize')
     arr = mergeBySize(arr);
+    // 标记分割线
+    Logger.debug('[pipe - cleanse] markerSegmenting')
+    arr = markerSegmenting(arr, body);
 
     // 重组父子结构
     Logger.debug('[pipe - cleanse] relayer')
     relayer(arr, body);
 
-    // 标记分割线
-    Logger.debug('[pipe - cleanse] markerSegmenting')
-    markerSegmenting(body);
     Logger.debug('[pipe - cleanse] end')
     return body;
 }
 let Config = {},
     Option = {
         segmentingProportion: 25,
-        segmentingVerticalWidth: 2
     };
 module.exports = function (data) {
     Config = this.attachment.config;

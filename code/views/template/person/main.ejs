@@ -1,3 +1,83 @@
+<div class="page-demo" v-on:click="showExampleDemo"> 
+        <div class="demo-more"></div> 
+        <ul class="resource-list project">
+            <li class="resource-item">
+                <div data-pid="5ec30c90-f949-11e8-bddc-713a8b346d24" data-pname="20181206192334_空白页推荐游戏" class="resource-item__inner">
+                 <div class="img-wrap">
+                  <div class="imgs less" style="background-image: url(&quot;http://10.64.70.68:8080/unzip_file/20181206192334_空白页推荐游戏/previews/preview.png&quot;);">
+                   <b class="mask"></b> 
+                   <div class="imgs-inner">
+                    <span class="img" style="opacity: 0;"></span>
+                   </div>
+                  </div> 
+                  <div data-projectid="5ec30c90-f949-11e8-bddc-713a8b346d24" data-projectname="20181206192334_空白页推荐游戏" class="mask-wrap" v-on:click="viewProjectById"></div>
+                 </div> 
+                 <div class="info-bar">
+                  <div class="content">
+                   <div class="name">
+                    <span class="txt">空白页推荐游戏</span> 
+                    <div class="time">
+                      2018/12/6 下午7:23:35 
+                    </div>
+                   </div> 
+                   <div data-clipboard-action="copy" data-clipboard-target="#copy-demo1" class="info" v-on:click="copyUrl">
+                    <span id="copy-demo1" class="url">http://uitocode.oa.com/edit?id=5ec30c90-f949-11e8-bddc-713a8b346d24&amp;name=20181206192334_%25E7%25A9%25BA%25E7%2599%25BD%25E9%25A1%25B5%25E6%258E%25A8%25E8%258D%2590%25E6%25B8%25B8%25E6%2588%258F</span>
+                   </div>
+                  </div>
+                 </div>
+                </div></li>      
+                <li class="resource-item">
+                    <div data-pid="bf841280-f94a-11e8-bddc-713a8b346d24" data-pname="20181206193327_列表" class="resource-item__inner">
+                     <div class="img-wrap">
+                      <div class="imgs less" style="background-image: url(&quot;http://10.64.70.68:8080/unzip_file/20181206193327_列表/previews/preview.png&quot;);">
+                       <b class="mask"></b> 
+                       <div class="imgs-inner">
+                        <span class="img" style="opacity: 0;"></span>
+                       </div>
+                      </div> 
+                      <div data-projectid="bf841280-f94a-11e8-bddc-713a8b346d24" data-projectname="20181206193327_列表" class="mask-wrap" v-on:click="viewProjectById"></div>
+                     </div> 
+                     <div class="info-bar">
+                      <div class="content">
+                       <div class="name">
+                        <span class="txt">列表</span> 
+                        <div class="time">
+                          2018/12/6 下午7:33:27 
+                        </div>
+                       </div> 
+                       <div data-clipboard-action="copy" data-clipboard-target="#copy-demo2" class="info" v-on:click="copyUrl">
+                        <span id="copy-demo2" class="url">http://uitocode.oa.com/edit?id=bf841280-f94a-11e8-bddc-713a8b346d24&amp;name=20181206193327_%25E5%2588%2597%25E8%25A1%25A8</span>
+                       </div>
+                      </div>
+                     </div>
+                    </div></li>
+                    <li class="resource-item">
+                        <div data-pid="bad87140-f9f9-11e8-bd87-27364fbe2046" data-pname="20181207162601_我的日迹" class="resource-item__inner">
+                         <div class="img-wrap">
+                          <div class="imgs less" style="background-image: url(&quot;http://10.64.70.68:8080/unzip_file/20181207162601_我的日迹/previews/preview.png&quot;);">
+                           <b class="mask"></b> 
+                           <div class="imgs-inner">
+                            <span class="img" style="opacity: 0;"></span>
+                           </div>
+                          </div> 
+                          <div data-projectid="bad87140-f9f9-11e8-bd87-27364fbe2046" data-projectname="20181207162601_我的日迹" class="mask-wrap" v-on:click="viewProjectById"></div>
+                         </div> 
+                         <div class="info-bar">
+                          <div class="content">
+                           <div class="name">
+                            <span class="txt">我的日迹</span> 
+                            <div class="time">
+                              2018/12/7 下午4:26:01 
+                            </div>
+                           </div> 
+                           <div data-clipboard-action="copy" data-clipboard-target="#copy-demo3" class="info" v-on:click="copyUrl">
+                            <span id="copy-demo3" class="url">http://uitocode.oa.com/edit?id=bad87140-f9f9-11e8-bd87-27364fbe2046&amp;name=20181207162601_%25E6%2588%2591%25E7%259A%2584%25E6%2597%25A5%25E8%25BF%25B9</span>
+                           </div>
+                          </div>
+                         </div>
+                        </div></li>        
+        </ul> 
+       </div>
 <!-- 上传区域 -->
 <div class="upload-panel">
     <form class="upload-form" enctype="multipart/form-data" method="post" name="fileinfo" id="uploadForm">
@@ -23,7 +103,7 @@
                         <li class="resource-item" v-for="(pro,index) in projects">
                             <div class="resource-item__inner" v-bind:data-pid="pro.projectId" v-bind:data-pname="pro.projectName">
                                 <div class="img-wrap">
-                                    <div v-bind:style="{backgroundImage: 'url(http://10.64.70.80:8080/unzip_file/'+pro.projectName+'/previews/preview.png)'}"
+                                    <div v-bind:style="{backgroundImage: 'url(http://10.64.70.68:8080/unzip_file/'+pro.projectName+'/previews/preview.png)'}"
                                          class="imgs less">
                                         <b class="mask"></b>
                                         <div class="imgs-inner">
@@ -49,7 +129,7 @@
                                             <span class="txt" v-cloak>{{
                                                 pro.projectName.substring(pro.projectName.indexOf("_")+1) }}</span>
                                             <div class="time" v-cloak>
-                                                {{ new Date(pro.modifytime).toLocaleString() }}
+                                                {{ new Date(pro.modifytime)|formatDate }}
                                             </div>
                                         </div>
                                         <div class="info" v-on:click="copyUrl" data-clipboard-action="copy"
@@ -75,7 +155,7 @@
             <!-- 浏览的历史记录 -->
             <div class="navbar-control">
                 <div class="navbar-control__sub">
-                  <h2 class="mod-title" v-cloak>近期打开的项目（{{ historyProjects.length }}）</h2>
+                  <h2 class="mod-title" v-cloak>最近浏览（{{ historyProjects.length }}）</h2>
                 </div>
               </div>
               <div class="resource-main">
@@ -91,7 +171,7 @@
                       >
                         <div class="img-wrap">
                           <div
-                            v-bind:style="{backgroundImage: 'url(http://10.64.70.80:8080/unzip_file/'+pro.projectName+'/previews/preview.png)'}"
+                            v-bind:style="{backgroundImage: 'url(http://10.64.70.68:8080/unzip_file/'+pro.projectName+'/previews/preview.png)'}"
                             class="imgs less"
                           >
                             <b class="mask"></b>

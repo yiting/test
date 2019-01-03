@@ -6,8 +6,6 @@
  */
 const Contrain = require('../dsl_contrain.js');
 const Dom = require("../dsl_dom.js");
-const Model = require("../dsl_model.js");
-const Text = require("./text.js");
 
 const textCompareCoefficient = 1.4; //文本对比系数
 module.exports.name = 'NUMERICAL';
@@ -15,8 +13,15 @@ module.exports.type = Dom.type.TEXT;
 module.exports.textCount = 2;
 module.exports.imageCount = 0;
 module.exports.mixCount = 0; //-1，即为任意混合数
-module.exports.template = function () {
-
+module.exports.canShareStyle = true; // 如果为简易元素，则不与其他结构复用样式
+module.exports.isSimilar = function (a, b, config) {
+    const aTxt = a.children.find((child) => {
+        return child.type == Dom.type.TEXT;
+    });
+    const bTxt = b.children.find((child) => {
+        return child.type == Dom.type.TEXT;
+    });
+    return aTxt.styles.maxSize == bTxt.styles.maxSize;
 }
 module.exports.is = function (dom, parent, config) {
     if (!Dom.isHorizontal(dom.children)) {

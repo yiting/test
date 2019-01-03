@@ -1,9 +1,9 @@
 /*加载第三方css*/
 @charset "UTF-8";
-@import "lib/font-awesome.min.css";
-@import "lib/jquery.magnify.css";
+@import "../lib/font-awesome.min.css";
+@import "../lib/jquery.magnify.css";
 /* @import "http://libs.baidu.com/bootstrap/3.2.0/css/bootstrap.min.css"; */
-@import "lib/bootstrap-slider.min.css";
+@import "../lib/bootstrap-slider.min.css";
 
 .tooltip {
   position: absolute;
@@ -59,11 +59,11 @@
 }
 
 /*加载自身css*/
-@import "_global/reset.scss";
-@import "edit/header.scss";
-@import "edit/left.scss";
-@import "edit/center.scss";
-@import "edit/right.scss";
+@import "../_global/reset.scss";
+@import "header.scss";
+@import "left.scss";
+@import "center.scss";
+@import "right.scss";
 
 body {
   overflow-x: hidden !important;

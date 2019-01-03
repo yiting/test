@@ -1,3 +1,7 @@
+let padDate = function(va) {
+  va = va < 10 ? "0" + va : va;
+  return va;
+};
 var vm = new Vue({
   el: "#personApp",
   data: {
@@ -6,6 +10,19 @@ var vm = new Vue({
     projects: [],
     historyProjects: []
   },
+  filters: {
+    formatDate: function(val) {
+      var value = new Date(val);
+      var year = value.getFullYear();
+      var month = padDate(value.getMonth() + 1);
+      var day = padDate(value.getDate());
+      /* var hour = padDate(value.getHours());
+      var minutes = padDate(value.getMinutes());
+      var seconds = padDate(value.getSeconds()); */
+      return year + "-" + month + "-" + day;
+    }
+  },
+
   created() {
     this.getUserInfo();
     this.getProjectList();
@@ -35,6 +52,12 @@ var vm = new Vue({
       top.postMessage("/visitor", "http://uitocode.oa.com");
     },
     /**
+     * 查看所有项目
+     */
+    viewProjects: function() {
+      top.postMessage("/project", "http://uitocode.oa.com");
+    },
+    /**
      * 渲染个人信息
      */
     getUserInfo: function() {
@@ -62,6 +85,13 @@ var vm = new Vue({
     },
 
     /**
+     * 展示公共项目
+     * @param {*} event
+     */
+    showExampleDemo: function(event) {
+      $(".page-demo").addClass("page-demo-display");
+    },
+    /**
      *  获取项目列表
      */
     getProjectList: function(callback) {
@@ -85,7 +115,7 @@ var vm = new Vue({
             //如果记录为0，则展示无项目样式
             if (res.data.length == 0) {
               $(".page-main .no-project-panel").show();
-            } 
+            }
           });
           //成功后的回调方法
           callback && callback(res.data);
@@ -152,8 +182,8 @@ var vm = new Vue({
       let fileName = name.substr(0, potIndex);
       fileType = name.substr(potIndex + 1).toUpperCase();
       fileType = fileType.toLowerCase();
-      $(".file-name").text(name);
-      $(".file-size").text(CommonTool.convert(size));
+      //$(".file-name").text(name);
+      //$(".file-size").text(CommonTool.convert(size));
       //直接上传到后台
       if (fileType) {
         if (fileType == "sketch") {

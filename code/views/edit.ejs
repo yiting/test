@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>视觉编译 - 内测版</title>
-    <link rel="stylesheet" href="/css/edit.css" />
+    <link rel="stylesheet" href="/css/edit/edit.css" />
   </head>
 
   <body class="page-list">
@@ -42,9 +42,22 @@
           qrcode: "js/lib/jquery.qrcode.min.js",
           //页面弹框插件
           layer: "layer.js",
-          slider: "js/lib/bootstrap-slider.js"
+          slider: "js/lib/bootstrap-slider.js",
+          editUtil: "js/edit/edit-util.js",
+          unitSetting: "js/edit/unit-setting.js",
+          measure: "js/edit/measure.js",
+          iframeDom: "js/edit/iframe-dom.js"
         },
-        preload: ["jquery", "clipboard", "util", "vue"]
+        preload: [
+          "jquery",
+          "clipboard",
+          "util",
+          "editUtil",
+          "unitSetting",
+          "measure",
+          "iframeDom",
+          "vue"
+        ]
       });
       seajs.use(
         [
@@ -62,10 +75,15 @@
           "js/edit/history.js",
           "js/edit/zoom.js",
           "js/edit/compare.js",
+          "editUtil",
+          "unitSetting",
+          "measure",
+          "iframeDom",
           "js/edit/edit.js"
         ],
         function($, Clipboard, edit) {
-          TOSEEAPP.initPage();
+          //主数据初始化
+          TOSEEAPP.init();
           //AI服务
           //new AIService().init();
           //历史记录

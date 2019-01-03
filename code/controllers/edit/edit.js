@@ -60,6 +60,9 @@ let pageArtboardsData = [],
   currentDesignJson,
   currentArtBoardUrl;
 
+//4.用户id、用户名
+let userId, userName;
+
 /*业务逻辑*/
 //渲染页面路由:初始化编辑查看页面,填充页面数据
 router.get("/", function(req, res, next) {
@@ -70,7 +73,7 @@ router.get("/", function(req, res, next) {
   //解码中文项目名
   projectName = decodeURIComponent(req.query.name);
   //2018-11-09：日志模块初始化
-  initLogConfig(req, res, next);
+  //initLogConfig(req, res, next);
   //初始化请求，并渲染:先获得数据；再将数据传到页面上
   getPagesAndArtBoards(projectName, res, function(pageData) {
     res.render("edit", {
@@ -81,6 +84,11 @@ router.get("/", function(req, res, next) {
 
 //2018-10-10:根据pageid、artboardID请求页面结构
 router.post("/getPageById", function(req, res, next) {
+  //用户id、用户名:用于记录日志信息
+  userId = req.body.userId;
+  userName = req.body.userName;
+  //2018-12-27：日志模块初始化
+  initLogConfig(req, res, next);
   //console.log("获取当前artboard骨架请求");
   logger.debug("[edit.js-getPageById]获取当前artboard骨架请求");
   //每次请求生成新的文件命名:html和css命名使用
@@ -134,18 +142,48 @@ router.post("/getArtBoardImg", function(req, res, next) {
   //getImgsPrew(req.body.artboardId);
   let artBoardID = req.body.artboardId;
   let artBoardImgName = artBoardID + ".png";
-  let artBoardObj = {
-    path: artBoardImgName,
-    _origin: {
-      do_objectID: artBoardID
+  //projectId和artBoard同时相同时，artBoardImg再次请求，不必再次图片生成
+  let artbd = new artboard({
+    artImg: artBoardImgName
+  });
+  //请求数据库，判断数据库是否已存入预览图地址
+  artbd.getArtboardImg(artBoardID, projectUUID, function(result) {
+    //查询数据库存在记录时，则不需要再次生成
+    if (result.code == 0) {
+      //数据库存在预览图地址
+      if (result.data.length != 0) {
+        let resultData = result.data[0];
+        //返回生成的预览图地址
+        res.send(
+          JSON.stringify({
+            artBoardImgName: artBoardImgName
+          })
+        );
+      } else {
+        //不存在数据库时，需要插入数据库
+        let artBoardObj = {
+          path: artBoardImgName,
+          _origin: {
+            do_objectID: artBoardID
+          }
+        };
+        Promise.all([getArtBoardImg(artBoardObj)]).then(info => {
+          //将地址存储到数据库中
+          //生成图片完成后，则将当前artBoard信息插入到数据库
+          //将生成预览图地址存入到数据库
+          artbd.updateArtBoardImg(artBoardID, projectUUID, function(result) {
+            //返回生成的预览图地址
+            res.send(
+              JSON.stringify({
+                artBoardImgName: artBoardImgName
+              })
+            );
+          });
+        });
+      }
+    } else {
+      console.log("查询结果失败");
     }
-  };
-  Promise.all([getArtBoardImg(artBoardObj)]).then(info => {
-    res.send(
-      JSON.stringify({
-        artBoardImgName: artBoardImgName
-      })
-    );
   });
 });
 
@@ -367,13 +405,20 @@ let initLogConfig = function(req, res, next) {
   //平台模块日志初始化
   qlog.init({
     projectName: projectName + ".sketch",
-    url:
+    userName,
+    //测试环境ip访问
+    /* url:
       "http://" +
       req.headers.host +
       "/edit?id=" +
       projectUUID +
       "&name=" +
-      projectName
+      encodeURIComponent(encodeURIComponent(projectName)) */
+    url:
+      "http://uitocode.oa.com/edit?id=" +
+      projectUUID +
+      "&name=" +
+      encodeURIComponent(encodeURIComponent(projectName))
   });
   logger = qlog.getInstance(qlog.moduleData.platform);
 };

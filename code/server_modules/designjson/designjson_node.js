@@ -1,5 +1,5 @@
 // this module is define the abstract node and tree structure
-
+const Logger = require('./logger')
 
 // 依赖的模块
 const {serialize,walkin,hasStyle} = require('./designjson_utils');
@@ -166,20 +166,24 @@ class QDocument {
      * @param {父节点} parent 非必输
      */
     removeNode(id,parent) {
-        parent = parent || this.getParentNode(id);
-        parent.isModified = true;
-        const currentNode = parent.children.find(node => node.id === id);
-        if(currentNode.isMasked) {
-            const maskNode = parent.children.find(node => node.id === currentNode.maskNode);
-            if(maskNode) {
-                maskNode.maskedNodes = maskNode.maskedNodes.filter(node => node.id !== id)
+        try {
+            parent = parent || this.getParentNode(id);
+            parent.isModified = true;
+            const currentNode = parent.children.find(node => node.id === id);
+            if(currentNode.isMasked) {
+                const maskNode = parent.children.find(node => node.id === currentNode.maskNode);
+                if(maskNode) {
+                    maskNode.maskedNodes = maskNode.maskedNodes.filter(node => node.id !== id)
+                }
             }
+            // if(!parent.children || !parent.children.length) return; // 叶节点
+            parent.children = parent.children.filter(node => node.id !== id);
+            parent.childnum = parent.children.length;
+            if (parent.childnum === 0) parent.isLeaf = true;
+            currentNode.parent = null;
+        } catch(err) {
+            Logger.warn('节点删除失败')
         }
-        // if(!parent.children || !parent.children.length) return; // 叶节点
-        parent.children = parent.children.filter(node => node.id !== id);
-        parent.childnum = parent.children.length;
-        if (parent.childnum === 0) parent.isLeaf = true;
-        currentNode.parent = null;
     }
     /**
      * 获取节点
@@ -238,7 +242,11 @@ class QDocument {
         _images.forEach((node,i) => {
             node.path = `${OUTPUT_PATH}/${this._tree.bodyIndex}-${i}.png`
         });
-        RepeatProcessor(_images);
+        try {
+            RepeatProcessor(_images);
+        } catch(err) {
+            Logger.error('图片去重报错！')
+        }
         return _images.map(({
             id, name, type, width, height, x, y, abX, abY, isMasked, maskedNodes, maskNode, path, _imageChildren, _origin,isModified
         }) => {
@@ -261,7 +269,7 @@ class QDocument {
     toJson(type = 0) {
         let res = {}, rules;
         switch(type) {
-            case 0: rules = ['_origin','_imageChildren','isMasked','maskNode','maskedNodes','isLeaf'];break;
+            case 0: rules = ['_origin','_imageChildren','isMasked','maskNode','maskedNodes','isLeaf','pureColor','zIndex'];break;
         }
         this._setValueToJson(res, this._tree, rules);
 
@@ -271,7 +279,7 @@ class QDocument {
      * 平铺树节点
      */
     toList() {
-        const rules = ['_origin','_imageChildren','isMasked','maskNode','maskedNodes','isLeaf'];
+        const rules = ['_origin','_imageChildren','isMasked','maskNode','maskedNodes','isLeaf','pureColor','zIndex'];
         return serialize(this._tree)
         .map(node => {
             const res = {};

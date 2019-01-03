@@ -1,6 +1,7 @@
 class Zoom {
   constructor() {
-    this.compareImgEle = $(".design-img-panel");
+    this.compareImgEle = $(".slider-compare-panel");
+    this.designImgEle = $(".design-img-panel");
     this.measureEle = $(".operate-dom-panel");
     this.screenEle = $(".screen");
     this.zoomInBtn = $(".zoom-in");
@@ -22,13 +23,15 @@ class Zoom {
   zoomIn() {
     let that = this;
     that.zoomInBtn.on("click", function() {
+      //触发监听后，获取iframe高度，根据高度，缩放比例，重置滚动区域高度
+      that.frameHeight = $(".screen").height();
       that.initZoomBtn();
       //最小值，则不能继续减小
       if (that.scale == that.minScale) {
         return;
       }
       that.scale -= that.eachStep;
-      that.screenEle.css({
+      /* that.screenEle.css({
         transform: "scale(" + that.scale + ")",
         transition: "all .15s ease"
       });
@@ -36,11 +39,21 @@ class Zoom {
         transform: "scale(" + that.scale + ")",
         transition: "all .15s ease"
       });
+      that.designImgEle.css({
+        transform: "scale(" + that.scale + ")",
+        transition: "all .15s ease"
+      });
       that.measureEle.css({
+        transform: "scale(" + that.scale + ")",
+        transition: "all .15s ease"
+      }); */
+      $(".compile-result-panel").css({
         transform: "scale(" + that.scale + ")",
         transition: "all .15s ease"
       });
       that.zoomTxtEle.text(that.scale * 100 + "%");
+      //重置高度
+      $(".screen-viewer-inner").height(that.frameHeight * that.scale);
       //实时监听值大小
       if (that.scale == that.minScale) {
         that.zoomInBtn.attr("disabled", true);
@@ -50,12 +63,14 @@ class Zoom {
   zoomOut() {
     let that = this;
     that.zoomOutBtn.on("click", function() {
+      //触发监听后，获取iframe高度，根据高度，缩放比例，重置滚动区域高度
+      that.frameHeight = $(".screen").height();
       that.initZoomBtn();
       if (that.scale == that.maxScale) {
         return;
       }
       that.scale += that.eachStep;
-      that.screenEle.css({
+      /* that.screenEle.css({
         transform: "scale(" + that.scale + ")",
         transition: "all .15s ease"
       });
@@ -63,11 +78,21 @@ class Zoom {
         transform: "scale(" + that.scale + ")",
         transition: "all .15s ease"
       });
+      that.designImgEle.css({
+        transform: "scale(" + that.scale + ")",
+        transition: "all .15s ease"
+      });
       that.measureEle.css({
+        transform: "scale(" + that.scale + ")",
+        transition: "all .15s ease"
+      }); */
+      $(".compile-result-panel").css({
         transform: "scale(" + that.scale + ")",
         transition: "all .15s ease"
       });
       that.zoomTxtEle.text(that.scale * 100 + "%");
+      //重置高度
+      $(".screen-viewer-inner").height(that.frameHeight * that.scale);
       //实时监听值大小
       if (that.scale == that.maxScale) {
         that.zoomOutBtn.attr("disabled", true);

@@ -8,26 +8,27 @@ const Dom = require("../dsl_dom.js");
 module.exports.name = 'LAYOUT-FLEX';
 module.exports.type = Dom.type.TEXT;
 module.exports.textCount = 1;
-module.exports.imageCount = 1;
-module.exports.mixCount = -5; //-1，即为任意混合数
+module.exports.imageCount = 0;
+module.exports.mixCount = -10; //-1，即为任意混合数
+module.exports.canShareStyle = true;
+module.exports.isSimilar = function (a, b, config) {
+    // a.children.length == b.children.length
+    const aText = getText(a, config),
+        bText = getText(b, config);
+    return Math.abs(aText.x - bText.x) < config.dsl.operateErrorCoefficient;
+};
 module.exports.is = function (dom, parent, config) {
     return (dom.layout == Dom.layout.BLOCK ||
             dom.layout == Dom.layout.ROW) &&
         dom.children.length > 1 &&
         Dom.isHorizontal(dom.children) &&
-        dom.children.some(child => {
-            let margin = Dom.calMargin(child, dom, 'x');
-            return child.text && child.type == Dom.type.TEXT && (margin.right - margin.left > child.styles.maxSize)
-        })
+        getText(dom, config)
 }
 module.exports.adjust = function (dom, parent, config) {
     dom.contrains["LayoutDirection"] = Contrain.LayoutDirection.Horizontal;
     dom.contrains["LayoutPoLayoutJustifyContentsition"] = Contrain.LayoutJustifyContent.Start;
     // 获取目标节点
-    let targetText = dom.children.find((child, i) => {
-        let margin = Dom.calMargin(child, dom, 'x');
-        return child.text && child.type == Dom.type.TEXT && (margin.right - margin.left > child.styles.maxSize)
-    });
+    let targetText = getText(dom, config);
     if (targetText) {
         // 设置目标节点约束
         targetText.contrains["LayoutFlex"] = Contrain.LayoutFlex.Auto;
@@ -39,5 +40,17 @@ module.exports.adjust = function (dom, parent, config) {
             child.contrains["LayoutSelfHorizontal"] = child.abX < targetText.abX ? Contrain.LayoutSelfHorizontal.Left : Contrain.LayoutSelfHorizontal.Right;
         })
     }
+}
 
+function getText(dom, config) {
+    return dom.children.find((child, i) => {
+        if (i == dom.children.length - 1) {
+            return false;
+        }
+        let margin = Dom.calMargin(child, dom, 'x');
+        // 备注：不使用child.text，是因为存在没有文本的结构
+        return child.type == Dom.type.TEXT &&
+            child.contrains["LayoutFixedWidth"] != Contrain.LayoutFixedWidth.Fixed &&
+            (margin.right - margin.left > config.dsl.horizontalSpacing)
+    })
 }

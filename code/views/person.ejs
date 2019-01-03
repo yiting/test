@@ -1,58 +1,41 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= title %></title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="css/person/person.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>
-    <%= title %>
-  </title>
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <link rel="stylesheet" href="css/person.css" />
-</head>
-
-<body>
-  <script>
-    //console.dir(window.top.window.document.location.href)
-  </script>
-  <div class="page-personal" id="personApp">
-    <!-- 顶部 -->
-    <%- include("./template/person/header.ejs") %>
-    <!-- 主面板区域 -->
-    <%- include("./template/person/main.ejs") %>
-  </div>
-  <!-- seajs -->
-  <script src="js/lib/seajs/sea.js"></script>
-  <script>
-    // Set configuration
-    seajs.config({
-      base: "/",
-      alias: {
-        jquery: "js/lib/jquery.min.js",
-        clipboard: "js/lib/clipboard.min.js",
-        util: "js/util/util.js",
-        vue: "js/vue.js",
-        //页面弹框插件
-        layer: "layer.js"
-      },
-      preload: ["jquery", "clipboard", "util", "vue"]
-    });
-    seajs.use(
-      [
-        "jquery",
-        "clipboard",
-        "util",
-        "vue",
-        "layer",
-        "js/person/person.js"
-      ],
-      function ($) {
-
-      }
-    );
-  </script>
-
-</body>
-
+  <body>
+    <div class="page-personal" id="personApp">
+      <!-- 顶部 -->
+      <%- include("./template/person/header.ejs") %>
+      <!-- 主面板区域 -->
+      <%- include("./template/person/main.ejs") %>
+    </div>
+    <!-- seajs -->
+    <script src="js/lib/seajs/sea.js"></script>
+    <script>
+      // Set configuration
+      seajs.config({
+        base: "/",
+        alias: {
+          jquery: "js/lib/jquery.min.js",
+          clipboard: "js/lib/clipboard.min.js",
+          util: "js/util/util.js",
+          vue: "js/vue.js",
+          //页面弹框插件
+          layer: "layer.js"
+        },
+        preload: ["jquery", "clipboard", "util", "vue"]
+      });
+      seajs.use(
+        ["jquery", "clipboard", "util", "vue", "layer", "js/person/person.js"],
+        function($) {}
+      );
+    </script>
+  </body>
 </html>

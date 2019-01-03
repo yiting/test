@@ -38,7 +38,7 @@ app.use("/", index);
 app.use("/edit", edit);
 app.use("/login", login);
 app.use("/person", person);
-/* app.use("/project", project);   */
+app.use("/project", project);
 app.use("/visitor", visitor);
 app.use("/material", material);
 

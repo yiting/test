@@ -3,7 +3,7 @@
 .ai-footer {
   position: relative; //Instead of the line below you could use @include box-sizing($bs)
   box-sizing: border-box;
-  padding-top: 33px;
+  //padding-top: 33px;
   font-size: 14px;
   overflow: hidden;
   z-index: 10;
@@ -15,15 +15,15 @@
     margin-top: 78px;
     float: left;
     &:nth-child(1) {
-      width: 160px;
+      width: 260px;
     }
     &:nth-child(2) {
-      margin-left: 153px;
-      width: 537px;
+      margin-left: 55px;
+      width: 530px;
     }
     &:nth-child(3) {
-      margin-left: 153px;
-      width: 158px;
+      float: right;
+      width: 250px;
     }
     p {
       line-height: 26px;
@@ -78,10 +78,10 @@
     float: left;
   }
   .qrcode {
-    width: 120px;
-    height: 90px;
+    width: 250px;
+    height: 180px;
     background-image: $url_0;
-    background-position: -233px 27px;
+    background-position: -233px 0;
   }
 }
 //底部浮动工具条
@@ -154,8 +154,9 @@
   }
   .qq {
     &:before {
-      background-image: url($data_uri_3);
+      background-image: url($data_uri_8);
       background-repeat: no-repeat;
+      background-size: 100% 100%;
     }
   }
   .backtop:before {

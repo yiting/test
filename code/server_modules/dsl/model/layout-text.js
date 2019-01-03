@@ -6,9 +6,10 @@ let Dom = require("../dsl_dom.js");
  */
 module.exports.name = 'LAYOUT-TEXT';
 module.exports.type = Dom.type.TEXT;
-module.exports.textCount = 0;
+module.exports.textCount = 2;
 module.exports.imageCount = 0;
-module.exports.mixCount = -9; //负值，即为任意混合数
+module.exports.mixCount = -20; //负值，即为任意混合数
+module.exports.canShareStyle = true;
 module.exports.isSimilar = function (a, b, config) {
     return a.children.length == b.children.length &&
         a.children.every((d, i) => {

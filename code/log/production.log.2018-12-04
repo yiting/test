@@ -4,5 +4,3 @@
 
 2018-12-04 15:26:13 ERROR 20181204152343_未命名.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'isMasked' of undefined
 
-2018-12-04 20:45:25 ERROR 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：ReferenceError: parent is not defined
-

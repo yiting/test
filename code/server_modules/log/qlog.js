@@ -1,6 +1,6 @@
 const log4js = require('log4js');
 const request = require('request');
-const isSendMessage = false;
+const isSendMessage = true;
 const serverUrl = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send';
 const serverKey = '530aca1a-88b4-4a97-aa8b-ace476b9216c';
 const moduleData = {
@@ -106,37 +106,46 @@ var initOption = {
     "url":""
 }
 
+function getLogMessage(projectName,name,str,userName){
+    return projectName+" "+name+" "+str+" 上传者："+userName ;
+}
+
+function getPushMessageContent(projectName,name,str,url,userName){
+    return projectName+" "+name+"\n"+str+ "\n报错设计稿地址：" +url+"\n上传者："+userName
+}
+
 var qlogger = function(param){
     this.option = param || {};
     clone(initOption,this.option);
     this.option.name = param.name || "";
+    this.option.userName = param.userName || "";
     this.debug = function(str){
-        defaultLogger.debug(this.option.projectName+" "+this.option.name+" "+str);
-        productionLogger.debug(this.option.projectName+" "+this.option.name+" "+str);
+        defaultLogger.debug(getLogMessage(this.option.projectName,this.option.name,str,this.option.userName));
+        productionLogger.debug(getLogMessage(this.option.projectName,this.option.name,str,this.option.userName));
     }
     this.info=function(str){
-        defaultLogger.info(this.option.projectName+" "+this.option.name+" "+str);
-        productionLogger.info(this.option.projectName+" "+this.option.name+" "+str);
+        defaultLogger.info(getLogMessage(this.option.projectName,this.option.name,str,this.option.userName));
+        productionLogger.info(getLogMessage(this.option.projectName,this.option.name,str,this.option.userName));
     }
     this.warn=function(str){
-        defaultLogger.warn(this.option.projectName+" "+this.option.name+" "+str);
-        productionLogger.warn(this.option.projectName+" "+this.option.name+" "+str);
-        pushMessage({"content":this.option.projectName+" "+this.option.name+"\n"+str,"author":this.option.author,"key":this.option.key});
+        defaultLogger.warn(getLogMessage(this.option.projectName,this.option.name,str,this.option.userName));
+        productionLogger.warn(getLogMessage(this.option.projectName,this.option.name,str,this.option.userName));
+        pushMessage({"content":getPushMessageContent(this.option.projectName,this.option.name,str,this.option.url,this.option.userName),"author":this.option.author,"key":this.option.key});
     }
     this.error=function(str){
-        defaultLogger.error(this.option.projectName+" "+this.option.name+" "+str);
-        productionLogger.error(this.option.projectName+" "+this.option.name+" "+str);
-        pushMessage({"content":this.option.projectName+" "+this.option.name+"\n"+str,"author":this.option.author,"key":this.option.key});
-        pushMessageToAll({"content":this.option.projectName+" "+this.option.name+"\n"+str+ "\n报错设计稿地址：" +this.option.url,"author":this.option.author});
+        defaultLogger.error(getLogMessage(this.option.projectName,this.option.name,str,this.option.userName));
+        productionLogger.error(getLogMessage(this.option.projectName,this.option.name,str,this.option.userName));
+        pushMessage({"content":getPushMessageContent(this.option.projectName,this.option.name,str,this.option.url,this.option.userName),"author":this.option.author,"key":this.option.key});
+        pushMessageToAll({"content":getPushMessageContent(this.option.projectName,this.option.name,str,this.option.url,this.option.userName),"author":this.option.author});
     }
     this.fatal=function(str){
-        defaultLogger.fatal(this.option.projectName+" "+this.option.name+" "+str);
-        productionLogger.fatal(this.option.projectName+" "+this.option.name+" "+str);
-        pushMessage({"content":this.option.projectName+" "+this.option.name+"\n"+str,"author":this.option.author,"key":this.option.key});
-        pushMessageToAll({"content":this.option.projectName+" "+this.option.name+"\n"+str+ "\n报错设计稿地址：" +this.option.url,"author":this.option.author});
+        defaultLogger.fatal(getLogMessage(this.option.projectName,this.option.name,str,this.option.userName));
+        productionLogger.fatal(getLogMessage(this.option.projectName,this.option.name,str,this.option.userName));
+        pushMessage({"content":getPushMessageContent(this.option.projectName,this.option.name,str,this.option.url,this.option.userName),"author":this.option.author,"key":this.option.key});
+        pushMessageToAll({"content":getPushMessageContent(this.option.projectName,this.option.name,str,this.option.url,this.option.userName),"author":this.option.author});
     }
     this.pushMessageToAll = function(str){
-        pushMessageToAll({"content":this.option.projectName+" "+this.option.name+"\n"+str+ "\n报错设计稿地址：" +this.option.url,"author":this.option.author});
+        pushMessageToAll({"content":getPushMessageContent(this.option.projectName,this.option.name,str,this.option.url,this.option.userName),"author":this.option.author});
     }
 }
 

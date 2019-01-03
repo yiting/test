@@ -1,6 +1,6 @@
 const Contrain = require('../dsl_contrain.js');
 const Dom = require("../dsl_dom.js");
-const CSSDom = require("../dsl_cssdom.js");
+const StyleDom = require("../dsl_styledom.js");
 /**
  * 文本按钮
  * 规则：内容只有一行文案且内容水平、垂直居中，且两边距大于1.5倍字号，有边框或背景或图片
@@ -10,9 +10,10 @@ module.exports.type = Dom.type.IMAGE;
 module.exports.textCount = 1;
 module.exports.imageCount = 0;
 module.exports.mixCount = 0; //-1，即为任意混合数
-module.exports.isSimilar = function (a,b,config) {
-
+module.exports.isSimilar = function (a, b, config) {
+    return a.maxSize == b.maxSize && a.height == b.height;
 }
+module.exports.canShareStyle = true; // 如果为简易元素，则不与其他结构复用样式
 module.exports.is = function (dom, parent, config) {
     const child = dom.children[0]
     const margin = Dom.calMargin(child, dom);
@@ -30,7 +31,7 @@ module.exports.adjust = function (dom, parent, config) {
     Dom.assign(dom, child);
     // dom.styles.padding = margin.left;
     dom.styles.lineHeight = dom.height;
-    dom.styles.textAlign = CSSDom.align.center;
+    dom.styles.textAlign = StyleDom.align.center;
     dom.children = [];
     dom.contrains["LayoutFixedWidth"] = Contrain.LayoutFixedWidth.Fixed
     dom.contrains["LayoutFixedHeight"] = Contrain.LayoutFixedHeight.Fixed

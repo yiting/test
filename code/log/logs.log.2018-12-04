@@ -2641,690 +2641,407 @@
 
 2018-12-04 19:57:30 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:08:11 DEBUG default 20181204152950_A空白页推荐游戏.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:08:11 DEBUG default 20181204152950_A空白页推荐游戏.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:08:13 DEBUG default 20181204152950_A空白页推荐游戏.sketch 平台模块 [edit.js-download]进入编译项目下载
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cleanse] start
 
-2018-12-04 20:08:13 DEBUG default 20181204152950_A空白页推荐游戏.sketch 平台模块 [edit.js-download]生成编译文件夹拷贝完毕
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cleanse] serialize
 
-2018-12-04 20:35:54 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cleanse] sortBySize
 
-2018-12-04 20:35:54 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cleanse] filterUselessGroup
 
-2018-12-04 20:36:07 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cleanse] cleanLineHeight
 
-2018-12-04 20:39:44 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cleanse] mergeBySize
 
-2018-12-04 20:39:44 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cleanse] relayer
 
-2018-12-04 20:39:45 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cleanse] markerSegmenting
 
-2018-12-04 20:39:45 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cleanse] end
 
-2018-12-04 20:39:46 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - layout] start
 
-2018-12-04 20:39:46 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - layout] block 664F0E6A-E2A5-48A2-A3B4-4B14201D785E
 
-2018-12-04 20:39:47 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - layout] column 664F0E6A-E2A5-48A2-A3B4-4B14201D785E
 
-2018-12-04 20:39:47 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - layout] row 664F0E6A-E2A5-48A2-A3B4-4B14201D785E
 
-2018-12-04 20:39:47 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - layout] inline 664F0E6A-E2A5-48A2-A3B4-4B14201D785E
 
-2018-12-04 20:39:47 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "DF2AA5B0-6841-4A63-9FF7-A6FAA65A04C1" 
 
-2018-12-04 20:39:50 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "60BE03E8-B704-4BD7-AC11-B10923699153" 
 
-2018-12-04 20:39:50 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "90956F65-E45F-48E7-A3C2-A63571AA013F" 
 
-2018-12-04 20:40:06 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] INLINE	 fit Dom: "22" 
 
-2018-12-04 20:40:06 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "F750D079-2F1E-465C-A6AD-D94559DF9C88" 
 
-2018-12-04 20:40:16 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "CA78E220-D14F-4E4F-BD23-2DEC3BBEADFE" 
 
-2018-12-04 20:40:16 DEBUG default 20181204195553_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "32204007-DFD0-478C-90F2-9DA8D0320303" 
 
-2018-12-04 20:40:26 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] INLINE	 fit Dom: "23" 
 
-2018-12-04 20:40:26 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] LAYOUT-TEXT	 fit Dom: "20" 
 
-2018-12-04 20:40:28 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "2151AFF9-41FF-4B4A-803C-11CB15F425EF" 
 
-2018-12-04 20:40:28 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:2_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "9C2C197F-A64A-42EB-8417-5E79753A17E9" 
 
-2018-12-04 20:40:31 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] INLINE	 fit Dom: "21" 
 
-2018-12-04 20:40:46 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "208FA654-F265-4B5E-8981-09A8FECBED90" 
 
-2018-12-04 20:40:57 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "BBFFEEF3-EED0-48D0-A409-ACF5951A9DA7" 
 
-2018-12-04 20:41:11 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-download]进入编译项目下载
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] LAYOUT-TEXT	 fit Dom: "19" 
 
-2018-12-04 20:41:11 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-download]生成编译文件夹拷贝完毕
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "C1368727-3B0D-4BC5-A8FA-D39BC8A2D048" 
 
-2018-12-04 20:41:52 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-download]进入编译项目下载
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "2A16FDAE-666A-4A6F-ABBF-D06E5747E090" 
 
-2018-12-04 20:41:52 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-download]生成编译文件夹拷贝完毕
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] LAYOUT-TEXT	 fit Dom: "1" 
 
-2018-12-04 20:44:56 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "11F1A381-992E-475F-ABA2-7BC1FF08FEEF" 
 
-2018-12-04 20:44:56 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "BCE42407-574A-46C0-96F4-4C555F064DA6" 
 
-2018-12-04 20:44:59 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] NUMERICAL	 fit Dom: "2" 
 
-2018-12-04 20:44:59 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:2_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "EF6CE665-5D69-4F9D-B867-0A0C3487F9B4" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "4F60EF62-2417-46C3-BD70-CE5C6B174859" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "E6DED4D4-D3AE-4879-A00A-1699D05F8070" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - cleanse] start
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] LAYOUT-BETWEEN	 fit Dom: "10" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - cleanse] serialize
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "619D6057-1291-4481-9703-F2EA0F2BACDD" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - cleanse] sortBySize
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "D9406504-42BA-44BB-9AC1-BAA3C0DB675E" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - cleanse] filterUselessGroup
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "84B44913-F51E-4299-84E7-A6FA7DF86D90" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - cleanse] cleanLineHeight
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "4E73FEB1-4F35-4607-BF2F-172B7FEBC53E" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - cleanse] mergeBySize
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] NUMERICAL	 fit Dom: "25" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - cleanse] relayer
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] LAYOUT-BETWEEN	 fit Dom: "4" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - cleanse] markerSegmenting
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "70FC12F1-1AC7-4A0E-9E5E-EBBA26988209" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - cleanse] end
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "0" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - layout] start
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "E71FE7A8-2B11-4E8A-BCFD-49E6EEB5D365" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - layout] block B509B3DA-2F65-4CC4-B436-1FDD3C627DEF
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "269538AE-7949-407C-8FE7-F430B353DC8D" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - layout] column B509B3DA-2F65-4CC4-B436-1FDD3C627DEF
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] LAYOUT-EQUALITY	 fit Dom: "17" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - layout] row B509B3DA-2F65-4CC4-B436-1FDD3C627DEF
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "30A5F12D-505E-4F2A-B34F-DAED4FA1FBE8" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - layout] inline B509B3DA-2F65-4CC4-B436-1FDD3C627DEF
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "16" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "6B6DB003-2040-4E18-9A59-C041DF579C08" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "4C4C571A-8A1D-4F1C-8BD2-058DA1CBF1F4" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "DB38F0B2-B3CA-4C87-BF89-67AE0B8F5EC6" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "FE97363F-ABB8-49F9-9AAF-2BB1BD2A68E1" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "16255F61-657B-4D78-BE42-8F37122BF38D" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "73F6D1FD-53B0-43B5-86B4-EC447A6A5F55" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "0DFC69D0-097B-4F55-9EF1-8AC0E26B8CDD" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "59C61158-E81B-4F32-8D81-FFF6F59A6735" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "DFA70A6C-4751-4543-B930-2418A81A43AF" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] LAYOUT-LIST-ITEM	 fit Dom: "7" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "33" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "E3102EB1-827F-44E3-8EA2-1A8117FA59BA" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "1A8025E8-DE23-46EC-BFD9-0964808879E3" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "13" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "35" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "2BF2F233-9907-41D2-B183-1A2C96BC27E5" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "D460CEB8-888A-4BD5-B5E4-41116DBAC65A" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "E860B251-4C56-4769-A723-A167EA84AA32" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] TAG	 fit Dom: "_C894_5B03" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "27B643D1-F0DA-4C59-A95C-D5FF2150C82F" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] LAYOUT-TEXT	 fit Dom: "34" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] INLINE	 fit Dom: "27" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "3347177A-C15E-4BD4-902B-B2B5FA45C3D7" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "669D3C1D-D634-40C9-A09D-EEC2B3EE7948" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "32" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "337E515C-8591-400C-A6F0-BBE52639C6FC" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - model] BODY	 fit Dom: "B509B3DA-2F65-4CC4-B436-1FDD3C627DEF" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] INLINE	 fit Dom: "28" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - cyclic analyze] start
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] LAYOUT-LIST-ITEM	 fit Dom: "6" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - cyclic analyze] 0DFC69D0-097B-4F55-9EF1-8AC0E26B8CDD	 repeat items are:
-[6B6DB003-2040-4E18-9A59-C041DF579C08],[DB38F0B2-B3CA-4C87-BF89-67AE0B8F5EC6],[16255F61-657B-4D78-BE42-8F37122BF38D]
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "E004C724-5C34-4D47-BBE5-04910B63BF27" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - cyclic analyze] B509B3DA-2F65-4CC4-B436-1FDD3C627DEF	 repeat items are:
-[33],[32]
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "18" 
 
-2018-12-04 20:45:02 DEBUG default  图片合成模块 [pipe - contrain] start
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "778133A4-4CA7-410B-A19B-B504AF603BD1" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "8AFEDF47-6436-4AF9-9D15-23B4739DF0A8" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "D4497C13-5723-40CD-977E-AFA1A2F2FAAA" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]创建目录成功
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "97630942-81A6-4472-93D6-636AAF7FC387" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "AE2C94F3-435B-492D-9011-74D5141783E8" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] INLINE	 fit Dom: "24" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] LAYOUT-LIST-ITEM	 fit Dom: "3" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-isFileExist]判断目录不存在
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "55B8987C-0E96-4E2D-AE70-0F460B21A163" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "12" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]创建目录成功
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "06FB4FB2-39CB-41E1-949D-EF5FF9E8B9DB" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "01D0AC31-2680-492E-9352-C8E9A717AA96" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "F47D507D-CFDA-4E35-83DD-679D855D4F6B" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "DFD60FB9-BF2A-4E0E-8112-60EE968EE857" 
 
-2018-12-04 20:45:02 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-combineImages]开始生成图片
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "08717343-3A02-4C68-B68F-18795DE9F4A7" 
 
-2018-12-04 20:45:03 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时0.949秒
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] INLINE	 fit Dom: "26" 
 
-2018-12-04 20:45:03 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:9
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] LAYOUT-LIST-ITEM	 fit Dom: "5" 
 
-2018-12-04 20:45:05 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "A132AC8D-19FA-4A56-B2F1-19031BF6F0DF" 
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "11" 
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_2
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "CE9D269C-A4D3-41BB-89FE-6CE0AB476752" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cleanse] start
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "6DB83484-F35C-4B80-A9FC-FFC1ACA1ECD5" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cleanse] serialize
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "998FF46B-846B-4270-B505-F599BB9082A7" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cleanse] sortBySize
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "78BC6F3C-84A0-40B5-828D-9AFEA23DC3E1" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cleanse] filterUselessGroup
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "82F0682E-466E-4411-9198-A2654317CD1C" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cleanse] cleanLineHeight
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] INLINE	 fit Dom: "29" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cleanse] mergeBySize
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] LAYOUT-LIST-ITEM	 fit Dom: "9" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe cleanse] mergeBySize 437EE474-BABE-4BD5-9005-F33877D232C8 to FE61C60D-7C3E-4B59-9771-2B2CAAEBB8EA
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "0F8EDFC7-7ADC-4D36-8B29-C9D81B7EFB58" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cleanse] relayer
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "15" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cleanse] markerSegmenting
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "47EEDA94-511A-4EBB-8EB4-0091FE8DD68A" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cleanse] end
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "1668C5D7-2C83-4729-9551-A6F69DEF9C1B" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - layout] start
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "014E7D82-BDA6-48F9-A7C9-760D086ED13C" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - layout] block 437EE474-BABE-4BD5-9005-F33877D232C8
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "4677EF72-AD58-40B7-88F6-5435905F4A8A" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - layout] column 437EE474-BABE-4BD5-9005-F33877D232C8
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] LAYOUT-LIST-ITEM	 fit Dom: "8" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - layout] row 437EE474-BABE-4BD5-9005-F33877D232C8
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "A33E8C64-20C2-4E54-8DAC-BFC3B3485A1A" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - layout] inline 437EE474-BABE-4BD5-9005-F33877D232C8
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "14" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "D66787D4-F624-409C-B2F3-8C60FB3B6566" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - model] BODY	 fit Dom: "664F0E6A-E2A5-48A2-A3B4-4B14201D785E" 
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "DBD34B0D-29EF-422B-9AC3-3B913106DA7E" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cyclic analyze] start
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "A03ABBEF-7D93-4C62-A2C4-B96A084367CB" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cyclic analyze] 19	 repeat items are:
+[208FA654-F265-4B5E-8981-09A8FECBED90],[BBFFEEF3-EED0-48D0-A409-ACF5951A9DA7]
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "C5D00C6F-E1EC-4DBD-85AA-303D2BECFC57" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cyclic analyze] C1368727-3B0D-4BC5-A8FA-D39BC8A2D048	 repeat items are:
+[20],[19]
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] INLINE	 fit Dom: "38" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cyclic analyze] 10	 repeat items are:
+[EF6CE665-5D69-4F9D-B867-0A0C3487F9B4],[4F60EF62-2417-46C3-BD70-CE5C6B174859],[E6DED4D4-D3AE-4879-A00A-1699D05F8070]
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "C715601E-ABCA-4FDA-8F18-4D3DE7695607" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cyclic analyze] 4	 repeat items are:
+[619D6057-1291-4481-9703-F2EA0F2BACDD],[D9406504-42BA-44BB-9AC1-BAA3C0DB675E]
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "4259646C-76FB-4F5D-B50A-0DF89EF57378" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cyclic analyze] 17	 repeat items are:
+[E71FE7A8-2B11-4E8A-BCFD-49E6EEB5D365],[269538AE-7949-407C-8FE7-F430B353DC8D]
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "6383CF5E-848C-4B49-9048-8BD8BA160A64" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cyclic analyze] 7	 repeat items are:
+[73F6D1FD-53B0-43B5-86B4-EC447A6A5F55],[59C61158-E81B-4F32-8D81-FFF6F59A6735]
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "D721B3A4-12E3-4A1F-A2BE-469AA6A79ED4" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cyclic analyze] 6	 repeat items are:
+[27],[28]
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "AE470493-1AA8-4E68-BE57-D87D60D62F03" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cyclic analyze] 3	 repeat items are:
+[778133A4-4CA7-410B-A19B-B504AF603BD1],[8AFEDF47-6436-4AF9-9D15-23B4739DF0A8]
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "8E2AE570-C6E9-422D-B564-9E65DEF80813" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cyclic analyze] 5	 repeat items are:
+[06FB4FB2-39CB-41E1-949D-EF5FF9E8B9DB],[01D0AC31-2680-492E-9352-C8E9A717AA96]
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "F868C170-749E-4B67-BFF3-3490A98E04AE" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cyclic analyze] 8	 repeat items are:
+[014E7D82-BDA6-48F9-A7C9-760D086ED13C],[4677EF72-AD58-40B7-88F6-5435905F4A8A]
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] LAYOUT-IMAGE	 fit Dom: "36" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - cyclic analyze] 664F0E6A-E2A5-48A2-A3B4-4B14201D785E	 repeat items are:
+[7,13,6,18,3,12],[5,11,9,15,8,14]
+[10],[4]
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "E3CA7DE6-9D96-4B0E-A6C3-14D356530AC4" 
+2018-12-04 20:11:24 DEBUG default  图片合成模块 [pipe - contrain] start
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] TAG	 fit Dom: "_A117_0E7E" 
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] LAYOUT-TEXT	 fit Dom: "37" 
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] ICON-ENTER	 fit Dom: "F6EB5397-DADB-4BF6-AAAB-9013BBF0F737" 
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "FE61C60D-7C3E-4B59-9771-2B2CAAEBB8EA" 
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - model] BODY	 fit Dom: "437EE474-BABE-4BD5-9005-F33877D232C8" 
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cyclic analyze] start
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cyclic analyze] 38	 repeat items are:
-[DBD34B0D-29EF-422B-9AC3-3B913106DA7E],[A03ABBEF-7D93-4C62-A2C4-B96A084367CB]
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [util.js-isFileExist]判断目录不存在
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cyclic analyze] F868C170-749E-4B67-BFF3-3490A98E04AE	 repeat items are:
-[D721B3A4-12E3-4A1F-A2BE-469AA6A79ED4],[AE470493-1AA8-4E68-BE57-D87D60D62F03],[8E2AE570-C6E9-422D-B564-9E65DEF80813]
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:false
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - cyclic analyze] 36	 repeat items are:
-[6383CF5E-848C-4B49-9048-8BD8BA160A64],[F868C170-749E-4B67-BFF3-3490A98E04AE]
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [util.js-writeToFile]创建目录成功
 
-2018-12-04 20:45:16 DEBUG default  图片合成模块 [pipe - contrain] start
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [util.js-writeToFile]写入文件成功
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+2018-12-04 20:11:25 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-combineImages]开始生成图片
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+2018-12-04 20:11:26 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时1.047秒
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+2018-12-04 20:11:26 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:19
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+2018-12-04 20:12:08 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+2018-12-04 20:12:08 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+2018-12-04 20:12:12 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+2018-12-04 20:12:18 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+2018-12-04 20:12:18 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:16 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-combineImages]开始生成图片
+2018-12-04 20:14:44 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:17 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时1.276秒
+2018-12-04 20:14:44 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:17 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:12
+2018-12-04 20:15:18 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:15:18 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_3
+2018-12-04 20:17:32 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - cleanse] start
+2018-12-04 20:17:32 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - cleanse] serialize
+2018-12-04 20:18:02 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - cleanse] sortBySize
+2018-12-04 20:18:02 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - cleanse] filterUselessGroup
+2018-12-04 20:18:29 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - cleanse] cleanLineHeight
+2018-12-04 20:18:29 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - cleanse] mergeBySize
+2018-12-04 20:19:42 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe cleanse] mergeBySize EB4D2566-E231-4B5D-B6D3-2EA1528D7D2F to 8BAABCA1-4D21-4C07-9BFD-1330544026AF
+2018-12-04 20:19:42 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - cleanse] relayer
+2018-12-04 20:19:59 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - cleanse] markerSegmenting
+2018-12-04 20:20:07 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - cleanse] end
+2018-12-04 20:20:07 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - layout] start
+2018-12-04 20:20:57 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - layout] block EB4D2566-E231-4B5D-B6D3-2EA1528D7D2F
+2018-12-04 20:21:19 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - layout] column EB4D2566-E231-4B5D-B6D3-2EA1528D7D2F
+2018-12-04 20:21:19 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - layout] row EB4D2566-E231-4B5D-B6D3-2EA1528D7D2F
+2018-12-04 20:21:37 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - layout] inline EB4D2566-E231-4B5D-B6D3-2EA1528D7D2F
+2018-12-04 20:21:37 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "2582DBD0-CA80-41DB-A299-1DCDAECF4C5E" 
+2018-12-04 20:21:38 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "CD45D7DE-2182-479C-B0D3-9527B8140797" 
+2018-12-04 20:21:38 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "1F2581D7-82F9-4FB8-85B2-4505E94558E6" 
+2018-12-04 20:21:39 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "57E0E2FF-FE5A-4C80-9B32-95C9272A7913" 
+2018-12-04 20:22:04 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "3ADEE993-CB34-461D-99CB-BC25463AD6F0" 
+2018-12-04 20:22:21 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "40" 
+2018-12-04 20:22:21 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "6F5EE179-0AEA-4E2C-AFCD-6B5EA0F5F7C6" 
+2018-12-04 20:22:27 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] TAG	 fit Dom: "_0894_9900" 
+2018-12-04 20:23:45 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "0D239C4B-5021-45F5-A21C-AE148296722C" 
+2018-12-04 20:23:45 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "EBF6A7B6-3462-4E8A-B67C-3B7A59A797AF" 
+2018-12-04 20:23:47 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "67359575-023A-45FB-B4A5-CF67878BF687" 
+2018-12-04 20:24:11 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] LAYOUT-TEXT	 fit Dom: "41" 
+2018-12-04 20:24:11 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "554A24DC-FF4B-41CA-9532-1DCCF402DB6E" 
+2018-12-04 20:24:11 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] LAYOUT-FLEX	 fit Dom: "39" 
+2018-12-04 20:27:14 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "8BAABCA1-4D21-4C07-9BFD-1330544026AF" 
+2018-12-04 20:27:14 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - model] BODY	 fit Dom: "EB4D2566-E231-4B5D-B6D3-2EA1528D7D2F" 
+2018-12-04 20:27:16 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - cyclic analyze] start
+2018-12-04 20:29:06 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - cyclic analyze] 57E0E2FF-FE5A-4C80-9B32-95C9272A7913	 repeat items are:
-[CD45D7DE-2182-479C-B0D3-9527B8140797],[1F2581D7-82F9-4FB8-85B2-4505E94558E6]
+2018-12-04 20:29:06 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - cyclic analyze] 41	 repeat items are:
-[EBF6A7B6-3462-4E8A-B67C-3B7A59A797AF],[67359575-023A-45FB-B4A5-CF67878BF687]
+2018-12-04 20:29:11 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default  图片合成模块 [pipe - contrain] start
+2018-12-04 20:29:11 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+2018-12-04 20:29:14 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+2018-12-04 20:30:11 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+2018-12-04 20:30:11 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
+2018-12-04 20:30:13 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
+2018-12-04 20:30:13 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
+2018-12-04 20:30:14 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
+2018-12-04 20:30:59 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
+2018-12-04 20:30:59 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
+2018-12-04 20:31:00 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
+2018-12-04 20:31:00 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:20 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-combineImages]开始生成图片
+2018-12-04 20:31:21 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:21 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时1.101秒
+2018-12-04 20:33:56 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:21 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:13
+2018-12-04 20:33:56 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
+2018-12-04 20:33:57 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_4
+2018-12-04 20:34:19 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
 
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - cleanse] start
+2018-12-04 20:35:25 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
 
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - cleanse] serialize
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - cleanse] sortBySize
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - cleanse] filterUselessGroup
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - cleanse] cleanLineHeight
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - cleanse] mergeBySize
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe cleanse] mergeBySize EF19F4AE-F3E2-4663-8FE4-F5DBD158BF13 to 1BBD5758-1E9C-4156-B6A6-52DA06ACAC49
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - cleanse] relayer
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - cleanse] markerSegmenting
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - cleanse] end
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - layout] start
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - layout] block EF19F4AE-F3E2-4663-8FE4-F5DBD158BF13
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - layout] column EF19F4AE-F3E2-4663-8FE4-F5DBD158BF13
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - layout] row EF19F4AE-F3E2-4663-8FE4-F5DBD158BF13
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - layout] inline EF19F4AE-F3E2-4663-8FE4-F5DBD158BF13
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "534414CD-9C0B-4278-BA95-6122441DBCCF" 
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "0621F46F-686A-4C1B-AC45-A23F49072690" 
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - model] BLOCK	 fit Dom: "43" 
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "1BCDA2B7-5B65-48E9-BBAC-92E808213850" 
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - model] TAG	 fit Dom: "_E5BC_CB25" 
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - model] LAYOUT-TEXT	 fit Dom: "42" 
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "730E8495-F338-450F-BAD5-32C7527EFEDA" 
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "1BBD5758-1E9C-4156-B6A6-52DA06ACAC49" 
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - model] BODY	 fit Dom: "EF19F4AE-F3E2-4663-8FE4-F5DBD158BF13" 
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - cyclic analyze] start
-
-2018-12-04 20:45:23 DEBUG default  图片合成模块 [pipe - contrain] start
-
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
-
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
-
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
-
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
-
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
-
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
-
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
-
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
-
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
-
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
-
-2018-12-04 20:45:23 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-combineImages]开始生成图片
-
-2018-12-04 20:45:24 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时0.889秒
-
-2018-12-04 20:45:24 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:9
-
-2018-12-04 20:45:25 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
-
-2018-12-04 20:45:25 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_5
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - cleanse] start
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - cleanse] serialize
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - cleanse] sortBySize
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - cleanse] filterUselessGroup
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - cleanse] cleanLineHeight
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - cleanse] mergeBySize
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - cleanse] relayer
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - cleanse] markerSegmenting
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - cleanse] end
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - layout] start
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - layout] block A22BB7F6-3486-48A5-B54C-D43ED17AD413
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - layout] column A22BB7F6-3486-48A5-B54C-D43ED17AD413
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - layout] row A22BB7F6-3486-48A5-B54C-D43ED17AD413
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - layout] inline A22BB7F6-3486-48A5-B54C-D43ED17AD413
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "6D09AF92-AB26-409A-AB7C-E3B0A179C408" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "8F331278-E8AE-45DC-A657-96A982025B6C" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] LAYOUT-IMAGE	 fit Dom: "44" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "0BC3F685-F401-487A-B981-9E6FF823B649" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] TAG	 fit Dom: "A174B24C-DD16-4531-A298-050773339C30" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] LAYOUT-TEXT	 fit Dom: "45" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] ICON-ENTER	 fit Dom: "5A3A0D5A-976B-4F2C-9FE5-8405FBE54895" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "DB8E47A9-9890-425D-BD94-766069B97E81" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "0323DA7B-FB44-4F89-BFFC-AC1939D4D32C" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "46951A3B-CF39-4C42-958F-8B6837742A97" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] LAYOUT-TEXT	 fit Dom: "46" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "611AFB2D-17F2-4C55-B3EA-C045EE9349B7" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] TAG	 fit Dom: "5C4859C2-DE55-414E-BB44-B20FAF54152A" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "2FB753D5-898B-4A9E-8337-2393C1543C37" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - model] BODY	 fit Dom: "A22BB7F6-3486-48A5-B54C-D43ED17AD413" 
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - cyclic analyze] start
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - cyclic analyze] 44	 repeat items are:
-[6D09AF92-AB26-409A-AB7C-E3B0A179C408],[8F331278-E8AE-45DC-A657-96A982025B6C]
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - cyclic analyze] 46	 repeat items are:
-[0323DA7B-FB44-4F89-BFFC-AC1939D4D32C],[46951A3B-CF39-4C42-958F-8B6837742A97]
-
-2018-12-04 20:45:25 DEBUG default  图片合成模块 [pipe - contrain] start
-
-2018-12-04 20:45:25 ERROR default 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：ReferenceError: parent is not defined
-
-2018-12-04 20:45:26 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
-
-2018-12-04 20:45:26 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_6
-
-2018-12-04 20:45:26 DEBUG default  图片合成模块 [pipe - cleanse] start
-
-2018-12-04 20:45:26 DEBUG default  图片合成模块 [pipe - cleanse] serialize
-
-2018-12-04 20:45:26 DEBUG default  图片合成模块 [pipe - cleanse] sortBySize
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cleanse] filterUselessGroup
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cleanse] cleanLineHeight
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cleanse] mergeBySize
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cleanse] relayer
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cleanse] markerSegmenting
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cleanse] end
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - layout] start
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - layout] block 3EB63979-1F73-4D85-8481-B652F4E5EC55
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - layout] column 3EB63979-1F73-4D85-8481-B652F4E5EC55
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - layout] row 3EB63979-1F73-4D85-8481-B652F4E5EC55
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - layout] inline 3EB63979-1F73-4D85-8481-B652F4E5EC55
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "1D6E0920-0E75-4485-B517-FBFC5B6B35D2" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "623E6CF8-8E66-4039-A4BA-6694567B48C0" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "101F2D10-5454-4250-996D-A1AC7360DABE" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "15116769-25F9-4B0F-A5A0-0920E88A0BB8" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "632AB7DB-73BE-4444-B7D0-250CB668DE1A" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "3D92702C-4FE1-4755-BA80-6828B146B735" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "E900B35E-FFE0-4D2D-BA36-8C7332D1B3FC" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "E11B782E-7E76-45E4-A25F-79656536EAE6" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "19240657-288E-45B7-B2A8-DFECD60C3D94" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "BD74A54D-1B24-464E-9B26-63B445B9FB46" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] LAYOUT-IMAGE	 fit Dom: "48" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "FCAC425A-1D27-42DF-8A3D-34FB548904F1" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] TAG	 fit Dom: "_0B73_4520" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "40D5F179-64FA-421D-88C4-F92BA78458DF" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] IMAGE	 fit Dom: "8985324C-C10A-4979-A470-59499C7F75BA" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "6E5F0202-4EA4-46E8-8DB6-3142D8E518E0" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "324FE11F-89E0-48E1-823D-596C022B16C1" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] LAYOUT-TEXT	 fit Dom: "49" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] TEXT	 fit Dom: "AE3BBAA6-865F-431E-85D9-C3C30A112244" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] TAG	 fit Dom: "F27CA347-8DAC-40E1-B722-780467D7EBE4" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] POSTER	 fit Dom: "40E1F90C-A3AB-429B-AF5B-9DFCC605003D" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] LAYOUT-IMAGE	 fit Dom: "47" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - model] BODY	 fit Dom: "3EB63979-1F73-4D85-8481-B652F4E5EC55" 
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cyclic analyze] start
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cyclic analyze] 15116769-25F9-4B0F-A5A0-0920E88A0BB8	 repeat items are:
-[623E6CF8-8E66-4039-A4BA-6694567B48C0],[101F2D10-5454-4250-996D-A1AC7360DABE]
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cyclic analyze] 19240657-288E-45B7-B2A8-DFECD60C3D94	 repeat items are:
-[3D92702C-4FE1-4755-BA80-6828B146B735],[E900B35E-FFE0-4D2D-BA36-8C7332D1B3FC],[E11B782E-7E76-45E4-A25F-79656536EAE6]
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cyclic analyze] 48	 repeat items are:
-[632AB7DB-73BE-4444-B7D0-250CB668DE1A],[BD74A54D-1B24-464E-9B26-63B445B9FB46]
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cyclic analyze] 49	 repeat items are:
-[6E5F0202-4EA4-46E8-8DB6-3142D8E518E0],[324FE11F-89E0-48E1-823D-596C022B16C1]
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cyclic analyze] 47	 repeat items are:
-[40D5F179-64FA-421D-88C4-F92BA78458DF],[40E1F90C-A3AB-429B-AF5B-9DFCC605003D]
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - cyclic analyze] 3EB63979-1F73-4D85-8481-B652F4E5EC55	 repeat items are:
-[48],[47]
-
-2018-12-04 20:45:27 DEBUG default  图片合成模块 [pipe - contrain] start
-
-2018-12-04 20:45:27 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
-
-2018-12-04 20:45:27 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
-
-2018-12-04 20:45:27 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
-
-2018-12-04 20:45:27 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出html成功
-
-2018-12-04 20:45:27 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getHtmlCss]结构骨架输出成功
-
-2018-12-04 20:45:27 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-isFileExist]判断目录存在
-
-2018-12-04 20:45:27 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]检测文件是否存在标识:true
-
-2018-12-04 20:45:27 DEBUG default 20181204194543_视频.sketch 平台模块 [util.js-writeToFile]写入文件成功
-
-2018-12-04 20:45:27 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-jsonToHtmlCss]导出css成功
-
-2018-12-04 20:45:27 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageImgById]获取当前artboard图片素材请求
-
-2018-12-04 20:45:27 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-combineImages]开始生成图片
-
-2018-12-04 20:45:28 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-combineImages]生成目标图片，用时1.324秒
-
-2018-12-04 20:45:28 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getPageImgById]图片输出成功,图片数组个数:14
-
-2018-12-04 20:45:30 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
-
-2018-12-04 20:45:39 DEBUG default 20181204194543_视频.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
-
-2018-12-04 21:07:33 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
-
-2018-12-04 21:07:33 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
-
-2018-12-04 21:07:35 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getPageById]获取当前artboard骨架请求
-
-2018-12-04 21:07:35 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:2_1
-
-2018-12-04 21:07:40 DEBUG default 20181203195431_2单页.sketch 平台模块 [edit.js-getArtBoardImg]获取当前artboard预览图片请求
+2018-12-04 20:35:25 DEBUG default 20181204201107_0list.sketch 平台模块 [edit.js-getHtmlCss]获取到的artBoard index:1_1
 

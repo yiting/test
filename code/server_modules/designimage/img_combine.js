@@ -2,6 +2,8 @@
 var gm = require('gm');
 var pageJson = "";
 const draw = require('./draw');
+const qlog = require("../log/qlog");
+let logger ;
 
 var inputDir = "";
 // var outputDir = "";
@@ -50,12 +52,14 @@ var ImageCombine = function(){
             this.outputDir += this.generateId+"/";  
         }
         targetDir = param.outputDir;
+        logger= qlog.getInstance(qlog.moduleData.img);
+        //logger.error('Cheese is too ripe!');
     }
     this.combineNode = function(node,param){
         var that = this;
         var  main = async () => {
             // let rootNode = rootNode; 
-            if(node.id && node.id.indexOf('A3D67082-8401-4EC4-AD7D-ACF9C5110318')>-1){//F061F4E3-EF2B-4C4A-A6F5-16D479DE4835 _FA04_1450_DD5E_F417_69BD_A45B_7421_CA02 145046AC-3A6C-41E0-8A5E-2107BC5BA70E 5C35_15C7_8C38_2DC8_BDBE_26B3_C862_35AD F41756E7-AFA1-4C53-803C-F4711B75B0C2
+            if(node.id && node.id.indexOf('17670B48-A747-49FA-BF02-1D0577A5B084')>-1){//F061F4E3-EF2B-4C4A-A6F5-16D479DE4835 _FA04_1450_DD5E_F417_69BD_A45B_7421_CA02 145046AC-3A6C-41E0-8A5E-2107BC5BA70E 5C35_15C7_8C38_2DC8_BDBE_26B3_C862_35AD F41756E7-AFA1-4C53-803C-F4711B75B0C2
                 console.log(111);
             }
             if(node.path && node.path.indexOf('14.png')>-1){//F061F4E3-EF2B-4C4A-A6F5-16D479DE4835 _FA04_1450_DD5E_F417_69BD_A45B_7421_CA02 145046AC-3A6C-41E0-8A5E-2107BC5BA70E 5C35_15C7_8C38_2DC8_BDBE_26B3_C862_35AD F41756E7-AFA1-4C53-803C-F4711B75B0C2
@@ -116,9 +120,9 @@ var ImageCombine = function(){
                     var item = imageChildren[i]; 
                     var origin = item._origin;
                     var isNeedCompositeAlpha = true;
-                    if(origin.do_objectID.indexOf('F1CCCE24-105E-4B48-ACAB-CCBEB5DE8C87')>-1){
-                        console.log(112);
-                    }
+                    // if(origin.do_objectID.indexOf('F1CCCE24-105E-4B48-ACAB-CCBEB5DE8C87')>-1){
+                    //     console.log(112);
+                    // }
                     // if(item.clippingMaskMode == 0 && item.shouldBreakMaskChain == false){//遇到遮罩层，则从这层网上找，将所有被遮罩的图层都合成一张图
                     // 针对shapeGroup做处理
                     if(item._imageChildren && item._imageChildren.length>0 && item.id.indexOf("_")> -1){//&& item.isModified
@@ -128,7 +132,7 @@ var ImageCombine = function(){
                     else {
 
                         var childNode ;
-                        if(origin._class == "group" || origin._class == "shapeGroup" || origin._class == "symbolMaster" || origin._class == "oval" || origin._class == "bitmap" || origin._class == "rectangle" || origin._class == "shapePath"){
+                        // if(origin._class == "group" || origin._class == "triangle" || origin._class == "shapeGroup" || origin._class == "symbolMaster" || origin._class == "symbolInstance" || origin._class == "oval" || origin._class == "bitmap" || origin._class == "rectangle" || origin._class == "shapePath"){
                             if(origin.layers && origin.layers.length == 1){
                                 childNode = origin.layers[0];
                                 if(origin.do_objectID.indexOf("B291364C-00E0-496B-9B00-055E84D8E69B")>-1){
@@ -196,7 +200,8 @@ var ImageCombine = function(){
                                     path = item.path;
                                     // outputPath = outputDir+that._getTmpFileName(path);
                                 }catch(e){
-                                    console.error(e);
+                                    logger.error(e);
+                                    // console.error(e);
                                     //如果绘图失败，则用原生绘图
                                     // if(await this.isRecommendCombineShapeGroupNodeWithNative()){
                                     path = await this.combineShapeGroupNodeWithNative(item,false);
@@ -213,13 +218,14 @@ var ImageCombine = function(){
                                 try{
                                     fs.renameSync(this.outputDir+that._getTmpFileName(path),this.outputDir+that._getTmpFileName(item.path),function(err){});
                                 }catch(e){
-                                    console.error(e);
+                                    logger.error(e);
+                                    // console.error(e);
                                 }
                             }
-                        }else{
-                            childNode = origin;
-                            path = await draw.image(origin,childNode,that.outputDir);
-                        }
+                        // }else{
+                        //     childNode = origin;
+                        //     path = await draw.image(origin,childNode,that.outputDir);
+                        // }
                         if(path && path != "" && !item.path && !that._isQMask(item)){
                             item.path = path;
                             if(typeof outputPath == "undefined"){
@@ -237,7 +243,7 @@ var ImageCombine = function(){
                             outputImage.in('-page', "+0+0").in(that.outputDir+that._getTmpFileName(newNode.path));
                         }
                     }
-                    else if(origin._class != "slice"){    //else if(item._class == "bitmap" || item._class == "shapeGroup" ){    
+                    else if(!origin || (origin && origin._class != "slice")){    //else if(item._class == "bitmap" || item._class == "shapeGroup" ){    
                         //如果图片含有旋转样式，则要重新计算图片的坐标
                         this._handleRotation(item);
                         outputImage.in('-page', this._getLocationText(item.x,item.y,isGroup)).in(that.outputDir+that._getTmpFileName(item.path));
@@ -253,7 +259,8 @@ var ImageCombine = function(){
                     }
                     outputImage.mosaic().write(outputPath,function (e) {
                         if(e) {
-                            console.error(e.message)
+                            logger.error(e);
+                            // console.error(e.message)
                         }
                         newNode = {
                             _class : "combineImg",
@@ -278,7 +285,8 @@ var ImageCombine = function(){
         try{
             return main();
         }catch(e){
-            console.log(e);
+            logger.error(e);
+            // console.log(e);
         }
         
     }
@@ -356,7 +364,8 @@ var ImageCombine = function(){
                     }else{
                         gm(outputPath).trim().write(outputPath,function (e) {
                             if(e) {
-                                console.log(e.message)
+                                logger.error(e);
+                                // console.log(e.message)
                             }
                             newNode._class = "combineImg";
                             newNode.frame = {
@@ -378,7 +387,8 @@ var ImageCombine = function(){
         try{
             return main();
         }catch(e){
-            console.log(e);
+            logger.error(e);
+            // console.log(e);
         }
     }
     this.combineShapeGroupNodeWithNative = function(item,isReleaseFile){
@@ -399,7 +409,8 @@ var ImageCombine = function(){
                 logData.num._combineShapeGroupNodeWithNative ++ ;
                 exec(command, function(a,b,c){
                     if(a){
-                        console.log(a);
+                        logger.error(a);
+                        // console.log(a);
                     }
                     var newFileName = b.substring(9,b.length-1);
                     if(newFileName.indexOf('Group')>-1){
@@ -415,7 +426,8 @@ var ImageCombine = function(){
                     try{
                         fs.renameSync(outputDir+newFileName,filePath,function(err){});
                     }catch(e){
-                        console.error(e);
+                        logger.error(e);
+                        // console.error(e);
                     }
                     
                     resolve(fileName);
@@ -425,7 +437,8 @@ var ImageCombine = function(){
         try{
             return main();
         }catch(e){
-            console.log(e);
+            logger.error(e);
+            // console.log(e);
         }
     }
     //将shapeGroup中的每个图层按数据位移放在一张大的透明图中，因为gm不能在做集合运算时加上-page等属性，所以只能先如此合一张图出来，再单纯做集合运算。
@@ -439,7 +452,8 @@ var ImageCombine = function(){
                 .in(that.outputDir+that._getTmpFileName(node.image._ref))
                 .mosaic().write(that.outputDir+that._getTmpFileName(node.image._ref),function (e){
                     if(e) {
-                        console.log(e.message)
+                        logger.error(e.message);
+                        // console.log(e.message)
                     }
                     resolve(node);
                 });
@@ -483,7 +497,8 @@ var ImageCombine = function(){
                 }
                 outputImage.in(that.outputDir+that._getTmpFileName(node2.image._ref)).command("composite").write(that.outputDir+that._getTmpFileName(outputRelativePath),function (e) {
                     if(e) {
-                        console.log(e.message)
+                        logger.error(e.message);
+                        // console.log(e.message)
                     }
                     var newNode = {};
                     newNode._class = "tmpCombineImg";
@@ -540,12 +555,14 @@ var ImageCombine = function(){
                         outputPath = that.outputDir+that._getTmpFileName("m_"+maskItem.id)+".png";                  
                         outputImage.mosaic().write(outputPath, function (e){
                             if(e) {
-                                console.log(e.message)
+                                // console.log(e.message)
+                                logger.error(e.message);
                             }
                     
                             gm(outputPath).crop(maskItem.width, maskItem.height, maskItem.x,maskItem.y).write(outputPath, function (e){
                                 if(e) {
-                                    console.log(e.message)
+                                    // console.log(e.message)
+                                    logger.error(e.message);
                                 }
                                 var gmComposite = 'gm composite -compose in ' + outputPath + ' ' + that.outputDir+that._getTmpFileName(maskItem.maskPath) + ' ' + outputPath
                                 try{
@@ -585,7 +602,8 @@ var ImageCombine = function(){
                                         
                                     });
                                 }catch(e){
-                                    console.error(e);
+                                    logger.error(e);
+                                    // console.error(e);
                                 }
                                 
                             });
@@ -628,7 +646,8 @@ var ImageCombine = function(){
                         };
                         outputImage.write(outputPath, function (e){
                             if(e) {
-                                console.log(e.message)
+                                logger.error(e.message);
+                                // console.log(e.message)
                             }
                             // that._handleTmpFiles(sliceNode.do_objectID,outputPath)
                             resolve(newNode);
@@ -643,7 +662,8 @@ var ImageCombine = function(){
                     return new Promise(function (resolve, reject) {                       
                         outputImage.write(outputPath, function (e){
                             if(e) {
-                                console.log(e.message)
+                                logger.error(e.message);
+                                // console.log(e.message)
                             }      
                             var newNode = {
                                 "_class":"combineImg",
@@ -705,7 +725,8 @@ var ImageCombine = function(){
         try{
             fs.renameSync(that.outputDir+that._getTmpFileName(that.rootNode.path),targetDir+that.rootNode.path); 
         }catch(e){
-            console.error(e);
+            // console.error(e);
+            logger.error(e);
             
         }
         that.rootNode = undefined ;
@@ -755,7 +776,8 @@ var ImageCombine = function(){
     },
     this.getLogData = function(){
         logData.costTime = (new Date().getTime() - logData.costTime)/1000;
-        console.log(logData);
+        logger.debug(logData);
+        // console.log(logData);
         return logData;
     }
     this._isQMask = function(item){

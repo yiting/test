@@ -12,12 +12,13 @@ User.prototype = {
   create: function(callback) {
     var that = this;
     var addSql =
-      "INSERT INTO user(staffid,staffname,ChnName,DeptName) VALUES(?,?,?,?)";
+      "INSERT INTO user(staffid,staffname,ChnName,DeptName,last_login_time) VALUES(?,?,?,?,?)";
     var addSqlParams = [
       that.staffid,
       that.staffname,
       that.ChnName,
-      that.DeptName
+      that.DeptName,
+      new Date()
     ];
     connection.query(addSql, addSqlParams, function(err, result) {
       if (err) {
