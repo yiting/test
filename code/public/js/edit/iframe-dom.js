@@ -208,7 +208,7 @@ let iframeDom = {
                     <li><span class="property">height</span><span class="colon">:</span><span class="property-height" data-need="unit" data-real="${ElementHeightReal}">${ElementHeight}</span><span class="semicolon">;</span></li>
                     <li><span class="property">opacity</span><span class="colon">:</span><span class="property-opacity">${ElementOpacity}</span><span class="semicolon">;</span></li>`;
           //a.图层背景:优先检查背景
-          if (ElementClass.includes("image")) {
+          if (ElementClass.includes("img")) {
             //隐藏字体属性面板
             $(".fontSize-panel").hide();
             //node节点名称: 需要设置图层名称

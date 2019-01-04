@@ -522,7 +522,7 @@ let getHtmlCss = (req, res, next) => {
             currentDesignJson = currentDesignDom.toList();
             //生成骨架
             //2018-10-10:先出骨架，再等待图片生成后，再刷新页面
-            Promise.all([jsonToHtmlCss(artBoardId, currentDesignJson)]).then(
+            Promise.all([jsonToHtmlCss2(artBoardId, currentDesignJson)]).then(
               info => {
                 //console.log("骨架输出成功");
                 logger.debug("[edit.js-getHtmlCss]结构骨架输出成功");
@@ -686,6 +686,58 @@ let jsonToHtmlCss = (artBoardId, currentDesignDom) => {
     htmlCssPromise.then(data => {
       if (css) {
         Export.exportCss(exportPath + "/css", cssHtmlfileName, css, function() {
+          //console.log("导出css成功");
+          logger.debug("[edit.js-jsonToHtmlCss]导出css成功");
+        });
+      }
+    });
+  } catch (e) {
+    //console.log("导出文件出错！");
+    logger.error("[edit.js-jsonToHtmlCss]导出html或css出错!");
+  }
+  return htmlCssPromise;
+};
+
+/**
+ * DSL2
+ * @param {*} artBoardId
+ * @param {*} currentDesignDom
+ */
+const Common = require("../../server_modules/dsl2/dsl_common.js");
+const Dsl = require("../../server_modules/dsl2/dsl.js");
+const Render = require("../../server_modules/render/render.js");
+let jsonToHtmlCss2 = (artBoardId, currentDesignDom) => {
+  let htmlCssPromise,cssHtmlfileName = uploadTimeStamp;
+  let dslTree = Dsl.process(currentDesignDom, 750, 750, Common.FlexLayout);
+  let render = Render.process(dslTree);
+  let htmlStr = render.getTagString("css/"+cssHtmlfileName+".css");
+  let cssStr = render.getStyleString();
+
+  //获取页面json数据，供给页面属性面板操作
+  //h5Json = DSL.getHtmlJson(currentDesignDom);
+  //动态传入css文件名称:按照遍历序号来
+  //let cssHtmlfileName = artBoardId;
+  //2018-10-29:简短html和CSS命名
+  //let cssHtmlfileName = uploadTimeStamp;
+  //html = Template.htmlStart(cssHtmlfileName) + html + Template.htmlEnd();
+  //console.log('html日志:' + html)
+  //生成文件导出对应路径
+  let exportPath = "./data/complie/" + projectName;
+  //console.log('全路径:' + exportPath)
+  // 导出html文件和css文件
+  try {
+    htmlCssPromise = new Promise(function(resolve, reject) {
+      if (htmlStr) {
+        Export.exportHtml(exportPath, cssHtmlfileName, htmlStr, function() {
+          //console.log("导出html成功");
+          logger.debug("[edit.js-jsonToHtmlCss]导出html成功");
+          resolve("success");
+        });
+      }
+    });
+    htmlCssPromise.then(data => {
+      if (cssStr) {
+        Export.exportCss(exportPath + "/css", cssHtmlfileName, cssStr, function() {
           //console.log("导出css成功");
           logger.debug("[edit.js-jsonToHtmlCss]导出css成功");
         });
