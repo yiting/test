@@ -8,6 +8,8 @@ const EM1M4 = require('./em1/m4.js');
 // 二元素元素模型
 const EM2M1 = require('./em2/m1.js');
 const EM2M2 = require('./em2/m2.js');
+const EM2M3 = require('./em2/m3.js');
+const EM2M4 = require('./em2/m4.js');
 // 三元素元素模型
 const EM3M1 = require('./em3/m1.js');
 const EM3M2 = require('./em3/m2.js');
@@ -28,6 +30,8 @@ const MODEL_LIST = [
     // 二元素模型
     new EM2M1(),
     new EM2M2(),
+    new EM2M3(),
+    new EM2M4(),
     // 三元素模型
     new EM3M1(),
     new EM3M2(),

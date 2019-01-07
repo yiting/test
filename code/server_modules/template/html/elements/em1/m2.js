@@ -2,7 +2,7 @@
 const EM1M2 = {
   name: "em1-m2",
   desc: "1元素模板:单icon",
-  template: `<img :ref="0" :class="em1-m2" :src="" occlusion="true" data-model="em1-m2"/>`
+  template: `<span :ref="0" :class="em1-m2 icon"></span>`
 };
 
 module.exports = EM1M2;

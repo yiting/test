@@ -64,7 +64,7 @@ class DSLTreeTransfer {
     };
     /**
      * 将xml模板与data数据结合在一起，生成目标json
-     * 2.xml节点中“:”开头的属性改成"_"开头，然后保存在节点根位置，其余属性放在_attr属性里
+     * 2.xml节点中“:”开头的属性保存在节点根的tplData里，其余属性放在tplAttr属性里
      * 3.当xml节点中遇到属性是":ref"时，将data里该属性的数据全保存到该xml节点下。
      * @param {String} xml 
      * @param {Object} data
@@ -87,29 +87,19 @@ class DSLTreeTransfer {
         obj.styles = {};
         obj.text = "";
         obj.path = "";
+        obj.constraints = {};
         var nodeValue = (xml.textContent || "").replace(/(\r|\n)/g, "").replace(/^\s+|\s+$/g, "");
 
         if (nodeValue && xml.childNodes.length == 1) {
             obj.text = nodeValue;
         }
-        // if (xml.childNodes.length > 0) {
-        //      //把for循环结构先处理
-        //      for (var j = 0; j < xml.attributes.length; j++) {
-        //         var attribute = xml.attributes.item(j);
-        //         if(attribute.nodeName == ":repeat"){
-
-        //         }
-        //     }
-        // }
         if (xml.attributes.length > 0) {
             for (var j = 0; j < xml.attributes.length; j++) {
                 var attribute = xml.attributes.item(j);
                 if(attribute.nodeName == ":constraints"){
                     if(this.isJSON(attribute.nodeValue) ){
-                        
                         this.clone(JSON.parse(attribute.nodeValue), obj["constraints"]);
                     }
-                    
                 }else if (attribute.nodeName.indexOf(":") == 0 && attribute.nodeName != ":ref") {
                     obj["tplData"][attribute.nodeName.substring(1)] = attribute.nodeValue;
                 } else if (attribute.nodeName == ":ref") {
@@ -141,10 +131,14 @@ class DSLTreeTransfer {
             obj.abY = this.getExtremValue(obj.children,"abY",extremType.Min,obj);
         }
         if(typeof(obj.abXops) == "undefined"){
-            obj.abXops = this.getExtremValue(obj.children,"abXops",extremType.Max,obj);
+            var childrenXops = this.getExtremValue(obj.children,"abXops",extremType.Max,obj);
+            var selfXops = obj.abX+obj.width;
+            obj.abXops = childrenXops>selfXops?childrenXops:selfXops;
         }
         if(typeof(obj.abYops) == "undefined"){
-            obj.abYops = this.getExtremValue(obj.children,"abYops",extremType.Max,obj);
+            var childrenYops = this.getExtremValue(obj.children,"abYops",extremType.Max,obj);
+            var selfYops = obj.abY+obj.height;
+            obj.abYops = childrenYops>selfYops?childrenYops:selfYops;
         }
         if(typeof(obj.canLeftFlex) == "undefined"){
             obj.canLeftFlex = data.canLeftFlex || false;
@@ -164,6 +158,7 @@ class DSLTreeTransfer {
             return obj;
         } else {
             for (var i in obj) {
+                if (i === 'tagName' && obj[i]) continue;
                 destObj[i] = typeof obj[i] === "object" && obj[i] && !Array.isArray(obj[i])  ? this.clone(obj[i],{})  : obj[i];
             }
         }

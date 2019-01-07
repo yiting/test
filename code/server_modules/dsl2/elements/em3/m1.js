@@ -5,71 +5,67 @@
 const Common = require('../../dsl_common.js');
 const Model = require('../../dsl_model.js');
 const Feature = require('../../dsl_feature.js');
+const Utils = require('../../dsl_utils.js');
 
 class EM3M1 extends Model.ElementModel {
     constructor() {
         // 元素构成规则
         super('em3-m1', 2, 0, 0, 1, Common.LvS, Common.QText);
-        this.canLeftFlex = false;
-        this.canRightFlex = true;
-
-        // 三个节点记录
-        this._tagTxt = null;
-        this._mainTxt = null;
-        this._tagShape = null;
     }
 
-    // 区分三个基础元素的逻辑
+    // 区分匹配的元素
     _initNode() {
-        let txtNodes = this.getTextNodes();
-        let shapeNodes = this.getShapeNodes();
+        let texts = this.getTextNodes();
+        let shapes = this.getShapeNodes();
+        Utils.sortListByParam(texts, 'abX');
 
-        if (txtNodes[0].abX >= txtNodes[1].abX) {
-            this._mainTxt = txtNodes[0];
-            this._tagTxt = txtNodes[1];
-        }
-        else {
-            this._mainTxt = txtNodes[1];
-            this._tagTxt = txtNodes[0];
-        }
-        
-        this._tagShape = shapeNodes[0];
+        this._matchNodes['0'] = shapes[0];          // tag的shape背景
+        this._matchNodes['1'] = texts[0];           // tag的文字
+        this._matchNodes['2'] = texts[1];           // 主文字
     }
 
     // 元素方向
     regular1() {
-        return Feature.directionAleftToB(this._tagTxt, this._mainTxt)
-                && Feature.directionAleftToB(this._tagShape, this._mainTxt);
+        let bool = Feature.directionAleftToB(this._matchNodes['1'], this._matchNodes['2'])
+                    && Feature.directionAleftToB(this._matchNodes['0'], this._matchNodes['2']);
+
+        return bool;
     }
 
     // 水平轴方向
     regular2() {
         // 三者都处于水平轴方向上
-        return Feature.baselineABInHorizontal(this._tagShape, this._mainTxt)
-                && Feature.baselineABInHorizontal(this._tagShape, this._tagTxt)
-                && Feature.baselineABInHorizontal(this._mainTxt, this._tagTxt);
+        let group = [this._matchNodes['0'], this._matchNodes['1'], this._matchNodes['2']];
+        let bool = Feature.baselineGroupAInHorizontal(group);
+
+        return bool;
     }
 
     // 元素距离
     regular3() {
-        // tagShape与mainTxt的距离必须小于22,大于0
-        return Feature.distanceGreatArightToBleft(this._tagShape, this._mainTxt, 0)
-                && Feature.distanceLessArightToBleft(this._tagShape, this._mainTxt, 22);
+        // tagShape与mainTxt的距离必须小于24,大于0
+        let bool = Feature.distanceGreatArightToBleft(this._matchNodes['0'], this._matchNodes['2'], 0)
+                    && Feature.distanceLessArightToBleft(this._matchNodes['0'], this._matchNodes['2'], 24);
+
+        return bool;
     }
 
     // 位置关系
     regular4() {
-        // tagTxt在tagShape的里面并且居中
-        return Feature.positionAInBCenter(this._tagTxt, this._tagShape);
+        let bool = Feature.positionAInBCenter(this._matchNodes['1'], this._matchNodes['0']);
+
+        return bool;
     }
 
     // 尺寸关系
     regular5() {
-        // 1. tagShape一般占mainTxt字高度的大于1/2, 小于1.05(1)
+        // 1. tagShape一般占mainTxt字高度的大于1/2, 小于1.1
         // 2. 文字长度应超过标签长度的一半
-        return Feature.sizeHeightRatioAGreatB(this._tagShape, this._mainTxt, 0.5)
-                && Feature.sizeHeightRatioALessB(this._tagShape, this._mainTxt, 1.05)
-                && Feature.sizeWidthRatioAGreatB(this._tagTxt, this._tagShape, 0.5);
+        let bool = Feature.sizeHeightRatioAGreatB(this._matchNodes['0'], this._matchNodes['2'], 0.5)
+                    && Feature.sizeHeightRatioALessB(this._matchNodes['0'], this._matchNodes['2'], 1.1)
+                    && Feature.sizeWidthRatioAGreatB(this._matchNodes['1'], this._matchNodes['0'], 0.5);
+
+        return bool;
     }
 }
 

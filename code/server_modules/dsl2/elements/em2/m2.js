@@ -10,20 +10,14 @@ class EM2M2 extends Model.ElementModel {
     constructor() {
         // 元素构成规则
         super('em2-m2', 1, 1, 0, 0, Common.LvA, Common.QText);
-        this.canLeftFlex = false;
-        this.canRightFlex = true;
-
-        // 节点记录
-        this._matchNodes['1'] = null;       // tag
-        this._matchNodes['0'] = null;       // 文本
     }
 
     _initNode() {
-        let txtNodes = this.getTextNodes();
-        let iconNodes = this.getIconNodes();
+        let texts = this.getTextNodes();
+        let icons = this.getIconNodes();
         
-        this._matchNodes['1'] = iconNodes[0];
-        this._matchNodes['0'] = txtNodes[0];
+        this._matchNodes['0'] = texts[0];               // 文本
+        this._matchNodes['1'] = icons[0];               // icon
     }
 
     // 元素方向
@@ -42,7 +36,7 @@ class EM2M2 extends Model.ElementModel {
     regular3() {
         // icon与txt的距离必须大于0,小于22
         return Feature.distanceGreatAleftToBright(this._matchNodes['1'], this._matchNodes['0'], -4)
-                && Feature.distanceLessAleftToBright(this._matchNodes['1'], this._matchNodes['0'], 22);
+                && Feature.distanceLessAleftToBright(this._matchNodes['1'], this._matchNodes['0'], 24);
     }
 
     // 尺寸关系

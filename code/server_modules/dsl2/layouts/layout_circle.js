@@ -3,11 +3,13 @@ const Common = require('../dsl_common.js');
 const Utils = require('../dsl_utils.js');
 const Model = require('../dsl_model.js');
 const Group = require('../dsl_group.js');
+const Constraints = require('../dsl_constraints');
 
 
 class LayoutCircle extends Model.LayoutModel {
     constructor(modelType) {
         super(modelType);
+        this.similarIndex = 0;
     }
 
     /**
@@ -18,131 +20,58 @@ class LayoutCircle extends Model.LayoutModel {
      * @param {Int} layoutType 布局的类型
      */
     handle(parent, nodes, models, layoutType) {
-        console.log('-------- handle circle -------');
-
         if (!nodes || nodes.length == 0) {
+            // 如果没有子节点，则返回
             return;
         }
 
-        // 找出相似结构
-        this._sort(nodes);
-        let similarArr = this._similar(nodes);
-        
+        // 找出需要对比的结构
+        let compareNodes = this._filter(nodes);
+        // 找出相似结构组合
+        let similarArr = this._similar(compareNodes, this._similarRule);
+
         if (similarArr.length == 0) {
-            console.log('-------- handle circle 没有相似结构 -------');
+            // 如果没有相似结构，则返回
             return;
         }
 
-        // result的结构是?
-        let result = this._filter(similarArr);
+        // let children = [];
+        let inSimilar = [];
+        similarArr.forEach(item => {
+            let similarIndex = this.similarIndex++;
+            // 如果只有一个特征,不需要成组
+            if (item.feature == 1) {
+                item.target.forEach(group => {
+                    group.forEach(nd => {
+                        nd.set("similarIndex", similarIndex);
+                    });
+                })
+            } else {
+                item.target.forEach(group => {
+                    let layer = Group.Tree.createNodeData();
+                    let range = Utils.calRange(group);
+                    // !重要, 设定出layer的abX, abY, abXops, abYops, width, height
+                    layer.set("parentId", parent.id);
+                    layer.set("children", group);
+                    layer.set("abX", range.abX);
+                    layer.set("abY", range.abY);
+                    layer.set("abXops", range.abXops);
+                    layer.set("abYops", range.abYops);
+                    layer.set("similarIndex", similarIndex);
 
-        // 如果result有效, 则改变parent的结构
-        if (!result || result.length == 0) {
-            console.log('-------- handle circle 有相似结构但特性特征不符合 -------');
-            return;
-        }
-
-        // 把parent.children里的节点重新调整
-        // 1, 结构相似的, 假如这个结构包含两个以上节点则创建一个layer作为容器
-        // 2, 剩余的直接加入parent.children, 
-        // 3, 改变后的节点顺序会在 dsl_layout._handleLayout 处重新排列
-        let res = result[0][0];
-        if (!res || res.length == 0) {
-            console.log('-------- handle circle: res返回出错 -------');
-            return;
-        }
-
-        parent.children = new Array();       // 重置子节点数组
-        let inSimilar = [];                  // 所有相似结构的节点, 
-
-        res.forEach(item => {
-            if (item.length == 1) {
-                // 不需要成组
-                inSimilar.push(item[0]);
-                parent.children.push(item[0]);
-            }
-            else {
-                let layer = Group.Tree.createNodeData();
-                layer.parentId = parent.id;
-                item.forEach(nd => {
-                    nd.parentId = layer.id;
-                    inSimilar.push(nd);
-                    layer.children.push(nd);
+                    group.forEach(nd => {
+                        nd.set("parentId", layer.id);
+                        inSimilar.push(nd);
+                    });
+                    nodes.push(layer);
                 });
-
-                // !重要, 设定出layer的abX, abY, abXops, abYops, width, height
-                this._initNewNode(layer);
-                parent.children.push(layer);
             }
         });
-
-        // 把没有在inSimilar的添加回parent
-        for (let i = 0; i < nodes.length; i++) {
-            let nd = nodes[i];
-            let isNewOne = true;
-
-            for (let j = 0; j < inSimilar.length; j++) {
-                if (nd.id == inSimilar[j].id) {
-                    isNewOne = false;
-                    break;
-                }
-            }
-
-            if (isNewOne) {
-                parent.children.push(nd);
-            }
-        }
-    }
-
-    // 计算一个初始化数值
-    _initNewNode(node) {
-        for (let i = 0; i < node.children.length; i++) {
-            let nd = node.children[i];
-            if (i == 0) {
-                node.abX = nd.abX;
-                node.abY = nd.abY;
-                node.abXops = nd.abXops;
-                node.abYops = nd.abYops;
-                continue;
-            }
-
-            node.abX = (nd.abX < node.abX)? nd.abX : node.abX;
-            node.abY = (nd.abY < node.abY)? nd.abY : node.abY;
-            node.abXops = (nd.abXops > node.abXops)? nd.abXops : node.abXops;
-            node.abYops = (nd.abYops > node.abYops)? nd.abYops : node.abYops;
-        }
-
-        node.width = node.abXops - node.abX;
-        node.height = node.abYops - node.abY;
-    }
-
-    // 计算在垂直关系
-    _isXWrap(a, b) {
-        return Math.abs(a.abX + a.width / 2 - b.abX - b.width / 2) <=
-            Math.abs(a.width - b.width) / 2
-    }
-
-    // 
-    _calRange(arr) {
-        let o = {
-            abX: Number.POSITIVE_INFINITY,
-            abY: Number.POSITIVE_INFINITY,
-            width: 0,
-            height: 0
-        }
-        let right = 0,
-            bottom = 0
-        arr.forEach((d, i) => {
-            o.abX = d.abX < o.abX ? d.abX : o.abX;
-            o.abY = d.abY < o.abY ? d.abY : o.abY;
-            right = right < (d.abX + d.width) ? (d.abX + d.width) : right;
-            bottom = bottom < (d.abY + d.height) ? (d.abY + d.height) : bottom;
+        // 从节点中剔除被循环的节点
+        nodes = nodes.filter(nd => {
+            return !inSimilar.includes(nd);
         });
-        o.height = bottom - o.abY;
-        o.width = right - o.abX;
-        o.cX = o.abX + o.width / 2;
-        o.cY = o.abY + o.height / 2;
-        return o;
+        parent.set("children", nodes);
     }
 
     // 分组前的排序
@@ -161,67 +90,116 @@ class LayoutCircle extends Model.LayoutModel {
         })
     }
 
-    // 找到循环结构
-    _similar(arr) {
-        let self = this;
-        return Utils.similarRule(arr,
-            function (a, b) {
-                return a.modelName == b.modelName &&
-                    (a.abY == b.abY ||
-                        a.abY + a.height == b.abY + b.height ||
-                        a.abY + a.height / 2 == b.abY + b.height / 2);
-            },
-            function (features) {
-                return features.every((d, i) => {
-                    return i == 0 || self._isXWrap(d, features[i - 1]);
-                })
-            }
-        )
+    _filter(arr) {
+        return arr.filter(nd => {
+            return nd.constraints["LayoutSelfPosition"] != Constraints.LayoutSelfPosition.Absolute;
+        });
     }
 
-    // 
-    _filter(result) {
-        return result.map(feature => {
-            let targets = []
-            // 遍历节点位置
-            feature.target.forEach(doms => {
-                let range = this._calRange(doms);
-                targets.push(
-                    Object.assign({
-                        doms,
-                    }, range)
-                );
-            });
-            let dir,
-                arr = [],
-                cur = [];
-            // 排序
-            targets.sort(function (a, b) {
-                return a.cX - b.cX;
-            }).forEach(function (o, i) {
-                // 间距计算
-                let prev = targets[i - 1];
-                if (!prev) {
-                    arr.push(cur);
-                    cur.push(o.doms)
-                    return;
+    _similarRule(a, b) {
+        return a.modelName == b.modelName &&
+            (
+                a.abY == b.abY ||
+                a.abYops == b.abYops ||
+                a.abY + a.height / 2 == b.abY + b.height / 2 ||
+                a.abX == b.abX ||
+                a.abXops == b.abXops ||
+                a.abX + a.width / 2 == b.abX + b.width / 2
+            );
+    }
+    /**
+     * 相似性分组
+     * @param {Array} arr 对比数组
+     * @param {Function} similarLogic 相似逻辑
+     * @param {Function} featureLogic 特征逻辑
+     * 返回结构
+     * [
+     *  //组合类型
+     *  [
+     *      //该组合结果
+     *      [
+     *          //每个结果内容
+     *      ],
+     *      ...
+     *  ],
+     *  ...
+     * ]
+      */
+    _similar(arr, similarLogic, featureLogic) {
+        let pit = [];
+        // 相似特征分组
+        arr.forEach((s, i) => {
+            // 开始遍历
+            let lastIndex = i + 1;
+            for (let index = 0; index < lastIndex; index++) {
+                // 获取片段
+                let fragment = arr.slice(index, lastIndex);
+                if (featureLogic && !featureLogic(fragment)) {
+                    continue;
                 }
-                if (isNaN(dir)) {
-                    dir = o.cX - prev.cX
-                    cur.push(o.doms);
-                    return;
+                // 排除完全重复的独立项
+                if (fragment.length > 1 && fragment.every((s, i) => {
+                    return i == 0 || (similarLogic ? similarLogic(s, fragment[i - 1]) : s == fragment[i - 1])
+                })) {
+                    continue;
                 }
-                if (dir == o.cX - prev.cX) {
-                    cur.push(o.doms);
-                } else {
-                    cur = [o.doms];
-                    arr.push(cur);
-                    dir = o.cX - prev.cX;
-                }
-    
-            })
-            return arr;
+
+                // 判断重复片段
+                pit.some(p => {
+                    // existing:当前片段与缓存片段，每一段都符合逻辑特征判断
+                    let existing = p.feature == fragment.length && p.target.some(t => {
+                        //  只有一个特征时，还须连续的重复；多个特征时，只需逻辑相同
+                        return t.every((f, fi) => {
+                            return similarLogic ? similarLogic(f, fragment[fi]) : (f == fragment[fi]);
+                        });
+                    });
+                    if (existing && (p.lastIndex + p.feature) <= index) {
+                        // 如果重复，且当前节点在上一个重复片段的节点之后
+                        p.target.push(fragment);
+                        p.indexs.push(index);
+                        p.lastIndex = index;
+                        return true;
+                    }
+                }) || (pit.push({
+                    feature: fragment.length,
+                    target: [fragment],
+                    indexs: [index],
+                    lastIndex: index
+                }));
+            }
         });
+        let indexMap = new Array(arr.length);
+        //  剔除不重复项
+        let sorter = pit.filter(s => s.target.length > 1)
+            // 按最大重复因子数， 降序
+            .sort((a, b) => {
+                return b.feature - a.feature
+            })
+            //  按最高重复数，降序
+            .sort((a, b) => {
+                return b.target.length - a.target.length
+            })
+            //  筛选已被选用的节点组
+            .filter(s => {
+                let indexs = [];
+                s.target = s.target.filter((target, idx) => {
+                    let index = s.indexs[idx];
+                    //  提取序列组，检测重复组的序列是否已经被使用过
+                    if (indexMap.slice(index, index + s.feature).every(i => i !== true)) {
+                        indexs.push(index);
+                        return true;
+                    }
+                });
+                //  剔除只有一个重复项的重复组
+                if (s.target.length > 1) {
+                    s.indexs = indexs;
+                    indexs.forEach(index => {
+                        indexMap.fill(true, index, index + s.feature);
+                    });
+                    return true;
+                }
+            })
+        return sorter;
     }
 }
 

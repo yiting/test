@@ -12,13 +12,13 @@ const utils = {
      * @param {Int} optimizeWidth 范围的宽度
      * @param {Int} optimizeHeight 范围的高度
      */
-    getNodesFromSize: function(nodes, beginX, beginY, optimizeWidth, optimizeHeight) {
+    getNodesFromSize: function (nodes, beginX, beginY, optimizeWidth, optimizeHeight) {
         let result = [];
         nodes.forEach(item => {
-            if (item.abX >= beginX
-                && item.abX < beginX + optimizeWidth
-                && item.abY >= beginY
-                && item.abY < beginY + optimizeHeight) {
+            if (item.abX >= beginX &&
+                item.abX < beginX + optimizeWidth &&
+                item.abY >= beginY &&
+                item.abY < beginY + optimizeHeight) {
 
                 result.push(item);
             }
@@ -28,29 +28,33 @@ const utils = {
     },
 
     /**
-     * 将模型按优先级进行排序
+     * 将模型按优先级进行排序, 优先级相同则按数量优先
      * @param {Array} list 模型列表 
      */
-    sortModelList: function(list) {
+    sortModelList: function (list) {
         let arr = [];
         let len = list.length;
-
         list.forEach(item => {
             arr.push(item);
         });
 
-        // 插值排序把模型优先级高的调到最前面
-        // 坑爹的插值排序, 早知道用冒泡
-        for (let i = 1; i < len; i++) {
-            let current = arr[i];
-            let index = i - 1;
-            while (index >= 0 && arr[index].getPriority() < current.getPriority()) {
-                arr[index + 1] = arr[index];
-                index--;
+        for (let i = 0; i < len; i++) {
+            for (let j = 0; j < len - i - 1; j++) {
+                if (arr[j].getPriority() < arr[j + 1].getPriority()) {
+                    let temp = arr[j + 1];
+                    arr[j + 1] = arr[j];
+                    arr[j] = temp;
+                }
+                else if (arr[j].getPriority() == arr[j + 1].getPriority()) {
+                    if (arr[j].getNumber() < arr[j + 1].getNumber()) {
+                        let temp = arr[j + 1];
+                        arr[j + 1] = arr[j];
+                        arr[j] = temp;
+                    }
+                }
             }
-            arr[index + 1] = current;
         }
-
+        
         return arr;
     },
 
@@ -59,7 +63,7 @@ const utils = {
      * @param {Array} nodes 需要处理的节点
      * @param {Array} arr 需要减少的节点
      */
-    removeMatchedNodes: function(nodes, arr) {
+    removeMatchedNodes: function (nodes, arr) {
         if (!nodes || nodes.length == 0 || !arr || arr.length == 0) {
             return;
         }
@@ -80,7 +84,7 @@ const utils = {
      * @param {Array} nodes 需要处理的节点
      * @param {Array} arr 需要减少的节点
      */
-    removeMatchedElements: function(nodes, arr) {
+    removeMatchedElements: function (nodes, arr) {
         if (!nodes || nodes.length == 0 || !arr || arr.length == 0) {
             return;
         }
@@ -109,7 +113,7 @@ const utils = {
      * @param {Array} nodes 需要处理的节点
      * @param {Array} arr 需要减少的节点
      */
-    removeMatchedWidgets: function(nodes, arr) {
+    removeMatchedWidgets: function (nodes, arr) {
         if (!nodes || nodes.length == 0 || !arr || arr.length == 0) {
             return;
         }
@@ -134,7 +138,7 @@ const utils = {
      * 从数组中移除为null的节点
      * @param {Array} arr 移除为null的节点 
      */
-    removeNullObject: function(arr) {
+    removeNullObject: function (arr) {
         if (!arr || arr.length == 0) {
             return;
         }
@@ -163,7 +167,7 @@ const utils = {
      * @param {Int} imageNum 组合里的QImage元素数量
      * @param {Int} shapeNum 组合里的QShape元素数量
      */
-    getGroupFromNodes: function(nodes, textNum, iconNum, imageNum, shapeNum) {
+    getGroupFromNodes: function (nodes, textNum, iconNum, imageNum, shapeNum) {
         if (!nodes || !nodes.length || nodes.length == 0) {
             return null;
         }
@@ -193,7 +197,8 @@ const utils = {
                 case Common.QShape:
                     shapeNodes.push(item);
                     break;
-                default: ;
+                default:
+                    ;
             }
         });
 
@@ -227,7 +232,7 @@ const utils = {
      * @param {Int} 组合里元素的个数
      * @return {Array}
      */
-    getRandomGroup: function(arr, n) {
+    getRandomGroup: function (arr, n) {
         if (!arr || arr.length == 0 || n <= 0 || n > arr.length) {
             return [];
         }
@@ -240,8 +245,8 @@ const utils = {
     },
 
     // 递归排列函数
-    randomGroup: function(arr, n, begin, temp, index, result) {
-        if (n == 0) {   // 如果够n个数了
+    randomGroup: function (arr, n, begin, temp, index, result) {
+        if (n == 0) { // 如果够n个数了
             let len = result.length;
             result[len] = [];
 
@@ -259,7 +264,7 @@ const utils = {
     },
 
     // 组合函数
-    joinGroup: function(arr, index, result_temp, result) {
+    joinGroup: function (arr, index, result_temp, result) {
         if (!arr || arr.length == 0 || index < 0) {
             return;
         }
@@ -285,7 +290,7 @@ const utils = {
     },
 
     // 将二维数组转为一维
-    transformToLinearArray: function(arr) {
+    transformToLinearArray: function (arr) {
         let res = [];
         arr.forEach((groups, index) => {
             res[index] = [];
@@ -301,7 +306,7 @@ const utils = {
     },
 
     // 将数组中, 删除不符合textNum + iconNum + imageNum + shapeNum 的组合
-    removeErrorGroup: function(arr, textNum, iconNum, imageNum, shapeNum) {
+    removeErrorGroup: function (arr, textNum, iconNum, imageNum, shapeNum) {
         let res = [];
         if (!arr || arr.length == 0) {
             return res;
@@ -327,7 +332,8 @@ const utils = {
                     case Common.QShape:
                         shape++;
                         break;
-                    default: ;
+                    default:
+                        ;
                 }
             });
 
@@ -340,7 +346,7 @@ const utils = {
     },
 
     // 将传进的数组根据y轴投影分成多个数组
-    groupByYaxis: function(arr) {
+    groupByYaxis: function (arr) {
         let result = [];
         arr.forEach(item => {
             // item类型为MatchData
@@ -349,12 +355,11 @@ const utils = {
                 result[0].minY = item.abY;
                 result[0].maxY = item.abYops;
                 result[0].push(item);
-            }
-            else {
+            } else {
                 let canGroup = true;
                 for (let i = 0; i < result.length; i++) {
                     // 判断item能否和现在数组划分出的y轴空间相交
-                    if (item.abY <= result[i].maxY && item.abYops >= result[i].minY) {  // 相交
+                    if (item.abY <= result[i].maxY && item.abYops >= result[i].minY) { // 相交
                         // 将result[i]的范围扩大
                         result[i].minY = item.abY < result[i].minY ? item.abY : result[i].minY;
                         result[i].maxY = item.abYops > result[i].maxY ? item.abYops : result[i].maxY;
@@ -384,7 +389,7 @@ const utils = {
      * @param {String} param 需要比较的属性值
      * @param {Boolean} reverse 排序相反，默认由小到大
      */
-    sortListByParam: function(arr, param, reverse) {
+    sortListByParam: function (arr, param, reverse) {
         if (!arr || arr.length == 0) {
             return;
         }
@@ -397,14 +402,13 @@ const utils = {
                 let valueA = param ? arr[j][param] : arr[j];
                 let valueB = param ? arr[j + 1][param] : arr[j + 1];
 
-                if (rev) {  // 由大到小
+                if (rev) { // 由大到小
                     if (valueA < valueB) {
                         let temp = arr[j + 1];
                         arr[j + 1] = arr[j];
                         arr[j] = temp;
                     }
-                }
-                else {  // 由小到大
+                } else { // 由小到大
                     if (valueA > valueB) {
                         let temp = arr[j + 1];
                         arr[j + 1] = arr[j];
@@ -416,7 +420,7 @@ const utils = {
     },
 
     // 将传进的数据按面积从大到小排列
-    sortListByArea: function(arr) {
+    sortListByArea: function (arr) {
         if (!arr || arr.length == 0) {
             return;
         }
@@ -436,7 +440,7 @@ const utils = {
 
     // 将传进的element(QImage, QShape按y轴投影上大小排序, 即height值)
     // 从小到大排列
-    sortElementListByYaxis: function(arr) {
+    sortElementListByYaxis: function (arr) {
         if (!arr || arr.length == 0) {
             return;
         }
@@ -454,7 +458,7 @@ const utils = {
         }
     },
 
-    sortWidgetListByYaxis: function(arr) {
+    sortWidgetListByYaxis: function (arr) {
         if (!arr || arr.length == 0) {
             return;
         }
@@ -473,7 +477,7 @@ const utils = {
     },
 
     // elements能单独成组并不包含在widgets投影中的
-    groupElementInWidgetSeparateInYaxis: function(widgets, elements) {
+    groupElementInWidgetSeparateInYaxis: function (widgets, elements) {
         if (!widgets || !elements) {
             return;
         }
@@ -498,8 +502,7 @@ const utils = {
                     tempArr[0].minY = item.abY;
                     tempArr[0].maxY = item.abYops;
                     tempArr[0].push(item);
-                }
-                else {
+                } else {
                     let canNewTemp = true;
 
                     // item和tempArr有相交关系的
@@ -524,8 +527,7 @@ const utils = {
                         tempArr[nowIndex].push(item);
                     }
                 }
-            }
-            else {
+            } else {
                 // 余下的就放进没处理数组返回
                 result.push(item);
             }
@@ -542,7 +544,7 @@ const utils = {
     },
 
     //
-    groupElementInWidgetContainInYaxis: function(widgets, elements) {
+    groupElementInWidgetContainInYaxis: function (widgets, elements) {
         if (!widgets || !elements) {
             return;
         }
@@ -569,12 +571,12 @@ const utils = {
     },
 
     // 节点A是否包含节点B
-    isNodeAcontainNodeB: function(nodeA, nodeB) {
+    isNodeAcontainNodeB: function (nodeA, nodeB) {
         let result = false;
-        if (nodeA.abX <= (nodeB.abX + nodeB.width)
-            && (nodeA.abX + nodeA.width) >= nodeB.abX
-            && nodeA.abY <= (nodeB.abY + nodeB.height)
-            && (nodeA.abY + nodeA.height) >= nodeB.abY) {
+        if (nodeA.abX <= (nodeB.abX + nodeB.width) &&
+            (nodeA.abX + nodeA.width) >= nodeB.abX &&
+            nodeA.abY <= (nodeB.abY + nodeB.height) &&
+            (nodeA.abY + nodeA.height) >= nodeB.abY) {
 
             result = true;
         }
@@ -583,12 +585,12 @@ const utils = {
     },
 
     // 节点A全包含节点B
-    isNodeAfullcontainNodeB: function(nodeA, nodeB) {
+    isNodeAfullcontainNodeB: function (nodeA, nodeB) {
         let result = false;
-        if (nodeA.abX <= nodeB.abX
-            && nodeA.abY <= nodeB.abY
-            && (nodeA.abX + nodeA.width) >= (nodeB.abX + nodeB.width)
-            && (nodeA.abY + nodeA.height) >= (nodeB.abY + nodeB.height)) {
+        if (nodeA.abX <= nodeB.abX &&
+            nodeA.abY <= nodeB.abY &&
+            (nodeA.abX + nodeA.width) >= (nodeB.abX + nodeB.width) &&
+            (nodeA.abY + nodeA.height) >= (nodeB.abY + nodeB.height)) {
 
             result = true;
         }
@@ -597,7 +599,8 @@ const utils = {
     },
 
     // 屏幕输出组件信息
-    logWidgetInfo: function(datas) {
+    logWidgetInfo: function (datas) {
+        return;
         if (!datas || datas.length == 0) {
             return;
         }
@@ -615,7 +618,7 @@ const utils = {
     },
 
     // 屏幕输出元素信息
-    logElementInfo: function(datas) {
+    logElementInfo: function (datas) {
         // 其实函数是通用的
         this.logWidgetInfo(datas);
     },
@@ -654,88 +657,133 @@ const utils = {
         o.width = right - o.abX;
         return o;
     },
-
-    /**
-     * 相似性分组
-     * @param {Array} arr 对比数组
-     * @param {Function} similarLogic 相似逻辑
-     * @param {Function} featureLogic 特征逻辑
-     */
-    similarRule(arr, similarLogic, featureLogic) {
-        let pit = [];
-        // 相似特征分组
-        arr.forEach((s, i) => {
-            // 开始遍历
-            let lastIndex = i + 1;
-            for (let index = 0; index < lastIndex; index++) {
-                // 获取片段
-                let fragment = arr.slice(index, lastIndex);
-                if (featureLogic && !featureLogic(fragment)) {
-                    continue;
-                }
-                // 排除完全重复的独立项
-                if (fragment.length > 1 && fragment.every((s, i) => {
-                        return i == 0 || (similarLogic ? similarLogic(s, fragment[i - 1]) : s == fragment[i - 1])
-                    })) {
-                    continue;
-                }
-
-                // 判断重复片段
-                pit.some(p => {
-                    // existing:当前片段与缓存片段，每一段都符合逻辑特征判断
-                    let existing = p.feature == fragment.length && p.target.some(t => {
-                        //  只有一个特征时，还须连续的重复；多个特征时，只需逻辑相同
-                        return t.every((f, fi) => {
-                            return similarLogic ? similarLogic(f, fragment[fi]) : (f == fragment[fi]);
-                        });
-                    });
-                    if (existing && (p.lastIndex + p.feature) <= index) {
-                        // 如果重复，且当前节点在上一个重复片段的节点之后
-                        p.target.push(fragment);
-                        p.indexs.push(index);
-                        p.lastIndex = index;
-                        return true;
-                    }
-                }) || (pit.push({
-                    feature: fragment.length,
-                    target: [fragment],
-                    indexs: [index],
-                    lastIndex: index
-                }));
+    gatherByLogic(domArr, logic) {
+        let newArr = [];
+        domArr.forEach((meta, i) => {
+            var st = newArr.find((n, k) => {
+                return n.includes(meta);
+            });
+            if (!st) {
+                st = [meta];
+                newArr.push(st);
             }
-        });
-        let indexMap = new Array(arr.length);
-        //  剔除不重复项
-        let sorter = pit.filter(s => s.target.length > 1)
-            // 按最大重复因子数， 降序
-            .sort((a, b) => {
-                return b.feature - a.feature
-            })
-            //  按最高重复数，降序
-            .sort((a, b) => {
-                return b.target.length - a.target.length
-            })
-            //  筛选已被选用的节点组
-            .filter(s => {
-                let indexs = [];
-                s.target = s.target.filter((target, idx) => {
-                    let index = s.indexs[idx];
-                    //  提取序列组，检测重复组的序列是否已经被使用过
-                    if (indexMap.slice(index, index + s.feature).every(i => i !== true)) {
-                        indexs.push(index);
-                        return true;
+            domArr.forEach((target, j) => {
+                if (target == meta || st.includes(target)) {
+                    return;
+                }
+                if (logic(meta, target)) {
+                    let qr = newArr.find((n, qi) => {
+                        return n.includes(target)
+                    })
+                    if (qr) {
+                        st = newArr[newArr.indexOf(st)] = st.concat(qr);
+                        newArr.splice(newArr.indexOf(qr), 1);
+                    } else {
+                        st.push(target);
                     }
-                });
-                //  剔除只有一个重复项的重复组
-                if (s.target.length > 1) {
-                    s.indexs = indexs;
-                    indexs.forEach(index => {
-                        indexMap.fill(true, index, index + s.feature);
-                    });
-                    return true;
+
                 }
             })
-        return sorter;
+        });
+        return newArr;
+    },
+    calRange(nodes) {
+        if (!nodes) {
+            return {};
+        }
+        let o = {
+            abX: Number.POSITIVE_INFINITY,
+            abY: Number.POSITIVE_INFINITY,
+            abYops: Number.NEGATIVE_INFINITY,
+            abXops: Number.NEGATIVE_INFINITY,
+            width: 0,
+            height: 0
+        }
+        nodes.forEach((d, i) => {
+            o.abX = d.abX < o.abX ? d.abX : o.abX;
+            o.abY = d.abY < o.abY ? d.abY : o.abY;
+            o.abYops = o.abYops < d.abYops ? d.abYops : o.abYops;
+            o.abXops = o.abXops < d.abXops ? d.abXops : o.abXops;
+        });
+        o.height = o.abYops - o.abY;
+        o.width = o.abXops - o.abX;
+        return o;
+    },
+    // 包含关系
+    isWrap(outer, inner) {
+        return this.isXWrap(outer, inner) && this.isYWrap(outer, inner);
+    },
+    // 在Y轴上是包含关系
+    isYWrap(a, b) {
+        return Math.abs(a.abY + a.height / 2 - b.abY - b.height / 2) <=
+            Math.abs(a.height - b.height) / 2
+    },
+    // 在X轴上是包含关系
+    isXWrap(a, b) {
+        return Math.abs(a.abX + a.width / 2 - b.abX - b.width / 2) <=
+            Math.abs(a.width - b.width) / 2
+    },
+    // 相连关系
+    isConnect(a, b, dir = 0) {
+        return this.isXConnect(a, b, dir) &&
+            this.isYConnect(a, b, dir);
+    },
+    // 水平方向相连
+    isXConnect(a, b, dir = 0) {
+        const aCx = a.abX + a.width / 2,
+            bCx = b.abX + b.width / 2;
+        return Math.abs(aCx - bCx) <= (a.width + b.width) / 2 + dir;
+    },
+    // 垂直方向相连
+    isYConnect(a, b, dir = 0) {
+        const aCy = a.abY + a.height / 2,
+            bCy = b.abY + b.height / 2;
+        return Math.abs(aCy - bCy) <= (a.height + b.height) / 2 + dir;
+    },
+    /**
+     * 是否垂直
+     * 当doms数量只有一个,返回true
+     */
+    isVertical(arr, errorCoefficient = 0) {
+        let prev;
+        errorCoefficient = parseFloat(errorCoefficient) || 0;
+        return arr.every(dom => {
+            if (!prev) {
+                prev = dom;
+                return true;
+            }
+            let res = dom.abX < prev.abX + prev.width + errorCoefficient &&
+                prev.abX < dom.abX + dom.width + errorCoefficient;
+            prev = dom;
+            return res;
+        })
+    },
+    horizontalLogic(a, b, errorCoefficient) {
+        if (
+            // 如果水平方向相连
+            this.isXConnect(a, b, errorCoefficient) &&
+            // 如果垂直不包含
+            !this.isYWrap(a, b)) {
+            return false;
+        }
+        // return (a_abY < b_abY + b_height + errorCoefficient) &&
+        // (b_abY < a_abY + a_height + errorCoefficient);
+        return this.isYConnect(a, b, errorCoefficient);
+    },
+    /**
+     * 是否水平
+     * logic：若垂直方向不相交，则水平方向相交为水平
+     * 若垂直方向相交，则水平方向互相包含则水平
+     * 当doms数量只有一个,返回true
+     */
+    isHorizontal(doms, errorCoefficient = 0) {
+        errorCoefficient = parseFloat(errorCoefficient) || 0;
+        let _ = this;
+        return doms.every((a, i) => {
+            return doms.every((b, j) => {
+                return j <= i || _.horizontalLogic(a, b, errorCoefficient)
+            })
+        })
     }
 };
 

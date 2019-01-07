@@ -1,37 +1,26 @@
-// (3节点元素)左Icon右文字
+// (3节点元素)左Icon右两文字
 //
 // (QIcon) + (QText) + (QText)
 //
 const Common = require('../../dsl_common.js');
 const Model = require('../../dsl_model.js');
 const Feature = require('../../dsl_feature.js');
+const Utils = require('../../dsl_utils.js');
 
 class WG3M1 extends Model.WidgetModel {
     constructor() {
         // 元素构成规则
         super('wg3-m1', 2, 1, 0, 0, Common.LvS, Common.QWidget);
-
-        // 节点记录
-        this._matchNodes['0'] = null;         // icon
-        // 节点记录
-        this._matchNodes['1'] = null;         // mainTxt
-        this._matchNodes['2'] = null;         // subTxt
     }
 
     _initNode() {
-        let txtNodes = this.getTextNodes();
-        let iconNodes = this.getIconNodes();
-        // 因为只有两个节点
-        if (txtNodes[0].height > txtNodes[1].height) {
-            this._matchNodes['1'] = txtNodes[0];
-            this._matchNodes['2'] = txtNodes[1];
-        }
-        else {
-            this._matchNodes['1'] = txtNodes[1];
-            this._matchNodes['2'] = txtNodes[0];
-        }
+        let texts = this.getTextNodes();
+        let icons = this.getIconNodes();
+        Utils.sortListByParam(texts, 'abY');
 
-        this._matchNodes['0'] = iconNodes[0];
+        this._matchNodes['0'] = icons[0];
+        this._matchNodes['1'] = texts[0];
+        this._matchNodes['2'] = texts[1];
     }
 
     // 元素方向

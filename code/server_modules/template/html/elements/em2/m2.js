@@ -3,9 +3,9 @@ const EM2M2 = {
   name: "em2-m2",
   desc: "2元素模板：左文本+右标签",
   template: `
-    <div :class="em2-m2" data-model="em2-m2" :constraints='{"LayoutPosition":"Static","LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
-      <span :ref="0" :class="text"></span>
-      <img :ref="1" :class="icon" :src="" occlusion="true"/>
+    <div :class="em2-m2" :constraints='{"LayoutDirection":"Horizontal", "LayoutJustifyContent":"Start"}'>
+      <p :ref="0" :class="text"></p>
+      <span :ref="1" :class="icon"></span>
     </div>`
 };
 

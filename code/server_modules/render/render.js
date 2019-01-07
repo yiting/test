@@ -46,7 +46,6 @@ class Render {
         if (this._builder) {
             htmlStr = this._builder.getTagString();
         }
-        console.log(htmlStr);
         //添加完整的html结构
         var tpl = this.getTpl();
         var result = tpl.replace('${htmlStr}',htmlStr).replace('${cssName}',cssName);
@@ -62,7 +61,6 @@ class Render {
         if (this._builder) {
             cssStr = this._builder.getStyleString();
         }
-        console.log(cssStr);
         return cssStr;
     }
 

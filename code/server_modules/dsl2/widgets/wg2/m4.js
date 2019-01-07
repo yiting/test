@@ -9,7 +9,7 @@ const Feature = require('../../dsl_feature.js');
 class WG2M4 extends Model.WidgetModel {
     constructor() {
         // 元素构成规则
-        super('wg2-m4', 1, 0, 1, 0, Common.LvSS, Common.QWidget);
+        super('wg2-m4', 1, 0, 1, 0, Common.LvS, Common.QWidget);
 
         // 节点记录
         this._matchNodes['0'] = null;         // image
@@ -38,8 +38,8 @@ class WG2M4 extends Model.WidgetModel {
 
     // 元素距离
     regular3() {
-        // icon与txt的距离必须大于0,小于50
-        return Feature.distanceGreatAbottomToBtop(this._matchNodes['0'], this._matchNodes['1'], 0)
+        // 图片与txt的距离必须大于-4,小于50
+        return Feature.distanceGreatAbottomToBtop(this._matchNodes['0'], this._matchNodes['1'], -4)
                 && Feature.distanceLessAbottomToBtop(this._matchNodes['0'], this._matchNodes['1'], 25);
     }
 }

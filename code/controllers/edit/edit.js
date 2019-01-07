@@ -361,6 +361,7 @@ router.post("/download", function(req, res, next) {
           ) {
             //属性过滤去重
             let result = files
+              //.replace(/id=".*?"|id=.*?(?=\s|>)/g, "")
               .replace(/data-id=".*?"|data-id=.*?(?=\s|>)/g, "")
               .replace(/data-layout=".*?"|data-layout=.*?(?=\s|>)/g, "")
               .replace(/isSource/g, "");

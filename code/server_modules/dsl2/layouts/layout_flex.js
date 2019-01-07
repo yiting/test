@@ -16,6 +16,7 @@ const Constrains = require('../dsl_constraints');
 // 1: 如果
 // s2: 其余的以绝对定位
 
+
 class LayoutFlex extends Model.LayoutModel {
     constructor(modelType) {
         super(modelType);
@@ -32,11 +33,13 @@ class LayoutFlex extends Model.LayoutModel {
         if (this._modelType != layoutType) {
             return;
         }
-       
-        if (this._isVerticalLayout(nodes)) {
+
+        // if (this._isVerticalLayout(nodes)) {
+        if (Utils.isVertical(nodes)) {
+            this._sort(nodes, 'abY');
             this._handleVertical(parent, nodes, models);
-        }
-        else {
+        } else {
+            this._sort(nodes, 'abX');
             this._handleHorizontal(parent, nodes, models);
         }
     }
@@ -52,28 +55,47 @@ class LayoutFlex extends Model.LayoutModel {
         parent.constraints['LayoutAlignItems'] = Constrains.LayoutAlignItems.Start;
         // 高度不需要处理
 
-        // 处理宽度
-        // 根据leftFlex和rightFlex决定节点可以扩展到什么位置
-        for (let i = 0; i < nodes.length; i++) {
-            let nd = nodes[i];
-            // 绝对定位的忽略不处理
-            if (nd.constraints['LayoutSelfPosition']
-                && nd.constraints['LayoutSelfPosition'] == Constrains.LayoutSelfPosition.Absolute) {
-
+        let calNodes = [],
+            absNodes = [];
+        // 剔除绝对定位节点
+        nodes.forEach(nd => {
+            if (nd.constraints["LayoutSelfPosition"] == Constrains.LayoutSelfPosition.Absolute) {
                 nd.isCalculate = true;
-                continue;
+                absNodes.push(nd)
+            } else {
+                calNodes.push(nd);
             }
+        });
 
-            if (nd.canLeftFlex) {
-                nd.abX = parent.abX;
+        // 重叠逻辑：如果重叠，则判定绝对定位
+        for (let i = 0; i < calNodes.length; i++) {
+            let nd = calNodes[i];
+            let prev = calNodes[i - 1];
+            // 如果与前点重合，层级高的绝对定位
+            if (prev && Utils.isYConnect(prev, nd, -4)) {
+                let _nd = prev.zIndex < nd.zIndex ? nd : prev;
+                absNodes.push(_nd);
             }
+        }
+        // 赋予非轴线节点为绝对定位
+        for (let i = 0; i < calNodes.length; i++) {
+            let nd = calNodes[i];
+            nd.isCalculate = true; // 约束计算完成
+            if (absNodes.includes(nd)) {
+                this._setAbsolute(nd);
+            } else {
+                if (nd.canLeftFlex) {
+                    nd.set("abX", parent.abX);
+                }
 
-            if (nd.canRightFlex) {
-                nd.abXops = parent.abXops;
+                if (nd.canRightFlex) {
+                    nd.set("abXops", parent.abXops);
+                }
             }
-
-            nd.width = nd.abXops - nd.abX;
-            nd.isCalculate = true;          // 约束计算完成
+        };
+        if (absNodes.length > 0) {
+            // 父节点赋予相对定位约束
+            parent.constraints["LayoutPosition"] = Constrains.LayoutPosition.Absolute;
         }
     }
 
@@ -92,69 +114,78 @@ class LayoutFlex extends Model.LayoutModel {
         // 2, 从最左开始计算出x轴上不相交的元素组成横向一排
         // 3, 没能排列的元素, 若与某元素相交, 则包含进相交元素, 否则加到parent处
 
-
-        // 这里的layoutFlex的排版算法
-
-        this._sort(nodes);
-
-        let preNode = null;
-        let needRemoves = [];
-        for (let i = 0; i < nodes.length; i++) {
-            let nd = nodes[i];
-            // 绝对定位的忽略不处理
-            if (nd.constraints['LayoutSelfPosition']
-                && nd.constraints['LayoutSelfPosition'] == Constrains.LayoutSelfPosition.Absolute) {
-                
+        let calNodes = [],
+            absNodes = [];
+        // 剔除绝对定位节点
+        nodes.forEach(nd => {
+            if (nd.constraints["LayoutSelfPosition"] == Constrains.LayoutSelfPosition.Absolute) {
                 nd.isCalculate = true;
-                continue;
+                absNodes.push(nd)
+            } else {
+                calNodes.push(nd);
             }
+        });
 
-            if (preNode) {
-                // x轴投影相交
-                if (nd.abX < preNode.abXops) {
-                    if (nd.abYops < preNode.abY || nd.abY > preNode.abYops) {
-                        // y轴不相交, 则独立分离, 不用添加到preNode里面
-                        nd.constraints['LayoutSelfPosition'] = Constrains.LayoutSelfPosition.Absolute;
-                    }
-                    else {
-                        // y轴也相交, 放入该子元素
-                        nd.constraints['LayoutSelfPosition'] = Constrains.LayoutSelfPosition.Absolute;
-                        preNode.children.push(nd);
-                        needRemoves.push(nd);
-                    }
-
-                    nd.isCalculate = true;
-                    continue;
-                }
+        var top = parent.abY,
+            bottom = parent.abYops,
+            middle = (parent.abY + parent.abYops) / 2,
+            topArr = [],
+            bottomArr = [],
+            middleArr = [];
+        calNodes.forEach(nd => {
+            if (Math.abs(nd.abY - top) < 3) {
+                topArr.push(nd);
             }
-
-            nd.isCalculate = true;
-            preNode = nd;
+            if (Math.abs(nd.abYops - bottom) < 3) {
+                bottomArr.push(nd);
+            }
+            if (Math.abs((nd.abYops + nd.abY) / 2 - middle) < 3) {
+                middleArr.push(nd);
+            }
+        });
+        // 获得最多相同基线的节点
+        let maxArr = [topArr, bottomArr, middleArr].sort((a, b) => {
+            return b.length - a.length;
+        })[0];
+        // 赋予副轴约束
+        if (maxArr.length == 1) {
+            // 如果最大基线元素只有一个，则选面积最大的
+            maxArr = [calNodes.slice().sort((a, b) => {
+                return b.width * b.height - a.width * a.height;
+            })[0]]
+        } else if (maxArr == topArr) {
+            parent.constraints["LayoutAlignItems"] = Constrains.LayoutAlignItems.Start
+        } else if (maxArr == middleArr) {
+            parent.constraints["LayoutAlignItems"] = Constrains.LayoutAlignItems.Center
+        } else if (maxArr == bottomArr) {
+            parent.constraints["LayoutAlignItems"] = Constrains.LayoutAlignItems.End
         }
-
-        // if (needRemoves.length > 0) {
-        //     console.log('+++++++++++++++++++++');
-        //     console.log(needRemoves);
-        //     //Utils.removeMatchedNodes(nodes, needRemoves);
-        //     //console.log(needRemoves);
-        // }
+        // 赋予非轴线节点为绝对定位
+        calNodes.forEach(nd => {
+            if (!maxArr.includes(nd)) {
+                absNodes.push(nd);
+                nd.isCalculate = true; // 约束计算完成
+            }
+        });
+        if (absNodes.length > 0) {
+            parent.constraints["LayoutPosition"] = Constrains.LayoutPosition.Absolute;
+            absNodes.forEach(nd => {
+                this._setAbsolute(nd);
+            })
+        }
     }
 
     // 筛选前排序
-    _sort(arr) {
-        return arr.map(o => {
-            return Object.assign({}, o, {
-                cX: o.abX + o.width / 2,
-                cY: o.abY + o.height / 2
-            })
-        }).sort(function (a, b) {
-            if (a.cX < b.cX) {
-                return -1;
-            } else if (a.cY > b.cY)
-                return 1;
+    _sort(nodes, opt) {
+        nodes.sort((a, b) => {
+            return a[opt] - b[opt];
         })
     }
+    _setAbsolute(node) {
+        node.constraints["LayoutSelfPosition"] = Constrains.LayoutSelfPosition.Absolute;
+        node.constraints["LayoutFixedWidth"] = node.constraints["LayoutFixedWidth"] || Constrains.LayoutFixedWidth.Fixed
+        node.constraints["LayoutFixedHeight"] = node.constraints["LayoutFixedHeight"] || Constrains.LayoutFixedHeight.Fixed
+    }
 }
-
 
 module.exports = LayoutFlex;

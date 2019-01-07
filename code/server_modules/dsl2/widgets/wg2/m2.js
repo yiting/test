@@ -9,38 +9,40 @@ const Feature = require('../../dsl_feature.js');
 class WG2M2 extends Model.WidgetModel {
     constructor() {
         // 元素构成规则
-        super('wg2-m2', 1, 1, 0, 0, Common.LvSS, Common.QWidget);
-
-        // 节点记录
-        this._iconNode = null;
-        this._mainTxt = null;
+        super('wg2-m2', 1, 1, 0, 0, Common.LvS, Common.QWidget);
     }
 
     _initNode() {
         let txtNodes = this.getTextNodes();
         let iconNodes = this.getIconNodes();
         
-        this._iconNode = iconNodes[0];
-        this._mainTxt = txtNodes[0];
+        this._matchNodes['0'] = txtNodes[0];            // txt
+        this._matchNodes['1'] = iconNodes[0];           // icon
     }
 
     // 元素方向
     regular1() {
         // icon位于文字左侧
-        return Feature.directionArightToB(this._iconNode, this._mainTxt);
+        let bool = Feature.directionArightToB(this._matchNodes['1'], this._matchNodes['0']);
+
+        return bool;
     }
 
     // 水平轴方向
     regular2() {
         // icon和txt在主轴上属于水平轴 
-        return Feature.baselineABInHorizontal(this._iconNode, this._mainTxt);
+        let bool = Feature.baselineABInHorizontal(this._matchNodes['1'], this._matchNodes['0']);
+
+        return bool;
     }
 
     // 元素距离
     regular3() {
-        // icon与txt的距离必须大于0,小于100
-        return Feature.distanceGreatAleftToBright(this._iconNode, this._mainTxt, -4)
-                && Feature.distanceLessAleftToBright(this._iconNode, this._mainTxt, 40);
+        // icon与txt的距离必须大于0,小于48
+        let bool = Feature.distanceGreatAleftToBright(this._matchNodes['1'], this._matchNodes['0'], -4)
+                    && Feature.distanceLessAleftToBright(this._matchNodes['1'], this._matchNodes['0'], 48);
+        
+        return bool;
     }
 }
 

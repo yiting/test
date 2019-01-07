@@ -47,6 +47,7 @@ class ElementModel {
         this.height = 0;                                           // 高度
         this.abXops = 0;                                           // 对角坐标x
         this.abYops = 0;                                           // 对角坐标y
+        this.zIndex = 0;                                           // 显示层级
 
         // 模型空间是否可左右扩展
         this.canLeftFlex = false;
@@ -100,6 +101,7 @@ class ElementModel {
                 this.abY = nodes[i].abY;
                 this.abXops = nodes[i].abX + nodes[i].width;
                 this.abYops = nodes[i].abY + nodes[i].height;
+                this.zIndex = nodes[i].zIndex;                  // 层级的设定
             }
             else {
                 // 比较大小得出这个组件的大小
@@ -107,6 +109,7 @@ class ElementModel {
                 this.abY = (this.abY < nodes[i].abY)? this.abY : nodes[i].abY;
                 this.abXops = (this.abXops < nodes[i].abX + nodes[i].width)? nodes[i].abX + nodes[i].width : this.abXops;
                 this.abYops = (this.abYops < nodes[i].abY + nodes[i].height)? nodes[i].abY + nodes[i].height : this.abYops;
+                this.zIndex = this.zIndex > nodes[i].zIndex? nodes[i].zIndex : this.zIndex;
             }
 
             // 计算宽高
@@ -569,7 +572,8 @@ class MatchData {
         this.modelName = model.getName();
         this.canLeftFlex = model.canLeftFlex;
         this.canRightFlex = model.canRightFlex;
-        this.similarId = model.similarId;
+        //this.similarId = model.similarId;
+        this.zIndex = model.zIndex;
     }
 
     /**

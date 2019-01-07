@@ -2,24 +2,25 @@
 const Common = require('../../dsl2/dsl_common.js');
 const Constraints = require('../../dsl2/dsl_constraints.js');
 const Utils = require('../render_utils.js');
+const DSL_Utils = require('../../dsl2/dsl_utils.js');
 
 // 生成的Css记录树
 let cssDomTree = null;
 
 // 
-let process = function(data, layoutType) {
+let process = function (data, layoutType) {
     // 构建cssTree并返回
     cssDomTree = new CssDom(null, data, layoutType);
     _buildTree(cssDomTree, data.children, layoutType);
 }
 
-let getCssString = function() {
+let getCssString = function () {
     // 获取cssTree解析出的样式
     let cssStr = '';
-    let css = [];           // 每个CssDom节点返回的样式数组
+    let css = []; // 每个CssDom节点返回的样式数组
     _parseTree(css, cssDomTree);
     //将 [ts-layer0] {width: 7.5rem;height: 0rem; } 形式改为css形式
-    css.forEach(function(value,key,arr){
+    css.forEach(function (value, key, arr) {
         cssStr += value + '\n';
     });
     return cssStr;
@@ -31,7 +32,7 @@ let getCssString = function() {
  * @param {Json} data 
  * @param {Int} layoutType 
  */
-let _buildTree = function(parent, datas, layoutType) {
+let _buildTree = function (parent, datas, layoutType) {
     datas.forEach(data => {
         let cssNode = new CssDom(parent, data, layoutType);
         parent.children.push(cssNode);
@@ -47,7 +48,7 @@ let _buildTree = function(parent, datas, layoutType) {
  * @param {Array} arr 字符串收集数组
  * @param {CssDom} dom CssDom节点
  */
-let _parseTree = function(arr, dom) {
+let _parseTree = function (arr, dom) {
     let str = dom.getCss();
     arr.push(str);
 
@@ -62,7 +63,7 @@ let _parseTree = function(arr, dom) {
  * @param  {String} unit   单位类型，默认px
  * @return {String}        数值+单位
  */
-let _transUnit = function(number, unit = "rem") {
+let _transUnit = function (number, unit = "rem") {
     number = parseInt(number) || 0;
     const dpr = 2;
     // 1-2像素特殊处理
@@ -76,7 +77,7 @@ let _transUnit = function(number, unit = "rem") {
         return number + 'px';
     }
 }
- 
+
 const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align'];
 const CompatibleValue = ['box'];
 
@@ -93,6 +94,7 @@ const cssPropertyMap = [
     'marginRight',
     'marginBottom',
     'marginLeft',
+    'paddingTop',
     'top',
     'right',
     'bottom',
@@ -116,7 +118,7 @@ const cssPropertyMap = [
     // "backgroundRepeat",
     // "padding",
     "color",
-    // "fontFamily",
+    "fontFamily",
     "fontSize",
     "position",
     // "border",
@@ -130,7 +132,7 @@ const cssPropertyMap = [
     // "boxAlign",
     // "display",
     // "textAlign",
-    // "whiteSpace",
+    "whiteSpace",
     "lineHeight",
     "opacity"
 ];
@@ -138,7 +140,7 @@ const cssPropertyMap = [
 class CssDom {
     constructor(parent, data, layoutType) {
         // 节点的信息
-        this.id = data.id; 
+        this.id = data.id;
         this.type = data.type;
         this.modelName = data.modelName;
         this.canLeftFlex = data.canLeftFlex;
@@ -147,9 +149,10 @@ class CssDom {
         this.tplAttr = data.tplAttr;
         this.tplData = data.tplData;
 
-        this.parent = parent? parent : this;
+
+        this.parent = parent ? parent : this;
         this.layoutType = layoutType;
-        
+
         // 布局计算的数值
         this._abX = data.abX;
         this._abY = data.abY;
@@ -164,14 +167,15 @@ class CssDom {
         this.styles = data.styles || {};
         // 子节点
         this.children = [];
+
     }
 
     /**
      * 获取当前节点的前一个兄弟节点,若没有则返回null
      */
     _prevNode() {
-        if (this.type == Common.QBody) {    // 根节点
-            return this;  
+        if (this.type == Common.QBody) { // 根节点
+            return this;
         }
 
         let len = this.parent.children.length;
@@ -179,7 +183,7 @@ class CssDom {
         if (len <= 1) {
             return null;
         }
-        
+
         let canBegin = false;
         for (let i = len - 1; i >= 0; i--) {
             let node = this.parent.children[i];
@@ -193,7 +197,7 @@ class CssDom {
                 continue;
             }
 
-            if (canBegin) {     // 这里开始就是开始寻找"上一个节点了"
+            if (canBegin) { // 这里开始就是开始寻找"上一个节点了"
                 if (this._isAbsolute(node)) {
                     continue;
                 }
@@ -206,13 +210,13 @@ class CssDom {
     /**
      * 获取当前节点的前一个兄弟节点,若没有则返回null
      */
-    _prevNodeWithParam(nodes,curIndex) {
-        var index = curIndex -1;
-        while(index >= 0){
-            if(!this._isAbsolute(nodes[index])){
+    _prevNodeWithParam(nodes, curIndex) {
+        var index = curIndex - 1;
+        while (index >= 0) {
+            if (!this._isAbsolute(nodes[index])) {
                 return nodes[index];
             }
-            index --;
+            index--;
         }
         return null;
     }
@@ -220,13 +224,13 @@ class CssDom {
     /**
      * 获取当前节点的前一个兄弟节点,若没有则返回null
      */
-    _nextNodeWithParam(nodes,curIndex) {
-        var index = curIndex +1;
-        while(index < nodes.length){
-            if(!this._isAbsolute(nodes[index])){
+    _nextNodeWithParam(nodes, curIndex) {
+        var index = curIndex + 1;
+        while (index < nodes.length) {
+            if (!this._isAbsolute(nodes[index])) {
                 return nodes[index];
             }
-            index ++;
+            index++;
         }
         return null;
     }
@@ -235,8 +239,8 @@ class CssDom {
      * 获取当前节点的下一个兄弟节点,若没有则返回null
      */
     _nextNode() {
-        if (this.type == Common.QBody) {    // 根节点
-            return this;  
+        if (this.type == Common.QBody) { // 根节点
+            return this;
         }
 
         let len = this.parent.children.length;
@@ -244,7 +248,7 @@ class CssDom {
         if (len <= 1) {
             return null;
         }
-        
+
         let canBegin = false;
         for (let i = 0; i < len; i++) {
             let node = this.parent.children[i];
@@ -258,7 +262,7 @@ class CssDom {
                 continue;
             }
 
-            if (canBegin) {     // 这里开始就是开始寻找"下一个节点了"
+            if (canBegin) { // 这里开始就是开始寻找"下一个节点了"
                 if (this._isAbsolute(node)) {
                     continue;
                 }
@@ -273,14 +277,9 @@ class CssDom {
      * @param {CssDom} node 
      */
     _isAbsolute(node) {
-        if (node.constraints['LayoutSelfPosition']
-            && node.constraints['LayoutSelfPosition'] == Constraints.LayoutSelfPosition.Absolute) {
+        if (node.constraints['LayoutSelfPosition'] &&
+            node.constraints['LayoutSelfPosition'] == Constraints.LayoutSelfPosition.Absolute) {
             return true;
-        }
-
-        if (node.parent.constraints['LayoutPosition']
-            && node.constraints['LayoutPosition'] == Constraints.LayoutPosition.Absolute) {
-            return true;        
         }
 
         return false;
@@ -291,14 +290,14 @@ class CssDom {
      * @returns {Boolean}
      */
     _isParentHorizontal() {
-        let res = false;        // 默认为竖排
+        let res = false; // 默认为竖排
         let parent = this.parent;
-        if (parent.children.length == 1) {  // 1个元素默认是竖排
+        if (parent.children.length == 1) { // 1个元素默认是竖排
             return res;
         }
 
-        if (parent.constraints['LayoutDirection']
-            && parent.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal) {
+        if (parent.constraints['LayoutDirection'] &&
+            parent.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal) {
             res = true;
         }
 
@@ -309,7 +308,27 @@ class CssDom {
      * 节点是否为固定宽度节点
      * @param {CssDom} node CssDom节点
      */
-    _isFixedWidth(node) {
+    _canLeftFlex() {
+        if (this.constraints['LayoutFixedWidth'] == Constraints.LayoutFixedWidth.Fixed) {
+            return false;
+        }
+        if (typeof this.canLeftFlex == "boolean") {
+            return this.canLeftFlex;
+        }
+        return true;
+
+    }
+    _canRightFlex() {
+        if (this.constraints['LayoutFixedWidth'] == Constraints.LayoutFixedWidth.Fixed) {
+            return false;
+        }
+        if (typeof this.canRightFlex == 'boolean') {
+            // 不是模板元素, 默认做最大扩展
+            return this.canRightFlex;
+        }
+        return true;
+    }
+    /* _isFixedWidth(node) {
         let result = false;
 
         if (!node.modelName) {
@@ -317,17 +336,16 @@ class CssDom {
             return false;
         }
 
-        if (node.constraints['LayoutFixedWidth'] 
-            && node.constraints['LayoutFixedWidth'] == Constraints.LayoutFixedWidth.Fixed) {
-            
+        if (node.constraints['LayoutFixedWidth'] &&
+            node.constraints['LayoutFixedWidth'] == Constraints.LayoutFixedWidth.Fixed) {
+
             result = true;
-        }
-        else if (node.modelName && (node.canLeftFlex || node.canRightFlex)) {
+        } else if (node.modelName && (node.canLeftFlex || node.canRightFlex)) {
             // 有node.modelName 则为不是模板生成的元素
             result = true;
         }
         return result;
-    }
+    } */
 
     /**
      * 节点是否为固定宽度节点
@@ -341,12 +359,11 @@ class CssDom {
             return false;
         }
 
-        if (node.constraints['LayoutFixedHeight']
-            && node.constraints['LayoutFixedHeight'] == Constraints.LayoutFixedHeight.Fixed) {
-            
+        if (node.constraints['LayoutFixedHeight'] &&
+            node.constraints['LayoutFixedHeight'] == Constraints.LayoutFixedHeight.Fixed) {
+
             result = true;
-        }
-        else if (node.modelName) {
+        } else if (node.modelName) {
             // 有node.modelName 则为非模板生成的元素,可以认为是固定高
             result = true;
         }
@@ -354,35 +371,51 @@ class CssDom {
     }
 
     /**
-     * !重要,_calculateConstraints主要是对模板里的元素(ref, 非ref进行约束计算)
-     * 计算出模板里面各元素的位置, abX, abY, abXops, abYops
+     * 边界重定义
      */
-    _calculateConstraints(node) {
-        if (node.children.length == 0) {
+    _calculateBoundary(node) {
+        // 跟节点不调整
+        // if (node.id =='ts-995EA714-B72D-4EDE-8736-B6147F2F70A7')debugger
+        if (node.type == Common.QBody) {
             return;
         }
-
-        // 固定布局的约束
-        if (node.constraints['LayoutPosition']
-            && node.constraints['LayoutPosition'] == Constraints.LayoutPosition.Absolute) {
-            
-            node.children.forEach(nd => {
-                nd.constraints['LayoutPosition'] == Constraints.LayoutPosition.Absolute;
-            });
-
+        if (this._isAbsolute(node)) {
             return;
         }
-        if(this._isAbsolute(node)){
-            return ;
+        let isVertical = node.parent.constraints['LayoutDirection'] == Constraints.LayoutDirection.Vertical;
+        this._calculateLeftBoundary(isVertical);
+        this._calculateRightBoundary(isVertical);
+    }
+    // 计算左边界
+    _calculateLeftBoundary(isVertical) {
+        if (!this._canLeftFlex()) {
+            return;
         }
-
-        if (node.constraints['LayoutDirection']
-            && node.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal) {
-
-            this._calculateHorizontal(node, node.children);
+        let prevNode = isVertical ? null : this._prevNode();
+        if (!prevNode) {
+            this._abX = this.parent._abX;
+            return;
         }
-        else {
-            this._calculateVertical(node, node.children);
+        if (prevNode._canRightFlex()) {
+            this._abX = Math.floor((prevNode._abXops + this._abX) / 2);
+        } else {
+            this._abX = prevNode._abXops;
+        }
+    }
+    // 计算左边界
+    _calculateRightBoundary(isVertical) {
+        if (!this._canRightFlex()) {
+            return;
+        }
+        let nextNode = isVertical ? null : this._nextNode();
+        if (!nextNode) {
+            this._abXops = this.parent._abXops;
+            return;
+        }
+        if (nextNode._canLeftFlex()) {
+            this._abXops = Math.ceil((nextNode._abX + this._abXops) / 2);
+        } else {
+            this._abXops = nextNode._abX;
         }
     }
 
@@ -391,13 +424,13 @@ class CssDom {
      * @param {Node} parent 父节点
      * @param {Array} nodes 子节点
      */
-    _calculateHorizontal(parent, nodes) {
+    /* _calculateHorizontal(parent, nodes) {
         // 计算前节点的右边, 和当前节点的左边, for后等于计算了所有节点的左右边界
         let len = nodes.length;
         for (let i = 0; i < len; i++) {
-            let preNode = this._prevNodeWithParam(nodes,i);
+            let preNode = this._prevNodeWithParam(nodes, i);
             let curNode = nodes[i];
-            let nxtNode = this._nextNodeWithParam(nodes,i);
+            let nxtNode = this._nextNodeWithParam(nodes, i);
 
             if (curNode.isCalculate) {
                 // 有模型名称的为模板外面节点,已经在dsl_layout处计算完毕
@@ -408,35 +441,31 @@ class CssDom {
                 // 绝对定位的节点不进行处理
                 continue;
             }
-            
+
             // 处理abX, abXops计算
-            if (!preNode) {     // 只需处理curNode
+            if (!preNode) { // 只需处理curNode
                 if (curNode.canLeftFlex && !this._isFixedWidth(curNode)) {
                     curNode._abX = parent._abX;
                 }
-            }
-            else {  // 处理preNode和curNode的情况 2*2=4种情况
-                if(!this._isAbsolute(preNode) && !this._isAbsolute(curNode)){
-                    if ((preNode.canRightFlex || !preNode.modelName) && (!curNode.canLeftFlex && curNode.modelName)) {  // 左节点可以扩展右节点不能扩展
+            } else { // 处理preNode和curNode的情况 2*2=4种情况
+                if (!this._isAbsolute(preNode) && !this._isAbsolute(curNode)) {
+                    if ((preNode.canRightFlex || !preNode.modelName) && (!curNode.canLeftFlex && curNode.modelName)) { // 左节点可以扩展右节点不能扩展
                         preNode._abXops = curNode._abX;
                         //curNode._abX = curNode._abX;
-                    }
-                    else if ((!preNode.canRightFlex && preNode.modelName) && (curNode.canLeftFlex || !curNode.modelName)) {    // 左节点不能扩展右节点可以扩展
+                    } else if ((!preNode.canRightFlex && preNode.modelName) && (curNode.canLeftFlex || !curNode.modelName)) { // 左节点不能扩展右节点可以扩展
                         //preNode._abXops = preNode._abXops;
                         curNode._abX = preNode._abXops;
-                    }
-                    else if ((preNode.canRightFlex || !preNode.modelName) && (curNode.canLeftFlex || !curNode.modelName)) {
+                    } else if ((preNode.canRightFlex || !preNode.modelName) && (curNode.canLeftFlex || !curNode.modelName)) {
                         // 各占一半空间
                         let half = (curNode._abX - preNode._abXops) / 2;
                         preNode._abXops += half;
                         curNode._abX -= half;
-                    }
-                    else {
+                    } else {
                         // !preNode.canRightFlex && !curNode.canLeftFlex
                         // 不用处理了, 保持不变
                     }
                 }
-                
+
 
                 // 如果没有下一个节点了, 就把curNode的右边界也处理了
                 if (!nxtNode) {
@@ -447,11 +476,31 @@ class CssDom {
             }
 
             // 处理abY, abYops计算
-            if (!curNode.modelName) {   // 模板动态元素
+            if (!curNode.modelName) { // 模板动态元素
                 curNode._abY = parent._abY;
                 curNode._abYops = parent._abYops;
             }
         }
+    } */
+    _usePaddingTop(parent) {
+        return parent.constraints["LayoutDirection"] == Constraints.LayoutDirection.Vertical &&
+            parent.children.find(nd => !this._isAbsolute(nd));
+    }
+    _getFirstChild(node) {
+        return node.children.find(nd => !this._isAbsolute(nd));
+    }
+    // 约束补充计算
+    _supplementConstraints(node) {
+        let children = node.children
+        if (children.length == 0) {
+            return;
+        }
+        node.constraints["LayoutDirection"] = node.constraints["LayoutDirection"] ||
+            (Utils.isVertical(children) ? Constraints.LayoutDirection.Vertical : Constraints.LayoutDirection.Horizontal);
+        node.constraints["LayoutJustifyContent"] = node.constraints["LayoutJustifyContent"] ||
+            Constraints.LayoutJustifyContent.Start;
+        node.constraints["LayoutAlignItems"] = node.constraints["LayoutAlignItems"] ||
+            Constraints.LayoutAlignItems.Start;
     }
 
     /**
@@ -459,24 +508,23 @@ class CssDom {
      * @param {Node} parent 父节点
      * @param {Array} nodes 子节点
      */
-    _calculateVertical(parent, nodes) {
+    /* _calculateVertical(parent, nodes) {
         // 竖向的计算只需计算模板动态新增元素的上下距离
         // node.modelName为空即node为模板动态元素
         let len = nodes.length;
-        
+
         if (len == 1) {
             // 处理上下距离
             let curNode = nodes[0];
-            if (!curNode.modelName) {  // 模板非模型元素节点
+            if (!curNode.modelName) { // 模板非模型元素节点
                 curNode._abY = parent._abY;
                 curNode._abYops = parent._abYops;
             }
-            
+
             // 处理左右距离
             if (curNode.canLeftFlex) {
                 curNode._abX = parent._abX;
-            }
-            else if (curNode.canRightFlex) {
+            } else if (curNode.canRightFlex) {
                 curNode._abXops = parent._abXops;
             }
 
@@ -497,23 +545,19 @@ class CssDom {
                 if (!this._isFixedHeight(curNode)) {
                     curNode._abY = parent._abY;
                 }
-            }
-            else {  // 处理preNode和curNode的情况4种情况
+            } else { // 处理preNode和curNode的情况4种情况
                 if (!preNode.modelName && curNode.modelName) {
                     preNode._abYops = curNode._abY;
                     //curNode._abY = curNode._abY;
-                }
-                else if (preNode.modelName && !curNode.modelName) {
+                } else if (preNode.modelName && !curNode.modelName) {
                     //preNode._abYops = preNode._abYops;
                     curNode._abY = preNode._abYops;
-                }
-                else if (!preNode.modelName && !curNode.modelName) {
+                } else if (!preNode.modelName && !curNode.modelName) {
                     // 各占一半
                     let half = (curNode._abY - preNode._abYops) / 2;
                     preNode._abYops += half;
                     curNode._abY -= half;
-                }
-                else {
+                } else {
                     // preNode.modelName && curNode.modelName
                     // 不用处理, 都是模型元素
                 }
@@ -528,12 +572,11 @@ class CssDom {
             // 处理左右距离
             if (curNode.canLeftFlex) {
                 curNode._abX = parent._abX;
-            }
-            else if (curNode.canRightFlex) {
+            } else if (curNode.canRightFlex) {
                 curNode._abXops = parent._abXops;
             }
         }
-    }
+    } */
 
     /**
      * 获取className
@@ -551,9 +594,9 @@ class CssDom {
         // console.log(this.id);
         cssPropertyMap.forEach(key => {
             let value = this[key];
-            
+
             if (value !== null) {
-                if (!isNaN(value) && key != "opacity") {    // 数字的话进行单位转换
+                if (!isNaN(value) && key != "opacity") { // 数字的话进行单位转换
                     value = _transUnit(value);
                 }
 
@@ -561,8 +604,7 @@ class CssDom {
                 if (CompatibleKey.includes(name)) {
                     const webkitName = '-webkit-' + name;
                     props.push(`${webkitName}: ${value}`);
-                } 
-                else {
+                } else {
                     props.push(`${name}: ${value}`);
                 }
             }
@@ -577,10 +619,17 @@ class CssDom {
      */
     getCss() {
         let str = '';
+        // 对当前节点补充约束
+        this._supplementConstraints(this);
+        // 对当前节点边界进行计算
+        this._calculateBoundary(this);
+
+
         str = `${this.getClass()} {${this.getCssProperty()}}`;
         // !重要, 每次获取当前节点样式信息后
         // 动态计算该节点的子节点的根据约束而生成_abX, _abY, _abXops, _abYops等数据
-        this._calculateConstraints(this);
+
+
 
         return str;
     }
@@ -589,7 +638,6 @@ class CssDom {
     get parentX() {
         return (this._abX - this.parent._abX);
     }
-
     // 转换过的基于父节点的parentY
     get parentY() {
         return (this._abY - this.parent._abY);
@@ -599,8 +647,8 @@ class CssDom {
         let css = null;
         // -webkit-flex, block, inline-block, inline
         // 竖排默认不返回
-        if (this.constraints['LayoutDirection']
-            && this.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal) {
+        if (this.constraints['LayoutDirection'] &&
+            this.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal) {
             css = '-webkit-box';
         }
         return css;
@@ -618,7 +666,7 @@ class CssDom {
     //
     get boxAlign() {
         let css = null;
-        if (this.boxOrient) {   
+        if (this.boxOrient) {
             // 横排情况, 先左到右
             css = 'start';
         }
@@ -649,8 +697,8 @@ class CssDom {
     }
     get borderRadius() {
         if (this.styles.borderRadius) {
-            return this.getRadius(this.styles.borderRadius, Math.min(this.height, this.width));
-        }else{
+            return this.getRadius(this.styles.borderRadius, Math.min(this._height, this._width));
+        } else {
             return null;
         }
     }
@@ -659,14 +707,19 @@ class CssDom {
         return Math.abs(this._abYops - this._abY);
     }
     get minHeight() {
+        // let firstChild = this._getFirstChild(this.parent);
+        let firstChild = this._usePaddingTop(this);
+        if (firstChild) {
+            return Math.abs(this._abYops - firstChild._abY);
+        }
         return Math.abs(this._abYops - this._abY);
     }
 
     get backgroundColor() {
         if (this.styles && this.styles.background &&
             this.styles.background.type == 'color') {
-            return this.getRGBA(this.styles.background.color); CSSRender.getRGBA(this.styles.background.color);
-        }else{
+            return this.getRGBA(this.styles.background.color);
+        } else {
             return null;
         }
     }
@@ -677,14 +730,9 @@ class CssDom {
         if (false) {
             // 这里是预留给fixed定位约束
             css = this._abY;
-        }
-        else if ((this.parent.constraints['LayoutPosition']
-                    && this.parent.constraints['LayoutPosition'] == Constraints.LayoutPosition.Absolute) 
-                        || (this.constraints['LayoutSelfPosition']
-                                && this.constraints['LayoutSelfPosition'] == Constraints.LayoutSelfPosition.Absolute)) {
-            css = this.parentY ;
-        }
-        else {
+        } else if (this._isAbsolute(this)) {
+            css = this.parentY;
+        } else {
             return null;
         }
         return css;
@@ -705,22 +753,17 @@ class CssDom {
         if (false) {
             // 这里是预留给fixed定位约束
             css = this._abX;
-        }
-        else if ((this.parent.constraints['LayoutPosition']
-                    && this.parent.constraints['LayoutPosition'] == Constraints.LayoutPosition.Absolute) 
-                        || (this.constraints['LayoutSelfPosition']
-                                && this.constraints['LayoutSelfPosition'] == Constraints.LayoutSelfPosition.Absolute)) {
+        } else if (this._isAbsolute(this)) {
             css = this.parentX;
-        }
-        else {
+        } else {
             return null;
         }
         return css;
     }
     get position() {
-        if(this._isAbsolute(this)){
+        if (this._isAbsolute(this)) {
             return "absolute";
-        }else{
+        } else {
             return "relative";
         }
         // if (this.constraints["LayoutSelfPosition"] == Constraints.LayoutSelfPosition.Absolute) {
@@ -734,21 +777,34 @@ class CssDom {
     //
     get marginTop() {
         let css = null;
-        if(this._isAbsolute(this)){
+        if (this._isAbsolute(this)) {
             return css;
         }
-        if (this._isParentHorizontal()) {   // 横排计算与父节点距离
-            css = this._abY - this.parent._abY;
+        let firstChild = this._usePaddingTop(this.parent);
+        if (firstChild == this) {
+            return null;
         }
-        else {      // 竖排计算与上一节点距离
+
+        if (this._isParentHorizontal()) { // 横排计算与父节点距离
+            css = this._abY - this.parent._abY;
+        } else { // 竖排计算与上一节点距离
             let preNode = this._prevNode();
 
             if (preNode) {
                 css = this._abY - preNode._abYops;
-            }
-            else {
+            } else {
                 css = this._abY - this.parent._abY;
             }
+        }
+        return css;
+    }
+
+    get paddingTop() {
+        let css = null;
+        // let firstChild = this._getFirstChild(this);
+        let firstChild = this._usePaddingTop(this);
+        if (firstChild) {
+            return firstChild._abY - this._abY;
         }
         return css;
     }
@@ -765,20 +821,18 @@ class CssDom {
     //
     get marginLeft() {
         let css = null;
-        if(this._isAbsolute(this)){
+        if (this._isAbsolute(this)) {
             return css;
         }
-        if (this._isParentHorizontal()) {   // 横排计算与上一节点距离
+        if (this._isParentHorizontal()) { // 横排计算与上一节点距离
             let preNode = this._prevNode();
 
             if (preNode) {
                 css = this._abX - preNode._abXops;
-            }
-            else {
+            } else {
                 css = this._abX - this.parent._abX;
             }
-        }
-        else {      // 竖排计算与父节点距离
+        } else { // 竖排计算与父节点距离
             css = this._abX - this.parent._abX;
         }
         return css;
@@ -791,35 +845,51 @@ class CssDom {
     get color() {
         if (this.styles && this.styles.texts) {
             return this.getRGBA(this.styles.texts[0].color);
-        }else{
+        } else {
             return null;
         }
+    }
+
+    get fontFamily() {
+        if (this.styles.texts) {
+            return this.styles.texts[0].font;
+        }
+        return null;
     }
 
     get fontSize() {
         if (this.styles && this.styles.texts) {
             return this.transUnit(this.styles.texts[0].size);
-        }else{
+        } else {
             return null;
         }
     }
 
     get lineHeight() {
-        if (this.styles.lineHeight) {
-            return this.styles.lineHeight;
-        }else{
+        if (this.styles.texts) {
+            // 清洗行高，本应由数据源清洗
+            return this.styles.lineHeight ||
+                Math.round(Math.max(...this.styles.texts.map(t => t.size)) * 1.4)
+        } else {
             return null;
         }
     }
     get opacity() {
         if (typeof this.styles.opacity == 'number') {
             return this.styles.opacity;
-        }else{
+        } else {
             return null;
         }
     }
 
-        /**
+    get whiteSpace() {
+        if (this._height / this.lineHeight < 1.2) {
+            return 'nowrap';
+        }
+        return null;
+    }
+
+    /**
      * 获取线性渐变值
      * @param {Color} bgColor 背景色
      * @param {Number} width 宽度
@@ -861,19 +931,17 @@ class CssDom {
     get backgroundImage() {
         if (this.styles.background &&
             this.styles.background.type == 'linear') {
-            return this.getLinearGradient(this.styles.background, this.width, this.height);
+            return this.getLinearGradient(this.styles.background, this._width, this._height);
         } else if (this.path) {
-            //01-03:图片路径
             return `url(../${this.path})`;
-            //return `url(${this.path})`;
-        }else{
+        } else {
             return null;
         }
     }
     get backgroundSize() {
         if (this.path) {
             return 'contain';
-        }else{
+        } else {
             return null;
         }
     }

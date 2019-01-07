@@ -9,19 +9,15 @@ const Feature = require('../../dsl_feature.js');
 class WG2M3 extends Model.WidgetModel {
     constructor() {
         // 元素构成规则
-        super('wg2-m3', 1, 1, 0, 0, Common.LvSS, Common.QWidget);
-
-        // 节点记录
-        this._matchNodes['0'] = null;          // icon
-        this._matchNodes['1'] = null;          // txt
+        super('wg2-m3', 1, 1, 0, 0, Common.LvS, Common.QWidget);
     }
 
     _initNode() {
         let txtNodes = this.getTextNodes();
         let iconNodes = this.getIconNodes();
         
-        this._matchNodes['0'] = iconNodes[0];
-        this._matchNodes['1'] = txtNodes[0];
+        this._matchNodes['0'] = iconNodes[0];           // icon
+        this._matchNodes['1'] = txtNodes[0];            // txt
     }
 
     // 元素方向

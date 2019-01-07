@@ -28,11 +28,13 @@ let process = function(nodes, optimizeWidth, optimizeHeight, layoutType) {
     let matchedWidgets = [];            // 匹配完毕的组件模型
     let dslTree = null;                 // 最后生成的dsl数据结构树
     optimizeWidth = optimizeWidth * 2;  // 这里*2是增加获取数据的范围, 防止超出设计稿外的元素没被匹配
+    //optimizeHeight = optimizeHeight * 2;// 有些没识别出的其实是刚好落在识别的边界(这里要想个方法解决)
 
     // 给匹配的节点做分类成四个基本节点类型,(QText, QIcon, QImage, QShape)
-    nodes.forEach(item => {
+    nodes.forEach((item, index) => {
         maxNodeX = maxNodeX > item.abX? maxNodeX : item.abX;
         maxNodeY = maxNodeY > item.abY? maxNodeY : item.abY;
+        item.zIndex = item.zIndex > 0? item.zIndex: index;      // 默认zIndex的值, 越大显示层级越高
 
         switch(item.type) {
             case 'QLayer':
@@ -64,7 +66,7 @@ let process = function(nodes, optimizeWidth, optimizeHeight, layoutType) {
     // 匹配组件模型
     _matchModels(10000, matchedWidgets, matchedElements, Common.MatchingWidgets, optimizeWidth, optimizeHeight, maxNodeX, maxNodeY);
     //Utils.logWidgetInfo(matchedElements);
-    //Utils.logWidgetInfo(matchedWidgets);
+    Utils.logWidgetInfo(matchedWidgets);
     // 生成dsl树
     dslTree = _groupModels(matchedWidgets, matchedElements);
     // 进行布局及循环处理

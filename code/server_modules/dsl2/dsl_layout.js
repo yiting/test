@@ -2,13 +2,13 @@
 const LayoutList = require('./layouts/modellist.js');
 const LayoutCircle = require('./layouts/layout_circle.js');
 
-let layout = function(dslTree, layoutType) {
+let layout = function (dslTree, layoutType) {
     // layout逻辑主要分两部分
     // 1, 循环处理
     // 2, 约束处理
     dslTree.setLayoutType(layoutType);
-    _handleCircle(dslTree, dslTree.getData(), layoutType);
-    _handleLayout(dslTree, dslTree.getData(), layoutType);
+    _handleLayout(dslTree, dslTree._treeData, layoutType);
+    _handleCircle(dslTree, dslTree._treeData, layoutType);
 }
 
 
@@ -18,7 +18,7 @@ let layout = function(dslTree, layoutType) {
  * @param {TreeNode} parent DslTree节点数据树
  * @param {Int} layoutType 布局方式
  */
-let _handleLayout = function(dslTree, parent, layoutType) {
+let _handleLayout = function (dslTree, parent, layoutType) {
     // 约束的处理只需从外到内递归, 让布局模型处理
     let children = parent.children;
 
@@ -31,7 +31,7 @@ let _handleLayout = function(dslTree, parent, layoutType) {
         let md = dslTree.getModelData(child.id);
         models.push(md);
     });
-    
+
     // 布局模型处理
     LayoutList.forEach(model => {
         model.handle(parent, children, models, layoutType);
@@ -48,8 +48,8 @@ let _handleLayout = function(dslTree, parent, layoutType) {
  * @param {TreeNode} parent DslTree节点数据树
  * @param {Int} layoutType 布局方式
  */
-let _handleCircle = function(dslTree, parent, layoutType) {
-    let children = parent.children;
+let _handleCircle = function (dslTree, parent, layoutType) {
+    let children = parent._children;
 
     if (children.length <= 0) {
         return;
@@ -62,8 +62,8 @@ let _handleCircle = function(dslTree, parent, layoutType) {
     });
 
     LayoutCircle.handle(parent, children, models, layoutType);
-    
-    parent.children.forEach(child => {
+
+    children.forEach(child => {
         _handleCircle(dslTree, child, layoutType);
     });
 }

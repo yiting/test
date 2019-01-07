@@ -9,7 +9,7 @@ const Feature = require('../../dsl_feature.js');
 class WG2M6 extends Model.WidgetModel {
     constructor() {
         // 元素构成规则
-        super('wg2-m6', 1, 0, 0, 1, Common.LvSS, Common.QWidget);
+        super('wg2-m6', 1, 0, 0, 1, Common.LvS, Common.QWidget);
 
         // 节点记录
         this._matchNodes['0'] = null;           // shape
