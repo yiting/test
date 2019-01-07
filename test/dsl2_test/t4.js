@@ -4062,9 +4062,9 @@ let designjson =
 
 
 // 引入的模块包
-const Common = require('../../src/dsl2/dsl_common.js');
-const Dsl = require('../../src/dsl2/dsl.js');
-const Render = require('../../src/render/render.js');
+const Common = require('../../code/server_modules/dsl2/dsl_common.js');
+const Dsl = require('../../code/server_modules/dsl2/dsl.js');
+const Render = require('../../code/server_modules/render/render.js');
 
 
 let dslTree = Dsl.process(designjson, Common.DesignWidth, 750, Common.FlexLayout);
@@ -4075,5 +4075,6 @@ let htmlStr = render.getTagString();
 let cssStr = render.getStyleString();
 
 // // // 输出文件
-render.outputFileWithPath('./output/index.html', htmlStr);
-render.outputFileWithPath('./output/index.css', cssStr);
+const Path = require('path');
+render.outputFileWithPath(Path.join(__dirname, './output/index.html'), htmlStr);
+render.outputFileWithPath(Path.join(__dirname, './output/index.css'), cssStr);

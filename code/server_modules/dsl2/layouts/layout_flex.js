@@ -54,7 +54,6 @@ class LayoutFlex extends Model.LayoutModel {
         parent.constraints['LayoutDirection'] = Constrains.LayoutDirection.Vertical;
         parent.constraints['LayoutAlignItems'] = Constrains.LayoutAlignItems.Start;
         // 高度不需要处理
-
         let calNodes = [],
             absNodes = [];
         // 剔除绝对定位节点
@@ -67,14 +66,14 @@ class LayoutFlex extends Model.LayoutModel {
             }
         });
 
-        // 重叠逻辑：如果重叠，则判定绝对定位
+        // 重叠逻辑：如果部分重叠，且前（上）节点层级高，则判定绝对定位
         for (let i = 0; i < calNodes.length; i++) {
             let nd = calNodes[i];
             let prev = calNodes[i - 1];
             // 如果与前点重合，层级高的绝对定位
-            if (prev && Utils.isYConnect(prev, nd, -4)) {
-                let _nd = prev.zIndex < nd.zIndex ? nd : prev;
-                absNodes.push(_nd);
+            if (prev && prev.zIndex > nd.zIndex && Utils.isYConnect(prev, nd, -4)) {
+                // let _nd = prev.zIndex < nd.zIndex ? nd : prev;
+                absNodes.push(prev);
             }
         }
         // 赋予非轴线节点为绝对定位

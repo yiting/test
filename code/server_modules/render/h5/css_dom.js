@@ -115,7 +115,7 @@ const cssPropertyMap = [
     "backgroundImage",
     "backgroundColor",
     "backgroundSize",
-    // "backgroundRepeat",
+    "backgroundRepeat",
     // "padding",
     "color",
     "fontFamily",
@@ -597,7 +597,7 @@ class CssDom {
             let value = this[key];
 
             if (value !== null) {
-                if (!isNaN(value) && key != "opacity") { // 数字的话进行单位转换
+                if (!isNaN(value) && key != "opacity" && key != "zIndex") { // 数字的话进行单位转换
                     value = _transUnit(value);
                 }
 
@@ -959,6 +959,14 @@ class CssDom {
             ].join(',') + ')'
         }
         return null;
+    }
+
+    get backgroundRepeat() {
+        var css = null;
+        if (this.path) {
+            css = 'no-repeat';
+        }
+        return css;
     }
 
     /**
