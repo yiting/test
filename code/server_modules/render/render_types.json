@@ -1,0 +1,10 @@
+{
+    "HTML": "html",
+    "ANDROID": "android",
+    "IOS": "ios",
+    "FLUTTER": "flutter",
+    "REACT": "react",
+    "VUE": "vue",
+    "REACT_NATIVE": "react-native",
+    "WEEX": "weex"
+}
