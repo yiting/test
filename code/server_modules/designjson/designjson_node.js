@@ -28,8 +28,6 @@ class QObject {
         this.abX = 0;
         // 相对于坐标原点(左上角的位置)
         this.abY = 0;
-        // 布局约束
-        this.constraints = [];
     }
 }
 
