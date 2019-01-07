@@ -99,7 +99,7 @@ const cssPropertyMap = [
     'right',
     'bottom',
     'left',
-    'zIndex'
+    // 'zIndex'
 
     // // 属性类
 
@@ -111,7 +111,7 @@ const cssPropertyMap = [
     // "right",
     // "top",
     // "bottom",
-    // "zIndex"
+    "zIndex",
     "backgroundImage",
     "backgroundColor",
     "backgroundSize",
@@ -160,6 +160,7 @@ class CssDom {
         this._abYops = data.abYops;
         this._width = data.width;
         this._height = data.height;
+        this._zIndex = data.zIndex;
 
         // 样式属性
         this.constraints = data.constraints;
@@ -596,7 +597,7 @@ class CssDom {
             let value = this[key];
 
             if (value !== null) {
-                if (!isNaN(value) && key != "opacity") { // 数字的话进行单位转换
+                if (!isNaN(value) && key != "opacity" && key != "zIndex") { // 数字的话进行单位转换
                     value = _transUnit(value);
                 }
 
@@ -839,11 +840,10 @@ class CssDom {
     }
     //
     get zIndex() {
-        var css = null;
-        if(this.styles && typeof(this.styles.zIndex) != "undefined"){
-            css = this.styles.zIndex ;
+        if (this._isAbsolute(this)) {
+            return this._zIndex;
         }
-        return css;
+        return null;
     }
     //
     get color() {
