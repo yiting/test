@@ -99,7 +99,7 @@ const cssPropertyMap = [
     'right',
     'bottom',
     'left',
-    // 'zIndex'
+    'zIndex'
 
     // // 属性类
 
@@ -839,7 +839,11 @@ class CssDom {
     }
     //
     get zIndex() {
-        return null;
+        var css = null;
+        if(this.styles && typeof(this.styles.zIndex) != "undefined"){
+            css = this.styles.zIndex ;
+        }
+        return css;
     }
     //
     get color() {

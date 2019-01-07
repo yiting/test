@@ -127,7 +127,7 @@ var ImageCombine = function(){
                             if(origin.layers && origin.layers.length == 1){
                                 childNode = origin.layers[0];
                                 if(origin.do_objectID.indexOf("B291364C-00E0-496B-9B00-055E84D8E69B")>-1){
-                                    console.log(11);
+                                    // console.log(11);
                                 }
                                 // if(!hasMaskChildren){
                                     path = await this.combineShapeGroupNodeWithNative(item);
