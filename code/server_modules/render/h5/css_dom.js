@@ -115,7 +115,7 @@ const cssPropertyMap = [
     "backgroundImage",
     "backgroundColor",
     "backgroundSize",
-    // "backgroundRepeat",
+    "backgroundRepeat",
     // "padding",
     "color",
     "fontFamily",
@@ -955,6 +955,14 @@ class CssDom {
             ].join(',') + ')'
         }
         return null;
+    }
+
+    get backgroundRepeat() {
+        var css = null;
+        if (this.path) {
+            css = 'no-repeat';
+        }
+        return css;
     }
 
     /**
