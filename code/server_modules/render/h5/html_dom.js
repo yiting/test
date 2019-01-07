@@ -1,5 +1,3 @@
-
-
 const Contrain = require('../../dsl2/dsl_constraints');
 const Dom = require('../../dsl2/dsl_dom');
 const fs = require('fs');
@@ -30,18 +28,18 @@ class HtmlDom {
     }
     getAttrClass() {
         var result = '';
-        if(this.tplData && this.tplData.class){
+        if (this.tplData && this.tplData.class) {
             result += this.tplData.class + ' ';
         }
-        if(this.tplAttr && this.tplAttr.class){
+        if (this.tplAttr && this.tplAttr.class) {
             result += this.tplAttr.class + ' ';
         }
-        if(result.length>0){
-            result = result.substring(0,result.length-1);
+        if (result.length > 0) {
+            result = result.substring(0, result.length - 1);
         }
-        if(result != ''){
+        if (result != '') {
             return `class="${result}"`;
-        }else{
+        } else {
             return ``;
         }
     }
@@ -56,12 +54,12 @@ class HtmlDom {
     }
     getAttrs() {
         var result = "";
-        if(this.path && this.getTag()=="img"){
-            result += "src='"+this.path+"'";
+        if (this.path && this.getTag() == "img") {
+            result += "src='" + this.path + "'";
         }
-        if(this.tplAttr){
+        if (this.tplAttr) {
             result += Object.keys(this.tplAttr).map(key => {
-                if(key != "data-model"){
+                if (key != "data-model") {
                     return `${key}="${this.tplAttr[key]}"`;
                 }
             })
@@ -83,7 +81,7 @@ function process(data) {
     let render = new HtmlDom(data);
     // 遍历循环
     html += render.getHtmlStart();
-    if(data.children){
+    if (data.children) {
         data.children.forEach(child => {
             html += process(child);
         });
@@ -92,9 +90,9 @@ function process(data) {
     return html;
 }
 
-function getHtmlTpl(){
-    if(!htmlTpl){
-        htmlTpl =fs.readFileSync("./server_modules/render/tpl.html","utf-8");
+function getHtmlTpl() {
+    if (!htmlTpl) {
+        htmlTpl = fs.readFileSync("./code/server_modules/render/tpl.html", "utf-8");
     }
     return htmlTpl;
 }

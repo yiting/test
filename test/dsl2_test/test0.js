@@ -1,0 +1,520 @@
+// 测试的数据
+let designjson = 
+[{
+    "id": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "type": "QBody",
+    "name": "附近资料卡-客态",
+    "width": 750,
+    "height": 1433,
+    "x": -979,
+    "y": -1945,
+    "abX": 0,
+    "abY": 0,
+    "constraints": [],
+    "bodyIndex": "1_1",
+    "styles": {
+        "borderRadius": 0,
+        "border": null,
+        "opacity": 1,
+        "rotation": 0,
+        "shadows": null,
+        "background": {
+            "type": "color",
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 1
+            },
+            "hasOpacity": false
+        }
+    },
+    "parent": null,
+    "children": ["DC943508-E687-49F0-8706-5628408DF99C", "BF690350-CE0F-4C46-9035-D7FF64A3440C", "9AA8E08F-B99A-4486-85CD-8617A1342BBE", "2226A0F3-AE35-45E4-8E6A-AFCFC43EFF70", "59D3FEB9-5598-4815-8800-5040F982F7D9", "D85C7009-4C2C-4D0A-B580-B08F861D15F8", "9CDFFAC5-EF76-468E-96F0-A10ACCD245C6", "021DCE3A-E368-46F6-BE9D-9AACD377EBEB", "BE034B1E-D22E-4928-B1BA-58FEDF8854EB", "71D5484A-3AD8-493A-A020-CBA35BC9A058", "2935562A-F9A9-4AE6-9700-3452865213A5", "A1DA764F-87E5-4ED8-A11D-C08FD4C97A5C", "9AC911FB-C4D7-4551-B81A-1781EF7048A0", "7E2392D3-214B-4236-A370-68DE65A7E486", "5CB3BDAB-3598-4942-8B57-C53A3EBB6B44", "F4953F94-60EF-4F08-8F5D-11FF2CAE03D3", "200E789B-D32E-4AB9-A0A0-1DB6342F826B"],
+    "childnum": 17,
+    "zIndex": 0,
+    "hasStyle": true
+}, {
+    "id": "DC943508-E687-49F0-8706-5628408DF99C",
+    "type": "QImage",
+    "name": "大背景",
+    "width": 750,
+    "height": 560,
+    "x": 0,
+    "y": 0,
+    "abX": 0,
+    "abY": 0,
+    "constraints": [],
+    "path": "images/1_1-0.png",
+    "styles": {},
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "hasStyle": true
+}, {
+    "id": "BF690350-CE0F-4C46-9035-D7FF64A3440C",
+    "type": "QText",
+    "name": "我是列表文字1",
+    "width": 163,
+    "height": 28,
+    "x": 92,
+    "y": 386,
+    "abX": 92,
+    "abY": 386,
+    "constraints": [],
+    "text": "我是列表文字1",
+    "styles": {
+        "borderRadius": 0,
+        "border": null,
+        "opacity": 1,
+        "rotation": 0,
+        "shadows": null,
+        "background": null,
+        "texts": [{
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 1
+            },
+            "string": "我是列表文字1",
+            "font": "PingFangSC-Regular",
+            "size": 24
+        }],
+        "verticalAlign": 0,
+        "textAlign": 0,
+        "lineHeight": null
+    },
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "hasStyle": false
+}, {
+    "id": "9AA8E08F-B99A-4486-85CD-8617A1342BBE",
+    "type": "QText",
+    "name": "我是列表文字2",
+    "width": 163,
+    "height": 28,
+    "x": 92,
+    "y": 462,
+    "abX": 92,
+    "abY": 462,
+    "constraints": [],
+    "text": "我是列表文字2",
+    "styles": {
+        "borderRadius": 0,
+        "border": null,
+        "opacity": 1,
+        "rotation": 0,
+        "shadows": null,
+        "background": null,
+        "texts": [{
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 1
+            },
+            "string": "我是列表文字2",
+            "font": "PingFangSC-Regular",
+            "size": 24
+        }],
+        "verticalAlign": 0,
+        "textAlign": 0,
+        "lineHeight": null
+    },
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "hasStyle": false
+}, {
+    "id": "2226A0F3-AE35-45E4-8E6A-AFCFC43EFF70",
+    "type": "QImage",
+    "name": "列表Icon1",
+    "width": 50,
+    "height": 50,
+    "x": 27,
+    "y": 377,
+    "abX": 27,
+    "abY": 377,
+    "constraints": [],
+    "path": "images/1_1-1.png",
+    "styles": {},
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "group": 1,
+    "hasStyle": true
+}, {
+    "id": "59D3FEB9-5598-4815-8800-5040F982F7D9",
+    "type": "QImage",
+    "name": "列表Icon2",
+    "width": 50,
+    "height": 50,
+    "x": 27,
+    "y": 453,
+    "abX": 27,
+    "abY": 453,
+    "constraints": [],
+    "path": "images/1_1-2.png",
+    "styles": {},
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "group": 2,
+    "hasStyle": true
+}, {
+    "id": "D85C7009-4C2C-4D0A-B580-B08F861D15F8",
+    "type": "QImage",
+    "name": "背景1",
+    "width": 320,
+    "height": 160,
+    "x": 17,
+    "y": 61,
+    "abX": 17,
+    "abY": 61,
+    "constraints": [],
+    "path": "images/1_1-3.png",
+    "styles": {},
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "hasStyle": true
+}, {
+    "id": "9CDFFAC5-EF76-468E-96F0-A10ACCD245C6",
+    "type": "QImage",
+    "name": "短标签",
+    "width": 36,
+    "height": 19,
+    "x": 227,
+    "y": 113,
+    "abX": 227,
+    "abY": 113,
+    "constraints": [],
+    "path": "images/1_1-4.png",
+    "styles": {},
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "group": 3,
+    "hasStyle": true
+}, {
+    "id": "021DCE3A-E368-46F6-BE9D-9AACD377EBEB",
+    "type": "QImage",
+    "name": "背景2",
+    "width": 320,
+    "height": 160,
+    "x": 406,
+    "y": 61,
+    "abX": 406,
+    "abY": 61,
+    "constraints": [],
+    "path": "images/1_1-3.png",
+    "styles": {},
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "hasStyle": true
+}, {
+    "id": "BE034B1E-D22E-4928-B1BA-58FEDF8854EB",
+    "type": "QImage",
+    "name": "Image1",
+    "width": 84,
+    "height": 84,
+    "x": 35,
+    "y": 99,
+    "abX": 35,
+    "abY": 99,
+    "constraints": [],
+    "path": "images/1_1-6.png",
+    "styles": {},
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "hasStyle": true
+}, {
+    "id": "71D5484A-3AD8-493A-A020-CBA35BC9A058",
+    "type": "QImage",
+    "name": "Image2",
+    "width": 84,
+    "height": 84,
+    "x": 427,
+    "y": 99,
+    "abX": 427,
+    "abY": 99,
+    "constraints": [],
+    "path": "images/1_1-6.png",
+    "styles": {},
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "hasStyle": true
+}, {
+    "id": "2935562A-F9A9-4AE6-9700-3452865213A5",
+    "type": "QText",
+    "name": "测试标1",
+    "width": 84,
+    "height": 28,
+    "x": 136,
+    "y": 107,
+    "abX": 136,
+    "abY": 107,
+    "constraints": [],
+    "text": "测试标1",
+    "styles": {
+        "borderRadius": 0,
+        "border": null,
+        "opacity": 1,
+        "rotation": 0,
+        "shadows": null,
+        "background": null,
+        "texts": [{
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 1
+            },
+            "string": "测试标1",
+            "font": "PingFangSC-Regular",
+            "size": 24
+        }],
+        "verticalAlign": 0,
+        "textAlign": 0,
+        "lineHeight": null
+    },
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "hasStyle": false
+}, {
+    "id": "A1DA764F-87E5-4ED8-A11D-C08FD4C97A5C",
+    "type": "QText",
+    "name": "文本描述111",
+    "width": 132,
+    "height": 28,
+    "x": 135,
+    "y": 143,
+    "abX": 135,
+    "abY": 143,
+    "constraints": [],
+    "text": "文本描述111",
+    "styles": {
+        "borderRadius": 0,
+        "border": null,
+        "opacity": 1,
+        "rotation": 0,
+        "shadows": null,
+        "background": null,
+        "texts": [{
+            "color": {
+                "r": 74,
+                "g": 74,
+                "b": 74,
+                "a": 1
+            },
+            "string": "文本描述111",
+            "font": "PingFangSC-Regular",
+            "size": 20
+        }],
+        "verticalAlign": 0,
+        "textAlign": 0,
+        "lineHeight": null
+    },
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "hasStyle": false
+}, {
+    "id": "9AC911FB-C4D7-4551-B81A-1781EF7048A0",
+    "type": "QText",
+    "name": "测试标2",
+    "width": 84,
+    "height": 28,
+    "x": 528,
+    "y": 108,
+    "abX": 528,
+    "abY": 108,
+    "constraints": [],
+    "text": "测试标1",
+    "styles": {
+        "borderRadius": 0,
+        "border": null,
+        "opacity": 1,
+        "rotation": 0,
+        "shadows": null,
+        "background": null,
+        "texts": [{
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 1
+            },
+            "string": "测试标1",
+            "font": "PingFangSC-Regular",
+            "size": 24
+        }],
+        "verticalAlign": 0,
+        "textAlign": 0,
+        "lineHeight": null
+    },
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "hasStyle": false
+}, {
+    "id": "7E2392D3-214B-4236-A370-68DE65A7E486",
+    "type": "QText",
+    "name": "文本描述222",
+    "width": 132,
+    "height": 28,
+    "x": 526,
+    "y": 143,
+    "abX": 526,
+    "abY": 143,
+    "constraints": [],
+    "text": "文本描述222",
+    "styles": {
+        "borderRadius": 0,
+        "border": null,
+        "opacity": 1,
+        "rotation": 0,
+        "shadows": null,
+        "background": null,
+        "texts": [{
+            "color": {
+                "r": 74,
+                "g": 74,
+                "b": 74,
+                "a": 1
+            },
+            "string": "文本描述222",
+            "font": "PingFangSC-Regular",
+            "size": 20
+        }],
+        "verticalAlign": 0,
+        "textAlign": 0,
+        "lineHeight": null
+    },
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "hasStyle": false
+}, {
+    "id": "5CB3BDAB-3598-4942-8B57-C53A3EBB6B44",
+    "type": "QLayer",
+    "name": "长标签背景",
+    "width": 84,
+    "height": 21,
+    "x": 620,
+    "y": 114,
+    "abX": 620,
+    "abY": 114,
+    "constraints": [],
+    "shapeType": "rectangle",
+    "styles": {
+        "borderRadius": 0,
+        "border": null,
+        "opacity": 1,
+        "rotation": 0,
+        "shadows": null,
+        "background": {
+            "type": "color",
+            "color": {
+                "r": 189,
+                "g": 16,
+                "b": 224,
+                "a": 1
+            },
+            "hasOpacity": false
+        }
+    },
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "group": 4,
+    "hasStyle": true
+}, {
+    "id": "F4953F94-60EF-4F08-8F5D-11FF2CAE03D3",
+    "type": "QText",
+    "name": "长文标签",
+    "width": 70,
+    "height": 19,
+    "x": 627,
+    "y": 113,
+    "abX": 627,
+    "abY": 113,
+    "constraints": [],
+    "text": "长文标签",
+    "styles": {
+        "borderRadius": 0,
+        "border": null,
+        "opacity": 1,
+        "rotation": 0,
+        "shadows": null,
+        "background": null,
+        "texts": [{
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 1
+            },
+            "string": "长文标签",
+            "font": "PingFangSC-Regular",
+            "size": 16
+        }],
+        "verticalAlign": 0
+    },
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "hasStyle": false
+}, {
+    "id": "200E789B-D32E-4AB9-A0A0-1DB6342F826B",
+    "type": "QImage",
+    "name": "7 下午8.15.24",
+    "width": 38,
+    "height": 19,
+    "x": 264,
+    "y": 468,
+    "abX": 264,
+    "abY": 468,
+    "constraints": [],
+    "path": "images/1_1-8.png",
+    "styles": {},
+    "parent": "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00",
+    "children": [],
+    "childnum": 0,
+    "zIndex": 0,
+    "group": 5,
+    "hasStyle": true
+}];
+
+// 引入的模块包
+const Common = require('../../src/dsl2/dsl_common.js');
+const Dsl = require('../../src/dsl2/dsl.js');
+const Render = require('../../src/render/render.js');
+
+let dslTree = Dsl.process(designjson, 750, 750, Common.FlexLayout);
+//console.log(dslTree);
+//Render.process(dslTree);
+
+

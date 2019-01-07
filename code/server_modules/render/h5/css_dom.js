@@ -111,7 +111,7 @@ const cssPropertyMap = [
     // "right",
     // "top",
     // "bottom",
-    // "zIndex"
+    "zIndex",
     "backgroundImage",
     "backgroundColor",
     "backgroundSize",
@@ -160,6 +160,7 @@ class CssDom {
         this._abYops = data.abYops;
         this._width = data.width;
         this._height = data.height;
+        this._zIndex = data.zIndex;
 
         // 样式属性
         this.constraints = data.constraints;
@@ -839,6 +840,9 @@ class CssDom {
     }
     //
     get zIndex() {
+        if (this._isAbsolute(this)) {
+            return this._zIndex;
+        }
         return null;
     }
     //
