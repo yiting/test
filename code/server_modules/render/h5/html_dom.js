@@ -34,6 +34,9 @@ class HtmlDom {
         if (this.tplAttr && this.tplAttr.class) {
             result += this.tplAttr.class + ' ';
         }
+        if(this.id){
+            result += this.id + ' ';
+        }
         if (result.length > 0) {
             result = result.substring(0, result.length - 1);
         }
@@ -68,7 +71,7 @@ class HtmlDom {
     }
     // 开始节点
     getHtmlStart() {
-        return `<${this.getTag()} id='${this.getAttrId()}' ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+        return `<${this.getTag()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
     }
     // 闭合节点
     getHtmlEnd() {
