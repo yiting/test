@@ -11,6 +11,9 @@ class EM3M4 extends Model.ElementModel {
     constructor() {
         // 元素构成规则
         super('em3-m4', 2, 1, 0, 0, Common.LvS, Common.QText);
+
+        this.canLeftFlex = false;
+        this.canRightFlex = true;
     }
 
     // 区分三个基础元素的逻辑

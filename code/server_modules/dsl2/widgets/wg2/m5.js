@@ -10,7 +10,9 @@ class WG2M5 extends Model.WidgetModel {
     constructor() {
         // 元素构成规则
         super('wg2-m5', 2, 0, 0, 0, Common.LvS, Common.QWidget);
-
+        this.canLeftFlex = false;
+        this.canRightFlex = true;
+        
         // 节点记录
         this._matchNodes['1'] = null;           // sub txt
         this._matchNodes['0'] = null;           // main txt

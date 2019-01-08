@@ -10,6 +10,9 @@ class EM2M2 extends Model.ElementModel {
     constructor() {
         // 元素构成规则
         super('em2-m2', 1, 1, 0, 0, Common.LvA, Common.QText);
+
+        this.canLeftFlex = false;
+        this.canRightFlex = true;
     }
 
     _initNode() {
