@@ -11,6 +11,7 @@ const Template = require("../template/template");
 let parse = function (dslTree, platformType) {
     return DSLTreeProcessor.parseTree(dslTree, platformType);
 }
+let beautyClassNum = 1;
 
 const QNODE_TYPES = ['QImage','QText','QIcon','QShape','QWidget'];
 const QCONTAINER_TYPES = ['QBody','QLayer'];
@@ -67,6 +68,18 @@ class DSLTreeProcessor {
             return element;
         });
     }
+    static addBeautyClass(node){
+        node.beautyClass = 'c' + (beautyClassNum++);
+        var children = node.children;
+        if (children) {
+            for (var i = 0, ilen = children.length; i < ilen; i++) {
+                children[i].beautyClass = 'c' + (beautyClassNum++);
+                if (children[i]['children'] && children[i]['children'].length > 0) {
+                    this.addBeautyClass(children[i]);
+                }
+            }
+        }
+    }
     static addPrefix(node) {
         if (node.id.indexOf('ts-') != 0) {
             node.id = 'ts-' + node.id;
@@ -87,8 +100,9 @@ class DSLTreeProcessor {
     static _convertNode(node, platformType) {
         let tagName = '';
         this.addPrefix(node);
+        this.addBeautyClass(node);
         let {
-            id = -1, width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
+            id = -1, beautyClass ,width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
         } = node;
         switch (platformType) {
             case RENDER_TYPE.HTML:
@@ -100,6 +114,7 @@ class DSLTreeProcessor {
         }
         return {
             id,
+            beautyClass,
             tagName,
             width,
             height,
@@ -126,7 +141,6 @@ class DSLTreeProcessor {
 }
 // 往外走
 function walkout(node, handler) {
-    node.beautyClass = "a";
     if (!node.children || !node.children.length) return;
     node.children.map(n => {
         walkout(n, handler);
