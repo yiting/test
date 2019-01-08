@@ -1,4 +1,5 @@
 @import "../_global/reset";
+@import "../_global/footer";
 @import "../person/header.scss";
 @import "../person/main.scss";
 
@@ -14,4 +15,8 @@ body {
 //vue加载不出现括号
 [v-cloak] {
    display: none;
+}
+
+.fixed-bar{
+  right: 4.45rem;
 }

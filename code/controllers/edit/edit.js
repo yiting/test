@@ -375,6 +375,19 @@ router.post("/download", function(req, res, next) {
           });
         }
       });
+
+      /* //复制公共样式reset.css到当前目录
+      fs.copyFile(
+        "./data/complie/css/reset.css",
+        desProjectPath + "/css/reset.css",
+        function(err) {
+          if (err) {
+            console.log(err);
+            return;
+          }
+        }
+      ); */
+
       //复制sketch文件到当前目录
       if (isDownloadsketch == "true") {
         fs.copyFile(
@@ -708,10 +721,11 @@ const Common = require("../../server_modules/dsl2/dsl_common.js");
 const Dsl = require("../../server_modules/dsl2/dsl.js");
 const Render = require("../../server_modules/render/render.js");
 let jsonToHtmlCss2 = (artBoardId, currentDesignDom) => {
-  let htmlCssPromise,cssHtmlfileName = uploadTimeStamp;
+  let htmlCssPromise,
+    cssHtmlfileName = uploadTimeStamp;
   let dslTree = Dsl.process(currentDesignDom, 750, 750, Common.FlexLayout);
   let render = Render.process(dslTree);
-  let htmlStr = render.getTagString("css/"+cssHtmlfileName+".css");
+  let htmlStr = render.getTagString("css/" + cssHtmlfileName + ".css");
   let cssStr = render.getStyleString();
 
   //获取页面json数据，供给页面属性面板操作
@@ -738,10 +752,26 @@ let jsonToHtmlCss2 = (artBoardId, currentDesignDom) => {
     });
     htmlCssPromise.then(data => {
       if (cssStr) {
-        Export.exportCss(exportPath + "/css", cssHtmlfileName, cssStr, function() {
-          //console.log("导出css成功");
-          logger.debug("[edit.js-jsonToHtmlCss]导出css成功");
-        });
+        Export.exportCss(
+          exportPath + "/css",
+          cssHtmlfileName,
+          cssStr,
+          function() {
+            //console.log("导出css成功");
+            logger.debug("[edit.js-jsonToHtmlCss]导出css成功");
+            //复制公共样式reset.css到当前目录
+            fs.copyFile(
+              "./data/complie/css/reset.css",
+              exportPath + "/css/reset.css",
+              function(err) {
+                if (err) {
+                  console.log(err);
+                  return;
+                }
+              }
+            );
+          }
+        );
       }
     });
   } catch (e) {
