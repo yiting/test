@@ -2,7 +2,7 @@
 const EM1M1 = {
   name: "em1-m1",
   desc: "1元素模板:单文本",
-  template: `<p :ref="0" :class="em1-m1 text"></p>`
+  template: `<span :ref="0" :class="em1-m1 text"></span>`
 };
 
 module.exports = EM1M1;

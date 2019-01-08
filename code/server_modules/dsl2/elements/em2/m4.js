@@ -10,20 +10,14 @@ class EM2M4 extends Model.ElementModel {
     constructor() {
         // 元素构成规则
         super('em2-m4', 1, 0, 0, 1, Common.LvA, Common.QText);
-        this.canLeftFlex = false;
-        this.canRightFlex = false;
-
-        // 节点记录
-        this._matchNodes['0'] = null;       // Text
-        this._matchNodes['1'] = null;       // Shape
     }
 
     _initNode() {
         let shapes = this.getShapeNodes();
         let texts = this.getTextNodes();
     
-        this._matchNodes['0'] = texts[0];
-        this._matchNodes['1'] = shapes[0];
+        this._matchNodes['0'] = texts[0];           // Text
+        this._matchNodes['1'] = shapes[0];          // Shape
     }
 
     // 位置关系

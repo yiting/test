@@ -10,20 +10,14 @@ class EM2M3 extends Model.ElementModel {
     constructor() {
         // 元素构成规则
         super('em2-m3', 1, 0, 0, 1, Common.LvA, Common.QText);
-        this.canLeftFlex = false;
-        this.canRightFlex = false;
-
-        // 节点记录
-        this._matchNodes['0'] = null;       // Shape
-        this._matchNodes['1'] = null;       // Text
     }
 
     _initNode() {
         let shapes = this.getShapeNodes();
         let texts = this.getTextNodes();
     
-        this._matchNodes['0'] = shapes[0];
-        this._matchNodes['1'] = texts[0];
+        this._matchNodes['0'] = shapes[0];          // shape
+        this._matchNodes['1'] = texts[0];           // text
     }
 
     // 位置关系

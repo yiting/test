@@ -14,6 +14,11 @@ const EM2M4 = require("./html/elements/em2/m4");
 const EM3M1 = require("./html/elements/em3/m1");
 const EM3M2 = require("./html/elements/em3/m2");
 const EM3M3 = require("./html/elements/em3/m3");
+const EM3M4 = require("./html/elements/em3/m4");
+const EM3M5 = require("./html/elements/em3/m5");
+const EM3M6 = require("./html/elements/em3/m6");
+const EM3M7 = require("./html/elements/em3/m7");
+const EM3M8 = require("./html/elements/em3/m8");
 const EM3M9 = require("./html/elements/em3/m9");
 //2.复合组件
 //2元素
@@ -44,9 +49,15 @@ const TEMPLATE_LIST = [
   EM2M2,
   EM2M3,
   EM2M4,
+
   EM3M1,
   EM3M2,
   EM3M3,
+  EM3M4,
+  EM3M5,
+  EM3M6,
+  EM3M7,
+  EM3M8,
   EM3M9,
 
   WG2M1,

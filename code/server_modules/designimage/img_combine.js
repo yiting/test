@@ -59,15 +59,6 @@ var ImageCombine = function(){
         var that = this;
         var  main = async () => {
             // let rootNode = rootNode; 
-            if(node.id && node.id.indexOf('17670B48-A747-49FA-BF02-1D0577A5B084')>-1){//F061F4E3-EF2B-4C4A-A6F5-16D479DE4835 _FA04_1450_DD5E_F417_69BD_A45B_7421_CA02 145046AC-3A6C-41E0-8A5E-2107BC5BA70E 5C35_15C7_8C38_2DC8_BDBE_26B3_C862_35AD F41756E7-AFA1-4C53-803C-F4711B75B0C2
-                console.log(111);
-            }
-            if(node.path && node.path.indexOf('14.png')>-1){//F061F4E3-EF2B-4C4A-A6F5-16D479DE4835 _FA04_1450_DD5E_F417_69BD_A45B_7421_CA02 145046AC-3A6C-41E0-8A5E-2107BC5BA70E 5C35_15C7_8C38_2DC8_BDBE_26B3_C862_35AD F41756E7-AFA1-4C53-803C-F4711B75B0C2
-                console.log(111);
-            }
-            if(node.name && node.name.indexOf('xxxx')>-1){//F061F4E3-EF2B-4C4A-A6F5-16D479DE4835 _FA04_1450_DD5E_F417_69BD_A45B_7421_CA02 145046AC-3A6C-41E0-8A5E-2107BC5BA70E 5C35_15C7_8C38_2DC8_BDBE_26B3_C862_35AD F41756E7-AFA1-4C53-803C-F4711B75B0C2
-                console.log(111);
-            }
             var newNode = {};
             var outputImage ;
             if(param && param.width && param.height){

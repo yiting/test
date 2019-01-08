@@ -31,8 +31,28 @@ var vm = new Vue({
   computed: {
     countProgressStyle: function() {}
   },
-  mounted: function() {},
+  mounted: function() {
+    //事件监听
+    this.eventListener();
+  },
   methods: {
+    eventListener:function(){
+      $(window).on("scroll", function() {
+        if (window.scrollY > 300) {
+          $("#jmod-backtotop-wrap").css("visibility", "visible");
+        } else {
+          $("#jmod-backtotop-wrap").css("visibility", "hidden");
+        }
+      });
+      $("#jmod-backtotop-wrap").on("click", function() {
+        $("html,body").animate(
+          {
+            scrollTop: 0
+          },
+          300
+        );
+      });
+    },
     /**
      * 返回到首页
      */

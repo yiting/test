@@ -59,6 +59,25 @@ class _ImageMergeProcessor {
         if (pnode.children && pnode.children.length > 1 && !pnode.isMasked) {
             if(hasMaskChild(pnode)) {
                 const maskNodes = pnode.children.filter(({type,isMasked,maskedNodes}) => type === QMask.name && !isMasked && Array.isArray(maskedNodes) && maskedNodes.length);
+                // const notMaskedNodes = pnode.children.filter(({type,isMasked,maskedNodes}) => !isMasked && !(Array.isArray(maskedNodes) && maskedNodes.length));
+                maskNodes.forEach( maskNode => this._maskMerge(maskNode,pnode)); // 将所有mask关联的节点合成组
+                this._mergeGroupToParent(notMaskedNodes,pnode); // 非mask关联则进行规则判断合并
+            } else {
+                this._mergeGroupToParent(pnode.children,pnode)
+            }
+        }
+        if (pnode.children && pnode.children.length === 1) {
+            
+            const {type,shapeType,styles} = pnode.children[0];
+            if ((type === QShape.name || type === QMask.name) && shapeType != Rectangle && !isCircle(pnode.children[0])) { // QShape -> QImage
+                this._convertToImageNode(pnode);
+            }
+        }
+    }
+    _nodeMerge(pnode) { // 规则判断
+        if (pnode.children && pnode.children.length > 1 && !pnode.isMasked) {
+            if(hasMaskChild(pnode)) {
+                const maskNodes = pnode.children.filter(({type,isMasked,maskedNodes}) => type === QMask.name && !isMasked && Array.isArray(maskedNodes) && maskedNodes.length);
                 const notMaskedNodes = pnode.children.filter(({type,isMasked,maskedNodes}) => !isMasked && !(Array.isArray(maskedNodes) && maskedNodes.length));
                 maskNodes.forEach( maskNode => this._maskMerge(maskNode,pnode)); // 将所有mask关联的节点合成组
                 this._mergeGroupToParent(notMaskedNodes,pnode); // 非mask关联则进行规则判断合并
@@ -195,7 +214,7 @@ function mergeJudge(nodelist,distanceThreshold=20,sizeThreshold=4) {
         let node = nodelist[i];
         for (let j = i + 1; j < nodelist.length; j++) {
             let brother = nodelist[j];
-            if (mergeDistanceJudge(node,brother,distanceThreshold) && mergeSizeJudge(node,brother,sizeThreshold)) {
+            if (mergeDistanceJudge(node,brother,distanceThreshold) && mergeSizeJudge(node,brother,sizeThreshold) && mergeShapeJudge(node,brother)) {
                 relations.push([node,brother])
             }
         }
@@ -228,10 +247,22 @@ function mergeDistanceJudge(node,brother,threshold) {
 function mergeSizeJudge(node,brother,threshold,minSize = 10000) {
     let nodeSize = node.height * node.width;
     let brotherSize = brother.height * brother.width;
-    if (nodeSize < minSize && brotherSize < minSize) return true;
+    if (nodeSize < minSize && brotherSize < minSize) return true; // 如果小于minsize，则无需判断大小相似度
     if (nodeSize > brotherSize) {
         return nodeSize / brotherSize < threshold;
     } else return brotherSize / nodeSize < threshold;
+}
+// 判断两个元素形状是否为活图
+function mergeShapeJudge(node,brother,minSize = 10000) {
+    let nodeSize = node.height * node.width;
+    let brotherSize = brother.height * brother.width;
+    if (nodeSize < minSize || brotherSize < minSize) return true; // 如果小于minsize，则无需判断是否活图
+    let res = node.width === brother.width && node.height === brother.height && node.type == brother.type;
+    if (node.type != QShape.name) {
+        return !res;
+    } else {
+        return !(node.shapeType === brother.shapeType && ~[Oval,Rectangle,ShapeGroup].indexOf(node.shapeType)) ;
+    }
 }
 function mergeColorJudge(nodelist,threshold=1) {
     //碰撞检测

@@ -180,9 +180,16 @@ class Tree {
             return;
         }
 
-        // 分解列
+        // 分解行
         let layers = Utils.gatherByLogic(children, function (a, b) {
-            return Utils.isYConnect(a, b, 0);
+            // return Utils.isYConnect(a, b, 0);
+            // return Utils.isYWrap(a,b);
+            // 如果a节点层级高于b，切a节点位置高于b，则为一组（a为绝对定位）
+            if (a._zIndex > b._zIndex && a._abY < b._abY) {
+                return Utils.isYConnect(a, b, 0);
+            } else {
+                return Utils.isYWrap(a, b);
+            }
         });
         // 计算边界
         layers.forEach(l => {
@@ -453,19 +460,24 @@ class Node {
         this._abY = mdata.abY || 0; // 基于原点的y坐标
         this._abXops = mdata.abXops || 0; // 基于原点的x坐标对角
         this._abYops = mdata.abYops || 0; // 基于原点的y坐标对角
-        this._zIndex = mdata.zIndex || 0; // 显示层级
         this._constraints = {}; // 添加的约束
-        this._children = mdata.children || []; // 子节点
         this._mdata = mdata;
         this._similarIndex = -1;
         this.canLeftFlex = mdata.canLeftFlex || false; // 可左扩展
         this.canRightFlex = mdata.canRightFlex || false; // 可右扩展
         this.isCalculate = false; // 是否已经完成约束计算
+        this._zIndex = mdata.zIndex || -1;
+        // this._children = mdata.children || [];
+        this.set('children', mdata.children || []);// 子节点
+
     }
 
     set(prop, value) {
         this["_" + prop] = value;
-        // this._mdata[prop] = value;
+        if (prop == 'children' && this._zIndex == -1) {
+            // if (parent.id == 'layer0') debugger;
+            this._zIndex = this._children.length ? Math.min(...this._children.map(nd => nd.zIndex)) : -1;
+        }
     }
     toJSON() {
         return {
