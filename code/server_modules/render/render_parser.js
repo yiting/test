@@ -11,6 +11,7 @@ const Template = require("../template/template");
 let parse = function (dslTree, platformType) {
     return DSLTreeProcessor.parseTree(dslTree, platformType);
 }
+let beautyClassNum = 1;
 
 const QNODE_TYPES = ['QImage','QText','QIcon','QShape','QWidget'];
 const QCONTAINER_TYPES = ['QBody','QLayer'];
@@ -32,21 +33,32 @@ class DSLTreeProcessor {
     static _parseNode(platformType,dslTree,pnode) { 
         if(!pnode.children || !pnode.children.length) return;
         pnode.children.forEach((node,index) => {
-            let element = (node.modelName != 'layer') ? this._parseWidgetNode(node,dslTree,platformType) : this._convertNode(node,platformType);
+            let element = null;
+            // _debuggerByid('4E0EC85E-AFB2-455C-9C17-FF91CE02A5EF',node);
+            if (node.modelName === 'layer') {
+                element = (~QNODE_TYPES.indexOf(node.type)) ? this._parseBgNode(node,dslTree,platformType) : this._convertNode(node,platformType);
+            } else {
+                element = this._parseWidgetNode(node,dslTree,platformType);
+            }
             pnode.children[index] = element;
         })
+    }
+
+    /**
+     * 解析背景节点
+     */
+    static _parseBgNode(node, dslTree, platformType) {
+        let matchData = dslTree.getModelData(node.id);
+        let structure = matchData.getMatchNode();
+        let element = this._convertNode(node,platformType);
+        Object.assign(element,getAttr(structure[0],['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','path','styles']));
+        return element;
     }
 
     /**
      * 解析模型节点
      */
     static _parseWidgetNode(node, dslTree, platformType) {
-        // let styles = {};
-        // // 单节点才获取样式,否则node上没有样式
-        // if (jsonNode['0'] && !jsonNode['1']) {
-        //     styles = jsonNode['0'].styles;
-        // }
-
         let matchData = dslTree.getModelData(node.id);
         return walkModel(matchData,function(mdata,structure) {
             let template = Template.getTemplate(mdata.modelName,platformType);
@@ -55,6 +67,18 @@ class DSLTreeProcessor {
             
             return element;
         });
+    }
+    static addBeautyClass(node){
+        node.beautyClass = 'c' + (beautyClassNum++);
+        var children = node.children;
+        if (children) {
+            for (var i = 0, ilen = children.length; i < ilen; i++) {
+                children[i].beautyClass = 'c' + (beautyClassNum++);
+                if (children[i]['children'] && children[i]['children'].length > 0) {
+                    this.addBeautyClass(children[i]);
+                }
+            }
+        }
     }
     static addPrefix(node) {
         if (node.id.indexOf('ts-') != 0) {
@@ -76,8 +100,9 @@ class DSLTreeProcessor {
     static _convertNode(node, platformType) {
         let tagName = '';
         this.addPrefix(node);
+        this.addBeautyClass(node);
         let {
-            id = -1, width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
+            id = -1, beautyClass ,width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
         } = node;
         switch (platformType) {
             case RENDER_TYPE.HTML:
@@ -89,6 +114,7 @@ class DSLTreeProcessor {
         }
         return {
             id,
+            beautyClass,
             tagName,
             width,
             height,
@@ -115,7 +141,6 @@ class DSLTreeProcessor {
 }
 // 往外走
 function walkout(node, handler) {
-    node.beautyClass = "a";
     if (!node.children || !node.children.length) return;
     node.children.map(n => {
         walkout(n, handler);
@@ -126,7 +151,7 @@ function walkout(node, handler) {
 // 遍历matchData
 function walkModel(matchData,handler) {
     let structure = matchData.getMatchNode();
-    // _debuggerByid('B445DFC5-B0F5-48B4-A679-A5A4CDFA7D9F',structure);
+    // _debuggerByid('4E0EC85E-AFB2-455C-9C17-FF91CE02A5EFc',structure);
     for (let key in structure) {
         if (structure[key].constructor.name === 'MatchData') {
             structure[key] = walkModel(structure[key],handler) // 如果是个模型节点，则继续拆解
@@ -152,8 +177,13 @@ function isValue(val) {
         else return !!Object.keys(val).length
     } else return true;
 }
-function _debuggerByid(id,structure) {
-    let n = Object.values(structure).find(n => ~n.id.indexOf(id))
+function _debuggerByid(id,pa) {
+    let n = null;
+    if (pa.type) {
+        n = ~pa.id.indexOf(id);
+    } else {
+        n = Object.values(pa).find(n => ~n.id.indexOf(id))
+    }
     if (n) debugger
 }
 module.exports = {
