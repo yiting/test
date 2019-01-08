@@ -382,7 +382,8 @@ let TOSEEAPP = {
     //如果链接生成，则调取本地已存储的网页地址，且返回
     if (urlIsGenerate) {
       //设置对应的链接
-      $("#screen").attr("src", currentArtBoardUrl);
+      //$("#screen").attr("src", currentArtBoardUrl);
+      $("#screen").attr("src", currentArtBoardUrl+"&time="+Date.now());
       //设置对应的素材库(直接本地读取)
       //重置下
       urlIsGenerate = false;
@@ -458,7 +459,9 @@ let TOSEEAPP = {
           time: 200000000
         });
         //设置对应的url
-        $("#screen").attr("src", currentArtBoardUrl);
+        //$("#screen").attr("src", currentArtBoardUrl);
+        $("#screen").attr("src", currentArtBoardUrl+"&time="+Date.now());
+        $('#screen').attr('src', $('#screen').attr('src'));
         //将生成的url存储在缓存数据中
         artboardsUrlArr.push({
           artboardId: currentArtboardId,
@@ -510,7 +513,10 @@ let TOSEEAPP = {
               //clearInterval(imgInterval);
               _this.getImgsByArtBoardId();
               //刷新页面
-              $("#screen").attr("src", currentArtBoardUrl);
+              //$("#screen").attr("src", currentArtBoardUrl);
+              $("#screen").attr("src", currentArtBoardUrl+"&time="+Date.now());
+              $('#screen').attr('src', $('#screen').attr('src'));
+              window.location.reload();
             }
           },
           function(error) {

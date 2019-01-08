@@ -760,7 +760,7 @@ let jsonToHtmlCss2 = (artBoardId, currentDesignDom) => {
             //console.log("导出css成功");
             logger.debug("[edit.js-jsonToHtmlCss]导出css成功");
             //复制公共样式reset.css到当前目录
-            fs.copyFile(
+             fs.copyFile(
               "./data/complie/css/reset.css",
               exportPath + "/css/reset.css",
               function(err) {
@@ -769,7 +769,7 @@ let jsonToHtmlCss2 = (artBoardId, currentDesignDom) => {
                   return;
                 }
               }
-            );
+            ); 
           }
         );
       }
