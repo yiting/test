@@ -89,17 +89,17 @@ Artboard.prototype = {
   },
   //获取artBoard记录
   getArtboardById: function(artboardId, projectId, callback) {
-    var that = this;
-    var sql = "SELECT * FROM artboard WHERE artboardId =? and projectId =?";
-    connection.query(sql, [artboardId, projectId], function(err, result) {
-      if (err) {
+    // var that = this;
+    // var sql = "SELECT * FROM artboard WHERE artboardId =? and projectId =?";
+    // connection.query(sql, [artboardId, projectId], function(err, result) {
+    //   if (err) {
         callback &&
-          callback({ code: 1, msg: "获取artBoard页面记录失败", err: err });
-      } else {
-        callback &&
-          callback({ code: 0, msg: "获取artBoard页面记录成功", data: result });
-      }
-    });
+          callback({ code: 1, msg: "获取artBoard页面记录失败", err: null });
+      // } else {
+      //   callback &&
+      //     callback({ code: 0, msg: "获取artBoard页面记录成功", data: result });
+      // }
+    // });
   },
   //根据artBoardId、projectUUID、artBoardImg查询记录
   getArtboardImg: function(artboardId, projectId, callback) {

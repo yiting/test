@@ -583,10 +583,10 @@ class CssDom {
      * 获取className
      */
     getClass() {
-        var result = this._class ? `.${this._class} \#${this.id}` : `\#${this.id}`;
-        if(this.beautyClass){
-            result += " "+this.beautyClass;
-        }
+        var result = this._class ? `.${this._class} .${this.id}` : ` .${this.id}`;
+        // if(this.beautyClass){
+        //     result += " "+this.beautyClass;
+        // }
         return result ;
     }
 
@@ -877,7 +877,7 @@ class CssDom {
         if (this.styles.texts) {
             // 清洗行高，本应由数据源清洗
             return this.styles.lineHeight ||
-                Math.round(Math.max(...this.styles.texts.map(t => t.size)) * 1.4)
+                Math.round(Math.max(...this.styles.texts.map(t => t.size)))
         } else {
             return null;
         }
