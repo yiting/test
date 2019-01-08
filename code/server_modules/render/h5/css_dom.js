@@ -376,7 +376,6 @@ class CssDom {
      */
     _calculateBoundary(node) {
         // 跟节点不调整
-        // if (node.id =='ts-995EA714-B72D-4EDE-8736-B6147F2F70A7')debugger
         if (node.type == Common.QBody) {
             return;
         }
@@ -496,14 +495,28 @@ class CssDom {
         if (children.length == 0) {
             return;
         }
+        // if (node.type == Common.QBody) {
+        //     return;
+        // }
+        let isVertical = Utils.isVertical(children),
+            baseLine = Utils.calculateBaseLine(node),
+            _justifyContent = isVertical ? 'vertical' : 'horizontal',
+            _alignItems = isVertical ? 'vertical' : 'horizontal';
+        // 约束方向判断
         node.constraints["LayoutDirection"] = node.constraints["LayoutDirection"] ||
-            (Utils.isVertical(children) ? Constraints.LayoutDirection.Vertical : Constraints.LayoutDirection.Horizontal);
+            (isVertical ? Constraints.LayoutDirection.Vertical : Constraints.LayoutDirection.Horizontal);
+        // 主轴约束补充
         node.constraints["LayoutJustifyContent"] = node.constraints["LayoutJustifyContent"] ||
-            Constraints.LayoutJustifyContent.Start;
+            (baseLine[_justifyContent + "Center"] && Constraints.LayoutJustifyContent.Center) ||
+            (baseLine[_justifyContent + "End"] && Constraints.LayoutJustifyContent.End) ||
+            (baseLine[_justifyContent + "Start"] && Constraints.LayoutJustifyContent.Start)
+        // 副轴约束补充
         node.constraints["LayoutAlignItems"] = node.constraints["LayoutAlignItems"] ||
-            Constraints.LayoutAlignItems.Start;
-    }
+            (baseLine[_alignItems + "Center"] && Constraints.LayoutJustifyContent.Center) ||
+            (baseLine[_alignItems + "End"] && Constraints.LayoutJustifyContent.End) ||
+            (baseLine[_alignItems + "Start"] && Constraints.LayoutJustifyContent.Start)
 
+    }
     /**
      * 计算模板竖向的约束
      * @param {Node} parent 父节点
@@ -584,13 +597,13 @@ class CssDom {
      */
     getClass() {
         var result = this._class ? `.${this._class} ` : ``;
-        if(this.beautyClass){
-            result += "."+this.beautyClass;
+        if (this.beautyClass) {
+            result += "." + this.beautyClass;
         }
         // if(this.beautyClass){
         //     result += " "+this.beautyClass;
         // }
-        return result ;
+        return result;
     }
 
     /**
@@ -847,7 +860,7 @@ class CssDom {
     }
     //
     get zIndex() {
-        if(this._zIndex){
+        if (this._zIndex) {
             return this._zIndex;
         }
         return null;

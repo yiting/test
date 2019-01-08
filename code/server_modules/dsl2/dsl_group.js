@@ -236,6 +236,7 @@ class Tree {
     _column(parent) {
         let children = parent.children;
 
+
         // 从里面到外进行组合分析
         for (let i = 0; i < children.length; i++) {
             let child = children[i];
@@ -482,7 +483,6 @@ class Node {
     set(prop, value) {
         this["_" + prop] = value;
         if (prop == 'children' && this._zIndex == -1) {
-            // if (parent.id == 'layer0') debugger;
             this._zIndex = this._children.length ? Math.min(...this._children.map(nd => nd.zIndex)) : -1;
         }
     }
