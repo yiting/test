@@ -92,13 +92,13 @@ Artboard.prototype = {
     var that = this;
     var sql = "SELECT * FROM artboard WHERE artboardId =? and projectId =?";
     connection.query(sql, [artboardId, projectId], function(err, result) {
-      // if (err) {
+      if (err) {
         callback &&
           callback({ code: 1, msg: "获取artBoard页面记录失败", err: err });
-      // } else {
-      //   callback &&
-      //     callback({ code: 0, msg: "获取artBoard页面记录成功", data: result });
-      // }
+      } else {
+        callback &&
+          callback({ code: 0, msg: "获取artBoard页面记录成功", data: result });
+      }
     });
   },
   //根据artBoardId、projectUUID、artBoardImg查询记录
