@@ -10,6 +10,8 @@ class EM3M9 extends Model.ElementModel {
     constructor() {
         // 元素构成规则
         super('em3-m9', 2, 0, 0, 1, Common.LvS, Common.QText);
+        this.canLeftFlex = false;
+        this.canRightFlex = true;
     
         // 三个节点记录
         this._matchNodes['0'] = null;       // 文本

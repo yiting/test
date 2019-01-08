@@ -11,6 +11,9 @@ class EM3M1 extends Model.ElementModel {
     constructor() {
         // 元素构成规则
         super('em3-m1', 2, 0, 0, 1, Common.LvS, Common.QText);
+
+        this.canLeftFlex = false;
+        this.canRightFlex = true;
     }
 
     // 区分匹配的元素

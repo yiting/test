@@ -11,6 +11,8 @@ class WG4M1 extends Model.WidgetModel {
     constructor() {
         // 元素构成规则
         super('wg4-m1', 3, 0, 1, 0, Common.LvS, Common.QWidget);
+        this.canLeftFlex = false;
+        this.canRightFlex = true;
     }
 
     // 匹配到的节点做记录
