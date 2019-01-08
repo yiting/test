@@ -583,7 +583,11 @@ class CssDom {
      * 获取className
      */
     getClass() {
-        return this._class ? `.${this._class} \#${this.id}` : `\#${this.id}`;
+        var result = this._class ? `.${this._class} \#${this.id}` : `\#${this.id}`;
+        if(this.beautyClass){
+            result += " "+this.beautyClass;
+        }
+        return result ;
     }
 
     /**
@@ -840,7 +844,7 @@ class CssDom {
     }
     //
     get zIndex() {
-        if (this._isAbsolute(this)) {
+        if(this._zIndex){
             return this._zIndex;
         }
         return null;

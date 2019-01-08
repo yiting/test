@@ -342,6 +342,13 @@ class Tree {
         let node = Tree.createNodeData(child);
         node.set("parentId", parent.id);
         parent.set('children', parent.children.concat(node));
+        /**
+         * 如果父节点为QShape或QImage时，添加子节点后，父节点模型类型改为layer，
+         * 让父节点取代使用QShape或QImage模板
+         * */
+        if (parent.type == Common.QShape || parent.type == Common.QImage) {
+            parent.set("modelName", 'layer');
+        }
         // 如果父节点为widget，则当前节点绝对定位
         // if (parent.type == Common.QWidget) {
         //     node.constraints["LayoutSelfPosition"] = Constraints.LayoutSelfPosition.Absolute;

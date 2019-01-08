@@ -10,6 +10,8 @@ class WG5M1 extends Model.WidgetModel {
     constructor() {
         // 元素构成规则
         super('wg5-m1', 1, 0, 3, 0, Common.LvS, Common.QWidget);
+        this.canLeftFlex = false;
+        this.canRightFlex = true;
 
         // 节点记录
         this._images = null;                // 所有的图片

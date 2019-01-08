@@ -299,7 +299,7 @@ let _parseLayer = function(_document, layer, pnode = null, brotherLayers = null)
         else obj.symbolRoot = [uin.slice(0,4)];
     }
     if (pnode && Array.isArray(pnode.symbolRoot)) { // 如果是symbol子孙元素，设置实例字段，添加前缀
-        uin = `${pnode.symbolRoot.join('#')}#${uin}`;
+        uin = `${pnode.symbolRoot.join('---')}---${uin}`;
         obj.symbolRoot = pnode.symbolRoot;
         // console.log('增加前缀',uin)
     }
@@ -359,7 +359,7 @@ let maskProcess = function(uin,obj, layer, brotherLayers) {
                 const brotherLayer = brotherLayers[i];
                 if(brotherLayer.shouldBreakMaskChain) break;
                 if(brotherLayer.isVisible) {
-                    let _id = (Array.isArray(obj.symbolRoot)) ? `${obj.symbolRoot.join('#')}#${brotherLayer.do_objectID}` : brotherLayer.do_objectID;
+                    let _id = (Array.isArray(obj.symbolRoot)) ? `${obj.symbolRoot.join('---')}---${brotherLayer.do_objectID}` : brotherLayer.do_objectID;
                     maskedNodes.push(_id);
                 }
                 brotherLayer.maskNode = uin;

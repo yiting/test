@@ -11,6 +11,9 @@ class EM3M7 extends Model.ElementModel {
     constructor() {
         // 元素构成规则
         super('em3-m7', 2, 0, 0, 1, Common.LvS, Common.QText);
+
+        this.canLeftFlex = false;
+        this.canRightFlex = true;
     }
 
     // 区分三个基础元素的逻辑

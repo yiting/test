@@ -66,13 +66,16 @@ class LayoutFlex extends Model.LayoutModel {
             }
         });
 
-        // 重叠逻辑：如果部分重叠，且前（上）节点层级高，则判定绝对定位
         for (let i = 0; i < calNodes.length; i++) {
             let nd = calNodes[i];
-            let prev = calNodes[i - 1];
-            // 如果与前点重合，层级高的绝对定位
-            if (prev && prev.zIndex > nd.zIndex && Utils.isYConnect(prev, nd, -4)) {
-                // let _nd = prev.zIndex < nd.zIndex ? nd : prev;
+            // let prev = calNodes[i - 1];
+            let prev = this._getPrev(nodes, nd, absNodes);
+            if (prev && Utils.isYWrap(prev, nd)) {
+                // 重叠逻辑： 如果在Y轴上完全重合，则层级高的为绝对定位
+                absNodes.push(prev.zIndex > nd.zIndex ? prev : nd);
+            }
+            else if (prev && prev.zIndex > nd.zIndex && Utils.isYConnect(prev, nd, -4)) {
+                // 重叠逻辑：如果部分重叠，且前（上）节点层级高，则为绝对定位
                 absNodes.push(prev);
             }
         }
@@ -179,6 +182,20 @@ class LayoutFlex extends Model.LayoutModel {
         nodes.sort((a, b) => {
             return a[opt] - b[opt];
         })
+    }
+
+    _getPrev(nodes, node, absArr) {
+        let prev = null;
+        nodes.some(nd => {
+            if (nd == node) {
+                return true;
+            }
+            // if (nd.constraints["LayoutSelfPosition"] != Constrains.LayoutSelfPosition.Absolute) {
+            if (!absArr.includes(nd)) {
+                prev = nd;
+            }
+        });
+        return prev;
     }
     _setAbsolute(node) {
         node.constraints["LayoutSelfPosition"] = Constrains.LayoutSelfPosition.Absolute;

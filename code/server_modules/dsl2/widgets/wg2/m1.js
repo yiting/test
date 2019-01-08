@@ -10,6 +10,8 @@ class WG2M1 extends Model.WidgetModel {
     constructor() {
         // 元素构成规则
         super('wg2-m1', 1, 1, 0, 0, Common.LvS, Common.QWidget);
+        this.canLeftFlex = false;
+        this.canRightFlex = true;
     }
 
     _initNode() {
