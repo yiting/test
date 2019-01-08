@@ -92,11 +92,7 @@ function process(data) {
 
 function getHtmlTpl() {
     if (!htmlTpl) {
-<<<<<<< HEAD
-        htmlTpl = fs.readFileSync("./code/server_modules/render/tpl.html", "utf-8");
-=======
         htmlTpl = fs.readFileSync("./server_modules/render/tpl.html", "utf-8");
->>>>>>> dev_alltasxiao
     }
     return htmlTpl;
 }
