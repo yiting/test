@@ -1,6 +1,5 @@
 .vscode
-code/data/complie
-code/data/unzip_file
-code/data/upload_file
+code/data
 code/log
+code/node_modules
 code/server_modules/designimage/Contents
