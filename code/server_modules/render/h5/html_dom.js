@@ -19,6 +19,7 @@ class HtmlDom {
         this.contrains = node.contrains || {};
         this.tplAttr = node.tplAttr || {};
         this.tplData = node.tplData || {};
+        this.beautyClass = node.beautyClass || "";
     }
     get x() {
         return this.parent ? (this.abX - this.parent.abX) : this.abX
@@ -33,6 +34,12 @@ class HtmlDom {
         }
         if (this.tplAttr && this.tplAttr.class) {
             result += this.tplAttr.class + ' ';
+        }
+        // if(this.id){
+        //     result += this.id + ' ';
+        // }
+        if(this.beautyClass){
+            result += this.beautyClass + ' ';
         }
         if (result.length > 0) {
             result = result.substring(0, result.length - 1);
@@ -68,7 +75,7 @@ class HtmlDom {
     }
     // 开始节点
     getHtmlStart() {
-        return `<${this.getTag()} id='${this.getAttrId()}' ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+        return `<${this.getTag()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
     }
     // 闭合节点
     getHtmlEnd() {
