@@ -83,6 +83,20 @@ var vm = new Vue({
   },
   methods: {
     eventListener: function() {
+      //检测是否第1次访问demo(已访问demo)
+      let isVisitDemoFlag = false;
+      if (
+        window.Storage &&
+        window.localStorage &&
+        window.localStorage instanceof Storage
+      ) {
+        isVisitDemoFlag = localStorage.getItem("isVisitDemo");
+      }
+      //如果已访问过，则添加无呼吸态动画样式
+      if (isVisitDemoFlag) {
+        $(".page-demo").addClass("no-animation");
+      }
+      //滚动
       $(window).on("scroll", function() {
         if (window.scrollY > 300) {
           $("#jmod-backtotop-wrap").css("visibility", "visible");
@@ -90,6 +104,7 @@ var vm = new Vue({
           $("#jmod-backtotop-wrap").css("visibility", "hidden");
         }
       });
+      //回到顶部
       $("#jmod-backtotop-wrap").on("click", function() {
         $("html,body").animate(
           {
@@ -156,6 +171,14 @@ var vm = new Vue({
      */
     showExampleDemo: function(event) {
       $(".page-demo").addClass("page-demo-display");
+      //记录已查看demo状态，存放在localStorage中：第1次访问，呼吸态动画；再次访问，无呼吸态动画
+      if (
+        window.Storage &&
+        window.localStorage &&
+        window.localStorage instanceof Storage
+      ) {
+        localStorage.setItem("isVisitDemo", true);
+      }
     },
     /**
      *  获取项目列表
