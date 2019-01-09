@@ -781,6 +781,9 @@
   font-weight: bolder;
   //transition: all 0.2s ease;
   -webkit-animation: an-demo 2s 0s ease infinite;
+  &.no-animation {
+    -webkit-animation: none;
+  }
 }
 .page-demo-display {
   height: 350px;
