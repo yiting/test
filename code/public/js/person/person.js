@@ -9,48 +9,46 @@ var vm = new Vue({
     user: {},
     demoprojects: [
       {
-        id: 790,
-        userid: 102053,
-        isdel: 0,
-        compliePath: "http://10.64.70.68:8080/complie/20190108220529_我的日迹",
-        unzipPath: "http://10.64.70.68:8080/unzip_file/20190108220529_我的日迹",
-        modifytime: "2019-01-08T14:05:29.000Z",
-        projectId: "7486a9f0-134e-11e9-b488-2ffc10f2e0a0",
-        projectName: "20190108220529_我的日迹"
-      },
-      {
-        id: 786,
+        id: 817,
         userid: 102053,
         isdel: 0,
         compliePath:
-          "http://10.64.70.68:8080/complie/20190108212707_空白页推荐游戏",
+          "http://10.64.70.68:8080/complie/20190109174457_空白页推荐游戏",
         unzipPath:
-          "http://10.64.70.68:8080/unzip_file/20190108212707_空白页推荐游戏",
-        modifytime: "2019-01-08T13:27:07.000Z",
-        projectId: "184842c0-1349-11e9-a1f3-6555c3962aef",
-        projectName: "20190108212707_空白页推荐游戏"
+          "http://10.64.70.68:8080/unzip_file/20190109174457_空白页推荐游戏",
+        modifytime: "2019-01-09T09:44:58.000Z",
+        projectId: "39a07af0-13f3-11e9-9441-c9596db51edf",
+        projectName: "20190109174457_空白页推荐游戏"
       },
       {
-        id: 729,
+        id: 816,
         userid: 102053,
         isdel: 0,
-        compliePath: "http://10.64.70.68:8080/complie/20190108192014_游戏城",
-        unzipPath: "http://10.64.70.68:8080/unzip_file/20190108192014_游戏城",
-        modifytime: "2019-01-08T11:20:14.000Z",
-        projectId: "5eace930-1337-11e9-a3b0-3b0f0a686661",
-        projectName: "20190108192014_游戏城"
+        compliePath: "http://10.64.70.68:8080/complie/20190109174020_列表",
+        unzipPath: "http://10.64.70.68:8080/unzip_file/20190109174020_列表",
+        modifytime: "2019-01-09T09:40:20.000Z",
+        projectId: "94456520-13f2-11e9-9441-c9596db51edf",
+        projectName: "20190109174020_列表"
       },
       {
-        id: 727,
+        id: 810,
         userid: 102053,
         isdel: 0,
-        compliePath:
-          "http://10.64.70.68:8080/complie/20190108191957_个人详情页",
-        unzipPath:
-          "http://10.64.70.68:8080/unzip_file/20190108191957_个人详情页",
-        modifytime: "2019-01-08T11:19:58.000Z",
-        projectId: "54a21c30-1337-11e9-a3b0-3b0f0a686661",
-        projectName: "20190108191957_个人详情页"
+        compliePath: "http://10.64.70.68:8080/complie/20190109172036_游戏城",
+        unzipPath: "http://10.64.70.68:8080/unzip_file/20190109172036_游戏城",
+        modifytime: "2019-01-09T09:20:37.000Z",
+        projectId: "d2bf3a90-13ef-11e9-9441-c9596db51edf",
+        projectName: "20190109172036_游戏城"
+      },
+      {
+        id: 807,
+        userid: 102053,
+        isdel: 0,
+        compliePath: "http://10.64.70.68:8080/complie/20190109171711_我的日迹",
+        unzipPath: "http://10.64.70.68:8080/unzip_file/20190109171711_我的日迹",
+        modifytime: "2019-01-09T09:17:11.000Z",
+        projectId: "58716a10-13ef-11e9-9441-c9596db51edf",
+        projectName: "20190109171711_我的日迹"
       }
     ],
     projects: [],
