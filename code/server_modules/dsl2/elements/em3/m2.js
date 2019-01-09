@@ -11,7 +11,7 @@ class EM3M2 extends Model.ElementModel {
         // 元素构成规则
         super('em3-m2', 2, 0, 0, 1, Common.LvS, Common.QText);
         this.canLeftFlex = false;
-        this.canRightFlex = true;
+        this.canRightFlex = false;
 
         // 三个节点记录
         this._tagTxt = null;
