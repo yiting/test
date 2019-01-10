@@ -262,16 +262,22 @@ var vm = new Vue({
       let name = file.name;
       //alert(name.substr(name.lastIndexOf('/')+1))
       //文件大小
-      let size = file.size;
+      let fileSize = file.size / 1024,
+        fileMaxSize = 1024 * 100;
       //文件类型(api官方类型)
       // type = file.type;
       //根据文件名称来截取对应的类型后缀
       let potIndex = name.lastIndexOf(".");
       let fileName = name.substr(0, potIndex);
-      fileType = name.substr(potIndex + 1).toUpperCase();
+      let fileType = name.substr(potIndex + 1).toUpperCase();
       fileType = fileType.toLowerCase();
-      //$(".file-name").text(name);
-      //$(".file-size").text(CommonTool.convert(size));
+      if (fileSize > fileMaxSize) {
+        layer.msg("上传文件大小不能大于" + fileMaxSize / 1024 + "M!");
+        //清空上传文件
+        e.target.value = "";
+        return false;
+      }
+
       //直接上传到后台
       if (fileType) {
         if (fileType == "sketch") {
