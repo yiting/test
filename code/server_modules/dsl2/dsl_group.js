@@ -571,6 +571,22 @@ class Node {
     getRenderData() {
         return this._renderData;
     }
+
+    /**
+     * 临时测试设置
+     */
+    setRenderData(rdata) {
+        this._renderData = rdata;
+        this.set('type', rdata.type);
+        this.set('modelName', rdata.modelName);
+        this.set('abX', rdata.abX);
+        this.set('abY', rdata.abY);
+        this.set('abXops', rdata.abXops);
+        this.set('abYops', rdata.abYops);
+        this.set('width', rdata.width);
+        this.set('height', rdata.height);
+        this.set('zIndex', rdata.zIndex);
+    }
 }
 
 /**
@@ -601,6 +617,29 @@ class RenderData {
         this._modelId = null;
         
         this.children = [];
+    }
+
+    // 根据下一层所有子节点abX, abY, abXops, abYops, width, height 生成最小范围属性
+    resize() {
+        for (let i = 0; i < this.children.length; i++) {
+            if (i == 0) {
+                this._abX = this.children[0].abX;
+                this._abY = this.children[0].abY;
+                this._abXops = this.children[0].abXops;
+                this._abYops = this.children[0].abYops;
+                this._width = this.children[0].width;
+                this._height = this.children[0].height;
+                continue;
+            }
+
+            this._abX = this.children[i].abX < this._abX? this.children[i].abX : this._abX;
+            this._abY = this.children[i].abY < this._abY? this.children[i].abY : this._abY;
+            this._abXops = this.children[i].abXops > this._abXops? this.children[i].abXops : this._abXops;
+            this._abYops = this.children[i].abYops > this._abYops? this.children[i].abYops : this._abYops;
+        }
+
+        this._width = this._abXops - this._abX;
+        this._height = this._abYops - this._abY;
     }
 
     set(prop, value) {
@@ -700,27 +739,55 @@ Tree.createNodeData = function (mdata) {
 
 /**
  * 根据传进的nodes,创建返回的新node
+ * @param {TreeNode} parent
  * @param {Array} nodesArr
- * @parent {Int} similarId
+ * @param {Int} similarId
  * @return {Object}
  */
-Tree.createCycleData = function(nodesArr, similarId) {
+Tree.createCycleData = function(parent, nodesArr, similarId) {
     // 组成新节点,并且构建MatchData里的getMatchNode数据
     if (!nodesArr || nodesArr.length == 0) {
         return;
     }
     
     // 构建循环结构的根节点
+    // 先测一个简单循环模板
     let newNode = new Node();
-    newNode.modelName = 'cycle';
+    newNode.parentId = parent.id;
+    let newRenderData = new RenderData();
+    newRenderData.id = newNode.id;
+    newRenderData.parentId = parent.id;
+    
+    // 传进来的数据暂时只有两级结构, 所以直接coding两层循环
+    for (let i = 0; i < nodesArr.length; i++) {
+        let nodes = nodesArr[i];
 
-    nodesArr.forEach(nodes => {
-        if (!nodes || nodes.length == 0) {
-            
+        if (nodes.length == 0) {
+            continue;
         }
 
-        
-    });
+        if (nodes.length == 1) {            // 第二层只有一个数据直接返回
+            let renderDataI = nodes[0].getRenderData();
+            renderDataI.similarId = similarId;
+            newRenderData.children.push(renderDataI);
+            continue;
+        }
+
+        let nodeI = new RenderData();
+        nodeI.parentId = newRenderData.id;
+        for (let j = 0; j < nodes.length; j++) {
+            let nd = nodes[j];
+            let renderDataJ = nd.getRenderData();
+            renderDataJ.similarId = similarId;
+            nodeI.children.push(renderDataJ);
+        }
+        newRenderData.children.push(nodeI);
+    }
+
+    // 把parent的属性重新设置
+    newNode.modelName = 'cycle-01';
+    newNode.setRenderData(newRenderData);
+    return newNode;
 }
 
 // 创建DSLTree渲染节点数据
