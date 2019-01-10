@@ -12344,16 +12344,15 @@ let designjson = [{
     "hasStyle": false
 }];
 
-// 引入的模块包
-const Common = require('../../src/dsl2/dsl_common.js');
-const Dsl = require('../../src/dsl2/dsl.js');
-const Render = require('../../src/render/render.js');
-
+// 引入的包
+const Common = require('../../code/server_modules/dsl2/dsl_common.js');
+const Dsl = require('../../code/server_modules/dsl2/dsl.js');
+//const Render = require('../../code/server_modules/render/render.js');
 
 let dslTree = Dsl.process(designjson, Common.DesignWidth, 750, Common.FlexLayout);
-let render = Render.process(dslTree);
+//let render = Render.process(dslTree);
 
-let jsonData = dslTree.getData();
+let jsonData = dslTree.getRenderData();
 // let md = dslTree.getModelData('CEC1D119-CCEF-4A48-B7EA-29D091B83A44cc');
 // let nds = md.getMatchNode();
 
