@@ -36,6 +36,7 @@ class Tree {
     constructor() {
         // 节点树
         this._treeData = Tree.createNodeData();
+        this._treeData.set("parentId", this._treeData.id);
         this._treeData.set("type", Common.QBody);
         this._treeData.set("abX", 0);
         this._treeData.set("abXops", Common.DesignWidth);
@@ -285,7 +286,10 @@ class Tree {
     getRenderData() {
         // renderData通过递归节点树来获取
         let renderData = this._treeData.getRenderData();        // 获取根元素
-        this._parseRenderData(renderData, this._treeData);
+        console.log(this._treeData);
+        console.log('+++++++++++++++++');
+        console.log(renderData);
+        //this._parseRenderData(renderData, this._treeData);
         return renderData;
     }
 
@@ -348,8 +352,18 @@ class Node {
         this._constraints = {}; // 添加的约束
         this._mdata = mdata;
         this._similarIndex = -1;
-        this.canLeftFlex = mdata.canLeftFlex || false; // 可左扩展
-        this.canRightFlex = mdata.canRightFlex || false; // 可右扩展
+        // this.canLeftFlex = mdata.canLeftFlex || false; // 可左扩展
+        // this.canRightFlex = mdata.canRightFlex || false; // 可右扩展
+        // 临时设置编写逻辑, 因为现在canLeftFlex, canRightFlex可存在null的情况
+        this.canLeftFlex = null;
+        this.canRightFlex = null;
+        if (mdata.type && (mdata.canLeftFlex === false || mdata.canLeftFlex === true)) {
+            this.canLeftFlex = mdata.canLeftFlex;
+        }
+        else if (mdata.type && (mdata.canRightFlex === false || mdata.canRightFlex === true)) {
+            this.canRightFlex = mdata.canRightFlex;
+        }
+
         this.isCalculate = false; // 是否已经完成约束计算
         this._zIndex = mdata.zIndex || -1;
         // this._children = mdata.children || [];
@@ -369,21 +383,21 @@ class Node {
         this._renderData = new RenderData();
 
         // 最外层信息直接通过node信息获取
-        this._renderData.set('parentId', this._parentId);
-        this._renderData.set('id', this._id);
-        this._renderData.type = this._type;
-        this._renderData.modelName = this._modelName;
-        this._renderData.abX = this._abX;
-        this._renderData.abY = this._abY;
-        this._renderData.abXops = this._abXops;
-        this._renderData.abYops = this._abYops;
-        this._renderData.width = this._width;
-        this._renderData.height = this._height;
-        this._renderData.canLeftFlex = this.canLeftFlex;
-        this._renderData.canRightFlex = this.canRightFlex;
-        this._renderData.isCalculate = this.isCalculate;
-        this._renderData.constraints = this._constraints;
-        this._renderData.zIndex = this._zIndex;
+        this._renderData.set('parentId', this.parentId);
+        this._renderData.set('id', this.id);
+        this._renderData.set('type', this.type);
+        this._renderData.set('modelName', this.modelName);
+        this._renderData.set('abX', this.abX);
+        this._renderData.set('abY', this.abY);
+        this._renderData.set('abXops', this.abXops);
+        this._renderData.set('abYops', this.abYops);
+        this._renderData.set('width', this.width);
+        this._renderData.set('height', this.height);
+        this._renderData.set('canLeftFlex', this.canLeftFlex);
+        this._renderData.set('canRightFlex', this.canRightFlex);
+        this._renderData.set('isCalculate', this.isCalculate);
+        this._renderData.set('constraints', this.constraints);
+        this._renderData.set('zIndex', this.zIndex);
 
         // 如果有MatchData, 则进行解析处理
         if (!this._mdata || this._mdata === {}) {
@@ -398,18 +412,18 @@ class Node {
      * @param {Model.MatchData} matchData 
      */
     _initRenderDataWithMatchData(renderData, matchData) {
-        renderData.id = matchData.id;
-        renderData.type = matchData.type;
-        renderData.modelName = matchData.modelName;
-        renderData.abX = matchData.abX;
-        renderData.abY = matchData.abY;
-        renderData.abXops = matchData.abXops;
-        renderData.abYops = matchData.abYops;
-        renderData.width = matchData.width;
-        renderData.height = matchData.height;
-        renderData.canLeftFlex = matchData.canLeftFlex;
-        renderData.canRightFlex = matchData.canRightFlex;
-        renderData.zIndex = matchData.zIndex;
+        renderData.set('id', matchData.id);
+        renderData.set('type', matchData.type);
+        renderData.set('modelName', matchData.modelName);
+        renderData.set('abX', matchData.abX);
+        renderData.set('abY', matchData.abY);
+        renderData.set('abXops', matchData.abXops);
+        renderData.set('abYops', matchData.abYops);
+        renderData.set('width', matchData.width);
+        renderData.set('height', matchData.height);
+        renderData.set('canLeftFlex', matchData.canLeftFlex);
+        renderData.set('canRightFlex', matchData.canRightFlex);
+        renderData.set('zIndex', matchData.zIndex);
     }
 
     /**
@@ -422,18 +436,21 @@ class Node {
 
         // 如果是单节点则直接往parent上添加属性
         if (jsonNode['0'] && !jsonNode['1']) {
-            parent.text = jsonNode['0'].text? jsonNode['0'].text : '';
-            parent.path = jsonNode['0'].path? jsonNode['0'].path : null;
-            parent.style = jsonNode['0'].style? jsonNode['0'].style : {};
-            parent.modelRef = '0';
+            let text = jsonNode['0'].text? jsonNode['0'].text : '';
+            let path = jsonNode['0'].path? jsonNode['0'].path : null;
+            let style = jsonNode['0'].style? jsonNode['0'].style : {};
+            parent.set('text', text);
+            parent.set('path', path);
+            parent.set('style', style);
+            parent.set('modelRef', '0');
             return;
         }
 
         for(key in jsonNode) {
             let json = jsonNode[key];
             let renderData = new RenderData();
-            renderData.parentId = parent.id;
-            renderData.modelRef = key;
+            renderData.set('parentId', parent.id);
+            renderData.set('modelRef', key);
 
             parent.children.push(renderData);
 
@@ -447,18 +464,21 @@ class Node {
             // 根据json的modelName获取对应的MatchData来赋值
             // 重要 !这里待完善
             // 已经是叶节点, 可以取designjson中的信息
-            renderData.id = json.id;
-            renderData.type = json.type;
-            renderData.abX = json.abX;
-            renderData.abY = json.abY;
-            renderData.abXops = json.abX + json.width;
-            renderData.abYops = json.abY + json.height;
-            renderData.width = json.width;
-            renderData.height = json.height;
-            renderData.modelName = '';              // !重要,因为已经是叶节点,所以取消了modelName, Render模块需要用来辨识
-            renderData.text = json.text? json.text : '';
-            renderData.path = json.path? json.path : null;
-            renderData.style = json.style? json.style : {};
+            renderData.set('id', json.id);
+            renderData.set('type', json.type);
+            renderData.set('abX', json.abX);
+            renderData.set('abY', json.abY);
+            renderData.set('abXops', json.abX + json.width);
+            renderData.set('abYops', json.abY + json.height);
+            renderData.set('width', json.width);
+            renderData.set('height', json.height);
+            renderData.set('modelName', '');     // !重要,因为已经是叶节点,所以取消了modelName, Render模块需要用来辨识
+            let text = json.text? json.text : '';
+            let path = json.path? json.path : null;
+            let style = json.style? json.style : {};
+            renderData.set('text', text);
+            renderData.set('path', path);
+            renderData.set('style', style);
         }
     }
 
@@ -566,8 +586,8 @@ class RenderData {
         this._abYops = 0;
         this._width = 0;
         this._height = 0;
-        this._canLeftFlex = false;
-        this._canRightFlex = false;
+        this._canLeftFlex = null;
+        this._canRightFlex = null;
         this._isCalculate = false;
         this._constraints = {};
         this._zIndex = 0;
