@@ -1,20 +1,22 @@
 // dslTree数据及模板解析模块
-
+// const ID_CODE = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@'.split('');
 const DSLTreeTransfer = require('./render_parser_transfer')
 const RENDER_TYPE = require('./render_types')
 const Template = require("../template/template");
+// 序列号ID
+let serialId = 1;
 /**
  * DSL解析方法
  * @param {Object} dslTree 
  * @param {string=} platformType 解析类型: html(default),android,ios
  */
 let parse = function (dslTree, platformType) {
+    serialId = 1;
     return DSLTreeProcessor.parseTree(dslTree, platformType);
 }
-let beautyClassNum = 1;
 
-const QNODE_TYPES = ['QImage','QText','QIcon','QShape','QWidget'];
-const QCONTAINER_TYPES = ['QBody','QLayer'];
+const QNODE_TYPES = ['QImage', 'QText', 'QIcon', 'QShape', 'QWidget'];
+const QCONTAINER_TYPES = ['QBody', 'QLayer'];
 class DSLTreeProcessor {
     /**
      * 
@@ -30,15 +32,15 @@ class DSLTreeProcessor {
         delete _tree.root;
         return _tree;
     }
-    static _parseNode(platformType,dslTree,pnode) { 
-        if(!pnode.children || !pnode.children.length) return;
-        pnode.children.forEach((node,index) => {
+    static _parseNode(platformType, dslTree, pnode) {
+        if (!pnode.children || !pnode.children.length) return;
+        pnode.children.forEach((node, index) => {
             let element = null;
             // _debuggerByid('4E0EC85E-AFB2-455C-9C17-FF91CE02A5EF',node);
             if (node.modelName === 'layer') {
-                element = (~QNODE_TYPES.indexOf(node.type)) ? this._parseBgNode(node,dslTree,platformType) : this._convertNode(node,platformType);
+                element = (~QNODE_TYPES.indexOf(node.type)) ? this._parseBgNode(node, dslTree, platformType) : this._convertNode(node, platformType);
             } else {
-                element = this._parseWidgetNode(node,dslTree,platformType);
+                element = this._parseWidgetNode(node, dslTree, platformType);
             }
             pnode.children[index] = element;
         })
@@ -50,8 +52,8 @@ class DSLTreeProcessor {
     static _parseBgNode(node, dslTree, platformType) {
         let matchData = dslTree.getModelData(node.id);
         let structure = matchData.getMatchNode();
-        let element = this._convertNode(node,platformType);
-        Object.assign(element,getAttr(structure[0],['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','path','styles']));
+        let element = this._convertNode(node, platformType);
+        Object.assign(element, getAttr(structure[0], ['zIndex', 'abX', 'abY', 'abXops', 'abYops', 'constraints', 'width', 'height', 'canLeftFlex', 'canRightFlex', 'path', 'styles']));
         return element;
     }
 
@@ -60,25 +62,48 @@ class DSLTreeProcessor {
      */
     static _parseWidgetNode(node, dslTree, platformType) {
         let matchData = dslTree.getModelData(node.id);
-        return walkModel(matchData,function(mdata,structure) {
-            let template = Template.getTemplate(mdata.modelName,platformType);
-            let element = DSLTreeTransfer.parse(template, structure,platformType);
-            Object.assign(element,getAttr(matchData,['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex']));
-            
+        return walkModel(matchData, function (mdata, structure) {
+            let template = Template.getTemplate(mdata.modelName, platformType);
+            let element = DSLTreeTransfer.parse(template, structure, platformType);
+            Object.assign(element, getAttr(matchData, ['zIndex', 'abX', 'abY', 'abXops', 'abYops', 'constraints', 'width', 'height', 'canLeftFlex', 'canRightFlex']));
+
             return element;
         });
     }
-    static addBeautyClass(node){
-        node.beautyClass = 'c' + (beautyClassNum++);
-        var children = node.children;
-        if (children) {
-            for (var i = 0, ilen = children.length; i < ilen; i++) {
-                children[i].beautyClass = 'c' + (beautyClassNum++);
-                if (children[i]['children'] && children[i]['children'].length > 0) {
-                    this.addBeautyClass(children[i]);
-                }
-            }
+    static transSerialId(node) {
+        node.serialId = 'ts-' + serialId++;
+        node.children && node.children.forEach(nd => this.transSerialId(nd));
+    }
+    static transId(node) {
+        if (!~node.id.indexOf('vt') && !~node.id.indexOf('layer')) {
+            node.id = DSLTreeProcessor.transToSID(node.id);
         }
+        node.children && node.children.forEach(nd => DSLTreeProcessor.transId(nd));
+    }
+    static transToSID(guid) {
+        const radix = ID_CODE.length;
+        return guid.replace(/([a-f0-9]+)/img, function ($0, $1) {
+            let arr = [];
+            let qutient = parseInt($1, 16);
+            do {
+                let mod = qutient % radix;
+                qutient = (qutient - mod) / radix;
+                arr.unshift(ID_CODE[mod]);
+            } while (qutient);
+            return arr.join('')
+        });
+    }
+    static transToGuid(sid) {
+        const radix = ID_CODE.length;
+        return sid.replace(/([a-z0-9@%]+)/img, function ($0, $1) {
+            let len = $1.length,
+                i = 0,
+                origin_number = 0;
+            while (i < len) {
+                origin_number += Math.pow(radix, i++) * ID_CODE.indexOf($1.charAt(len - i) || 0);
+            }
+            return ('0000' + origin_number.toString(16)).slice(-4);
+        })
     }
     static addPrefix(node) {
         if (node.id.indexOf('ts-') != 0) {
@@ -87,22 +112,17 @@ class DSLTreeProcessor {
         var children = node.children;
         if (children) {
             for (var i = 0, ilen = children.length; i < ilen; i++) {
-                if (children[i].id.indexOf('ts-') != 0) {
-                    children[i].id = 'ts-' + children[i].id;
-                }
-                if (children[i]['children'] && children[i]['children'].length > 0) {
-                    this.addPrefix(children[i]);
-                }
+                this.addPrefix(children[i]);
             }
         }
     }
     // 将虚拟节点转化为平台容器节点
     static _convertNode(node, platformType) {
         let tagName = '';
-        this.addPrefix(node);
-        this.addBeautyClass(node);
+        this.transSerialId(node);
+        // this.addPrefix(node);
         let {
-            id = -1, beautyClass ,width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
+            id = -1, beautyClass, width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
         } = node;
         switch (platformType) {
             case RENDER_TYPE.HTML:
@@ -114,7 +134,6 @@ class DSLTreeProcessor {
         }
         return {
             id,
-            beautyClass,
             tagName,
             width,
             height,
@@ -149,27 +168,29 @@ function walkout(node, handler) {
     if (node.root) handler(node);
 }
 // 遍历matchData
-function walkModel(matchData,handler) {
+function walkModel(matchData, handler) {
     let structure = matchData.getMatchNode();
     // _debuggerByid('4E0EC85E-AFB2-455C-9C17-FF91CE02A5EFc',structure);
     for (let key in structure) {
         if (structure[key].constructor.name === 'MatchData') {
-            structure[key] = walkModel(structure[key],handler) // 如果是个模型节点，则继续拆解
+            structure[key] = walkModel(structure[key], handler) // 如果是个模型节点，则继续拆解
         }
     }
-    return handler(matchData,structure); // 处理节点
+    return handler(matchData, structure); // 处理节点
 }
-function getAttr(node,keys,move = false) {
+
+function getAttr(node, keys, move = false) {
     let obj = {};
     if (!node) return obj;
     for (let key of keys) {
         if (isValue(node[key])) {
             obj[key] = node[key];
-            if(move) delete node[key];
+            if (move) delete node[key];
         }
     }
     return obj;
 }
+
 function isValue(val) {
     if (!val) return false;
     if (typeof val === 'object') {
@@ -177,7 +198,8 @@ function isValue(val) {
         else return !!Object.keys(val).length
     } else return true;
 }
-function _debuggerByid(id,pa) {
+
+function _debuggerByid(id, pa) {
     let n = null;
     if (pa.type) {
         n = ~pa.id.indexOf(id);

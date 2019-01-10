@@ -1,7 +1,7 @@
 // 此模块为h5解析模块
 
 const Builder = require('../render_builder');
-const CssDom = require('./css_dom.js');
+const CssDom = require('./css_dom');
 const HtmlDom = require("./html_dom");
 
 
@@ -28,11 +28,10 @@ class H5Builder extends Builder {
     }
 
     // 获取h5模板
-    _getTpl(){
+    _getTpl() {
         return HtmlDom.getHtmlTpl();
     }
 }
 
 
 module.exports = H5Builder;
-

@@ -9,6 +9,7 @@ class HtmlDom {
         this.children = node.children || [];
         this.parentNode = parentNode || null;
         this.id = node.id;
+        this.serialId = node.serialId;
         this.tagName = node.tagName;
         this.text = node.text;
         this.abX = node.abX || 0;
@@ -19,7 +20,6 @@ class HtmlDom {
         this.contrains = node.contrains || {};
         this.tplAttr = node.tplAttr || {};
         this.tplData = node.tplData || {};
-        this.beautyClass = node.beautyClass || "";
     }
     get x() {
         return this.parent ? (this.abX - this.parent.abX) : this.abX
@@ -28,24 +28,16 @@ class HtmlDom {
         return this.parent ? (this.abY - this.parent.abY) : this.abY
     }
     getAttrClass() {
-        var result = '';
+        var result = [];
         if (this.tplData && this.tplData.class) {
-            result += this.tplData.class + ' ';
+            // result += this.tplData.class + ' ';
+            result.push(this.tplData.class);
         }
         if (this.tplAttr && this.tplAttr.class) {
-            result += this.tplAttr.class + ' ';
+            result.push(this.tplAttr.class);
         }
-        // if(this.id){
-        //     result += this.id + ' ';
-        // }
-        if(this.beautyClass){
-            result += this.beautyClass + ' ';
-        }
-        if (result.length > 0) {
-            result = result.substring(0, result.length - 1);
-        }
-        if (result != '') {
-            return `class="${result}"`;
+        if (result.length) {
+            return `class="${result.join(' ')}"`;
         } else {
             return ``;
         }
@@ -75,7 +67,7 @@ class HtmlDom {
     }
     // 开始节点
     getHtmlStart() {
-        return `<${this.getTag()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+        return `<${this.getTag()} ${this.serialId} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
     }
     // 闭合节点
     getHtmlEnd() {

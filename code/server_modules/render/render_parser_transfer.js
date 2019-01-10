@@ -1,40 +1,40 @@
 const jsdom = require("jsdom");
 const dom = new jsdom.JSDOM(`<!DOCTYPE html><p>Hello world</p>`);
 const extremType = {
-    "Max":"Max",
-    "Min":"Min"
+    "Max": "Max",
+    "Min": "Min"
 }
 let uuid = 1;
 class DSLTreeTransfer {
 
-    static getExtremValue(childrenNodes,prop,extremType,parentNode){
+    static getExtremValue(childrenNodes, prop, extremType, parentNode) {
         var result = 0;
-        if(prop == "abX" || prop == "abY"){
-            if(childrenNodes && childrenNodes.length>0){
-                for(var i=0,ilen=childrenNodes.length;i<ilen;i++){
-                    if(childrenNodes[i][prop]<result || result == 0){
+        if (prop == "abX" || prop == "abY") {
+            if (childrenNodes && childrenNodes.length > 0) {
+                for (var i = 0, ilen = childrenNodes.length; i < ilen; i++) {
+                    if (childrenNodes[i][prop] < result || result == 0) {
                         result = childrenNodes[i][prop];
                     }
                 }
             }
-        }else if(prop == "abXops"){
-            if(childrenNodes && childrenNodes.length>0){
-                for(var i=0,ilen=childrenNodes.length;i<ilen;i++){
-                    if(childrenNodes[i][prop]>result){
+        } else if (prop == "abXops") {
+            if (childrenNodes && childrenNodes.length > 0) {
+                for (var i = 0, ilen = childrenNodes.length; i < ilen; i++) {
+                    if (childrenNodes[i][prop] > result) {
                         result = childrenNodes[i][prop];
                     }
                 }
-            }else{
+            } else {
                 result = parentNode["abX"] + parentNode["width"];
             }
-        }else if(prop == "abYops"){
-            if(childrenNodes && childrenNodes.length>0){
-                for(var i=0,ilen=childrenNodes.length;i<ilen;i++){
-                    if(childrenNodes[i][prop]>result){
+        } else if (prop == "abYops") {
+            if (childrenNodes && childrenNodes.length > 0) {
+                for (var i = 0, ilen = childrenNodes.length; i < ilen; i++) {
+                    if (childrenNodes[i][prop] > result) {
                         result = childrenNodes[i][prop];
                     }
                 }
-            }else{
+            } else {
                 result = parentNode["abY"] + parentNode["height"];
             }
         }
@@ -96,11 +96,11 @@ class DSLTreeTransfer {
         if (xml.attributes.length > 0) {
             for (var j = 0; j < xml.attributes.length; j++) {
                 var attribute = xml.attributes.item(j);
-                if(attribute.nodeName == ":constraints"){
-                    if(this.isJSON(attribute.nodeValue) ){
+                if (attribute.nodeName == ":constraints") {
+                    if (this.isJSON(attribute.nodeValue)) {
                         this.clone(JSON.parse(attribute.nodeValue), obj["constraints"]);
                     }
-                }else if (attribute.nodeName.indexOf(":") == 0 && attribute.nodeName != ":ref") {
+                } else if (attribute.nodeName.indexOf(":") == 0 && attribute.nodeName != ":ref") {
                     obj["tplData"][attribute.nodeName.substring(1)] = attribute.nodeValue;
                 } else if (attribute.nodeName == ":ref") {
                     // 复制data 到树里
@@ -124,30 +124,30 @@ class DSLTreeTransfer {
             }
         }
         //父节点获取所有子节点的最边的四个角的值
-        if(typeof(obj.abX) == "undefined"){
-            obj.abX = this.getExtremValue(obj.children,"abX",extremType.Min,obj);
+        if (typeof (obj.abX) == "undefined") {
+            obj.abX = this.getExtremValue(obj.children, "abX", extremType.Min, obj);
         }
-        if(typeof(obj.abY) == "undefined"){
-            obj.abY = this.getExtremValue(obj.children,"abY",extremType.Min,obj);
+        if (typeof (obj.abY) == "undefined") {
+            obj.abY = this.getExtremValue(obj.children, "abY", extremType.Min, obj);
         }
-        if(typeof(obj.abXops) == "undefined"){
-            var childrenXops = this.getExtremValue(obj.children,"abXops",extremType.Max,obj);
-            var selfXops = obj.abX+obj.width;
-            obj.abXops = childrenXops>selfXops?childrenXops:selfXops;
+        if (typeof (obj.abXops) == "undefined") {
+            var childrenXops = this.getExtremValue(obj.children, "abXops", extremType.Max, obj);
+            var selfXops = obj.abX + obj.width;
+            obj.abXops = childrenXops > selfXops ? childrenXops : selfXops;
         }
-        if(typeof(obj.abYops) == "undefined"){
-            var childrenYops = this.getExtremValue(obj.children,"abYops",extremType.Max,obj);
-            var selfYops = obj.abY+obj.height;
-            obj.abYops = childrenYops>selfYops?childrenYops:selfYops;
+        if (typeof (obj.abYops) == "undefined") {
+            var childrenYops = this.getExtremValue(obj.children, "abYops", extremType.Max, obj);
+            var selfYops = obj.abY + obj.height;
+            obj.abYops = childrenYops > selfYops ? childrenYops : selfYops;
         }
-        if(typeof(obj.canLeftFlex) == "undefined"){
+        if (typeof (obj.canLeftFlex) == "undefined") {
             obj.canLeftFlex = data.canLeftFlex || false;
         }
-        if(typeof(obj.canRightFlex) == "undefined"){
+        if (typeof (obj.canRightFlex) == "undefined") {
             obj.canRightFlex = data.canRightFlex || false;
         }
         obj.parentId = obj.parentId || obj.parent || '';
-        if(xml.isRoot){
+        if (xml.isRoot) {
             obj.modelName = data.modelName;
         }
         // obj.modelName = obj. modelName || data.modelName || '';
@@ -159,7 +159,7 @@ class DSLTreeTransfer {
         } else {
             for (var i in obj) {
                 if (i === 'tagName' && obj[i]) continue;
-                destObj[i] = typeof obj[i] === "object" && obj[i] && !Array.isArray(obj[i])  ? this.clone(obj[i],{})  : obj[i];
+                destObj[i] = typeof obj[i] === "object" && obj[i] && !Array.isArray(obj[i]) ? this.clone(obj[i], {}) : obj[i];
             }
         }
         return destObj;
@@ -167,14 +167,14 @@ class DSLTreeTransfer {
     static isJSON(str) {
         if (typeof str == 'string') {
             try {
-                var obj=JSON.parse(str);
-                if(typeof obj == 'object' && obj ){
+                var obj = JSON.parse(str);
+                if (typeof obj == 'object' && obj) {
                     return true;
-                }else{
+                } else {
                     return false;
                 }
-    
-            } catch(e) {
+
+            } catch (e) {
                 // console.log('error：'+str+'!!!'+e);
                 return false;
             }
@@ -182,7 +182,8 @@ class DSLTreeTransfer {
         console.log('It is not a string!')
     }
     static guid() {
-        return 'ts-'+(++uuid);
+        // virtual
+        return 'vt' + (++uuid);
     }
 }
 

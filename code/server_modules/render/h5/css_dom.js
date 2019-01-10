@@ -141,6 +141,7 @@ class CssDom {
     constructor(parent, data, layoutType) {
         // 节点的信息
         this.id = data.id;
+        this.serialId = data.serialId;
         this.type = data.type;
         this.modelName = data.modelName;
         this.canLeftFlex = data.canLeftFlex;
@@ -148,7 +149,6 @@ class CssDom {
         this.isCalculate = data.isCalculate;
         this.tplAttr = data.tplAttr;
         this.tplData = data.tplData;
-        this.beautyClass = data.beautyClass;
 
         this.parent = parent ? parent : this;
         this.layoutType = layoutType;
@@ -292,13 +292,12 @@ class CssDom {
      */
     _isParentHorizontal() {
         let res = false; // 默认为竖排
-        let parent = this.parent;
-        if (parent.children.length == 1) { // 1个元素默认是竖排
+        if (this.parent.children.length == 1) { // 1个元素默认是竖排
             return res;
         }
 
-        if (parent.constraints['LayoutDirection'] &&
-            parent.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal) {
+        if (this.parent &&
+            this.parent.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal) {
             res = true;
         }
 
@@ -482,6 +481,9 @@ class CssDom {
             }
         }
     } */
+    /**
+     * 判断是否使用padding
+     */
     _usePaddingTop(parent) {
         return parent.constraints["LayoutDirection"] == Constraints.LayoutDirection.Vertical &&
             parent.children.find(nd => !this._isAbsolute(nd));
@@ -591,19 +593,31 @@ class CssDom {
             }
         }
     } */
-
+    // 找到所有祖父modelId
+    getGrandfatherModelId(id, arr = []) {
+        if (!id) {
+            return arr;
+        }
+        if (id == this.id) {
+            arr.push(id);
+            id = this.modelId;
+        }
+        return this.parent.getGrandfatherModelId(id, arr);
+    }
     /**
      * 获取className
      */
     getClass() {
-        var result = this._class ? `.${this._class} ` : ``;
-        if (this.beautyClass) {
-            result += "." + this.beautyClass;
+        // return result;
+        // 如果有modelId,说明当前节点为某模型子元素
+        if (this.modelId) {
+            let modelId = this.getGrandfatherModelId(this.modelId).join(' ');
+            return `[${modelId}] ${this.tplData.class}`;
+        } else {
+            return `[${this.serialId}]`;
         }
-        // if(this.beautyClass){
-        //     result += " "+this.beautyClass;
-        // }
-        return result;
+
+
     }
 
     /**
@@ -665,14 +679,12 @@ class CssDom {
     }
     //
     get display() {
-        let css = null;
         // -webkit-flex, block, inline-block, inline
         // 竖排默认不返回
-        if (this.constraints['LayoutDirection'] &&
-            this.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal) {
-            css = '-webkit-box';
+        if (this.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal) {
+            return '-webkit-box';
         }
-        return css;
+        return null;
     }
     //
     get boxOrient() {
@@ -686,16 +698,23 @@ class CssDom {
     }
     //
     get boxAlign() {
-        let css = null;
-        if (this.boxOrient) {
-            // 横排情况, 先左到右
-            css = 'start';
-        }
-        return css;
+        const axle = this.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal ?
+            'LayoutAlignItems' : 'LayoutJustifyContent';
+        return {
+            'Start': 'start',
+            'End': 'end',
+            'Center': 'center',
+        } [this.constraints[axle]] || null;
     }
     //
     get boxPack() {
-        return null;
+        const axle = this.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal ?
+            'LayoutJustifyContent' : 'LayoutAlignItems';
+        return {
+            'Start': 'start',
+            'End': 'end',
+            'Center': 'center',
+        } [this.constraints[axle]] || null;
     }
     //
     get width() {
@@ -805,12 +824,30 @@ class CssDom {
         if (firstChild == this) {
             return null;
         }
-
         if (this._isParentHorizontal()) { // 横排计算与父节点距离
+            // 如果垂直居中、底对齐则无margin-Top
+            if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Center) {
+                return null;
+            }
+            if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.End) {
+                return null;
+            }
+            // LayoutAlignItems.Start
             css = this._abY - this.parent._abY;
         } else { // 竖排计算与上一节点距离
             let preNode = this._prevNode();
+            /**
+             * 由于垂直方向使用block，所以统一默认约束为Constraints.LayoutJustifyContent.Start
+             */
+            /* if (!preNode &&
+                this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center) {
+                return null;
+            }
+            if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.End) {
+                return null;
+            } */
 
+            // LayoutJustifyContent.Start
             if (preNode) {
                 css = this._abY - preNode._abYops;
             } else {
@@ -831,13 +868,80 @@ class CssDom {
     }
     //
     get marginRight() {
-        // 暂不处理
-        return null;
+        let css = null;
+        if (this._isAbsolute(this)) {
+            return css;
+        }
+
+        if (this._isParentHorizontal()) { // 横排计算与上一节点距离
+            let nextNode = this._nextNode();
+
+            // 如果水平左对齐
+            if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Start) {
+                return null;
+            }
+            // 如果水平居中
+            if (!nextNode &&
+                this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center) {
+                return null;
+            }
+
+            if (nextNode) {
+                css = this._abX - nextNode._abXops;
+            } else {
+                css = this._abX - this.parent._abX;
+            }
+        } else { // 竖排计算与父节点距离
+            // 如果水平居中、或水平右对齐
+            if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Center) {
+                return 'auto';
+            }
+            if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Start) {
+                return null;
+            }
+            // LayoutAlignItems.End
+            css = this.parent._abXops - this._abXops;
+            return null;
+        }
+        return css;
     }
     //
     get marginBottom() {
-        // 暂不处理
-        return null;
+        if (this._isAbsolute(this)) {
+            return null;
+        }
+        if (this._isParentHorizontal()) { // 横排计算与父节点距离
+            // 如果垂直居中、底对齐则无margin-Top
+            if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Center) {
+                return null;
+            }
+            if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Start) {
+                return null;
+            }
+            // LayoutAlignItems.Start
+            return this.parent._abYops - this._abYops;
+        } else { // 竖排计算与上一节点距离
+            /**
+             * 由于垂直方向使用block，所以统一默认约束为Constraints.LayoutJustifyContent.Start
+             */
+            /* 
+            let nextNode = this._nextNode();
+            if (!nextNode &&
+                this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center) {
+                return null;
+            }
+            if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Start) {
+                return null;
+            }
+
+            // LayoutJustifyContent.Start
+            if (nextNode) {
+                css = this._abY - nextNode._abYops;
+            } else {
+                css = this._abY - this.parent._abY;
+            } */
+            return null;
+        }
     }
     //
     get marginLeft() {
@@ -845,15 +949,32 @@ class CssDom {
         if (this._isAbsolute(this)) {
             return css;
         }
+
         if (this._isParentHorizontal()) { // 横排计算与上一节点距离
             let preNode = this._prevNode();
 
+            // 如果水平居中、或水平右对齐，第一个子节点无margin-left
+            if (!preNode && this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center) {
+                return null;
+            }
+            if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.End) {
+                return null;
+            }
+            // LayoutJustifyContent.Start
             if (preNode) {
                 css = this._abX - preNode._abXops;
             } else {
                 css = this._abX - this.parent._abX;
             }
         } else { // 竖排计算与父节点距离
+            // 如果水平居中、或水平右对齐
+            if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Center) {
+                return 'auto';
+            }
+            if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.End) {
+                return null;
+            }
+            // LayoutAlignItems.Start
             css = this._abX - this.parent._abX;
         }
         return css;
@@ -950,6 +1071,10 @@ class CssDom {
         return `-webkit-linear-gradient(${angle}deg, ${stops.map((s) => {
             return s.color + ' ' + (s.offset * 100) + '%';
         }).join(',')})`;
+    }
+
+    compareStyle() {
+
     }
 
     get backgroundImage() {
