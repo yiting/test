@@ -383,7 +383,8 @@ let TOSEEAPP = {
     if (urlIsGenerate) {
       //设置对应的链接
       //$("#screen").attr("src", currentArtBoardUrl);
-      $("#screen").attr("src", currentArtBoardUrl+"&time="+Date.now());
+      $("#screen").attr("src", currentArtBoardUrl);
+      //$("#screen").attr("src", $("#screen").attr("src"));
       //设置对应的素材库(直接本地读取)
       //重置下
       urlIsGenerate = false;
@@ -460,8 +461,12 @@ let TOSEEAPP = {
         });
         //设置对应的url
         //$("#screen").attr("src", currentArtBoardUrl);
-        $("#screen").attr("src", currentArtBoardUrl+"&time="+Date.now());
-        $('#screen').attr('src', $('#screen').attr('src'));
+        $("#screen").attr("src", currentArtBoardUrl);
+        $("#screen").attr(
+          "src",
+          $("#screen").attr("src") + "&time=" + Date.now()
+        );
+        //$("#screen").attr("src", $("#screen").attr("src"));
         //将生成的url存储在缓存数据中
         artboardsUrlArr.push({
           artboardId: currentArtboardId,
@@ -514,9 +519,35 @@ let TOSEEAPP = {
               _this.getImgsByArtBoardId();
               //刷新页面
               //$("#screen").attr("src", currentArtBoardUrl);
-              $("#screen").attr("src", currentArtBoardUrl+"&time="+Date.now());
-              $('#screen').attr('src', $('#screen').attr('src'));
-              window.location.reload();
+              /* document
+                .querySelector("#screen")
+                .contentWindow.location.reload(true); */
+              // $("#screen").attr("src", currentArtBoardUrl);
+              document
+                .querySelector("#screen")
+                .contentWindow.location.reload(true);
+              $("#screen").attr(
+                "src",
+                $("#screen").attr("src") + "&time=" + Date.now()
+              );
+              $("#screen").load(function(event) {
+                let cssHref = $("#screen")
+                .contents()
+                .find(".contentCss")
+                .attr("href");
+                $("#screen")
+                  .contents()
+                  .find("head")
+                  .append(
+                    `<link rel="stylesheet" href="${cssHref}?time=${new Date().getTime()}"/>`
+                  );
+                $("#screen")
+                  .contents()
+                  .find(".contentCss")
+                  .remove();
+              });
+              $("#screen").attr("src", currentArtBoardUrl);
+              //window.location.reload();
             }
           },
           function(error) {
@@ -527,9 +558,28 @@ let TOSEEAPP = {
         );
       },
       function(error) {
-        //清除生成骨架定时器
+        //清除生成骨架定时器:清除Symbol页面
         clearInterval(structureInterval);
-        layer.msg("生成页面结果失败:" + error.responseText);
+        //关闭之前所有的信息窗口
+        layer.closeAll();
+        let SymbolPageId = error.responseText;
+        //layer.msg("生成页面结果失败:" + error.responseText);
+        $(".pages-list .pages-item[data-id=" + SymbolPageId + "]").remove();
+        //切换到第1页，选中第1页的第1个artBoard请求数据
+
+        currentPageId = $(".pages-list .pages-item:first").data("id");
+        //获取当前选中的pageIndex
+        currentPageIndex =
+          $(".pages-list .pages-item[data-id=" + currentPageId + "]").index() +
+          1;
+        $(".pages-list").hide();
+        //根据pageid，切换对应的artBoard列表
+        _this.getArtBoardsByPageId(currentPageId, function() {
+          //切换pages，成功填充artBoard list后，然后选中第一个节点的id
+          currentArtboardId = $(".artboard-list .artboard:first").data("id");
+        });
+        //切换刷新对应的artBoards列表，且默认查询当前page的第一个artBoard页面
+        _this.getPageUrlById();
       }
     );
   },
