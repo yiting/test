@@ -286,10 +286,7 @@ class Tree {
     getRenderData() {
         // renderData通过递归节点树来获取
         let renderData = this._treeData.getRenderData();        // 获取根元素
-        console.log(this._treeData);
-        console.log('+++++++++++++++++');
-        console.log(renderData);
-        //this._parseRenderData(renderData, this._treeData);
+        this._parseRenderData(renderData, this._treeData);
         return renderData;
     }
 
@@ -360,7 +357,8 @@ class Node {
         if (mdata.type && (mdata.canLeftFlex === false || mdata.canLeftFlex === true)) {
             this.canLeftFlex = mdata.canLeftFlex;
         }
-        else if (mdata.type && (mdata.canRightFlex === false || mdata.canRightFlex === true)) {
+        
+        if (mdata.type && (mdata.canRightFlex === false || mdata.canRightFlex === true)) {
             this.canRightFlex = mdata.canRightFlex;
         }
 
@@ -400,7 +398,7 @@ class Node {
         this._renderData.set('zIndex', this.zIndex);
 
         // 如果有MatchData, 则进行解析处理
-        if (!this._mdata || this._mdata === {}) {
+        if (this._mdata && this._mdata.getMatchNode) {
             let jsonNode = this._mdata.getMatchNode();
             this._handleMatchNodeData(this._renderData, jsonNode);
         }
@@ -438,15 +436,16 @@ class Node {
         if (jsonNode['0'] && !jsonNode['1']) {
             let text = jsonNode['0'].text? jsonNode['0'].text : '';
             let path = jsonNode['0'].path? jsonNode['0'].path : null;
-            let style = jsonNode['0'].style? jsonNode['0'].style : {};
+            let style = jsonNode['0'].styles? jsonNode['0'].styles : {};
             parent.set('text', text);
             parent.set('path', path);
             parent.set('style', style);
             parent.set('modelRef', '0');
+            parent.set('modelName', '');                // !重要, 帮Render添加一个逻辑,如果是根节点,则不显示modelName了
             return;
         }
 
-        for(key in jsonNode) {
+        for(let key in jsonNode) {
             let json = jsonNode[key];
             let renderData = new RenderData();
             renderData.set('parentId', parent.id);
@@ -472,10 +471,9 @@ class Node {
             renderData.set('abYops', json.abY + json.height);
             renderData.set('width', json.width);
             renderData.set('height', json.height);
-            renderData.set('modelName', '');     // !重要,因为已经是叶节点,所以取消了modelName, Render模块需要用来辨识
             let text = json.text? json.text : '';
             let path = json.path? json.path : null;
-            let style = json.style? json.style : {};
+            let style = json.styles? json.styles : {};
             renderData.set('text', text);
             renderData.set('path', path);
             renderData.set('style', style);
@@ -487,6 +485,11 @@ class Node {
         if (prop == 'children' && this._zIndex == -1) {
             // if (parent.id == 'layer0') debugger;
             this._zIndex = this._children.length ? Math.min(...this._children.map(nd => nd.zIndex)) : -1;
+        }
+
+        // 添加临时逻辑, node属性的修改同步到node的renderData
+        if (this._renderData && prop != 'similarIndex' && prop != 'children') {
+            this._renderData.set(prop, value);
         }
     }
 
@@ -594,12 +597,14 @@ class RenderData {
         this._text = '';
         this._path = '';
         this._style = {};
+        this._similarId = -1;
+        this._modelId = null;
         
         this.children = [];
     }
 
-    set(key, value) {
-        this["_" + key] = value;
+    set(prop, value) {
+        this["_" + prop] = value;
     }
 
     get parentId() {
@@ -676,6 +681,14 @@ class RenderData {
 
     get style() {
         return this._style;
+    }
+
+    get similarId() {
+        return this._similarId;
+    }
+    
+    get modelId() {
+        return this._modelId;
     }
 }
 
