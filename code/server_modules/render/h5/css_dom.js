@@ -612,9 +612,9 @@ class CssDom {
         // 如果有modelId,说明当前节点为某模型子元素
         if (this.modelId) {
             let modelId = this.getGrandfatherModelId(this.modelId).join(' ');
-            return `[${modelId}] ${this.tplData.class}`;
+            return `.ts-${modelId} ${this.tplData.class}`;
         } else {
-            return `[${this.serialId}]`;
+            return `.${this.serialId}`;
         }
 
 

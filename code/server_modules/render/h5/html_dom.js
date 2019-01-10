@@ -28,9 +28,8 @@ class HtmlDom {
         return this.parent ? (this.abY - this.parent.abY) : this.abY
     }
     getAttrClass() {
-        var result = [];
+        var result = [this.serialId];
         if (this.tplData && this.tplData.class) {
-            // result += this.tplData.class + ' ';
             result.push(this.tplData.class);
         }
         if (this.tplAttr && this.tplAttr.class) {
@@ -67,7 +66,7 @@ class HtmlDom {
     }
     // 开始节点
     getHtmlStart() {
-        return `<${this.getTag()} ${this.serialId} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+        return `<${this.getTag()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
     }
     // 闭合节点
     getHtmlEnd() {
