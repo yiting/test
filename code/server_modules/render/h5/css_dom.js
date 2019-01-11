@@ -6,12 +6,15 @@ const DSL_Utils = require('../../dsl2/dsl_utils.js');
 
 // 生成的Css记录树
 let cssDomTree = null;
+let similarData = {},
+    similarModelData = {};
 
 // 
 let process = function (data, layoutType) {
+    similarData = {};
     // 构建cssTree并返回
-    cssDomTree = new CssDom(null, data, layoutType);
-    _buildTree(cssDomTree, data.children, layoutType);
+    _buildTree(null, data, layoutType);
+    _buildSimilar(cssDomTree);
 }
 
 let getCssString = function () {
@@ -32,15 +35,54 @@ let getCssString = function () {
  * @param {Json} data 
  * @param {Int} layoutType 
  */
-let _buildTree = function (parent, datas, layoutType) {
-    datas.forEach(data => {
-        let cssNode = new CssDom(parent, data, layoutType);
+let _buildTree = function (parent, data, layoutType) {
+    let cssNode = new CssDom(parent, data, layoutType);
+    // 构建树
+    if (!parent) {
+        cssDomTree = cssNode;
+    } else {
         parent.children.push(cssNode);
+    }
 
-        if (data.children && data.children.length > 0) {
-            _buildTree(cssNode, data.children, layoutType);
+    // if (data.children && data.children.length > 0) {
+    data.children.forEach(data => {
+        _buildTree(cssNode, data, layoutType);
+    })
+}
+let _buildSimilar = function () {
+    // 构建similar元素
+    _buildSimilarData(cssDomTree);
+    // 构建similar的子元素
+    _buildSimilarChildData(cssDomTree);
+}
+
+let _buildSimilarData = function (cssNode) {
+    // 如果存在相似节点，则存储相似节点到simialrData
+    let similarId = cssNode.similarId;
+    if (typeof similarId == 'number' && similarId != -1) {
+        if (!similarData[similarId]) {
+            similarData[similarId] = {
+                css: {},
+                list: []
+            };
         }
-    });
+        similarData[similarId].list.push(cssNode);
+    }
+    cssNode.children.forEach(nd => _buildSimilarData(nd));
+}
+let _buildSimilarData = function (cssNode) {
+    // 如果存在相似节点，则存储相似节点到simialrData
+    let similarId = cssNode.modelId;
+    if (typeof similarId == 'number' && similarId != -1) {
+        if (!similarData[similarId]) {
+            similarData[similarId] = {
+                css: {},
+                list: []
+            };
+        }
+        similarData[similarId].list.push(cssNode);
+    }
+    cssNode.children.forEach(nd => _buildSimilarData(nd));
 }
 
 /**
@@ -55,6 +97,57 @@ let _parseTree = function (arr, dom) {
     dom.children.forEach(child => {
         _parseTree(arr, child);
     });
+}
+
+let _parseSimilarCss = function (similarData) {
+    Object.keys(similarData).forEach(key => {
+        let cssDomList = similarData[key].list;
+        let css = similarData[key].css;
+        cssDomList.forEach(cssDom => {
+            _getSimilarCSS(css, cssDom);
+
+        });
+    })
+}
+let _parseSimilarChildCss = function (parent) {
+    parent.children
+}
+let _getSimilarCSS = function (target, source) {
+    target['display'] = target.display || source.display;
+    target['boxOrient'] = target.boxOrient || source.boxOrient;
+    target['boxPack'] = target.boxPack || source.boxPack;
+    target['boxAlign'] = target.boxAlign || source.boxAlign;
+    target['position'] = target.position || source.position;
+    target['opacity'] = target.opacity || source.opacity;
+    target['whiteSpace'] = target.whiteSpace || source.whiteSpace
+    target['backgroundRepeat'] = target.backgroundRepeat || source.backgroundRepeat;
+    target['backgroundSize'] = target.backgroundSize || source.backgroundSize;
+    target['width'] = Math.min(target.width, source.width);
+    target['minHeight'] = Math.min(target.minHeight, source.minHeight);
+    target['marginTop'] = Math.min(target.marginTop, source.marginTop);
+    target['marginRight'] = Math.min(target.marginRight, source.marginRight);
+    target['marginBottom'] = Math.min(target.marginBottom, source.marginBottom);
+    target['marginLeft'] = Math.min(target.marginLeft, source.marginLeft);
+    target['paddingTop'] = Math.min(target.paddingTop, source.paddingTop);
+    target['top'] = Math.min(target.top, source.top);
+    target['right'] = Math.min(target.right, source.right);
+    target['bottom'] = Math.min(target.bottom, source.bottom);
+    target['left'] = Math.min(target.left, source.left);
+    target['zIndex'] = Math.min(target.zIndex, source.zIndex);
+    // 如果存在无背景图，则以无图为主样式
+    target['backgroundImage'] = (target.backgroundImage == undefined || target.backgroundImage == source.backgroundImage) ? source.backgroundImage : null;
+    // 如果存在无背景色，则以无色为主样式
+    target['backgroundColor'] = (target.backgroundColor == undefined || target.backgroundColor == source.backgroundColor) ? source.backgroundColor : null;
+    // 如果存在多色，则以无色为主样式
+    target['color'] = (target.color == undefined || target.color == source.color) ? source.color : null;
+    // 如果存在多字类，则以默认为主样式
+    target['fontFamily'] = (target.fontFamily == undefined || target.fontFamily == source.fontFamily) ? source.fontFamily : null;
+    // 如果存在多字号，则以默认为主样式
+    target['fontSize'] = (target.fontSize == undefined || target.fontSize == source.fontSize) ? source.fontSize : null;
+    // 如果存在多圆角，则以默认为主样式
+    target['borderRadius'] = (target.borderRadius == undefined || target.borderRadius == source.borderRadius) ? source.borderRadius : null;
+    // 如果存在多行高，则以默认为主样式
+    target['lineHeight'] = (target.lineHeight == undefined || target.lineHeight == source.lineHeight) ? source.lineHeight : null;
 }
 
 /**
@@ -111,12 +204,12 @@ const cssPropertyMap = [
     // "right",
     // "top",
     // "bottom",
+    // "padding",
     "zIndex",
     "backgroundImage",
     "backgroundColor",
     "backgroundSize",
     "backgroundRepeat",
-    // "padding",
     "color",
     "fontFamily",
     "fontSize",
@@ -149,6 +242,7 @@ class CssDom {
         this.isCalculate = data.isCalculate;
         this.tplAttr = data.tplAttr;
         this.tplData = data.tplData;
+        this.similarId = data.similarId;
 
         this.parent = parent ? parent : this;
         this.layoutType = layoutType;
