@@ -319,6 +319,10 @@ class Tree {
         return this._treeData.toJSON();
     }
 
+    // 获取原始数据
+    getNodeData() {
+        return this._treeData;
+    }
 
     getJSON() {
         return this._treeData
@@ -753,10 +757,10 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
     // 构建循环结构的根节点
     // 先测一个简单循环模板
     let newNode = new Node();
-    newNode.parentId = parent.id;
+    newNode.set('parentId', parent.id);
     let newRenderData = new RenderData();
-    newRenderData.id = newNode.id;
-    newRenderData.parentId = parent.id;
+    newRenderData.set('id', newNode.id);
+    newRenderData.set('parentId', parent.id);
     
     // 传进来的数据暂时只有两级结构, 所以直接coding两层循环
     for (let i = 0; i < nodesArr.length; i++) {
@@ -768,17 +772,17 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
 
         if (nodes.length == 1) {            // 第二层只有一个数据直接返回
             let renderDataI = nodes[0].getRenderData();
-            renderDataI.similarId = similarId;
+            renderDataI.set('similarId', similarId);
             newRenderData.children.push(renderDataI);
             continue;
         }
 
         let nodeI = new RenderData();
-        nodeI.parentId = newRenderData.id;
+        nodeI.set('parentId', newRenderData.id);
         for (let j = 0; j < nodes.length; j++) {
             let nd = nodes[j];
             let renderDataJ = nd.getRenderData();
-            renderDataJ.similarId = similarId;
+            renderDataJ.set('similarId', similarId);
             nodeI.children.push(renderDataJ);
         }
         nodeI.resize();         // 新节点重新计算最小范围
@@ -786,8 +790,11 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
     }
 
     // 把parent的属性重新设置
-    newNode.modelName = 'cycle-01';
+    newRenderData.resize();
+    newRenderData.set('modelName', 'cycle-01');
+    newRenderData.set('type', Common.QLayer);
     newNode.setRenderData(newRenderData);
+    
     return newNode;
 }
 
