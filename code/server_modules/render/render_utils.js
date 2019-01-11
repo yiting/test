@@ -70,6 +70,36 @@ const utils = {
         }
 
     },
+    gatherByLogic(domArr, logic) {
+        let newArr = [];
+        domArr.forEach((meta, i) => {
+            var st = newArr.find((n, k) => {
+                return n.includes(meta);
+            });
+            if (!st) {
+                st = [meta];
+                newArr.push(st);
+            }
+            domArr.forEach((target, j) => {
+                if (target == meta || st.includes(target)) {
+                    return;
+                }
+                if (logic(meta, target)) {
+                    let qr = newArr.find((n, qi) => {
+                        return n.includes(target)
+                    })
+                    if (qr) {
+                        st = newArr[newArr.indexOf(st)] = st.concat(qr);
+                        newArr.splice(newArr.indexOf(qr), 1);
+                    } else {
+                        st.push(target);
+                    }
+
+                }
+            })
+        });
+        return newArr;
+    },
 
 }
 

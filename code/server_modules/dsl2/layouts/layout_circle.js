@@ -13,7 +13,7 @@ class LayoutCircle extends Model.LayoutModel {
     }
 
     /**
-     * 对传进来的模型数组进行循环分析处理
+     * 主流程：对传进来的模型数组进行循环分析处理
      * @param {TreeNode} parent 树节点
      * @param {Array} nodes 树节点数组
      * @param {Array} models 对应的模型数组
@@ -24,55 +24,31 @@ class LayoutCircle extends Model.LayoutModel {
             // 如果没有子节点，则返回
             return;
         }
-
         // 找出需要对比的结构
-        let compareNodes = this._filter(nodes);
+        let compareNodes = this._filterCompare(nodes);
         // 找出相似结构组合
-        let similarArr = this._similar(compareNodes, this._similarRule);
+        let similarArr = this._findSimilar(compareNodes, this._similarRule, null);
+        // 相似结构处理
+        this._setSimilar(parent, nodes, similarArr);
+
+    }
+    // 相似结构处理
+    _setSimilar(parent, nodes, similarArr) {
 
         if (similarArr.length == 0) {
             // 如果没有相似结构，则返回
             return;
         }
-
-        // let children = [];
         let inSimilar = [];
+        // 获取循环节点
         similarArr.forEach(item => {
-            let similarIndex = this.similarIndex++;
-            /* 测试验证代码 */
-            // item.target.forEach(group => {
-            //     console.log(group.map(nd => nd.id).join(),
-            //         group.map(nd => nd.modelName).join(),
-            //         similarIndex);
-            // })
-
-            // 如果只有一个特征,不需要成组
-            if (item.feature == 1) {
-                item.target.forEach(group => {
-                    group.forEach(nd => {
-                        nd.set("similarIndex", similarIndex);
-                    });
-                })
-            } else {
-                item.target.forEach(group => {
-                    let layer = Group.Tree.createNodeData();
-                    let range = Utils.calRange(group);
-                    // !重要, 设定出layer的abX, abY, abXops, abYops, width, height
-                    layer.set("parentId", parent.id);
-                    layer.set("children", group);
-                    layer.set("abX", range.abX);
-                    layer.set("abY", range.abY);
-                    layer.set("abXops", range.abXops);
-                    layer.set("abYops", range.abYops);
-                    layer.set("similarIndex", similarIndex);
-
-                    group.forEach(nd => {
-                        nd.set("parentId", layer.id);
-                        inSimilar.push(nd);
-                    });
-                    nodes.push(layer);
-                });
-            }
+            let similarId = this.similarIndex++;
+            // 提取循环节点
+            item.target.forEach(group => inSimilar.push(...group))
+            // 合并循环节点为新节点
+            let newCycleData = Group.Tree.createCycleData(parent, item.target, similarId);
+            // 加入新节点到父级元素
+            nodes.push(newCycleData);
         });
         // 从节点中剔除被循环的节点
         nodes = nodes.filter(nd => {
@@ -82,7 +58,7 @@ class LayoutCircle extends Model.LayoutModel {
     }
 
     // 分组前的排序
-    _sort(arr) {
+    /* _sort(arr) {
         // 筛选前排序
         return arr.map(o => {
             return Object.assign({}, o, {
@@ -95,15 +71,21 @@ class LayoutCircle extends Model.LayoutModel {
             } else if (a.cY > b.cY)
                 return 1;
         })
-    }
-
-    _filter(arr) {
+    } */
+    // 剔除绝对定位元素，绝对定位元素不参与循环判断
+    _filterCompare(arr) {
         return arr.filter(nd => {
             return nd.constraints["LayoutSelfPosition"] != Constraints.LayoutSelfPosition.Absolute;
         });
     }
-
+    // 相似节点逻辑
     _similarRule(a, b) {
+        /**
+         * 逻辑：
+         * 1. 模型名称相似
+         * 2. 如果是layer，layer子节点相似
+         * 3. 如果非layer，三基线对齐
+         */
         return a.modelName == b.modelName &&
             // 如果为布局结构，则子节点宽度相同
             (a.modelName == 'layer' ?
@@ -139,7 +121,7 @@ class LayoutCircle extends Model.LayoutModel {
      *  ...
      * ]
      */
-    _similar(arr, similarLogic, featureLogic) {
+    _findSimilar(arr, similarLogic, featureLogic) {
         let pit = [];
         // 相似特征分组
         arr.forEach((s, i) => {

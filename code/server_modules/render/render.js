@@ -5,6 +5,7 @@
 // 1, 将dslTree的数据和模板接合,
 // 2, 将结合后的json数据输出, 主要是约束的解析计算
 
+const Utils = require('./render_utils');
 const Common = require('../dsl2/dsl_common.js');
 const Parser = require('./render_parser.js');
 const H5Builder = require('./h5/h5_builder.js');
@@ -13,8 +14,8 @@ const fs = require('fs');
  * 
  * @param {*} dslTree 
  */
-let process = function(dslTree) {
-    // 默认直接使用h5输出
+let process = function (dslTree) {
+    // 默认直接使用h5模板引擎输出
     let jsonData = Parser.parse(dslTree);
     // 这里直接使用h5 builder
     let render = new Render(jsonData, H5Builder, Common.FlexLayout);
@@ -28,12 +29,41 @@ class Render {
         if (!data) {
             return;
         }
-
+        this._similarMap = {};
+        this._nodeMap = {};
         this._data = data;
+        setSimilar(this.data);
+        setSimilarChild();
         this._builder = new builder(this._data, layoutType);
     }
+    setSimilar(data) {
+        if (data.similarId) {
+            similarId = data.similarId;
+            if (!this._similarMap[similarId]) {
+                this._similarMap[similarId] = [];
+            }
+            this._similarMap[similarId].push(data);
+        }
+        data.children.forEach(setSimilar);
+    }
 
-    getTpl(){
+    setSimilarChild() {
+        Object.keys(this._similarMap).forEach(key => {
+            let children = this._similarMap[key];
+            children.forEach(child=>{
+
+            })
+        })
+    }
+
+    compareSimilar(doms){
+        Utils.gatherByLogic(doms,(a,b)=>{
+            a.parentId!=b.parentId&&
+            a.abX-
+        })
+    }
+
+    getTpl() {
         return this._builder._getTpl();
     }
 
@@ -48,7 +78,7 @@ class Render {
         }
         //添加完整的html结构
         var tpl = this.getTpl();
-        var result = tpl.replace('${htmlStr}',htmlStr).replace('${cssName}',cssName);
+        var result = tpl.replace('${htmlStr}', htmlStr).replace('${cssName}', cssName);
         return result;
     }
 
@@ -64,6 +94,8 @@ class Render {
         return cssStr;
     }
 
+
+
     /**
      * 根据路径输出字符串
      * @param {String} path
@@ -73,9 +105,8 @@ class Render {
         fs.writeFile(path, string, function (err) {
             if (err) {
                 console.log(err);
-            }
-            else {
-                console.log(path+'生成成功');
+            } else {
+                console.log(path + '生成成功');
             }
         });
     }
