@@ -405,7 +405,7 @@ class Node {
         // 如果有MatchData, 则进行解析处理
         if (this._mdata && this._mdata.getMatchNode) {
             let jsonNode = this._mdata.getMatchNode();
-            this._handleMatchNodeData(this._renderData, jsonNode);
+            this._handleMatchNodeData(this._renderData, jsonNode, this._mdata.id);
         }
     }
 
@@ -432,7 +432,7 @@ class Node {
     /**
      * 递归解析MatchData的getMatchNode数据
      */
-    _handleMatchNodeData(parent, jsonNode) {
+    _handleMatchNodeData(parent, jsonNode, modelId) {
         if (!jsonNode ) {
             return;
         }
@@ -447,6 +447,7 @@ class Node {
             parent.set('styles', styles);
             parent.set('modelRef', '0');
             parent.set('modelName', '');                // !重要, 帮Render添加一个逻辑,如果是根节点,则不显示modelName了
+            parent.set('modelId', modelId);             // !重要, 设置一个modelId给循环判断用
             return;
         }
 
@@ -462,7 +463,7 @@ class Node {
             if (json instanceof Model.MatchData) {
                 let anotherJson = json.getMatchNode();
                 this._initRenderDataWithMatchData(renderData, json);
-                this._handleMatchNodeData(renderData, anotherJson);
+                this._handleMatchNodeData(renderData, anotherJson, json.id);
             }
 
             // 根据json的modelName获取对应的MatchData来赋值
@@ -482,6 +483,7 @@ class Node {
             renderData.set('text', text);
             renderData.set('path', path);
             renderData.set('styles', styles);
+            renderData.set('modelId', modelId);
         }
     }
 
@@ -617,7 +619,8 @@ class RenderData {
         this._text = '';
         this._path = '';
         this._styles = {};
-        this._similarId = -1;
+        this._similarId = null;
+        this._similarParentId = null;
         this._modelId = null;
         
         this.children = [];
@@ -729,6 +732,10 @@ class RenderData {
     get similarId() {
         return this._similarId;
     }
+
+    get similarParentId() {
+        return this._similarParentId;
+    }
     
     get modelId() {
         return this._modelId;
@@ -773,16 +780,22 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
         if (nodes.length == 1) {            // 第二层只有一个数据直接返回
             let renderDataI = nodes[0].getRenderData();
             renderDataI.set('similarId', similarId);
+            renderDataI.set('modelRef', 0);
             newRenderData.children.push(renderDataI);
             continue;
         }
 
         let nodeI = new RenderData();
         nodeI.set('parentId', newRenderData.id);
+        nodeI.set('modelRef', i);
+        // nodeI.set('similarId', similarId);
+        // nodeI.set('similarParentId', similarId);
         for (let j = 0; j < nodes.length; j++) {
             let nd = nodes[j];
             let renderDataJ = nd.getRenderData();
-            renderDataJ.set('similarId', similarId);
+            renderDataJ.set('modelRef', j);
+            // renderDataJ.set('similarId', similarId);
+            // renderDataJ.set('similarParentId', similarId);
             nodeI.children.push(renderDataJ);
         }
         nodeI.resize();         // 新节点重新计算最小范围

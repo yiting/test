@@ -1065,9 +1065,12 @@ let sim = jsonTree.children[1].children;
 // console.log(sim);
 let cycle = [[sim[0]], [sim[1]], [sim[2]], [sim[3]], [sim[4]]];
 let node = Tree.createCycleData(jsonTree, cycle, 1234);
-console.log(node);
-console.log('------------------');
-console.log(node.getRenderData());
+//console.log(node);
+let renderData = node.getRenderData();
+// console.log(renderData);
+// console.log('------------------');
+// console.log(renderData.children[0]);
+console.log(dslTree.getRenderData().children[1].children[0]);
 
 // let htmlStr = render.getTagString();
 // let cssStr = render.getStyleString();
