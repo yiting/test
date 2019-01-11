@@ -60,10 +60,10 @@ var vm = new Vue({
       var year = value.getFullYear();
       var month = padDate(value.getMonth() + 1);
       var day = padDate(value.getDate());
-      /* var hour = padDate(value.getHours());
+      var hour = padDate(value.getHours());
       var minutes = padDate(value.getMinutes());
-      var seconds = padDate(value.getSeconds()); */
-      return year + "-" + month + "-" + day;
+      //var seconds = padDate(value.getSeconds());
+      return year + "-" + month + "-" + day + " " + hour + ":" + minutes;
     }
   },
 
@@ -438,7 +438,7 @@ var vm = new Vue({
      * @param {*} event
      */
     copyUrl: function(event) {
-      let clipboard = new ClipboardJS(".info");
+      let clipboard = new ClipboardJS(".copy-btn");
       clipboard.on("success", function(e) {
         /* console.info("Action:", e.action);
         console.info("Text:", e.text);
