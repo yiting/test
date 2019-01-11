@@ -780,17 +780,20 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
         if (nodes.length == 1) {            // 第二层只有一个数据直接返回
             let renderDataI = nodes[0].getRenderData();
             renderDataI.set('similarId', similarId);
+            renderDataI.set('modelRef', 0);
             newRenderData.children.push(renderDataI);
             continue;
         }
 
         let nodeI = new RenderData();
         nodeI.set('parentId', newRenderData.id);
+        nodeI.set('modelRef', i);
         // nodeI.set('similarId', similarId);
         // nodeI.set('similarParentId', similarId);
         for (let j = 0; j < nodes.length; j++) {
             let nd = nodes[j];
             let renderDataJ = nd.getRenderData();
+            renderDataJ.set('modelRef', j);
             // renderDataJ.set('similarId', similarId);
             // renderDataJ.set('similarParentId', similarId);
             nodeI.children.push(renderDataJ);
