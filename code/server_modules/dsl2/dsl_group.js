@@ -436,10 +436,10 @@ class Node {
         if (jsonNode['0'] && !jsonNode['1']) {
             let text = jsonNode['0'].text? jsonNode['0'].text : '';
             let path = jsonNode['0'].path? jsonNode['0'].path : null;
-            let style = jsonNode['0'].styles? jsonNode['0'].styles : {};
+            let styles = jsonNode['0'].styles? jsonNode['0'].styles : {};
             parent.set('text', text);
             parent.set('path', path);
-            parent.set('style', style);
+            parent.set('styles', styles);
             parent.set('modelRef', '0');
             parent.set('modelName', '');                // !重要, 帮Render添加一个逻辑,如果是根节点,则不显示modelName了
             return;
@@ -473,10 +473,10 @@ class Node {
             renderData.set('height', json.height);
             let text = json.text? json.text : '';
             let path = json.path? json.path : null;
-            let style = json.styles? json.styles : {};
+            let styles = json.styles? json.styles : {};
             renderData.set('text', text);
             renderData.set('path', path);
-            renderData.set('style', style);
+            renderData.set('styles', styles);
         }
     }
 
@@ -612,7 +612,7 @@ class RenderData {
         this._zIndex = 0;
         this._text = '';
         this._path = '';
-        this._style = {};
+        this._styles = {};
         this._similarId = -1;
         this._modelId = null;
         
@@ -718,8 +718,8 @@ class RenderData {
         return this._path;
     }
 
-    get style() {
-        return this._style;
+    get styles() {
+        return this._styles;
     }
 
     get similarId() {
@@ -781,6 +781,7 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
             renderDataJ.similarId = similarId;
             nodeI.children.push(renderDataJ);
         }
+        nodeI.resize();         // 新节点重新计算最小范围
         newRenderData.children.push(nodeI);
     }
 
