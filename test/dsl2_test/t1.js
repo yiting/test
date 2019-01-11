@@ -1052,21 +1052,27 @@ let designjson =
 }];
 
 // 引入的模块包
-const Common = require('../../src/dsl2/dsl_common.js');
-const Dsl = require('../../src/dsl2/dsl.js');
-const Render = require('../../src/render/render.js');
+const Common = require('../../code/server_modules/dsl2/dsl_common.js');
+const Dsl = require('../../code/server_modules/dsl2/dsl.js');
+const Render = require('../../code/server_modules/render/render.js');
+const Group = require('../../code/server_modules/dsl2/dsl_group.js');
 
+let Tree = Group.Tree;
+let dslTree = Dsl.process(designjson, 750, 750, Common.FlexLayout);
+let jsonTree = dslTree.getNodeData();
+//console.log(jsonTree.children[1]);
+let sim = jsonTree.children[1].children;
+// console.log(sim);
+let cycle = [[sim[0]], [sim[1]], [sim[2]], [sim[3]], [sim[4]]];
+let node = Tree.createCycleData(jsonTree, cycle, 1234);
+console.log(node);
+console.log('------------------');
+console.log(node.getRenderData());
 
-let dslTree = Dsl.process(designjson, Common.DesignWidth, 750, Common.FlexLayout);
-let render = Render.process(dslTree);
-
-let jsonData = dslTree.getData();
-
-
-let htmlStr = render.getTagString();
-let cssStr = render.getStyleString();
+// let htmlStr = render.getTagString();
+// let cssStr = render.getStyleString();
 
 // // 输出文件
-render.outputFileWithPath('./output/index.html', htmlStr);
-render.outputFileWithPath('./output/index.css', cssStr);
+// render.outputFileWithPath('./output/index.html', htmlStr);
+// render.outputFileWithPath('./output/index.css', cssStr);
 

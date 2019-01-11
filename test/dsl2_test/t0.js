@@ -293,21 +293,22 @@ let designjson =
 }];
 
 // 引入的模块包
-const Common = require('../../src/dsl2/dsl_common.js');
-const Dsl = require('../../src/dsl2/dsl.js');
-const Render = require('../../src/render/render.js');
+const Common = require('../../code/server_modules/dsl2/dsl_common.js');
+const Dsl = require('../../code/server_modules/dsl2/dsl.js');
+const Render = require('../../code/server_modules/render/render.js');
 
 
 let dslTree = Dsl.process(designjson, 750, 750, Common.FlexLayout);
-let jsonData = dslTree.getData();
-let md = dslTree.getModelData('7C8550FD-BEFF-46BD-ADC4-8EE2EA59D5C0cc');
-let data = md.getMatchNode();
-let render = Render.process(dslTree);
+let jsonTree = dslTree.getData();
+console.log(jsonTree);
+// let md = dslTree.getModelData('7C8550FD-BEFF-46BD-ADC4-8EE2EA59D5C0cc');
+// let data = md.getMatchNode();
+// let render = Render.process(dslTree);
 
-let htmlStr = render.getTagString();
-let cssStr = render.getStyleString();
-// console.log(htmlStr);
-// console.log(cssStr);
-// 输出文件
-render.outputFileWithPath('./output/index.html', htmlStr);
-render.outputFileWithPath('./output/index.css', cssStr);
+// let htmlStr = render.getTagString();
+// let cssStr = render.getStyleString();
+// // console.log(htmlStr);
+// // console.log(cssStr);
+// // 输出文件
+// render.outputFileWithPath('./output/index.html', htmlStr);
+// render.outputFileWithPath('./output/index.css', cssStr);

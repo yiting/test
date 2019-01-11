@@ -12351,15 +12351,13 @@ const Dsl = require('../../code/server_modules/dsl2/dsl.js');
 const Render = require('../../code/server_modules/render/render.js');
 
 
-let dslTree = Dsl.process(designjson, Common.DesignWidth, 750, Common.FlexLayout);
-let render = Render.process(dslTree);
+let dslTree = Dsl.process(designjson, 750, 750, Common.FlexLayout);
+let jsonData = dslTree.getRenderData();
+console.log(jsonData);
+// let htmlStr = render.getTagString();
+// let cssStr = render.getStyleString();
+// const Path = require('path');
 
-//let jsonData = dslTree.getData();
-
-let htmlStr = render.getTagString();
-let cssStr = render.getStyleString();
-const Path = require('path');
-
-// 输出文件
-render.outputFileWithPath(Path.join(__dirname, './output/index.html'), htmlStr);
-render.outputFileWithPath(Path.join(__dirname, './output/index.css'), cssStr);
+// // 输出文件
+// render.outputFileWithPath(Path.join(__dirname, './output/index.html'), htmlStr);
+// render.outputFileWithPath(Path.join(__dirname, './output/index.css'), cssStr);
