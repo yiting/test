@@ -21,24 +21,25 @@ class DSLTreeProcessor {
      * @param {Object} dslTree 
      * @param {string=} platformType 解析类型: html(default),android,ios
      */
-    static parseTree(dslTree, platformType = RENDER_TYPE.HTML) {
-        let _tree = dslTree.getData();
+    static parseTree(tree, platformType = RENDER_TYPE.HTML) {
+        let _tree = { children: [tree]}
         _tree.root = true;
         // 遍历节点
-        walkout(_tree, this._parseNode.bind(this, platformType, dslTree));
-        _tree = this._convertNode(_tree, platformType)
-        delete _tree.root;
-        return _tree;
+        walkout(_tree, this._parseNode.bind(this, platformType));
+        return _tree.children[0];
     }
-    static _parseNode(platformType,dslTree,pnode) { 
+    static _parseNode(platformType,pnode) { 
         if(!pnode.children || !pnode.children.length) return;
+
         pnode.children.forEach((node,index) => {
+        // if (node.modelName === 'cycle-01') debugger
+            if (!node.modelName) return;
             let element = null;
             // _debuggerByid('4E0EC85E-AFB2-455C-9C17-FF91CE02A5EF',node);
             if (node.modelName === 'layer') {
-                element = (~QNODE_TYPES.indexOf(node.type)) ? this._parseBgNode(node,dslTree,platformType) : this._convertNode(node,platformType);
+                element = (~QNODE_TYPES.indexOf(node.type)) ? this._parseBgNode(node,platformType) : this._convertNode(node,platformType);
             } else {
-                element = this._parseWidgetNode(node,dslTree,platformType);
+                element = this._parseWidgetNode(node,platformType);
             }
             pnode.children[index] = element;
         })
@@ -47,26 +48,21 @@ class DSLTreeProcessor {
     /**
      * 解析背景节点
      */
-    static _parseBgNode(node, dslTree, platformType) {
-        let matchData = dslTree.getModelData(node.id);
-        let structure = matchData.getMatchNode();
+    static _parseBgNode(node, platformType) {
         let element = this._convertNode(node,platformType);
-        Object.assign(element,getAttr(structure[0],['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','path','styles']));
+        Object.assign(element,getAttr(node[0],['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','path','styles']));
         return element;
     }
 
     /**
      * 解析模型节点
      */
-    static _parseWidgetNode(node, dslTree, platformType) {
-        let matchData = dslTree.getModelData(node.id);
-        return walkModel(matchData,function(mdata,structure) {
-            let template = Template.getTemplate(mdata.modelName,platformType);
-            let element = DSLTreeTransfer.parse(template, structure,platformType);
-            Object.assign(element,getAttr(matchData,['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex']));
-            
-            return element;
-        });
+    static _parseWidgetNode(node, platformType) {
+        let template = Template.getTemplate(node.modelName,platformType);
+        let element = DSLTreeTransfer.parse(template, node.children,platformType);
+        Object.assign(element,getAttr(node,['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','modelRef','modelName']));
+        
+        return element;
     }
     static addBeautyClass(node){
         node.beautyClass = 'c' + (beautyClassNum++);
@@ -82,13 +78,13 @@ class DSLTreeProcessor {
     }
     static addPrefix(node) {
         if (node.id.indexOf('ts-') != 0) {
-            node.id = 'ts-' + node.id;
+            node.set('id','ts-' + node.id);
         }
         var children = node.children;
         if (children) {
             for (var i = 0, ilen = children.length; i < ilen; i++) {
                 if (children[i].id.indexOf('ts-') != 0) {
-                    children[i].id = 'ts-' + children[i].id;
+                    children[i].set('id','ts-' + children[i].id);
                 }
                 if (children[i]['children'] && children[i]['children'].length > 0) {
                     this.addPrefix(children[i]);
@@ -171,11 +167,9 @@ function getAttr(node,keys,move = false) {
     return obj;
 }
 function isValue(val) {
-    if (!val) return false;
-    if (typeof val === 'object') {
-        if (Array.isArray(val)) return !!val.length
-        else return !!Object.keys(val).length
-    } else return true;
+    if (val === undefined || val === null || val === '') return false;
+    if (typeof val === 'object') return !!Object.keys(val).length
+    return true;
 }
 function _debuggerByid(id,pa) {
     let n = null;
