@@ -26,20 +26,25 @@ const [Artboard,Group, Bitmap,Text,ShapeGroup,SymbolInstance,SymbolMaster,SliceL
  * @param {Object} designStyle 解析完的样式对象
  * @param {Array} designImage 需要合并的节点记录
  */
-let parse = function(artboradId, inputList,pageArtBoardIndex) {
+let parse = function(artboradId, inputList,pageArtBoardIndex,json) {
     try {
         // Sketch的数据解析逻辑
         // 传入的数据只能是Artboard类型为根节点或者Symbol类型为根节点
         // _parseFromArtboard
         // _parseFromSymbol
         const symbolMasterLayerMap = getSymbolMasterLayerMap(inputList);
+        const foreinSymbolMasterLayerMap = getForeinSymbolMasterLayerMap(json);
+        let symbolMap = {
+            ...symbolMasterLayerMap,
+            ...foreinSymbolMasterLayerMap
+        }
         const artboardLayer = getArtboardLayer(artboradId,inputList,pageArtBoardIndex);
         if (!artboardLayer) return null; // symbol
-        const _document = _parseFromArtboard(artboardLayer,symbolMasterLayerMap);
+        const _document = _parseFromArtboard(artboardLayer,symbolMap);
         modifySize(_document)
         return _document;
     } catch(err) {
-        Logger.error('数据解析报错！');
+        Logger.error('Symbol数据解析报错！');
     }
 }
 
@@ -217,6 +222,13 @@ let getSymbolMasterLayerMap = function(inputList) {
     arr.forEach(layer => obj[layer.symbolID] = layer);
     return obj;
 }
+let getForeinSymbolMasterLayerMap = function(json) {
+    let obj = {};
+    if (!json.foreignSymbols || !json.foreignSymbols.length) return null;
+    let arr = json.foreignSymbols.filter(obj => obj.symbolMaster._class === SymbolMaster).map(obj => obj.symbolMaster);
+    arr.forEach(layer => obj[layer.symbolID] = layer);
+    return obj;
+}
 let _parseFromArtboard = function(artboardLayer,symbolMasterLayerMap) {
     // 初始化一棵新树
     let _document = new QDocument();
@@ -299,7 +311,7 @@ let _parseLayer = function(_document, layer, pnode = null, brotherLayers = null)
         else obj.symbolRoot = [uin.slice(0,4)];
     }
     if (pnode && Array.isArray(pnode.symbolRoot)) { // 如果是symbol子孙元素，设置实例字段，添加前缀
-        uin = `${pnode.symbolRoot.join('---')}---${uin}`;
+        uin = `${pnode.symbolRoot.join('#')}#${uin}`;
         obj.symbolRoot = pnode.symbolRoot;
         // console.log('增加前缀',uin)
     }
@@ -359,7 +371,7 @@ let maskProcess = function(uin,obj, layer, brotherLayers) {
                 const brotherLayer = brotherLayers[i];
                 if(brotherLayer.shouldBreakMaskChain) break;
                 if(brotherLayer.isVisible) {
-                    let _id = (Array.isArray(obj.symbolRoot)) ? `${obj.symbolRoot.join('---')}---${brotherLayer.do_objectID}` : brotherLayer.do_objectID;
+                    let _id = (Array.isArray(obj.symbolRoot)) ? `${obj.symbolRoot.join('#')}#${brotherLayer.do_objectID}` : brotherLayer.do_objectID;
                     maskedNodes.push(_id);
                 }
                 brotherLayer.maskNode = uin;

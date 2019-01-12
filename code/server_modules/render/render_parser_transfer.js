@@ -1,40 +1,45 @@
 const jsdom = require("jsdom");
 const dom = new jsdom.JSDOM(`<!DOCTYPE html><p>Hello world</p>`);
 const extremType = {
-    "Max": "Max",
-    "Min": "Min"
+    "Max":"Max",
+    "Min":"Min"
+}
+const ATTR_TYPES = {
+    FOR: ':for',
+    REF: ':ref',
+    CONSTRAINTS: ':constraints'
 }
 let uuid = 1;
 class DSLTreeTransfer {
 
-    static getExtremValue(childrenNodes, prop, extremType, parentNode) {
+    static getExtremValue(childrenNodes,prop,extremType,parentNode){
         var result = 0;
-        if (prop == "abX" || prop == "abY") {
-            if (childrenNodes && childrenNodes.length > 0) {
-                for (var i = 0, ilen = childrenNodes.length; i < ilen; i++) {
-                    if (childrenNodes[i][prop] < result || result == 0) {
+        if(prop == "abX" || prop == "abY"){
+            if(childrenNodes && childrenNodes.length>0){
+                for(var i=0,ilen=childrenNodes.length;i<ilen;i++){
+                    if(childrenNodes[i][prop]<result || result == 0){
                         result = childrenNodes[i][prop];
                     }
                 }
             }
-        } else if (prop == "abXops") {
-            if (childrenNodes && childrenNodes.length > 0) {
-                for (var i = 0, ilen = childrenNodes.length; i < ilen; i++) {
-                    if (childrenNodes[i][prop] > result) {
+        }else if(prop == "abXops"){
+            if(childrenNodes && childrenNodes.length>0){
+                for(var i=0,ilen=childrenNodes.length;i<ilen;i++){
+                    if(childrenNodes[i][prop]>result){
                         result = childrenNodes[i][prop];
                     }
                 }
-            } else {
+            }else{
                 result = parentNode["abX"] + parentNode["width"];
             }
-        } else if (prop == "abYops") {
-            if (childrenNodes && childrenNodes.length > 0) {
-                for (var i = 0, ilen = childrenNodes.length; i < ilen; i++) {
-                    if (childrenNodes[i][prop] > result) {
+        }else if(prop == "abYops"){
+            if(childrenNodes && childrenNodes.length>0){
+                for(var i=0,ilen=childrenNodes.length;i<ilen;i++){
+                    if(childrenNodes[i][prop]>result){
                         result = childrenNodes[i][prop];
                     }
                 }
-            } else {
+            }else{
                 result = parentNode["abY"] + parentNode["height"];
             }
         }
@@ -59,9 +64,24 @@ class DSLTreeTransfer {
      */
     static parse(xml, data) {
         this.setXml(xml);
+        this.process(xml,data);
         this.xml.isRoot = true;
         return this.convert(this.xml, data);
     };
+    static process(xml,data) {
+        let xml_repeat = this.xml.getElementsByTagName("repeat")[0];
+        if (!xml_repeat) return;
+        let xml_repeat_parent = xml_repeat.parentNode;
+        let ref_template = xml_repeat.querySelector("[\\:ref]");
+        xml_repeat_parent.removeChild(xml_repeat);
+        data.forEach((item,index) => {
+            ref_template.setAttribute(':ref',index);
+            xml_repeat_parent.innerHTML += xml_repeat.innerHTML;
+        })
+    }
+    static getNodeDataByModelRef(ref,data) {
+        return data.find(d => d.modelRef === ref)
+    }
     /**
      * 将xml模板与data数据结合在一起，生成目标json
      * 2.xml节点中“:”开头的属性保存在节点根的tplData里，其余属性放在tplAttr属性里
@@ -69,10 +89,7 @@ class DSLTreeTransfer {
      * @param {String} xml 
      * @param {Object} data
      */
-    static convert(xml, data) {
-        if (xml.nodeType != 1) {
-            return null;
-        }
+    static createNode(xml) {
         var obj = {};
         obj.id = this.guid();
         obj.tplAttr = {};
@@ -93,20 +110,20 @@ class DSLTreeTransfer {
         if (nodeValue && xml.childNodes.length == 1) {
             obj.text = nodeValue;
         }
+        return obj;
+    }
+    static convert(xml, data) {
+        if (xml.nodeType != 1) {
+            return null;
+        }
+        let obj = this.createNode(xml);
         if (xml.attributes.length > 0) {
             for (var j = 0; j < xml.attributes.length; j++) {
                 var attribute = xml.attributes.item(j);
-                if (attribute.nodeName == ":constraints") {
-                    if (this.isJSON(attribute.nodeValue)) {
-                        this.clone(JSON.parse(attribute.nodeValue), obj["constraints"]);
-                    }
-                } else if (attribute.nodeName.indexOf(":") == 0 && attribute.nodeName != ":ref") {
-                    obj["tplData"][attribute.nodeName.substring(1)] = attribute.nodeValue;
-                } else if (attribute.nodeName == ":ref") {
-                    // 复制data 到树里
-                    this.clone(data[attribute.nodeValue], obj);
-                } else {
-                    obj["tplAttr"][attribute.nodeName] = attribute.nodeValue;
+                switch(attribute.nodeName) {
+                    case ":ref": this.clone(data[attribute.nodeValue], obj); break;
+                    case ":constraints": this.isJSON(attribute.nodeValue) && this.clone(JSON.parse(attribute.nodeValue), obj["constraints"]); break;
+                    default : attribute.nodeName[0] === ':' ? obj["tplData"][attribute.nodeName.substring(1)] = attribute.nodeValue :  obj["tplAttr"][attribute.nodeName] = attribute.nodeValue;break;
                 }
             }
         }
@@ -123,32 +140,33 @@ class DSLTreeTransfer {
                 obj.children = items;
             }
         }
-        //父节点获取所有子节点的最边的四个角的值
-        if (typeof (obj.abX) == "undefined") {
-            obj.abX = this.getExtremValue(obj.children, "abX", extremType.Min, obj);
-        }
-        if (typeof (obj.abY) == "undefined") {
-            obj.abY = this.getExtremValue(obj.children, "abY", extremType.Min, obj);
-        }
-        if (typeof (obj.abXops) == "undefined") {
-            var childrenXops = this.getExtremValue(obj.children, "abXops", extremType.Max, obj);
-            var selfXops = obj.abX + obj.width;
-            obj.abXops = childrenXops > selfXops ? childrenXops : selfXops;
-        }
-        if (typeof (obj.abYops) == "undefined") {
-            var childrenYops = this.getExtremValue(obj.children, "abYops", extremType.Max, obj);
-            var selfYops = obj.abY + obj.height;
-            obj.abYops = childrenYops > selfYops ? childrenYops : selfYops;
-        }
-        if (typeof (obj.canLeftFlex) == "undefined") {
-            obj.canLeftFlex = data.canLeftFlex || false;
-        }
-        if (typeof (obj.canRightFlex) == "undefined") {
-            obj.canRightFlex = data.canRightFlex || false;
-        }
-        obj.parentId = obj.parentId || obj.parent || '';
-        if (xml.isRoot) {
+        if(xml.isRoot){
             obj.modelName = data.modelName;
+        } else {
+            //父节点获取所有子节点的最边的四个角的值
+            if(typeof(obj.abX) == "undefined"){
+                obj.abX = this.getExtremValue(obj.children,"abX",extremType.Min,obj);
+            }
+            if(typeof(obj.abY) == "undefined"){
+                obj.abY = this.getExtremValue(obj.children,"abY",extremType.Min,obj);
+            }
+            if(typeof(obj.abXops) == "undefined"){
+                var childrenXops = this.getExtremValue(obj.children,"abXops",extremType.Max,obj);
+                var selfXops = obj.abX+obj.width;
+                obj.abXops = childrenXops>selfXops?childrenXops:selfXops;
+            }
+            if(typeof(obj.abYops) == "undefined"){
+                var childrenYops = this.getExtremValue(obj.children,"abYops",extremType.Max,obj);
+                var selfYops = obj.abY+obj.height;
+                obj.abYops = childrenYops>selfYops?childrenYops:selfYops;
+            }
+            if(typeof(obj.canLeftFlex) == "undefined"){
+                obj.canLeftFlex = data.canLeftFlex || false;
+            }
+            if(typeof(obj.canRightFlex) == "undefined"){
+                obj.canRightFlex = data.canRightFlex || false;
+            }
+            obj.parentId = obj.parentId || obj.parent || '';
         }
         // obj.modelName = obj. modelName || data.modelName || '';
         return obj;
@@ -157,9 +175,15 @@ class DSLTreeTransfer {
         if (typeof obj !== "object") {
             return obj;
         } else {
-            for (var i in obj) {
-                if (i === 'tagName' && obj[i]) continue;
-                destObj[i] = typeof obj[i] === "object" && obj[i] && !Array.isArray(obj[i]) ? this.clone(obj[i], {}) : obj[i];
+
+            for (var key in obj) {
+                if (key === 'tagName' && obj[key]) continue;
+                let _key = key;
+                if (key[0] === '_') {
+                    _key = key.slice(1);
+                    if (obj[_key] === undefined) continue;
+                }
+                destObj[_key] = obj[_key];
             }
         }
         return destObj;
@@ -167,14 +191,14 @@ class DSLTreeTransfer {
     static isJSON(str) {
         if (typeof str == 'string') {
             try {
-                var obj = JSON.parse(str);
-                if (typeof obj == 'object' && obj) {
+                var obj=JSON.parse(str);
+                if(typeof obj == 'object' && obj ){
                     return true;
-                } else {
+                }else{
                     return false;
                 }
-
-            } catch (e) {
+    
+            } catch(e) {
                 // console.log('error：'+str+'!!!'+e);
                 return false;
             }
@@ -182,61 +206,15 @@ class DSLTreeTransfer {
         console.log('It is not a string!')
     }
     static guid() {
-        // virtual
-        return 'vt' + (++uuid);
+        return 'ts-'+(++uuid);
     }
 }
-
-// let xml =
-// `
-// <div id="em1-m1">
-//     <h1 :ref="0" :class="title em1-m1" data-model="em1-m1" :contrains='{"LayoutSelfPosition":"Static","LayoutSelfHorizontal":"Left"}'></h1>
-// </div>`;
-
-// var data = {
-//     "0": {
-//         "id": "807D9AB8-E218-4365-BE0C-7A5B67C9EAEB",
-//         "type": "QText",
-//         "name": "看看即将上线的新游戏",
-//         "width": 360,
-//         "height": 36,
-//         "x": 0,
-//         "y": 0,
-//         "abX": 28,
-//         "abY": 28,
-//         "constraints": {},
-//         "text": "看看即将上线的新游戏",
-//         "styles": {
-//             "borderRadius": [0, 0, 0, 0],
-//             "border": null,
-//             "opacity": 1,
-//             "rotation": 0,
-//             "shadows": null,
-//             "background": null,
-//             "texts": [{
-//                 "color": {
-//                     "r": 0,
-//                     "g": 0,
-//                     "b": 0,
-//                     "a": 1
-//                 },
-//                 "string": "看看即将上线的新游戏",
-//                 "font": "PingFangSC-Medium",
-//                 "size": 36
-//             }],
-//             "verticalAlign": 0,
-//             "textAlign": 0,
-//             "lineHeight": 36
-//         },
-//         "parent": "869FABE7-9504-43CF-B221-E5473D792822",
-//         "children": [],
-//         "childnum": 0,
-//         "hasStyle": false,
-//         "isMatched": true,
-//         "modelName": "em1-m1"
-//     }
-// };
-// let json = DSLTreeTransfer.parse(xml, data);
-// // console.log(JSON.stringify(json)); //输出xml转换后的json
-
+function walkout(xml, handler) {
+    if (!xml.childNodes || !node.childNodes.length) return;
+    xml.childNodes.map(x => {
+        walkout(x, handler);
+        handler(x); // 处理节点
+    });
+    if (xml.root) handler(xml);
+}
 module.exports = DSLTreeTransfer;

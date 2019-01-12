@@ -497,3 +497,40 @@
     }
   }
 }
+
+//底部浮动工具条
+.fixed-bar {
+  position: fixed;
+  right: 53px;
+  bottom: 225px;
+  z-index: 21;
+  .item {
+    display: block;
+    width: 48px;
+    height: 48px;
+    background: $white;
+    margin-top: -1px;
+    position: relative;
+    border: 1px solid $color_bon_jour_approx;
+    cursor: pointer;
+    text-align: center;
+    &:hover {
+      background-color: $color_desert_storm_approx;
+    }
+    &:before {
+      display: inline-block;
+      vertical-align: top;
+      content: "";
+      width: 36px;
+      height: 36px;
+      margin-top: 7px;
+    }
+  }
+  .feedback {
+    &:before {
+      background-image: url($data_uri_8);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+}
