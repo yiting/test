@@ -14,7 +14,7 @@ let process = function (data, layoutType) {
     similarData = {};
     // 构建cssTree并返回
     _buildTree(null, data, layoutType);
-    _buildSimilar(cssDomTree);
+    // _buildSimilar(cssDomTree);
 }
 
 let getCssString = function () {
@@ -59,20 +59,6 @@ let _buildSimilar = function () {
 let _buildSimilarData = function (cssNode) {
     // 如果存在相似节点，则存储相似节点到simialrData
     let similarId = cssNode.similarId;
-    if (typeof similarId == 'number' && similarId != -1) {
-        if (!similarData[similarId]) {
-            similarData[similarId] = {
-                css: {},
-                list: []
-            };
-        }
-        similarData[similarId].list.push(cssNode);
-    }
-    cssNode.children.forEach(nd => _buildSimilarData(nd));
-}
-let _buildSimilarData = function (cssNode) {
-    // 如果存在相似节点，则存储相似节点到simialrData
-    let similarId = cssNode.modelId;
     if (typeof similarId == 'number' && similarId != -1) {
         if (!similarData[similarId]) {
             similarData[similarId] = {

@@ -8,23 +8,34 @@ class engine {
     }
     // 模板解析
     _xmlParser(temp) {
-        let list = [], pen = [];
-        temp.replace(/(<[^/]*?>)|(<\/.*?>)/img, function (nd) {
+        let list = [], cr = list, pen = [];
+        temp.replace(/<.*?>/img, function (nd) {
             // 结束节点
             if (~nd.indexOf('</')) {
                 let obj = pen.pop();
-                list = obj._cr;
+                cr = obj.children;
             } else {
                 let obj = {
                     _tpl: nd,
-                    _cr: []
+                    children: []
                 }
-                list.push(obj);
+                cr.push(obj);
                 if (!~nd.indexOf('/>')) {
                     pen.push(obj);
-                    list = obj._cr;
+                    cr = obj.children;
                 }
             }
+        });
+        return list;
+    }
+    _xmlTag(str) {
+        return str.slice(1, str.indexOf(' '))
+    }
+    _xmlAttr(str) {
+        let obj = {};
+        return str.replace(/[^\s]+=(\{.*?\}|[^\s]+)/img, function (val) {
+            let m = val.split('=');
+            obj[m[0]] == m[1];
         })
     }
 }
