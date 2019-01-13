@@ -12355,11 +12355,11 @@ let dslTree = Dsl.process(designjson, 750, 750, Common.FlexLayout);
 // let jsonData = dslTree.getRenderData();
 
 // console.log(jsonData);
-// let render = Render.process(dslTree);
-// let htmlStr = render.getTagString();
-// let cssStr = render.getStyleString();
-// const Path = require('path');
+let render = Render.process(dslTree);
+let htmlStr = render.getTagString();
+let cssStr = render.getStyleString();
+const Path = require('path');
 
 // 输出文件
-// render.outputFileWithPath(Path.join(__dirname, './output/index.html'), htmlStr);
-// render.outputFileWithPath(Path.join(__dirname, './output/index.css'), cssStr);
+render.outputFileWithPath(Path.join(__dirname, './output/index.html'), htmlStr);
+render.outputFileWithPath(Path.join(__dirname, './output/index.css'), cssStr);

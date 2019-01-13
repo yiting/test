@@ -310,7 +310,7 @@ class Tree {
                 this._parseRenderData(rdata, node);
             }
         }
-    }    
+    }
 
     /**
      * // 准备废弃
@@ -362,7 +362,7 @@ class Node {
         if (mdata.type && (mdata.canLeftFlex === false || mdata.canLeftFlex === true)) {
             this.canLeftFlex = mdata.canLeftFlex;
         }
-        
+
         if (mdata.type && (mdata.canRightFlex === false || mdata.canRightFlex === true)) {
             this.canRightFlex = mdata.canRightFlex;
         }
@@ -371,7 +371,7 @@ class Node {
         this._zIndex = mdata.zIndex || -1;
         // this._children = mdata.children || [];
         this.set('children', mdata.children || []);// 子节点
-        
+
         // RenderData的处理
         this._renderData = null;
         this._initRenderData();
@@ -433,15 +433,15 @@ class Node {
      * 递归解析MatchData的getMatchNode数据
      */
     _handleMatchNodeData(parent, jsonNode, modelId) {
-        if (!jsonNode ) {
+        if (!jsonNode) {
             return;
         }
 
         // 如果是单节点则直接往parent上添加属性
         if (jsonNode['0'] && !jsonNode['1']) {
-            let text = jsonNode['0'].text? jsonNode['0'].text : '';
-            let path = jsonNode['0'].path? jsonNode['0'].path : null;
-            let styles = jsonNode['0'].styles? jsonNode['0'].styles : {};
+            let text = jsonNode['0'].text ? jsonNode['0'].text : '';
+            let path = jsonNode['0'].path ? jsonNode['0'].path : null;
+            let styles = jsonNode['0'].styles ? jsonNode['0'].styles : {};
             parent.set('text', text);
             parent.set('path', path);
             parent.set('styles', styles);
@@ -451,7 +451,7 @@ class Node {
             return;
         }
 
-        for(let key in jsonNode) {
+        for (let key in jsonNode) {
             let json = jsonNode[key];
             let renderData = new RenderData();
             renderData.set('parentId', parent.id);
@@ -477,9 +477,9 @@ class Node {
             renderData.set('abYops', json.abY + json.height);
             renderData.set('width', json.width);
             renderData.set('height', json.height);
-            let text = json.text? json.text : '';
-            let path = json.path? json.path : null;
-            let styles = json.styles? json.styles : {};
+            let text = json.text ? json.text : '';
+            let path = json.path ? json.path : null;
+            let styles = json.styles ? json.styles : {};
             renderData.set('text', text);
             renderData.set('path', path);
             renderData.set('styles', styles);
@@ -622,8 +622,35 @@ class RenderData {
         this._similarId = null;
         this._similarParentId = null;
         this._modelId = null;
-        
+
         this.children = [];
+    }
+
+    toJSON() {
+        return {
+            'parentId': this._parentId,
+            'id': this._id,
+            'type': this._type,
+            'modelName': this._modelName,
+            'modelRef': this._modelRef,
+            'abX': this._abX,
+            'abY': this._abY,
+            'abXops': this._abXops,
+            'abYops': this._abYops,
+            'width': this._width,
+            'height': this._height,
+            'canLeftFlex': this._canLeftFlex,
+            'canRightFlex': this._canRightFlex,
+            'isCalculate': this._isCalculate,
+            'zIndex': this._zIndex,
+            'text': this._text,
+            'path': this._path,
+            'styles': this._styles,
+            'similarId': this._similarId,
+            'modelId': this._modelId,
+            "constraints": Object.assign({}, this._constraints),
+            "children": this.children.map(child => child.toJSON()),
+        }
     }
 
     // 根据下一层所有子节点abX, abY, abXops, abYops, width, height 生成最小范围属性
@@ -639,10 +666,10 @@ class RenderData {
                 continue;
             }
 
-            this._abX = this.children[i].abX < this._abX? this.children[i].abX : this._abX;
-            this._abY = this.children[i].abY < this._abY? this.children[i].abY : this._abY;
-            this._abXops = this.children[i].abXops > this._abXops? this.children[i].abXops : this._abXops;
-            this._abYops = this.children[i].abYops > this._abYops? this.children[i].abYops : this._abYops;
+            this._abX = this.children[i].abX < this._abX ? this.children[i].abX : this._abX;
+            this._abY = this.children[i].abY < this._abY ? this.children[i].abY : this._abY;
+            this._abXops = this.children[i].abXops > this._abXops ? this.children[i].abXops : this._abXops;
+            this._abYops = this.children[i].abYops > this._abYops ? this.children[i].abYops : this._abYops;
         }
 
         this._width = this._abXops - this._abX;
@@ -736,7 +763,7 @@ class RenderData {
     get similarParentId() {
         return this._similarParentId;
     }
-    
+
     get modelId() {
         return this._modelId;
     }
@@ -755,12 +782,12 @@ Tree.createNodeData = function (mdata) {
  * @param {Int} similarId
  * @return {Object}
  */
-Tree.createCycleData = function(parent, nodesArr, similarId) {
+Tree.createCycleData = function (parent, nodesArr, similarId) {
     // 组成新节点,并且构建MatchData里的getMatchNode数据
     if (!nodesArr || nodesArr.length == 0) {
         return;
     }
-    
+
     // 构建循环结构的根节点
     // 先测一个简单循环模板
     let newNode = new Node();
@@ -768,7 +795,7 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
     let newRenderData = new RenderData();
     newRenderData.set('id', newNode.id);
     newRenderData.set('parentId', parent.id);
-    
+
     // 传进来的数据暂时只有两级结构, 所以直接coding两层循环
     for (let i = 0; i < nodesArr.length; i++) {
         let nodes = nodesArr[i];
@@ -807,12 +834,12 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
     newRenderData.set('modelName', 'cycle-01');
     newRenderData.set('type', Common.QLayer);
     newNode.setRenderData(newRenderData);
-    
+
     return newNode;
 }
 
 // 创建DSLTree渲染节点数据
-Tree.createRenderData = function() {
+Tree.createRenderData = function () {
     return new RenderData();
 }
 

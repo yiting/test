@@ -6,12 +6,9 @@ const DSL_Utils = require('../../dsl2/dsl_utils.js');
 
 // 生成的Css记录树
 let cssDomTree = null;
-let similarData = {},
-    similarModelData = {};
 
 // 
 let process = function (data, layoutType) {
-    similarData = {};
     // 构建cssTree并返回
     _buildTree(null, data, layoutType);
     // _buildSimilar(cssDomTree);
@@ -49,14 +46,15 @@ let _buildTree = function (parent, data, layoutType) {
         _buildTree(cssNode, data, layoutType);
     })
 }
-let _buildSimilar = function () {
-    // 构建similar元素
-    _buildSimilarData(cssDomTree);
-    // 构建similar的子元素
-    _buildSimilarChildData(cssDomTree);
+let _buildSimilar = function (cssDomTree) {
+    similarData = {};
+    // 遍历节点，构建similar元素
+    _buildSimilarData(cssDomTree, similarData);
+    _buildSimilarCss(similarData);
+    console.log(similarData)
 }
 
-let _buildSimilarData = function (cssNode) {
+let _buildSimilarData = function (cssNode, similarData) {
     // 如果存在相似节点，则存储相似节点到simialrData
     let similarId = cssNode.similarId;
     if (typeof similarId == 'number' && similarId != -1) {
@@ -68,7 +66,7 @@ let _buildSimilarData = function (cssNode) {
         }
         similarData[similarId].list.push(cssNode);
     }
-    cssNode.children.forEach(nd => _buildSimilarData(nd));
+    cssNode.children.forEach(nd => _buildSimilarData(nd, similarData));
 }
 
 /**
@@ -85,19 +83,18 @@ let _parseTree = function (arr, dom) {
     });
 }
 
-let _parseSimilarCss = function (similarData) {
+let _buildSimilarCss = function (similarData) {
     Object.keys(similarData).forEach(key => {
         let cssDomList = similarData[key].list;
         let css = similarData[key].css;
         cssDomList.forEach(cssDom => {
             _getSimilarCSS(css, cssDom);
-
         });
-    })
+    });
 }
-let _parseSimilarChildCss = function (parent) {
+/* let _parseSimilarChildCss = function (parent) {
     parent.children
-}
+} */
 let _getSimilarCSS = function (target, source) {
     target['display'] = target.display || source.display;
     target['boxOrient'] = target.boxOrient || source.boxOrient;
@@ -389,7 +386,8 @@ class CssDom {
      * @param {CssDom} node CssDom节点
      */
     _canLeftFlex() {
-        if (this.constraints['LayoutFixedWidth'] == Constraints.LayoutFixedWidth.Fixed) {
+        if (this.constraints['LayoutFixedWidth'] == Constraints.LayoutFixedWidth.Fixed ||
+            this.texts) {
             return false;
         }
         if (typeof this.canLeftFlex == "boolean") {
@@ -408,24 +406,6 @@ class CssDom {
         }
         return true;
     }
-    /* _isFixedWidth(node) {
-        let result = false;
-
-        if (!node.modelName) {
-            // 不是模板元素, 默认做最大扩展
-            return false;
-        }
-
-        if (node.constraints['LayoutFixedWidth'] &&
-            node.constraints['LayoutFixedWidth'] == Constraints.LayoutFixedWidth.Fixed) {
-
-            result = true;
-        } else if (node.modelName && (node.canLeftFlex || node.canRightFlex)) {
-            // 有node.modelName 则为不是模板生成的元素
-            result = true;
-        }
-        return result;
-    } */
 
     /**
      * 节点是否为固定宽度节点
@@ -499,69 +479,6 @@ class CssDom {
     }
 
     /**
-     * 计算模板横向的约束
-     * @param {Node} parent 父节点
-     * @param {Array} nodes 子节点
-     */
-    /* _calculateHorizontal(parent, nodes) {
-        // 计算前节点的右边, 和当前节点的左边, for后等于计算了所有节点的左右边界
-        let len = nodes.length;
-        for (let i = 0; i < len; i++) {
-            let preNode = this._prevNodeWithParam(nodes, i);
-            let curNode = nodes[i];
-            let nxtNode = this._nextNodeWithParam(nodes, i);
-
-            if (curNode.isCalculate) {
-                // 有模型名称的为模板外面节点,已经在dsl_layout处计算完毕
-                continue;
-            }
-
-            if (this._isAbsolute(curNode)) {
-                // 绝对定位的节点不进行处理
-                continue;
-            }
-
-            // 处理abX, abXops计算
-            if (!preNode) { // 只需处理curNode
-                if (curNode.canLeftFlex && !this._isFixedWidth(curNode)) {
-                    curNode._abX = parent._abX;
-                }
-            } else { // 处理preNode和curNode的情况 2*2=4种情况
-                if (!this._isAbsolute(preNode) && !this._isAbsolute(curNode)) {
-                    if ((preNode.canRightFlex || !preNode.modelName) && (!curNode.canLeftFlex && curNode.modelName)) { // 左节点可以扩展右节点不能扩展
-                        preNode._abXops = curNode._abX;
-                        //curNode._abX = curNode._abX;
-                    } else if ((!preNode.canRightFlex && preNode.modelName) && (curNode.canLeftFlex || !curNode.modelName)) { // 左节点不能扩展右节点可以扩展
-                        //preNode._abXops = preNode._abXops;
-                        curNode._abX = preNode._abXops;
-                    } else if ((preNode.canRightFlex || !preNode.modelName) && (curNode.canLeftFlex || !curNode.modelName)) {
-                        // 各占一半空间
-                        let half = (curNode._abX - preNode._abXops) / 2;
-                        preNode._abXops += half;
-                        curNode._abX -= half;
-                    } else {
-                        // !preNode.canRightFlex && !curNode.canLeftFlex
-                        // 不用处理了, 保持不变
-                    }
-                }
-
-
-                // 如果没有下一个节点了, 就把curNode的右边界也处理了
-                if (!nxtNode) {
-                    if (curNode.canRightFlex && !this._isFixedWidth(curNode)) {
-                        curNode._abXops = parent._abXops;
-                    }
-                }
-            }
-
-            // 处理abY, abYops计算
-            if (!curNode.modelName) { // 模板动态元素
-                curNode._abY = parent._abY;
-                curNode._abYops = parent._abYops;
-            }
-        }
-    } */
-    /**
      * 判断是否使用padding
      */
     _usePaddingTop(parent) {
@@ -599,80 +516,6 @@ class CssDom {
             (baseLine[_alignItems + "Start"] && Constraints.LayoutJustifyContent.Start)
 
     }
-    /**
-     * 计算模板竖向的约束
-     * @param {Node} parent 父节点
-     * @param {Array} nodes 子节点
-     */
-    /* _calculateVertical(parent, nodes) {
-        // 竖向的计算只需计算模板动态新增元素的上下距离
-        // node.modelName为空即node为模板动态元素
-        let len = nodes.length;
-
-        if (len == 1) {
-            // 处理上下距离
-            let curNode = nodes[0];
-            if (!curNode.modelName) { // 模板非模型元素节点
-                curNode._abY = parent._abY;
-                curNode._abYops = parent._abYops;
-            }
-
-            // 处理左右距离
-            if (curNode.canLeftFlex) {
-                curNode._abX = parent._abX;
-            } else if (curNode.canRightFlex) {
-                curNode._abXops = parent._abXops;
-            }
-
-            return;
-        }
-
-        for (let i = 0; i < len; i++) {
-            let preNode = nodes[i - 1];
-            let curNode = nodes[i];
-            let nxtNode = nodes[i + 1];
-
-            if (curNode.isCalculate) {
-                // 有模型名称的为模板外面节点,已经在dsl_layout处计算完毕
-                continue;
-            }
-
-            if (!preNode) {
-                if (!this._isFixedHeight(curNode)) {
-                    curNode._abY = parent._abY;
-                }
-            } else { // 处理preNode和curNode的情况4种情况
-                if (!preNode.modelName && curNode.modelName) {
-                    preNode._abYops = curNode._abY;
-                    //curNode._abY = curNode._abY;
-                } else if (preNode.modelName && !curNode.modelName) {
-                    //preNode._abYops = preNode._abYops;
-                    curNode._abY = preNode._abYops;
-                } else if (!preNode.modelName && !curNode.modelName) {
-                    // 各占一半
-                    let half = (curNode._abY - preNode._abYops) / 2;
-                    preNode._abYops += half;
-                    curNode._abY -= half;
-                } else {
-                    // preNode.modelName && curNode.modelName
-                    // 不用处理, 都是模型元素
-                }
-
-                // 如果没有下一个节点了, 就把curNode的下边界也处理了
-                if (!nxtNode) {
-                    // 由于是竖排,不需往下扩展
-                    curNode._abYops = curNode._abYops;
-                }
-            }
-
-            // 处理左右距离
-            if (curNode.canLeftFlex) {
-                curNode._abX = parent._abX;
-            } else if (curNode.canRightFlex) {
-                curNode._abXops = parent._abXops;
-            }
-        }
-    } */
     // 找到所有祖父modelId
     getGrandfatherModelId(id, arr = []) {
         if (!id) {
@@ -724,8 +567,6 @@ class CssDom {
                 }
             }
         });
-        // console.log(props);
-        // console.log('--------------------------');
         return props.join(';');
     }
 
@@ -737,7 +578,7 @@ class CssDom {
         // 对当前节点补充约束
         this._supplementConstraints(this);
         // 对当前节点边界进行计算
-        this._calculateBoundary(this);
+        // this._calculateBoundary(this);
 
 
         str = `${this.getClass()} {${this.getCssProperty()}}`;
@@ -784,7 +625,7 @@ class CssDom {
             'Start': 'start',
             'End': 'end',
             'Center': 'center',
-        } [this.constraints[axle]] || null;
+        }[this.constraints[axle]] || null;
     }
     //
     get boxPack() {
@@ -794,7 +635,7 @@ class CssDom {
             'Start': 'start',
             'End': 'end',
             'Center': 'center',
-        } [this.constraints[axle]] || null;
+        }[this.constraints[axle]] || null;
     }
     //
     get width() {

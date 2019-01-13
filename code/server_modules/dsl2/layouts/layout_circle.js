@@ -20,6 +20,7 @@ class LayoutCircle extends Model.LayoutModel {
      * @param {Int} layoutType 布局的类型
      */
     handle(parent, nodes, models, layoutType) {
+        // if(parent.type==)
         if (!nodes || nodes.length == 0) {
             // 如果没有子节点，则返回
             return;
@@ -34,12 +35,12 @@ class LayoutCircle extends Model.LayoutModel {
     }
     // 相似结构处理
     _setSimilar(parent, nodes, similarArr) {
-
         if (similarArr.length == 0) {
             // 如果没有相似结构，则返回
             return;
         }
         let inSimilar = [];
+        // if (parent.id =='layer1')debugger
         // 获取循环节点
         similarArr.forEach(item => {
             let similarId = this.similarIndex++;
@@ -57,21 +58,6 @@ class LayoutCircle extends Model.LayoutModel {
         parent.set("children", nodes);
     }
 
-    // 分组前的排序
-    /* _sort(arr) {
-        // 筛选前排序
-        return arr.map(o => {
-            return Object.assign({}, o, {
-                cX: o.abX + o.width / 2,
-                cY: o.abY + o.height / 2
-            })
-        }).sort(function (a, b) {
-            if (a.cX < b.cX) {
-                return -1;
-            } else if (a.cY > b.cY)
-                return 1;
-        })
-    } */
     // 剔除绝对定位元素，绝对定位元素不参与循环判断
     _filterCompare(arr) {
         return arr.filter(nd => {
@@ -135,8 +121,8 @@ class LayoutCircle extends Model.LayoutModel {
                 }
                 // 排除完全重复的独立项
                 if (fragment.length > 1 && fragment.every((s, i) => {
-                        return i == 0 || (similarLogic ? similarLogic(s, fragment[i - 1]) : s == fragment[i - 1])
-                    })) {
+                    return i == 0 || (similarLogic ? similarLogic(s, fragment[i - 1]) : s == fragment[i - 1])
+                })) {
                     continue;
                 }
 
@@ -145,10 +131,12 @@ class LayoutCircle extends Model.LayoutModel {
                     // existing:当前片段与缓存片段，每一段都符合逻辑特征判断
                     let existing = p.feature == fragment.length && p.target.some(t => {
                         //  只有一个特征时，还须连续的重复；多个特征时，只需逻辑相同
-                        return t.every((f, fi) => {
-                            return similarLogic ? similarLogic(f, fragment[fi]) : (f == fragment[fi]);
-                        });
+                        return (p.feature == 1 ? index == p.lastIndex + 1 : true) &&
+                            t.every((f, fi) => {
+                                return similarLogic ? similarLogic(f, fragment[fi]) : (f == fragment[fi]);
+                            });
                     });
+
                     if (existing && (p.lastIndex + p.feature) <= index) {
                         // 如果重复，且当前节点在上一个重复片段的节点之后
                         p.target.push(fragment);

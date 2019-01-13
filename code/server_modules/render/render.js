@@ -17,7 +17,7 @@ const Constraints = require('../dsl2/dsl_constraints.js');
  */
 let process = function (dslTree) {
     // 默认直接使用h5模板引擎输出
-    let jsonData = Parser.parse(dslTree);
+    let jsonData = Parser.parse(dslTree.getRenderData().toJSON());
     // 这里直接使用h5 builder
     let render = new Render(jsonData, H5Builder, Common.FlexLayout);
 
@@ -35,7 +35,7 @@ class Render {
         // 键值对形式缓存节点
         this._nodeCache = {};
         this._data = data;
-        this._setSimilar();
+        this._setSimilar(this._data);
         this._setSimilarChild();
         this._builder = new builder(this._data, layoutType);
     }
@@ -43,8 +43,7 @@ class Render {
      * 遍历节点，找到相似节点
      * @param {*} data 
      */
-    _setSimilar() {
-        let data = this._data;
+    _setSimilar(data) {
         this._nodeCache[data.id] = data;
         if (data.similarId) {
             const similarId = data.similarId;
@@ -53,7 +52,7 @@ class Render {
             }
             this._similarMap[similarId].push(data);
         }
-        data.children.forEach(this._setSimilar);
+        data.children.forEach((nd => this._setSimilar(nd)));
     }
     /**
      * 设置循环节点的子节点比对

@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "启动程序",
-            "program": "${workspaceFolder}/test/dsl2_test/t3.js"
+            "program": "${workspaceFolder}/test/dsl2_test/t1.js"
 
         }
     ]
