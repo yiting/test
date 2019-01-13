@@ -29,18 +29,23 @@ class DSLTreeProcessor {
         return _tree.children[0];
     }
     static _parseNode(platformType,pnode) { 
+        
         if(!pnode.children || !pnode.children.length) return;
-
         pnode.children.forEach((node,index) => {
-        // if (node.modelName === 'cycle-01') debugger
-            if (!node.modelName) return;
-            let element = null;
-            // _debuggerByid('4E0EC85E-AFB2-455C-9C17-FF91CE02A5EF',node);
-            if (node.modelName === 'layer') {
-                element = (~QNODE_TYPES.indexOf(node.type)) ? this._parseBgNode(node,platformType) : this._convertNode(node,platformType);
-            } else {
-                element = this._parseWidgetNode(node,platformType);
+            let element = node;
+            if (node.constructor.name === 'RenderData') {
+                element = this._convertNode(node,platformType);
             }
+            if (node.modelName) {
+                if (node.modelName === 'layer') {
+                    if ( ~QNODE_TYPES.indexOf(node.type) ) element = this._parseBgNode(element,platformType);
+                } else {
+                    element = this._parseWidgetNode(element,platformType);
+                }
+
+            }
+            // _debuggerByid('4E0EC85E-AFB2-455C-9C17-FF91CE02A5EF',node);
+            if (!element) debugger
             pnode.children[index] = element;
         })
     }
@@ -48,9 +53,8 @@ class DSLTreeProcessor {
     /**
      * 解析背景节点
      */
-    static _parseBgNode(node, platformType) {
-        let element = this._convertNode(node,platformType);
-        Object.assign(element,getAttr(node[0],['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','path','styles']));
+    static _parseBgNode(element, platformType) {
+        Object.assign(element,getAttr(element.children[0],['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','path','styles','similarId']));
         return element;
     }
 
@@ -60,7 +64,7 @@ class DSLTreeProcessor {
     static _parseWidgetNode(node, platformType) {
         let template = Template.getTemplate(node.modelName,platformType);
         let element = DSLTreeTransfer.parse(template, node.children,platformType);
-        Object.assign(element,getAttr(node,['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','modelRef','modelName']));
+        Object.assign(element,getAttr(node,['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','modelRef','modelName','similarId']));
         
         return element;
     }
@@ -78,35 +82,36 @@ class DSLTreeProcessor {
     }
     static addPrefix(node) {
         if (node.id.indexOf('ts-') != 0) {
-            node.set('id','ts-' + node.id);
+            node.id = 'ts-' + node.id;
         }
-        var children = node.children;
-        if (children) {
-            for (var i = 0, ilen = children.length; i < ilen; i++) {
-                if (children[i].id.indexOf('ts-') != 0) {
-                    children[i].set('id','ts-' + children[i].id);
-                }
-                if (children[i]['children'] && children[i]['children'].length > 0) {
-                    this.addPrefix(children[i]);
-                }
-            }
-        }
+        // var children = node.children;
+        // if (children) {
+        //     for (var i = 0, ilen = children.length; i < ilen; i++) {
+        //         if (children[i].id.indexOf('ts-') != 0) {
+        //             children[i].set('id','ts-' + children[i].id);
+        //         }
+        //         if (children[i]['children'] && children[i]['children'].length > 0) {
+        //             this.addPrefix(children[i]);
+        //         }
+        //     }
+        // }
     }
     // 将虚拟节点转化为平台容器节点
     static _convertNode(node, platformType) {
-        let tagName = '';
-        this.addPrefix(node);
-        this.addBeautyClass(node);
+        // this.addPrefix(node);
+        // this.addBeautyClass(node);
         let {
-            id = -1, beautyClass ,width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
+            id = -1,similarId, tagName, beautyClass ,width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", modelRef = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
         } = node;
-        switch (platformType) {
-            case RENDER_TYPE.HTML:
-                tagName = 'div';
-                break;
-            case RENDER_TYPE.ANDROID:
-                tagName = 'view';
-                break;
+        if (!tagName) {        
+            switch (platformType) {
+                case RENDER_TYPE.HTML:
+                    tagName = 'div';
+                    break;
+                case RENDER_TYPE.ANDROID:
+                    tagName = 'view';
+                    break;
+            }
         }
         return {
             id,
@@ -124,10 +129,12 @@ class DSLTreeProcessor {
             parentId,
             type,
             modelName,
+            modelRef,
             canLeftFlex,
             canRightFlex,
             isCalculate,
             children,
+            similarId,
             tplAttr,
             tplData,
             text,

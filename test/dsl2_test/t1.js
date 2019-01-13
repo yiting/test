@@ -1078,7 +1078,9 @@ nodeTree.children[1] = newNode;
 
 console.log(nodeTree);
 console.log('---------------');
-console.log(dslTree.getRenderData());
+// console.log(dslTree.getRenderData());
+let renderData = dslTree.getRenderData();
+Render.process(renderData);
 
 
 
