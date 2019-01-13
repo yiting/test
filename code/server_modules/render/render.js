@@ -17,13 +17,20 @@ const Constraints = require('../dsl2/dsl_constraints.js');
  */
 let process = function (dslTree) {
     // 默认直接使用h5模板引擎输出
+    // con(dslTree.getRenderData().toJSON());//test
     let jsonData = Parser.parse(dslTree.getRenderData().toJSON());
+    // con(jsonData);//test
     // 这里直接使用h5 builder
     let render = new Render(jsonData, H5Builder, Common.FlexLayout);
 
     return render;
 }
-
+function con(data) {
+    if (data.similarId) {
+        console.log(data.similarId)
+    }
+    data.children.forEach(con);
+}
 
 class Render {
     constructor(data, builder, layoutType) {
@@ -61,6 +68,7 @@ class Render {
         Object.keys(this._similarMap).forEach(key => {
             let children = [];
             this._similarMap[key].forEach(nd => {
+                // console.log(nd.id)
                 nd.children.forEach(child => {
                     child.similarParentId = nd.id;
                 })
@@ -140,6 +148,7 @@ class Render {
         let htmlStr = '';
         if (this._builder) {
             htmlStr = this._builder.getTagString();
+
         }
         //添加完整的html结构
         var tpl = this.getTpl();

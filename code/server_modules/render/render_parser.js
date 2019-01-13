@@ -29,7 +29,7 @@ class DSLTreeProcessor {
         walkout(_tree, this._parseNode.bind(this, platformType));
         walkout(_tree, (node) => {
             this.addSerialId(node);
-        })
+        });
         return _tree.children[0];
     }
     static _parseNode(platformType, pnode) {

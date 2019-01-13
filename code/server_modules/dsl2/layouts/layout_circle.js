@@ -9,7 +9,7 @@ const Constraints = require('../dsl_constraints');
 class LayoutCircle extends Model.LayoutModel {
     constructor(modelType) {
         super(modelType);
-        this.similarIndex = 0;
+        this.similarIndex = 1;
     }
 
     /**
@@ -40,21 +40,26 @@ class LayoutCircle extends Model.LayoutModel {
             return;
         }
         let inSimilar = [];
-        // if (parent.id =='layer1')debugger
         // 获取循环节点
         similarArr.forEach(item => {
+            if (item.feature != 1) return;
             let similarId = this.similarIndex++;
+            item.target.forEach(group => {
+                group.forEach(nd => {
+                    nd.set('similarId', similarId);
+                })
+            })
             // 提取循环节点
-            item.target.forEach(group => inSimilar.push(...group))
+            // item.target.forEach(group => inSimilar.push(...group))
             // 合并循环节点为新节点
-            let newCycleData = Group.Tree.createCycleData(parent, item.target, similarId);
+            // let newCycleData = Group.Tree.createCycleData(parent, item.target, similarId);
             // 加入新节点到父级元素
-            nodes.push(newCycleData);
+            // nodes.push(newCycleData);
         });
         // 从节点中剔除被循环的节点
-        nodes = nodes.filter(nd => {
-            return !inSimilar.includes(nd);
-        });
+        // nodes = nodes.filter(nd => {
+        // return !inSimilar.includes(nd);
+        // });
         parent.set("children", nodes);
     }
 

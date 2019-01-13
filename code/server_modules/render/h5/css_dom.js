@@ -2,19 +2,20 @@
 const Common = require('../../dsl2/dsl_common.js');
 const Constraints = require('../../dsl2/dsl_constraints.js');
 const Utils = require('../render_utils.js');
-const DSL_Utils = require('../../dsl2/dsl_utils.js');
 
 // 生成的Css记录树
-let cssDomTree = null;
+let cssDomTree = null,
+    similarData = null;
 
 // 
 let process = function (data, layoutType) {
+
     // 构建cssTree并返回
-    _buildTree(null, data, layoutType);
-    // _buildSimilar(cssDomTree);
+    cssDomTree = _buildTree(null, data, layoutType);
+    return cssDomTree;
 }
 
-let getCssString = function () {
+let getCssString = function (cssDomTree) {
     // 获取cssTree解析出的样式
     let cssStr = '';
     let css = []; // 每个CssDom节点返回的样式数组
@@ -44,29 +45,12 @@ let _buildTree = function (parent, data, layoutType) {
     // if (data.children && data.children.length > 0) {
     data.children.forEach(data => {
         _buildTree(cssNode, data, layoutType);
-    })
-}
-let _buildSimilar = function (cssDomTree) {
-    similarData = {};
-    // 遍历节点，构建similar元素
-    _buildSimilarData(cssDomTree, similarData);
-    _buildSimilarCss(similarData);
-    console.log(similarData)
-}
-
-let _buildSimilarData = function (cssNode, similarData) {
-    // 如果存在相似节点，则存储相似节点到simialrData
-    let similarId = cssNode.similarId;
-    if (typeof similarId == 'number' && similarId != -1) {
-        if (!similarData[similarId]) {
-            similarData[similarId] = {
-                css: {},
-                list: []
-            };
-        }
-        similarData[similarId].list.push(cssNode);
-    }
-    cssNode.children.forEach(nd => _buildSimilarData(nd, similarData));
+    });
+    // 对当前节点补充约束
+    cssNode._supplementConstraints();
+    // 对当前节点边界进行计算
+    // cssNode._calculateBoundary(this);
+    return cssNode;
 }
 
 /**
@@ -81,77 +65,6 @@ let _parseTree = function (arr, dom) {
     dom.children.forEach(child => {
         _parseTree(arr, child);
     });
-}
-
-let _buildSimilarCss = function (similarData) {
-    Object.keys(similarData).forEach(key => {
-        let cssDomList = similarData[key].list;
-        let css = similarData[key].css;
-        cssDomList.forEach(cssDom => {
-            _getSimilarCSS(css, cssDom);
-        });
-    });
-}
-/* let _parseSimilarChildCss = function (parent) {
-    parent.children
-} */
-let _getSimilarCSS = function (target, source) {
-    target['display'] = target.display || source.display;
-    target['boxOrient'] = target.boxOrient || source.boxOrient;
-    target['boxPack'] = target.boxPack || source.boxPack;
-    target['boxAlign'] = target.boxAlign || source.boxAlign;
-    target['position'] = target.position || source.position;
-    target['opacity'] = target.opacity || source.opacity;
-    target['whiteSpace'] = target.whiteSpace || source.whiteSpace
-    target['backgroundRepeat'] = target.backgroundRepeat || source.backgroundRepeat;
-    target['backgroundSize'] = target.backgroundSize || source.backgroundSize;
-    target['width'] = Math.min(target.width, source.width);
-    target['minHeight'] = Math.min(target.minHeight, source.minHeight);
-    target['marginTop'] = Math.min(target.marginTop, source.marginTop);
-    target['marginRight'] = Math.min(target.marginRight, source.marginRight);
-    target['marginBottom'] = Math.min(target.marginBottom, source.marginBottom);
-    target['marginLeft'] = Math.min(target.marginLeft, source.marginLeft);
-    target['paddingTop'] = Math.min(target.paddingTop, source.paddingTop);
-    target['top'] = Math.min(target.top, source.top);
-    target['right'] = Math.min(target.right, source.right);
-    target['bottom'] = Math.min(target.bottom, source.bottom);
-    target['left'] = Math.min(target.left, source.left);
-    target['zIndex'] = Math.min(target.zIndex, source.zIndex);
-    // 如果存在无背景图，则以无图为主样式
-    target['backgroundImage'] = (target.backgroundImage == undefined || target.backgroundImage == source.backgroundImage) ? source.backgroundImage : null;
-    // 如果存在无背景色，则以无色为主样式
-    target['backgroundColor'] = (target.backgroundColor == undefined || target.backgroundColor == source.backgroundColor) ? source.backgroundColor : null;
-    // 如果存在多色，则以无色为主样式
-    target['color'] = (target.color == undefined || target.color == source.color) ? source.color : null;
-    // 如果存在多字类，则以默认为主样式
-    target['fontFamily'] = (target.fontFamily == undefined || target.fontFamily == source.fontFamily) ? source.fontFamily : null;
-    // 如果存在多字号，则以默认为主样式
-    target['fontSize'] = (target.fontSize == undefined || target.fontSize == source.fontSize) ? source.fontSize : null;
-    // 如果存在多圆角，则以默认为主样式
-    target['borderRadius'] = (target.borderRadius == undefined || target.borderRadius == source.borderRadius) ? source.borderRadius : null;
-    // 如果存在多行高，则以默认为主样式
-    target['lineHeight'] = (target.lineHeight == undefined || target.lineHeight == source.lineHeight) ? source.lineHeight : null;
-}
-
-/**
- * 单位换算
- * @param  {Number} number 数值
- * @param  {String} unit   单位类型，默认px
- * @return {String}        数值+单位
- */
-let _transUnit = function (number, unit = "rem") {
-    number = parseInt(number) || 0;
-    const dpr = 2;
-    // 1-2像素特殊处理
-    if (Math.abs(number) <= dpr) {
-        number = Math.ceil(number / dpr);
-        unit = 'px';
-    }
-    if (unit == 'rem') {
-        return number / 100 + 'rem';
-    } else {
-        return number + 'px';
-    }
 }
 
 const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align'];
@@ -433,15 +346,15 @@ class CssDom {
     /**
      * 边界重定义
      */
-    _calculateBoundary(node) {
+    _calculateBoundary() {
         // 跟节点不调整
-        if (node.type == Common.QBody) {
+        if (this.type == Common.QBody) {
             return;
         }
-        if (this._isAbsolute(node)) {
+        if (this._isAbsolute(this)) {
             return;
         }
-        let isVertical = node.parent.constraints['LayoutDirection'] == Constraints.LayoutDirection.Vertical;
+        let isVertical = this.parent.constraints['LayoutDirection'] == Constraints.LayoutDirection.Vertical;
         this._calculateLeftBoundary(isVertical);
         this._calculateRightBoundary(isVertical);
     }
@@ -489,58 +402,60 @@ class CssDom {
         return node.children.find(nd => !this._isAbsolute(nd));
     }
     // 约束补充计算
-    _supplementConstraints(node) {
-        let children = node.children
+    _supplementConstraints() {
+        let children = this.children
         if (children.length == 0) {
             return;
         }
-        // if (node.type == Common.QBody) {
+        // if (this.type == Common.QBody) {
         //     return;
         // }
         let isVertical = Utils.isVertical(children),
-            baseLine = Utils.calculateBaseLine(node),
+            baseLine = Utils.calculateBaseLine(this),
             _justifyContent = isVertical ? 'vertical' : 'horizontal',
             _alignItems = isVertical ? 'vertical' : 'horizontal';
         // 约束方向判断
-        node.constraints["LayoutDirection"] = node.constraints["LayoutDirection"] ||
+        this.constraints["LayoutDirection"] = this.constraints["LayoutDirection"] ||
             (isVertical ? Constraints.LayoutDirection.Vertical : Constraints.LayoutDirection.Horizontal);
         // 主轴约束补充
-        node.constraints["LayoutJustifyContent"] = node.constraints["LayoutJustifyContent"] ||
+        this.constraints["LayoutJustifyContent"] = this.constraints["LayoutJustifyContent"] ||
             (baseLine[_justifyContent + "Center"] && Constraints.LayoutJustifyContent.Center) ||
             (baseLine[_justifyContent + "End"] && Constraints.LayoutJustifyContent.End) ||
             (baseLine[_justifyContent + "Start"] && Constraints.LayoutJustifyContent.Start)
         // 副轴约束补充
-        node.constraints["LayoutAlignItems"] = node.constraints["LayoutAlignItems"] ||
+        this.constraints["LayoutAlignItems"] = this.constraints["LayoutAlignItems"] ||
             (baseLine[_alignItems + "Center"] && Constraints.LayoutJustifyContent.Center) ||
             (baseLine[_alignItems + "End"] && Constraints.LayoutJustifyContent.End) ||
             (baseLine[_alignItems + "Start"] && Constraints.LayoutJustifyContent.Start)
 
     }
-    // 找到所有祖父modelId
-    getGrandfatherModelId(id, arr = []) {
+    // 找到获取最接近的model
+    getClosestModelById(id) {
         if (!id) {
-            return arr;
+            return null;
         }
         if (id == this.id) {
-            arr.push(id);
-            id = this.modelId;
+            return this;
         }
-        return this.parent.getGrandfatherModelId(id, arr);
+        return this.parent.getClosestModelById(id);
     }
     /**
      * 获取className
      */
     getClass() {
-        // return result;
+        let parentClass = '',
+            selfClass = '';
         // 如果有modelId,说明当前节点为某模型子元素
         if (this.modelId) {
-            let modelId = this.getGrandfatherModelId(this.modelId).join(' ');
-            return `.ts-${modelId} ${this.tplData.class}`;
-        } else {
-            return `.${this.serialId}`;
+            let model = this.getClosestModelById(this.modelId).join(' ');
+            parentClass = `.ts-${model.similarId || model.id}`;
         }
-
-
+        if (this.similarId) {
+            selfClass = `.${this.similarId}`;
+        } else {
+            selfClass = `.${this.serialId}`;
+        }
+        return [parentClass, selfClass].join(' ');
     }
 
     /**
@@ -552,19 +467,8 @@ class CssDom {
         // console.log(this.id);
         cssPropertyMap.forEach(key => {
             let value = this[key];
-
             if (value !== null) {
-                if (!isNaN(value) && key != "opacity" && key != "zIndex") { // 数字的话进行单位转换
-                    value = _transUnit(value);
-                }
-
-                let name = Utils.nameLower(key);
-                if (CompatibleKey.includes(name)) {
-                    const webkitName = '-webkit-' + name;
-                    props.push(`${webkitName}: ${value}`);
-                } else {
-                    props.push(`${name}: ${value}`);
-                }
+                props.push(CssDom.getCssProperty(key, value));
             }
         });
         return props.join(';');
@@ -575,18 +479,9 @@ class CssDom {
      */
     getCss() {
         let str = '';
-        // 对当前节点补充约束
-        this._supplementConstraints(this);
-        // 对当前节点边界进行计算
-        // this._calculateBoundary(this);
-
-
         str = `${this.getClass()} {${this.getCssProperty()}}`;
         // !重要, 每次获取当前节点样式信息后
         // 动态计算该节点的子节点的根据约束而生成_abX, _abY, _abXops, _abYops等数据
-
-
-
         return str;
     }
 
@@ -653,7 +548,7 @@ class CssDom {
         }
         return vals.map(v => {
             v = v < maxSize / 2 ? v : maxSize / 2;
-            return that.transUnit(v);
+            return CssDom.transUnit(v);
         }).join(' ');
     }
     get borderRadius() {
@@ -925,7 +820,7 @@ class CssDom {
 
     get fontSize() {
         if (this.styles && this.styles.texts) {
-            return this.transUnit(this.styles.texts[0].size);
+            return CssDom.transUnit(this.styles.texts[0].size);
         } else {
             return null;
         }
@@ -1035,13 +930,26 @@ class CssDom {
         return css;
     }
 
+    static getCssProperty(key, value) {
+        if (!isNaN(value) && key != "opacity" && key != "zIndex") { // 数字的话进行单位转换
+            value = CssDom.transUnit(value);
+        }
+
+        let name = Utils.nameLower(key);
+        if (CompatibleKey.includes(name)) {
+            const webkitName = '-webkit-' + name;
+            return `${webkitName}: ${value}`;
+        } else {
+            return `${name}: ${value}`;
+        }
+    }
     /**
      * 单位换算
      * @param  {Number} number 数值
      * @param  {String} unit   单位类型，默认px
      * @return {String}        数值+单位
      */
-    transUnit(number, unit = "rem") {
+    static transUnit(number, unit = "rem") {
         number = parseInt(number) || 0;
         const dpr = 2;
         // 1-2像素特殊处理
@@ -1060,5 +968,6 @@ class CssDom {
 
 module.exports = {
     process,
+    CssDom,
     getCssString
 }
