@@ -104,11 +104,11 @@ class Tree {
 
                 let node = Tree.createNodeData();
                 node.set("parentId", parent.id);
-                // node.set("abX", arr.abX);
-                node.set("abX", parent.abX);
+                node.set("abX", arr.abX);
+                // node.set("abX", parent.abX);
                 node.set("abY", arr.abY);
-                // node.set("abXops", arr.abXops);
-                node.set("abXops", parent.abXops);
+                node.set("abXops", arr.abXops);
+                // node.set("abXops", parent.abXops);
                 node.set("abYops", arr.abYops);
 
                 arr.forEach(child => {

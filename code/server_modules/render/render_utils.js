@@ -39,10 +39,10 @@ const utils = {
                 return;
             }
             nodeCount++;
-            X += node._abX - parent._abX;
-            Y += node._abY - parent._abY;
-            Xops += parent._abXops - node._abXops;
-            Yops += parent._abYops - node._abYops;
+            X += Math.abs(node._abX - parent._abX);
+            Y += Math.abs(node._abY - parent._abY);
+            Xops += Math.abs(parent._abXops - node._abXops);
+            Yops += Math.abs(parent._abYops - node._abYops);
             Xctr += Math.abs(pXctr - (node._abX + node._abXops) / 2);
             Yctr += Math.abs(pYctr - (node._abY + node._abYops) / 2);
         });

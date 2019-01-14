@@ -47,9 +47,9 @@ let _buildTree = function (parent, data, layoutType) {
     // 对当前节点补充约束
     cssNode._supplementConstraints();
     // 对当前节子节点边界进行计算
-    cssNode.children.forEach(cn => {
-        cn._calculateBoundary();
-    });
+    // cssNode.children.forEach(cn => {
+    //     cn._calculateBoundary();
+    // });
     return cssNode;
 }
 
@@ -122,7 +122,7 @@ const cssPropertyMap = [
     // "boxPack",
     // "boxAlign",
     // "display",
-    // "textAlign",
+    "textAlign",
     "whiteSpace",
     "lineHeight",
     "opacity"
@@ -153,6 +153,7 @@ class CssDom {
         this._width = data.width;
         this._height = data.height;
         this._zIndex = data.zIndex;
+        this._hasText = !!data.text;
 
         // 样式属性
         this.constraints = data.constraints;
@@ -160,7 +161,6 @@ class CssDom {
         this.styles = data.styles || {};
         // 子节点
         this.children = [];
-
     }
 
     /**
@@ -265,6 +265,20 @@ class CssDom {
         }
     }
 
+    _isTextCenter() {
+        if (!this._hasText) {
+            return null;
+        }
+        if (this.parent.constraints["LayoutDirection"] == Constraints.LayoutDirection.Vertical && this.parent.constraints["LayoutAlignItems"] == Constraints.LayoutAlignItems.Center) {
+            return true;
+        }
+        if (this.parent.constraints["LayoutDirection"] == Constraints.LayoutDirection.Horizontal && this.parent.constraints["LayoutJustifyContent"] == Constraints.LayoutJustifyContent.Center) {
+            return true;
+        }
+
+
+    }
+
     /**
      * 节点是否属于绝对定位
      */
@@ -300,8 +314,7 @@ class CssDom {
      * @param {CssDom} node CssDom节点
      */
     _canLeftFlex() {
-        if (this.constraints['LayoutFixedWidth'] == Constraints.LayoutFixedWidth.Fixed ||
-            this.texts) {
+        if (this.constraints['LayoutFixedWidth'] == Constraints.LayoutFixedWidth.Fixed) {
             return false;
         }
         if (typeof this.canLeftFlex == "boolean") {
@@ -408,7 +421,7 @@ class CssDom {
         if (children.length == 0) {
             return;
         }
-        // }
+        // if (this.id == 'EBDB98BC-0B1A-4F08-827D-5B52B8F9C675c') debugger
         let isVertical = children.length > 1 && Utils.isVertical(children),
             baseLine = Utils.calculateBaseLine(this),
             _justifyContent = isVertical ? 'vertical' : 'horizontal',
@@ -763,6 +776,8 @@ class CssDom {
     }
     //
     get marginLeft() {
+        // if (this.id == '1B30A43F-F91A-43A9-8EB1-CF13D20C0A1Ac') debugger
+
         let css = null;
         if (this._isAbsolute()) {
             return css;
@@ -848,6 +863,13 @@ class CssDom {
     get whiteSpace() {
         if (this._height / this.lineHeight < 1.2) {
             return 'nowrap';
+        }
+        return null;
+    }
+
+    get textAlign() {
+        if (this._isTextCenter()) {
+            return 'center';
         }
         return null;
     }
