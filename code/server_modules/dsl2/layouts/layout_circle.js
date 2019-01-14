@@ -28,7 +28,7 @@ class LayoutCircle extends Model.LayoutModel {
         // 找出需要对比的结构
         let compareNodes = this._filterCompare(nodes);
         // 找出相似结构组合
-        let similarArr = this._findSimilar(compareNodes, this._similarRule, null);
+        let similarArr = this._findSimilar(compareNodes, this._similarRule, this._featureRule);
         // 相似结构处理
         this._setSimilar(parent, nodes, similarArr);
 
@@ -70,6 +70,13 @@ class LayoutCircle extends Model.LayoutModel {
             return nd.constraints["LayoutSelfPosition"] != Constraints.LayoutSelfPosition.Absolute;
         });
     }
+    /**
+     * 特征规则
+     */
+    _featureRule(fragment) {
+        return fragment.length == 1;
+    }
+
     // 相似节点逻辑
     _similarRule(a, b) {
         /**
@@ -78,7 +85,6 @@ class LayoutCircle extends Model.LayoutModel {
          * 2. 如果是layer，layer子节点相似
          * 3. 如果非layer，三基线对齐
          */
-
         if (a.modelName != b.modelName) {
             return
         };

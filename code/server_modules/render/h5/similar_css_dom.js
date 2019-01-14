@@ -32,9 +32,6 @@ class similarCssDom {
 
         if (cssNode.similarParentId) {
             parentClassName = '.s-' + cssNode.similarParentId;
-        } else if (cssNode.modelId) {
-            let model = CssDom.getClosestModelById(cssNode, cssNode.modelId);
-            parentClassName = '.u-' + model.serialId;
         }
 
         if (cssNode.similarId) {
