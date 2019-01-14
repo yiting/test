@@ -32,13 +32,14 @@ class DSLTreeProcessor {
         
         if(!pnode.children || !pnode.children.length) return;
         pnode.children.forEach((node,index) => {
+            // if (node.id === 'EBDB98BC-0B1A-4F08-827D-5B52B8F9C675c') debugger
             let element = node;
             if (node.constructor.name === 'RenderData') {
                 element = this._convertNode(node,platformType);
             }
             if (node.modelName) {
                 if (node.modelName === 'layer') {
-                    if ( ~QNODE_TYPES.indexOf(node.type) ) element = this._parseBgNode(element,platformType);
+                    // if ( ~QNODE_TYPES.indexOf(node.type) ) element = this._parseBgNode(element,platformType);  // QShape和QImage如果有子节点需要特殊处理
                 } else {
                     element = this._parseWidgetNode(element,platformType);
                 }
