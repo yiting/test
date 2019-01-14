@@ -3,7 +3,7 @@ html,body{
     padding: 0;
     font-size: 1.33333vh;
 }
-span{
+span,em{
     display: block;
 }
 .img{

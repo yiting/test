@@ -2,7 +2,7 @@
 //
 const Common = require('./dsl_common.js');
 const Utils = require('./dsl_utils.js');
-const Model =  require('./dsl_model.js');
+const Model = require('./dsl_model.js');
 const ElementList = require('./elements/modellist.js');
 const WidgetList = require('./widgets/modellist.js');
 const Group = require('./dsl_group.js');
@@ -17,9 +17,8 @@ let sortWidgetList = Utils.sortModelList(WidgetList);
  * 传入节点匹配出各模型
  * @param nodes 需要匹配的节点
  * @param matchType 匹配模型的类型
- * @param {Int} endY 匹配的范围界线
  */
-let matchModel = function(nodes, matchType, endY) {
+let matchModel = function (nodes, matchType, endY) {
     // 匹配的逻辑是按组件模型优先级排序,遍历组件模型数组,
     // 再按组件模型所需的元素个数通过Utils.getGroupFromNodes
     // 进行随机取出，最后交由组件模型进行匹配
@@ -27,23 +26,24 @@ let matchModel = function(nodes, matchType, endY) {
     let result = [];
     let modelList;
 
-    switch(matchType) {
+    switch (matchType) {
         case Common.MatchingElements:
             modelList = sortElementList;
             break;
         case Common.MatchingWidgets:
             modelList = sortWidgetList;
             break;
-        default:;
+        default:
+            ;
     }
 
     // 随机匹配节点类型算法函数
     modelList.forEach(matchModel => {
-        let groups = Utils.getGroupFromNodes(nodes, 
-                                            matchModel.getTextNumber(), 
-                                            matchModel.getIconNumber(), 
-                                            matchModel.getImageNumber(),
-                                            matchModel.getShapeNumber());
+        let groups = Utils.getGroupFromNodes(nodes,
+            matchModel.getTextNumber(),
+            matchModel.getIconNumber(),
+            matchModel.getImageNumber(),
+            matchModel.getShapeNumber());
 
         //console.log(groups);
         if (groups && groups.length > 0) {
@@ -67,7 +67,7 @@ let matchModel = function(nodes, matchType, endY) {
                 }
 
                 let bool = matchModel.isMatch(group);
-                
+
                 if (bool) {
                     // 生成匹配数据
                     let mData = new Model.MatchData(matchModel);
@@ -93,7 +93,7 @@ let matchModel = function(nodes, matchType, endY) {
  * @param {Array} widgetModels 
  * @returns {DslTree} 返回组成的树
  */
-let groupModel = function(elementModels, widgetModels) {
+let groupModel = function (elementModels, widgetModels) {
     return Group.join(elementModels, widgetModels);
 }
 
@@ -102,7 +102,7 @@ let groupModel = function(elementModels, widgetModels) {
  * @param {DslTree} dslTree 需要进行布局关系处理的模型
  * @param {Int} layoutType 处理布局的方式
  */
-let layoutModel = function(dslTree, layoutType) {
+let layoutModel = function (dslTree, layoutType) {
     Layout.layout(dslTree, layoutType);
 }
 
@@ -139,7 +139,7 @@ let layoutModel = function(dslTree, layoutType) {
 //         let md = dslTree.getModelData(child.id);
 //         models.push(md);
 //     });
-    
+
 //     // 布局模型处理
 //     LayoutList.forEach(model => {
 //         model.handle(parent, children, models, layoutType);

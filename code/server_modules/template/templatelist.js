@@ -38,6 +38,8 @@ const WG4M2 = require("./html/widgets/wg4/m2");
 const WG4M3 = require("./html/widgets/wg4/m3");
 //5元素
 const WG5M1 = require("./html/widgets/wg5/m1");
+
+const WGNM1 = require("./html/widgets/wgn/m1");
 //模板数组
 const TEMPLATE_LIST = [
   EM1M1,
@@ -74,7 +76,9 @@ const TEMPLATE_LIST = [
   WG4M2,
   WG4M3,
 
-  WG5M1
+  WG5M1,
+
+  WGNM1
 ];
 
 module.exports = TEMPLATE_LIST;

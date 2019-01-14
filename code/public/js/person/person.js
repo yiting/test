@@ -7,6 +7,52 @@ var vm = new Vue({
   data: {
     showNav: true,
     user: {},
+    demoprojects: [
+      {
+        id: 790,
+        userid: 102053,
+        isdel: 0,
+        compliePath: "http://10.64.70.68:8080/complie/20190108220529_我的日迹",
+        unzipPath: "http://10.64.70.68:8080/unzip_file/20190108220529_我的日迹",
+        modifytime: "2019-01-08T14:05:29.000Z",
+        projectId: "7486a9f0-134e-11e9-b488-2ffc10f2e0a0",
+        projectName: "20190108220529_我的日迹"
+      },
+      {
+        id: 786,
+        userid: 102053,
+        isdel: 0,
+        compliePath:
+          "http://10.64.70.68:8080/complie/20190108212707_空白页推荐游戏",
+        unzipPath:
+          "http://10.64.70.68:8080/unzip_file/20190108212707_空白页推荐游戏",
+        modifytime: "2019-01-08T13:27:07.000Z",
+        projectId: "184842c0-1349-11e9-a1f3-6555c3962aef",
+        projectName: "20190108212707_空白页推荐游戏"
+      },
+      {
+        id: 729,
+        userid: 102053,
+        isdel: 0,
+        compliePath: "http://10.64.70.68:8080/complie/20190108192014_游戏城",
+        unzipPath: "http://10.64.70.68:8080/unzip_file/20190108192014_游戏城",
+        modifytime: "2019-01-08T11:20:14.000Z",
+        projectId: "5eace930-1337-11e9-a3b0-3b0f0a686661",
+        projectName: "20190108192014_游戏城"
+      },
+      {
+        id: 727,
+        userid: 102053,
+        isdel: 0,
+        compliePath:
+          "http://10.64.70.68:8080/complie/20190108191957_个人详情页",
+        unzipPath:
+          "http://10.64.70.68:8080/unzip_file/20190108191957_个人详情页",
+        modifytime: "2019-01-08T11:19:58.000Z",
+        projectId: "54a21c30-1337-11e9-a3b0-3b0f0a686661",
+        projectName: "20190108191957_个人详情页"
+      }
+    ],
     projects: [],
     historyProjects: []
   },
@@ -36,7 +82,21 @@ var vm = new Vue({
     this.eventListener();
   },
   methods: {
-    eventListener:function(){
+    eventListener: function() {
+      //检测是否第1次访问demo(已访问demo)
+      let isVisitDemoFlag = false;
+      if (
+        window.Storage &&
+        window.localStorage &&
+        window.localStorage instanceof Storage
+      ) {
+        isVisitDemoFlag = localStorage.getItem("isVisitDemo");
+      }
+      //如果已访问过，则添加无呼吸态动画样式
+      if (isVisitDemoFlag) {
+        $(".page-demo").addClass("no-animation");
+      }
+      //滚动
       $(window).on("scroll", function() {
         if (window.scrollY > 300) {
           $("#jmod-backtotop-wrap").css("visibility", "visible");
@@ -44,6 +104,7 @@ var vm = new Vue({
           $("#jmod-backtotop-wrap").css("visibility", "hidden");
         }
       });
+      //回到顶部
       $("#jmod-backtotop-wrap").on("click", function() {
         $("html,body").animate(
           {
@@ -110,6 +171,14 @@ var vm = new Vue({
      */
     showExampleDemo: function(event) {
       $(".page-demo").addClass("page-demo-display");
+      //记录已查看demo状态，存放在localStorage中：第1次访问，呼吸态动画；再次访问，无呼吸态动画
+      if (
+        window.Storage &&
+        window.localStorage &&
+        window.localStorage instanceof Storage
+      ) {
+        localStorage.setItem("isVisitDemo", true);
+      }
     },
     /**
      *  获取项目列表
@@ -126,6 +195,7 @@ var vm = new Vue({
         success: function(res) {
           //console.dir(res.data);
           vm.projects = res.data;
+          //console.log(JSON.stringify(res.data));
 
           //this.nextTick(callback)，当数据发生变化，更新后执行回调。
           //this.$nextTick(callback)，当dom发生变化，更新后执行的回调。

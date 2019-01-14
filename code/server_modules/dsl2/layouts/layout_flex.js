@@ -52,7 +52,7 @@ class LayoutFlex extends Model.LayoutModel {
      */
     _handleVertical(parent, nodes, models) {
         parent.constraints['LayoutDirection'] = Constrains.LayoutDirection.Vertical;
-        parent.constraints['LayoutAlignItems'] = Constrains.LayoutAlignItems.Start;
+        // parent.constraints['LayoutAlignItems'] = Constrains.LayoutAlignItems.Start;
         // 高度不需要处理
         let calNodes = [],
             absNodes = [];
@@ -109,13 +109,11 @@ class LayoutFlex extends Model.LayoutModel {
      */
     _handleHorizontal(parent, nodes, models) {
         parent.constraints['LayoutDirection'] = Constrains.LayoutDirection.Horizontal;
-        parent.constraints['LayoutJustifyContent'] = Constrains.LayoutJustifyContent.Start;
-
+        // parent.constraints['LayoutJustifyContent'] = Constrains.LayoutJustifyContent.Start;
         // 横向的排列原则先简单按照:
         // 1, 从左往右,从上往下排列
         // 2, 从最左开始计算出x轴上不相交的元素组成横向一排
         // 3, 没能排列的元素, 若与某元素相交, 则包含进相交元素, 否则加到parent处
-
         let calNodes = [],
             absNodes = [];
         // 剔除绝对定位节点

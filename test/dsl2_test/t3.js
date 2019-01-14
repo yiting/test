@@ -11591,7 +11591,7 @@ let designjson = [{
     "childnum": 0,
     "zIndex": 0,
     "hasStyle": false
-}, {
+}, /* {
     "id": "A4CD50D4-1033-4BA5-8201-CB8277303E90",
     "type": "QImage",
     "name": "红包标签 圆形",
@@ -11610,7 +11610,7 @@ let designjson = [{
     "path": "A4CD50D4-1033-4BA5-8201-CB8277303E90.png",
     "group": 1,
     "hasStyle": true
-}, {
+},  */{
     "id": "DFB4AE37-82E8-4CD7-BB11-A3BEDABE85E5",
     "type": "QText",
     "name": "最近在玩",
@@ -12352,12 +12352,14 @@ const Render = require('../../code/server_modules/render/render.js');
 
 
 let dslTree = Dsl.process(designjson, 750, 750, Common.FlexLayout);
-let jsonData = dslTree.getRenderData();
-console.log(jsonData);
-// let htmlStr = render.getTagString();
-// let cssStr = render.getStyleString();
-// const Path = require('path');
+// let jsonData = dslTree.getRenderData();
 
-// // 输出文件
-// render.outputFileWithPath(Path.join(__dirname, './output/index.html'), htmlStr);
-// render.outputFileWithPath(Path.join(__dirname, './output/index.css'), cssStr);
+// console.log(jsonData);
+let render = Render.process(dslTree);
+let htmlStr = render.getTagString();
+let cssStr = render.getStyleString();
+const Path = require('path');
+
+// 输出文件
+render.outputFileWithPath(Path.join(__dirname, './output/index.html'), htmlStr);
+render.outputFileWithPath(Path.join(__dirname, './output/index.css'), cssStr);

@@ -9,63 +9,53 @@ const Constraints = require('../dsl_constraints');
 class LayoutCircle extends Model.LayoutModel {
     constructor(modelType) {
         super(modelType);
-        this.similarIndex = 0;
+        this.similarIndex = 1;
     }
 
     /**
-     * 对传进来的模型数组进行循环分析处理
+     * 主流程：对传进来的模型数组进行循环分析处理
      * @param {TreeNode} parent 树节点
      * @param {Array} nodes 树节点数组
      * @param {Array} models 对应的模型数组
      * @param {Int} layoutType 布局的类型
      */
     handle(parent, nodes, models, layoutType) {
+        // if(parent.type==)
         if (!nodes || nodes.length == 0) {
             // 如果没有子节点，则返回
             return;
         }
-
         // 找出需要对比的结构
-        let compareNodes = this._filter(nodes);
+        let compareNodes = this._filterCompare(nodes);
         // 找出相似结构组合
-        let similarArr = this._similar(compareNodes, this._similarRule);
+        let similarArr = this._findSimilar(compareNodes, this._similarRule, this._featureRule);
+        // 相似结构处理
+        this._setSimilar(parent, nodes, similarArr);
 
+    }
+    // 相似结构处理
+    _setSimilar(parent, nodes, similarArr) {
         if (similarArr.length == 0) {
             // 如果没有相似结构，则返回
             return;
         }
-
-        // let children = [];
         let inSimilar = [];
+        // 获取循环节点
         similarArr.forEach(item => {
-            let similarIndex = this.similarIndex++;
-            // 如果只有一个特征,不需要成组
-            if (item.feature == 1) {
-                item.target.forEach(group => {
-                    group.forEach(nd => {
-                        nd.set("similarIndex", similarIndex);
-                    });
+            // 如果特征多于一个，暂不处理
+            if (item.feature != 1) return;
+            let similarId = this.similarIndex++;
+            item.target.forEach(group => {
+                group.forEach(nd => {
+                    nd.set('similarId', similarId);
                 })
-            } else {
-                item.target.forEach(group => {
-                    let layer = Group.Tree.createNodeData();
-                    let range = Utils.calRange(group);
-                    // !重要, 设定出layer的abX, abY, abXops, abYops, width, height
-                    layer.set("parentId", parent.id);
-                    layer.set("children", group);
-                    layer.set("abX", range.abX);
-                    layer.set("abY", range.abY);
-                    layer.set("abXops", range.abXops);
-                    layer.set("abYops", range.abYops);
-                    layer.set("similarIndex", similarIndex);
-
-                    group.forEach(nd => {
-                        nd.set("parentId", layer.id);
-                        inSimilar.push(nd);
-                    });
-                    nodes.push(layer);
-                });
-            }
+            })
+            // 提取循环节点
+            item.target.forEach(group => inSimilar.push(...group))
+            // 合并循环节点为新节点
+            let newCycleData = Group.Tree.createCycleData(parent, item.target, similarId);
+            // 加入新节点到父级元素
+            nodes.push(newCycleData);
         });
         // 从节点中剔除被循环的节点
         nodes = nodes.filter(nd => {
@@ -74,38 +64,69 @@ class LayoutCircle extends Model.LayoutModel {
         parent.set("children", nodes);
     }
 
-    // 分组前的排序
-    _sort(arr) {
-        // 筛选前排序
-        return arr.map(o => {
-            return Object.assign({}, o, {
-                cX: o.abX + o.width / 2,
-                cY: o.abY + o.height / 2
-            })
-        }).sort(function (a, b) {
-            if (a.cX < b.cX) {
-                return -1;
-            } else if (a.cY > b.cY)
-                return 1;
-        })
-    }
-
-    _filter(arr) {
+    // 剔除绝对定位元素，绝对定位元素不参与循环判断
+    _filterCompare(arr) {
         return arr.filter(nd => {
             return nd.constraints["LayoutSelfPosition"] != Constraints.LayoutSelfPosition.Absolute;
         });
     }
+    /**
+     * 特征规则
+     */
+    _featureRule(fragment) {
+        return fragment.length == 1;
+    }
 
+    // 相似节点逻辑
     _similarRule(a, b) {
-        return a.modelName == b.modelName &&
-            (
+        /**
+         * 逻辑：
+         * 1. 模型名称相似
+         * 2. 如果是layer，layer子节点相似
+         * 3. 如果非layer，三基线对齐
+         */
+        if (a.modelName != b.modelName) {
+            return
+        };
+        let aIsVertical = Utils.isVertical(a.children),
+            bIsVertical = Utils.isVertical(b.children);
+        if (a.modelName == 'layer') {
+            return aIsVertical == bIsVertical &&
+                ((a.height == b.height &&
+                    (a.abX == b.abX ||
+                        a.abXops == b.abXops ||
+                        a.abX + a.width / 2 == b.abX + b.width / 2)
+                ) || (
+                    a.width == b.width &&
+                    (a.abY == b.abY ||
+                        a.abYops == b.abYops ||
+                        a.abY + a.height / 2 == b.abY + b.height / 2)
+                ))
+        } else {
+            // 如果为模型结构，三线对齐相同
+            return a.abY == b.abY ||
+                a.abYops == b.abYops ||
+                a.abY + a.height / 2 == b.abY + b.height / 2 ||
+                a.abX == b.abX ||
+                a.abXops == b.abXops ||
+                a.abX + a.width / 2 == b.abX + b.width / 2
+        }
+
+        // 如果为布局结构，则子节点模型相同、宽度相同
+        /* (a.modelName == 'layer' ?
+            (a.children.length == b.children.length &&
+                a.children.every((ndA, i) => {
+                    return b.children[i].modelName == ndA.modelName
+                })
+            ) : (
+                // 如果为模型结构，三线对齐相同
                 a.abY == b.abY ||
                 a.abYops == b.abYops ||
                 a.abY + a.height / 2 == b.abY + b.height / 2 ||
                 a.abX == b.abX ||
                 a.abXops == b.abXops ||
                 a.abX + a.width / 2 == b.abX + b.width / 2
-            );
+            )); */
     }
     /**
      * 相似性分组
@@ -124,8 +145,8 @@ class LayoutCircle extends Model.LayoutModel {
      *  ],
      *  ...
      * ]
-      */
-    _similar(arr, similarLogic, featureLogic) {
+     */
+    _findSimilar(arr, similarLogic, featureLogic) {
         let pit = [];
         // 相似特征分组
         arr.forEach((s, i) => {
@@ -139,8 +160,8 @@ class LayoutCircle extends Model.LayoutModel {
                 }
                 // 排除完全重复的独立项
                 if (fragment.length > 1 && fragment.every((s, i) => {
-                    return i == 0 || (similarLogic ? similarLogic(s, fragment[i - 1]) : s == fragment[i - 1])
-                })) {
+                        return i == 0 || (similarLogic ? similarLogic(s, fragment[i - 1]) : s == fragment[i - 1])
+                    })) {
                     continue;
                 }
 
@@ -149,10 +170,12 @@ class LayoutCircle extends Model.LayoutModel {
                     // existing:当前片段与缓存片段，每一段都符合逻辑特征判断
                     let existing = p.feature == fragment.length && p.target.some(t => {
                         //  只有一个特征时，还须连续的重复；多个特征时，只需逻辑相同
-                        return t.every((f, fi) => {
-                            return similarLogic ? similarLogic(f, fragment[fi]) : (f == fragment[fi]);
-                        });
+                        return (p.feature == 1 ? index == p.lastIndex + 1 : true) &&
+                            t.every((f, fi) => {
+                                return similarLogic ? similarLogic(f, fragment[fi]) : (f == fragment[fi]);
+                            });
                     });
+
                     if (existing && (p.lastIndex + p.feature) <= index) {
                         // 如果重复，且当前节点在上一个重复片段的节点之后
                         p.target.push(fragment);
@@ -171,13 +194,13 @@ class LayoutCircle extends Model.LayoutModel {
         let indexMap = new Array(arr.length);
         //  剔除不重复项
         let sorter = pit.filter(s => s.target.length > 1)
-            // 按最大重复因子数， 降序
-            .sort((a, b) => {
-                return b.feature - a.feature
-            })
             //  按最高重复数，降序
             .sort((a, b) => {
                 return b.target.length - a.target.length
+            })
+            // 按最大重复因子数， 降序
+            .sort((a, b) => {
+                return b.feature - a.feature
             })
             //  筛选已被选用的节点组
             .filter(s => {
