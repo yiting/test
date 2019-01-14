@@ -5,7 +5,6 @@ const extremType = {
     "Min":"Min"
 }
 const ATTR_TYPES = {
-    FOR: ':for',
     REF: ':ref',
     CONSTRAINTS: ':constraints'
 }
@@ -58,36 +57,36 @@ class DSLTreeTransfer {
         return this.xml;
     };
     /**
-     * 入口：将xml模板与data数据结合在一起，生成目标json
+     * 入口：将xml模板与dslNodes数据结合在一起，生成目标json
      * @param {String} xml 
-     * @param {Object} data
+     * @param {Object} dslNodes
      */
-    static parse(xml, data) {
+    static parse(xml, dslNodes) {
         this.setXml(xml);
-        this.process(xml,data);
+        this.process(dslNodes);
         this.xml.isRoot = true;
-        return this.convert(this.xml, data);
+        return this.convert(this.xml, dslNodes);
     };
-    static process(xml,data) {
+    static process(dslNodes) {
         let xml_repeat = this.xml.getElementsByTagName("repeat")[0];
         if (!xml_repeat) return;
         let xml_repeat_parent = xml_repeat.parentNode;
         let ref_template = xml_repeat.querySelector("[\\:ref]");
         xml_repeat_parent.removeChild(xml_repeat);
-        data.forEach((item,index) => {
+        dslNodes.forEach((item,index) => {
             ref_template.setAttribute(':ref',index);
             xml_repeat_parent.innerHTML += xml_repeat.innerHTML;
         })
     }
-    static getNodeDataByModelRef(ref,data) {
-        return data.find(d => d.modelRef === ref)
+    static getNodeDataByModelRef(ref,dslNodes) {
+        return dslNodes.find(d => d.modelRef === ref)
     }
     /**
-     * 将xml模板与data数据结合在一起，生成目标json
+     * 将xml模板与dslNodes数据结合在一起，生成目标json
      * 2.xml节点中“:”开头的属性保存在节点根的tplData里，其余属性放在tplAttr属性里
-     * 3.当xml节点中遇到属性是":ref"时，将data里该属性的数据全保存到该xml节点下。
+     * 3.当xml节点中遇到属性是":ref"时，将dslNodes里该属性的数据全保存到该xml节点下。
      * @param {String} xml 
-     * @param {Object} data
+     * @param {Object} ddslNodesata
      */
     static createNode(xml) {
         var obj = {};
@@ -99,7 +98,6 @@ class DSLTreeTransfer {
         obj.width = 0;
         obj.height = 0;
         obj.isCalculate = false;
-        obj.constraints = {};
         obj.children = [];
         obj.styles = {};
         obj.text = "";
@@ -112,79 +110,85 @@ class DSLTreeTransfer {
         }
         return obj;
     }
-    static convert(xml, data) {
+    static convert(xml, dslNodes) {
         if (xml.nodeType != 1) {
             return null;
         }
-        let obj = this.createNode(xml);
+        let node = this.createNode(xml);
         if (xml.attributes.length > 0) {
             for (var j = 0; j < xml.attributes.length; j++) {
                 var attribute = xml.attributes.item(j);
                 switch(attribute.nodeName) {
-                    case ":ref": this.clone(data[attribute.nodeValue], obj); break;
-                    case ":constraints": this.isJSON(attribute.nodeValue) && this.clone(JSON.parse(attribute.nodeValue), obj["constraints"]); break;
-                    default : attribute.nodeName[0] === ':' ? obj["tplData"][attribute.nodeName.substring(1)] = attribute.nodeValue :  obj["tplAttr"][attribute.nodeName] = attribute.nodeValue;break;
+                    case ":ref": {this.clone(this._getRenderDataByRef(attribute.nodeValue,dslNodes), node);delete node['modelRef']} break;
+                    case ":constraints": this.isJSON(attribute.nodeValue) && this.mergeAttr(JSON.parse(attribute.nodeValue), node["constraints"]); break;
+                    default : attribute.nodeName[0] === ':' ? node["tplData"][attribute.nodeName.substring(1)] = attribute.nodeValue :  node["tplAttr"][attribute.nodeName] = attribute.nodeValue;break;
                 }
             }
         }
         if (xml.childNodes.length > 0) {
-            var items = [];
-            for (var i = 0; i < xml.childNodes.length; i++) {
-                var node = xml.childNodes.item(i);
-                var item = this.convert(node, data);
+            let items = [];
+            for (let i = 0; i < xml.childNodes.length; i++) {
+                let x = xml.childNodes.item(i);
+                let item = this.convert(x, dslNodes);
                 if (item) {
                     items.push(item);
                 }
             }
             if (items.length > 0) {
-                obj.children = items;
+                node.children = items;
             }
         }
         if(xml.isRoot){
-            obj.modelName = data.modelName;
+            node.modelName = dslNodes.modelName;
         } else {
             //父节点获取所有子节点的最边的四个角的值
-            if(typeof(obj.abX) == "undefined"){
-                obj.abX = this.getExtremValue(obj.children,"abX",extremType.Min,obj);
+            if(typeof(node.abX) == "undefined"){
+                node.abX = this.getExtremValue(node.children,"abX",extremType.Min,node);
             }
-            if(typeof(obj.abY) == "undefined"){
-                obj.abY = this.getExtremValue(obj.children,"abY",extremType.Min,obj);
+            if(typeof(node.abY) == "undefined"){
+                node.abY = this.getExtremValue(node.children,"abY",extremType.Min,node);
             }
-            if(typeof(obj.abXops) == "undefined"){
-                var childrenXops = this.getExtremValue(obj.children,"abXops",extremType.Max,obj);
-                var selfXops = obj.abX+obj.width;
-                obj.abXops = childrenXops>selfXops?childrenXops:selfXops;
+            if(typeof(node.abXops) == "undefined"){
+                var childrenXops = this.getExtremValue(node.children,"abXops",extremType.Max,node);
+                var selfXops = node.abX+node.width;
+                node.abXops = childrenXops>selfXops?childrenXops:selfXops;
             }
-            if(typeof(obj.abYops) == "undefined"){
-                var childrenYops = this.getExtremValue(obj.children,"abYops",extremType.Max,obj);
-                var selfYops = obj.abY+obj.height;
-                obj.abYops = childrenYops>selfYops?childrenYops:selfYops;
+            if(typeof(node.abYops) == "undefined"){
+                var childrenYops = this.getExtremValue(node.children,"abYops",extremType.Max,node);
+                var selfYops = node.abY+node.height;
+                node.abYops = childrenYops>selfYops?childrenYops:selfYops;
             }
-            if(typeof(obj.canLeftFlex) == "undefined"){
-                obj.canLeftFlex = data.canLeftFlex || false;
+            if(typeof(node.canLeftFlex) == "undefined"){
+                node.canLeftFlex = null;
             }
-            if(typeof(obj.canRightFlex) == "undefined"){
-                obj.canRightFlex = data.canRightFlex || false;
+            if(typeof(node.canRightFlex) == "undefined"){
+                node.canRightFlex = null;
             }
-            obj.parentId = obj.parentId || obj.parent || '';
+            node.parentId = node.parentId || node.parent || '';
         }
-        // obj.modelName = obj. modelName || data.modelName || '';
-        return obj;
+        // node.modelName = node. modelName || data.modelName || '';
+        return node;
     };
+    static mergeAttr(obj,targetObj) {
+        Object.assign(targetObj,obj);
+    }
+    static _getRenderDataByRef(ref,dslNodes) {
+        try {
+            return dslNodes.find(n => n.modelRef === ref);
+        } catch (error) {
+            throw dslNodes
+        }
+    }
     static clone(obj, destObj) {
+        // if(!obj) debugger
         if (typeof obj !== "object") {
             return obj;
         } else {
-
-            for (var key in obj) {
-                if (key === 'tagName' && obj[key]) continue;
-                let _key = key;
-                if (key[0] === '_') {
-                    _key = key.slice(1);
-                    if (obj[_key] === undefined) continue;
-                }
-                destObj[_key] = obj[_key];
-            }
+            Object.assign(destObj,getAttr(obj,['zIndex','similarId','abX','abY','abXops','abYops','styles','constraints','children','width','height','canLeftFlex','canRightFlex','modelRef','modelName','text','path']));
+            // for (let key in obj) {
+            //     if (key === 'tagName' && obj[key]) continue;
+            //     destObj[key] = obj[key];
+            // }
         }
         return destObj;
     }
@@ -206,7 +210,7 @@ class DSLTreeTransfer {
         console.log('It is not a string!')
     }
     static guid() {
-        return 'ts-'+(++uuid);
+        return ++uuid + '';
     }
 }
 function walkout(xml, handler) {
@@ -216,5 +220,21 @@ function walkout(xml, handler) {
         handler(x); // 处理节点
     });
     if (xml.root) handler(xml);
+}
+function getAttr(node,keys,move = false) {
+    let obj = {};
+    if (!node) return obj;
+    for (let key of keys) {
+        if (isValue(node[key])) {
+            obj[key] = node[key];
+            if(move) delete node[key];
+        }
+    }
+    return obj;
+}
+function isValue(val) {
+    if (val === undefined || val === null || val === '') return false;
+    if (typeof val === 'object') return !!Object.keys(val).length
+    return true;
 }
 module.exports = DSLTreeTransfer;

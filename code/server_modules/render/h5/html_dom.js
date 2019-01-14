@@ -30,19 +30,15 @@ class HtmlDom {
         return this.parent ? (this.abY - this.parent.abY) : this.abY
     }
     getAttrClass() {
-        var result = [this.serialId];
+        var result = ['u-' + this.serialId];
+        if (this.similarId) {
+            result.push('s-' + this.similarId);
+        }
         if (this.tplData && this.tplData.class) {
             result.push(this.tplData.class);
         }
         if (this.tplAttr && this.tplAttr.class) {
             result.push(this.tplAttr.class);
-        }
-        if (this.similarId) {
-            result.push('s-' + this.similarId);
-        }
-
-        if (this.modelId && this.modelId != this.id) {
-            result.push('m-' + this.modelId);
         }
 
 

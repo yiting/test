@@ -353,7 +353,7 @@ class Node {
         this._abYops = mdata.abYops || 0; // 基于原点的y坐标对角
         this._constraints = {}; // 添加的约束
         this._mdata = mdata;
-        this._similarIndex = -1;
+        this._similarIndex = null;
         // this.canLeftFlex = mdata.canLeftFlex || false; // 可左扩展
         // this.canRightFlex = mdata.canRightFlex || false; // 可右扩展
         // 临时设置编写逻辑, 因为现在canLeftFlex, canRightFlex可存在null的情况
@@ -368,7 +368,7 @@ class Node {
         }
 
         this.isCalculate = false; // 是否已经完成约束计算
-        this._zIndex = mdata.zIndex || -1;
+        this._zIndex = mdata.zIndex || null;
         // this._children = mdata.children || [];
         this.set('children', mdata.children || []);// 子节点
 
@@ -489,8 +489,10 @@ class Node {
 
     set(prop, value) {
         this["_" + prop] = value;
-        if (prop == 'children' && this._zIndex == -1) {
-            this._zIndex = this._children.length ? Math.min(...this._children.map(nd => nd.zIndex)) : -1;
+        // 不知为何要判断z_index，已注释
+        // if (prop == 'children' && this._zIndex == 0) {
+        if (prop == 'children') {
+            this._zIndex = this._children.length ? Math.min(...this._children.map(nd => nd.zIndex)) : null;
         }
 
         // 添加临时逻辑, node属性的修改同步到node的renderData
@@ -807,7 +809,7 @@ Tree.createCycleData = function (parent, nodesArr, similarId) {
         if (nodes.length == 1) {            // 第二层只有一个数据直接返回
             let renderDataI = nodes[0].getRenderData();
             renderDataI.set('similarId', similarId);
-            renderDataI.set('modelRef', 0);
+            renderDataI.set('modelRef', i + '');
             newRenderData.children.push(renderDataI);
             continue;
         }

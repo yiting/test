@@ -33,7 +33,7 @@ class H5Builder extends Builder {
         return this._tagString;
     }
     getStyleString() {
-        this._styleString = SimilarCssDom.getCssString(similarCss) + CssDom.getCssString(cssDom);
+        this._styleString = SimilarCssDom.getCssString(similarCss) + CssDom.getCssString(cssDom, similarCss);
         return this._styleString;
     }
 

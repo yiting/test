@@ -50,16 +50,16 @@ class LayoutCircle extends Model.LayoutModel {
                 })
             })
             // 提取循环节点
-            // item.target.forEach(group => inSimilar.push(...group))
+            item.target.forEach(group => inSimilar.push(...group))
             // 合并循环节点为新节点
-            // let newCycleData = Group.Tree.createCycleData(parent, item.target, similarId);
+            let newCycleData = Group.Tree.createCycleData(parent, item.target, similarId);
             // 加入新节点到父级元素
-            // nodes.push(newCycleData);
+            nodes.push(newCycleData);
         });
         // 从节点中剔除被循环的节点
-        // nodes = nodes.filter(nd => {
-        // return !inSimilar.includes(nd);
-        // });
+        nodes = nodes.filter(nd => {
+            return !inSimilar.includes(nd);
+        });
         parent.set("children", nodes);
     }
 
@@ -77,22 +77,47 @@ class LayoutCircle extends Model.LayoutModel {
          * 2. 如果是layer，layer子节点相似
          * 3. 如果非layer，三基线对齐
          */
-        return a.modelName == b.modelName &&
-            // 如果为布局结构，则子节点宽度相同
-            (a.modelName == 'layer' ?
-                (a.children.length == b.children.length &&
-                    a.children.every((ndA, i) => {
-                        return b.children[i].modelName == ndA.modelName
-                    })
-                ) : (
-                    // 如果为模型结构，三线对齐相同
-                    a.abY == b.abY ||
-                    a.abYops == b.abYops ||
-                    a.abY + a.height / 2 == b.abY + b.height / 2 ||
-                    a.abX == b.abX ||
-                    a.abXops == b.abXops ||
-                    a.abX + a.width / 2 == b.abX + b.width / 2
-                ));
+
+        if (a.modelName != b.modelName) { return };
+        let aIsVertical = Utils.isVertical(a.children),
+            bIsVertical = Utils.isVertical(b.children);
+        if (a.modelName == 'layer') {
+            return aIsVertical == bIsVertical &&
+                ((a.height == b.height &&
+                    (a.abX == b.abX ||
+                        a.abXops == b.abXops ||
+                        a.abX + a.width / 2 == b.abX + b.width / 2)
+                ) || (
+                        a.width == b.width &&
+                        (a.abY == b.abY ||
+                            a.abYops == b.abYops ||
+                            a.abY + a.height / 2 == b.abY + b.height / 2)
+                    ))
+        } else {
+            // 如果为模型结构，三线对齐相同
+            return a.abY == b.abY ||
+                a.abYops == b.abYops ||
+                a.abY + a.height / 2 == b.abY + b.height / 2 ||
+                a.abX == b.abX ||
+                a.abXops == b.abXops ||
+                a.abX + a.width / 2 == b.abX + b.width / 2
+        }
+
+        // 如果为布局结构，则子节点模型相同、宽度相同
+        /* (a.modelName == 'layer' ?
+            (a.children.length == b.children.length &&
+                a.children.every((ndA, i) => {
+                    return b.children[i].modelName == ndA.modelName
+                })
+            ) : (
+                // 如果为模型结构，三线对齐相同
+                a.abY == b.abY ||
+                a.abYops == b.abYops ||
+                a.abY + a.height / 2 == b.abY + b.height / 2 ||
+                a.abX == b.abX ||
+                a.abXops == b.abXops ||
+                a.abX + a.width / 2 == b.abX + b.width / 2
+            )); */
     }
     /**
      * 相似性分组

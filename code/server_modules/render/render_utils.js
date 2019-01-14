@@ -43,8 +43,8 @@ const utils = {
             Y += node._abY - parent._abY;
             Xops += parent._abXops - node._abXops;
             Yops += parent._abYops - node._abYops;
-            Xctr += pXctr - (node._abX + node._abXops) / 2;
-            Yctr += pYctr - (node._abY + node._abYops) / 2;
+            Xctr += Math.abs(pXctr - (node._abX + node._abXops) / 2);
+            Yctr += Math.abs(pYctr - (node._abY + node._abYops) / 2);
         });
         let hStart = Math.abs(X / nodeCount) < errorCoefficient,
             hCenter = Math.abs(Xctr / nodeCount) < errorCoefficient,

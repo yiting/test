@@ -26,9 +26,7 @@ let process = function (dslTree) {
     return render;
 }
 function con(data) {
-    if (data.similarId) {
-        console.log(data.similarId)
-    }
+    console.log(data.modelId)
     data.children.forEach(con);
 }
 
@@ -37,6 +35,8 @@ class Render {
         if (!data) {
             return;
         }
+        // con(data);
+
         this._similarIndex = 0;
         this._similarMap = {};
         // 键值对形式缓存节点
@@ -122,7 +122,7 @@ class Render {
             // length为1,即没有相似位置的元素
             let nextCompareNodes = [];
             if (group.length > 1) {
-                const similarId = 'c-' + this._similarIndex++;
+                const similarId = 'sp' + this._similarIndex++;
                 this._similarMap[similarId] = group;
                 group.forEach(nd => {
                     nd.similarId = similarId;
@@ -131,7 +131,7 @@ class Render {
                     })
                     nextCompareNodes.push(...nd.children);
                 });
-                _compareSimilar(nextCompareNodes);
+                this._compareSimilar(nextCompareNodes);
             }
         });
     }

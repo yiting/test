@@ -31,19 +31,20 @@ class similarCssDom {
             selfClassName = ''
 
         if (cssNode.similarParentId) {
-            parentClassName = 'sim-' + cssNode.similarParentId;
+            parentClassName = '.s-' + cssNode.similarParentId;
         } else if (cssNode.modelId) {
-            parentClassName = 'md-' + cssNode.modelId;
+            let model = CssDom.getClosestModelById(cssNode, cssNode.modelId);
+            parentClassName = '.u-' + model.serialId;
         }
 
         if (cssNode.similarId) {
-            selfClassName = 'sim-' + cssNode.similarId;
+            selfClassName = '.s-' + cssNode.similarId;
         }
 
         if (parentClassName) {
-            return `.${parentClassName} .${selfClassName}`;
+            return [parentClassName, selfClassName].join(' ');
         } else {
-            return `.${selfClassName}`;
+            return selfClassName;
         }
     }
 
@@ -60,7 +61,7 @@ class similarCssDom {
     static _buildSimilarData(cssNode) {
         // 如果存在相似节点，则存储相似节点到simialrData
         let similarId = cssNode.similarId;
-        if (typeof similarId == 'number' && similarId != -1) {
+        if (similarId) {
             if (!this._similarData[similarId]) {
                 this._similarData[similarId] = {
                     modelId: cssNode.modelId,

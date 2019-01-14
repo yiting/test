@@ -15,12 +15,11 @@ let process = function (data, layoutType) {
     return cssDomTree;
 }
 
-let getCssString = function (cssDomTree) {
+let getCssString = function (cssDomTree, similarData) {
     // 获取cssTree解析出的样式
     let cssStr = '';
     let css = []; // 每个CssDom节点返回的样式数组
-    _parseTree(css, cssDomTree);
-    //将 [ts-layer0] {width: 7.5rem;height: 0rem; } 形式改为css形式
+    _parseTree(css, cssDomTree, similarData);
     css.forEach(function (value, key, arr) {
         cssStr += value + '\n';
     });
@@ -58,12 +57,14 @@ let _buildTree = function (parent, data, layoutType) {
  * @param {Array} arr 字符串收集数组
  * @param {CssDom} dom CssDom节点
  */
-let _parseTree = function (arr, dom) {
-    let str = dom.getCss();
-    arr.push(str);
+let _parseTree = function (arr, dom, similarData) {
+    let str = dom.getCss(similarData);
+    if (str) {
+        arr.push(str);
+    }
 
     dom.children.forEach(child => {
-        _parseTree(arr, child);
+        _parseTree(arr, child, similarData);
     });
 }
 
@@ -131,13 +132,14 @@ class CssDom {
         // 节点的信息
         this.id = data.id;
         this.serialId = data.serialId;
+        this.modelId = data.modelId;
         this.type = data.type;
         this.modelName = data.modelName;
         this.canLeftFlex = data.canLeftFlex;
         this.canRightFlex = data.canRightFlex;
         this.isCalculate = data.isCalculate;
-        this.tplAttr = data.tplAttr;
-        this.tplData = data.tplData;
+        this.tplAttr = data.tplAttr || {};
+        this.tplData = data.tplData || {};
         this.similarId = data.similarId;
 
         this.parent = parent ? parent : this;
@@ -189,7 +191,7 @@ class CssDom {
             }
 
             if (canBegin) { // 这里开始就是开始寻找"上一个节点了"
-                if (this._isAbsolute(node)) {
+                if (node._isAbsolute()) {
                     continue;
                 }
 
@@ -204,7 +206,7 @@ class CssDom {
     _prevNodeWithParam(nodes, curIndex) {
         var index = curIndex - 1;
         while (index >= 0) {
-            if (!this._isAbsolute(nodes[index])) {
+            if (!nodes[index]._isAbsolute()) {
                 return nodes[index];
             }
             index--;
@@ -218,7 +220,7 @@ class CssDom {
     _nextNodeWithParam(nodes, curIndex) {
         var index = curIndex + 1;
         while (index < nodes.length) {
-            if (!this._isAbsolute(nodes[index])) {
+            if (!nodes[index]._isAbsolute()) {
                 return nodes[index];
             }
             index++;
@@ -254,7 +256,7 @@ class CssDom {
             }
 
             if (canBegin) { // 这里开始就是开始寻找"下一个节点了"
-                if (this._isAbsolute(node)) {
+                if (node._isAbsolute()) {
                     continue;
                 }
 
@@ -265,11 +267,10 @@ class CssDom {
 
     /**
      * 节点是否属于绝对定位
-     * @param {CssDom} node 
      */
-    _isAbsolute(node) {
-        if (node.constraints['LayoutSelfPosition'] &&
-            node.constraints['LayoutSelfPosition'] == Constraints.LayoutSelfPosition.Absolute) {
+    _isAbsolute() {
+        if (this.constraints['LayoutSelfPosition'] &&
+            this.constraints['LayoutSelfPosition'] == Constraints.LayoutSelfPosition.Absolute) {
             return true;
         }
 
@@ -351,7 +352,7 @@ class CssDom {
         if (this.type == Common.QBody) {
             return;
         }
-        if (this._isAbsolute(this)) {
+        if (this._isAbsolute()) {
             return;
         }
         let isVertical = this.parent.constraints['LayoutDirection'] == Constraints.LayoutDirection.Vertical;
@@ -396,10 +397,10 @@ class CssDom {
      */
     _usePaddingTop(parent) {
         return parent.constraints["LayoutDirection"] == Constraints.LayoutDirection.Vertical &&
-            parent.children.find(nd => !this._isAbsolute(nd));
+            parent.children.find(nd => !nd._isAbsolute());
     }
     _getFirstChild(node) {
-        return node.children.find(nd => !this._isAbsolute(nd));
+        return node.children.find(nd => !nd._isAbsolute());
     }
     // 约束补充计算
     _supplementConstraints() {
@@ -407,10 +408,8 @@ class CssDom {
         if (children.length == 0) {
             return;
         }
-        // if (this.type == Common.QBody) {
-        //     return;
         // }
-        let isVertical = Utils.isVertical(children),
+        let isVertical = children.length > 1 && Utils.isVertical(children),
             baseLine = Utils.calculateBaseLine(this),
             _justifyContent = isVertical ? 'vertical' : 'horizontal',
             _alignItems = isVertical ? 'vertical' : 'horizontal';
@@ -430,14 +429,14 @@ class CssDom {
 
     }
     // 找到获取最接近的model
-    getClosestModelById(id) {
+    static getClosestModelById(node, id) {
         if (!id) {
             return null;
         }
-        if (id == this.id) {
-            return this;
+        if (id == node.id) {
+            return node;
         }
-        return this.parent.getClosestModelById(id);
+        return CssDom.getClosestModelById(node.parent, id);
     }
     /**
      * 获取className
@@ -446,14 +445,12 @@ class CssDom {
         let parentClass = '',
             selfClass = '';
         // 如果有modelId,说明当前节点为某模型子元素
-        if (this.modelId) {
-            let model = this.getClosestModelById(this.modelId).join(' ');
-            parentClass = `.ts-${model.similarId || model.id}`;
-        }
-        if (this.similarId) {
-            selfClass = `.${this.similarId}`;
+        if (this.modelId && this.modelId != this.id) {
+            let model = CssDom.getClosestModelById(this, this.modelId);
+            parentClass = `.u-${model.serialId}`;
+            selfClass = this.tplData.class ? `.${this.tplData.class}` : `.u-${this.serialId}`
         } else {
-            selfClass = `.${this.serialId}`;
+            selfClass = `.u-${this.serialId}`;
         }
         return [parentClass, selfClass].join(' ');
     }
@@ -461,25 +458,30 @@ class CssDom {
     /**
      * 获取得到的属性
      */
-    getCssProperty() {
+    getCssProperty(similarData) {
         let props = [];
         // 获取属性值并进行拼接
-        // console.log(this.id);
+        let similarCss = similarData[this.similarId] && similarData[this.similarId].css;
         cssPropertyMap.forEach(key => {
-            let value = this[key];
-            if (value !== null) {
+            let value = this[key],
+                similarValue = similarCss && similarCss[key];
+            if (value !== null && similarValue != value) {
                 props.push(CssDom.getCssProperty(key, value));
             }
         });
-        return props.join(';');
+        return props;
     }
 
     /**
      * 获取该节点的样式
      */
-    getCss() {
-        let str = '';
-        str = `${this.getClass()} {${this.getCssProperty()}}`;
+    getCss(similarData) {
+        let str = '',
+            className = this.getClass(),
+            cssArr = this.getCssProperty(similarData);
+        if (cssArr.length) {
+            str = `${className} {${cssArr.join(';')}}`;
+        }
         // !重要, 每次获取当前节点样式信息后
         // 动态计算该节点的子节点的根据约束而生成_abX, _abY, _abXops, _abYops等数据
         return str;
@@ -586,7 +588,7 @@ class CssDom {
         if (false) {
             // 这里是预留给fixed定位约束
             css = this._abY;
-        } else if (this._isAbsolute(this)) {
+        } else if (this._isAbsolute()) {
             css = this.parentY;
         } else {
             return null;
@@ -609,7 +611,7 @@ class CssDom {
         if (false) {
             // 这里是预留给fixed定位约束
             css = this._abX;
-        } else if (this._isAbsolute(this)) {
+        } else if (this._isAbsolute()) {
             css = this.parentX;
         } else {
             return null;
@@ -617,7 +619,7 @@ class CssDom {
         return css;
     }
     get position() {
-        if (this._isAbsolute(this)) {
+        if (this._isAbsolute()) {
             return "absolute";
         } else {
             return "relative";
@@ -633,7 +635,7 @@ class CssDom {
     //
     get marginTop() {
         let css = null;
-        if (this._isAbsolute(this)) {
+        if (this._isAbsolute()) {
             return css;
         }
         let firstChild = this._usePaddingTop(this.parent);
@@ -685,7 +687,7 @@ class CssDom {
     //
     get marginRight() {
         let css = null;
-        if (this._isAbsolute(this)) {
+        if (this._isAbsolute()) {
             return css;
         }
 
@@ -723,7 +725,7 @@ class CssDom {
     }
     //
     get marginBottom() {
-        if (this._isAbsolute(this)) {
+        if (this._isAbsolute()) {
             return null;
         }
         if (this._isParentHorizontal()) { // 横排计算与父节点距离
@@ -762,7 +764,7 @@ class CssDom {
     //
     get marginLeft() {
         let css = null;
-        if (this._isAbsolute(this)) {
+        if (this._isAbsolute()) {
             return css;
         }
 
@@ -797,7 +799,7 @@ class CssDom {
     }
     //
     get zIndex() {
-        if (this._zIndex) {
+        if (this._isAbsolute() && this._zIndex) {
             return this._zIndex;
         }
         return null;
