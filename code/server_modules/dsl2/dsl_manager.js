@@ -71,8 +71,8 @@ let matchModel = function(nodes, matchType, endY) {
                 if (bool) {
                     // 生成匹配数据
                     let mData = new Model.MatchData(matchModel);
-                    if (mData.abY <= endY && mData.abYops >= endY) {
-                        // 不匹配
+                    if (matchType == Common.MatchingWidgets && mData.abY <= endY && mData.abYops > endY) {
+                        // 如果匹配的模型范围落在下边界里, 则模型留范围往下移动后匹配
                         continue;
                     }
 
