@@ -784,14 +784,12 @@ Tree.createNodeData = function (mdata) {
  * @param {Int} similarId
  * @return {Object}
  */
-Tree.createCycleData = function (parent, nodesArr, similarId) {
+Tree.createCycleData = function(parent, nodesArr, similarId) {
     // 组成新节点,并且构建MatchData里的getMatchNode数据
     if (!nodesArr || nodesArr.length == 0) {
         return;
     }
 
-    // 构建循环结构的根节点
-    // 先测一个简单循环模板
     let newNode = new Node();
     newNode.set('parentId', parent.id);
     let newRenderData = new RenderData();
@@ -810,6 +808,8 @@ Tree.createCycleData = function (parent, nodesArr, similarId) {
             let renderDataI = nodes[0].getRenderData();
             renderDataI.set('similarId', similarId);
             renderDataI.set('modelRef', i + '');
+            // 递归读取nodes的节点
+            Tree._handleCycleData(renderDataI, nodes[0]);
             newRenderData.children.push(renderDataI);
             continue;
         }
@@ -817,14 +817,13 @@ Tree.createCycleData = function (parent, nodesArr, similarId) {
         let nodeI = new RenderData();
         nodeI.set('parentId', newRenderData.id);
         nodeI.set('modelRef', i);
-        // nodeI.set('similarId', similarId);
-        // nodeI.set('similarParentId', similarId);
+    
         for (let j = 0; j < nodes.length; j++) {
             let nd = nodes[j];
             let renderDataJ = nd.getRenderData();
             renderDataJ.set('modelRef', j);
-            // renderDataJ.set('similarId', similarId);
-            // renderDataJ.set('similarParentId', similarId);
+            // 递归读取nodes的节点
+            Tree._handleCycleData(renderDataJ, nd);
             nodeI.children.push(renderDataJ);
         }
         nodeI.resize();         // 新节点重新计算最小范围
@@ -839,6 +838,27 @@ Tree.createCycleData = function (parent, nodesArr, similarId) {
 
     return newNode;
 }
+
+/**
+ * 递归读取nodes里面的Render数据
+ * @param {RenderData} parentData 拼装的parent
+ * @param {Array} nodes 要解析的节点
+ */
+Tree._handleCycleData = function(parentData, nodes) {
+    let children = nodes.children;
+    if (children.length == 0) {
+        return;
+    }
+
+    for (let i = 0; i < children.length; i++) {
+        let rdata = children[i].getRenderData();
+        parentData.children.push(rdata);
+
+        // 递归解析
+        Tree._handleCycleData(rdata, children[i]);
+    }
+};
+
 
 // 创建DSLTree渲染节点数据
 Tree.createRenderData = function () {
