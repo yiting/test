@@ -91,6 +91,7 @@ class similarCssDom {
     }
 
     static _mergeSimilarCSS(target, source) {
+        target['textAlign'] = target.textAlign || source.textAlign;
         target['display'] = target.display || source.display;
         target['boxOrient'] = target.boxOrient || source.boxOrient;
         target['boxPack'] = target.boxPack || source.boxPack;
