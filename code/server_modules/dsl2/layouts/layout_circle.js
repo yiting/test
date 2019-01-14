@@ -42,6 +42,7 @@ class LayoutCircle extends Model.LayoutModel {
         let inSimilar = [];
         // 获取循环节点
         similarArr.forEach(item => {
+            // 如果特征多于一个，暂不处理
             if (item.feature != 1) return;
             let similarId = this.similarIndex++;
             item.target.forEach(group => {
@@ -78,7 +79,9 @@ class LayoutCircle extends Model.LayoutModel {
          * 3. 如果非layer，三基线对齐
          */
 
-        if (a.modelName != b.modelName) { return };
+        if (a.modelName != b.modelName) {
+            return
+        };
         let aIsVertical = Utils.isVertical(a.children),
             bIsVertical = Utils.isVertical(b.children);
         if (a.modelName == 'layer') {
@@ -88,11 +91,11 @@ class LayoutCircle extends Model.LayoutModel {
                         a.abXops == b.abXops ||
                         a.abX + a.width / 2 == b.abX + b.width / 2)
                 ) || (
-                        a.width == b.width &&
-                        (a.abY == b.abY ||
-                            a.abYops == b.abYops ||
-                            a.abY + a.height / 2 == b.abY + b.height / 2)
-                    ))
+                    a.width == b.width &&
+                    (a.abY == b.abY ||
+                        a.abYops == b.abYops ||
+                        a.abY + a.height / 2 == b.abY + b.height / 2)
+                ))
         } else {
             // 如果为模型结构，三线对齐相同
             return a.abY == b.abY ||
@@ -151,8 +154,8 @@ class LayoutCircle extends Model.LayoutModel {
                 }
                 // 排除完全重复的独立项
                 if (fragment.length > 1 && fragment.every((s, i) => {
-                    return i == 0 || (similarLogic ? similarLogic(s, fragment[i - 1]) : s == fragment[i - 1])
-                })) {
+                        return i == 0 || (similarLogic ? similarLogic(s, fragment[i - 1]) : s == fragment[i - 1])
+                    })) {
                     continue;
                 }
 

@@ -26,7 +26,8 @@ let process = function (dslTree) {
     return render;
 }
 function con(data) {
-    console.log(data.modelId)
+    // console.log(data.modelId)
+    // if (data.id == 'D4825BB0-AA8B-4F37-B180-54C44C11DD8Cc')debugger
     data.children.forEach(con);
 }
 

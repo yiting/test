@@ -44,8 +44,7 @@ const utils = {
                     let temp = arr[j + 1];
                     arr[j + 1] = arr[j];
                     arr[j] = temp;
-                }
-                else if (arr[j].getPriority() == arr[j + 1].getPriority()) {
+                } else if (arr[j].getPriority() == arr[j + 1].getPriority()) {
                     if (arr[j].getNumber() < arr[j + 1].getNumber()) {
                         let temp = arr[j + 1];
                         arr[j + 1] = arr[j];
@@ -54,7 +53,7 @@ const utils = {
                 }
             }
         }
-        
+
         return arr;
     },
 
@@ -742,9 +741,12 @@ const utils = {
     },
     /**
      * 是否垂直
-     * 当doms数量只有一个,返回true
+     * 当doms数量只有一个,返回false
      */
     isVertical(arr, errorCoefficient = 0) {
+        if (arr.length == 0) {
+            return false;
+        }
         let prev;
         errorCoefficient = parseFloat(errorCoefficient) || 0;
         return arr.every(dom => {
