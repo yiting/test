@@ -11,7 +11,7 @@ class WG2M4 extends Model.WidgetModel {
         // 元素构成规则
         super('wg2-m4', 1, 0, 1, 0, Common.LvS, Common.QWidget);
         this.canLeftFlex = false;
-        this.canRightFlex = true;
+        this.canRightFlex = false;
 
         // 节点记录
         this._matchNodes['0'] = null;         // image

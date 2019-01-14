@@ -4,10 +4,9 @@ const Constraints = require('../../dsl2/dsl_constraints.js');
 const Utils = require('../render_utils.js');
 
 // 生成的Css记录树
-let cssDomTree = null,
-    similarData = null;
+let cssDomTree = null;
 
-// 
+// 主流程
 let process = function (data, layoutType) {
 
     // 构建cssTree并返回
@@ -47,8 +46,10 @@ let _buildTree = function (parent, data, layoutType) {
     });
     // 对当前节点补充约束
     cssNode._supplementConstraints();
-    // 对当前节点边界进行计算
-    // cssNode._calculateBoundary(this);
+    // 对当前节子节点边界进行计算
+    cssNode.children.forEach(cn => {
+        cn._calculateBoundary();
+    });
     return cssNode;
 }
 
@@ -141,7 +142,6 @@ class CssDom {
         this.tplAttr = data.tplAttr || {};
         this.tplData = data.tplData || {};
         this.similarId = data.similarId;
-
         this.parent = parent ? parent : this;
         this.layoutType = layoutType;
 
@@ -283,8 +283,8 @@ class CssDom {
      */
     _isParentHorizontal() {
         let res = false; // 默认为竖排
-        if (this.parent.children.length == 1) { // 1个元素默认是竖排
-            return res;
+        if (this.parent.children.length == 1) { // 1个元素默认是横排
+            return true;
         }
 
         if (this.parent &&
@@ -412,7 +412,7 @@ class CssDom {
         let isVertical = children.length > 1 && Utils.isVertical(children),
             baseLine = Utils.calculateBaseLine(this),
             _justifyContent = isVertical ? 'vertical' : 'horizontal',
-            _alignItems = isVertical ? 'vertical' : 'horizontal';
+            _alignItems = isVertical ? 'horizontal' : 'vertical';
         // 约束方向判断
         this.constraints["LayoutDirection"] = this.constraints["LayoutDirection"] ||
             (isVertical ? Constraints.LayoutDirection.Vertical : Constraints.LayoutDirection.Horizontal);
@@ -522,7 +522,7 @@ class CssDom {
             'Start': 'start',
             'End': 'end',
             'Center': 'center',
-        }[this.constraints[axle]] || null;
+        } [this.constraints[axle]] || null;
     }
     //
     get boxPack() {
@@ -532,7 +532,7 @@ class CssDom {
             'Start': 'start',
             'End': 'end',
             'Center': 'center',
-        }[this.constraints[axle]] || null;
+        } [this.constraints[axle]] || null;
     }
     //
     get width() {

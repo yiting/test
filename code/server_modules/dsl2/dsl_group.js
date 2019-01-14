@@ -67,13 +67,14 @@ class Tree {
             // 当只包含一个元素时就不用创建QLayer
             return;
         }
-
+        // if (parent.id == '2D9DC358-45CD-4444-BC55-0342236C818Ec') debugger
         // 分解行
         let layers = Utils.gatherByLogic(children, function (a, b) {
             // return Utils.isYConnect(a, b, 0);
             // return Utils.isYWrap(a,b);
-            // 如果a节点层级高于b，切a节点位置高于b，则为一组（a为绝对定位）
-            if (a._zIndex > b._zIndex && a._abY < b._abY) {
+
+            // 如果a节点层级高于b，且a节点位置高于b，则为一组（a为绝对定位）
+            if (parent.modelName == 'layer' || a._zIndex > b._zIndex && a._abY < b._abY) {
                 return Utils.isYConnect(a, b, 0);
             } else {
                 return Utils.isYWrap(a, b);
@@ -286,7 +287,7 @@ class Tree {
     // 获取RenderData数据
     getRenderData() {
         // renderData通过递归节点树来获取
-        let renderData = this._treeData.getRenderData();        // 获取根元素
+        let renderData = this._treeData.getRenderData(); // 获取根元素
         this._parseRenderData(renderData, this._treeData);
         return renderData;
     }
@@ -370,7 +371,7 @@ class Node {
         this.isCalculate = false; // 是否已经完成约束计算
         this._zIndex = mdata.zIndex || null;
         // this._children = mdata.children || [];
-        this.set('children', mdata.children || []);// 子节点
+        this.set('children', mdata.children || []); // 子节点
 
         // RenderData的处理
         this._renderData = null;
@@ -446,8 +447,8 @@ class Node {
             parent.set('path', path);
             parent.set('styles', styles);
             parent.set('modelRef', '0');
-            parent.set('modelName', '');                // !重要, 帮Render添加一个逻辑,如果是根节点,则不显示modelName了
-            parent.set('modelId', modelId);             // !重要, 设置一个modelId给循环判断用
+            parent.set('modelName', ''); // !重要, 帮Render添加一个逻辑,如果是根节点,则不显示modelName了
+            parent.set('modelId', modelId); // !重要, 设置一个modelId给循环判断用
             return;
         }
 
@@ -617,7 +618,7 @@ class RenderData {
         this._canRightFlex = null;
         this._isCalculate = false;
         this._constraints = {};
-        this._zIndex = 0;
+        this._zIndex = null;
         this._text = '';
         this._path = '';
         this._styles = {};
@@ -804,7 +805,7 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
             continue;
         }
 
-        if (nodes.length == 1) {            // 第二层只有一个数据直接返回
+        if (nodes.length == 1) { // 第二层只有一个数据直接返回
             let renderDataI = nodes[0].getRenderData();
             renderDataI.set('similarId', similarId);
             renderDataI.set('modelRef', i + '');
@@ -826,7 +827,7 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
             Tree._handleCycleData(renderDataJ, nd);
             nodeI.children.push(renderDataJ);
         }
-        nodeI.resize();         // 新节点重新计算最小范围
+        nodeI.resize(); // 新节点重新计算最小范围
         newRenderData.children.push(nodeI);
     }
 
