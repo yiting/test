@@ -17,8 +17,9 @@ let sortWidgetList = Utils.sortModelList(WidgetList);
  * 传入节点匹配出各模型
  * @param nodes 需要匹配的节点
  * @param matchType 匹配模型的类型
+ * @param {Int} endY 匹配的范围界线
  */
-let matchModel = function(nodes, matchType) {
+let matchModel = function(nodes, matchType, endY) {
     // 匹配的逻辑是按组件模型优先级排序,遍历组件模型数组,
     // 再按组件模型所需的元素个数通过Utils.getGroupFromNodes
     // 进行随机取出，最后交由组件模型进行匹配
@@ -70,6 +71,11 @@ let matchModel = function(nodes, matchType) {
                 if (bool) {
                     // 生成匹配数据
                     let mData = new Model.MatchData(matchModel);
+                    if (mData.abY <= endY && mData.abYops >= endY) {
+                        // 不匹配
+                        continue;
+                    }
+
                     result.push(mData);
                     // 每个组件模型匹配完毕从总节点上移除对应的元素
                     Utils.removeMatchedNodes(nodes, group);

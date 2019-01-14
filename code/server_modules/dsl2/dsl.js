@@ -106,7 +106,7 @@ let _matchModels = function(matchTimes, matchedNodes, nodes, mType, optimizeWidt
         // 通过模型匹配出各组件
         let result;
         if (mNodes && mNodes.length > 0) {
-            result = Manager.matchModel(mNodes, mType);
+            result = Manager.matchModel(mNodes, mType, (beginY + optimizeHeight));
         }
 
         if (result && result.length > 0) {
