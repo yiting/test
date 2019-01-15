@@ -18,3 +18,7 @@ ul,li,dl,dd,p{
 em{
     font-style: normal;
 }
+
+.button:active{
+    opacity: .8;
+}
