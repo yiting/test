@@ -22,14 +22,16 @@ class DSLTreeProcessor {
      * @param {string=} platformType 解析类型: html(default),android,ios
      */
     static parseTree(tree, platformType = RENDER_TYPE.HTML) {
-        let _tree = { children: [tree] }
+        let _tree = {
+            children: [tree]
+        }
         _tree.root = true;
         this.serialIndex = 1;
         // 遍历节点
         walkout(_tree, this._parseNode.bind(this, platformType));
-        walkout(_tree, node => {
-            this.addSerialId(node);
-        })
+        walkout(_tree, nd => {
+            this.addSerialId(nd);
+        });
         return _tree.children[0];
     }
     static _parseNode(platformType, pnode) {
@@ -42,27 +44,26 @@ class DSLTreeProcessor {
             }
             if (node.modelName) {
                 if (node.modelName === 'layer') {
-                    // if (~QNODE_TYPES.indexOf(node.type)) element = this._parseBgNode(element, platformType);
+                    // if ( ~QNODE_TYPES.indexOf(node.type) ) element = this._parseBgNode(element,platformType);  // QShape和QImage如果有子节点需要特殊处理
                 } else {
                     element = this._parseWidgetNode(element, platformType);
                 }
 
             }
             // _debuggerByid('4E0EC85E-AFB2-455C-9C17-FF91CE02A5EF',node);
-            // if (!element) debugger
             pnode.children[index] = element;
         })
     }
     static addSerialId(node) {
         node.serialId = this.serialIndex++;
     }
-    /**
-     * 解析背景节点
-     */
-    static _parseBgNode(element, platformType) {
-        Object.assign(element, getAttr(element.children[0], ['zIndex', 'abX', 'abY', 'abXops', 'abYops', 'constraints', 'width', 'height', 'canLeftFlex', 'canRightFlex', 'path', 'styles', 'similarId']));
-        return element;
-    }
+    // /**
+    //  * 解析背景节点
+    //  */
+    // static _parseBgNode(element, platformType) {
+    //     Object.assign(element,getAttr(element.children[0],['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','path','styles','similarId']));
+    //     return element;
+    // }
 
     /**
      * 解析模型节点
@@ -70,14 +71,16 @@ class DSLTreeProcessor {
     static _parseWidgetNode(node, platformType) {
         let template = Template.getTemplate(node.modelName, platformType);
         let element = DSLTreeTransfer.parse(template, node.children, platformType);
-        Object.assign(element, getAttr(node, ['zIndex', 'abX', 'abY', 'abXops', 'abYops', 'constraints', 'width', 'height', 'canLeftFlex', 'canRightFlex', 'modelRef', 'modelName', 'similarId']));
+        Object.assign(element, getAttr(node, ['zIndex', 'abX', 'abY', 'abXops', 'abYops', 'constraints', 'width', 'height', 'canLeftFlex', 'canRightFlex', 'modelRef', 'modelName', 'modelId', 'similarId']));
 
         return element;
     }
     // 将虚拟节点转化为平台容器节点
     static _convertNode(node, platformType) {
+        // this.addPrefix(node);
+        // this.addBeautyClass(node);
         let {
-            id = -1, similarId, tagName, beautyClass, width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", modelRef = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
+            id = -1, similarId, tagName, beautyClass, width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", modelRef = "", modelId = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
         } = node;
         if (!tagName) {
             switch (platformType) {
@@ -105,6 +108,7 @@ class DSLTreeProcessor {
             parentId,
             type,
             modelName,
+            modelId,
             modelRef,
             canLeftFlex,
             canRightFlex,
@@ -138,10 +142,11 @@ function walkModel(matchData, handler) {
     }
     return handler(matchData, structure); // 处理节点
 }
-function getAttr(node, keys, move = false) {
+
+function getAttr(node, keys = null, move = false) {
     let obj = {};
     if (!node) return obj;
-    for (let key of keys) {
+    for (let key of keys || Object.keys(node)) {
         if (isValue(node[key])) {
             obj[key] = node[key];
             if (move) delete node[key];
@@ -149,11 +154,13 @@ function getAttr(node, keys, move = false) {
     }
     return obj;
 }
+
 function isValue(val) {
     if (val === undefined || val === null || val === '') return false;
     if (typeof val === 'object') return !!Object.keys(val).length
     return true;
 }
+
 function _debuggerByid(id, pa) {
     let n = null;
     if (pa.type) {
@@ -161,7 +168,7 @@ function _debuggerByid(id, pa) {
     } else {
         n = Object.values(pa).find(n => ~n.id.indexOf(id))
     }
-    // if (n) debugger
+    if (n) debugger
 }
 module.exports = {
     parse

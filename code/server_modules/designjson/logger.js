@@ -6,7 +6,7 @@ LOG_TYPE = {
     LOG4J: logger,
     SYSTEM: console
 }
-let _Console = LOG_TYPE.LOG4J;
+let _Console = LOG_TYPE.SYSTEM;
 module.exports = {
     log(str) {
         return console.log(str);

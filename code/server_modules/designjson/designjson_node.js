@@ -29,6 +29,12 @@ class QObject {
         // 相对于坐标原点(左上角的位置)
         this.abY = 0;
     }
+    get abXops() {
+        return this.abX + this.width;
+    }
+    get abYops() {
+        return this.abY + this.height;
+    }
 }
 
 /**

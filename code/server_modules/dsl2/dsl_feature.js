@@ -17,11 +17,10 @@
  * @param {Node} 元素
  * @returns {Boolean}
  */
-let propertyNodeIsQText = function(node) {
+let propertyNodeIsQText = function (node) {
     if (!node || !node.type || node.type != 'QText') {
         return false;
-    }
-    else {
+    } else {
         return true;
     }
 }
@@ -31,7 +30,7 @@ let propertyNodeIsQText = function(node) {
  * @param {Array} nodes 元素数组
  * @returns {Boolean}
  */
-let propertyNodeAreQText = function(nodes) {
+let propertyNodeAreQText = function (nodes) {
     let result = false;
 
     if (!nodes || !nodes.length) {
@@ -53,11 +52,10 @@ let propertyNodeAreQText = function(nodes) {
  * @param {Node} 元素
  * @returns {Boolean}
  */
-let propertyNodeIsQImage = function(node) {
+let propertyNodeIsQImage = function (node) {
     if (!node || !node.type || node.type != 'QImage') {
         return false;
-    }
-    else {
+    } else {
         return true;
     }
 }
@@ -67,7 +65,7 @@ let propertyNodeIsQImage = function(node) {
  * @param {Array} nodes 元素数组
  * @returns {Boolean}
  */
-let propertyNodeAreQImage = function(nodes) {
+let propertyNodeAreQImage = function (nodes) {
     let result = false;
 
     if (!nodes || !nodes.length) {
@@ -89,11 +87,10 @@ let propertyNodeAreQImage = function(nodes) {
  * @param {Node} 元素
  * @returns {Boolean}
  */
-let propertyNodeIsQIcon = function(node) {
+let propertyNodeIsQIcon = function (node) {
     if (!node || !node.type || node.type != 'QIcon') {
         return false;
-    }
-    else {
+    } else {
         return true;
     }
 }
@@ -103,7 +100,7 @@ let propertyNodeIsQIcon = function(node) {
  * @param {Array} nodes 元素数组
  * @returns {Boolean}
  */
-let propertyNodeAreQIcon = function(nodes) {
+let propertyNodeAreQIcon = function (nodes) {
     let result = false;
 
     if (!nodes || !nodes.length) {
@@ -125,11 +122,10 @@ let propertyNodeAreQIcon = function(nodes) {
  * @param {Node} 元素
  * @returns {Boolean}
  */
-let propertyNodeIsQShape = function(node) {
+let propertyNodeIsQShape = function (node) {
     if (!node || !node.type || node.type != 'QShape') {
         return false;
-    }
-    else {
+    } else {
         return true;
     }
 }
@@ -139,7 +135,7 @@ let propertyNodeIsQShape = function(node) {
  * @param {Array} nodes 元素数组
  * @returns {Boolean}
  */
-let propertyNodeAreQShape = function(nodes) {
+let propertyNodeAreQShape = function (nodes) {
     let result = false;
 
     if (!nodes || !nodes.length) {
@@ -165,7 +161,7 @@ let propertyNodeAreQShape = function(nodes) {
  * @param {Int} num 数量
  * @returns {Boolean}
  */
-let composeWithQText = function(nodes, num) {
+let composeWithQText = function (nodes, num) {
     if (!nodes || !nodes.length) {
         return false;
     }
@@ -185,7 +181,7 @@ let composeWithQText = function(nodes, num) {
  * @param {Int} num 数量
  * @returns {Boolean}
  */
-let composeWithQIcon = function(nodes, num) {
+let composeWithQIcon = function (nodes, num) {
     if (!nodes || !nodes.length) {
         return false;
     }
@@ -205,7 +201,7 @@ let composeWithQIcon = function(nodes, num) {
  * @param {Int} num 数量
  * @returns {Boolean}
  */
-let composeWithQImage = function(nodes, num) {
+let composeWithQImage = function (nodes, num) {
     if (!nodes || !nodes.length) {
         return false;
     }
@@ -225,7 +221,7 @@ let composeWithQImage = function(nodes, num) {
  * @param {Int} num 数量
  * @returns {Boolean}
  */
-let composeWithQShape = function(nodes, num) {
+let composeWithQShape = function (nodes, num) {
     if (!nodes || !nodes.length) {
         return false;
     }
@@ -247,11 +243,11 @@ let composeWithQShape = function(nodes, num) {
  * @param {Node} eleA 元素A 
  * @param {Node} eleB 元素B
  */
-let directionAleftToB = function(eleA, eleB) {
+let directionAleftToB = function (eleA, eleB) {
     // 通过中心点判断
     let pA = eleA.abX + (eleA.width / 2);
     let pB = eleB.abX + (eleB.width / 2);
-    return pA <= pB? true : false;
+    return pA <= pB ? true : false;
 }
 
 /**
@@ -260,7 +256,7 @@ let directionAleftToB = function(eleA, eleB) {
  * @param {Array} groupB 元素组B
  * @returns {Boolean}
  */
-let directionGroupAleftToGroupB = function(groupA, groupB) {
+let directionGroupAleftToGroupB = function (groupA, groupB) {
     let result = true;
     for (let i = 0; i < groupA.length; i++) {
         for (let j = 0; j < groupB.length; j++) {
@@ -278,11 +274,11 @@ let directionGroupAleftToGroupB = function(groupA, groupB) {
  * @param {Node} eleA 元素A 
  * @param {Node} eleB 元素B
  */
-let directionArightToB = function(eleA, eleB) {
+let directionArightToB = function (eleA, eleB) {
     // 通过中心点判断
     let pA = eleA.abX + (eleA.width / 2);
     let pB = eleB.abX + (eleB.width / 2);
-    return pA <= pB? false : true;
+    return pA <= pB ? false : true;
 }
 
 /**
@@ -290,11 +286,11 @@ let directionArightToB = function(eleA, eleB) {
  * @param {Node} eleA 元素A 
  * @param {Node} eleB 元素B
  */
-let directionAtopToB = function(eleA, eleB) {
+let directionAtopToB = function (eleA, eleB) {
     // 通过中心点判断
     let pA = eleA.abY + (eleA.height / 2);
     let pB = eleB.abY + (eleB.height / 2);
-    return pA <= pB? true : false;
+    return pA <= pB ? true : false;
 }
 
 /**
@@ -302,11 +298,11 @@ let directionAtopToB = function(eleA, eleB) {
  * @param {Node} eleA 元素A 
  * @param {Node} eleB 元素B
  */
-let directionAbottomToB = function(eleA, eleB) {
+let directionAbottomToB = function (eleA, eleB) {
     // 通过中心点判断
     let pA = eleA.abY + (eleA.height / 2);
     let pB = eleB.abY + (eleB.height / 2);
-    return pA <= pB? false : true;
+    return pA <= pB ? false : true;
 }
 
 // 特征: 元素的距离关系
@@ -318,11 +314,11 @@ let directionAbottomToB = function(eleA, eleB) {
  * @param {Node} eleB 元素B
  * @param {Int} distance 距离 
  */
-let distanceLessArightToBleft = function(eleA, eleB, distance) {
+let distanceLessArightToBleft = function (eleA, eleB, distance) {
     // 这里需要比较两个边的距离
-    let pA = eleA.abX + eleA.width;     // A的右边距
-    let pB = eleB.abX;                  // B的左边距
-    return pB - pA <= distance? true : false;
+    let pA = eleA.abX + eleA.width; // A的右边距
+    let pB = eleB.abX; // B的左边距
+    return pB - pA <= distance ? true : false;
 }
 
 /**
@@ -331,10 +327,10 @@ let distanceLessArightToBleft = function(eleA, eleB, distance) {
  * @param {Node} eleB 元素B
  * @param {Int} distance 距离 
  */
-let distanceLessAbottomToBtop = function(eleA, eleB, distance) {
-    let pA = eleA.abY + eleA.height;     // A的下边距
-    let pB = eleB.abY;                   // B的上边距
-    return pB - pA <= distance? true : false;
+let distanceLessAbottomToBtop = function (eleA, eleB, distance) {
+    let pA = eleA.abY + eleA.height; // A的下边距
+    let pB = eleB.abY; // B的上边距
+    return pB - pA <= distance ? true : false;
 }
 
 /**
@@ -343,10 +339,10 @@ let distanceLessAbottomToBtop = function(eleA, eleB, distance) {
  * @param {Node} eleB 元素B
  * @param {Int} distance 距离 
  */
-let distanceLessAleftToBright = function(eleA, eleB, distance) {
-    let pA = eleA.abX;                   // A的左边距
-    let pB = eleB.abX + eleB.width;      // B的右边距
-    return pA - pB <= distance? true : false;
+let distanceLessAleftToBright = function (eleA, eleB, distance) {
+    let pA = eleA.abX; // A的左边距
+    let pB = eleB.abX + eleB.width; // B的右边距
+    return pA - pB <= distance ? true : false;
 }
 
 /**
@@ -355,10 +351,10 @@ let distanceLessAleftToBright = function(eleA, eleB, distance) {
  * @param {Node} eleB 元素B
  * @param {Int} distance 距离 
  */
-let distanceLessAtopToBbottom = function(eleA, eleB, distance) {
-    let pA = eleA.abY;                   // A的上边距
-    let pB = eleB.abY + eleB.height;     // B的下边距
-    return pA - pB <= distance? true : false;
+let distanceLessAtopToBbottom = function (eleA, eleB, distance) {
+    let pA = eleA.abY; // A的上边距
+    let pB = eleB.abY + eleB.height; // B的下边距
+    return pA - pB <= distance ? true : false;
 }
 
 /**
@@ -367,7 +363,7 @@ let distanceLessAtopToBbottom = function(eleA, eleB, distance) {
  * @param {Node} eleB 元素B
  * @param {Int} distance 距离 
  */
-let distanceGreatArightToBleft = function(eleA, eleB, distance) {
+let distanceGreatArightToBleft = function (eleA, eleB, distance) {
     return !distanceLessArightToBleft(eleA, eleB, distance);
 }
 
@@ -377,7 +373,7 @@ let distanceGreatArightToBleft = function(eleA, eleB, distance) {
  * @param {Node} eleB 元素B
  * @param {Int} distance 距离 
  */
-let distanceGreatAbottomToBtop = function(eleA, eleB, distance) {
+let distanceGreatAbottomToBtop = function (eleA, eleB, distance) {
     return !distanceLessAbottomToBtop(eleA, eleB, distance);
 }
 
@@ -387,7 +383,7 @@ let distanceGreatAbottomToBtop = function(eleA, eleB, distance) {
  * @param {Node} eleB 元素B
  * @param {Int} distance 距离 
  */
-let distanceGreatAleftToBright = function(eleA, eleB, distance) {
+let distanceGreatAleftToBright = function (eleA, eleB, distance) {
     return !distanceLessAleftToBright(eleA, eleB, distance);
 }
 
@@ -397,7 +393,7 @@ let distanceGreatAleftToBright = function(eleA, eleB, distance) {
  * @param {Node} eleB 元素B
  * @param {Int} distance 距离 
  */
-let distanceGreatAtopToBbottom = function(eleA, eleB, distance) {
+let distanceGreatAtopToBbottom = function (eleA, eleB, distance) {
     return !distanceLessAtopToBbottom(eleA, eleB, distance);
 }
 
@@ -407,7 +403,7 @@ let distanceGreatAtopToBbottom = function(eleA, eleB, distance) {
  * @param {Node} eleB 元素B
  * @param {Int} distance 距离
  */
-let distanceABLessInVertical = function(eleA, eleB, distance) {
+let distanceABLessInVertical = function (eleA, eleB, distance) {
     // 等于A的bottom到B的top小于distance或者A的top到B的bottom小于diatance
     return distanceLessAbottomToBtop(eleA, eleB, distance) || distanceLessAtopToBbottom(eleA, eleB, distance);
 }
@@ -418,7 +414,7 @@ let distanceABLessInVertical = function(eleA, eleB, distance) {
  * @param {Node} eleB 元素B
  * @param {Int} distance 距离
  */
-let distanceABGreatInVertical = function(eleA, eleB, distance) {
+let distanceABGreatInVertical = function (eleA, eleB, distance) {
     return !distanceABLessInVertical(eleA, eleB, distance);
 }
 
@@ -428,7 +424,7 @@ let distanceABGreatInVertical = function(eleA, eleB, distance) {
  * @param {Node} eleB 元素B
  * @param {Int} distance 距离
  */
-let distanceABLessInHorizontal = function(eleA, eleB, distance) {
+let distanceABLessInHorizontal = function (eleA, eleB, distance) {
     // 等于A的right到B的left小于distance或者A的left到B的right小于distance
     return distanceLessArightToBleft(eleA, eleB, distance) || distanceLessAleftToBright(eleA, eleB, distance);
 }
@@ -439,7 +435,7 @@ let distanceABLessInHorizontal = function(eleA, eleB, distance) {
  * @param {Node} eleB 元素B
  * @param {Int} distance 距离
  */
-let distanceABGreatInHorizontal = function(eleA, eleB, distance) {
+let distanceABGreatInHorizontal = function (eleA, eleB, distance) {
     // 等于A的right到B的left大于distance或者A的left到B的right大于distance
     return distanceGreatArightToBLeft(eleA, eleB, distance) || distanceGreatAleftToBright(eleA, eleB, distance);
 }
@@ -449,7 +445,7 @@ let distanceABGreatInHorizontal = function(eleA, eleB, distance) {
  * @param groupA 元素组A
  * @param groupB 元素组B
  */
-let distanceLessGroupABInHorizontal = function(groupA, groupB, distance) {
+let distanceLessGroupABInHorizontal = function (groupA, groupB, distance) {
     // 通过计算groupA里的最大x坐标与groupB里的最小x坐标的距离
     let pAmax = 0;
     let pBmin = 0;
@@ -457,22 +453,20 @@ let distanceLessGroupABInHorizontal = function(groupA, groupB, distance) {
     groupA.forEach((item, index) => {
         if (index == 0) {
             pAmax = item.abX + item.width;
-        }
-        else {
-            pAmax = (item.abX + item.width) > pAmax? (item.abX + item.width) : pAmax;
+        } else {
+            pAmax = (item.abX + item.width) > pAmax ? (item.abX + item.width) : pAmax;
         }
     });
 
     groupB.forEach((item, index) => {
         if (index == 0) {
             pBmin = item.abX;
-        }
-        else {
-            pBmin = item.abX < pBmin? item.abX : pBmin;
+        } else {
+            pBmin = item.abX < pBmin ? item.abX : pBmin;
         }
     });
 
-    return pBmin - pAmax < distance? true : false;
+    return pBmin - pAmax < distance ? true : false;
 }
 
 /**
@@ -480,7 +474,7 @@ let distanceLessGroupABInHorizontal = function(groupA, groupB, distance) {
  * @param groupA 元素组A
  * @param groupB 元素组B
  */
-let distanceGreatGroupABInHorizontal = function(groupA, groupB, distance) {
+let distanceGreatGroupABInHorizontal = function (groupA, groupB, distance) {
     return !distanceLessGroupABInHorizontal(groupA, groupB, distance);
 }
 
@@ -493,17 +487,17 @@ let distanceGreatGroupABInHorizontal = function(groupA, groupB, distance) {
  * @param {Node} eleB 元素B
  * @returns {Boolean}
  */
-let positionAInB = function(eleA, eleB) {
+let positionAInB = function (eleA, eleB) {
     let xA = eleA.abX;
     let yA = eleA.abY;
     let wA = eleA.width;
     let hA = eleA.height;
-    
+
     let xB = eleB.abX;
     let yB = eleB.abY;
     let wB = eleB.width;
     let hB = eleB.height;
-    
+
     return (xA > xB) && (yA > yB) && ((xA + wA) < (xB + wB)) && ((yA + hA) < (yB + hB));
 }
 
@@ -513,7 +507,7 @@ let positionAInB = function(eleA, eleB) {
  * @param {Node} eleB 元素B
  * @returns {Boolean}
  */
-let positionAInBCenter = function(eleA, eleB) {
+let positionAInBCenter = function (eleA, eleB) {
     if (!positionAInB(eleA, eleB)) {
         return false;
     }
@@ -524,7 +518,7 @@ let positionAInBCenter = function(eleA, eleB) {
     let yA = eleA.abY;
     let wA = eleA.width;
     let hA = eleA.height;
-    
+
     let xB = eleB.abX;
     let yB = eleB.abY;
     let wB = eleB.width;
@@ -547,7 +541,7 @@ let positionAInBCenter = function(eleA, eleB) {
  * @param {Node} eleA 元素A
  * @param {Node} eleB 元素B
  */
-let baselineABInHorizontal = function(eleA, eleB) {
+let baselineABInHorizontal = function (eleA, eleB) {
     let yA = eleA.abY;
     let hA = eleA.height;
     let yB = eleB.abY;
@@ -561,7 +555,7 @@ let baselineABInHorizontal = function(eleA, eleB) {
  * @param groupA 元素组A
  * @returns {Boolean}
  */
-let baselineGroupAInHorizontal = function(groupA) {
+let baselineGroupAInHorizontal = function (groupA) {
     // 元素组内元素彼此在水平位置相交
     let result = true;
 
@@ -586,21 +580,20 @@ let baselineGroupAInHorizontal = function(groupA) {
  * @param groupA 元素组A
  * @param groupB 元素组B
  */
-let baselineGroupABInHorizontal = function(groupA, groupB) {
+let baselineGroupABInHorizontal = function (groupA, groupB) {
     // 分别计算组A,B的水平投影, 然后是否相交
-    let pAmin = 0;                           
+    let pAmin = 0;
     let pAmax = 0;
     let pBmin = 0;
-    let pBmax = 0;   
-    
+    let pBmax = 0;
+
     groupA.forEach((item, index) => {
         if (index == 0) {
             pAmin = item.abY;
             pAmax = item.abY + item.height;
-        }
-        else {
-            pAmin = item.abY < pAmin? item.abY : pAmin;
-            pAmax = (item.abY + item.height) > pAmax? (item.abY + item.height) : pAmax;
+        } else {
+            pAmin = item.abY < pAmin ? item.abY : pAmin;
+            pAmax = (item.abY + item.height) > pAmax ? (item.abY + item.height) : pAmax;
         }
     });
 
@@ -608,10 +601,9 @@ let baselineGroupABInHorizontal = function(groupA, groupB) {
         if (index == 0) {
             pBmin = item.abY;
             pBmax = item.abY + item.height;
-        }
-        else {
-            pBmin = item.abY < pBmin? item.abY : pBmin;
-            pBmax = (item.abY + item.height) > pBmax? (item.abY + item.height) : pBmax;
+        } else {
+            pBmin = item.abY < pBmin ? item.abY : pBmin;
+            pBmax = (item.abY + item.height) > pBmax ? (item.abY + item.height) : pBmax;
         }
     });
 
@@ -623,19 +615,18 @@ let baselineGroupABInHorizontal = function(groupA, groupB) {
  * @param groupA 元素组A
  * @param eleB 元素B
  */
-let baselineGroupAcontainBInHorizontal = function(groupA, eleB) {
+let baselineGroupAcontainBInHorizontal = function (groupA, eleB) {
     // console.log('containB begin: ---------------------------');
-    let pAmin = 0;                           
+    let pAmin = 0;
     let pAmax = 0;
 
     groupA.forEach((item, index) => {
         if (index == 0) {
             pAmin = item.abY;
             pAmax = item.abY + item.height;
-        }
-        else {
-            pAmin = item.abY < pAmin? item.abY : pAmin;
-            pAmax = (item.abY + item.height) > pAmax? (item.abY + item.height) : pAmax;
+        } else {
+            pAmin = item.abY < pAmin ? item.abY : pAmin;
+            pAmax = (item.abY + item.height) > pAmax ? (item.abY + item.height) : pAmax;
         }
     });
 
@@ -651,7 +642,7 @@ let baselineGroupAcontainBInHorizontal = function(groupA, eleB) {
  * @param {Node} eleA 元素A
  * @param {Node} eleB 元素B
  */
-let baselineABNotInHorizontal = function(eleA, eleB) {
+let baselineABNotInHorizontal = function (eleA, eleB) {
     return !baselineABInHorizontal(eleA, eleB);
 }
 
@@ -660,7 +651,7 @@ let baselineABNotInHorizontal = function(eleA, eleB) {
  * @param {Node} eleA 元素A
  * @param {Node} eleB 元素B
  */
-let baselineABInVertical = function(eleA, eleB) {
+let baselineABInVertical = function (eleA, eleB) {
     let xA = eleA.abX;
     let wA = eleA.width;
     let xB = eleB.abX;
@@ -674,7 +665,7 @@ let baselineABInVertical = function(eleA, eleB) {
  * @param groupA 元素组A
  * @returns {Boolean}
  */
-let baselineGroupAInVertical = function(groupA) {
+let baselineGroupAInVertical = function (groupA) {
     // 元素组内元素彼此在垂直位置相交
     let result = true;
 
@@ -699,7 +690,7 @@ let baselineGroupAInVertical = function(groupA) {
  * @param {Node} eleA 元素A
  * @param {Node} eleB 元素B
  */
-let baselineABNotInVertical = function(eleA, eleB) {
+let baselineABNotInVertical = function (eleA, eleB) {
     return !baselineABInVertical(eleA, eleB);
 }
 
@@ -714,7 +705,7 @@ let baselineABNotInVertical = function(eleA, eleB) {
  * @param {Float} ratio 比例
  * @return {Boolean}
  */
-let sizeWidthRatioALessB = function(eleA, eleB, ratio) {
+let sizeWidthRatioALessB = function (eleA, eleB, ratio) {
     if (eleA.width == 0 || eleB.width == 0) {
         return false;
     }
@@ -723,7 +714,7 @@ let sizeWidthRatioALessB = function(eleA, eleB, ratio) {
     let wB = eleB.width;
     let tmp = wA / wB;
 
-    return tmp < ratio? true : false;
+    return tmp < ratio ? true : false;
 }
 
 /**
@@ -733,7 +724,7 @@ let sizeWidthRatioALessB = function(eleA, eleB, ratio) {
  * @param {Float} ratio 比例
  * @returns {Boolean} 
  */
-let sizeWidthRatioAGreatB = function(eleA, eleB, ratio) {
+let sizeWidthRatioAGreatB = function (eleA, eleB, ratio) {
     return !sizeWidthRatioALessB(eleA, eleB, ratio);
 }
 
@@ -744,7 +735,7 @@ let sizeWidthRatioAGreatB = function(eleA, eleB, ratio) {
  * @param {Float} ratio 比例
  * @returns {Boolean} 
  */
-let sizeHeightRatioALessB = function(eleA, eleB, ratio) {
+let sizeHeightRatioALessB = function (eleA, eleB, ratio) {
     if (eleA.height == 0 || eleB.height == 0) {
         return false;
     }
@@ -753,7 +744,7 @@ let sizeHeightRatioALessB = function(eleA, eleB, ratio) {
     let hB = eleB.height;
     let tmp = hA / hB;
 
-    return tmp < ratio? true : false;
+    return tmp < ratio ? true : false;
 }
 
 /**
@@ -763,7 +754,7 @@ let sizeHeightRatioALessB = function(eleA, eleB, ratio) {
  * @param {Float} ratio 比例
  * @returns {Boolean} 
  */
-let sizeHeightRatioAGreatB = function(eleA, eleB, ratio) {
+let sizeHeightRatioAGreatB = function (eleA, eleB, ratio) {
     return !sizeHeightRatioALessB(eleA, eleB, ratio);
 }
 
@@ -772,7 +763,7 @@ let sizeHeightRatioAGreatB = function(eleA, eleB, ratio) {
  * @param {Node} eleA 节点元素 
  * @param {Int} num 数值
  */
-let sizeHeightLess = function(eleA, num) {
+let sizeHeightLess = function (eleA, num) {
     return eleA.height <= num;
 }
 
@@ -781,7 +772,7 @@ let sizeHeightLess = function(eleA, num) {
  * @param {Node} eleA 节点元素
  * @param {Int} num 数值 
  */
-let sizeHeightGreat = function(eleA, num) {
+let sizeHeightGreat = function (eleA, num) {
     return !sizeHeightLess(eleA, num);
 }
 
@@ -790,7 +781,7 @@ let sizeHeightGreat = function(eleA, num) {
  * @param {Node} eleA 节点元素
  * @param {Int} num 数值
  */
-let sizeWidthLess = function(eleA, num) {
+let sizeWidthLess = function (eleA, num) {
     return eleA.width <= num;
 }
 
@@ -799,8 +790,30 @@ let sizeWidthLess = function(eleA, num) {
  * @param {Node} eleA 节点元素
  * @param {Int} num 数值
  */
-let sizeWidthGreat = function(eleA, num) {
+let sizeWidthGreat = function (eleA, num) {
     return !sizeWidthLess(eleA, num);
+}
+/**
+ * 判断元素字号范围
+ * @param {Node} eleA 节点元素
+ * @param {Int} minSize 最小字号
+ * @param {Int} maxSize 最大字号
+ */
+let fontSizeLimit = function (eleA, minSize, maxSize) {
+    let size = Math.max(...eleA.styles.texts.map(s => s.size));
+    return size >= minSize && size <= maxSize;
+
+}
+/**
+ * 判断元素行数范围
+ * @param {Node} eleA 节点元素
+ * @param {Int} minLines 最小行数
+ * @param {Int} maxLines 最大行数
+ */
+let fontLineLimit = function (eleA, minLines, maxLines) {
+    let lines = Math.round(eleA.height / eleA.lineHeight);
+    return lines >= minLines && lines <= maxLines;
+
 }
 
 
@@ -814,6 +827,9 @@ module.exports = {
     propertyNodeAreQImage,
     propertyNodeIsQShape,
     propertyNodeAreQShape,
+    // 元素属性值判断
+    fontLineLimit,
+    fontSizeLimit,
     // 元素组成关系
     composeWithQText,
     composeWithQIcon,

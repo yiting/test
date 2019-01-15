@@ -440,9 +440,14 @@ class CssDom {
             (baseLine[_alignItems + "End"] && Constraints.LayoutJustifyContent.End) ||
             (baseLine[_alignItems + "Start"] && Constraints.LayoutJustifyContent.Start)
 
+        /**
+         * H5约束修正：
+         */
+
     }
     // 找到获取最接近的model
     static getClosestModelById(node, id) {
+        return null;
         if (!id) {
             return null;
         }
@@ -458,13 +463,14 @@ class CssDom {
         let parentClass = '',
             selfClass = '';
         // 如果有modelId,说明当前节点为某模型子元素
-        if (this.modelId && this.modelId != this.id) {
+        /* if (this.modelId && this.modelId != this.id) {
             let model = CssDom.getClosestModelById(this, this.modelId);
             parentClass = `.u-${model.serialId}`;
             selfClass = this.tplData.class ? `.${this.tplData.class}` : `.u-${this.serialId}`
         } else {
             selfClass = `.u-${this.serialId}`;
-        }
+        } */
+        selfClass = `.u-${this.serialId}`;
         return [parentClass, selfClass].join(' ');
     }
 
@@ -776,7 +782,7 @@ class CssDom {
     }
     //
     get marginLeft() {
-        // if (this.id == '1B30A43F-F91A-43A9-8EB1-CF13D20C0A1Ac') debugger
+        // if (this.id == '959A012C-6A6B-4FE4-B275-003CC20568B5c') debugger
 
         let css = null;
         if (this._isAbsolute()) {

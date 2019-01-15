@@ -73,14 +73,13 @@ class LayoutFlex extends Model.LayoutModel {
             if (prev && Utils.isYWrap(prev, nd)) {
                 // 重叠逻辑： 如果在Y轴上完全重合，则层级高的为绝对定位
                 absNodes.push(prev.zIndex > nd.zIndex ? prev : nd);
-            }
-            else if (prev && prev.zIndex > nd.zIndex && Utils.isYConnect(prev, nd, -4)) {
+            } else if (prev && prev.zIndex > nd.zIndex && Utils.isYConnect(prev, nd, -4)) {
                 // 重叠逻辑：如果部分重叠，且前（上）节点层级高，则为绝对定位
                 absNodes.push(prev);
             }
         }
         // 赋予非轴线节点为绝对定位
-        for (let i = 0; i < calNodes.length; i++) {
+        /* for (let i = 0; i < calNodes.length; i++) {
             let nd = calNodes[i];
             nd.isCalculate = true; // 约束计算完成
             if (absNodes.includes(nd)) {
@@ -94,8 +93,11 @@ class LayoutFlex extends Model.LayoutModel {
                     nd.set("abXops", parent.abXops);
                 }
             }
-        };
+        }; */
         if (absNodes.length > 0) {
+            absNodes.forEach(nd => {
+                this._setAbsolute(nd);
+            })
             // 父节点赋予相对定位约束
             parent.constraints["LayoutPosition"] = Constrains.LayoutPosition.Absolute;
         }

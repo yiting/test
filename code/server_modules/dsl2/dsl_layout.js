@@ -12,8 +12,6 @@ let layout = function (dslTree, layoutType) {
     _handleCircle(dslTree, dslTree._treeData, layoutType);
     _handleSort(dslTree, dslTree._treeData, layoutType);
 }
-
-
 /**
  * 对dslTree进行约束分析处理
  * @param {DslTree} dslTree DslTree

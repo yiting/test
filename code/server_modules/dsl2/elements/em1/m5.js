@@ -5,9 +5,9 @@ const Common = require('../../dsl_common.js');
 const Model = require('../../dsl_model.js');
 const Feature = require('../../dsl_feature.js');
 
-class EM1M1 extends Model.ElementModel {
+class EM1M5 extends Model.ElementModel {
     constructor() {
-        super('em1-m1', 1, 0, 0, 0, Common.LvD, Common.QText);
+        super('em1-m5', 1, 0, 0, 0, Common.LvD, Common.QText);
 
         this.canLeftFlex = false;
         this.canRightFlex = true;
@@ -22,11 +22,12 @@ class EM1M1 extends Model.ElementModel {
         let nodes = this.getNodes();
         return Feature.propertyNodeAreQText(nodes);
     }
+
     // 节点必须是QText节点
     regular2() {
         let text = this._matchNodes['0']
-        return Feature.fontSizeLimit(text, 0, 29);
+        return Feature.fontSizeLimit(text, 30, 200);
     }
 }
 
-module.exports = EM1M1;
+module.exports = EM1M5;

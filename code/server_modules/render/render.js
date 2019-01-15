@@ -17,20 +17,13 @@ const Constraints = require('../dsl2/dsl_constraints.js');
  */
 let process = function (dslTree) {
     // 默认直接使用h5模板引擎输出
-    // con(dslTree.getRenderData().toJSON());//test
+
     let jsonData = Parser.parse(dslTree.getRenderData().toJSON());
-    // con(jsonData);//test
     // 这里直接使用h5 builder
     let render = new Render(jsonData, H5Builder, Common.FlexLayout);
 
     return render;
 }
-function con(data) {
-    // console.log(data.modelId)
-    // if (data.id == 'D4825BB0-AA8B-4F37-B180-54C44C11DD8Cc')debugger
-    data.children.forEach(con);
-}
-
 class Render {
     constructor(data, builder, layoutType) {
         if (!data) {
