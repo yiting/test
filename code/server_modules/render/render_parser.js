@@ -32,7 +32,6 @@ class DSLTreeProcessor {
         
         if(!pnode.children || !pnode.children.length) return;
         pnode.children.forEach((node,index) => {
-            // if (node.id === 'EBDB98BC-0B1A-4F08-827D-5B52B8F9C675c') debugger
             let element = node;
             if (node.constructor.name === 'RenderData') {
                 element = this._convertNode(node,platformType);
@@ -46,18 +45,17 @@ class DSLTreeProcessor {
 
             }
             // _debuggerByid('4E0EC85E-AFB2-455C-9C17-FF91CE02A5EF',node);
-            if (!element) debugger
             pnode.children[index] = element;
         })
     }
 
-    /**
-     * 解析背景节点
-     */
-    static _parseBgNode(element, platformType) {
-        Object.assign(element,getAttr(element.children[0],['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','path','styles','similarId']));
-        return element;
-    }
+    // /**
+    //  * 解析背景节点
+    //  */
+    // static _parseBgNode(element, platformType) {
+    //     Object.assign(element,getAttr(element.children[0],['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','path','styles','similarId']));
+    //     return element;
+    // }
 
     /**
      * 解析模型节点
@@ -65,7 +63,7 @@ class DSLTreeProcessor {
     static _parseWidgetNode(node, platformType) {
         let template = Template.getTemplate(node.modelName,platformType);
         let element = DSLTreeTransfer.parse(template, node.children,platformType);
-        Object.assign(element,getAttr(node,['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','modelRef','modelName','similarId']));
+        Object.assign(element,getAttr(node,['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','modelRef','modelName','modelId','similarId']));
         
         return element;
     }
@@ -85,24 +83,13 @@ class DSLTreeProcessor {
         if (node.id.indexOf('ts-') != 0) {
             node.id = 'ts-' + node.id;
         }
-        // var children = node.children;
-        // if (children) {
-        //     for (var i = 0, ilen = children.length; i < ilen; i++) {
-        //         if (children[i].id.indexOf('ts-') != 0) {
-        //             children[i].set('id','ts-' + children[i].id);
-        //         }
-        //         if (children[i]['children'] && children[i]['children'].length > 0) {
-        //             this.addPrefix(children[i]);
-        //         }
-        //     }
-        // }
     }
     // 将虚拟节点转化为平台容器节点
     static _convertNode(node, platformType) {
         // this.addPrefix(node);
         // this.addBeautyClass(node);
         let {
-            id = -1,similarId, tagName, beautyClass ,width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", modelRef = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
+            id = -1,similarId, tagName, beautyClass ,width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", modelRef = "",modelId ="", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
         } = node;
         if (!tagName) {        
             switch (platformType) {
@@ -130,6 +117,7 @@ class DSLTreeProcessor {
             parentId,
             type,
             modelName,
+            modelId,
             modelRef,
             canLeftFlex,
             canRightFlex,
@@ -163,10 +151,10 @@ function walkModel(matchData,handler) {
     }
     return handler(matchData,structure); // 处理节点
 }
-function getAttr(node,keys,move = false) {
+function getAttr(node,keys = null,move = false) {
     let obj = {};
     if (!node) return obj;
-    for (let key of keys) {
+    for (let key of keys || Object.keys(node)) {
         if (isValue(node[key])) {
             obj[key] = node[key];
             if(move) delete node[key];

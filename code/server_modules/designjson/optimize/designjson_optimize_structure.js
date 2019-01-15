@@ -1,4 +1,4 @@
-const Logger = require('./logger')
+const Logger = require('../logger')
 const {
     QDocument, 
     QLayer, 
@@ -7,8 +7,8 @@ const {
     QText, 
     QShape,
     QMask
-} = require('./designjson_node');
-const {serialize,walkin,walkout,hasMaskChild,hasComplexSytle,isPureColor} = require('./designjson_utils');
+} = require('../designjson_node');
+const {serialize,walkin,walkout,hasMaskChild,hasComplexSytle,isPureColor} = require('../designjson_utils');
 let process = function(_document) {
     try {
         // 树层级关系预处理

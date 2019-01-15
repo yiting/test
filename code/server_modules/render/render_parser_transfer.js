@@ -65,6 +65,7 @@ class DSLTreeTransfer {
         this.setXml(xml);
         this.process(dslNodes);
         this.xml.isRoot = true;
+        this.modelId = dslNodes[0].modelId;
         return this.convert(this.xml, dslNodes);
     };
     static process(dslNodes) {
@@ -95,6 +96,7 @@ class DSLTreeTransfer {
         obj.tplData = {};
         obj.tagName = xml.nodeName.toLowerCase();
         obj.modelName = "";
+        obj.modelId = this.modelId;
         obj.width = 0;
         obj.height = 0;
         obj.isCalculate = false;
@@ -174,14 +176,12 @@ class DSLTreeTransfer {
     }
     static _getRenderDataByRef(ref,dslNodes) {
         try {
-            if (dslNodes[0].id === 'layer0') debugger
             return dslNodes.find(n => n.modelRef === ref);
         } catch (error) {
             throw dslNodes
         }
     }
     static clone(obj, destObj) {
-        if(!obj) debugger
         if (typeof obj !== "object") {
             return obj;
         } else {
@@ -222,10 +222,10 @@ function walkout(xml, handler) {
     });
     if (xml.root) handler(xml);
 }
-function getAttr(node,keys,move = false) {
+function getAttr(node,keys = null,move = false) {
     let obj = {};
     if (!node) return obj;
-    for (let key of keys) {
+    for (let key of keys || Object.keys(node)) {
         if (isValue(node[key])) {
             obj[key] = node[key];
             if(move) delete node[key];

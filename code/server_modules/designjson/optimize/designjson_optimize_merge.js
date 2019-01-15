@@ -1,5 +1,5 @@
 
-const Logger = require('./logger')
+const Logger = require('../logger')
 // optimize模块用于优化及合并树// QNode类型，消除QMask与QShape
 const {
     QDocument, 
@@ -10,11 +10,11 @@ const {
     QShape,
     QMask, 
     QSlice
-} = require('./designjson_node');
+} = require('../designjson_node');
 // const qlog = require('../log/qlog');
 // const logger = qlog.getInstance(qlog.moduleData.img);
 const [Artboard,Group, Bitmap,Text,ShapeGroup,SymbolInstance,SymbolMaster,SliceLayer,Rectangle,Oval,Line,Triangle,Polygon,Star,Rounded,Arrow,ShapePath] = ['artboard','group', 'bitmap','text','shapeGroup','symbolInstance','symbolMaster','slice','rectangle','oval','line','triangle','polygon','star','rounded','arrow','shapePath'];
-const {walkin,walkout,serialize,hasMaskChild,isPureColor,hasComplexSytle,generateGroupAttr,mergeStyle} = require('./designjson_utils');
+const {walkin,walkout,serialize,hasMaskChild,isPureColor,hasComplexSytle,generateGroupAttr,mergeStyle} = require('../designjson_utils');
 /**
  * 优化树的结构
  * @param {QDocument} _document 
@@ -59,25 +59,6 @@ class _ImageMergeProcessor {
         if (pnode.children && pnode.children.length > 1 && !pnode.isMasked) {
             if(hasMaskChild(pnode)) {
                 const maskNodes = pnode.children.filter(({type,isMasked,maskedNodes}) => type === QMask.name && !isMasked && Array.isArray(maskedNodes) && maskedNodes.length);
-                // const notMaskedNodes = pnode.children.filter(({type,isMasked,maskedNodes}) => !isMasked && !(Array.isArray(maskedNodes) && maskedNodes.length));
-                maskNodes.forEach( maskNode => this._maskMerge(maskNode,pnode)); // 将所有mask关联的节点合成组
-                this._mergeGroupToParent(notMaskedNodes,pnode); // 非mask关联则进行规则判断合并
-            } else {
-                this._mergeGroupToParent(pnode.children,pnode)
-            }
-        }
-        if (pnode.children && pnode.children.length === 1) {
-            
-            const {type,shapeType,styles} = pnode.children[0];
-            if ((type === QShape.name || type === QMask.name) && shapeType != Rectangle && !isCircle(pnode.children[0])) { // QShape -> QImage
-                this._convertToImageNode(pnode);
-            }
-        }
-    }
-    _nodeMerge(pnode) { // 规则判断
-        if (pnode.children && pnode.children.length > 1 && !pnode.isMasked) {
-            if(hasMaskChild(pnode)) {
-                const maskNodes = pnode.children.filter(({type,isMasked,maskedNodes}) => type === QMask.name && !isMasked && Array.isArray(maskedNodes) && maskedNodes.length);
                 const notMaskedNodes = pnode.children.filter(({type,isMasked,maskedNodes}) => !isMasked && !(Array.isArray(maskedNodes) && maskedNodes.length));
                 maskNodes.forEach( maskNode => this._maskMerge(maskNode,pnode)); // 将所有mask关联的节点合成组
                 this._mergeGroupToParent(notMaskedNodes,pnode); // 非mask关联则进行规则判断合并
@@ -96,7 +77,7 @@ class _ImageMergeProcessor {
     _maskMerge(maskNode,pnode) {
         const {_document} = this;
         const maskedCollection = maskNode.maskedNodes.map(id => _document.getNode(id));
-        maskedCollection.unshift(maskNode);
+        maskedCollection.filter(item => item).unshift(maskNode);
         if (maskedCollection.length === pnode.children.length) {
             mergeStyle(pnode,maskNode,['borderRadius']);
             this._convertToImageNode(pnode);
@@ -105,7 +86,8 @@ class _ImageMergeProcessor {
     _mergeGroupToParent(nodes,pnode) {
         const {_document} = this;
         if(!nodes || !nodes.length) return;
-        const targetNodes = nodes.filter((node) => node.type !== QText.name && node.type !== QLayer.name && !isBigNode(node,_document._tree)); // 过滤掉文字节点、组节点
+        // const targetNodes = nodes.filter((node) => node.type !== QText.name && node.type !== QLayer.name && !isBigNode(node,_document._tree)); // 过滤掉文字节点、组节点
+        const targetNodes = nodes.filter((node) => node.type !== QText.name && node.type !== QLayer.name); // 过滤掉文字节点、组节点
         if(!targetNodes.length) return;
         const groupArr = mergeJudge(targetNodes); // 根据规则输出 成组列表 [[node1,node2],[node3,node4],node5]
         if (groupArr.length === 1 && groupArr[0].size === pnode.children.length) {
@@ -214,6 +196,7 @@ function mergeJudge(nodelist,distanceThreshold=20,sizeThreshold=4) {
         let node = nodelist[i];
         for (let j = i + 1; j < nodelist.length; j++) {
             let brother = nodelist[j];
+            if (brother.name == '大大Rectangle') debugger
             if (mergeDistanceJudge(node,brother,distanceThreshold) && mergeSizeJudge(node,brother,sizeThreshold) && mergeShapeJudge(node,brother)) {
                 relations.push([node,brother])
             }
@@ -237,6 +220,33 @@ function mergeJudge(nodelist,distanceThreshold=20,sizeThreshold=4) {
     return groups;
 }
 // 判断两个元素距离是否相近
+function getDistanceScore(node,brother,threshold) {
+    let rect = getRect(node,brother);
+    let a = rect.width - node.width - brother.width;
+    let b = rect.height - node.height - brother.height;
+    return -threshold * (a + b);
+};
+function getSizeScore(node,brother,threshold) {
+    let rect = getRect(node,brother);
+}
+function getRect(node,brother) {
+
+    let abX = Math.min(node.abX,brother.abX);
+    let abY = Math.min(node.abY,brother.abY);
+    let abXops = Math.max(node.abXops,brother.abXops);
+    let abYops = Math.max(node.abYops,brother.abYops);
+    let width = abXops - abX;
+    let height = abYops - abY;
+    return {
+        abX,
+        abY,
+        abXops,
+        abYops,
+        width,
+        height
+    }
+}
+// 判断两个元素距离是否相近
 function mergeDistanceJudge(node,brother,threshold) {
     return !(
         (node.abY + node.height + threshold < brother.abY) || (node.abY > brother.abY + brother.height + threshold) ||
@@ -253,7 +263,7 @@ function mergeSizeJudge(node,brother,threshold,minSize = 10000) {
     } else return brotherSize / nodeSize < threshold;
 }
 // 判断两个元素形状是否为活图
-function mergeShapeJudge(node,brother,minSize = 10000) {
+function mergeShapeJudge(node,brother,minSize = 500) {
     let nodeSize = node.height * node.width;
     let brotherSize = brother.height * brother.width;
     if (nodeSize < minSize || brotherSize < minSize) return true; // 如果小于minsize，则无需判断是否活图
@@ -294,54 +304,6 @@ function mergeColorJudge(nodelist,threshold=1) {
         else groups.push(new Set([node,brother])) // 否则，自成一组
     })
     return groups;
-}
-const _mergeJudge = (boxArray,threshold=20) => {
-    //分组
-    let group = [];
-    let groupIndex = 1;
-    //碰撞检测
-    const collisionWithRect = (box1, box2) => {
-        return !(
-            (box1.y + box1.height + threshold < box2.y) || (box1.y > box2.y + box2.height + threshold) ||
-            (box1.x + box1.width + threshold < box2.x) || (box1.x > box2.x + box2.width + threshold)
-        )
-    };
-    //分组逻辑
-    boxArray.map((item, index) => {
-        if (group.length == 0) {
-            item.group = groupIndex;
-            group[0] = item;
-        } else {
-            for (let i = 0; i < group.length; i++) {
-                if (collisionWithRect(group[i], item)) {
-                    item.group = group[i].group;
-                    group.push(item);
-                    break;
-                } else {
-                    if (i == (group.length - 1)) {
-                        item.group = ++groupIndex;
-                        group.push(item)
-                        break;
-                    }
-                }
-            }
-        }
-    })
-    //转换格式
-    let idGroup = {};
-    group.map((item, index) => {
-        if (idGroup[item.group]) {
-            idGroup[item.group].push(item);
-        } else {
-            idGroup[item.group] = [];
-            idGroup[item.group].push(item);
-        }
-    })
-    group = [];
-    for (let i in idGroup) {
-        group.push(idGroup[i])
-    }
-    return group;
 }
 
 module.exports = process
