@@ -749,9 +749,9 @@ class CssDom {
             }
 
             if (nextNode) {
-                css = this._abX - nextNode._abXops;
+                css = nextNode._abX - this._abXops;
             } else {
-                css = this._abX - this.parent._abX;
+                css = this.parent._abXops - this._abXops;
             }
         } else { // 竖排计算与父节点距离
             // 如果水平居中、或水平右对齐
