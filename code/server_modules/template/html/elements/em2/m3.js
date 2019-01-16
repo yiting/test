@@ -3,7 +3,7 @@ const EM2M3 = {
   name: "em2-m3",
   desc: "2元素模板：QShape+文本(QText)",
   template: `
-    <div :ref="0" class="tag">
+    <div :ref="0" class="btn">
        <span :ref="1" :class="text"></span>
     </div>`
 };

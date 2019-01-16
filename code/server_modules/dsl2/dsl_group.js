@@ -1,6 +1,7 @@
 const Common = require('./dsl_common.js');
 const Utils = require('./dsl_utils.js');
 const Model = require('./dsl_model.js');
+const Constraints = require('./dsl_constraints');
 
 // DSLTree唯一实例
 let dslTree = null;
@@ -209,9 +210,34 @@ class Tree {
                  */
                 if (parent.type != Common.QText &&
                     parent.type != Common.QWidget &&
-                    // 如果超出横向屏幕范围，则相连则纳入包含
-                    ((Utils.isXConnect(parent, child, -1) && Utils.isYWrap(parent, child)) ||
-                        Utils.isWrap(parent, child))) {
+                    // 层级关系
+                    child.zIndex > parent.zIndex &&
+                    (
+                        // 包含关系
+                        (
+                            Utils.isWrap(parent, child)
+                        ) || (
+                            Utils.isXConnect(parent, child, -1) &&
+                            Utils.isYWrap(parent, child)
+                        )
+                        // 如果超出横向连结，纵向包含
+                        /*  (
+                             child.abX > parent.abX &&
+                             Utils.isXConnect(parent, child, -1) &&
+                             Utils.isYWrap(parent, child)
+                         ) ||
+                         // 纵向连接，横向包含
+                         (
+                             parent.abY > child.abY &&
+                             Utils.isYConnect(parent, child, -1) &&
+                             Utils.isXWrap(parent, child)
+                         ) */
+
+                    )) {
+                    /* if (!Utils.isWrap(parent, child)) {
+                    // if (child.id == 'A4CD50D4-1033-4BA5-8201-CB8277303E90c') debugger
+                        child.constraints["LayoutSelfPosition"] = Constraints.LayoutSelfPosition.Absolute;
+                    } */
                     let node = this._add(child, parent);
                     compareArr.unshift(node);
                     arr[i] = null;
@@ -783,7 +809,7 @@ Tree.createNodeData = function (mdata) {
  * @param {Int} similarId
  * @return {Object}
  */
-Tree.createCycleData = function(parent, nodesArr, similarId) {
+Tree.createCycleData = function (parent, nodesArr, similarId) {
     // 组成新节点,并且构建MatchData里的getMatchNode数据
     if (!nodesArr || nodesArr.length == 0) {
         return;
@@ -816,7 +842,7 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
         let nodeI = new RenderData();
         nodeI.set('parentId', newRenderData.id);
         nodeI.set('modelRef', i);
-    
+
         for (let j = 0; j < nodes.length; j++) {
             let nd = nodes[j];
             let renderDataJ = nd.getRenderData();
@@ -843,7 +869,7 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
  * @param {RenderData} parentData 拼装的parent
  * @param {Array} nodes 要解析的节点
  */
-Tree._handleCycleData = function(parentData, nodes) {
+Tree._handleCycleData = function (parentData, nodes) {
     let children = nodes.children;
     if (children.length == 0) {
         return;
