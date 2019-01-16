@@ -126,8 +126,8 @@
                                       <span class="user-name" v-text="pro.username"></span>
                                   </div>
                                
-                                  <div class="copy-btn" v-on:click="copyUrl" data-clipboard-action="copy" :data-clipboard-target="'#copy-my'+index">复制链接</div>
-                                  <span class="url" :id="'copy-my'+index" v-cloak>{{
+                                  <div class="copy-btn" v-on:click="copyUrl" data-clipboard-action="copy" :data-clipboard-target="'#copy-history'+index">复制链接</div>
+                                  <span class="url" :id="'copy-history'+index" v-cloak>{{
                                       'http://uitocode.oa.com/edit?id='+ pro.projectId + '&name=' +
                                       encodeURIComponent(encodeURIComponent(pro.projectName))
                                       }}</span>
