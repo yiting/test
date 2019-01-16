@@ -66,12 +66,8 @@ class Tree {
             // 当只包含一个元素时就不用创建QLayer
             return;
         }
-        // if (parent.id == '2D9DC358-45CD-4444-BC55-0342236C818Ec') debugger
         // 分解行
         let layers = Utils.gatherByLogic(children, function (a, b) {
-            // return Utils.isYConnect(a, b, 0);
-            // return Utils.isYWrap(a,b);
-
             // 如果a节点层级高于b，且a节点位置高于b，则为一组（a为绝对定位）
             if (parent.modelName == 'layer' || a._zIndex > b._zIndex && a._abY < b._abY) {
                 return Utils.isYConnect(a, b, 0);
