@@ -29,20 +29,19 @@ class EM2M3 extends Model.ElementModel {
 
         return bool;
     }
-    // 内容尺寸关系
-    regular2() {
-        let bool = Feature.fontLineLimit(this._matchNodes['1'], 1, 1)
-
-        return bool;
-    }
 
     // 尺寸关系
-    regular3() {
+    regular2() {
         let bool = Feature.sizeHeightRatioALessB(this._matchNodes['0'], this._matchNodes['1'], 2.4) &&
             Feature.sizeHeightRatioAGreatB(this._matchNodes['0'], this._matchNodes['1'], 1);
 
         return bool;
     }
+    // 内容尺寸关系
+    /* regular3() {
+        let bool = Feature.fontLineLimit(this._matchNodes['1'], 1, 1)
+        return bool;
+    } */
 }
 
 module.exports = EM2M3;

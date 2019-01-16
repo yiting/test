@@ -5,7 +5,6 @@ const EM1M1 = require('./em1/m1.js');
 const EM1M2 = require('./em1/m2.js');
 const EM1M3 = require('./em1/m3.js');
 const EM1M4 = require('./em1/m4.js');
-const EM1M5 = require('./em1/m5.js');
 // 二元素元素模型
 const EM2M1 = require('./em2/m1.js');
 const EM2M2 = require('./em2/m2.js');
@@ -28,7 +27,6 @@ const MODEL_LIST = [
     new EM1M2(),
     new EM1M3(),
     new EM1M4(),
-    new EM1M5(),
     // 二元素模型
     new EM2M1(),
     new EM2M2(),

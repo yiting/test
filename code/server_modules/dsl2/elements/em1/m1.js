@@ -22,11 +22,6 @@ class EM1M1 extends Model.ElementModel {
         let nodes = this.getNodes();
         return Feature.propertyNodeAreQText(nodes);
     }
-    // 节点必须是QText节点
-    regular2() {
-        let text = this._matchNodes['0']
-        return Feature.fontSizeLimit(text, 0, 29);
-    }
 }
 
 module.exports = EM1M1;

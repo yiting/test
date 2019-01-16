@@ -4,25 +4,33 @@ const Constraints = require('../../dsl2/dsl_constraints.js');
 const Utils = require('../render_utils.js');
 
 // 生成的Css记录树
-let cssDomTree = null;
+let cssDomTree = null,
+    cssDomArr;
 
 // 主流程
 let process = function (data, layoutType) {
-
     // 构建cssTree并返回
-    cssDomTree = _buildTree(null, data, layoutType);
+    cssDomArr = [];
+    _buildTree(null, data, layoutType);
     return cssDomTree;
 }
 
 let getCssString = function (cssDomTree, similarData) {
     // 获取cssTree解析出的样式
-    let cssStr = '';
     let css = []; // 每个CssDom节点返回的样式数组
     _parseTree(css, cssDomTree, similarData);
-    css.forEach(function (value, key, arr) {
-        cssStr += value + '\n';
-    });
-    return cssStr;
+    return css.join('\n');
+}
+
+let getCssMap = function (cssDomTree, similarData) {
+    // 获取cssTree解析出的样式
+    let css = {}; // 每个CssDom节点返回的样式数组
+    _parseMap(css, cssDomTree, similarData);
+    return css;
+}
+
+let getCssDomArr = function () {
+    return cssDomArr;
 }
 
 /**
@@ -33,6 +41,7 @@ let getCssString = function (cssDomTree, similarData) {
  */
 let _buildTree = function (parent, data, layoutType) {
     let cssNode = new CssDom(parent, data, layoutType);
+    cssDomArr.push(cssNode);
     // 构建树
     if (!parent) {
         cssDomTree = cssNode;
@@ -68,6 +77,22 @@ let _parseTree = function (arr, dom, similarData) {
         _parseTree(arr, child, similarData);
     });
 }
+/**
+ * 解析获取css属性
+ * @param {Array} arr 字符串收集数组
+ * @param {CssDom} dom CssDom节点
+ */
+let _parseMap = function (map, dom, similarData) {
+    let str = dom.getCss(similarData);
+    if (str) {
+        map[dom.id] = str;
+    }
+
+    dom.children.forEach(child => {
+        _parseMap(map, child, similarData);
+    });
+}
+
 
 const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align'];
 const CompatibleValue = ['box'];
@@ -470,7 +495,7 @@ class CssDom {
         } else {
             selfClass = `.u-${this.serialId}`;
         } */
-        selfClass = `.u-${this.serialId}`;
+        selfClass = `.ui-${this.serialId}`;
         return [parentClass, selfClass].join(' ');
     }
 
@@ -997,7 +1022,9 @@ class CssDom {
 
 
 module.exports = {
-    process,
     CssDom,
-    getCssString
+    process,
+    getCssDomArr,
+    getCssString,
+    getCssMap
 }

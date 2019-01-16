@@ -31,11 +31,11 @@ class similarCssDom {
             selfClassName = ''
 
         if (cssNode.similarParentId) {
-            parentClassName = '.s-' + cssNode.similarParentId;
+            parentClassName = '.sim-' + cssNode.similarParentId;
         }
 
         if (cssNode.similarId) {
-            selfClassName = '.s-' + cssNode.similarId;
+            selfClassName = '.sim-' + cssNode.similarId;
         }
 
         if (parentClassName) {

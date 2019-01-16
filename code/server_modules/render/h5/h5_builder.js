@@ -5,7 +5,7 @@ const CssDom = require('./css_dom');
 const SimilarCssDom = require('./similar_css_dom');
 const HtmlDom = require("./html_dom");
 
-let htmlDom, cssDom, similarCss;
+let htmlDom, cssDomTree, similarCssArr;
 class H5Builder extends Builder {
     constructor(data, layoutType) {
         super(data, layoutType);
@@ -13,19 +13,19 @@ class H5Builder extends Builder {
 
     // 解析逻辑
     _parseData() {
-        this._parseHtml();
         this._parseCss();
+        this._parseHtml();
     }
 
     // 解析html
     _parseHtml() {
-        htmlDom = HtmlDom.process(this._data, this._layoutType);
+        htmlDom = HtmlDom.process(this._data, CssDom.getCssMap(cssDomTree, similarCssArr), this._layoutType);
     }
 
     // 解析样式
     _parseCss() {
-        cssDom = CssDom.process(this._data, this._layoutType);
-        similarCss = SimilarCssDom.process(cssDom, this._layoutType);
+        cssDomTree = CssDom.process(this._data, this._layoutType);
+        similarCssArr = SimilarCssDom.process(cssDomTree, this._layoutType);
     }
 
     getTagString() {
@@ -33,7 +33,7 @@ class H5Builder extends Builder {
         return this._tagString;
     }
     getStyleString() {
-        this._styleString = SimilarCssDom.getCssString(similarCss) + CssDom.getCssString(cssDom, similarCss);
+        this._styleString = SimilarCssDom.getCssString(similarCssArr) + CssDom.getCssString(cssDomTree, similarCssArr);
         return this._styleString;
     }
 
