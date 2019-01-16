@@ -467,6 +467,7 @@ class Node {
             let text = jsonNode['0'].text ? jsonNode['0'].text : '';
             let path = jsonNode['0'].path ? jsonNode['0'].path : null;
             let styles = jsonNode['0'].styles ? jsonNode['0'].styles : {};
+            let zIndex = jsonNode['0'].zIndex || null;
             parent.set('text', text);
             parent.set('path', path);
             parent.set('styles', styles);
@@ -516,9 +517,9 @@ class Node {
         this["_" + prop] = value;
         // 不知为何要判断z_index，已注释
         // if (prop == 'children' && this._zIndex == 0) {
-        if (prop == 'children') {
+        /* if (prop == 'children') {
             this._zIndex = this._children.length ? Math.min(...this._children.map(nd => nd.zIndex)) : null;
-        }
+        } */
 
         // 添加临时逻辑, node属性的修改同步到node的renderData
         if (this._renderData && prop != 'similarIndex' && prop != 'children') {

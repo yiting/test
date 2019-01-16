@@ -845,10 +845,10 @@ class CssDom {
     }
     //
     get zIndex() {
-        if (this._isAbsolute() && this._zIndex) {
+        // if (this._isAbsolute()) {
             return this._zIndex;
-        }
-        return null;
+        // }
+        // return null;
     }
     //
     get color() {

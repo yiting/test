@@ -11,7 +11,6 @@ const Template = require("../template/template");
 let parse = function (dslTree, platformType) {
     return DSLTreeProcessor.parseTree(dslTree, platformType);
 }
-let beautyClassNum = 1;
 
 const QNODE_TYPES = ['QImage', 'QText', 'QIcon', 'QShape', 'QWidget'];
 const QCONTAINER_TYPES = ['QBody', 'QLayer'];
@@ -80,7 +79,7 @@ class DSLTreeProcessor {
         // this.addPrefix(node);
         // this.addBeautyClass(node);
         let {
-            id = -1, similarId, tagName, beautyClass, width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", modelRef = "", modelId = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = ""
+            id = -1, similarId, tagName, width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", modelRef = "", modelId = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = "", zIndex = null
         } = node;
         if (!tagName) {
             switch (platformType) {
@@ -94,7 +93,7 @@ class DSLTreeProcessor {
         }
         return {
             id,
-            beautyClass,
+            zIndex,
             tagName,
             width,
             height,
