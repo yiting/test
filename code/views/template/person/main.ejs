@@ -46,12 +46,6 @@
                                         {{ new Date(pro.modifytime)|formatDate }}
                                   </div>
                               </div>
-                              <div class="info" v-on:click="copyUrl" data-clipboard-action="copy" :data-clipboard-target="'#copy-demo'+index">
-                                  <span v-bind:href="'http://uitocode.oa.com/edit?id='+ pro.projectId + '&name=' + pro.projectName" class="url" :id="'copy-demo'+index" v-cloak>{{
-                                    'http://uitocode.oa.com/edit?id='+ pro.projectId + '&name=' + pro.projectName
-                                  }}</a>
-                                <!---->
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -126,12 +120,18 @@
                                         {{ new Date(pro.modifytime)|formatDate }}
                                     </div>
                                 </div>
-                                <div class="info" v-on:click="copyUrl" data-clipboard-action="copy" :data-clipboard-target="'#copy-his-'+index">
-                                    <span v-bind:href="'http://uitocode.oa.com/edit?id='+ pro.projectId + '&name=' + pro.projectName" class="url" :id="'copy-his-'+index" v-cloak>{{
-                                      'http://uitocode.oa.com/edit?id='+ pro.projectId + '&name=' + pro.projectName
-                                    }}</a>
-                                  <!---->
-                                </div>
+                                <div class="info">
+                                  <div class="user-info-panel">
+                                      <span v-bind:style="{backgroundImage: 'url(http://dcloud.oa.com/Public/Avatar/'+pro.username+'.png)'}" class="avatar" v-cloak></span>
+                                      <span class="user-name" v-text="pro.username"></span>
+                                  </div>
+                               
+                                  <div class="copy-btn" v-on:click="copyUrl" data-clipboard-action="copy" :data-clipboard-target="'#copy-my'+index">复制链接</div>
+                                  <span class="url" :id="'copy-my'+index" v-cloak>{{
+                                      'http://uitocode.oa.com/edit?id='+ pro.projectId + '&name=' +
+                                      encodeURIComponent(encodeURIComponent(pro.projectName))
+                                      }}</span>
+                              </div>
                               </div>
                             </div>
                           </div>
@@ -186,13 +186,17 @@
                                                 {{ new Date(pro.modifytime)|formatDate }}
                                             </div>
                                         </div>
-                                        <div class="info" v-on:click="copyUrl" data-clipboard-action="copy"
-                                            :data-clipboard-target="'#copy-my'+index">
+                                        <div class="info">
+                                            <div class="user-info-panel">
+                                                <span v-bind:style="{backgroundImage: 'url(http://dcloud.oa.com/Public/Avatar/'+user.staffname+'.png)'}" class="avatar" v-cloak></span>
+                                                <span class="user-name" v-text="user.staffname"></span>
+                                            </div>
+                                         
+                                            <div class="copy-btn" v-on:click="copyUrl" data-clipboard-action="copy" :data-clipboard-target="'#copy-my'+index">复制链接</div>
                                             <span class="url" :id="'copy-my'+index" v-cloak>{{
                                                 'http://uitocode.oa.com/edit?id='+ pro.projectId + '&name=' +
                                                 encodeURIComponent(encodeURIComponent(pro.projectName))
                                                 }}</span>
-
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +208,7 @@
            </div>
            <div class="no-project-panel" v-else>
                <p>暂无个人项目~</p>
-               <p class="tips">内测版，暂时只支持sketch文件格式</p>
+               <p class="tips">内测版，只支持移动端 sketch文件格式</p>
            </div>
            
         </div>

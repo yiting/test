@@ -68,7 +68,7 @@ History.prototype = {
       }
     });
   },
-  //获取所有访问记录
+  //获取当前个人所有访问记录
   getAllHistoryById: function(userid, callback) {
     var that = this;
     var sql =
