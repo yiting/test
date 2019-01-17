@@ -1,6 +1,7 @@
 // 模块用于对模型进行布局及结构分析, 生成可用于渲染的数据
 const LayoutList = require('./layouts/modellist.js');
 const LayoutCircle = require('./layouts/layout_circle.js');
+const LayoutSort = require('./layouts/layout_sort.js');
 
 let layout = function (dslTree, layoutType) {
     // layout逻辑主要分两部分
@@ -9,9 +10,8 @@ let layout = function (dslTree, layoutType) {
     dslTree.setLayoutType(layoutType);
     _handleLayout(dslTree, dslTree._treeData, layoutType);
     _handleCircle(dslTree, dslTree._treeData, layoutType);
+    _handleSort(dslTree, dslTree._treeData, layoutType);
 }
-
-
 /**
  * 对dslTree进行约束分析处理
  * @param {DslTree} dslTree DslTree
@@ -68,6 +68,25 @@ let _handleCircle = function (dslTree, parent, layoutType) {
     });
 }
 
+/**
+ * 对dslTree进行结构循环分析
+ * @param {DslTree} dslTree DslTree
+ * @param {TreeNode} parent DslTree节点数据树
+ * @param {Int} layoutType 布局方式
+ */
+let _handleSort = function (dslTree, parent, layoutType) {
+    let children = parent._children;
+
+    if (children.length <= 0) {
+        return;
+    }
+
+    LayoutSort.handle(parent, children, layoutType);
+
+    children.forEach(child => {
+        _handleSort(dslTree, child, layoutType);
+    });
+}
 
 module.exports = {
     layout

@@ -3,7 +3,7 @@ const WG2M2 = {
   name: "wg2-m2",
   desc: "2元素模板：左文本+右标签",
   template: `
-    <div :class="wg2-m2" :constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
+    <div class="information" :constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
       <p :ref="0" :class="text"></p>
       <span :ref="1" :class="icon"></span>
     </div>`
