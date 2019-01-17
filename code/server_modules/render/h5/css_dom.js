@@ -4,25 +4,33 @@ const Constraints = require('../../dsl2/dsl_constraints.js');
 const Utils = require('../render_utils.js');
 
 // 生成的Css记录树
-let cssDomTree = null;
+let cssDomTree = null,
+    cssDomArr;
 
 // 主流程
 let process = function (data, layoutType) {
-
     // 构建cssTree并返回
-    cssDomTree = _buildTree(null, data, layoutType);
+    cssDomArr = [];
+    _buildTree(null, data, layoutType);
     return cssDomTree;
 }
 
 let getCssString = function (cssDomTree, similarData) {
     // 获取cssTree解析出的样式
-    let cssStr = '';
     let css = []; // 每个CssDom节点返回的样式数组
     _parseTree(css, cssDomTree, similarData);
-    css.forEach(function (value, key, arr) {
-        cssStr += value + '\n';
-    });
-    return cssStr;
+    return css.join('\n');
+}
+
+let getCssMap = function (cssDomTree, similarData) {
+    // 获取cssTree解析出的样式
+    let css = {}; // 每个CssDom节点返回的样式数组
+    _parseMap(css, cssDomTree, similarData);
+    return css;
+}
+
+let getCssDomArr = function () {
+    return cssDomArr;
 }
 
 /**
@@ -33,6 +41,7 @@ let getCssString = function (cssDomTree, similarData) {
  */
 let _buildTree = function (parent, data, layoutType) {
     let cssNode = new CssDom(parent, data, layoutType);
+    cssDomArr.push(cssNode);
     // 构建树
     if (!parent) {
         cssDomTree = cssNode;
@@ -68,6 +77,22 @@ let _parseTree = function (arr, dom, similarData) {
         _parseTree(arr, child, similarData);
     });
 }
+/**
+ * 解析获取css属性
+ * @param {Array} arr 字符串收集数组
+ * @param {CssDom} dom CssDom节点
+ */
+let _parseMap = function (map, dom, similarData) {
+    let str = dom.getCss(similarData);
+    if (str) {
+        map[dom.id] = str;
+    }
+
+    dom.children.forEach(child => {
+        _parseMap(map, child, similarData);
+    });
+}
+
 
 const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align'];
 const CompatibleValue = ['box'];
@@ -112,16 +137,13 @@ const cssPropertyMap = [
     "fontFamily",
     "fontSize",
     "position",
-    // "border",
+    "filter",
+    "border",
     // "boxSizing",
     "borderRadius",
-    // "overflow",
-    // "textOverflow",
+    "overflow",
+    "textOverflow",
     // "boxFlex",
-    // "boxOrient",
-    // "boxPack",
-    // "boxAlign",
-    // "display",
     "textAlign",
     "whiteSpace",
     "lineHeight",
@@ -470,7 +492,7 @@ class CssDom {
         } else {
             selfClass = `.u-${this.serialId}`;
         } */
-        selfClass = `.u-${this.serialId}`;
+        selfClass = `[ui${this.serialId}]`;
         return [parentClass, selfClass].join(' ');
     }
 
@@ -572,6 +594,15 @@ class CssDom {
             return CssDom.transUnit(v);
         }).join(' ');
     }
+    get border() {
+        if (this.styles.border && this.styles.border.width) {
+            let borderType = CssDom.borderType(this.styles.border.type),
+                borderWidth = CssDom.transUnit(this.styles.border.width),
+                borderColor = CssDom.getRGBA(this.styles.border.color);
+            return [borderWidth, borderType, borderColor].join(' ');
+        }
+    }
+
     get borderRadius() {
         if (this.styles.borderRadius) {
             return this.getRadius(this.styles.borderRadius, Math.min(this._height, this._width));
@@ -595,7 +626,7 @@ class CssDom {
     get backgroundColor() {
         if (this.styles && this.styles.background &&
             this.styles.background.type == 'color') {
-            return this.getRGBA(this.styles.background.color);
+            return CssDom.getRGBA(this.styles.background.color);
         } else {
             return null;
         }
@@ -724,9 +755,9 @@ class CssDom {
             }
 
             if (nextNode) {
-                css = this._abX - nextNode._abXops;
+                css = nextNode._abX - this._abXops;
             } else {
-                css = this._abX - this.parent._abX;
+                css = this.parent._abXops - this._abXops;
             }
         } else { // 竖排计算与父节点距离
             // 如果水平居中、或水平右对齐
@@ -820,20 +851,31 @@ class CssDom {
     }
     //
     get zIndex() {
-        if (this._isAbsolute() && this._zIndex) {
-            return this._zIndex;
-        }
-        return null;
+        // if (this._isAbsolute()) {
+        return this._zIndex;
+        // }
+        // return null;
     }
     //
     get color() {
         if (this.styles && this.styles.texts) {
-            return this.getRGBA(this.styles.texts[0].color);
+            return CssDom.getRGBA(this.styles.texts[0].color);
         } else {
             return null;
         }
     }
-
+    get overflow() {
+        if (this.styles.texts) {
+            return 'hidden';
+        }
+        return null;
+    }
+    get textOverflow() {
+        if (this.styles.texts) {
+            return 'ellipsis';
+        }
+        return null;
+    }
     get fontFamily() {
         if (this.styles.texts) {
             return this.styles.texts[0].font;
@@ -879,7 +921,21 @@ class CssDom {
         }
         return null;
     }
-
+    get filter() {
+        if (this.styles && this.styles.shadows) {
+            let filter = [];
+            this.styles.shadows.forEach((s, i) => {
+                filter.push('drop-shadow(' + [
+                    CssDom.transUnit(s.x),
+                    CssDom.transUnit(s.y),
+                    CssDom.transUnit(s.blur),
+                    CssDom.getRGBA(s.color),
+                ].join(' ') + ')');
+            })
+            return filter.join(' ');
+        }
+        return null;
+    }
     /**
      * 获取线性渐变值
      * @param {Color} bgColor 背景色
@@ -902,7 +958,7 @@ class CssDom {
         let isHorizontal = angle % 180 == 0;
         bgColor.colorStops.forEach((stop) => {
             stops.push({
-                color: this.getRGBA(stop.color),
+                color: CssDom.getRGBA(stop.color),
                 offset: stop.offset
             });
         });
@@ -940,17 +996,6 @@ class CssDom {
             return null;
         }
     }
-    getRGBA(color) {
-        if (color && typeof color == 'object') {
-            return 'rgba(' + [
-                color.r,
-                color.g,
-                color.b,
-                color.a,
-            ].join(',') + ')'
-        }
-        return null;
-    }
 
     get backgroundRepeat() {
         var css = null;
@@ -973,6 +1018,17 @@ class CssDom {
             return `${name}: ${value}`;
         }
     }
+    static getRGBA(color) {
+        if (color && typeof color == 'object') {
+            return 'rgba(' + [
+                color.r,
+                color.g,
+                color.b,
+                color.a,
+            ].join(',') + ')'
+        }
+        return null;
+    }
     /**
      * 单位换算
      * @param  {Number} number 数值
@@ -993,11 +1049,29 @@ class CssDom {
             return number + 'px';
         }
     }
+    /**
+     * 转换sketch中border类型
+     * @param  {Number} dash sketch边框宽度
+     * @return {String}      border-type
+     */
+    static borderType(style) {
+        if (!style) {
+            return 'solid';
+        }
+        if (style.dash > 4) {
+            return "dashed"
+        } else if (style.dash > 1) {
+            return "dotted"
+        }
+        return 'solid';
+    }
 }
 
 
 module.exports = {
-    process,
     CssDom,
-    getCssString
+    process,
+    getCssDomArr,
+    getCssString,
+    getCssMap
 }

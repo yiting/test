@@ -8431,9 +8431,9 @@ let designjson = [{
     "name": "治愈",
     "width": 48,
     "height": 24,
-    "x": 90,
+    "x": 60,
     "y": 42,
-    "abX": 364,
+    "abX": 334,
     "abY": 1998,
     "constraints": [],
     "text": "治愈",
@@ -11591,7 +11591,7 @@ let designjson = [{
     "childnum": 0,
     "zIndex": 0,
     "hasStyle": false
-}, /* {
+}, {
     "id": "A4CD50D4-1033-4BA5-8201-CB8277303E90",
     "type": "QImage",
     "name": "红包标签 圆形",
@@ -11610,7 +11610,7 @@ let designjson = [{
     "path": "A4CD50D4-1033-4BA5-8201-CB8277303E90.png",
     "group": 1,
     "hasStyle": true
-},  */{
+}, {
     "id": "DFB4AE37-82E8-4CD7-BB11-A3BEDABE85E5",
     "type": "QText",
     "name": "最近在玩",

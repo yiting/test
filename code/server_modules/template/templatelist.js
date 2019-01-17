@@ -5,7 +5,6 @@ const EM1M1 = require("./html/elements/em1/m1");
 const EM1M2 = require("./html/elements/em1/m2");
 const EM1M3 = require("./html/elements/em1/m3");
 const EM1M4 = require("./html/elements/em1/m4");
-const EM1M5 = require("./html/elements/em1/m5");
 //2元素
 const EM2M1 = require("./html/elements/em2/m1");
 const EM2M2 = require("./html/elements/em2/m2");
@@ -47,7 +46,6 @@ const TEMPLATE_LIST = [
   EM1M2,
   EM1M3,
   EM1M4,
-  EM1M5,
 
   EM2M1,
   EM2M2,

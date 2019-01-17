@@ -15,9 +15,12 @@ const Constraints = require('../dsl2/dsl_constraints.js');
  * 
  * @param {*} dslTree 
  */
+function con(data) {
+    console.log(data.zIndex, data.id);
+    data.children && data.children.forEach(nd => con(nd));
+}
 let process = function (dslTree) {
     // 默认直接使用h5模板引擎输出
-
     let jsonData = Parser.parse(dslTree.getRenderData().toJSON());
     // 这里直接使用h5 builder
     let render = new Render(jsonData, H5Builder, Common.FlexLayout);
