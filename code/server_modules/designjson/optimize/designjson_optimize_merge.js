@@ -169,13 +169,6 @@ class _ImageMergeProcessor {
         // _document._images = images; // 生成图片信息列表，待export
     }
 }
-function isColorConnect(node1,node2) {
-    if(!isSameColor(node1.styles.background.color,node2.pureColor)) return false;
-    return !(
-        (node1.y + node1.height < node2.y) || (node1.y > node2.y + node2.height) ||
-        (node1.x + node1.width < node2.x) || (node1.x > node2.x + node2.width)
-    )
-}
 function isSameColor(color1,color2) {
     return JSON.stringify(color1) === JSON.stringify(color2)
 }
@@ -225,7 +218,7 @@ function mergeDistanceJudge(node,brother,threshold) {
     )
 };
 // 判断两个元素大小是否相似
-function mergeSizeJudge(node,brother,threshold,minSize = 10000) {
+function mergeSizeJudge(node,brother,threshold,minSize = 500) {
     let nodeSize = node.height * node.width;
     let brotherSize = brother.height * brother.width;
     if (nodeSize < minSize && brotherSize < minSize) return true; // 如果小于minsize，则无需判断大小相似度
@@ -275,54 +268,6 @@ function mergeColorJudge(nodelist,threshold=1) {
         else groups.push(new Set([node,brother])) // 否则，自成一组
     })
     return groups;
-}
-const _mergeJudge = (boxArray,threshold=20) => {
-    //分组
-    let group = [];
-    let groupIndex = 1;
-    //碰撞检测
-    const collisionWithRect = (box1, box2) => {
-        return !(
-            (box1.y + box1.height + threshold < box2.y) || (box1.y > box2.y + box2.height + threshold) ||
-            (box1.x + box1.width + threshold < box2.x) || (box1.x > box2.x + box2.width + threshold)
-        )
-    };
-    //分组逻辑
-    boxArray.map((item, index) => {
-        if (group.length == 0) {
-            item.group = groupIndex;
-            group[0] = item;
-        } else {
-            for (let i = 0; i < group.length; i++) {
-                if (collisionWithRect(group[i], item)) {
-                    item.group = group[i].group;
-                    group.push(item);
-                    break;
-                } else {
-                    if (i == (group.length - 1)) {
-                        item.group = ++groupIndex;
-                        group.push(item)
-                        break;
-                    }
-                }
-            }
-        }
-    })
-    //转换格式
-    let idGroup = {};
-    group.map((item, index) => {
-        if (idGroup[item.group]) {
-            idGroup[item.group].push(item);
-        } else {
-            idGroup[item.group] = [];
-            idGroup[item.group].push(item);
-        }
-    })
-    group = [];
-    for (let i in idGroup) {
-        group.push(idGroup[i])
-    }
-    return group;
 }
 
 module.exports = process

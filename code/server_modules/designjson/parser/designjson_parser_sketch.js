@@ -318,12 +318,28 @@ let modifySize = function(_document) {
                         _expand(node,border.width)
                     } break;
                 }
-                delete border.position;
+                // delete border.position;
             }
         })
     });
 }
 let _expand = function(node,val) {
+    let {
+        abX,
+        abY,
+        width,
+        height,
+        x,
+        y
+    } = node;
+    node.originFrame = {
+        abX,
+        abY,
+        width,
+        height,
+        x,
+        y
+    }
     node.abX -= val;
     node.abY -= val;
     node.width += 2 * val;

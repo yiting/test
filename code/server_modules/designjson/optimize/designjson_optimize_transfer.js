@@ -3,7 +3,6 @@ const {walkin,walkout,hasComplexSytle,isCoincide,mergeStyle} = require('../desig
 const {
     QDocument, 
     QLayer, 
-    QBody, 
     QImage, 
     QText, 
     QShape,
