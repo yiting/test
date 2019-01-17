@@ -35,10 +35,11 @@ Project.prototype = {
       }
     });
   },
-  //获取所有的项目
+  //获取所有公共项目
   getAllProjects: function(callback) {
     var that = this;
-    var sql = "SELECT * FROM project order by modifytime desc";
+    var sql="SELECT p.*,u.staffname username FROM project p,user u WHERE p.userid=u.staffid";
+    //var sql = "SELECT * FROM project order by modifytime desc";
     connection.query(sql, "", function(err, result) {
       if (err) {
         callback && callback({ code: 1, msg: "获取所有项目失败", err: err });
@@ -48,7 +49,7 @@ Project.prototype = {
       }
     });
   },
-  //获取所有项目
+  //获取个人所有项目
   getAllProjectById: function(userid, callback) {
     var that = this;
     var sql = "SELECT * FROM project WHERE userid =? order by modifytime desc";
@@ -65,7 +66,7 @@ Project.prototype = {
     var that = this;
     var sql = "";
     for (var i = 0; i < idArr.length; i++) {
-      sql += "SELECT * FROM project WHERE projectId =?;";
+      sql += "SELECT p.*,u.staffname username FROM project p,user u WHERE projectId =? and p.userid=u.staffid;";
     }
     connection.query(sql, idArr, function(err, result) {
       if (err) {

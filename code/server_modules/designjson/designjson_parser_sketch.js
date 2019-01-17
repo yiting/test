@@ -18,36 +18,36 @@ const BORDER_TYPES = {Center: 0,Outside: 2,Inside: 1};
 const [Artboard,Group, Bitmap,Text,ShapeGroup,SymbolInstance,SymbolMaster,SliceLayer,Rectangle,Oval,Line,Triangle,Polygon,Star,Rounded,Arrow,ShapePath] = ['artboard','group', 'bitmap','text','shapeGroup','symbolInstance','symbolMaster','slice','rectangle','oval','line','triangle','polygon','star','rounded','arrow','shapePath'];
 /**
  * 传入json并解析
- * @param {Json} data 通过sk,ps,xd解析得到的json数据
- * @param {Object} opts 配置参数
- * @param {Int} opts.type 解析json的类型, 1:sketch, 2:ps, 3:xd
- * @param {Object} designArtboard 解析完Artboard储存的对象
- * @param {Object} designSymbol 解析完Symbol储存的对象
- * @param {Object} designStyle 解析完的样式对象
- * @param {Array} designImage 需要合并的节点记录
+ * @param {String} artboradId
+ * @param {Array} pageList sketch pages json
+ * @param {String} pageArtBoardIndex
+ * @param {Object} documentjson sketch document.json
  */
-let parse = function(artboradId, inputList,pageArtBoardIndex,json) {
+let parse = function(artboradId, pageList, pageArtBoardIndex, documentjson) {
     try {
         // Sketch的数据解析逻辑
         // 传入的数据只能是Artboard类型为根节点或者Symbol类型为根节点
         // _parseFromArtboard
         // _parseFromSymbol
-        const symbolMasterLayerMap = getSymbolMasterLayerMap(inputList);
-        const foreinSymbolMasterLayerMap = getForeinSymbolMasterLayerMap(json);
+        const symbolMasterLayerMap = getSymbolMasterLayerMap(pageList);
+        const foreinSymbolMasterLayerMap = getForeinSymbolMasterLayerMap(documentjson);
         let symbolMap = {
             ...symbolMasterLayerMap,
             ...foreinSymbolMasterLayerMap
         }
-        const artboardLayer = getArtboardLayer(artboradId,inputList,pageArtBoardIndex);
-        if (!artboardLayer) return null; // symbol
-        const _document = _parseFromArtboard(artboardLayer,symbolMap);
-        modifySize(_document)
-        return _document;
+        const { artboard: artboardLayer, pageId } = getArtboardLayer(artboradId,pageList,pageArtBoardIndex);
+        if (artboardLayer && artboardLayer._class === Artboard) {
+            const _document = _parseFromArtboard(artboardLayer,symbolMap);
+            modifySize(_document)
+            return { document: _document, pageId };
+            // return null; // symbol
+        } else {
+            return { pageId };
+        }
     } catch(err) {
-        Logger.error('Symbol数据解析报错！');
+        Logger.error('数据解析报错！');
     }
 }
-
 const styleParser = {
     getSyle({ _class, style, rotation, attributedString, frame, points, hasBackgroundColor,  backgroundColor }) {
         const opacity = style.contextSettings ? (+style.contextSettings.opacity).toFixed(4) : 1;
@@ -165,7 +165,14 @@ const styleParser = {
             }
         })
     },
-    _getColor({alpha,blue,green,red}) {
+    _getColor(color) {
+        if (!color) return {
+            r: 0,
+            g: 0,
+            b: 0,
+            a: 0
+        }
+        let {alpha,blue,green,red} = color;
         return {
             r: Math.round(red * 255),
             g: Math.round(green * 255),
@@ -205,16 +212,16 @@ const styleParser = {
 // }
 let getArtboardLayer = function(artboradId,inputList,pageArtBoardIndex) {
     for(let json of inputList) {
-        const index = json.layers.findIndex(({do_objectID, _class}) => do_objectID === artboradId && _class === Artboard);
+        const index = json.layers.findIndex(({do_objectID, _class}) => do_objectID === artboradId);
         if (~index) {
             let artboard = json.layers[index];
             artboard.index = pageArtBoardIndex;
-            return artboard;
+            return { artboard, pageId: json.do_objectID};
         }
     }
     return null
 }
-let getSymbolMasterLayerMap = function(inputList) {
+let getSymbolMasterLayerMap = function(inputList = []) {
     let obj = {},arr = [];
     for(let json of inputList) {
         arr = arr.concat(json.layers.filter(layer => layer._class === SymbolMaster));
@@ -222,7 +229,7 @@ let getSymbolMasterLayerMap = function(inputList) {
     arr.forEach(layer => obj[layer.symbolID] = layer);
     return obj;
 }
-let getForeinSymbolMasterLayerMap = function(json) {
+let getForeinSymbolMasterLayerMap = function(json = {}) {
     let obj = {};
     if (!json.foreignSymbols || !json.foreignSymbols.length) return null;
     let arr = json.foreignSymbols.filter(obj => obj.symbolMaster._class === SymbolMaster).map(obj => obj.symbolMaster);
@@ -498,4 +505,3 @@ let _expand = function(node,val) {
 module.exports = {
     parse
 }
-

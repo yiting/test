@@ -148,7 +148,7 @@ var vm = new Vue({
      * @param {*} event
      */
     copyUrl: function(event) {
-      let clipboard = new ClipboardJS(".info");
+      let clipboard = new ClipboardJS(".copy-btn");
       clipboard.on("success", function(e) {
         /* console.info("Action:", e.action);
         console.info("Text:", e.text);

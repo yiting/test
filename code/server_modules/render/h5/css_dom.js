@@ -79,7 +79,7 @@ const cssPropertyMap = [
     'boxPack',
     'boxAlign',
     'width',
-    // 'height',
+    //'height',
     'minHeight',
     'marginTop',
     'marginRight',
