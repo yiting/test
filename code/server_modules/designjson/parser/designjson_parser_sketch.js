@@ -228,7 +228,7 @@ let maskProcess = function(uin,obj, layer, brotherLayers) {
                 const brotherLayer = brotherLayers[i];
                 if(brotherLayer.shouldBreakMaskChain) break;
                 if(brotherLayer.isVisible) {
-                    let _id = (Array.isArray(obj.symbolRoot)) ? `${obj.symbolRoot.join('#')}#${brotherLayer.do_objectID}` : brotherLayer.do_objectID;
+                    let _id = (Array.isArray(obj.symbolRoot)) ? `${obj.symbolRoot.join('---')}---${brotherLayer.do_objectID}` : brotherLayer.do_objectID;
                     maskedNodes.push(_id);
                 }
                 brotherLayer.maskNode = uin;
