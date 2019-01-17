@@ -32,7 +32,7 @@ const StyleParser = {
         if (_class === Rectangle && points && points.length) {
             return points.map(point => point.cornerRadius);
         }
-        else if (_class === Oval && frame.width === frame.height) { // 圆形可以使用borderradius
+        if (_class === Oval && frame.width === frame.height) { // 圆形可以使用borderradius
             return [frame.width/2,frame.width/2,frame.width/2,frame.width/2];
         }
         return [0,0,0,0];

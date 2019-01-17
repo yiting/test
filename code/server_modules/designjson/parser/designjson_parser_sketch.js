@@ -246,7 +246,6 @@ let maskProcess = function(uin,obj, layer, brotherLayers) {
 // 设置QNode属性
 let setAttrByLayer = function(obj,layer) {
     obj.name = layer.name;
-    if (obj.name === '大大Rectangle') debugger
     const {height,width,x,y} = layer.frame;
     const styles = StyleParser.getSyle(layer);
     Object.assign(obj,{
