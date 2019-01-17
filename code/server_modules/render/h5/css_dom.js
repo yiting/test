@@ -168,7 +168,7 @@ class CssDom {
      */
     _prevNode() {
         if (this.type == Common.QBody) { // 根节点
-            return this;
+            return null;
         }
 
         let len = this.parent.children.length;
@@ -233,7 +233,7 @@ class CssDom {
      */
     _nextNode() {
         if (this.type == Common.QBody) { // 根节点
-            return this;
+            return null;
         }
 
         let len = this.parent.children.length;
