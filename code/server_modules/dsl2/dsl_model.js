@@ -49,9 +49,9 @@ class ElementModel {
         this.abYops = 0;                                           // 对角坐标y
         this.zIndex = 0;                                           // 显示层级
 
-        // 模型空间是否可左右扩展
-        this.canLeftFlex = false;
-        this.canRightFlex = false;    
+        // 模型空间是否可左右扩展, 默认不赋值
+        this.canLeftFlex = null;                                   
+        this.canRightFlex = null;    
     }
 
     /**

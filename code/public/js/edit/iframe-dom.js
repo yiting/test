@@ -208,7 +208,7 @@ let iframeDom = {
                     <li><span class="property">height</span><span class="colon">:</span><span class="property-height" data-need="unit" data-real="${ElementHeightReal}">${ElementHeight}</span><span class="semicolon">;</span></li>
                     <li><span class="property">opacity</span><span class="colon">:</span><span class="property-opacity">${ElementOpacity}</span><span class="semicolon">;</span></li>`;
           //a.图层背景:优先检查背景
-          if (ElementClass.includes("img")||ElementClass.includes("icon")) {
+          if (ElementClass.includes("img") || ElementClass.includes("icon")) {
             //隐藏字体属性面板
             $(".fontSize-panel").hide();
             //node节点名称: 需要设置图层名称
@@ -281,6 +281,10 @@ let iframeDom = {
         //4.选中面板其他区域，隐藏右侧属性边框面板
         editUtil.hideAttrPanel();
       });
+    });
+    //新窗口打开当前编译页面
+    $(".open-url-btn").click(function() {
+      window.open($(".screen").attr("src"));
     });
   }
 };

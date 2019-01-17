@@ -111,7 +111,7 @@ function getLogMessage(projectName,name,str,userName){
 }
 
 function getPushMessageContent(projectName,name,str,url,userName){
-    return projectName+" "+name+"\n"+str+ "\n报错设计稿地址：" +url+"\n上传者："+userName
+    return projectName+" "+name+"\n"+str+ "\n地址：" +url+"\n上传者："+userName + "\n责任人："
 }
 
 var qlogger = function(param){

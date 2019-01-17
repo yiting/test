@@ -1,6 +1,10 @@
 const Common = require('./dsl_common.js');
 const Utils = require('./dsl_utils.js');
-const Constraints = require('./dsl_constraints.js');
+const Model = require('./dsl_model.js');
+const Constraints = require('./dsl_constraints');
+
+// DSLTree唯一实例
+let dslTree = null;
 
 /**
  * 将组件进行排版布局
@@ -12,20 +16,18 @@ let join = function (widgetModels, elementModels) {
     if (!widgetModels && !elementModels) {
         return null;
     }
-    let tree = new Tree(); // dsl树
+    dslTree = new Tree(); // dsl树
     let arr = elementModels.concat(widgetModels);
     // 按面积排序
     arr.sort((a, b) => b.width * b.height - a.width * a.height);
     // 
-    tree._setModelData(arr);
-    tree._addNode(arr);
+    dslTree._setModelData(arr);
+    dslTree._addNode(arr);
     // 创建layers
-    tree._groupNode();
-    tree._columnNode();
-
-    return tree;
+    dslTree._groupNode();
+    dslTree._columnNode();
+    return dslTree;
 }
-
 /**
  * DSL树的构建类,用于生成和输出标准数据
  */
@@ -33,6 +35,7 @@ class Tree {
     constructor() {
         // 节点树
         this._treeData = Tree.createNodeData();
+        this._treeData.set("parentId", this._treeData.id);
         this._treeData.set("type", Common.QBody);
         this._treeData.set("abX", 0);
         this._treeData.set("abXops", Common.DesignWidth);
@@ -46,122 +49,6 @@ class Tree {
         this._layoutType = null;
     }
 
-    // 组成包含关系的节点
-    /* _add(parent, mdata) {
-        let children = parent.children;
-
-        // 这里先给一个临时标识,在判断包含关系时有需要
-        if (mdata.width >= parent.width &&
-            (mdata.type == Common.QImage || mdata.type == Common.QShape)) {
-            // 假如加入的节点的宽度大于等于父节点的宽度, 则有可能作为节点
-            console.log(mdata.id)
-        }
-
-        if (children.length == 0 && parent.type == Common.QBody) {
-            // 根节点直接添加
-            let node = Tree.createNodeData(mdata);
-            node.parentId = parent.id;
-            children.push(node);
-            return;
-        }
-
-        // 是否被子节点包含
-        // 同时这个子节点必须为QImage或者QShape
-        let isContainByChild = false;
-        let tempIndex = 0;
-        // if (mdata.id == '43B0FB88-9CD8-4CA7-AF7E-A6D5BCB3DA51'){
-        //     debugger
-        // }
-        for (let i = 0; i < children.length; i++) {
-            let child = children[i];
-            if ((child.type == Common.QImage || child.type == Common.QShape)) {
-                // 判断是否能被包围, 可以则加入
-                if (child.asBackground) {
-                    // 可以作为背景容器使用,此时因为容器可能为能横向滚动的容器,有些元素会在边界上而超出,
-                    // 所以只需相交则可
-                    if (Utils.isNodeAcontainNodeB(child, mdata)) {
-                        isContainByChild = true;
-                        tempIndex = i;
-                        break;
-                    }
-                } else {
-                    // 必须完全包含才可以
-                    if (Utils.isNodeAfullcontainNodeB(child, mdata)) {
-                        isContainByChild = true;
-                        tempIndex = i;
-                        break;
-                    }
-                }
-            }
-        }
-
-        if (isContainByChild) {
-            // 递归进子节点判断包含关系
-            this._add(children[tempIndex], mdata);
-        } else {
-            // 直接添加进parent
-            let node = Tree.createNodeData(mdata);
-            node.parentId = parent.id;
-            children.push(node);
-        }
-    } */
-
-    // 创建QLayer
-    /* _group(parent) {
-        let children = parent.children;
-
-        // 从里面到外进行组合分析
-        for (let i = 0; i < children.length; i++) {
-            let child = children[i];
-            if (child.children.length != 0) {
-                // 继续进入下一层
-                this._group(child);
-            }
-        }
-
-        // 进行成组计算
-        if (children.length == 1) {
-            // 当只包含一个元素时就不用创建QLayer
-            return;
-        }
-
-        // 节点再次成组遵循从上到下, 从左到右的编写代码逻辑
-        let layers = Utils.groupByYaxis(children);
-        Utils.sortListByParam(layers, 'minY'); // 从上往下
-
-        let newChildren = [];
-        layers.forEach(arr => {
-            if (arr.length == 1) {
-                // 当横排的节点只有一个时, 如果它的宽度已经等于大于父元素宽度,(QShape, QImage, QWidget)
-                // 则直接作为QLayer排版了, 否则创建一个QLayer用于包含节点
-                let child = arr[0];
-                if (child.width >= parent.width) {
-                    newChildren.push(child);
-                } else {
-                    newChildren.push(child);
-                }
-            } else { // 多个节点情况
-                Utils.sortListByParam(arr, 'abX'); // 从左至右
-
-                let node = Tree.createNodeData();
-                node.set("parentId", parent.id);
-                // node.abX = 0;
-                node.set('abX', parent.abX);
-                node.set('abY', arr.minY);
-                node.set('abXops', parent.width);
-                node.set('abYops', node.abY + arr.maxY - arr.minY);
-
-                arr.forEach(child => {
-                    child.set('parentId', node.id);
-                    node.set('children', node.children.concat(child));
-                });
-                newChildren.push(node);
-            }
-        });
-
-        // 替换原来的结构
-        parent.set("children", newChildren);
-    } */
     _group(parent) {
         let children = parent.children;
 
@@ -179,13 +66,14 @@ class Tree {
             // 当只包含一个元素时就不用创建QLayer
             return;
         }
-
+        // if (parent.id == '2D9DC358-45CD-4444-BC55-0342236C818Ec') debugger
         // 分解行
         let layers = Utils.gatherByLogic(children, function (a, b) {
             // return Utils.isYConnect(a, b, 0);
             // return Utils.isYWrap(a,b);
-            // 如果a节点层级高于b，切a节点位置高于b，则为一组（a为绝对定位）
-            if (a._zIndex > b._zIndex && a._abY < b._abY) {
+
+            // 如果a节点层级高于b，且a节点位置高于b，则为一组（a为绝对定位）
+            if (parent.modelName == 'layer' || a._zIndex > b._zIndex && a._abY < b._abY) {
                 return Utils.isYConnect(a, b, 0);
             } else {
                 return Utils.isYWrap(a, b);
@@ -233,8 +121,10 @@ class Tree {
         // 替换原来的结构
         parent.set("children", newChildren);
     }
+
     _column(parent) {
         let children = parent.children;
+
 
         // 从里面到外进行组合分析
         for (let i = 0; i < children.length; i++) {
@@ -320,9 +210,34 @@ class Tree {
                  */
                 if (parent.type != Common.QText &&
                     parent.type != Common.QWidget &&
-                    // 如果超出横向屏幕范围，则相连则纳入包含
-                    ((Utils.isXConnect(parent, child, -1) && Utils.isYWrap(parent, child)) ||
-                        Utils.isWrap(parent, child))) {
+                    // 层级关系
+                    child.zIndex > parent.zIndex &&
+                    (
+                        // 包含关系
+                        (
+                            Utils.isWrap(parent, child)
+                        ) || (
+                            Utils.isXConnect(parent, child, -1) &&
+                            Utils.isYWrap(parent, child)
+                        )
+                        // 如果超出横向连结，纵向包含
+                        /*  (
+                             child.abX > parent.abX &&
+                             Utils.isXConnect(parent, child, -1) &&
+                             Utils.isYWrap(parent, child)
+                         ) ||
+                         // 纵向连接，横向包含
+                         (
+                             parent.abY > child.abY &&
+                             Utils.isYConnect(parent, child, -1) &&
+                             Utils.isXWrap(parent, child)
+                         ) */
+
+                    )) {
+                    /* if (!Utils.isWrap(parent, child)) {
+                    // if (child.id == 'A4CD50D4-1033-4BA5-8201-CB8277303E90c') debugger
+                        child.constraints["LayoutSelfPosition"] = Constraints.LayoutSelfPosition.Absolute;
+                    } */
                     let node = this._add(child, parent);
                     compareArr.unshift(node);
                     arr[i] = null;
@@ -338,6 +253,7 @@ class Tree {
         });
         return;
     }
+
     _add(child, parent) {
         let node = Tree.createNodeData(child);
         node.set("parentId", parent.id);
@@ -355,6 +271,7 @@ class Tree {
         // }
         return node;
     }
+
     _setModelData(arr) {
         arr.forEach(node => {
             this.setModelData(node);
@@ -391,13 +308,47 @@ class Tree {
         return this._modelData[id];
     }
 
+    // 获取RenderData数据
+    getRenderData() {
+        // renderData通过递归节点树来获取
+        let renderData = this._treeData.getRenderData(); // 获取根元素
+        this._parseRenderData(renderData, this._treeData);
+        return renderData;
+    }
+
     /**
+     * 通过TreeNode解析出Render数据
+     * @param {*} renderData 
+     * @param {*} treeNode 
+     */
+    _parseRenderData(renderData, treeNode) {
+        if (treeNode.children.length == 0) {
+            return;
+        }
+
+        for (let i = 0; i < treeNode.children.length; i++) {
+            let node = treeNode.children[i];
+            let rdata = node.getRenderData();
+            renderData.children.push(rdata);
+
+            if (node.children.length > 0) {
+                this._parseRenderData(rdata, node);
+            }
+        }
+    }
+
+    /**
+     * // 准备废弃
      * 获取tree的json数据
      */
     getData() {
         return this._treeData.toJSON();
     }
 
+    // 获取原始数据
+    getNodeData() {
+        return this._treeData;
+    }
 
     getJSON() {
         return this._treeData
@@ -411,52 +362,10 @@ class Tree {
 
 Tree.LayerId = 0;
 
-/* Tree.createNodeData = function (mdata) {
-    // 节点储存的数据
-    let obj = {
-        parentId: null, // 父节点id
-        id: null, // id值
-        type: Common.QLayer, // 默认用于布局
-        modelName: 'layer', // 模型的模型名
-        x: 0, // x坐标
-        y: 0, // y坐标
-        abX: 0, // 基于原点的x坐标
-        abY: 0, // 基于原点的y坐标
-        abXops: 0, // 基于原点的x坐标对角
-        abYops: 0, // 基于原点的y坐标对角
-        width: 0, // 节点宽
-        height: 0, // 节点高
-        canLeftFlex: false, // 可左扩展
-        canRightFlex: false, // 可右扩展
-        isCalculate: false, // 是否已经完成约束计算
-        constraints: {}, // 添加的约束
-        children: [], // 子节点
-        zIndex: 0 // 显示层级
-    };
 
-    // 组件还是Layer
-    if (mdata) {
-        obj.id = mdata.id;
-        obj.type = mdata.type;
-        obj.modelName = mdata.modelName;
-        obj.x = mdata.x;
-        obj.y = mdata.y;
-        obj.abX = mdata.abX;
-        obj.abY = mdata.abY;
-        obj.abXops = mdata.abX + mdata.width;
-        obj.abYops = mdata.abY + mdata.height;
-        obj.width = mdata.width;
-        obj.height = mdata.height;
-        obj.canLeftFlex = mdata.canLeftFlex;
-        obj.canRightFlex = mdata.canRightFlex;
-        obj.zIndex = mdata.zIndex;
-    } else {
-        obj.id = 'layer' + Tree.LayerId;
-        Tree.LayerId++;
-    }
-
-    return obj;
-}*/
+/**
+ * DSL Tree节点类
+ */
 class Node {
     constructor(mdata = {}) {
         this._parentId = null; // 父节点id
@@ -469,23 +378,155 @@ class Node {
         this._abYops = mdata.abYops || 0; // 基于原点的y坐标对角
         this._constraints = {}; // 添加的约束
         this._mdata = mdata;
-        this._similarIndex = -1;
-        this.canLeftFlex = mdata.canLeftFlex || false; // 可左扩展
-        this.canRightFlex = mdata.canRightFlex || false; // 可右扩展
-        this.isCalculate = false; // 是否已经完成约束计算
-        this._zIndex = mdata.zIndex || -1;
-        // this._children = mdata.children || [];
-        this.set('children', mdata.children || []);// 子节点
+        this._similarIndex = null;
+        // this.canLeftFlex = mdata.canLeftFlex || false; // 可左扩展
+        // this.canRightFlex = mdata.canRightFlex || false; // 可右扩展
+        // 临时设置编写逻辑, 因为现在canLeftFlex, canRightFlex可存在null的情况
+        this.canLeftFlex = null;
+        this.canRightFlex = null;
+        if (mdata.type && (mdata.canLeftFlex === false || mdata.canLeftFlex === true)) {
+            this.canLeftFlex = mdata.canLeftFlex;
+        }
 
+        if (mdata.type && (mdata.canRightFlex === false || mdata.canRightFlex === true)) {
+            this.canRightFlex = mdata.canRightFlex;
+        }
+
+        this.isCalculate = false; // 是否已经完成约束计算
+        this._zIndex = mdata.zIndex || null;
+        // this._children = mdata.children || [];
+        this.set('children', mdata.children || []); // 子节点
+
+        // RenderData的处理
+        this._renderData = null;
+        this._initRenderData();
+    }
+
+    /**
+     * 从MatchNode中解析出RenderData数据
+     */
+    _initRenderData() {
+        // !重要,从MatchData生成的render,
+        // Qlayer, QBody 没有MatchData
+        this._renderData = new RenderData();
+
+        // 最外层信息直接通过node信息获取
+        this._renderData.set('parentId', this.parentId);
+        this._renderData.set('id', this.id);
+        this._renderData.set('type', this.type);
+        this._renderData.set('modelName', this.modelName);
+        this._renderData.set('abX', this.abX);
+        this._renderData.set('abY', this.abY);
+        this._renderData.set('abXops', this.abXops);
+        this._renderData.set('abYops', this.abYops);
+        this._renderData.set('width', this.width);
+        this._renderData.set('height', this.height);
+        this._renderData.set('canLeftFlex', this.canLeftFlex);
+        this._renderData.set('canRightFlex', this.canRightFlex);
+        this._renderData.set('isCalculate', this.isCalculate);
+        this._renderData.set('constraints', this.constraints);
+        this._renderData.set('zIndex', this.zIndex);
+
+        // 如果有MatchData, 则进行解析处理
+        if (this._mdata && this._mdata.getMatchNode) {
+            let jsonNode = this._mdata.getMatchNode();
+            this._handleMatchNodeData(this._renderData, jsonNode, this._mdata.id);
+        }
+    }
+
+    /**
+     * 通过matchData赋值给renderData
+     * @param {RenderData} renderData 
+     * @param {Model.MatchData} matchData 
+     */
+    _initRenderDataWithMatchData(renderData, matchData) {
+        renderData.set('id', matchData.id);
+        renderData.set('type', matchData.type);
+        renderData.set('modelName', matchData.modelName);
+        renderData.set('abX', matchData.abX);
+        renderData.set('abY', matchData.abY);
+        renderData.set('abXops', matchData.abXops);
+        renderData.set('abYops', matchData.abYops);
+        renderData.set('width', matchData.width);
+        renderData.set('height', matchData.height);
+        renderData.set('canLeftFlex', matchData.canLeftFlex);
+        renderData.set('canRightFlex', matchData.canRightFlex);
+        renderData.set('zIndex', matchData.zIndex);
+    }
+
+    /**
+     * 递归解析MatchData的getMatchNode数据
+     */
+    _handleMatchNodeData(parent, jsonNode, modelId) {
+        if (!jsonNode) {
+            return;
+        }
+
+        // 如果是单节点则直接往parent上添加属性
+        if (jsonNode['0'] && !jsonNode['1']) {
+            let text = jsonNode['0'].text ? jsonNode['0'].text : '';
+            let path = jsonNode['0'].path ? jsonNode['0'].path : null;
+            let styles = jsonNode['0'].styles ? jsonNode['0'].styles : {};
+            let zIndex = jsonNode['0'].zIndex || null;
+            parent.set('text', text);
+            parent.set('path', path);
+            parent.set('styles', styles);
+            parent.set('modelRef', '0');
+            parent.set('modelName', ''); // !重要, 帮Render添加一个逻辑,如果是根节点,则不显示modelName了
+            parent.set('modelId', modelId); // !重要, 设置一个modelId给循环判断用
+            return;
+        }
+
+        for (let key in jsonNode) {
+            let json = jsonNode[key];
+            let renderData = new RenderData();
+            renderData.set('parentId', parent.id);
+            renderData.set('modelRef', key);
+
+            parent.children.push(renderData);
+
+            // 递归进复合模型
+            if (json instanceof Model.MatchData) {
+                let anotherJson = json.getMatchNode();
+                this._initRenderDataWithMatchData(renderData, json);
+                this._handleMatchNodeData(renderData, anotherJson, json.id);
+            }
+
+            // 根据json的modelName获取对应的MatchData来赋值
+            // 重要 !这里待完善
+            // 已经是叶节点, 可以取designjson中的信息
+            renderData.set('id', json.id);
+            renderData.set('type', json.type);
+            renderData.set('abX', json.abX);
+            renderData.set('abY', json.abY);
+            renderData.set('abXops', json.abX + json.width);
+            renderData.set('abYops', json.abY + json.height);
+            renderData.set('width', json.width);
+            renderData.set('height', json.height);
+            let text = json.text ? json.text : '';
+            let path = json.path ? json.path : null;
+            let styles = json.styles ? json.styles : {};
+            renderData.set('text', text);
+            renderData.set('path', path);
+            renderData.set('styles', styles);
+            renderData.set('modelId', modelId);
+        }
     }
 
     set(prop, value) {
         this["_" + prop] = value;
-        if (prop == 'children' && this._zIndex == -1) {
-            // if (parent.id == 'layer0') debugger;
-            this._zIndex = this._children.length ? Math.min(...this._children.map(nd => nd.zIndex)) : -1;
+        // 不知为何要判断z_index，已注释
+        // if (prop == 'children' && this._zIndex == 0) {
+        /* if (prop == 'children') {
+            this._zIndex = this._children.length ? Math.min(...this._children.map(nd => nd.zIndex)) : null;
+        } */
+
+        // 添加临时逻辑, node属性的修改同步到node的renderData
+        if (this._renderData && prop != 'similarIndex' && prop != 'children') {
+            this._renderData.set(prop, value);
         }
     }
+
     toJSON() {
         return {
             "id": this.id,
@@ -507,6 +548,7 @@ class Node {
             "isCalculate": this.isCalculate,
         }
     }
+
     get parentId() {
         return this._parentId;
     }
@@ -555,13 +597,303 @@ class Node {
     get children() {
         return this._children;
     }
+
+    /**
+     * 获取通过MatchData构建的RenderData数据
+     * @return {Object}
+     */
+    getRenderData() {
+        return this._renderData;
+    }
+
+    /**
+     * 临时测试设置
+     */
+    setRenderData(rdata) {
+        this._renderData = rdata;
+        this.set('type', rdata.type);
+        this.set('modelName', rdata.modelName);
+        this.set('abX', rdata.abX);
+        this.set('abY', rdata.abY);
+        this.set('abXops', rdata.abXops);
+        this.set('abYops', rdata.abYops);
+        this.set('width', rdata.width);
+        this.set('height', rdata.height);
+        this.set('zIndex', rdata.zIndex);
+    }
 }
+
+/**
+ * 从DSL Tree返回的统一render数据格式
+ */
+class RenderData {
+    constructor() {
+        this._parentId = '';
+        this._id = '';
+        this._type = '';
+        this._modelName = '';
+        this._modelRef = null;
+        this._abX = 0;
+        this._abY = 0;
+        this._abXops = 0;
+        this._abYops = 0;
+        this._width = 0;
+        this._height = 0;
+        this._canLeftFlex = null;
+        this._canRightFlex = null;
+        this._isCalculate = false;
+        this._constraints = {};
+        this._zIndex = null;
+        this._text = '';
+        this._path = '';
+        this._styles = {};
+        this._similarId = null;
+        this._similarParentId = null;
+        this._modelId = null;
+
+        this.children = [];
+    }
+
+    toJSON() {
+        return {
+            'parentId': this._parentId,
+            'id': this._id,
+            'type': this._type,
+            'modelName': this._modelName,
+            'modelRef': this._modelRef,
+            'abX': this._abX,
+            'abY': this._abY,
+            'abXops': this._abXops,
+            'abYops': this._abYops,
+            'width': this._width,
+            'height': this._height,
+            'canLeftFlex': this._canLeftFlex,
+            'canRightFlex': this._canRightFlex,
+            'isCalculate': this._isCalculate,
+            'zIndex': this._zIndex,
+            'text': this._text,
+            'path': this._path,
+            'styles': this._styles,
+            'similarId': this._similarId,
+            'modelId': this._modelId,
+            "constraints": Object.assign({}, this._constraints),
+            "children": this.children.map(child => child.toJSON()),
+        }
+    }
+
+    // 根据下一层所有子节点abX, abY, abXops, abYops, width, height 生成最小范围属性
+    resize() {
+        for (let i = 0; i < this.children.length; i++) {
+            if (i == 0) {
+                this._abX = this.children[0].abX;
+                this._abY = this.children[0].abY;
+                this._abXops = this.children[0].abXops;
+                this._abYops = this.children[0].abYops;
+                this._width = this.children[0].width;
+                this._height = this.children[0].height;
+                continue;
+            }
+
+            this._abX = this.children[i].abX < this._abX ? this.children[i].abX : this._abX;
+            this._abY = this.children[i].abY < this._abY ? this.children[i].abY : this._abY;
+            this._abXops = this.children[i].abXops > this._abXops ? this.children[i].abXops : this._abXops;
+            this._abYops = this.children[i].abYops > this._abYops ? this.children[i].abYops : this._abYops;
+        }
+
+        this._width = this._abXops - this._abX;
+        this._height = this._abYops - this._abY;
+    }
+
+    set(prop, value) {
+        this["_" + prop] = value;
+    }
+
+    get parentId() {
+        return this._parentId;
+    }
+
+    get id() {
+        return this._id;
+    }
+
+    get type() {
+        return this._type;
+    }
+
+    get modelName() {
+        return this._modelName;
+    }
+
+    get modelRef() {
+        return this._modelRef;
+    }
+
+    get abX() {
+        return this._abX;
+    }
+
+    get abY() {
+        return this._abY;
+    }
+
+    get abXops() {
+        return this._abXops;
+    }
+
+    get abYops() {
+        return this._abYops;
+    }
+
+    get width() {
+        return this._width;
+    }
+
+    get height() {
+        return this._height;
+    }
+
+    get canLeftFlex() {
+        return this._canLeftFlex;
+    }
+
+    get canRightFlex() {
+        return this._canRightFlex;
+    }
+
+    get isCalculate() {
+        return this._isCalculate;
+    }
+
+    get constraints() {
+        return this._constraints;
+    }
+
+    get zIndex() {
+        return this._zIndex;
+    }
+
+    get text() {
+        return this._text;
+    }
+
+    get path() {
+        return this._path;
+    }
+
+    get styles() {
+        return this._styles;
+    }
+
+    get similarId() {
+        return this._similarId;
+    }
+
+    get similarParentId() {
+        return this._similarParentId;
+    }
+
+    get modelId() {
+        return this._modelId;
+    }
+}
+
+
+// 创建树节点
 Tree.createNodeData = function (mdata) {
     return new Node(mdata);
+}
+
+/**
+ * 根据传进的nodes,创建返回的新node
+ * @param {TreeNode} parent
+ * @param {Array} nodesArr
+ * @param {Int} similarId
+ * @return {Object}
+ */
+Tree.createCycleData = function (parent, nodesArr, similarId) {
+    // 组成新节点,并且构建MatchData里的getMatchNode数据
+    if (!nodesArr || nodesArr.length == 0) {
+        return;
+    }
+
+    let newNode = new Node();
+    newNode.set('parentId', parent.id);
+    let newRenderData = new RenderData();
+    newRenderData.set('id', newNode.id);
+    newRenderData.set('parentId', parent.id);
+
+    // 传进来的数据暂时只有两级结构, 所以直接coding两层循环
+    for (let i = 0; i < nodesArr.length; i++) {
+        let nodes = nodesArr[i];
+
+        if (nodes.length == 0) {
+            continue;
+        }
+
+        if (nodes.length == 1) { // 第二层只有一个数据直接返回
+            let renderDataI = nodes[0].getRenderData();
+            renderDataI.set('similarId', similarId);
+            renderDataI.set('modelRef', i + '');
+            // 递归读取nodes的节点
+            Tree._handleCycleData(renderDataI, nodes[0]);
+            newRenderData.children.push(renderDataI);
+            continue;
+        }
+
+        let nodeI = new RenderData();
+        nodeI.set('parentId', newRenderData.id);
+        nodeI.set('modelRef', i);
+
+        for (let j = 0; j < nodes.length; j++) {
+            let nd = nodes[j];
+            let renderDataJ = nd.getRenderData();
+            renderDataJ.set('modelRef', j);
+            // 递归读取nodes的节点
+            Tree._handleCycleData(renderDataJ, nd);
+            nodeI.children.push(renderDataJ);
+        }
+        nodeI.resize(); // 新节点重新计算最小范围
+        newRenderData.children.push(nodeI);
+    }
+
+    // 把parent的属性重新设置
+    newRenderData.resize();
+    newRenderData.set('modelName', 'cycle-01');
+    newRenderData.set('type', Common.QLayer);
+    newNode.setRenderData(newRenderData);
+
+    return newNode;
+}
+
+/**
+ * 递归读取nodes里面的Render数据
+ * @param {RenderData} parentData 拼装的parent
+ * @param {Array} nodes 要解析的节点
+ */
+Tree._handleCycleData = function (parentData, nodes) {
+    let children = nodes.children;
+    if (children.length == 0) {
+        return;
+    }
+
+    for (let i = 0; i < children.length; i++) {
+        let rdata = children[i].getRenderData();
+        parentData.children.push(rdata);
+
+        // 递归解析
+        Tree._handleCycleData(rdata, children[i]);
+    }
+};
+
+
+// 创建DSLTree渲染节点数据
+Tree.createRenderData = function () {
+    return new RenderData();
 }
 
 
 module.exports = {
     join,
-    Tree
+    Tree,
+    RenderData
 }

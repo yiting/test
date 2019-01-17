@@ -52,7 +52,7 @@ class LayoutFlex extends Model.LayoutModel {
      */
     _handleVertical(parent, nodes, models) {
         parent.constraints['LayoutDirection'] = Constrains.LayoutDirection.Vertical;
-        parent.constraints['LayoutAlignItems'] = Constrains.LayoutAlignItems.Start;
+        // parent.constraints['LayoutAlignItems'] = Constrains.LayoutAlignItems.Start;
         // 高度不需要处理
         let calNodes = [],
             absNodes = [];
@@ -73,14 +73,13 @@ class LayoutFlex extends Model.LayoutModel {
             if (prev && Utils.isYWrap(prev, nd)) {
                 // 重叠逻辑： 如果在Y轴上完全重合，则层级高的为绝对定位
                 absNodes.push(prev.zIndex > nd.zIndex ? prev : nd);
-            }
-            else if (prev && prev.zIndex > nd.zIndex && Utils.isYConnect(prev, nd, -4)) {
+            } else if (prev && prev.zIndex > nd.zIndex && Utils.isYConnect(prev, nd, -4)) {
                 // 重叠逻辑：如果部分重叠，且前（上）节点层级高，则为绝对定位
                 absNodes.push(prev);
             }
         }
         // 赋予非轴线节点为绝对定位
-        for (let i = 0; i < calNodes.length; i++) {
+        /* for (let i = 0; i < calNodes.length; i++) {
             let nd = calNodes[i];
             nd.isCalculate = true; // 约束计算完成
             if (absNodes.includes(nd)) {
@@ -94,8 +93,11 @@ class LayoutFlex extends Model.LayoutModel {
                     nd.set("abXops", parent.abXops);
                 }
             }
-        };
+        }; */
         if (absNodes.length > 0) {
+            absNodes.forEach(nd => {
+                this._setAbsolute(nd);
+            })
             // 父节点赋予相对定位约束
             parent.constraints["LayoutPosition"] = Constrains.LayoutPosition.Absolute;
         }
@@ -109,13 +111,11 @@ class LayoutFlex extends Model.LayoutModel {
      */
     _handleHorizontal(parent, nodes, models) {
         parent.constraints['LayoutDirection'] = Constrains.LayoutDirection.Horizontal;
-        parent.constraints['LayoutJustifyContent'] = Constrains.LayoutJustifyContent.Start;
-
+        // parent.constraints['LayoutJustifyContent'] = Constrains.LayoutJustifyContent.Start;
         // 横向的排列原则先简单按照:
         // 1, 从左往右,从上往下排列
         // 2, 从最左开始计算出x轴上不相交的元素组成横向一排
         // 3, 没能排列的元素, 若与某元素相交, 则包含进相交元素, 否则加到parent处
-
         let calNodes = [],
             absNodes = [];
         // 剔除绝对定位节点
