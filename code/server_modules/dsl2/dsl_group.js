@@ -185,7 +185,6 @@ class Tree {
                 newChildren.push(node);
             }
         });
-
         // 替换原来的结构
         parent.set("children", newChildren);
     }

@@ -657,6 +657,7 @@ class CssDom {
     }
     //
     get left() {
+
         let css = null;
         if (false) {
             // 这里是预留给fixed定位约束

@@ -51,6 +51,7 @@ class LayoutFlex extends Model.LayoutModel {
      * @param {Array} models 
      */
     _handleVertical(parent, nodes, models) {
+
         parent.constraints['LayoutDirection'] = Constrains.LayoutDirection.Vertical;
         // parent.constraints['LayoutAlignItems'] = Constrains.LayoutAlignItems.Start;
         // 高度不需要处理
