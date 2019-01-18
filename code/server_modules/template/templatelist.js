@@ -31,7 +31,7 @@ const WG2M7 = require("./html/widgets/wg2/m7");
 //3元素
 const WG3M1 = require("./html/widgets/wg3/m1");
 const WG3M2 = require("./html/widgets/wg3/m2");
-const WG3M3 = require("./html/widgets/wg3/m3");
+// const WG3M3 = require("./html/widgets/wg3/m3");
 //4元素
 const WG4M1 = require("./html/widgets/wg4/m1");
 const WG4M2 = require("./html/widgets/wg4/m2");
@@ -71,7 +71,7 @@ const TEMPLATE_LIST = [
 
   WG3M1,
   WG3M2,
-  WG3M3,
+  // WG3M3,
   WG4M1,
   WG4M2,
   WG4M3,

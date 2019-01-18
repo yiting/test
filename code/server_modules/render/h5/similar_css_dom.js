@@ -84,7 +84,7 @@ class similarCssDom {
     }
 
     static _setMinCss(target, source) {
-        return typeof target == 'number' ? Math.min(target, source) : source;
+        return typeof target == 'number' && typeof source == 'number' ? Math.min(target, source) : source;
     }
     static _setMainCss(target, source) {
         return (target == undefined || target == source) ? source : null;

@@ -809,7 +809,7 @@ Tree.createNodeData = function (mdata) {
  * @param {Int} similarId
  * @return {Object}
  */
-Tree.createCycleData = function (parent, nodesArr, similarId) {
+Tree.createCycleData = function (parent, nodesArr) {
     // 组成新节点,并且构建MatchData里的getMatchNode数据
     if (!nodesArr || nodesArr.length == 0) {
         return;
@@ -831,7 +831,7 @@ Tree.createCycleData = function (parent, nodesArr, similarId) {
 
         if (nodes.length == 1) { // 第二层只有一个数据直接返回
             let renderDataI = nodes[0].getRenderData();
-            renderDataI.set('similarId', similarId);
+            // renderDataI.set('similarId', similarId);
             renderDataI.set('modelRef', i + '');
             // 递归读取nodes的节点
             Tree._handleCycleData(renderDataI, nodes[0]);

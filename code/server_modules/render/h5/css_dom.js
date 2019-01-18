@@ -506,7 +506,7 @@ class CssDom {
         cssPropertyMap.forEach(key => {
             let value = this[key],
                 similarValue = similarCss && similarCss[key];
-            if (value !== null && similarValue != value) {
+            if (value != null && value != undefined && similarValue != value) {
                 props.push(CssDom.getCssProperty(key, value));
             }
         });
@@ -543,7 +543,7 @@ class CssDom {
         if (this.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal) {
             return '-webkit-box';
         }
-        return null;
+        return 'block';
     }
     //
     get boxOrient() {
