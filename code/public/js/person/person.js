@@ -9,48 +9,46 @@ var vm = new Vue({
     user: {},
     demoprojects: [
       {
-        id: 790,
-        userid: 102053,
-        isdel: 0,
-        compliePath: "http://10.64.70.68:8080/complie/20190108220529_我的日迹",
-        unzipPath: "http://10.64.70.68:8080/unzip_file/20190108220529_我的日迹",
-        modifytime: "2019-01-08T14:05:29.000Z",
-        projectId: "7486a9f0-134e-11e9-b488-2ffc10f2e0a0",
-        projectName: "20190108220529_我的日迹"
-      },
-      {
-        id: 786,
+        id: 817,
         userid: 102053,
         isdel: 0,
         compliePath:
-          "http://10.64.70.68:8080/complie/20190108212707_空白页推荐游戏",
+          "http://10.64.70.68:8080/complie/20190109174457_空白页推荐游戏",
         unzipPath:
-          "http://10.64.70.68:8080/unzip_file/20190108212707_空白页推荐游戏",
-        modifytime: "2019-01-08T13:27:07.000Z",
-        projectId: "184842c0-1349-11e9-a1f3-6555c3962aef",
-        projectName: "20190108212707_空白页推荐游戏"
+          "http://10.64.70.68:8080/unzip_file/20190109174457_空白页推荐游戏",
+        modifytime: "2019-01-09T09:44:58.000Z",
+        projectId: "39a07af0-13f3-11e9-9441-c9596db51edf",
+        projectName: "20190109174457_空白页推荐游戏"
       },
       {
-        id: 729,
+        id: 816,
         userid: 102053,
         isdel: 0,
-        compliePath: "http://10.64.70.68:8080/complie/20190108192014_游戏城",
-        unzipPath: "http://10.64.70.68:8080/unzip_file/20190108192014_游戏城",
-        modifytime: "2019-01-08T11:20:14.000Z",
-        projectId: "5eace930-1337-11e9-a3b0-3b0f0a686661",
-        projectName: "20190108192014_游戏城"
+        compliePath: "http://10.64.70.68:8080/complie/20190109174020_列表",
+        unzipPath: "http://10.64.70.68:8080/unzip_file/20190109174020_列表",
+        modifytime: "2019-01-09T09:40:20.000Z",
+        projectId: "94456520-13f2-11e9-9441-c9596db51edf",
+        projectName: "20190109174020_列表"
       },
       {
-        id: 727,
+        id: 810,
         userid: 102053,
         isdel: 0,
-        compliePath:
-          "http://10.64.70.68:8080/complie/20190108191957_个人详情页",
-        unzipPath:
-          "http://10.64.70.68:8080/unzip_file/20190108191957_个人详情页",
-        modifytime: "2019-01-08T11:19:58.000Z",
-        projectId: "54a21c30-1337-11e9-a3b0-3b0f0a686661",
-        projectName: "20190108191957_个人详情页"
+        compliePath: "http://10.64.70.68:8080/complie/20190109172036_游戏城",
+        unzipPath: "http://10.64.70.68:8080/unzip_file/20190109172036_游戏城",
+        modifytime: "2019-01-09T09:20:37.000Z",
+        projectId: "d2bf3a90-13ef-11e9-9441-c9596db51edf",
+        projectName: "20190109172036_游戏城"
+      },
+      {
+        id: 807,
+        userid: 102053,
+        isdel: 0,
+        compliePath: "http://10.64.70.68:8080/complie/20190109171711_我的日迹",
+        unzipPath: "http://10.64.70.68:8080/unzip_file/20190109171711_我的日迹",
+        modifytime: "2019-01-09T09:17:11.000Z",
+        projectId: "58716a10-13ef-11e9-9441-c9596db51edf",
+        projectName: "20190109171711_我的日迹"
       }
     ],
     projects: [],
@@ -62,10 +60,10 @@ var vm = new Vue({
       var year = value.getFullYear();
       var month = padDate(value.getMonth() + 1);
       var day = padDate(value.getDate());
-      /* var hour = padDate(value.getHours());
+      var hour = padDate(value.getHours());
       var minutes = padDate(value.getMinutes());
-      var seconds = padDate(value.getSeconds()); */
-      return year + "-" + month + "-" + day;
+      //var seconds = padDate(value.getSeconds());
+      return year + "-" + month + "-" + day + " " + hour + ":" + minutes;
     }
   },
 
@@ -264,16 +262,22 @@ var vm = new Vue({
       let name = file.name;
       //alert(name.substr(name.lastIndexOf('/')+1))
       //文件大小
-      let size = file.size;
+      let fileSize = file.size / 1024,
+        fileMaxSize = 1024 * 100;
       //文件类型(api官方类型)
       // type = file.type;
       //根据文件名称来截取对应的类型后缀
       let potIndex = name.lastIndexOf(".");
       let fileName = name.substr(0, potIndex);
-      fileType = name.substr(potIndex + 1).toUpperCase();
+      let fileType = name.substr(potIndex + 1).toUpperCase();
       fileType = fileType.toLowerCase();
-      //$(".file-name").text(name);
-      //$(".file-size").text(CommonTool.convert(size));
+      if (fileSize > fileMaxSize) {
+        layer.msg("上传文件大小不能大于" + fileMaxSize / 1024 + "M!");
+        //清空上传文件
+        e.target.value = "";
+        return false;
+      }
+
       //直接上传到后台
       if (fileType) {
         if (fileType == "sketch") {
@@ -434,7 +438,7 @@ var vm = new Vue({
      * @param {*} event
      */
     copyUrl: function(event) {
-      let clipboard = new ClipboardJS(".info");
+      let clipboard = new ClipboardJS(".copy-btn");
       clipboard.on("success", function(e) {
         /* console.info("Action:", e.action);
         console.info("Text:", e.text);

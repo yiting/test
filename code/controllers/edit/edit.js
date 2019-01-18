@@ -511,6 +511,8 @@ let getHtmlCss = (req, res, next) => {
     //将pages下面所有json读取出来给到yone。根据artBoardID，[json数组]获取当前artBoard对应的degisnDom，然后调用俊标模块，获取对应的html和css;调用大雄模块，获取处理后的图片
     let currentPagesJsonsArr = [];
     let pagesJsonDirectory = "./data/unzip_file/" + projectName + "/pages";
+    let currentDocumentJsonPath= "./data/unzip_file/" + projectName + "/document.json";
+    let currentDocumentJson= JSON.parse(fs.readFileSync(currentDocumentJsonPath));
     if (fs.existsSync(pagesJsonDirectory)) {
       fs.readdir(pagesJsonDirectory, function(err, files) {
         let pagesFileLen = files.length;
@@ -521,11 +523,14 @@ let getHtmlCss = (req, res, next) => {
         }
         try {
           //2018-10-29
-          let currentDesignDom = Parser(
+          let currentDesignObj = Parser(
             artBoardId,
             currentPagesJsonsArr,
-            pageArtBoardIndex
+            pageArtBoardIndex,
+            //描述文件
+            currentDocumentJson
           );
+          let currentDesignDom=currentDesignObj.document,currentPageId=currentDesignObj.pageId;
           if (currentDesignDom) {
             Optimize(currentDesignDom);
             //获取要合并的图片列表
@@ -549,7 +554,7 @@ let getHtmlCss = (req, res, next) => {
               }
             );
           } else {
-            res.send("Symbol暂不解析");
+            res.send(currentPageId);
           }
         } catch (e) {
           //console.log("报错，不解析：" + e);

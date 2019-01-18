@@ -19,12 +19,12 @@
   //2018-08-24
   display: -webkit-box;
   width: 100%;
+  height: 100%;
   text-align: center;
   -webkit-box-align: center;
   -webkit-box-pack: center;
   -webkit-box-orient: vertical;
-
-  //height: 100%;
+  overflow: auto;
   //2018-09-27：编译模式
   .compilation-mode-list {
     margin-top: 30px;
@@ -501,21 +501,22 @@
 //底部浮动工具条
 .fixed-bar {
   position: fixed;
-  right: 53px;
-  bottom: 225px;
+  right: 10px;
+  bottom: 30px;
   z-index: 21;
   .item {
     display: block;
     width: 48px;
     height: 48px;
-    background: $white;
+    background: transparent;
     margin-top: -1px;
     position: relative;
-    border: 1px solid $color_bon_jour_approx;
     cursor: pointer;
     text-align: center;
     &:hover {
-      background-color: $color_desert_storm_approx;
+      &:before {
+        opacity: 1;
+      }
     }
     &:before {
       display: inline-block;
@@ -528,6 +529,7 @@
   }
   .feedback {
     &:before {
+      opacity: 0.7;
       background-image: url($data_uri_8);
       background-repeat: no-repeat;
       background-size: 100% 100%;

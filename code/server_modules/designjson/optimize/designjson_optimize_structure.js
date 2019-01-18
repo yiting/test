@@ -2,7 +2,6 @@ const Logger = require('../logger')
 const {
     QDocument, 
     QLayer, 
-    QBody, 
     QImage, 
     QText, 
     QShape,

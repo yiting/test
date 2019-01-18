@@ -77,7 +77,7 @@ class _ImageMergeProcessor {
     _maskMerge(maskNode,pnode) {
         const {_document} = this;
         const maskedCollection = maskNode.maskedNodes.map(id => _document.getNode(id));
-        maskedCollection.filter(item => item).unshift(maskNode);
+        maskedCollection.unshift(maskNode);
         if (maskedCollection.length === pnode.children.length) {
             mergeStyle(pnode,maskNode,['borderRadius']);
             this._convertToImageNode(pnode);
@@ -86,8 +86,7 @@ class _ImageMergeProcessor {
     _mergeGroupToParent(nodes,pnode) {
         const {_document} = this;
         if(!nodes || !nodes.length) return;
-        // const targetNodes = nodes.filter((node) => node.type !== QText.name && node.type !== QLayer.name && !isBigNode(node,_document._tree)); // 过滤掉文字节点、组节点
-        const targetNodes = nodes.filter((node) => node.type !== QText.name && node.type !== QLayer.name); // 过滤掉文字节点、组节点
+        const targetNodes = nodes.filter((node) => node.type !== QText.name && node.type !== QLayer.name && !isBigNode(node,_document._tree)); // 过滤掉文字节点、组节点
         if(!targetNodes.length) return;
         const groupArr = mergeJudge(targetNodes); // 根据规则输出 成组列表 [[node1,node2],[node3,node4],node5]
         if (groupArr.length === 1 && groupArr[0].size === pnode.children.length) {
@@ -170,13 +169,6 @@ class _ImageMergeProcessor {
         // _document._images = images; // 生成图片信息列表，待export
     }
 }
-function isColorConnect(node1,node2) {
-    if(!isSameColor(node1.styles.background.color,node2.pureColor)) return false;
-    return !(
-        (node1.y + node1.height < node2.y) || (node1.y > node2.y + node2.height) ||
-        (node1.x + node1.width < node2.x) || (node1.x > node2.x + node2.width)
-    )
-}
 function isSameColor(color1,color2) {
     return JSON.stringify(color1) === JSON.stringify(color2)
 }
@@ -196,7 +188,6 @@ function mergeJudge(nodelist,distanceThreshold=20,sizeThreshold=4) {
         let node = nodelist[i];
         for (let j = i + 1; j < nodelist.length; j++) {
             let brother = nodelist[j];
-            if (brother.name == '大大Rectangle') debugger
             if (mergeDistanceJudge(node,brother,distanceThreshold) && mergeSizeJudge(node,brother,sizeThreshold) && mergeShapeJudge(node,brother)) {
                 relations.push([node,brother])
             }
@@ -220,33 +211,6 @@ function mergeJudge(nodelist,distanceThreshold=20,sizeThreshold=4) {
     return groups;
 }
 // 判断两个元素距离是否相近
-function getDistanceScore(node,brother,threshold) {
-    let rect = getRect(node,brother);
-    let a = rect.width - node.width - brother.width;
-    let b = rect.height - node.height - brother.height;
-    return -threshold * (a + b);
-};
-function getSizeScore(node,brother,threshold) {
-    let rect = getRect(node,brother);
-}
-function getRect(node,brother) {
-
-    let abX = Math.min(node.abX,brother.abX);
-    let abY = Math.min(node.abY,brother.abY);
-    let abXops = Math.max(node.abXops,brother.abXops);
-    let abYops = Math.max(node.abYops,brother.abYops);
-    let width = abXops - abX;
-    let height = abYops - abY;
-    return {
-        abX,
-        abY,
-        abXops,
-        abYops,
-        width,
-        height
-    }
-}
-// 判断两个元素距离是否相近
 function mergeDistanceJudge(node,brother,threshold) {
     return !(
         (node.abY + node.height + threshold < brother.abY) || (node.abY > brother.abY + brother.height + threshold) ||
@@ -254,7 +218,7 @@ function mergeDistanceJudge(node,brother,threshold) {
     )
 };
 // 判断两个元素大小是否相似
-function mergeSizeJudge(node,brother,threshold,minSize = 10000) {
+function mergeSizeJudge(node,brother,threshold,minSize = 500) {
     let nodeSize = node.height * node.width;
     let brotherSize = brother.height * brother.width;
     if (nodeSize < minSize && brotherSize < minSize) return true; // 如果小于minsize，则无需判断大小相似度
@@ -263,7 +227,7 @@ function mergeSizeJudge(node,brother,threshold,minSize = 10000) {
     } else return brotherSize / nodeSize < threshold;
 }
 // 判断两个元素形状是否为活图
-function mergeShapeJudge(node,brother,minSize = 500) {
+function mergeShapeJudge(node,brother,minSize = 10000) {
     let nodeSize = node.height * node.width;
     let brotherSize = brother.height * brother.width;
     if (nodeSize < minSize || brotherSize < minSize) return true; // 如果小于minsize，则无需判断是否活图

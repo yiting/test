@@ -29,13 +29,14 @@ const StyleParser = {
         return styles;
     },
     _getBorderRadius(_class,points=[],frame) {
+        let borderRadius = null;
         if (_class === Rectangle && points && points.length) {
-            return points.map(point => point.cornerRadius);
+            borderRadius = points.map(point => point.cornerRadius);
+        } else if (_class === Oval && frame.width === frame.height) { // 圆形可以使用borderradius
+            borderRadius = [frame.width/2,frame.width/2,frame.width/2,frame.width/2];
         }
-        else if (_class === Oval && frame.width === frame.height) { // 圆形可以使用borderradius
-            return [frame.width/2,frame.width/2,frame.width/2,frame.width/2];
-        }
-        return [0,0,0,0];
+        if (Array.isArray(borderRadius) && borderRadius.some(radius => !!radius)) return borderRadius;
+        else return null;
     },
     _getBackground(hasBackgroundColor,backgroundColor,fills) {
         let background = {
@@ -99,7 +100,7 @@ const StyleParser = {
     },
     _getShadows(shadowList) {
         if(!shadowList.length) return null;
-        shadowList.map(({ _class, offsetX: x, offsetY: y, spread, blurRadius: blur, color }) => {
+        return shadowList.map(({ _class, offsetX: x, offsetY: y, spread, blurRadius: blur, color }) => {
             const type = _class === 'shadow' ? 'inset': 'initial'
             return {
                 type,
