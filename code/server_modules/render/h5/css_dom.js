@@ -314,6 +314,17 @@ class CssDom {
     }
 
     /**
+     * 父节点是否属于相对定位
+     */
+    _isRelative() {
+        if (this.parent.constraints['LayoutPosition'] &&
+            this.parent.constraints['LayoutPosition'] == Constraints.LayoutPosition.Absolute) {
+            return true;
+        }
+        return false;
+
+    }
+    /**
      * 节点的排列是否为横排
      * @returns {Boolean}
      */
@@ -691,15 +702,15 @@ class CssDom {
         }
         let firstChild = this._usePaddingTop(this.parent);
         if (firstChild == this) {
-            return null;
+            return 0;
         }
         if (this._isParentHorizontal()) { // 横排计算与父节点距离
             // 如果垂直居中、底对齐则无margin-Top
             if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Center) {
-                return null;
+                return 0;
             }
             if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.End) {
-                return null;
+                return 0;
             }
             // LayoutAlignItems.Start
             css = this._abY - this.parent._abY;
@@ -744,15 +755,14 @@ class CssDom {
 
         if (this._isParentHorizontal()) { // 横排计算与上一节点距离
             let nextNode = this._nextNode();
-
             // 如果水平左对齐
             if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Start) {
-                return null;
+                return 0;
             }
             // 如果水平居中
-            if (!nextNode &&
-                this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center) {
-                return null;
+            if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center &&
+                !nextNode) {
+                return 0;
             }
 
             if (nextNode) {
@@ -766,26 +776,25 @@ class CssDom {
                 return 'auto';
             }
             if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Start) {
-                return null;
+                return 0;
             }
             // LayoutAlignItems.End
             css = this.parent._abXops - this._abXops;
-            return null;
         }
         return css;
     }
     //
     get marginBottom() {
         if (this._isAbsolute()) {
-            return null;
+            return 0;
         }
         if (this._isParentHorizontal()) { // 横排计算与父节点距离
             // 如果垂直居中、底对齐则无margin-Top
             if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Center) {
-                return null;
+                return 0;
             }
             if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Start) {
-                return null;
+                return 0;
             }
             // LayoutAlignItems.Start
             return this.parent._abYops - this._abYops;
@@ -809,14 +818,14 @@ class CssDom {
             } else {
                 css = this._abY - this.parent._abY;
             } */
-            return null;
+            return 0;
         }
     }
     //
     get marginLeft() {
         // if (this.id == '959A012C-6A6B-4FE4-B275-003CC20568B5c') debugger
 
-        let css = null;
+        let css = 0;
         if (this._isAbsolute()) {
             return css;
         }
@@ -825,11 +834,12 @@ class CssDom {
             let preNode = this._prevNode();
 
             // 如果水平居中、或水平右对齐，第一个子节点无margin-left
-            if (!preNode && this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center) {
-                return null;
+            if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center &&
+                !preNode) {
+                return 0;
             }
             if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.End) {
-                return null;
+                return 0;
             }
             // LayoutJustifyContent.Start
             if (preNode) {
@@ -843,7 +853,7 @@ class CssDom {
                 return 'auto';
             }
             if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.End) {
-                return null;
+                return 0;
             }
             // LayoutAlignItems.Start
             css = this._abX - this.parent._abX;
@@ -852,9 +862,9 @@ class CssDom {
     }
     //
     get zIndex() {
-        // if (this._isAbsolute()) {
-        return this._zIndex;
-        // }
+        if (this._isAbsolute() || this._isRelative()) {
+            return this._zIndex;
+        }
         // return null;
     }
     //

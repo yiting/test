@@ -72,10 +72,11 @@ class LayoutFlex extends Model.LayoutModel {
             // let prev = calNodes[i - 1];
             let prev = this._getPrev(nodes, nd, absNodes);
             if (prev && Utils.isYWrap(prev, nd)) {
-                // 重叠逻辑： 如果在Y轴上完全重合，则层级高的为绝对定位
+                // 重叠逻辑： 如果在Y轴上完全重合，则前点(层级高或面积小的）为绝对定位
                 absNodes.push(prev.zIndex > nd.zIndex ? prev : nd);
-            } else if (prev && prev.zIndex > nd.zIndex && Utils.isYConnect(prev, nd, -4)) {
+            } else if (prev && Utils.isYConnect(prev, nd, -4) && (prev.zIndex > nd.zIndex || prev.width * prev.height < nd.width * nd.height)) {
                 // 重叠逻辑：如果部分重叠，且前（上）节点层级高，则为绝对定位
+                console.log(prev.id)
                 absNodes.push(prev);
             }
         }

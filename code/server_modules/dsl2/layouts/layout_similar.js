@@ -50,10 +50,17 @@ class LayoutSimilar extends Model.LayoutModel {
             });
         });
     }
-    // 剔除绝对定位元素，绝对定位元素不参与循环判断
+    /**
+     * 筛选参与判断的元素
+     * @param {Array} node 
+     */
     _filterRule(node) {
-        // if (node.id == 'layer35') debugger
-        if (node.constraints["LayoutSelfPosition"] == Constraints.LayoutSelfPosition.Absolute) {
+        // 剔除绝对定位元素，绝对定位元素不参与循环判断
+        // if (node.id == 'FA0ED87D-C77F-4C78-91B0-9F580B128755cc') debugger
+        if (node.constraints["LayoutSelfPosition"] == Constraints.LayoutSelfPosition.Absolute &&
+            node.modelName != 'layer' &&
+            node.type != Common.QWidget
+        ) {
             return;
         }
         if (!this._compareNodes[node.modelName]) {
@@ -89,6 +96,7 @@ class LayoutSimilar extends Model.LayoutModel {
          * 1. 模型名称相似
          * 2. 如果是layer，layer子节点相似
          * 3. 如果非layer，三基线对齐
+         * 4. 如果没有子节点，则相似
          */
         if (a.modelName != b.modelName) {
             return
@@ -99,7 +107,7 @@ class LayoutSimilar extends Model.LayoutModel {
             return;
         }
         if (a.modelName == 'layer') {
-            let s = a.isVertical == b.isVertical &&
+            return a.isVertical == b.isVertical &&
                 a.compareChildLength == b.compareChildLength &&
                 (
                     (a.height == b.height &&
@@ -123,22 +131,6 @@ class LayoutSimilar extends Model.LayoutModel {
                 a.ctX == b.ctX ||
                 (a.width == b.width && a.height == b.height)
         }
-
-        // 如果为布局结构，则子节点模型相同、宽度相同
-        /* (a.modelName == 'layer' ?
-            (a.children.length == b.children.length &&
-                a.children.every((ndA, i) => {
-                    return b.children[i].modelName == ndA.modelName
-                })
-            ) : (
-                // 如果为模型结构，三线对齐相同
-                a.abY == b.abY ||
-                a.abYops == b.abYops ||
-                a.abY + a.height / 2 == b.abY + b.height / 2 ||
-                a.abX == b.abX ||
-                a.abXops == b.abXops ||
-                a.abX + a.width / 2 == b.abX + b.width / 2
-            )); */
     }
 }
 
