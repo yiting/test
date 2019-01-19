@@ -8,6 +8,26 @@ body {
   background-color: #f2f2f2;
   overflow-y: auto;
 }
+.header-navbar__main {
+  display: -webkit-box !important;
+  -webkit-box-flex: 1;
+  -webkit-box-pack: end;
+}
+.navbar-nav2 {
+  .nav-link {
+    color: #999;
+    display: block;
+    padding: 0 20px;
+    line-height: 60px;
+    text-decoration: none;
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
 .user-info-panel {
   cursor: pointer;
 }

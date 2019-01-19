@@ -283,6 +283,7 @@ main {
   height: 100%;
   margin-left: auto;
   margin-right: auto;
+  font-size: 15px;
 }
 .page-header .header-navbar .container .navbar-logo {
   color: #fff;
@@ -299,14 +300,20 @@ main {
   background-image: url(/img/sprite-ad720473bfcommon.png);
   background-position: 0 -64px;
   background-repeat: no-repeat;
-  vertical-align: -7px;
+  vertical-align: -16px;
 }
 .page-header .header-navbar .container .header-navbar__main {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
 }
 .page-header .header-navbar .container .header-navbar__main .navbar-nav {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -337,6 +344,18 @@ main {
   transition: all 0.2s ease-out;
 }
 .page-header .header-navbar .container .header-navbar__main .navbar-nav .nav-item .nav-link:hover {
+  color: #fff;
+}
+.page-header .header-navbar .container .header-navbar__main .navbar-nav2 .nav-link {
+  color: #999;
+  display: block;
+  padding: 0 20px;
+  line-height: 60px;
+  text-decoration: none;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+.page-header .header-navbar .container .header-navbar__main .navbar-nav2 .nav-link:hover {
   color: #fff;
 }
 .page-header .header-navbar .container .user-info {
@@ -1082,7 +1101,7 @@ main {
   bottom: -15px;
   left: 50%;
   z-index: 2222;
-  margin-left: -50px;
+  margin-left: -22px;
   width: 0;
   height: 0;
   border-top: 15px solid #108df0;

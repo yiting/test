@@ -1,7 +1,7 @@
 var vm = new Vue({
   el: "#visitorApp",
   data: {
-    showNav: false,
+    showNav: true,
     user: {},
     visitor: {},
     visitors: []
@@ -34,6 +34,23 @@ var vm = new Vue({
       top.postMessage("/person", "http://uitocode.oa.com");
     },
     /**
+     * 访问人数
+     */
+    visitorNum: function() {
+      top.postMessage("/visitor", "http://uitocode.oa.com");
+    },
+    /**
+     * 查看所有项目
+     */
+    viewProjects: function() {
+      top.postMessage("/project", "http://uitocode.oa.com");
+    },
+    goStandard:function(){
+      //top.postMessage("/description", "http://uitocode.oa.com");
+      window.open("/description");
+    },
+    /**
+     * 
      * 渲染个人信息
      */
     getUserInfo: function() {

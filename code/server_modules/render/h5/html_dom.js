@@ -32,11 +32,11 @@ class HtmlDom {
     getAttrClass() {
 
         var result = [];
-        if (this.css) {
-            result.push('ui-' + this.serialId);
-        }
+        // if (this.css) {
+        // result.push('ui' + this.serialId);
+        // }
         if (this.similarId) {
-            result.push('sim-' + this.similarId);
+            result.push('sim' + this.similarId);
         }
         if (this.tplData && this.tplData.class) {
             result.push(this.tplData.class);
@@ -59,7 +59,8 @@ class HtmlDom {
         return this.text || '';
     }
     getAttrId() {
-        return this.id || '';
+        // return this.id || '';
+        return `ui${this.serialId}`;
     }
     getAttrs() {
         var result = "";
@@ -77,8 +78,8 @@ class HtmlDom {
     }
     // 开始节点
     getHtmlStart() {
-        return `<${this.getTag()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
-        // return `<${this.getTag()} ${this.getAttrId()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+        // return `<${this.getTag()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+        return `<${this.getTag()} ${this.getAttrId()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
     }
     // 闭合节点
     getHtmlEnd() {

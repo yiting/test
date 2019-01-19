@@ -64,19 +64,27 @@
   -webkit-box-pack: center;
   .open-url-btn {
     position: absolute;
-    left: -120px;
+    top: -10px;
+    left: -80px;
+    width: 50px;
+    height: 50px;
     z-index: 10;
-    font-size: 13.5px;
-    width: 100px;
-    height: 30px;
-    line-height: 30px;
-    color: #ffffff;
-    background: #3484f5;
-    background: linear-gradient(to right, #0080ff, #53d1fd);
-    border-radius: 20px;
     cursor: pointer;
-    &:active {
-      opacity: 0.7;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -16px;
+      margin-top: -16px;
+      width: 32px;
+      height: 32px;
+      background: url(../../img/newopen-icon.png) no-repeat center;
+      background-size: 100%;
     }
   }
   .compile-result-panel {

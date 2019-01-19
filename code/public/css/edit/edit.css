@@ -319,6 +319,8 @@ header {
   font-size: 12px;
 }
 .header-center .navbar-nav {
+  position: absolute;
+  right: 120px;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -332,7 +334,6 @@ header {
   margin-right: 20px;
   text-align: right;
   list-style: none;
-  letter-spacing: -0.3em;
 }
 .header-center .navbar-nav .nav-item {
   position: relative;
@@ -340,6 +341,7 @@ header {
   letter-spacing: normal;
   height: 100%;
   vertical-align: top;
+  font-size: 15px;
 }
 .header-center .navbar-nav .nav-item .nav-link {
   color: #999;
@@ -350,7 +352,7 @@ header {
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
-.header-center .navbar-nav .nav-item .nav-link.router-link-active, .header-center .navbar-nav .nav-item .nav-link:hover {
+.header-center .navbar-nav .nav-item .nav-link:hover {
   color: #fff;
 }
 .header-center .btn-operate-group {
@@ -976,20 +978,28 @@ header {
 }
 .design-coding-panel .open-url-btn {
   position: absolute;
-  left: -120px;
+  top: -10px;
+  left: -80px;
+  width: 50px;
+  height: 50px;
   z-index: 10;
-  font-size: 15px;
-  width: 100px;
-  height: 30px;
-  line-height: 30px;
-  color: #ffffff;
-  background: #3484f5;
-  background: linear-gradient(to right, #0080ff, #53d1fd);
-  border-radius: 20px;
   cursor: pointer;
-}
-.design-coding-panel .open-url-btn:active {
   opacity: 0.7;
+}
+.design-coding-panel .open-url-btn:hover {
+  opacity: 1;
+}
+.design-coding-panel .open-url-btn:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -16px;
+  margin-top: -16px;
+  width: 32px;
+  height: 32px;
+  background: url(../../img/newopen-icon.png) no-repeat center;
+  background-size: 100%;
 }
 .design-coding-panel .compile-result-panel {
   position: relative;

@@ -1,6 +1,7 @@
 // this package is use to translate sketch, photoshop, adobeXD 
 
-const Logger = require('./logger')
+const Logger = require('../logger')
+const StyleParser = require('./designjson_parser_sketch_styles')
 // QNode类型
 const {
     QDocument, 
@@ -11,8 +12,8 @@ const {
     QShape,
     QMask, 
     QSlice
-} = require('./designjson_node');
-const {walkin,walkout,hasMaskChild,hasComplexSytle,generateGroupAttr,isPureColor} = require('./designjson_utils');
+} = require('../designjson_node');
+const {walkin,walkout,hasMaskChild,hasComplexSytle,generateGroupAttr,isPureColor} = require('../designjson_utils');
 // layer类型
 const BORDER_TYPES = {Center: 0,Outside: 2,Inside: 1};
 const [Artboard,Group, Bitmap,Text,ShapeGroup,SymbolInstance,SymbolMaster,SliceLayer,Rectangle,Oval,Line,Triangle,Polygon,Star,Rounded,Arrow,ShapePath] = ['artboard','group', 'bitmap','text','shapeGroup','symbolInstance','symbolMaster','slice','rectangle','oval','line','triangle','polygon','star','rounded','arrow','shapePath'];
@@ -46,161 +47,6 @@ let parse = function(artboradId, pageList, pageArtBoardIndex, documentjson) {
         }
     } catch(err) {
         Logger.error('数据解析报错！');
-    }
-}
-const styleParser = {
-    getSyle({ _class, style, rotation, attributedString, frame, points, hasBackgroundColor,  backgroundColor }) {
-        const opacity = style.contextSettings ? (+style.contextSettings.opacity).toFixed(4) : 1;
-        const { borders, shadows: outterShadows, innerShadows, fills, textStyle } = style;
-        let background = null, shadows, border, borderRadius;
-        background =  this._getBackground(hasBackgroundColor,backgroundColor,fills)
-        if (!background || background.type != 'image') {
-            shadows = this._getShadows([...(outterShadows || []),...(innerShadows || [])]);
-            border = this._getBorder(borders);
-            borderRadius =  this._getBorderRadius(_class,points,frame);
-        }
-        // const backgroundColor = bgColor ? this._getColor(bgColor) : fills[0];
-        const styles = {
-            borderRadius,
-            border,
-            opacity,
-            rotation,
-            shadows,
-            background
-        };
-        switch(_class) {
-            case Text: Object.assign(styles,this._getFont(textStyle,attributedString,frame.height));break;
-        }
-        return styles;
-    },
-    _getBorderRadius(_class,points,frame) {
-        if (_class === Rectangle) {
-            return points.map(point => point.cornerRadius);
-        }
-        if (_class === Oval && frame.width === frame.height) { // 圆形可以使用borderradius
-            return [frame.width/2,frame.width/2,frame.width/2,frame.width/2];
-        }
-        return [0,0,0,0];
-    },
-    __getBorderRadius(_class,points,frame) {
-        if (_class === Rectangle) {
-            return points[0].cornerRadius;
-        }
-        if (_class === Oval && frame.width === frame.height) { // 圆形可以使用borderradius
-            return frame.width/2;
-        }
-        return 0;
-    },
-    _getBackground(hasBackgroundColor,backgroundColor,fills) {
-        let background = {
-            type: 'image',
-            color: null,
-            hasOpacity: false
-        };
-        if (hasBackgroundColor) {
-            background.type = 'color';
-            background.color = this._getColor(backgroundColor);
-            return background;
-        }
-        if (fills && fills.length) {
-            fills = fills.filter(({isEnabled}) => !!isEnabled);
-            if (!fills.length) return null;
-            else if (fills.length > 1 ) return background;
-            const fill = fills[0];
-            const opacity = fill.contextSettings && fill.contextSettings.opacity ;
-            switch(fill.fillType) {
-                case 0: {
-                    background.type = 'color';
-                    background.color = this._getColor(fill.color);
-                    if (background.color.a !== 1) background.hasOpacity = true;
-                } break; // 纯色背景
-                case 1: {
-                    const { stops, gradientType, elipseLength } = fill.gradient;
-                    if (gradientType === 0) { // 线性渐变
-                        background.type = 'linear';
-                    } else if (gradientType === 1) { // 径向渐变
-                        background.type = 'radical';
-                        background.r = elipseLength;
-                    }
-                    const [from,to] = [fill.gradient.from.slice(1,-1).split(','),fill.gradient.to.slice(1,-1).split(',')];
-                    background.x = from[0], background.y = from[1],
-                    background.x1 = to[0], background.y1 = to[1];
-                    background.colorStops = stops.map(stop => {
-                        const color = this._getColor(stop.color);
-                        if (!isNaN(opacity)) color.a *= opacity; // 如果存在opacity，则与颜色alpha通道进行合并
-                        if (color.a !== 1) background.hasOpacity = true;
-                        return {
-                            color,
-                            offset: stop.position
-                        }
-                    });
-                }; break; // 渐变
-                default: break;
-            }
-            return background;
-        } else return null;
-    },
-    _getBorder(borders) { // 获取边框 （坑点：多个边框叠加暂未考虑）
-        if(!borders || !borders.length) return null;
-        borders = borders.filter(({isEnabled}) => !!isEnabled);
-        if (!borders.length) return null;
-        return {
-            type: 'solid',
-            color: this._getColor(borders[0].color),
-            width: borders[0].thickness,
-            position: borders[0].position
-        }
-    },
-    _getShadows(shadowList) {
-        if(!shadowList.length) return null;
-        shadowList.map(({ _class, offsetX: x, offsetY: y, spread, blurRadius: blur, color }) => {
-            const type = _class === 'shadow' ? 'inset': 'initial'
-            return {
-                type,
-                x,
-                y,
-                color: this._getColor(color),
-                spread,
-                blur
-            }
-        })
-    },
-    _getColor(color) {
-        if (!color) return {
-            r: 0,
-            g: 0,
-            b: 0,
-            a: 0
-        }
-        let {alpha,blue,green,red} = color;
-        return {
-            r: Math.round(red * 255),
-            g: Math.round(green * 255),
-            b: Math.round(blue * 255),
-            a: alpha
-        }
-    },
-    _getFont(textStyle,attributedString,height) {
-        const textValue = attributedString.string;
-        const texts = attributedString.attributes.map(text => {
-            const { name: fontName, size } = text.attributes.MSAttributedStringFontAttribute.attributes;
-            return {
-                color: this._getColor(text.attributes.MSAttributedStringColorAttribute),
-                string: textValue.slice(text.location, text.location + text.length),
-                // fontWeight: name.slice(0,2), // TODO
-                font: fontName,
-                size
-            }
-        });
-        if (!textStyle) return { texts }
-        const {verticalAlignment: verticalAlign, encodedAttributes} = textStyle;
-        if (!encodedAttributes.paragraphStyle) return { texts, verticalAlign }
-        return {
-            texts,
-            verticalAlign,
-            textAlign: encodedAttributes.paragraphStyle.alignment || 0,
-            lineHeight: encodedAttributes.paragraphStyle.maximumLineHeight || null
-        }
     }
 }
 /**
@@ -318,7 +164,7 @@ let _parseLayer = function(_document, layer, pnode = null, brotherLayers = null)
         else obj.symbolRoot = [uin.slice(0,4)];
     }
     if (pnode && Array.isArray(pnode.symbolRoot)) { // 如果是symbol子孙元素，设置实例字段，添加前缀
-        uin = `${pnode.symbolRoot.join('#')}#${uin}`;
+        uin = `${pnode.symbolRoot.join('---')}---${uin}`;
         obj.symbolRoot = pnode.symbolRoot;
         // console.log('增加前缀',uin)
     }
@@ -353,7 +199,11 @@ let _parseLayer = function(_document, layer, pnode = null, brotherLayers = null)
         let sublayers = layer.layers;
         for (let i = 0; i < sublayers.length; i++) {
             let sblayer = sublayers[i];
-            _parseLayer(_document, sblayer, curNode,sublayers);
+            try {
+                _parseLayer(_document, sblayer, curNode,sublayers);
+            } catch(err) {
+                Logger.error(sblayer.do_objectID + '节点解析错误，被丢弃');
+            }
         }
     }
 }
@@ -378,7 +228,7 @@ let maskProcess = function(uin,obj, layer, brotherLayers) {
                 const brotherLayer = brotherLayers[i];
                 if(brotherLayer.shouldBreakMaskChain) break;
                 if(brotherLayer.isVisible) {
-                    let _id = (Array.isArray(obj.symbolRoot)) ? `${obj.symbolRoot.join('#')}#${brotherLayer.do_objectID}` : brotherLayer.do_objectID;
+                    let _id = (Array.isArray(obj.symbolRoot)) ? `${obj.symbolRoot.join('---')}---${brotherLayer.do_objectID}` : brotherLayer.do_objectID;
                     maskedNodes.push(_id);
                 }
                 brotherLayer.maskNode = uin;
@@ -397,7 +247,7 @@ let maskProcess = function(uin,obj, layer, brotherLayers) {
 let setAttrByLayer = function(obj,layer) {
     obj.name = layer.name;
     const {height,width,x,y} = layer.frame;
-    const styles = styleParser.getSyle(layer);
+    const styles = StyleParser.getSyle(layer);
     Object.assign(obj,{
         height: Math.round(height),
         width: Math.round(width),
@@ -442,24 +292,6 @@ let _setSketchShapeType = function(layer, obj) {
     //     qShape.shapeType = 'combineShape';
     // }
 }
-/** 
- * 设置QShape的shapeType属性，线、矩形、圆，多边形等
- * @param {Layer} layer Sketch对象
- * @param {QShape} qShape QShape对象
- */
-let __setSketchShapeType = function(layer, qShape) {
-    // 这里只获取第一个图形来做判断(通常设计师在ShapeGroup里只放一个shape?)
-    let shapes = layer.layers;
-    let shape = shapes[0];
-    let layerType = shape._class;
-    qShape.shapeType = layerType;
-
-    // 如果shape group由多个shape组成则当成是一个
-    // 矢量图组
-    if (shapes.length > 1) {
-        qShape.shapeType = 'combineShape';
-    }
-}
 let modifySize = function(_document) {
     walkout(_document._tree,pnode => {
         if(!pnode.children || !pnode.children.length) return;
@@ -486,12 +318,28 @@ let modifySize = function(_document) {
                         _expand(node,border.width)
                     } break;
                 }
-                delete border.position;
+                // delete border.position;
             }
         })
     });
 }
 let _expand = function(node,val) {
+    let {
+        abX,
+        abY,
+        width,
+        height,
+        x,
+        y
+    } = node;
+    node.originFrame = {
+        abX,
+        abY,
+        width,
+        height,
+        x,
+        y
+    }
     node.abX -= val;
     node.abY -= val;
     node.width += 2 * val;
