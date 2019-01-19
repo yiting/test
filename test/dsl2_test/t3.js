@@ -12351,10 +12351,10 @@ const Dsl = require('../../code/server_modules/dsl2/dsl.js');
 const Render = require('../../code/server_modules/render/render.js');
 
 
-let dslTree = Dsl.process(designjson, 750, 750, Common.FlexLayout);
+let dslTree = Dsl.process(designjson, 750, 750, Common.TestLayout);
 // let jsonData = dslTree.getRenderData();
 // console.log(jsonData);
-let render = Render.process(dslTree);
+let render = Render.process(dslTree, Common.TestLayout);
 let htmlStr = render.getTagString();
 let cssStr = render.getStyleString();
 const Path = require('path');

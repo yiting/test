@@ -56,10 +56,9 @@ class LayoutSimilar extends Model.LayoutModel {
      */
     _filterRule(node) {
         // 剔除绝对定位元素，绝对定位元素不参与循环判断
-        // if (node.id == 'FA0ED87D-C77F-4C78-91B0-9F580B128755cc') debugger
-        if (node.constraints["LayoutSelfPosition"] == Constraints.LayoutSelfPosition.Absolute &&
-            node.modelName != 'layer' &&
-            node.type != Common.QWidget
+        if (node.constraints["LayoutSelfPosition"] == Constraints.LayoutSelfPosition.Absolute ||
+            (node.modelName != 'layer' &&
+                node.type != Common.QWidget)
         ) {
             return;
         }

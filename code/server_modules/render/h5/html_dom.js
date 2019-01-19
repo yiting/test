@@ -1,5 +1,4 @@
-const fs = require('fs');
-let htmlTpl;
+const Common = require('../../dsl2/dsl_common.js');
 
 class HtmlDom {
     constructor(node, parentNode, css) {
@@ -10,6 +9,7 @@ class HtmlDom {
         this.serialId = node.serialId;
         this.similarId = node.similarId;
         this.modelId = node.modelId;
+        this.modelName = node.modelName;
         this.tagName = node.tagName;
         this.text = node.text;
         this.abX = node.abX || 0;
@@ -21,7 +21,6 @@ class HtmlDom {
         this.tplAttr = node.tplAttr || {};
         this.tplData = node.tplData || {};
         this.css = css;
-        // if (this.id == '959A012C-6A6B-4FE4-B275-003CC20568B5c') debugger
     }
     get x() {
         return this.parent ? (this.abX - this.parent.abX) : this.abX
@@ -32,9 +31,6 @@ class HtmlDom {
     getAttrClass() {
 
         var result = [];
-        // if (this.css) {
-        // result.push('ui' + this.serialId);
-        // }
         if (this.similarId) {
             result.push('sim' + this.similarId);
         }
@@ -77,9 +73,11 @@ class HtmlDom {
         return result;
     }
     // 开始节点
-    getHtmlStart() {
-        // return `<${this.getTag()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
-        // return `<${this.getTag()} ${this.id} ${this.getAttrId()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+    getHtmlStart(_layoutType) {
+        if (_layoutType == Common.TestLayout) {
+            let modelName = this.modelName ? `md="${this.modelName}"` : '';
+            return `<${this.getTag()} ${this.id} ${this.getAttrId()} ${modelName} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+        }
         return `<${this.getTag()} ${this.getAttrId()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
     }
     // 闭合节点
@@ -113,27 +111,20 @@ function process(data, cssDomMap) {
     return htmlDomTree;
 }
 
-function getHtmlString(htmlDom) {
+function getHtmlString(htmlDom, _layoutType) {
     // 遍历循环
-    let html = htmlDom.getHtmlStart();
+    let html = htmlDom.getHtmlStart(_layoutType);
     if (htmlDom.children) {
         htmlDom.children.forEach(child => {
-            html += getHtmlString(child);
+            html += getHtmlString(child, _layoutType);
         });
     }
     html += htmlDom.getHtmlEnd();
     return html;
 }
 
-function getHtmlTpl() {
-    if (!htmlTpl) {
-        htmlTpl = fs.readFileSync("./code/server_modules/render/tpl.html", "utf-8");
-    }
-    return htmlTpl;
-}
 
 module.exports = {
     process,
-    getHtmlTpl,
     getHtmlString,
 }

@@ -2,9 +2,9 @@
 //
 const common = {
     // 一些特定尺寸
-    DesignWidth: 750,               // 默认750的设计稿宽
-    DesignHeight: -1,               // 默认auto的设计稿高
-    IconSize: 70,                   // 默认Icon的大小
+    DesignWidth: 750, // 默认750的设计稿宽
+    DesignHeight: -1, // 默认auto的设计稿高
+    IconSize: 70, // 默认Icon的大小
 
     // 模型匹配的优先级
     LvSS: 5,
@@ -19,9 +19,9 @@ const common = {
     QIcon: 'QIcon',
     QImage: 'QImage',
     QShape: 'QShape',
-    QWidget: 'QWidget',         
-    QLayer: 'QLayer',           // 包含层
-    QBody: 'QBody',             // 跟节点
+    QWidget: 'QWidget',
+    QLayer: 'QLayer', // 包含层
+    QBody: 'QBody', // 跟节点
 
     // 函数状态选择
     MatchingElements: 0,
@@ -34,7 +34,8 @@ const common = {
     // 布局类型
     AbsoluteLayout: 1,
     FlexLayout: 2,
-    FixedLayout: 3
+    FixedLayout: 3,
+    TestLayout: 4
 };
 
 module.exports = common;

@@ -18,12 +18,12 @@ const Constraints = require('../dsl2/dsl_constraints.js');
 function con(data) {
     data.children && data.children.forEach(nd => con(nd));
 }
-let process = function (dslTree) {
+let process = function (dslTree, layoutType) {
     // 默认直接使用h5模板引擎输出
     // con(dslTree.getRenderData())
     let jsonData = Parser.parse(dslTree.getRenderData().toJSON());
     // 这里直接使用h5 builder
-    let render = new Render(jsonData, H5Builder, Common.FlexLayout);
+    let render = new Render(jsonData, H5Builder, layoutType);
 
     return render;
 }
@@ -65,7 +65,6 @@ class Render {
         Object.keys(this._similarMap).forEach(key => {
             let children = [];
             this._similarMap[key].forEach(nd => {
-                // console.log(nd.id)
                 nd.children.forEach(child => {
                     child.similarParentId = nd.id;
                 })
