@@ -67,6 +67,11 @@ let TOSEEINDEX = {
       );
     });
 
+    //设计规范
+    $(".design-standard").click(function(){
+      window.open("/description");
+    });
+
     //视频操作
     $(".play-video").on("click", function() {
       $(".video-wrap").show();

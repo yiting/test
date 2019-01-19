@@ -123,6 +123,8 @@ header {
     font-size: 12px;
   }
   .navbar-nav {
+    position: absolute;
+    right: 120px;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -136,7 +138,6 @@ header {
     margin-right: 20px;
     text-align: right;
     list-style: none;
-    letter-spacing: -0.3em;
 
     .nav-item {
       position: relative;
@@ -144,7 +145,7 @@ header {
       letter-spacing: normal;
       height: 100%;
       vertical-align: top;
-
+      font-size: 15px;
       .nav-link {
         color: #999;
         display: block;
@@ -154,7 +155,6 @@ header {
         -webkit-transition: all 0.2s ease-out;
         transition: all 0.2s ease-out;
 
-        &.router-link-active,
         &:hover {
           color: #fff;
         }

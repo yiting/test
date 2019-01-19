@@ -36,9 +36,9 @@ const Template = require("../../server_modules/util/template");
 //导出类
 const Export = require("../../server_modules/util/export");
 //1.引入parser模块
-const Parser = require("../../server_modules/designjson/designjson_parser_sketch")
+const Parser = require("../../server_modules/designjson/parser/designjson_parser_sketch")
   .parse;
-const Optimize = require("../../server_modules/designjson/designjson_optimize");
+const Optimize = require("../../server_modules/designjson/optimize/designjson_optimize");
 //2.引入dsl模块
 const DSL = require("../../server_modules/dsl/dsl");
 //3.引入图片模块

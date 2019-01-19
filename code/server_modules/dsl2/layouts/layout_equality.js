@@ -23,9 +23,9 @@ class LayoutEquality extends Model.LayoutModel {
             return;
         }
         let flexNodes = nodes.filter(nd => {
-            return nd.constraints && nd.constraints["LayoutPosition"] !== Constrains.LayoutPosition.Absolute;
+            return nd.constraints && nd.constraints["LayoutSelfPosition"] !== Constrains.LayoutSelfPosition.Absolute;
         });
-        if (flexNodes.length == 0) {
+        if (flexNodes.length <2) {
             return
         }
         flexNodes.sort((a, b) => a.abX - b.abX);

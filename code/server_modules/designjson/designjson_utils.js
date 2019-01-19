@@ -38,14 +38,16 @@ function mergeStyle(targetNode,node,targetKeys) {
     // TODO
     let keys = targetKeys || Object.keys(node.styles);
     for(key of keys) {
-        if (!targetNode.styles[key] || key === 'background') targetNode.styles[key] = node.styles[key];
+        if (!targetNode.styles[key] || key === 'background')  {
+            targetNode.styles[key] = node.styles[key];
+        }
     }
 }
 function hasStyle(node) { // 节点是否包具有样式
     if (!node.styles) return false;
     const {opacity,rotation,border,borderRadius,shadows,background} = node.styles;
     // return !!(background || opacity != 1 || rotation!= 0 || border || shadows || (borderRadius && borderRadius!=0));
-    return !!(background || opacity != 1 || rotation!= 0 || border || shadows || (borderRadius && borderRadius.some(val => !!val)));
+    return !!(background || opacity != 1 || rotation!= 0 || border || shadows || borderRadius);
 }
 function hasComplexSytle(node) { // 节点是否包含影响子元素的属
     // TODO 性：opacity,transform
@@ -54,7 +56,7 @@ function hasComplexSytle(node) { // 节点是否包含影响子元素的属
     const isBgComplex = background && background.hasOpacity;
     // return opacity != 1 || rotation!= 0 || border || shadows || borderRadius!=0 || isBgComplex ;
     // return !!(opacity != 1 || rotation != 0 || border || shadows || (borderRadius && borderRadius!=0) || isBgComplex);
-    return !!(opacity != 1 || rotation != 0 || border || shadows || (borderRadius && borderRadius.some(val => !!val)) || isBgComplex);
+    return !!(opacity != 1 || rotation != 0 || border || shadows || borderRadius || isBgComplex);
 }
 function hasComplexColorStyle(node) {
     if (!node.styles) return false;

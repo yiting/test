@@ -136,6 +136,10 @@ var vm = new Vue({
     viewProjects: function() {
       top.postMessage("/project", "http://uitocode.oa.com");
     },
+    goStandard:function(){
+      //top.postMessage("/description", "http://uitocode.oa.com");
+      window.open("/description");
+    },
     /**
      * 渲染个人信息
      */

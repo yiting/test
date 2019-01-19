@@ -31,11 +31,11 @@ class similarCssDom {
             selfClassName = ''
 
         if (cssNode.similarParentId) {
-            parentClassName = '.sim-' + cssNode.similarParentId;
+            parentClassName = '.sim' + cssNode.similarParentId;
         }
 
         if (cssNode.similarId) {
-            selfClassName = '.sim-' + cssNode.similarId;
+            selfClassName = '.sim' + cssNode.similarId;
         }
 
         if (parentClassName) {
@@ -101,6 +101,10 @@ class similarCssDom {
         target['whiteSpace'] = target.whiteSpace || source.whiteSpace
         target['backgroundRepeat'] = target.backgroundRepeat || source.backgroundRepeat;
         target['backgroundSize'] = target.backgroundSize || source.backgroundSize;
+        target['filter'] = target.filter || source.filter;
+        target['border'] = target.border || source.border;
+        target['textOverflow'] = target.textOverflow || source.textOverflow;
+        // min css
         target['width'] = this._setMinCss(target.width, source.width);
         target['minHeight'] = this._setMinCss(target.minHeight, source.minHeight);
         target['marginTop'] = this._setMinCss(target.marginTop, source.marginTop);

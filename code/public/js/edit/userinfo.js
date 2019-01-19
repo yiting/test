@@ -12,5 +12,10 @@ var vm = new Vue({
   computed: {
     countProgressStyle: function() {}
   },
-  methods: {}
+  methods: {
+    goStandard: function() {
+      //top.postMessage("/description", "http://uitocode.oa.com");
+      window.open("/description");
+    }
+  }
 });

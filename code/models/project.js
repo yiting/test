@@ -38,7 +38,7 @@ Project.prototype = {
   //获取所有公共项目
   getAllProjects: function(callback) {
     var that = this;
-    var sql="SELECT p.*,u.staffname username FROM project p,user u WHERE p.userid=u.staffid";
+    var sql="SELECT p.*,u.staffname username FROM project p,user u WHERE p.userid=u.staffid order by p.modifytime desc";
     //var sql = "SELECT * FROM project order by modifytime desc";
     connection.query(sql, "", function(err, result) {
       if (err) {
