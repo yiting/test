@@ -20,7 +20,6 @@ function con(data) {
 }
 let process = function (dslTree, layoutType) {
     // 默认直接使用h5模板引擎输出
-    con(dslTree.getRenderData())
     let jsonData = Parser.parse(dslTree.getRenderData().toJSON());
     // 这里直接使用h5 builder
     let render = new Render(jsonData, H5Builder, layoutType);

@@ -35,6 +35,7 @@ class LayoutFlex extends Model.LayoutModel {
         }
 
         // if (this._isVerticalLayout(nodes)) {
+
         if (Utils.isVertical(nodes)) {
             this._sort(nodes, 'abY');
             this._handleVertical(parent, nodes, models);
@@ -76,7 +77,6 @@ class LayoutFlex extends Model.LayoutModel {
                 absNodes.push(prev.zIndex > nd.zIndex ? prev : nd);
             } else if (prev && Utils.isYConnect(prev, nd, -4) && (prev.zIndex > nd.zIndex || prev.width * prev.height < nd.width * nd.height)) {
                 // 重叠逻辑：如果部分重叠，且前（上）节点层级高，则为绝对定位
-                console.log(prev.id)
                 absNodes.push(prev);
             }
         }

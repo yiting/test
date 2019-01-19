@@ -5,7 +5,6 @@ const Model = require('../dsl_model.js');
 const Utils = require('../dsl_utils.js');
 const Constrains = require('../dsl_constraints');
 
-
 class LayoutEquality extends Model.LayoutModel {
     constructor(modelType) {
         super(modelType);
@@ -19,9 +18,6 @@ class LayoutEquality extends Model.LayoutModel {
      * @param {Int} layoutType 布局的类型
      */
     handle(parent, nodes, models, layoutType) {
-        if (this._modelType != layoutType) {
-            return;
-        }
         let flexNodes = nodes.filter(nd => {
             return nd.constraints && nd.constraints["LayoutSelfPosition"] !== Constrains.LayoutSelfPosition.Absolute;
         });
@@ -56,7 +52,9 @@ class LayoutEquality extends Model.LayoutModel {
             let dir = Math.floor(width - nd.width) / 2;
             nd.set("abX", nd.abX - dir);
             nd.set("abXops", nd.abXops + dir);
-            // nd.width = nd.abXops - nd.abX;
+            // 设置居中
+            nd.constraints["LayoutJustifyContent"] = Constrains.LayoutJustifyContent.Center
+            nd.set('constraints', nd.constraints);
             /**
              * bug：width渲染失效
              */

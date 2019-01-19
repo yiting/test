@@ -66,6 +66,11 @@ body.cycle [md^="cycle"]>[class*="sim"] {
     background-color: rgba(0, 233, 0, .1);
 }
 
+body.similar [class*="sim"] {
+    visibility: visible;
+    background-color: rgba(0, 133, 100, .1);
+}
+
 .test-bar {
     visibility: visible !important;
     position: fixed;
