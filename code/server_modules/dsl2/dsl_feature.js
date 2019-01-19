@@ -796,23 +796,23 @@ let sizeWidthGreat = function (eleA, num) {
 /**
  * 判断元素字号范围
  * @param {Node} eleA 节点元素
- * @param {Int} minSize 最小字号
- * @param {Int} maxSize 最大字号
+ * @param {Int} min 最小字号
+ * @param {Int} max 最大字号
  */
-let fontSizeLimit = function (eleA, minSize, maxSize) {
+let fontSizeLimit = function (eleA, min, max) {
     let size = Math.max(...eleA.styles.texts.map(s => s.size));
-    return size >= minSize && size <= maxSize;
+    return size >= min && size <= max;
 
 }
 /**
  * 判断元素行数范围
  * @param {Node} eleA 节点元素
- * @param {Int} minLines 最小行数
- * @param {Int} maxLines 最大行数
+ * @param {Int} min 最小行数
+ * @param {Int} max 最大行数
  */
-let fontLineLimit = function (eleA, minLines, maxLines) {
+let fontLineLimit = function (eleA, min, max) {
     let lines = Math.round(eleA.height / eleA.lineHeight);
-    return lines >= minLines && lines <= maxLines;
+    return lines >= min && lines <= max;
 
 }
 
@@ -827,7 +827,7 @@ module.exports = {
     propertyNodeAreQImage,
     propertyNodeIsQShape,
     propertyNodeAreQShape,
-    // 元素属性值判断
+    // 字符值判断
     fontLineLimit,
     fontSizeLimit,
     // 元素组成关系

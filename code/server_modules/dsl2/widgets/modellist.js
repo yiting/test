@@ -1,6 +1,7 @@
 // 模块用于管理及初始化组件模型实例
 
 // 一元素组件模型
+const WG1M1 = require('./wg1/m1.js');
 
 // 二元素组件模型
 const WG2M1 = require('./wg2/m1.js');
@@ -22,6 +23,7 @@ const WG5M1 = require('./wg5/m1.js');
 
 const MODEL_LIST = [
     // 一元素模型
+    new WG1M1(),
 
     // 二元素模型
     new WG2M1(),

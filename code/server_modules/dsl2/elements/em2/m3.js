@@ -37,11 +37,6 @@ class EM2M3 extends Model.ElementModel {
 
         return bool;
     }
-    // 内容尺寸关系
-    /* regular3() {
-        let bool = Feature.fontLineLimit(this._matchNodes['1'], 1, 1)
-        return bool;
-    } */
 }
 
 module.exports = EM2M3;
