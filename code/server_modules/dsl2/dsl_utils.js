@@ -40,11 +40,11 @@ const utils = {
 
         for (let i = 0; i < len; i++) {
             for (let j = 0; j < len - i - 1; j++) {
-                if (arr[j].getPriority() < arr[j + 1].getPriority()) {
+                if (arr[j].priority < arr[j + 1].priority) {
                     let temp = arr[j + 1];
                     arr[j + 1] = arr[j];
                     arr[j] = temp;
-                } else if (arr[j].getPriority() == arr[j + 1].getPriority()) {
+                } else if (arr[j].priority == arr[j + 1].priority) {
                     if (arr[j].getNumber() < arr[j + 1].getNumber()) {
                         let temp = arr[j + 1];
                         arr[j + 1] = arr[j];
@@ -83,54 +83,24 @@ const utils = {
      * @param {Array} nodes 需要处理的节点
      * @param {Array} arr 需要减少的节点
      */
-    removeMatchedElements: function (nodes, arr) {
+    removeMatchedDatas: function (nodes, arr) {
         if (!nodes || nodes.length == 0 || !arr || arr.length == 0) {
             return;
         }
 
         // arr里面的是MatchData, nodes里面的是designjson数据, 所以要读取里面的节点, 然后移除
-        // console.log(nodes[0]);
-        // console.log(arr[0]);
         arr.forEach(matchData => {
-            let arrData = matchData.data;
-            arrData.forEach(data => {
-                let removeNodes = data.nodes;
-                removeNodes.forEach(rnode => {
-                    for (let i = 0; i < nodes.length; i++) {
-                        if (rnode.id == nodes[i].id) {
-                            nodes.splice(i, 1);
-                            break;
-                        }
-                    }
-                });
-            });
-        });
-    },
+            let removeNodes = matchData.getMatchNode();
 
-    /**
-     * 从组件模型列表中, 删除匹配后的元素
-     * @param {Array} nodes 需要处理的节点
-     * @param {Array} arr 需要减少的节点
-     */
-    removeMatchedWidgets: function (nodes, arr) {
-        if (!nodes || nodes.length == 0 || !arr || arr.length == 0) {
-            return;
-        }
-
-        // arr里面的是MatchData, nodes里面的也是MatchData, 
-        // console.log(nodes[0]);
-        // console.log(arr[0]);
-        arr.forEach(matchData => {
-            let arrData = matchData.data;
-            arrData.forEach(data => {
+            removeNodes.forEach(rnode => {
                 for (let i = 0; i < nodes.length; i++) {
-                    if (data.modelId == nodes[i].id) {
+                    if (rnode.id == nodes[i].id) {
                         nodes.splice(i, 1);
                         break;
                     }
                 }
             });
-        })
+        });
     },
 
     /**

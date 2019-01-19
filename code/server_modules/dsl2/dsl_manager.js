@@ -2,7 +2,6 @@
 //
 const Common = require('./dsl_common.js');
 const Utils = require('./dsl_utils.js');
-const Model = require('./dsl_model.js');
 const ElementList = require('./elements/modellist.js');
 const WidgetList = require('./widgets/modellist.js');
 const Group = require('./dsl_group.js');
@@ -33,8 +32,7 @@ let matchModel = function (nodes, matchType, endY) {
         case Common.MatchingWidgets:
             modelList = sortWidgetList;
             break;
-        default:
-            ;
+        default:;
     }
 
     // 随机匹配节点类型算法函数
@@ -70,11 +68,11 @@ let matchModel = function (nodes, matchType, endY) {
 
                 if (bool) {
                     // 生成匹配数据
-                    let mData = new Model.MatchData(matchModel);
-                    if (matchType == Common.MatchingWidgets && mData.abY <= endY && mData.abYops > endY) {
-                        // 如果匹配的模型范围落在下边界里, 则模型留范围往下移动后匹配
-                        continue;
-                    }
+                    let mData = matchModel.getMatchData();
+                    // if (matchType == Common.MatchingWidgets && mData.abY <= endY && mData.abYops > endY) {
+                    //     // 如果匹配的模型范围落在下边界里, 则模型留范围往下移动后匹配
+                    //     continue;
+                    // }
 
                     result.push(mData);
                     // 每个组件模型匹配完毕从总节点上移除对应的元素
