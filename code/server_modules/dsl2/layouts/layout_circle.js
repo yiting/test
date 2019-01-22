@@ -9,7 +9,6 @@ const Constraints = require('../dsl_constraints');
 class LayoutCircle extends Model.LayoutModel {
     constructor(modelType) {
         super(modelType);
-        this.similarIndex = 1;
     }
 
     /**
@@ -19,7 +18,7 @@ class LayoutCircle extends Model.LayoutModel {
      * @param {Array} models 对应的模型数组
      * @param {Int} layoutType 布局的类型
      */
-    handle(parent, nodes, models, layoutType) {
+    handle(parent, nodes, layoutType) {
         // if(parent.type==)
         if (!nodes || nodes.length == 0) {
             // 如果没有子节点，则返回
@@ -28,32 +27,26 @@ class LayoutCircle extends Model.LayoutModel {
         // 找出需要对比的结构
         let compareNodes = this._filterCompare(nodes);
         // 找出相似结构组合
-        let similarArr = this._findSimilar(compareNodes, this._similarRule, this._featureRule);
+        let circleArr = this._findCircle(compareNodes, this._similarRule, this._featureRule);
         // 相似结构处理
-        this._setSimilar(parent, nodes, similarArr);
+        this._setCircle(parent, nodes, circleArr);
 
     }
     // 相似结构处理
-    _setSimilar(parent, nodes, similarArr) {
-        if (similarArr.length == 0) {
+    _setCircle(parent, nodes, circleArr) {
+        if (circleArr.length == 0) {
             // 如果没有相似结构，则返回
             return;
         }
         let inSimilar = [];
         // 获取循环节点
-        similarArr.forEach(item => {
+        circleArr.forEach(item => {
             // 如果特征多于一个，暂不处理
             if (item.feature != 1) return;
-            let similarId = this.similarIndex++;
-            item.target.forEach(group => {
-                group.forEach(nd => {
-                    nd.set('similarId', similarId);
-                })
-            })
             // 提取循环节点
             item.target.forEach(group => inSimilar.push(...group))
             // 合并循环节点为新节点
-            let newCycleData = Group.Tree.createCycleData(parent, item.target, similarId);
+            let newCycleData = Group.Tree.createCycleData(parent, item.target);
             // 加入新节点到父级元素
             nodes.push(newCycleData);
         });
@@ -79,54 +72,10 @@ class LayoutCircle extends Model.LayoutModel {
 
     // 相似节点逻辑
     _similarRule(a, b) {
-        /**
-         * 逻辑：
-         * 1. 模型名称相似
-         * 2. 如果是layer，layer子节点相似
-         * 3. 如果非layer，三基线对齐
-         */
-        if (a.modelName != b.modelName) {
-            return
-        };
-        let aIsVertical = Utils.isVertical(a.children),
-            bIsVertical = Utils.isVertical(b.children);
-        if (a.modelName == 'layer') {
-            return aIsVertical == bIsVertical &&
-                ((a.height == b.height &&
-                    (a.abX == b.abX ||
-                        a.abXops == b.abXops ||
-                        a.abX + a.width / 2 == b.abX + b.width / 2)
-                ) || (
-                    a.width == b.width &&
-                    (a.abY == b.abY ||
-                        a.abYops == b.abYops ||
-                        a.abY + a.height / 2 == b.abY + b.height / 2)
-                ))
-        } else {
-            // 如果为模型结构，三线对齐相同
-            return a.abY == b.abY ||
-                a.abYops == b.abYops ||
-                a.abY + a.height / 2 == b.abY + b.height / 2 ||
-                a.abX == b.abX ||
-                a.abXops == b.abXops ||
-                a.abX + a.width / 2 == b.abX + b.width / 2
-        }
-
-        // 如果为布局结构，则子节点模型相同、宽度相同
-        /* (a.modelName == 'layer' ?
-            (a.children.length == b.children.length &&
-                a.children.every((ndA, i) => {
-                    return b.children[i].modelName == ndA.modelName
-                })
-            ) : (
-                // 如果为模型结构，三线对齐相同
-                a.abY == b.abY ||
-                a.abYops == b.abYops ||
-                a.abY + a.height / 2 == b.abY + b.height / 2 ||
-                a.abX == b.abX ||
-                a.abXops == b.abXops ||
-                a.abX + a.width / 2 == b.abX + b.width / 2
-            )); */
+        let sim = a._similarId &&
+            b._similarId &&
+            a._similarId == b._similarId;
+        return sim;
     }
     /**
      * 相似性分组
@@ -146,7 +95,7 @@ class LayoutCircle extends Model.LayoutModel {
      *  ...
      * ]
      */
-    _findSimilar(arr, similarLogic, featureLogic) {
+    _findCircle(arr, similarLogic, featureLogic) {
         let pit = [];
         // 相似特征分组
         arr.forEach((s, i) => {

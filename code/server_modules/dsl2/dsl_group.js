@@ -1,6 +1,7 @@
 const Common = require('./dsl_common.js');
 const Utils = require('./dsl_utils.js');
 const Model = require('./dsl_model.js');
+const Constraints = require('./dsl_constraints');
 
 /**
  * 将组件进行排版布局
@@ -101,11 +102,11 @@ class Tree {
 
                 let node = Tree.createNodeData();
                 node.set("parentId", parent.id);
-                node.set("abX", arr.abX);
-                // node.set("abX", parent.abX);
+                // node.set("abX", arr.abX);
+                node.set("abX", parent.abX);
                 node.set("abY", arr.abY);
-                node.set("abXops", arr.abXops);
-                // node.set("abXops", parent.abXops);
+                // node.set("abXops", arr.abXops);
+                node.set("abXops", parent.abXops);
                 node.set("abYops", arr.abYops);
 
                 arr.forEach(child => {
@@ -208,9 +209,34 @@ class Tree {
                  */
                 if (parent.type != Common.QText &&
                     parent.type != Common.QWidget &&
-                    // 如果超出横向屏幕范围，则相连则纳入包含
-                    ((Utils.isXConnect(parent, child, -1) && Utils.isYWrap(parent, child)) ||
-                        Utils.isWrap(parent, child))) {
+                    // 层级关系
+                    child.zIndex > parent.zIndex &&
+                    (
+                        // 包含关系
+                        (
+                            Utils.isWrap(parent, child)
+                        ) || (
+                            Utils.isXConnect(parent, child, -1) &&
+                            Utils.isYWrap(parent, child)
+                        )
+                        // 如果超出横向连结，纵向包含
+                        /*  (
+                             child.abX > parent.abX &&
+                             Utils.isXConnect(parent, child, -1) &&
+                             Utils.isYWrap(parent, child)
+                         ) ||
+                         // 纵向连接，横向包含
+                         (
+                             parent.abY > child.abY &&
+                             Utils.isYConnect(parent, child, -1) &&
+                             Utils.isXWrap(parent, child)
+                         ) */
+
+                    )) {
+                    /* if (!Utils.isWrap(parent, child)) {
+                    // if (child.id == 'A4CD50D4-1033-4BA5-8201-CB8277303E90c') debugger
+                        child.constraints["LayoutSelfPosition"] = Constraints.LayoutSelfPosition.Absolute;
+                    } */
                     let node = this._add(child, parent);
                     compareArr.unshift(node);
                     arr[i] = null;
@@ -244,6 +270,10 @@ class Tree {
         if (parent.type == Common.QShape || parent.type == Common.QImage) {
             parent.set("modelName", 'layer');
         }
+        // 如果父节点为widget，则当前节点绝对定位
+        // if (parent.type == Common.QWidget) {
+        //     node.constraints["LayoutSelfPosition"] = Constraints.LayoutSelfPosition.Absolute;
+        // }
         return node;
     }
 
@@ -329,7 +359,7 @@ Tree.createNodeData = function (mdata) {
  * @param {Int} similarId
  * @return {RenderData}
  */
-Tree.createCycleData = function(parent, nodesArr, similarId) {
+Tree.createCycleData = function (parent, nodesArr) {
     // 组成新节点,并且构建MatchData里的getMatchNode数据
     if (!nodesArr || nodesArr.length == 0) {
         return;
@@ -349,7 +379,7 @@ Tree.createCycleData = function(parent, nodesArr, similarId) {
 
         if (nodes.length == 1) { // 第二层只有一个数据直接返回
             let renderDataI = nodes[0];
-            renderDataI.set('similarId', similarId);
+            //renderDataI.set('similarId', similarId);
             renderDataI.set('modelRef', i + '');
             // 递归读取nodes的节点
             Tree._handleCycleData(renderDataI, nodes[0]);

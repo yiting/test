@@ -18,9 +18,9 @@ class EM2M3 extends Model.ElementModel {
     _initNode() {
         let shapes = this.getShapeNodes();
         let texts = this.getTextNodes();
-    
-        this._matchNodes['0'] = shapes[0];          // shape
-        this._matchNodes['1'] = texts[0];           // text
+
+        this._matchNodes['0'] = shapes[0]; // shape
+        this._matchNodes['1'] = texts[0]; // text
     }
 
     // 位置关系
@@ -32,9 +32,9 @@ class EM2M3 extends Model.ElementModel {
 
     // 尺寸关系
     regular2() {
-        let bool = Feature.sizeHeightRatioALessB(this._matchNodes['0'], this._matchNodes['1'], 2.4)
-                    && Feature.sizeHeightRatioAGreatB(this._matchNodes['0'], this._matchNodes['1'], 1);
-                    
+        let bool = Feature.sizeHeightRatioALessB(this._matchNodes['0'], this._matchNodes['1'], 2.4) &&
+            Feature.sizeHeightRatioAGreatB(this._matchNodes['0'], this._matchNodes['1'], 1);
+
         return bool;
     }
 }

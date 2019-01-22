@@ -1,20 +1,93 @@
-html,body{
+html,
+body {
     margin: 0;
     padding: 0;
     font-size: 1.33333vh;
 }
-span,em{
+
+span,
+em {
     display: block;
 }
-.img{
-    background-color: rgba(255,0,0,.3);
-}
 
-ul,li,dl,dd,p{
+ul,
+li,
+dl,
+dd,
+p {
     margin: 0;
     padding: 0;
     list-style: none;
 }
-em{
+
+em {
     font-style: normal;
+}
+
+.btn:active {
+    opacity: .8;
+}
+
+body.cycle *,
+body.model *,
+body.layer * {
+    visibility: hidden;
+    background-image: none;
+}
+
+body.default .img {
+    background-color: rgba(255, 0, 0, .3);
+}
+
+body.model [md^="wg"] {
+    visibility: visible;
+    background-color: rgba(255, 0, 139, .3);
+}
+
+body.model [md^="em"] {
+    visibility: visible;
+    background-color: rgba(120, 40, 228, .3);
+}
+
+body.layer [md^="layer"] {
+    visibility: visible;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+
+body.cycle [md^="cycle"] {
+    visibility: visible;
+    /* background-color: rgba(0, 255, 0, .1); */
+    box-shadow:rgba(0,0,0,0.6) 0 0 0 1px;
+}
+
+body.cycle [md^="cycle"]>[class*="sim"] {
+    visibility: visible;
+    background-color: rgba(0, 233, 0, .1);
+}
+
+body.similar [class*="sim"] {
+    visibility: visible;
+    background-color: rgba(0, 133, 100, .1);
+}
+
+.test-bar {
+    visibility: visible !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, .7);
+    box-shadow: #AAA 0 0 6px;
+    padding: 10px 0;
+}
+
+.test-bar label {
+    visibility: visible !important;
+    color: #000 !important;
+    display: block;
+    padding: 2px 6px;
+}
+
+.test-bar input {
+    visibility: visible !important;
 }

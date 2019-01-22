@@ -31,11 +31,11 @@ class similarCssDom {
             selfClassName = ''
 
         if (cssNode.similarParentId) {
-            parentClassName = '.s-' + cssNode.similarParentId;
+            parentClassName = '.sim' + cssNode.similarParentId;
         }
 
         if (cssNode.similarId) {
-            selfClassName = '.s-' + cssNode.similarId;
+            selfClassName = '.sim' + cssNode.similarId;
         }
 
         if (parentClassName) {
@@ -84,13 +84,14 @@ class similarCssDom {
     }
 
     static _setMinCss(target, source) {
-        return typeof target == 'number' ? Math.min(target, source) : source;
+        return typeof target == 'number' && typeof source == 'number' ? Math.min(target, source) : null;
     }
     static _setMainCss(target, source) {
         return (target == undefined || target == source) ? source : null;
     }
 
     static _mergeSimilarCSS(target, source) {
+        target['textAlign'] = target.textAlign || source.textAlign;
         target['display'] = target.display || source.display;
         target['boxOrient'] = target.boxOrient || source.boxOrient;
         target['boxPack'] = target.boxPack || source.boxPack;
@@ -100,6 +101,10 @@ class similarCssDom {
         target['whiteSpace'] = target.whiteSpace || source.whiteSpace
         target['backgroundRepeat'] = target.backgroundRepeat || source.backgroundRepeat;
         target['backgroundSize'] = target.backgroundSize || source.backgroundSize;
+        target['filter'] = target.filter || source.filter;
+        target['border'] = target.border || source.border;
+        target['textOverflow'] = target.textOverflow || source.textOverflow;
+        // min css
         target['width'] = this._setMinCss(target.width, source.width);
         target['minHeight'] = this._setMinCss(target.minHeight, source.minHeight);
         target['marginTop'] = this._setMinCss(target.marginTop, source.marginTop);

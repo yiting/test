@@ -5,7 +5,6 @@ const Model = require('../dsl_model.js');
 const Utils = require('../dsl_utils.js');
 const Constrains = require('../dsl_constraints');
 
-
 class LayoutEquality extends Model.LayoutModel {
     constructor(modelType) {
         super(modelType);
@@ -19,12 +18,12 @@ class LayoutEquality extends Model.LayoutModel {
      * @param {Int} layoutType 布局的类型
      */
     handle(parent, nodes, models, layoutType) {
-        if (this._modelType != layoutType) {
-            return;
-        }
         let flexNodes = nodes.filter(nd => {
-            return nd.constraints && nd.constraints["LayoutPosition"] !== Constrains.LayoutPosition.Absolute;
-        })
+            return nd.constraints && nd.constraints["LayoutSelfPosition"] !== Constrains.LayoutSelfPosition.Absolute;
+        });
+        if (flexNodes.length < 2) {
+            return
+        }
         flexNodes.sort((a, b) => a.abX - b.abX);
         // 如果子节点不一样，则返回
         if (!this._isAllSameModel(flexNodes)) {
@@ -44,7 +43,6 @@ class LayoutEquality extends Model.LayoutModel {
         if (!minDir) {
             return;
         }
-
         let minSpace = Math.min(minSide * 2, minDir);
         this._adjustModelPos(flexNodes, minSpace);
         parent.constraints["LayoutJustifyContent"] = Constrains.LayoutJustifyContent.Center;
@@ -54,7 +52,9 @@ class LayoutEquality extends Model.LayoutModel {
             let dir = Math.floor(width - nd.width) / 2;
             nd.set("abX", nd.abX - dir);
             nd.set("abXops", nd.abXops + dir);
-            // nd.width = nd.abXops - nd.abX;
+            // 设置居中
+            nd.constraints["LayoutJustifyContent"] = Constrains.LayoutJustifyContent.Center
+            nd.set('constraints', nd.constraints);
             /**
              * bug：width渲染失效
              */
@@ -62,7 +62,8 @@ class LayoutEquality extends Model.LayoutModel {
     }
     _isAllSameModel(nodes) {
         let modelName;
-        return nodes.every(nd => {
+
+        return nodes.length > 1 && nodes.every(nd => {
             let isSameModel = !modelName || nd.modelName == modelName;
             modelName = nd.modelName;
             return isSameModel;
@@ -71,9 +72,9 @@ class LayoutEquality extends Model.LayoutModel {
     _isEqualitySide(nodes, parent) {
         let firstNode = nodes[0],
             lastNode = nodes[nodes.length - 1],
-            left = firstNode.abX,
-            right = parent.width - lastNode.abXops,
-            isEq = left > 0 && right > 0 && Math.abs(left - right) < 4
+            left = firstNode.abX - parent.abX,
+            right = parent.abXops - lastNode.abXops,
+            isEq = Math.abs(left - right) < 4
 
         return isEq && Math.min(left + firstNode.width / 2, right + lastNode.width / 2);
     }

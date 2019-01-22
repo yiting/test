@@ -3,7 +3,7 @@ const WG2M6 = {
   name: "wg2-m6",
   desc: "组件模型(2元素)：QShape+文本",
   template: `
-    <div ref="0" :class="wg2-m6">
+    <div :ref="0" :class="button">
         <span :ref="1" :class="text"></span>
     </div>`
 };

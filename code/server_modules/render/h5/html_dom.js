@@ -1,10 +1,7 @@
-const Contrain = require('../../dsl2/dsl_constraints');
-const Dom = require('../../dsl2/dsl_dom');
-const fs = require('fs');
-let htmlTpl;
+const Common = require('../../dsl2/dsl_common.js');
 
 class HtmlDom {
-    constructor(node, parentNode) {
+    constructor(node, parentNode, css) {
         // super(node)
         this.children = [];
         this.parentNode = parentNode || null;
@@ -12,6 +9,7 @@ class HtmlDom {
         this.serialId = node.serialId;
         this.similarId = node.similarId;
         this.modelId = node.modelId;
+        this.modelName = node.modelName;
         this.tagName = node.tagName;
         this.text = node.text;
         this.abX = node.abX || 0;
@@ -22,6 +20,7 @@ class HtmlDom {
         this.contrains = node.contrains || {};
         this.tplAttr = node.tplAttr || {};
         this.tplData = node.tplData || {};
+        this.css = css;
     }
     get x() {
         return this.parent ? (this.abX - this.parent.abX) : this.abX
@@ -30,9 +29,10 @@ class HtmlDom {
         return this.parent ? (this.abY - this.parent.abY) : this.abY
     }
     getAttrClass() {
-        var result = ['u-' + this.serialId];
+
+        var result = [];
         if (this.similarId) {
-            result.push('s-' + this.similarId);
+            result.push('sim' + this.similarId);
         }
         if (this.tplData && this.tplData.class) {
             result.push(this.tplData.class);
@@ -55,7 +55,8 @@ class HtmlDom {
         return this.text || '';
     }
     getAttrId() {
-        return this.id || '';
+        // return this.id || '';
+        return `ui${this.serialId}`;
     }
     getAttrs() {
         var result = "";
@@ -72,7 +73,11 @@ class HtmlDom {
         return result;
     }
     // 开始节点
-    getHtmlStart() {
+    getHtmlStart(_layoutType) {
+        if (_layoutType == Common.TestLayout) {
+            let modelName = this.modelName ? `md="${this.modelName}"` : '';
+            return `<${this.getTag()} ${this.id} ${this.getAttrId()} ${modelName} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+        }
         return `<${this.getTag()} ${this.getAttrId()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
     }
     // 闭合节点
@@ -87,8 +92,8 @@ let htmlDomTree;
  * @param {Object} parent 
  * @param {Json} data 
  */
-let _buildTree = function (data, parent) {
-    let htmlNode = new HtmlDom(data, parent);
+let _buildTree = function (data, parent, cssDomMap) {
+    let htmlNode = new HtmlDom(data, parent, cssDomMap[data.id]);
     // 构建树
     if (!parent) {
         htmlDomTree = htmlNode;
@@ -96,36 +101,30 @@ let _buildTree = function (data, parent) {
         parent.children.push(htmlNode);
     }
     data.children.forEach(child => {
-        _buildTree(child, htmlNode);
+        _buildTree(child, htmlNode, cssDomMap);
     });
 }
-function process(data) {
+
+function process(data, cssDomMap) {
     htmlDomTree = null;
-    _buildTree(data, htmlDomTree);
+    _buildTree(data, htmlDomTree, cssDomMap);
     return htmlDomTree;
 }
 
-function getHtmlString(htmlDom) {
+function getHtmlString(htmlDom, _layoutType) {
     // 遍历循环
-    let html = htmlDom.getHtmlStart();
+    let html = htmlDom.getHtmlStart(_layoutType);
     if (htmlDom.children) {
         htmlDom.children.forEach(child => {
-            html += getHtmlString(child);
+            html += getHtmlString(child, _layoutType);
         });
     }
     html += htmlDom.getHtmlEnd();
     return html;
 }
 
-function getHtmlTpl() {
-    if (!htmlTpl) {
-        htmlTpl = fs.readFileSync("./code/server_modules/render/tpl.html", "utf-8");
-    }
-    return htmlTpl;
-}
 
 module.exports = {
     process,
-    getHtmlTpl,
     getHtmlString,
 }

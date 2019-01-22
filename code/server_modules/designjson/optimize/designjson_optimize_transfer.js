@@ -1,15 +1,14 @@
-const Logger = require('./logger')
-const {walkin,walkout,hasComplexSytle,isCoincide,mergeStyle} = require('./designjson_utils');
+const Logger = require('../logger')
+const {walkin,walkout,hasComplexSytle,isCoincide,mergeStyle} = require('../designjson_utils');
 const {
     QDocument, 
     QLayer, 
-    QBody, 
     QImage, 
     QText, 
     QShape,
     QMask, 
     QSlice
-} = require('./designjson_node');
+} = require('../designjson_node');
 let process = function(_document) {
     try {
         //虚拟树元素合并

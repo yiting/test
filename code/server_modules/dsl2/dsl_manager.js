@@ -2,6 +2,7 @@
 //
 const Common = require('./dsl_common.js');
 const Utils = require('./dsl_utils.js');
+const Model = require('./dsl_model.js');
 const ElementList = require('./elements/modellist.js');
 const WidgetList = require('./widgets/modellist.js');
 const Group = require('./dsl_group.js');

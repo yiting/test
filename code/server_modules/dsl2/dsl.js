@@ -69,7 +69,6 @@ let process = function(nodes, optimizeWidth, optimizeHeight, layoutType) {
     dslTree = _groupModels(matchedWidgets, matchedElements);
     // 进行布局及循环处理
     _layoutModels(dslTree, layoutType);
-    
     return dslTree;
 }
 
