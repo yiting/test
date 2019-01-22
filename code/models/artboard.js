@@ -9,6 +9,7 @@ function Artboard(conf) {
   this.artboardJson = conf.artJsonTxt;
   this.artboardImgs = conf.artImgsTxt;
   this.artboardImg = conf.artImg;
+  this.moduleVersion=conf.mVersion;
 }
 //保存数据
 Artboard.prototype = {
@@ -16,14 +17,15 @@ Artboard.prototype = {
   create: function(callback) {
     var that = this;
     var addSql =
-      "INSERT INTO artboard(artboardId,artboardName,projectId,projectName,artboardJson,artboardImgs) VALUES(?,?,?,?,?,?)";
+      "INSERT INTO artboard(artboardId,artboardName,projectId,projectName,artboardJson,artboardImgs,moduleVersion) VALUES(?,?,?,?,?,?,?)";
     var addSqlParams = [
       that.artboardId,
       that.artboardName,
       that.projectId,
       that.projectName,
       that.artboardJson,
-      that.artboardImgs
+      that.artboardImgs,
+      that.moduleVersion
     ];
     connection.query(addSql, addSqlParams, function(err, result) {
       if (err) {
@@ -88,10 +90,10 @@ Artboard.prototype = {
     });
   },
   //获取artBoard记录
-  getArtboardById: function(artboardId, projectId, callback) {
+  getArtboardById: function(artboardId, projectId, moduleVersion, callback) {
     var that = this;
-    var sql = "SELECT * FROM artboard WHERE artboardId =? and projectId =?";
-    connection.query(sql, [artboardId, projectId], function(err, result) {
+    var sql = "SELECT * FROM artboard WHERE artboardId =? and projectId =? and moduleVersion =?";
+    connection.query(sql, [artboardId, projectId,moduleVersion], function(err, result) {
       if (err) {
         callback &&
           callback({ code: 1, msg: "获取artBoard页面记录失败", err: err });
