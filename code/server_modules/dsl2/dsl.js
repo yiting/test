@@ -65,13 +65,12 @@ let process = function(nodes, optimizeWidth, optimizeHeight, layoutType) {
     _matchModels(10000, matchedElements, matchingNodes, Common.MatchingElements, optimizeWidth, optimizeHeight, maxNodeX, maxNodeY);
     // 匹配组件模型
     _matchModels(10000, matchedWidgets, matchedElements, Common.MatchingWidgets, optimizeWidth, optimizeHeight, maxNodeX, maxNodeY);
-    // Utils.logWidgetInfo(matchedWidgets);
-    // // 生成dsl树
-    // dslTree = _groupModels(matchedWidgets, matchedElements);
-    // // 进行布局及循环处理
-    // _layoutModels(dslTree, layoutType);
+    // 生成dsl树
+    dslTree = _groupModels(matchedWidgets, matchedElements);
+    // 进行布局及循环处理
+    _layoutModels(dslTree, layoutType);
     
-    // return dslTree;
+    return dslTree;
 }
 
 /**

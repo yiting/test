@@ -51,7 +51,7 @@ let _handleLayout = function (dslTree, parent, layoutType) {
  * @param {Int} layoutType 布局方式
  */
 let _handleCircle = function (dslTree, parent, layoutType) {
-    let children = parent._children;
+    let children = parent.children;
 
     if (children.length <= 0) {
         return;
@@ -77,7 +77,7 @@ let _handleCircle = function (dslTree, parent, layoutType) {
  * @param {Int} layoutType 布局方式
  */
 let _handleSort = function (dslTree, parent, layoutType) {
-    let children = parent._children;
+    let children = parent.children;
 
     if (children.length <= 0) {
         return;

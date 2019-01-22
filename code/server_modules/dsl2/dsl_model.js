@@ -279,7 +279,6 @@ class BaseModel {
     }
 }
 
-
 /**
  * 元素模型类
  */
@@ -474,8 +473,8 @@ class MatchData {
         let renderData = new RenderData();
         renderData.set('id', id);
         renderData.set('parentId', parentId);
+        renderData.set('type', modelType);
         renderData.set('modelName', modelName);
-        renderData.set('modelType', modelType);
         renderData.set('modelRef', modelRef);
         renderData.set('modelId', id);                   // 默认modelId等于id
 
@@ -508,6 +507,9 @@ class MatchData {
             renderData.set('styles', nodeData['0'].styles);
         }
         else {
+            // nodes节点的记录
+            renderData.nodes = {};
+
             for (let key in nodeData) {
                 let nData = {};
                 let tmpData = nodeData[key];
@@ -516,7 +518,8 @@ class MatchData {
                 let rData = this._createRenderData(tmpData.id, renderData.id, tmpData.modelName, tmpData.type, key, tmpData);
                 // 继续获取designjson里的数据
                 this._createFromElement(rData, nData);
-                renderData.children.push(rData);
+                //renderData.children.push(rData);
+                renderData.nodes[key] = rData;
             }
         }
     }
@@ -535,11 +538,14 @@ class MatchData {
             renderData.set('styles', rData.styles);
         }
         else {
+            renderData.nodes = {};
+
             for (let key in matchData) {
                 let rData = matchData[key].getRenderData();
                 rData.set('parentId', renderData.id);
                 rData.set('modelRef', key);
-                renderData.children.push(rData);
+                //renderData.children.push(rData);
+                renderData.nodes[key] = rData;
             }
         }
     }
@@ -605,7 +611,7 @@ class RenderData {
         this._canRightFlex = null;
         this._isCalculate = false;
         this._constraints = {};
-        this._zIndex = null;
+        this._zIndex = 0;
         this._text = null;
         this._path = null;
         this._styles = {};
@@ -613,9 +619,13 @@ class RenderData {
         this._similarParentId = null;
         this._modelId = null;
 
-        this.children = [];
+        this.children = [];             // 子节点储存
+        this.nodes = null;              // 模型里面对应的节点储存, 也是RenderData形式, key-value形式, 对应模板ref
     }
 
+    /**
+     * Json格式输出
+     */
     toJSON() {
         return {
             'parentId': this._parentId,
@@ -667,6 +677,13 @@ class RenderData {
     }
 
     set(prop, value) {
+        if (prop == 'children') {
+            // !重要, 可能会重置designjson的zIndex
+            this._zIndex = this.children.length ? Math.min(...this.children.map(nd => nd.zIndex)) : null;
+            this.children = value;
+            return;
+        }
+
         this["_" + prop] = value;
     }
 
