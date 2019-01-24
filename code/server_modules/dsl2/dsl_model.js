@@ -647,29 +647,58 @@ class RenderData {
             'path': this._path,
             'styles': this._styles,
             'similarId': this._similarId,
+            'similarParentId': this._similarParentId,
             'modelId': this._modelId,
             "constraints": Object.assign({}, this._constraints),
             "children": this.children.map(child => child.toJSON()),
+            "nodes": this._jsonNodes()
         }
     }
 
-    // 根据下一层所有子节点abX, abY, abXops, abYops, width, height 生成最小范围属性
-    resize() {
-        for (let i = 0; i < this.children.length; i++) {
+    _jsonNodes() {
+        if (!this.nodes || this.nodes === {}) {
+            return null;
+        }
+
+        let res = {};
+        for (let key in this.nodes) {
+            let nd = this.nodes[key];
+            res[key] = nd.toJSON();
+        }
+        return res;
+    }
+
+    /**
+     * 根据下一层所有子节点abX, abY, abXops, abYops, width, height 生成最小范围属性
+     * @param {Boolean} isResizeByNodes 是否从.nodes中计算, 否则从.children中计算
+     */
+    resize(isResizeByNodes) {
+        let children = [];
+
+        if (isResizeByNodes) {
+            for (let key in this.nodes) {
+                children.push(this.nodes[key]);
+            }
+        }
+        else {
+            children = this.children;
+        }
+
+        for (let i = 0; i < children.length; i++) {
             if (i == 0) {
-                this._abX = this.children[0].abX;
-                this._abY = this.children[0].abY;
-                this._abXops = this.children[0].abXops;
-                this._abYops = this.children[0].abYops;
-                this._width = this.children[0].width;
-                this._height = this.children[0].height;
+                this._abX = children[0].abX;
+                this._abY = children[0].abY;
+                this._abXops = children[0].abXops;
+                this._abYops = children[0].abYops;
+                this._width = children[0].width;
+                this._height = children[0].height;
                 continue;
             }
 
-            this._abX = this.children[i].abX < this._abX ? this.children[i].abX : this._abX;
-            this._abY = this.children[i].abY < this._abY ? this.children[i].abY : this._abY;
-            this._abXops = this.children[i].abXops > this._abXops ? this.children[i].abXops : this._abXops;
-            this._abYops = this.children[i].abYops > this._abYops ? this.children[i].abYops : this._abYops;
+            this._abX = children[i].abX < this._abX ? children[i].abX : this._abX;
+            this._abY = children[i].abY < this._abY ? children[i].abY : this._abY;
+            this._abXops = children[i].abXops > this._abXops ? children[i].abXops : this._abXops;
+            this._abYops = children[i].abYops > this._abYops ? children[i].abYops : this._abYops;
         }
 
         this._width = Math.abs(this._abXops - this._abX);

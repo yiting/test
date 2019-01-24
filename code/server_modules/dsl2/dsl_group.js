@@ -1,7 +1,6 @@
 const Common = require('./dsl_common.js');
 const Utils = require('./dsl_utils.js');
 const Model = require('./dsl_model.js');
-const Constraints = require('./dsl_constraints');
 
 /**
  * 将组件进行排版布局
@@ -368,7 +367,7 @@ Tree.createCycleData = function (parent, nodesArr) {
     let newRenderData = new Model.RenderData();
     newRenderData.set('id', 'layer' + (Tree.LayerId++));
     newRenderData.set('parentId', parent.id);
-    
+    newRenderData.nodes = {};
     // 传进来的数据暂时只有两级结构, 所以直接coding两层循环
     for (let i = 0; i < nodesArr.length; i++) {
         let nodes = nodesArr[i];
@@ -383,13 +382,16 @@ Tree.createCycleData = function (parent, nodesArr) {
             renderDataI.set('modelRef', i + '');
             // 递归读取nodes的节点
             Tree._handleCycleData(renderDataI, nodes[0]);
-            newRenderData.children.push(renderDataI);
+            // 这里先改用key-value的形式储存在nodes,规避放.childrend的问题
+            //newRenderData.children.push(renderDataI);
+            newRenderData.nodes[i + ''] = renderDataI;
             continue;
         }
 
         let nodeI = new Model.RenderData();
         nodeI.set('parentId', newRenderData.id);
         nodeI.set('modelRef', i + '');
+        nodeI.nodes = {};
     
         for (let j = 0; j < nodes.length; j++) {
             let nd = nodes[j];
@@ -397,14 +399,16 @@ Tree.createCycleData = function (parent, nodesArr) {
             renderDataJ.set('modelRef', j + '');
             // 递归读取nodes的节点
             Tree._handleCycleData(renderDataJ, nd);
-            nodeI.children.push(renderDataJ);
+            // 这里同上, 先改用key-value的形式
+            //nodeI.children.push(renderDataJ);
+            nodeI.nodes[j + ''] = renderDataJ;
         }
-        nodeI.resize(); // 新节点重新计算最小范围
+        nodeI.resize(true); // 新节点重新计算最小范围
         newRenderData.children.push(nodeI);
     }
 
     // 把parent的属性重新设置
-    newRenderData.resize();
+    newRenderData.resize(true);
     newRenderData.set('modelName', 'cycle-01');
     newRenderData.set('type', Common.QLayer);
     

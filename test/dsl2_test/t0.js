@@ -299,16 +299,13 @@ const Render = require('../../code/server_modules/render/render.js');
 
 
 let dslTree = Dsl.process(designjson, 750, 750, Common.FlexLayout);
-let jsonTree = dslTree.getData();
-console.log(jsonTree);
-// let md = dslTree.getModelData('7C8550FD-BEFF-46BD-ADC4-8EE2EA59D5C0cc');
-// let data = md.getMatchNode();
-// let render = Render.process(dslTree);
+let render = Render.process(dslTree, Common.FlexLayout);
 
-// let htmlStr = render.getTagString();
-// let cssStr = render.getStyleString();
-// // console.log(htmlStr);
-// // console.log(cssStr);
-// // 输出文件
+let htmlStr = render.getTagString();
+let cssStr = render.getStyleString();
+//console.log(htmlStr);
+//console.log(cssStr);
+// 输出文件
 // render.outputFileWithPath('./output/index.html', htmlStr);
 // render.outputFileWithPath('./output/index.css', cssStr);
+

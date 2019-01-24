@@ -1,11 +1,11 @@
 // dslTree数据及模板解析模块
-
+const Common = require('../dsl2/dsl_common');
 const DSLTreeTransfer = require('./render_parser_transfer')
 const RENDER_TYPE = require('./render_types')
 const Template = require("../template/template");
 /**
  * DSL解析方法
- * @param {Object} dslTree 
+ * @param {RenderData} dslTree 
  * @param {string=} platformType 解析类型: html(default),android,ios
  */
 let parse = function (dslTree, platformType) {
@@ -16,159 +16,212 @@ const QNODE_TYPES = ['QImage', 'QText', 'QIcon', 'QShape', 'QWidget'];
 const QCONTAINER_TYPES = ['QBody', 'QLayer'];
 class DSLTreeProcessor {
     /**
-     * 
-     * @param {Object} dslTree 
+     * 将json数据转化和模板数据结合输出
+     * @param {Json} tree RenderData的json化格式 
      * @param {string=} platformType 解析类型: html(default),android,ios
      */
     static parseTree(tree, platformType = RENDER_TYPE.HTML) {
-        let _tree = {
-            children: [tree]
-        }
-        _tree.root = true;
+        tree.root = true;
         this.serialIndex = 1;
-        // 遍历节点
-        walkout(_tree, this._parseNode.bind(this, platformType));
-        walkout(_tree, nd => {
+        walkout(tree, this._parseNode.bind(this, platformType));
+        walkout(tree, nd => {
             this.addSerialId(nd);
         });
-        return _tree.children[0];
+        
+        return tree;
     }
+
     static _parseNode(platformType, pnode) {
-
+        // 后面对解析做优化  
+        // 返回上一层用把pnode当parent来处理
         if (!pnode.children || !pnode.children.length) return;
-        pnode.children.forEach((node, index) => {
-            let element = node;
-            if (node.constructor.name === 'RenderData') {
-                element = this._convertNode(node, platformType);
-            }
-            if (node.modelName) {
-                if (node.modelName === 'layer') {
-                    // if ( ~QNODE_TYPES.indexOf(node.type) ) element = this._parseBgNode(element,platformType);  // QShape和QImage如果有子节点需要特殊处理
-                } else {
-                    element = this._parseWidgetNode(element, platformType);
-                }
 
+        pnode.children.forEach((node, index) => { 
+            this._setTagName(node, platformType);
+            let element = null;
+
+            if (node.modelName == 'layer') {
+                // 解析layer,
+                element = this._parseLayerNode(node, platformType);
             }
-            // _debuggerByid('4E0EC85E-AFB2-455C-9C17-FF91CE02A5EF',node);
+            else if (node.type == Common.QWidget) {
+                // 解析复合模型(组件模型, 元素模型)
+                element = this._parseWidgetNode(node, platformType);
+            }
+            else if (node.type == Common.QLayer && node.modelName == 'cycle-01') {
+                // 解析循环
+                element = this._parseCycleNode(node, platformType);
+            }
+            else {
+                // 解析基础节点
+                element = this._parseBaseNode(node, platformType);
+            }
+
             pnode.children[index] = element;
-        })
+        });
     }
+
     static addSerialId(node) {
         node.serialId = this.serialIndex++;
     }
-    // /**
-    //  * 解析背景节点
-    //  */
-    // static _parseBgNode(element, platformType) {
-    //     Object.assign(element,getAttr(element.children[0],['zIndex','abX','abY','abXops','abYops','constraints','width','height','canLeftFlex','canRightFlex','path','styles','similarId']));
-    //     return element;
-    // }
 
-    /**
-     * 解析模型节点
-     */
+    //
+    static _parseLayerNode(node, platformType) {
+       // Layer不需要拿模板, 只需补充属性
+       node.tplAttr = {};
+       node.tplData = {};
+
+       return node;
+    }
+
+    //
     static _parseWidgetNode(node, platformType) {
         let template = Template.getTemplate(node.modelName, platformType);
-        let element = DSLTreeTransfer.parse(template, node.children, platformType);
-        Object.assign(element, getAttr(node, ['zIndex', 'abX', 'abY', 'abXops', 'abYops', 'constraints', 'width', 'height', 'canLeftFlex', 'canRightFlex', 'modelRef', 'modelName', 'modelId', 'similarId']));
+        // widget的解析, 从node节点上构建出数据
+        this._handleWidgetNode(node);
+        let element = DSLTreeTransfer.parse(template, node.children);
+        this._assignValue(element, node);
+        
+        return element;
+    }
+
+    // 处理widget的数据
+    static _handleWidgetNode(parentNode) {
+        if (!parentNode.nodes || parentNode.nodes === {}) {
+            return;
+        }
+        // widget的node是已key-value形式储存
+        for (let key in parentNode.nodes) {
+            let rdata = parentNode.nodes[key];
+            parentNode.children.push(rdata);
+            
+            if (rdata.nodes && rdata.nodes['0']) {
+                this._handleWidgetNode(rdata);
+            }
+        }
+        // nodes已不再需要
+        parentNode.nodes = null;
+    }
+
+    // 
+    static _parseCycleNode(node, platformType) {
+        let template = Template.getTemplate(node.modelName, platformType);
+        // widget的解析, 从node节点上构建出数据
+        this._handleCycleNode(node);
+        let element = DSLTreeTransfer.parse(template, node.children);
+        this._assignValue(element, node);
 
         return element;
     }
-    // 将虚拟节点转化为平台容器节点
-    static _convertNode(node, platformType) {
-        // this.addPrefix(node);
-        // this.addBeautyClass(node);
-        let {
-            id = -1, similarId, tagName, width, height, abX = 0, abY = 0, abXops = 0, abYops = 0, constraints = {}, children = [], styles = {}, parentId = "", type = "", modelName = "", modelRef = "", modelId = "", canLeftFlex = false, canRightFlex = false, isCalculate = false, tplAttr = {}, tplData = {}, text = "", path = "", zIndex = null
-        } = node;
-        if (!tagName) {
+
+    // 处理循环数据结构
+    static _handleCycleNode(parentNode) {
+        if (!parentNode.nodes || parentNode.nodes === {}) {
+            return;
+        }
+
+        // 循环的处理
+        for (let key in parentNode.nodes) {
+            let rdata = parentNode.nodes[key];
+
+            // 解析出子节点
+            if (rdata.type == Common.QLayer && rdata.modelName == 'layer') {
+                // 解析layer,
+                this._handleLayerNode(rdata);
+            }
+            else if (rdata.type == Common.QWidget) {
+                // 解析复合模型(组件模型, 元素模型)
+                this._handleWidgetNode(rdata);
+            }
+            else {
+                // 解析基础节点
+                this._handleBaseNode(rdata);
+            }
+        
+            parentNode.children.push(rdata);
+        }
+        // nodes已不需要
+        parentNode.nodes = null;
+    }
+    
+    //
+    static _parseBaseNode(node, platformType) {
+        // 解析em1-m1到em1-m4系列的基础元素
+        let template = Template.getTemplate(node.modelName, platformType);
+        this._handleBaseNode(node);
+        let element = DSLTreeTransfer.parse(template, [node]);
+        this._assignValue(element, node);
+
+        return element;
+    }
+
+    // 处理基础元素
+    static _handleBaseNode(parentNode) {
+        if (!parentNode.nodes || parentNode.nodes === {}) {
+            // 不是符合元素就不处理了
+            return;
+        }
+
+        for (let key in parentNode.nodes) {
+            let rdata = parentNode.nodes[key];
+            parentNode.children.push(rdata);
+        }
+        parentNode.nodes = null;
+    }
+
+    //
+    static _setTagName(node, platformType) {
+        if (!node.tagName) {
             switch (platformType) {
                 case RENDER_TYPE.HTML:
-                    tagName = 'div';
+                    node.tagName = 'div';
                     break;
                 case RENDER_TYPE.ANDROID:
-                    tagName = 'view';
+                    node.tagName = 'view';
                     break;
             }
         }
-        return {
-            id,
-            zIndex,
-            tagName,
-            width,
-            height,
-            abX,
-            abY,
-            abXops,
-            abYops,
-            constraints,
-            children,
-            styles,
-            parentId,
-            type,
-            modelName,
-            modelId,
-            modelRef,
-            canLeftFlex,
-            canRightFlex,
-            isCalculate,
-            children,
-            similarId,
-            tplAttr,
-            tplData,
-            text,
-            path
+    }
+
+    // 获取属性
+    static _assignValue(destObj, obj) {
+        destObj.id = obj.id;
+        destObj.parentId = obj.parentId;
+        destObj.modelName = obj.modelName;
+        destObj.type = obj.type;
+        destObj.isCalculate = obj.isCalculate;
+        destObj.abX = obj.abX;
+        destObj.abY = obj.abY;
+        destObj.abXops = obj.abXops;
+        destObj.abYops = obj.abYops;
+        destObj.width = obj.width;
+        destObj.height = obj.height;
+        destObj.styles = obj.styles;
+        destObj.text = obj.text;
+        destObj.path = obj.path;
+        destObj.zIndex = obj.zIndex;
+        destObj.similarId = obj.similarId;
+        destObj.similarParentId = obj.similarParentId;
+        
+        // 约束的融合
+        for (let key in obj.constraints) {
+            destObj.constraints[key] = obj.constraints[key];
         }
     }
 }
+
 // 往外走
 function walkout(node, handler) {
     if (!node.children || !node.children.length) return;
     node.children.map(n => {
         walkout(n, handler);
-        handler(n); // 处理节点
+        handler(n);     // 处理节点
     });
+    
     if (node.root) handler(node);
 }
-// 遍历matchData
-function walkModel(matchData, handler) {
-    let structure = matchData.getMatchNode();
-    // _debuggerByid('4E0EC85E-AFB2-455C-9C17-FF91CE02A5EFc',structure);
-    for (let key in structure) {
-        if (structure[key].constructor.name === 'MatchData') {
-            structure[key] = walkModel(structure[key], handler) // 如果是个模型节点，则继续拆解
-        }
-    }
-    return handler(matchData, structure); // 处理节点
-}
 
-function getAttr(node, keys = null, move = false) {
-    let obj = {};
-    if (!node) return obj;
-    for (let key of keys || Object.keys(node)) {
-        if (isValue(node[key])) {
-            obj[key] = node[key];
-            if (move) delete node[key];
-        }
-    }
-    return obj;
-}
 
-function isValue(val) {
-    if (val === undefined || val === null || val === '') return false;
-    if (typeof val === 'object') return !!Object.keys(val).length
-    return true;
-}
-
-function _debuggerByid(id, pa) {
-    let n = null;
-    if (pa.type) {
-        n = ~pa.id.indexOf(id);
-    } else {
-        n = Object.values(pa).find(n => ~n.id.indexOf(id))
-    }
-    if (n) debugger
-}
 module.exports = {
     parse
 }
