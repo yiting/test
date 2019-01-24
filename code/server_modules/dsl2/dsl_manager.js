@@ -70,10 +70,11 @@ let matchModel = function (nodes, matchType, endY) {
                 if (bool) {
                     // 生成匹配数据
                     let mData = matchModel.getMatchData();
-                    // if (matchType == Common.MatchingWidgets && mData.abY <= endY && mData.abYops > endY) {
-                    //     // 如果匹配的模型范围落在下边界里, 则模型留范围往下移动后匹配
-                    //     continue;
-                    // }
+                    if (matchType == Common.MatchingWidgets && mData.abYops > endY) {
+                        // 如果匹配的模型范围落在下边界里, 则模型留范围往下移动后匹配
+                        matchModel.resetMatchedNodeSign();
+                        continue;
+                    }
 
                     result.push(mData);
                     // 每个组件模型匹配完毕从总节点上移除对应的元素
@@ -104,59 +105,6 @@ let groupModel = function (elementModels, widgetModels) {
 let layoutModel = function (dslTree, layoutType) {
     Layout.layout(dslTree, layoutType);
 }
-
-// /**
-//  * 对匹配好的组件/元素模型之间进行布局关系的分析处理
-//  * @param {DslTree} dslTree 需要进行布局关系处理的模型
-//  * @param {Int} layoutType 处理布局的方式
-//  */
-// let layoutModel = function(dslTree, layoutType) {
-//     // layout逻辑主要分两部分
-//     // 1, 约束处理
-//     // 2, 循环处理
-//     dslTree.setLayoutType(layoutType);
-//     _handleContraint(dslTree, dslTree.getData());
-//     _handleCircle(dslTree, dslTree.getData());
-// }
-
-// /**
-//  * 对dslTree进行约束分析处理
-//  * @param {DslTree} dslTree DslTree
-//  * @param {TreeNode} parent DslTree节点数据树
-//  * @param {Int} layoutType 布局方式
-//  */
-// let _handleContraint = function(dslTree, parent, layoutType) {
-//     // 约束的处理只需从外到内递归, 让布局模型处理
-//     let children = parent.children;
-
-//     if (children.length <= 0) {
-//         return;
-//     }
-
-//     let models = [];
-//     children.forEach(child => {
-//         let md = dslTree.getModelData(child.id);
-//         models.push(md);
-//     });
-
-//     // 布局模型处理
-//     LayoutList.forEach(model => {
-//         model.handle(parent, children, models, layoutType);
-//     });
-
-//     children.forEach(child => {
-//         _handleContraint(dslTree, child, layoutType);
-//     });
-// }
-
-// /**
-//  * 对dslTree进行约束分析处理
-//  * @param {DslTree} dslTree DslTree
-//  * @param {TreeNode} parent DslTree节点数据树
-//  */
-// let _handleCircle = function(dslTree) {
-
-// } 
 
 
 module.exports = {
