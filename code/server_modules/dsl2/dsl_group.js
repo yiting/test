@@ -348,6 +348,7 @@ Tree.createNodeData = function (mdata) {
     renderData.set('id', 'layer' + (Tree.LayerId++));
     renderData.set('type', Common.QLayer);
     renderData.set('modelName', 'layer');
+    renderData.set('modelId', renderData.id);
     return renderData;
 }
 

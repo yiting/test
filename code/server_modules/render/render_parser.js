@@ -188,6 +188,7 @@ class DSLTreeProcessor {
         destObj.id = obj.id;
         destObj.parentId = obj.parentId;
         destObj.modelName = obj.modelName;
+        destObj.modelId = obj.modelId;
         destObj.type = obj.type;
         destObj.isCalculate = obj.isCalculate;
         destObj.abX = obj.abX;

@@ -64,7 +64,7 @@ class DSLTreeTransfer {
         this.setXml(xml);
         this.process(dslNodes);
         this.xml.isRoot = true;
-        this.modelId = dslNodes[0].modelId;
+        //this.modelId = dslNodes[0].modelId;
         return this.convert(this.xml, dslNodes);
     };
     static process(dslNodes) {
@@ -189,7 +189,7 @@ class DSLTreeTransfer {
         if (typeof obj !== "object") {
             return obj;
         } else {
-            Object.assign(destObj,getAttr(obj,['id', 'zIndex','similarId', 'type', 'similarParentId', 'abX','abY','abXops','abYops','styles','constraints','children','width','height','canLeftFlex','canRightFlex','modelRef','modelName','text','path']));
+            Object.assign(destObj,getAttr(obj,['id', 'zIndex','similarId', 'type', 'similarParentId', 'abX','abY','abXops','abYops','styles','constraints','children','width','height','canLeftFlex','canRightFlex','modelRef','modelName', 'modelId', 'text','path']));
             // for (let key in obj) {
             //     if (key === 'tagName' && obj[key]) continue;
             //     destObj[key] = obj[key];
