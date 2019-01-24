@@ -105,7 +105,7 @@ class LayoutSimilar extends Model.LayoutModel {
             // 如果相连，则为不同
             return;
         }
-        if (a.modelName == 'layer') {
+        if (a.type == Common.Layer) {
             return a.isVertical == b.isVertical &&
                 a.compareChildLength == b.compareChildLength &&
                 (
@@ -120,8 +120,8 @@ class LayoutSimilar extends Model.LayoutModel {
                             a.ctY == b.ctY / 2)
                     )
                 )
-        } else {
-            // 如果为模型结构，三线对齐相同
+        } else if (a.type == Common.Widget) {
+            // 如果为Widget，三线对齐相同
             return a.abY == b.abY ||
                 a.abYops == b.abYops ||
                 a.ctY == b.ctY ||
@@ -129,6 +129,15 @@ class LayoutSimilar extends Model.LayoutModel {
                 a.abXops == b.abXops ||
                 a.ctX == b.ctX ||
                 (a.width == b.width && a.height == b.height)
+        } else if (a.type == Common.Element) {
+            // 如果为Element，则同父节点，子节点数相同，三线对齐相同
+            return a.parentId == b.parentId &&
+                (a.abY == b.abY ||
+                    a.abYops == b.abYops ||
+                    a.ctY == b.ctY ||
+                    a.abX == b.abX ||
+                    a.abXops == b.abXops ||
+                    a.ctX == b.ctX)
         }
     }
 }

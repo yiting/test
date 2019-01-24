@@ -4,6 +4,7 @@ const Utils = require('../dsl_utils.js');
 const Model = require('../dsl_model.js');
 const Group = require('../dsl_group.js');
 const Constraints = require('../dsl_constraints');
+const Similar = require('./layout_similar');
 
 
 class LayoutCircle extends Model.LayoutModel {
@@ -72,10 +73,19 @@ class LayoutCircle extends Model.LayoutModel {
 
     // 相似节点逻辑
     _similarRule(a, b) {
-        let sim = a._similarId &&
+        return (
+            a._similarId &&
             b._similarId &&
-            a._similarId == b._similarId;
-        return sim;
+            a._similarId == b._similarId
+        ) || (
+            a.type == Common.QText &&
+            (a.abY == b.abY ||
+                a.abYops == b.abYops ||
+                a.ctY == b.ctY ||
+                a.abX == b.abX ||
+                a.abXops == b.abXops ||
+                a.ctX == b.ctX)
+        )
     }
     /**
      * 相似性分组

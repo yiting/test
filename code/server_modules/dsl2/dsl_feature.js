@@ -269,29 +269,6 @@ let directionGroupAleftToGroupB = function (groupA, groupB) {
     return result;
 }
 
-/**
- * A位于B的右边
- * @param {Node} eleA 元素A 
- * @param {Node} eleB 元素B
- */
-let directionArightToB = function (eleA, eleB) {
-    // 通过中心点判断
-    let pA = eleA.abX + (eleA.width / 2);
-    let pB = eleB.abX + (eleB.width / 2);
-    return pA <= pB ? false : true;
-}
-
-/**
- * A位于B的上边
- * @param {Node} eleA 元素A 
- * @param {Node} eleB 元素B
- */
-let directionAtopToB = function (eleA, eleB) {
-    // 通过中心点判断
-    let pA = eleA.abY + (eleA.height / 2);
-    let pB = eleB.abY + (eleB.height / 2);
-    return pA <= pB ? true : false;
-}
 
 /**
  * A位于B的下边
@@ -693,7 +670,24 @@ let baselineGroupAInVertical = function (groupA) {
 let baselineABNotInVertical = function (eleA, eleB) {
     return !baselineABInVertical(eleA, eleB);
 }
-
+/**
+ * AB元素左侧间距
+ * @param {Node} eleA 元素A
+ * @param {Node} eleB 元素B
+ * @param {Number} distance 左对齐间距
+ */
+let baselineABJustifyLeft = function (eleA, eleB, distance) {
+    return Math.abs(eleA.abX - eleB.abX) < distance;
+}
+/**
+ * AB元素水平方向中心间距
+ * @param {Node} eleA 元素A
+ * @param {Node} eleB 元素B
+ * @param {Number} distance 中间对齐间距
+ */
+let baselineABJustifyCenter = function (eleA, eleB, distance) {
+    return Math.abs(eleA.abX + eleA.width / 2 - eleB.abX - eleB.width / 2) < distance
+}
 
 // 特征: 元素的尺寸关系
 // ---------------------------------------------------------------------------------------------------------
@@ -838,8 +832,6 @@ module.exports = {
     // 元素方向关系
     directionAleftToB,
     directionGroupAleftToGroupB,
-    directionArightToB,
-    directionAtopToB,
     directionAbottomToB,
     // 元素距离关系
     distanceLessArightToBleft,
@@ -868,6 +860,11 @@ module.exports = {
     baselineABInVertical,
     baselineGroupAInVertical,
     baselineABNotInVertical,
+    // 对齐关系
+    baselineABJustifyLeft,
+    baselineABJustifyCenter,
+
+
     // 元素的尺寸关系
     sizeWidthRatioALessB,
     sizeWidthRatioAGreatB,
