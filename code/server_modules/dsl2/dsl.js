@@ -133,7 +133,7 @@ let _matchModels = function(matchTimes, matchedNodes, nodes, mType, optimizeWidt
 }
 
 /**
- * 对匹配好的模型做成组处理
+ * 对匹配好的模型做成组处理...
  * @param {Array} widgets 已匹配的组件模型
  * @param {Array} elements 已匹配的元素模型
  * @returns {DslTree}
