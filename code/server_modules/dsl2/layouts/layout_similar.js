@@ -76,7 +76,7 @@ class LayoutSimilar extends Model.LayoutModel {
             "height": node.height,
             "width": node.width,
             "modelName": node.modelName,
-            "isVertical": Utils.isVertical(node.children),
+            "isHorizontal": Utils.isHorizontal(node.children),
             "compareChildLength": node.children.filter(child => {
                 return child.constraints["LayoutSelfPosition"] != Constraints.LayoutSelfPosition.Absolute
             }).length
@@ -106,7 +106,7 @@ class LayoutSimilar extends Model.LayoutModel {
             return;
         }
         if (a.type == Common.Layer) {
-            return a.isVertical == b.isVertical &&
+            return a.isHorizontal == b.isHorizontal &&
                 a.compareChildLength == b.compareChildLength &&
                 (
                     (a.height == b.height &&

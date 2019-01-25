@@ -1,4 +1,3 @@
-
 const Utils = require('../dsl_utils.js');
 const Model = require('../dsl_model.js');
 
@@ -20,10 +19,10 @@ class LayoutSort extends Model.LayoutModel {
         }
 
         // if (this._isVerticalLayout(nodes)) {
-        if (Utils.isVertical(nodes)) {
-            this._sort(nodes, 'abY');
-        } else {
+        if (Utils.isHorizontal(nodes)) {
             this._sort(nodes, 'abX');
+        } else {
+            this._sort(nodes, 'abY');
         }
     }
 

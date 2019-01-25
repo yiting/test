@@ -36,12 +36,12 @@ class LayoutFlex extends Model.LayoutModel {
 
         // if (this._isVerticalLayout(nodes)) {
 
-        if (Utils.isVertical(nodes)) {
-            this._sort(nodes, 'abY');
-            this._handleVertical(parent, nodes, models);
-        } else {
+        if (Utils.isHorizontal(nodes)) {
             this._sort(nodes, 'abX');
             this._handleHorizontal(parent, nodes, models);
+        } else {
+            this._sort(nodes, 'abY');
+            this._handleVertical(parent, nodes, models);
         }
     }
 
