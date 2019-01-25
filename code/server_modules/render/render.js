@@ -9,6 +9,7 @@ const Utils = require('./render_utils');
 const Common = require('../dsl2/dsl_common.js');
 const Parser = require('./render_parser.js');
 const H5Builder = require('./h5/h5_builder.js');
+const Template = require('../template/template');
 const fs = require('fs');
 const Constraints = require('../dsl2/dsl_constraints.js');
 /**
@@ -20,7 +21,8 @@ function con(data) {
 }
 let process = function (dslTree, layoutType) {
     // 默认直接使用h5模板引擎输出
-    let jsonData = Parser.parse(dslTree.getRenderData().toJSON());
+    let renderJSON = dslTree.getRenderData().toJSON();
+    let jsonData = Template.parse(renderJSON, Template.XML);
     // 这里直接使用h5 builder
     let render = new Render(jsonData, H5Builder, layoutType);
 

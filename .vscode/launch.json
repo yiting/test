@@ -16,6 +16,22 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "default-t1",
+            "program": "${workspaceFolder}/test/dsl2_test/t1.js"
+
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "default-t0",
+            "program": "${workspaceFolder}/test/dsl2_test/t0.js"
+
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
             "name": "test",
             "program": "${workspaceFolder}/test/dsl2_test/testx.js"
 

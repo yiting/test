@@ -1055,33 +1055,18 @@ let designjson =
 const Common = require('../../code/server_modules/dsl2/dsl_common.js');
 const Dsl = require('../../code/server_modules/dsl2/dsl.js');
 const Render = require('../../code/server_modules/render/render.js');
-const Group = require('../../code/server_modules/dsl2/dsl_group.js');
 
-let Tree = Group.Tree;
+
 let dslTree = Dsl.process(designjson, 750, 750, Common.FlexLayout);
+let render = Render.process(dslTree, Common.FlexLayout);
 
-// 构建测试循环用例的数据
-
-// nodeTree就是dslTree返回的全部节点信息
-let nodeTree = dslTree.getNodeData();  
-// 获取需要循环的处理的节点, 和构建里面的数据, needCycleNode的父节点是nodeTree
-let needCycleNode = nodeTree.children[1];
-// 构建循环数据
-let arr = needCycleNode.children;
-let cycleParam = [[arr[0]], [arr[1]], [arr[2]], [arr[3]], [arr[4]]];
-// 传父节点, 循环数据, similarId
-let newNode = Tree.createCycleData(nodeTree, cycleParam, 123);
-
-// 进行替换工作, 因为这里是对needCycleNode里面的子节点都进行循环, 没有多余子节点
-// 所以就直接进行替换就可以
-nodeTree.children[1] = newNode;
-
-console.log(nodeTree);
-console.log('---------------');
-// console.log(dslTree.getRenderData());
-let renderData = dslTree.getRenderData();
-Render.process(renderData);
-
+let htmlStr = render.getTagString();
+let cssStr = render.getStyleString();
+console.log(htmlStr);
+//console.log(cssStr);
+// 输出文件
+// render.outputFileWithPath('./output/index.html', htmlStr);
+// render.outputFileWithPath('./output/index.css', cssStr);
 
 
 

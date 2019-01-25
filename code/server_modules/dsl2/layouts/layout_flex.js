@@ -61,7 +61,7 @@ class LayoutFlex extends Model.LayoutModel {
         // 剔除绝对定位节点
         nodes.forEach(nd => {
             if (nd.constraints["LayoutSelfPosition"] == Constrains.LayoutSelfPosition.Absolute) {
-                nd.isCalculate = true;
+                nd.set('isCalculate', true);
                 absNodes.push(nd)
             } else {
                 calNodes.push(nd);
@@ -83,7 +83,7 @@ class LayoutFlex extends Model.LayoutModel {
         // 赋予非轴线节点为绝对定位
         /* for (let i = 0; i < calNodes.length; i++) {
             let nd = calNodes[i];
-            nd.isCalculate = true; // 约束计算完成
+            nd.set('isCalculate', true);    // 约束计算完成
             if (absNodes.includes(nd)) {
                 this._setAbsolute(nd);
             } else {
@@ -123,7 +123,7 @@ class LayoutFlex extends Model.LayoutModel {
         // 剔除绝对定位节点
         nodes.forEach(nd => {
             if (nd.constraints["LayoutSelfPosition"] == Constrains.LayoutSelfPosition.Absolute) {
-                nd.isCalculate = true;
+                nd.set('isCalculate', true);
                 absNodes.push(nd)
             } else {
                 calNodes.push(nd);
@@ -168,7 +168,7 @@ class LayoutFlex extends Model.LayoutModel {
         calNodes.forEach(nd => {
             if (!maxArr.includes(nd)) {
                 absNodes.push(nd);
-                nd.isCalculate = true; // 约束计算完成
+                nd.set('isCalculate', true); // 约束计算完成
             }
         });
         if (absNodes.length > 0) {
