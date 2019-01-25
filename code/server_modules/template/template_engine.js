@@ -5,27 +5,75 @@ const __tpl = `
     // $ref="绑定引用"
     // :src="绑定节点变量"
     <img $ref="1" :src="$ref[1].src"/>
+    <div @for="for">
+        <span $ref="n"></span>
+    </div>
 </div>`
 
+class TemplateData {
+    constructor(o) {
 
+    }
+}
+
+const _SYMBOL = {
+    ref: '$ref',
+    order: '@',
+    var: ':',
+    attr: '',
+}
 class Template {
-    constructor(data, config) {
-        this._symbol = {
-            order: '@',
-            var: ':',
-            attr: '',
-        }
-        this._data = data;
-        this.$ref = data.nodes;
+    constructor(renderData, config) {
+        this._renderData = renderData;
+        this.$ref = renderData.nodes;
         /**
          * 主流程
          * */
-
+        _xmlParser();
     }
     // 模板解析
     _xmlParser() {
+        let that = this;
         let structure = Template._xmlStructure(this.tpl);
-        structure
+
+        ~ function (structure) {
+            structure.forEach(nd => {
+                // 引用对象
+                let refData = this.$ref[nd.attrs[_SYMBOL.ref]];
+                let tagData = new Tag()
+                delete nd.attrs[_SYMBOL.ref];
+
+                Object.keys(nd.attrs).forEach(key => {
+                    let value = nd.attrs[key];
+                    if (~key.indexOf(_SYMBOL.order)) {
+                        // 方法
+                        if (that[value]) {
+                            that[value].call(that, refData, that._data);
+                        } else {
+                            console.error(`template function [${value}] doesn't exist!`)
+                        }
+                    } else if (~key.indexOf(_SYMBOL.var)) {
+                        // 变量
+
+
+                    } else {
+                        // 普通属性
+                    }
+                })
+                arguments.callee(structure.children)
+            })
+        }(structure)
+    }
+    for () {
+
+    }
+    static _createTree(renderData) {
+        let tpl = new Template(renderData);
+        renderData.children.forEach(child => {
+            let childTpl = arguments.callee(child)
+            tpl.children.push(childTpl);
+        });
+        return tpl;
     }
     // xml结构解析
     static _xmlStructure() {
@@ -40,9 +88,11 @@ class Template {
             } else {
                 // 普通节点
                 let obj = {
-                    _tpl: nd,
+                    tag: Template._xmlTag(nd),
+                    isCloseTag: Template._xmlIsCloseTag(nd),
+                    attrs: Template._xmlAttr(nd),
                     children: []
-                }
+                };
                 curTpl.push(obj);
                 if (!~nd.indexOf('/>')) {
                     // 如果非闭合节点
@@ -51,7 +101,7 @@ class Template {
                 }
             }
         });
-        return rootTpl[0];
+        return rootTpl;
     }
     // 标签解析
     static _xmlTag(str) {
