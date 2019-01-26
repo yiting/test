@@ -51,7 +51,7 @@ class Compare {
     });
 
     //透明度设置
-    var opacitySlider = $("#opacity-slider")
+    let opacitySlider = $("#opacity-slider")
       .slider({
         formatter: function(value) {
           return "透明度: " + value + "%";

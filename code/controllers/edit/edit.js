@@ -126,7 +126,8 @@ router.post("/getPageImgById", function(req, res, next) {
       artName: uploadTimeStamp,
       proId: projectUUID,
       proName: projectName,
-      artJsonTxt: JSON.stringify(currentDesignJson), //当前页面的designdom字符串
+      //artJsonTxt: JSON.stringify(currentDesignJson), //当前页面的designdom字符串
+      artJsonTxt:"",//取消插入当前页面designdom字符串(数据较大,后期记录)
       artImgsTxt: JSON.stringify(generateImgArr), //当前页面生成的图片字符串
       mVersion:MODULES_INFO.version//当前基础库版本
     });
@@ -420,20 +421,13 @@ router.post("/download", function(req, res, next) {
  * 2018-11-09:初始化日志配置
  */
 let initLogConfig = function(req, res, next) {
+  let TOSEEURL= "http://uitocode.oa.com/";
   //平台模块日志初始化
   qlog.init({
     projectName: projectName + ".sketch",
     userName,
-    //测试环境ip访问
-    /* url:
-      "http://" +
-      req.headers.host +
-      "/edit?id=" +
-      projectUUID +
-      "&name=" +
-      encodeURIComponent(encodeURIComponent(projectName)) */
     url:
-      "http://uitocode.oa.com/edit?id=" +
+    TOSEEURL+"edit?id=" +
       projectUUID +
       "&name=" +
       encodeURIComponent(encodeURIComponent(projectName))
