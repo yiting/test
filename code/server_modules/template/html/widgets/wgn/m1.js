@@ -1,4 +1,4 @@
-//WGNM1模型：cycle-01
+/* //WGNM1模型：cycle-01
 const WGNM1 = {
     name: "cycle-01",
     desc: "组件模型(5元素)：左三图+(上文本+下文本)",
@@ -9,7 +9,18 @@ const WGNM1 = {
               </li>
             </repeat>
           </ul>`
-  };
-  
-  module.exports = WGNM1;
-  
+  }; */
+const Template = require('../../../template');
+class WGNM1 extends Template {
+  constructor() {
+    super(...arguments);
+  }
+  get template() {
+    return `
+      <ul class="list">
+          <li @for>
+          </li>
+      </ul>`
+  }
+}
+module.exports = WGNM1;

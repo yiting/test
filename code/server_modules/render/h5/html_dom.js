@@ -34,9 +34,6 @@ class HtmlDom {
         if (this.similarId) {
             result.push('sim' + this.similarId);
         }
-        if (this.tplData && this.tplData.class) {
-            result.push(this.tplData.class);
-        }
         if (this.tplAttr && this.tplAttr.class) {
             result.push(this.tplAttr.class);
         }
@@ -59,18 +56,18 @@ class HtmlDom {
         return `ui${this.serialId}`;
     }
     getAttrs() {
-        var result = "";
+        var result = [];
         if (this.path && this.getTag() == "img") {
-            result += "src='" + this.path + "'";
+            result.push("src='" + this.path + "'")
         }
         if (this.tplAttr) {
-            result += Object.keys(this.tplAttr).map(key => {
+            result.push(...Object.keys(this.tplAttr).map(key => {
                 if (key != "data-model") {
                     return `${key}="${this.tplAttr[key]}"`;
                 }
-            })
+            }))
         }
-        return result;
+        return result.join(' ');
     }
     // 开始节点
     getHtmlStart(_layoutType) {

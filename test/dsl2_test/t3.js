@@ -12352,11 +12352,11 @@ const Render = require('../../code/server_modules/render/render.js');
 
 
 let dslTree = Dsl.process(designjson, 750, 750, Common.FlexLayout);
-let render = Render.process(dslTree, Common.FlexLayout);
-// let htmlStr = render.getTagString();
-// let cssStr = render.getStyleString();
-// const Path = require('path');
+let render = Render.process(dslTree, Common.TestLayout);
+let htmlStr = render.getTagString();
+let cssStr = render.getStyleString();
+const Path = require('path');
 
-// // 输出文件
-// render.outputFileWithPath(Path.join(__dirname, './output/index.html'), htmlStr);
-// render.outputFileWithPath(Path.join(__dirname, './output/index.css'), cssStr);
+// 输出文件
+render.outputFileWithPath(Path.join(__dirname, './output/index.html'), htmlStr);
+render.outputFileWithPath(Path.join(__dirname, './output/index.css'), cssStr);

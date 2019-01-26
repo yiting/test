@@ -1,6 +1,7 @@
 class TemplateData {
     constructor(o = {}) {
         this.tag = o.tag || '';
+        this.serialId = TemplateData.index++;
         this.isCloseTag = o.isCloseTag;
         this.parentId = o.parentId;
         this.id = o.id;
@@ -19,6 +20,7 @@ class TemplateData {
         this.text = o.text;
         this.path = o.path;
         this.styles = o.styles || {};
+        this.tplAttr = o.tplAttr || {};
         this.similarId = o.similarId;
         this.similarParentId = o.similarParentId;
 
@@ -53,6 +55,12 @@ class TemplateData {
         this.abXops = o.abXops;
         this.abYops = o.abYops;
     }
+
+
+    static reset() {
+        TemplateData.index = 0;
+    }
 }
+TemplateData.index = 0;
 
 module.exports = TemplateData

@@ -21,6 +21,7 @@ const EM3M7 = require("./elements/em3/m7");
 const EM3M8 = require("./elements/em3/m8");
 const EM3M9 = require("./elements/em3/m9");
 //2.复合组件
+const WG0M1 = require("./widgets/wg0/m1");
 // 单元素
 const WG1M1 = require("./widgets/wg1/m1");
 //2元素
@@ -63,6 +64,8 @@ const TEMPLATE_LIST = [
   EM3M7,
   EM3M8,
   EM3M9,
+
+  WG0M1,
 
   WG1M1,
 

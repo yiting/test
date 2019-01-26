@@ -1,5 +1,5 @@
 //E3M2模型：em3-m2
-const E3M4 = {
+/* const E3M4 = {
   name: "em3-m4",
   desc: "3元素模板：左固定长度标签+右文字",
   template: `
@@ -9,6 +9,20 @@ const E3M4 = {
         <em :ref="2" :class="tag-text"></em>
       </span>
     </div>`
-};
-
-module.exports = E3M4;
+}; */
+const Template = require('../../../template');
+class EM3M4 extends Template {
+  constructor() {
+    super(...arguments);
+  }
+  get template() {
+    return `
+    <div class="em3-m4" :constraints='{"LayoutDirection":"Horizontal", "LayoutJustifyContent":"Start"}'>
+      <span $ref="0" class="text"></span>
+      <span $ref="1" class="tag">
+        <em $ref="2" class="tag-text"></em>
+      </span>
+    </div>`
+  }
+}
+module.exports = EM3M4;
