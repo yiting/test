@@ -334,6 +334,11 @@ let TOSEEAPP = {
           $(".magnify-foot-toolbar a").attr("href", viewImgUrl);
           (viewImgW = viewImgObj[0].naturalWidth),
             (viewImgH = viewImgObj[0].naturalHeight);
+          //设置base64
+          editUtil.getImgToBase64(viewImgUrl, function(data) {
+            $(".base64-panel textarea").val(data);
+          });
+
           //设置宽高
           $(".show-img-info")
             .find(".img-width")

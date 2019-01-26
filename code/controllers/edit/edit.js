@@ -463,7 +463,7 @@ let getHtmlCss = (req, res, next) => {
         projectName = resultData.projectName;
         uploadTimeStamp = resultData.artboardName;
         currentArtBoardUrl = resultData.artboardUrl;
-        currentDesignJson = JSON.parse(resultData.artboardJson);
+        //currentDesignJson = JSON.parse(resultData.artboardJson);
         generateImgArr = JSON.parse(resultData.artboardImgs);
         isHtmlGenerate = false;
       }

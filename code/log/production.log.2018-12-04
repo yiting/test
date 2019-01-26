@@ -1,6 +1,0 @@
-2018-12-04 15:21:03 ERROR 20181204152013_腾讯文档组件库_H5.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot destructure property `verticalAlignment` of 'undefined' or 'null'.
-
-2018-12-04 15:23:56 ERROR 20181204152343_未命名.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'isMasked' of undefined
-
-2018-12-04 15:26:13 ERROR 20181204152343_未命名.sketch 平台模块 [edit.js-getHtmlCss]报错，不解析：TypeError: Cannot read property 'isMasked' of undefined
-
