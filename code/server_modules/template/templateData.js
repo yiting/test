@@ -30,6 +30,29 @@ class TemplateData {
     get height() {
         return this.abYops - this.abY;
     }
+
+    resize() {
+        let nodes = this.children;
+        if (!nodes.length) {
+            return;
+        }
+        let o = {
+            abX: Number.POSITIVE_INFINITY,
+            abY: Number.POSITIVE_INFINITY,
+            abXops: Number.NEGATIVE_INFINITY,
+            abYops: Number.NEGATIVE_INFINITY
+        }
+        nodes.forEach((d, i) => {
+            o.abX = d.abX < o.abX ? d.abX : o.abX;
+            o.abY = d.abY < o.abY ? d.abY : o.abY;
+            o.abXops = d.abXops > o.abXops ? d.abXops : o.abXops;
+            o.abYops = d.abYops > o.abYops ? d.abYops : o.abYops;
+        });
+        this.abX = o.abX;
+        this.abY = o.abY;
+        this.abXops = o.abXops;
+        this.abYops = o.abYops;
+    }
 }
 
 module.exports = TemplateData

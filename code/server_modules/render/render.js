@@ -5,14 +5,15 @@
 // 1, 将dslTree的数据和模板接合,
 // 2, 将结合后的json数据输出, 主要是约束的解析计算
 
+const fs = require('fs');
 const Utils = require('./render_utils');
 const Common = require('../dsl2/dsl_common.js');
-const Parser = require('./render_parser.js');
+// const Parser = require('./render_parser.js');
 const H5Builder = require('./h5/h5_builder.js');
 const XML_Engine = require('../template/XML_Engine');
 const Template = require('../template/template');
-const fs = require('fs');
 const Constraints = require('../dsl2/dsl_constraints.js');
+
 /**
  * 
  * @param {*} dslTree 
@@ -20,14 +21,17 @@ const Constraints = require('../dsl2/dsl_constraints.js');
 function con(data) {
     data.children && data.children.forEach(nd => con(nd));
 }
+
+
 let process = function (dslTree, layoutType) {
     // 默认直接使用h5模板引擎输出
     let renderJSON = dslTree.getRenderData().toJSON();
-    let jsonData = Template.parse(renderJSON, XML_Engine);
+    let jsonData = Template.parse(renderJSON, null, XML_Engine);
+    console.log(jsonData)
     // 这里直接使用h5 builder
-    let render = new Render(jsonData, H5Builder, layoutType);
+    // let render = new Render(jsonData, H5Builder, layoutType);
 
-    return render;
+    // return render;
 }
 class Render {
     constructor(data, builder, layoutType) {

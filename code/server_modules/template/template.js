@@ -1,5 +1,5 @@
 // 假设模板
-const __tpl = `
+const __tpl = `./html/templatelist
 <div class="${this.className}">
     <span $ref="0" :style="{backgroundImage:"url("+path+")"}"></span>
     // $ref="绑定引用"
@@ -18,59 +18,82 @@ const _SYMBOL = {
     attr: '',
 }
 const TemplateData = require("./templateData");
-const TemplateList = require("./templatelist");
+const TemplateList = require("./html/templatelist");
 
-class _ {
-    constructor(renderData, engine) {
-        this.renderData = renderData;
+class Template {
+    constructor(renderData, parentTpl, engine) {
+        // 节点引用
         this.$ref = renderData.nodes;
+        // 渲染数据
+        this._renderData = renderData;
+        // 解析引擎
         this._engine = engine;
+        // 模板内容结构
+        this._structure = engine.parse(this.template);
+        this._parentTpl = parentTpl;
         /**
          * 主流程
          * */
-        let tree = this.parseTree(engine, this.tpl);
+        // 遍历模板树
+        this._rootData = this._traversal(this._structure, this._parentTpl, true)[0];
+        // 遍历结构树
+        renderData.children && renderData.children.forEach(childRenderData => {
+            Template.parse(childRenderData, this._rootData, this._engine)
+        });
+    }
+    getData() {
+        return this._rootData;
     }
     get tpl() {
         return '<div></div>';
     }
-    // 构建树
-    _parseTree(engine, tpl) {
-        let structure = engine.parse(tpl);
-        let trees = this._traversal(structure, true);
-        return trees[0];
-    }
     // 遍历模板树结构
-    _traversal(structure, isRoot) {
-        return structure.map(nd => {
+    _traversal(structure, parentTpl, isRoot) {
+        let arr = structure.map(nd => {
             // 构建对象
             tplData = this._parseObj(nd, isRoot);
-            this._traversal(structure.children)
+            this._traversal(structure.children, tplData)
             return tplData;
         });
+        if (parentTpl) {
+            parentTpl.children.push(...arr);
+        }
+        return arr;
     }
     _parseObj(nd, isRoot) {
         let refIndex = nd.attrs[_SYMBOL.ref],
-            renderData = null,
-            tplData = null
+            renderData,
+            tplData,
+            tplData2
         // 根据条件获取引用对象
         if (refIndex) {
             renderData = this.$ref[refIndex];
         } else if (isRoot) {
-            renderData = this.renderData;
+            renderData = this._renderData;
         }
-
+        // 构建模板节点
+        tplData = new TemplateData(renderData);
         if (renderData.modelName) {
             // 如果有模型名称，则进入下一层模板
-            new TPL(renderData, this._engine)
-
-        } else {
-            tplData = new TemplateData(data);
+            tplData2 = Template.parse(renderData, null, this._engine);
+            tplData = Template._assignObj(tplData2, tplData);
         }
-        // 否则，进入下一层遍历
-
         // 删除「引用」字段
         delete nd.attrs[_SYMBOL.ref];
         return tplData;
+    }
+    /**
+     * 数据节点合并
+     * 基础规则：大节点属性合并子节点属性
+     * 约束合并规则：大节点【约束属性值】覆盖小节点【约束属性值】
+     * 子节点合并规则：小节点加入大节点的子节点序列
+     * 样式合并规则： 大节点【样式属性值】 覆盖小节点【样式属性值】
+     */
+    static _assignObj(target, source) {
+        source.children.push(...target.children);
+        // Object.assign(source.constraints, target.constraints);
+        // Object.assign(source.styles,target.styles)
+        return Object.assign({}, target, source);
     }
     // 构架对象属性
     _parseProp(nd) {
@@ -120,17 +143,16 @@ class _ {
             target.attrData[prop] = value;
         }
     }
+    static getModelTemplate(modelName) {
+        return TemplateList.some(n => n.name.toLowerCase() == (modelName + '').toLowerCase());
+    }
+    static parse(renderData, parentTpl, engine) {
+        let ModelTpl = Template.getModelTemplate(renderData.modelName);
+        let tplData = new ModelTpl(renderData, parentTpl, engine).getData();
+        return tplData;
+    }
 }
 
-let parse = function (renderData, engine) {
-    let TPL = TemplateList.some(n => n.toLowerCase() == (renderData.modelName + '').toLowerCase());
-    let obj = new TPL(renderData, engine);
-    renderData.children.forEach(child => {
-        obj.children.push(parse(child, engine));
-    });
-}
 
-module.exports = {
-    Template: _,
-    parse,
-}
+
+module.exports = Template

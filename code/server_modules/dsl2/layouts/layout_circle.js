@@ -77,15 +77,20 @@ class LayoutCircle extends Model.LayoutModel {
             a._similarId &&
             b._similarId &&
             a._similarId == b._similarId
-        ) || (
-            a.type == Common.QText &&
-            (a.abY == b.abY ||
-                a.abYops == b.abYops ||
-                a.ctY == b.ctY ||
-                a.abX == b.abX ||
-                a.abXops == b.abXops ||
-                a.ctX == b.ctX)
         )
+        /*  return (
+             a._similarId &&
+             b._similarId &&
+             a._similarId == b._similarId
+         ) || (
+             a.type == Common.QText &&
+             (a.abY == b.abY ||
+                 a.abYops == b.abYops ||
+                 a.ctY == b.ctY ||
+                 a.abX == b.abX ||
+                 a.abXops == b.abXops ||
+                 a.ctX == b.ctX)
+         ) */
     }
     /**
      * 相似性分组
