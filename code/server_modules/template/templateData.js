@@ -1,5 +1,5 @@
 class TemplateData {
-    constructor(o) {
+    constructor(o = {}) {
         this.tag = o.tag || '';
         this.isCloseTag = o.isCloseTag;
         this.parentId = o.parentId;

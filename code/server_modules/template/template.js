@@ -1,14 +1,15 @@
 // 假设模板
 const __tpl = `
 <div class="${this.className}">
-    <span $ref="0" style="background-image:url(${this.$ref[0].path})"></span>
+    <span $ref="0" :style="{backgroundImage:"url("+path+")"}"></span>
     // $ref="绑定引用"
     // :src="绑定节点变量"
     <img $ref="1" :src="$ref[1].src"/>
     <div>
-        <span @for> </span>
+        <span @each> </span>
     </div>
-</div>`
+</div>
+`
 
 const _SYMBOL = {
     ref: '$ref',
@@ -19,126 +20,117 @@ const _SYMBOL = {
 const TemplateData = require("./templateData");
 const TemplateList = require("./templatelist");
 
-class Template {
-    constructor(tplData, engine) {
-        this._tplData = tplData;
+class _ {
+    constructor(renderData, engine) {
+        this.renderData = renderData;
         this.$ref = renderData.nodes;
         this._engine = engine;
         /**
          * 主流程
          * */
-        _parser();
+        let tree = this.parseTree(engine, this.tpl);
     }
-    // 模板解析
-    _parser() {
-        let that = this;
-        let structure = this._engine.parse(this.tpl);
+    get tpl() {
+        return '<div></div>';
     }
-    _traversal() {
-        ~ function (structure) {
-            structure.forEach(nd => {
-                // 引用对象
-                let refData = this.$ref[nd.attrs[_SYMBOL.ref]];
-                let tplData = new TemplateData();
-                delete nd.attrs[_SYMBOL.ref];
-
-                Object.keys(nd.attrs).forEach(key => {
-                    let value = nd.attrs[key];
-                    if (~key.indexOf(_SYMBOL.order)) {
-                        // 方法
-                    } else if (~key.indexOf(_SYMBOL.var)) {
-                        // 变量
-
-
-                    } else {
-                        // 普通属性
-                    }
-                })
-                arguments.callee(structure.children)
-            })
-        }(structure)
+    // 构建树
+    _parseTree(engine, tpl) {
+        let structure = engine.parse(tpl);
+        let trees = this._traversal(structure, true);
+        return trees[0];
     }
-    parseOrder(funcName, refData) {
+    // 遍历模板树结构
+    _traversal(structure, isRoot) {
+        return structure.map(nd => {
+            // 构建对象
+            tplData = this._parseObj(nd, isRoot);
+            this._traversal(structure.children)
+            return tplData;
+        });
+    }
+    _parseObj(nd, isRoot) {
+        let refIndex = nd.attrs[_SYMBOL.ref],
+            renderData = null,
+            tplData = null
+        // 根据条件获取引用对象
+        if (refIndex) {
+            renderData = this.$ref[refIndex];
+        } else if (isRoot) {
+            renderData = this.renderData;
+        }
+
+        if (renderData.modelName) {
+            // 如果有模型名称，则进入下一层模板
+            new TPL(renderData, this._engine)
+
+        } else {
+            tplData = new TemplateData(data);
+        }
+        // 否则，进入下一层遍历
+
+        // 删除「引用」字段
+        delete nd.attrs[_SYMBOL.ref];
+        return tplData;
+    }
+    // 构架对象属性
+    _parseProp(nd) {
+        Object.keys(nd.attrs).forEach(key => {
+            let value = nd.attrs[key];
+            if (~key.indexOf(_SYMBOL.order)) {
+                // 方法
+                this._parseOrder(key.slice(1))
+            } else if (~key.indexOf(_SYMBOL.var)) {
+                // 变量
+                this._parseVar(key.slice(1), value);
+            } else {
+                // 普通属性
+                this._parseAttr(key, value);
+            }
+        });
+    }
+    // 编译命令
+    _parseOrder(funcName, refData) {
         if (this[funcName]) {
-            this[funcName].call(this, refData, this._data);
+            this[funcName].call(refData, this._data, this);
         } else {
             console.error(`template function [${value}] doesn't exist!`)
         }
     }
-    parseVar(varName, refData) {
-        this.attrData
+    // 编译变量属性
+    _parseVar(varName, value) {
+        let keys = Object.keys(this),
+            values = Object.keys(this).map(n);
+        let value = (new Function(...keys, `return ${value}`)).call(this, ...values);
+        this.set(this, varName, value);
     }
-    parseAttr(attrName, value) {
-        this.attrData[attrName] = value;
+    // 设置普通属性
+    _parseAttr(attrName, value) {
+        this.set(this, attrName, value)
     }
-    for () {
+    each() {
 
     }
-    static set(target, value) {
-
+    set(target, prop, value) {
+        if (typeof target.attrData[prop] == 'object') {
+            if (typeof value != 'object') {
+                return;
+            }
+            Object.assign(target.attrData[prop], value);
+        } else {
+            target.attrData[prop] = value;
+        }
     }
 }
-let parse = function (data, engine) {
-    let obj = new TemplateData(data);
-    let tpl = TemplateList.some(n => n.toLowerCase() == (obj.modelName + '').toLowerCase());
-    if (tpl) {
-        tpl(obj, engine);
-    }
-    data.children.forEach(child => {
-        obj.children.push(parse(child));
+
+let parse = function (renderData, engine) {
+    let TPL = TemplateList.some(n => n.toLowerCase() == (renderData.modelName + '').toLowerCase());
+    let obj = new TPL(renderData, engine);
+    renderData.children.forEach(child => {
+        obj.children.push(parse(child, engine));
     });
 }
 
 module.exports = {
-    Template,
+    Template: _,
     parse,
-    XML_Engine
-}
-
-class XML_Engine {
-    // xml结构解析
-    static parse() {
-        let rootTpl = [],
-            curTpl = rootTpl,
-            pen = [rootTpl];
-        temp.match(/<.*?>/img).forEach(nd => {
-            // 结束节点
-            if (~nd.indexOf('</')) {
-                let obj = pen.shift();
-                curTpl = pen[0].children;
-            } else {
-                // 普通节点
-                let obj = {
-                    tag: Template._xmlTag(nd),
-                    isCloseTag: Template._xmlIsCloseTag(nd),
-                    attrs: Template._xmlAttr(nd),
-                    children: []
-                };
-                curTpl.push(obj);
-                if (!~nd.indexOf('/>')) {
-                    // 如果非闭合节点
-                    pen.unshift(obj);
-                    curTpl = pen[0].children;
-                }
-            }
-        });
-        return rootTpl;
-    }
-    // 标签解析
-    static _xmlTag(str) {
-        return str.slice(1, str.indexOf(' '))
-    }
-    static _xmlIsCloseTag(str) {
-        return ~str.indexOf('/>');
-    }
-    static _xmlAttr(str) {
-        let obj = {};
-        str.match(/[^\s]+=(\{.*?\}|[^\s]+)/img).forEach(val => {
-            let m = val.split('='),
-                key = m[0],
-                value = m[1].slice(1, -1); //剔除前后双引号
-            obj[key] = value;
-        });
-        return obj;
-    }
 }
