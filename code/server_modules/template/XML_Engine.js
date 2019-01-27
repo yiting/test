@@ -12,14 +12,14 @@ class XML_Engine {
             } else {
                 // 普通节点
                 let tag = XML_Engine._xmlTag(nd),
-                    isCloseTag = XML_Engine._xmlIsCloseTag(nd),
+                    isClosedTag = XML_Engine._xmlIsCloseTag(nd),
                     attrs = XML_Engine._xmlAttr(nd.slice(
                         nd.indexOf(tag) + tag.length,
-                        nd.indexOf(isCloseTag ? '/>' : '>')
+                        nd.indexOf(isClosedTag ? '/>' : '>')
                     ));
                 let obj = {
                     tag,
-                    isCloseTag,
+                    isClosedTag,
                     attrs,
                     children: []
                 };

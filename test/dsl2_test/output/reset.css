@@ -29,7 +29,8 @@ em {
 }
 
 body.cycle *,
-body.model *,
+body.element *,
+body.widget *,
 body.layer * {
     visibility: hidden;
     background-image: none;
@@ -39,12 +40,12 @@ body.default .img {
     background-color: rgba(255, 0, 0, .3);
 }
 
-body.model [md^="wg"] {
+body.widget [md^="wg"] {
     visibility: visible;
     background-color: rgba(255, 0, 139, .3);
 }
 
-body.model [md^="em"] {
+body.element [md^="em"] {
     visibility: visible;
     background-color: rgba(120, 40, 228, .3);
 }

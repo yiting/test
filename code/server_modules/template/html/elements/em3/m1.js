@@ -26,7 +26,7 @@ class EM3M1 extends Template {
   }
   get constraints() {
     return {
-      "LayoutDirection": "Vertical",
+      "LayoutDirection": "Horizontal",
       "LayoutJustifyContent": "Start"
     }
   }

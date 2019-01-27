@@ -314,44 +314,6 @@ const utils = {
         return res;
     },
 
-    // 将传进的数组根据y轴投影分成多个数组
-    groupByYaxis: function (arr) {
-        let result = [];
-        arr.forEach(item => {
-            // item类型为MatchData
-            if (result.length == 0) {
-                result[0] = [];
-                result[0].minY = item.abY;
-                result[0].maxY = item.abYops;
-                result[0].push(item);
-            } else {
-                let canGroup = true;
-                for (let i = 0; i < result.length; i++) {
-                    // 判断item能否和现在数组划分出的y轴空间相交
-                    if (item.abY <= result[i].maxY && item.abYops >= result[i].minY) { // 相交
-                        // 将result[i]的范围扩大
-                        result[i].minY = item.abY < result[i].minY ? item.abY : result[i].minY;
-                        result[i].maxY = item.abYops > result[i].maxY ? item.abYops : result[i].maxY;
-                        result[i].push(item);
-                        canGroup = false;
-                        break;
-                    }
-                }
-
-                if (canGroup) {
-                    // 创建一个新的范围
-                    let nowIndex = result.length;
-                    result[nowIndex] = [];
-                    result[nowIndex].minY = item.abY;
-                    result[nowIndex].maxY = item.abYops;
-                    result[nowIndex].push(item);
-                }
-            }
-        });
-
-        return result;
-    },
-
     /**
      * 给数组排序, 通过传入需要比较的值做比较
      * @param {Array} arr 需要比较数组
@@ -388,184 +350,6 @@ const utils = {
         }
     },
 
-    // 将传进的数据按面积从大到小排列
-    sortListByArea: function (arr) {
-        if (!arr || arr.length == 0) {
-            return;
-        }
-
-        // 传进的数据包含item.width, item.height
-        let len = arr.length;
-        for (let i = 0; i < len; i++) {
-            for (let j = 0; j < len - i - 1; j++) {
-                if ((arr[j].width * arr[j].height) < (arr[j + 1].width * arr[j + 1].height)) {
-                    let temp = arr[j + 1];
-                    arr[j + 1] = arr[j];
-                    arr[j] = temp;
-                }
-            }
-        }
-    },
-
-    // 将传进的element(QImage, QShape按y轴投影上大小排序, 即height值)
-    // 从小到大排列
-    sortElementListByYaxis: function (arr) {
-        if (!arr || arr.length == 0) {
-            return;
-        }
-
-        // arr里面是MatchData, 通过getHeight()方法获取高度
-        let len = arr.length;
-        for (let i = 0; i < len; i++) {
-            for (let j = 0; j < len - i - 1; j++) {
-                if (arr[j].getHeight() > arr[j + 1].getHeight()) {
-                    let temp = arr[j + 1];
-                    arr[j + 1] = arr[j];
-                    arr[j] = temp;
-                }
-            }
-        }
-    },
-
-    sortWidgetListByYaxis: function (arr) {
-        if (!arr || arr.length == 0) {
-            return;
-        }
-
-        // arr里面是数组
-        let len = arr.length;
-        for (let i = 0; i < len; i++) {
-            for (let j = 0; j < len - i - 1; j++) {
-                if (arr[j].minY > arr[j + 1].minY) {
-                    let temp = arr[j + 1];
-                    arr[j + 1] = arr[j];
-                    arr[j] = temp;
-                }
-            }
-        }
-    },
-
-    // elements能单独成组并不包含在widgets投影中的
-    groupElementInWidgetSeparateInYaxis: function (widgets, elements) {
-        if (!widgets || !elements) {
-            return;
-        }
-
-        let result = [];
-        let tempArr = [];
-        elements.forEach(item => {
-            let canInGroup = true;
-
-            for (let i = 0; i < widgets.length; i++) {
-                if (item.abY <= widgets[i].maxY && item.abYops >= widgets[i].minY) {
-                    // 和widget有相交的就不再进组
-                    canInGroup = false;
-                    break;
-                }
-            }
-
-            // 不和widgets里面的任何y轴投影有冲突
-            if (canInGroup) {
-                if (tempArr.length == 0) {
-                    tempArr[0] = [];
-                    tempArr[0].minY = item.abY;
-                    tempArr[0].maxY = item.abYops;
-                    tempArr[0].push(item);
-                } else {
-                    let canNewTemp = true;
-
-                    // item和tempArr有相交关系的
-                    for (let i = 0; i < tempArr.length; i++) {
-                        if (item.abY <= tempArr[i].maxY && item.abYops >= tempArr[i].minY) {
-                            // 将result[i]的范围扩大
-                            tempArr[i].minY = item.abY < tempArr[i].minY ? item.abY : tempArr[i].minY;
-                            tempArr[i].maxY = item.abYops > tempArr[i].maxY ? item.abYops : tempArr[i].maxY;
-
-                            tempArr[i].push(item);
-                            canNewTemp = false;
-                            break;
-                        }
-                    }
-
-                    if (canNewTemp) {
-                        // 创建一个新的范围
-                        let nowIndex = tempArr.length;
-                        tempArr[nowIndex] = [];
-                        tempArr[nowIndex].minY = item.abY;
-                        tempArr[nowIndex].maxY = item.abYops;
-                        tempArr[nowIndex].push(item);
-                    }
-                }
-            } else {
-                // 余下的就放进没处理数组返回
-                result.push(item);
-            }
-        });
-
-        // 增加进widgets
-        if (tempArr.length >= 0) {
-            tempArr.forEach(item => {
-                widgets.push(item);
-            });
-        }
-
-        return result;
-    },
-
-    //
-    groupElementInWidgetContainInYaxis: function (widgets, elements) {
-        if (!widgets || !elements) {
-            return;
-        }
-
-        let result = [];
-        elements.forEach(item => {
-            let isMatch = false;
-            for (let i = 0; i < widgets.length; i++) {
-                let wg = widgets[i];
-                // widgets包含element
-                if (item.abY >= wg.minY && item.abYops <= wg.maxY) {
-                    wg.push(item);
-                    isMatch = true;
-                    break;
-                }
-            }
-
-            if (!isMatch) {
-                result.push(item);
-            }
-        });
-
-        return result;
-    },
-
-    // 节点A是否包含节点B
-    isNodeAcontainNodeB: function (nodeA, nodeB) {
-        let result = false;
-        if (nodeA.abX <= (nodeB.abX + nodeB.width) &&
-            (nodeA.abX + nodeA.width) >= nodeB.abX &&
-            nodeA.abY <= (nodeB.abY + nodeB.height) &&
-            (nodeA.abY + nodeA.height) >= nodeB.abY) {
-
-            result = true;
-        }
-
-        return result;
-    },
-
-    // 节点A全包含节点B
-    isNodeAfullcontainNodeB: function (nodeA, nodeB) {
-        let result = false;
-        if (nodeA.abX <= nodeB.abX &&
-            nodeA.abY <= nodeB.abY &&
-            (nodeA.abX + nodeA.width) >= (nodeB.abX + nodeB.width) &&
-            (nodeA.abY + nodeA.height) >= (nodeB.abY + nodeB.height)) {
-
-            result = true;
-        }
-
-        return result;
-    },
 
     // 屏幕输出组件信息
     logWidgetInfo: function (datas) {
@@ -684,13 +468,13 @@ const utils = {
     },
     // 在Y轴上是包含关系
     isYWrap(a, b) {
-        return Math.abs(a.abY + a.height / 2 - b.abY - b.height / 2) <=
-            Math.abs(a.height - b.height) / 2
+        return Math.abs((a.abY + a.abYops) / 2 - (b.abY + b.abYops) / 2) <=
+            Math.abs(a.abYops - a.abY - b.abYops + b.abY) / 2
     },
     // 在X轴上是包含关系
     isXWrap(a, b) {
-        return Math.abs(a.abX + a.width / 2 - b.abX - b.width / 2) <=
-            Math.abs(a.width - b.width) / 2
+        return Math.abs((a.abX + a.abXops) / 2 - (b.abX + b.abXops) / 2) <=
+            Math.abs(a.abXops - a.abX - b.abXops + b.abX) / 2
     },
     // 相连关系
     isConnect(a, b, dir = 0) {
@@ -699,22 +483,23 @@ const utils = {
     },
     // 水平方向相连
     isXConnect(a, b, dir = 0) {
-        const aCx = a.abX + a.width / 2,
-            bCx = b.abX + b.width / 2;
-        return Math.abs(aCx - bCx) <= (a.width + b.width) / 2 + dir;
+        const aCx = (a.abX + a.abXops) / 2,
+            bCx = (b.abX + b.abXops) / 2;
+        return Math.abs(aCx - bCx) <= (a.abXops - a.abX + b.abXops - b.abX) / 2 + dir;
     },
     // 垂直方向相连
     isYConnect(a, b, dir = 0) {
-        const aCy = a.abY + a.height / 2,
-            bCy = b.abY + b.height / 2;
-        return Math.abs(aCy - bCy) <= (a.height + b.height) / 2 + dir;
+        const aCy = (a.abY + a.abYops) / 2,
+            bCy = (b.abY + b.abYops) / 2;
+        return Math.abs(aCy - bCy) <= (a.abYops - a.abY + b.abYops - b.abY) / 2 + dir;
     },
     /**
      * 是否垂直
      * 当doms数量只有一个,返回false
      */
     isVertical(arr, errorCoefficient = 0) {
-        if (arr.length == 0) {
+        return !this.isHorizontal(arr, errorCoefficient);
+        /* if (arr.length == 0) {
             return false;
         }
         let prev;
@@ -728,7 +513,7 @@ const utils = {
                 prev.abX < dom.abX + dom.width + errorCoefficient;
             prev = dom;
             return res;
-        })
+        }) */
     },
     horizontalLogic(a, b, errorCoefficient) {
         if (

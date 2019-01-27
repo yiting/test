@@ -11,6 +11,7 @@ class HtmlDom {
         this.modelId = node.modelId;
         this.modelName = node.modelName;
         this.tagName = node.tagName;
+        this.isClosedTag = node.isClosedTag;
         this.text = node.text;
         this.abX = node.abX || 0;
         this.abY = node.abY || 0;

@@ -14,7 +14,7 @@ let layout = function (dslTree, layoutType) {
     // 相似
     _handleSimilar(dslTree._treeData, layoutType);
     // 循环
-    // _handleCircle(dslTree._treeData, layoutType);
+    _handleCircle(dslTree._treeData, layoutType);
     // 排序
     _handleSort(dslTree, dslTree._treeData, layoutType);
 }

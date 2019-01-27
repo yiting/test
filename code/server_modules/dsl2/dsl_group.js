@@ -206,8 +206,11 @@ class Tree {
                  * 在父节点上,
                  * 描述：parent面积必 大于等于 child面积，通过判断是否存在包含关系得出，child是否为parent子节点
                  */
+                // if (parent.id == 'E460411C-3DF7-4115-B65E-47ADA2DF0482cc' && child.id =='A4CD50D4-1033-4BA5-8201-CB8277303E90c'){
+                //     debugger
+                // }
                 if (parent.type != Common.QText &&
-                    parent.type != Common.QWidget &&
+                    // parent.type != Common.QWidget &&
                     // 层级关系
                     child.zIndex > parent.zIndex &&
                     (
@@ -217,21 +220,22 @@ class Tree {
                         ) || (
                             Utils.isXConnect(parent, child, -1) &&
                             Utils.isYWrap(parent, child)
-                        )
+                        ) ||
                         // 如果超出横向连结，纵向包含
-                        /*  (
-                             child.abX > parent.abX &&
-                             Utils.isXConnect(parent, child, -1) &&
-                             Utils.isYWrap(parent, child)
-                         ) ||
-                         // 纵向连接，横向包含
-                         (
-                             parent.abY > child.abY &&
-                             Utils.isYConnect(parent, child, -1) &&
-                             Utils.isXWrap(parent, child)
-                         ) */
+                        (
+                            child.abX > parent.abX &&
+                            Utils.isXConnect(parent, child, -1) &&
+                            Utils.isYWrap(parent, child)
+                        ) ||
+                        // 纵向连接，横向包含
+                        (
+                            parent.abY > child.abY &&
+                            Utils.isYConnect(parent, child, -1) &&
+                            Utils.isXWrap(parent, child)
+                        )
 
                     )) {
+
                     /* if (!Utils.isWrap(parent, child)) {
                     // if (child.id == 'A4CD50D4-1033-4BA5-8201-CB8277303E90c') debugger
                         child.constraints["LayoutSelfPosition"] = Constraints.LayoutSelfPosition.Absolute;
@@ -382,9 +386,9 @@ Tree.createCycleData = function (parent, nodesArr) {
             //renderDataI.set('similarId', similarId);
             renderDataI.set('modelRef', i + '');
             // 递归读取nodes的节点
-            Tree._handleCycleData(renderDataI, nodes[0]);
+            // Tree._handleCycleData(renderDataI, nodes[0]);
             // 这里先改用key-value的形式储存在nodes,规避放.childrend的问题
-            //newRenderData.children.push(renderDataI);
+            // newRenderData.children.push(renderDataI);
             newRenderData.nodes[i + ''] = renderDataI;
             continue;
         }

@@ -11,16 +11,15 @@ const WGNM1 = {
           </ul>`
   }; */
 const Template = require('../../../template');
-class WGNM1 extends Template {
+class CYCLE01 extends Template {
   constructor() {
     super(...arguments);
   }
   get template() {
-    return `
-      <ul class="list">
-          <li @for>
+    return `<ul class="list">
+          <li $each>
           </li>
       </ul>`
   }
 }
-module.exports = WGNM1;
+module.exports = CYCLE01;

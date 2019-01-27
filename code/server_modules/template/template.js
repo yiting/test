@@ -13,6 +13,7 @@ const __tpl = `./html/templatelist
 
 const _SYMBOL = {
     ref: '$ref',
+    each: '$each',
     order: '@',
     var: ':',
     attr: '',
@@ -53,22 +54,58 @@ class Template {
     }
     // 遍历模板树结构
     _traversal(structure, parentTpl, isRoot) {
-        let arr = structure.map(nd => {
+        let arr = [];
+        for (let index = 0; index < structure.length; index++) {
+            let nd = structure[index];
+
+            // 预处理
+            let res = this._preProp(nd, structure);
+            if (res === null) {
+                continue;
+            }
+
             // 构建对象
-            let tplData = this._parseObj(nd, isRoot);
+            let tplData = this._parseObj(nd, parentTpl, isRoot);
+            // 赋值
+            this._parseProp(tplData, nd, parentTpl);
+            // 遍历子节点
             this._traversal(nd.children, tplData)
-            return tplData;
-        });
+            // 如果为模板虚拟节点，则自动构建坐标
+            if (!tplData.id) {
+                tplData.resize();
+                tplData.id = tplData.serialId;
+                tplData.modelId = this._renderData.id;
+                tplData.modelName = null;
+            }
+            arr.push(tplData);
+        };
         if (parentTpl) {
             parentTpl.children.push(...arr);
         }
         return arr;
     }
-    _parseObj(nd, isRoot) {
+
+    _preProp(nd, structure) {
+        if (Object.keys(nd.attrs).includes(_SYMBOL.each)) {
+            delete nd.attrs[_SYMBOL.each];
+            Object.keys(this._renderData.nodes).forEach(index => {
+                let newAttr = Object.assign({}, nd.attrs);
+                let newNd = Object.assign({}, nd)
+                newNd.attrs = newAttr;
+                newNd.attrs.$ref = index;
+                structure.push(newNd);
+            });
+            return null;
+        }
+    }
+    // 根据模板节点，构建数据节点
+    _parseObj(nd, parentTpl, isRoot) {
         let refIndex = nd.attrs[_SYMBOL.ref],
             renderData,
             tplData,
-            tplData2
+            tplDataChild
+        // 删除「引用」字段
+        delete nd.attrs[_SYMBOL.ref];
         // 根据条件获取引用对象
         if (this.$ref && refIndex) {
             renderData = this.$ref[refIndex];
@@ -79,13 +116,10 @@ class Template {
         tplData = new TemplateData(renderData);
         if (!isRoot && renderData && renderData.modelName && renderData.nodes && renderData.nodes['1']) {
             // 如果子节点有模型名称，则进入下一层模板
-            tplData2 = Template.parse(renderData, null, this._templateList);
-            tplData = Template._assignObj(tplData2, tplData);
+            tplDataChild = Template.parse(renderData, null, this._templateList);
+            // console.log(tplDataChild.tag,tplData.tag)
+            tplData = Template._assignObj(tplDataChild, tplData);
         }
-        // 删除「引用」字段
-        delete nd.attrs[_SYMBOL.ref];
-        // 赋值
-        this._parseProp(tplData, nd);
         return tplData;
     }
     /**
@@ -116,11 +150,11 @@ class Template {
                 this._parseAttr(refData, key, value);
             }
         });
-        refData.tag = nd.tag;
-        refData.isCloseTag = nd.isCloseTag;
+        refData.tagName = nd.tag;
+        refData.isClosedTag = nd.isClosedTag;
     }
     // 编译命令
-    _parseOrder(refData, funcName) {
+    _parseOrder(refData, funcName, value) {
         if (this[funcName]) {
             this[funcName].call(this, refData);
         } else {
@@ -150,7 +184,6 @@ class Template {
             try {
                 newValue = (new Function(...keys, `return ${value}`)).call(this, ...args);
             } catch (e) {
-                console.log(varName, value)
                 console.error(e);
             }
         }
@@ -159,9 +192,6 @@ class Template {
     // 设置普通属性
     _parseAttr(refData, attrName, value) {
         this.set(refData, attrName, value)
-    }
-    each() {
-
     }
     set(refData, prop, value) {
         let target = Object.keys(refData).includes(prop) ? refData : refData.tplAttr;
