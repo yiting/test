@@ -97,6 +97,7 @@ class LayoutSimilar extends Model.LayoutModel {
          * 3. 如果非layer，三基线对齐
          * 4. 如果没有子节点，则相似
          */
+        if (a.node.id == '7D274F55-00AB-45B9-AC6C-F1D39A3D5149cc' && b.node.id == '812F4767-27A5-413A-AF78-2CAD0204EC77cc') debugger
         if (a.modelName != b.modelName) {
             return
         };
@@ -105,7 +106,7 @@ class LayoutSimilar extends Model.LayoutModel {
             // 如果相连，则为不同
             return;
         }
-        if (a.type == Common.Layer) {
+        if (a.node.type == Common.QLayer) {
             return a.isHorizontal == b.isHorizontal &&
                 a.compareChildLength == b.compareChildLength &&
                 (
@@ -120,7 +121,7 @@ class LayoutSimilar extends Model.LayoutModel {
                             a.ctY == b.ctY / 2)
                     )
                 )
-        } else if (a.type == Common.Widget) {
+        } else if (a.node.type == Common.QWidget) {
             // 如果为Widget，三线对齐相同
             return a.abY == b.abY ||
                 a.abYops == b.abYops ||
@@ -129,7 +130,7 @@ class LayoutSimilar extends Model.LayoutModel {
                 a.abXops == b.abXops ||
                 a.ctX == b.ctX ||
                 (a.width == b.width && a.height == b.height)
-        } else if (a.type == Common.Element) {
+        } else if (a.node.type == Common.QElement) {
             // 如果为Element，则同父节点，子节点数相同，三线对齐相同
             return a.parentId == b.parentId &&
                 (a.abY == b.abY ||

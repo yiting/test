@@ -206,13 +206,15 @@ class Tree {
                  * 在父节点上,
                  * 描述：parent面积必 大于等于 child面积，通过判断是否存在包含关系得出，child是否为parent子节点
                  */
-                // if (parent.id == 'E460411C-3DF7-4115-B65E-47ADA2DF0482cc' && child.id =='A4CD50D4-1033-4BA5-8201-CB8277303E90c'){
-                //     debugger
-                // }
+
+                /* if (parent.id == '2D9DC358-45CD-4444-BC55-0342236C818Ec' && child.id =='3C65FAAE-BF49-4FA8-847E-1070E8920880c'){
+                    该节点的child的zindex小于Parent，视觉上应该大于
+                    debugger
+                } */
                 if (parent.type != Common.QText &&
                     // parent.type != Common.QWidget &&
                     // 层级关系
-                    child.zIndex > parent.zIndex &&
+                    // child.zIndex > parent.zIndex &&
                     (
                         // 包含关系
                         (

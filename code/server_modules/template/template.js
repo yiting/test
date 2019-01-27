@@ -38,10 +38,6 @@ class Template {
          * */
         // 遍历模板树
         this._rootData = this._traversal(this._structure, this._parentTpl, true)[0];
-        // 遍历结构树
-        renderData.children && renderData.children.forEach(childRenderData => {
-            Template.parse(childRenderData, this._rootData, this._templateList)
-        });
     }
     getData() {
         return this._rootData;
@@ -113,12 +109,18 @@ class Template {
             renderData = this._renderData;
         }
         // 构建模板节点
-        tplData = new TemplateData(renderData);
+        tplData = new TemplateData(renderData,this._renderData);
         if (!isRoot && renderData && renderData.modelName && renderData.nodes && renderData.nodes['1']) {
             // 如果子节点有模型名称，则进入下一层模板
             tplDataChild = Template.parse(renderData, null, this._templateList);
             // console.log(tplDataChild.tag,tplData.tag)
             tplData = Template._assignObj(tplDataChild, tplData);
+        }
+        // 遍历结构树
+        if (renderData && renderData.children) {
+            renderData.children.forEach(childRenderData => {
+                Template.parse(childRenderData, tplData, this._templateList)
+            });
         }
         return tplData;
     }
@@ -169,6 +171,7 @@ class Template {
             // 如果是函数
             if (this[funcName]) {
                 try {
+                    // console.log(this)
                     newValue = this[funcName].call(this, refData);
                 } catch (e) {
                     console.error(`template function [${funcName}] error!`);

@@ -100,6 +100,28 @@ const utils = {
         });
         return newArr;
     },
+    calRange(nodes) {
+        if (!nodes) {
+            return {};
+        }
+        let o = {
+            abX: Number.POSITIVE_INFINITY,
+            abY: Number.POSITIVE_INFINITY,
+            abYops: Number.NEGATIVE_INFINITY,
+            abXops: Number.NEGATIVE_INFINITY,
+            width: 0,
+            height: 0
+        }
+        nodes.forEach((d, i) => {
+            o.abX = d._abX < o.abX ? d._abX : o.abX;
+            o.abY = d._abY < o.abY ? d._abY : o.abY;
+            o.abYops = o.abYops < d._abYops ? d._abYops : o.abYops;
+            o.abXops = o.abXops < d._abXops ? d._abXops : o.abXops;
+        });
+        o.height = o.abYops - o.abY;
+        o.width = o.abXops - o.abX;
+        return o;
+    },
 
 }
 

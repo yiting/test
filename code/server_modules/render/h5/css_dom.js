@@ -574,7 +574,7 @@ class CssDom {
             'Start': 'start',
             'End': 'end',
             'Center': 'center',
-        } [this.constraints[axle]] || null;
+        }[this.constraints[axle]] || null;
     }
     //
     get boxPack() {
@@ -584,7 +584,7 @@ class CssDom {
             'Start': 'start',
             'End': 'end',
             'Center': 'center',
-        } [this.constraints[axle]] || null;
+        }[this.constraints[axle]] || null;
     }
     //
     get width() {
@@ -874,6 +874,10 @@ class CssDom {
         }
     }
     get overflow() {
+        // if(this.children)
+        if (this.width == Common.DesignWidth && Utils.calRange(this.children).width > this.width) {
+            return 'auto'
+        }
         if (this.styles.texts) {
             return 'hidden';
         }

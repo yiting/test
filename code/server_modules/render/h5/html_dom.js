@@ -74,7 +74,7 @@ class HtmlDom {
     getHtmlStart(_layoutType) {
         if (_layoutType == Common.TestLayout) {
             let modelName = this.modelName ? `md="${this.modelName}"` : '';
-            return `<${this.getTag()} ${this.id} ${this.getAttrId()} ${modelName} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+            return `<${this.getTag()} ${this.id} ${this.modelId} ${this.getAttrId()} ${modelName} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
         }
         return `<${this.getTag()} ${this.getAttrId()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
     }

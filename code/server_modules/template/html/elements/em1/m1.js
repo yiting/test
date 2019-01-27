@@ -10,7 +10,14 @@ class EM1M1 extends Template {
     super(...arguments);
   }
   get template() {
-    return `<span class="text"></span>`
+    return `<span :class="className()"></span>`
+  }
+  className(node){
+    if(node.styles.texts[0].size>30){
+      return 'title'
+    }
+    return 'text'
+
   }
 }
 

@@ -23,6 +23,9 @@ p {
 em {
     font-style: normal;
 }
+hr{
+    border-style: none;
+}
 
 .btn:active {
     opacity: .8;

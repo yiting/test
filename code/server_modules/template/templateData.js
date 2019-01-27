@@ -1,5 +1,5 @@
 class TemplateData {
-    constructor(o = {}) {
+    constructor(o = {}, modelData) {
         this.tag = o.tag || '';
         this.serialId = TemplateData.index++;
         this.isCloseTag = o.isCloseTag;
@@ -8,7 +8,7 @@ class TemplateData {
         this.type = o.type;
         this.modelName = o.modelName;
         this.modelRef = o.modelRef;
-        this.modelId = o.modelId;
+        this.modelId = o.id == modelData.id ? null : modelData.id;
         this.abX = o.abX;
         this.abY = o.abY;
         this.abXops = o.abXops;
