@@ -760,8 +760,7 @@ class CssDom {
                 return 0;
             }
             // 如果水平居中
-            if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center &&
-                !nextNode) {
+            if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center) {
                 return 0;
             }
 

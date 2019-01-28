@@ -73,13 +73,13 @@ class LayoutSimilar extends Model.LayoutModel {
             "abYops": node.abYops,
             "ctX": (node.abX + node.abXops) / 2,
             "ctY": (node.abY + node.abYops) / 2,
-            "height": node.height,
-            "width": node.width,
+            "height": node.abYops - node.abY,
+            "width": node.abXops - node.abX,
             "modelName": node.modelName,
             "isHorizontal": Utils.isHorizontal(node.children),
-            "compareChildLength": node.children.filter(child => {
+            "compareChildren": node.children.filter(child => {
                 return child.constraints["LayoutSelfPosition"] != Constraints.LayoutSelfPosition.Absolute
-            }).length
+            })
         });
     }
     // 遍历所有结构
@@ -93,11 +93,11 @@ class LayoutSimilar extends Model.LayoutModel {
         /**
          * 逻辑：
          * 1. 模型名称相似
-         * 2. 如果是layer，layer子节点相似
+         * 2. 如果是layer，layer子节点相似,三基线对齐
          * 3. 如果非layer，三基线对齐
          * 4. 如果没有子节点，则相似
          */
-        if (a.node.id == '7D274F55-00AB-45B9-AC6C-F1D39A3D5149cc' && b.node.id == '812F4767-27A5-413A-AF78-2CAD0204EC77cc') debugger
+        if (a.node.id == 'layer12' && b.node.id == 'layer13') debugger
         if (a.modelName != b.modelName) {
             return
         };
@@ -108,7 +108,11 @@ class LayoutSimilar extends Model.LayoutModel {
         }
         if (a.node.type == Common.QLayer) {
             return a.isHorizontal == b.isHorizontal &&
-                a.compareChildLength == b.compareChildLength &&
+                a.compareChildren.length == b.compareChildren.length &&
+                a.compareChildren.every((ac, i) => {
+                    let bc = b.compareChildren[i];
+                    return ac.modelName == bc.modelName
+                }) &&
                 (
                     (a.height == b.height &&
                         (a.abX == b.abX ||

@@ -22,34 +22,34 @@ class BaseModel {
         this._imageNum = imageNum || 0;
         this._shapeNum = shapeNum || 0;
         this._elementNum = this._textNum + this._iconNum + this._imageNum + this._shapeNum;
-        
+
         // 当传进节点进行匹配时节点属性的记录
-        this._nodes = null;                                        // 需要进行匹配的元素
-        this._nodeTexts = null;                                    // 匹配的元素中文字元素
-        this._nodeIcons = null;                                    // 匹配的元素中Icon元素
-        this._nodeImages = null;                                   // 匹配的元素中图片元素
-        this._nodeShapes = null;                                   // 匹配的元素中图形元素
-        this._matchNodes = {};                                     // 用于记录模板中对应的节点, 以通过key-value的形式返回匹配到的节点
-        
+        this._nodes = null; // 需要进行匹配的元素
+        this._nodeTexts = null; // 匹配的元素中文字元素
+        this._nodeIcons = null; // 匹配的元素中Icon元素
+        this._nodeImages = null; // 匹配的元素中图片元素
+        this._nodeShapes = null; // 匹配的元素中图形元素
+        this._matchNodes = {}; // 用于记录模板中对应的节点, 以通过key-value的形式返回匹配到的节点
+
         // 元素模型的基础属性
         // 属性通过传进的节点计算而来, 用于组件模型匹配时的再计算
-        this.id = null;                                            // 用于匹配删减时用到
-        this.type = modelType || null;                             // 模型的类型
-        this.modelName = name;                                     // 模型的名称
-        this.x = 0;                                                // 在设计稿的x坐标, 这里都先不用处理
-        this.y = 0;                                                // 在设计稿的y坐标, 这里都先不用处理
-        this.abX = 0;                                              // 基于原点的x坐标
-        this.abY = 0;                                              // 基于原点的y坐标
-        this.width = 0;                                            // 宽度
-        this.height = 0;                                           // 高度
-        this.abXops = 0;                                           // 对角坐标x
-        this.abYops = 0;                                           // 对角坐标y
-        this.zIndex = 0;                                           // 显示层级
-        this.priority = priority || Common.LvD;                    // 优先级越大就越先进行匹配 
+        this.id = null; // 用于匹配删减时用到
+        this.type = modelType || null; // 模型的类型
+        this.modelName = name; // 模型的名称
+        this.x = 0; // 在设计稿的x坐标, 这里都先不用处理
+        this.y = 0; // 在设计稿的y坐标, 这里都先不用处理
+        this.abX = 0; // 基于原点的x坐标
+        this.abY = 0; // 基于原点的y坐标
+        this.width = 0; // 宽度
+        this.height = 0; // 高度
+        this.abXops = 0; // 对角坐标x
+        this.abYops = 0; // 对角坐标y
+        this.zIndex = 0; // 显示层级
+        this.priority = priority || Common.LvD; // 优先级越大就越先进行匹配 
 
         // 模型空间是否可左右扩展, 默认不赋值
-        this.canLeftFlex = null;                                   
-        this.canRightFlex = null;    
+        this.canLeftFlex = null;
+        this.canRightFlex = null;
     }
 
     /**
@@ -63,9 +63,9 @@ class BaseModel {
         this._nodeImages = [];
         this._nodeShapes = [];
         this._matchNodes = {};
-        
+
         nodes.forEach(nd => {
-            switch(nd.type) {
+            switch (nd.type) {
                 case Common.QText:
                     this._nodeTexts.push(nd);
                     break;
@@ -78,7 +78,8 @@ class BaseModel {
                 case Common.QShape:
                     this._nodeShapes.push(nd);
                     break;
-                default:;
+                default:
+                    ;
             }
         });
 
@@ -97,17 +98,17 @@ class BaseModel {
                 this.abY = nodes[i].abY;
                 this.abXops = nodes[i].abX + nodes[i].width;
                 this.abYops = nodes[i].abY + nodes[i].height;
-                this.zIndex = nodes[i].zIndex;                  // 层级的设定
+                this.zIndex = nodes[i].zIndex; // 层级的设定
                 continue;
             }
-            
+
             // 比较大小得出这个组件的大小
-            this.abX = (this.abX < nodes[i].abX)? this.abX : nodes[i].abX;
-            this.abY = (this.abY < nodes[i].abY)? this.abY : nodes[i].abY;
-            this.abXops = (this.abXops < nodes[i].abX + nodes[i].width)? nodes[i].abX + nodes[i].width : this.abXops;
-            this.abYops = (this.abYops < nodes[i].abY + nodes[i].height)? nodes[i].abY + nodes[i].height : this.abYops;
+            this.abX = (this.abX < nodes[i].abX) ? this.abX : nodes[i].abX;
+            this.abY = (this.abY < nodes[i].abY) ? this.abY : nodes[i].abY;
+            this.abXops = (this.abXops < nodes[i].abX + nodes[i].width) ? nodes[i].abX + nodes[i].width : this.abXops;
+            this.abYops = (this.abYops < nodes[i].abY + nodes[i].height) ? nodes[i].abY + nodes[i].height : this.abYops;
             // zIndex取最低那个
-            this.zIndex = this.zIndex > nodes[i].zIndex? nodes[i].zIndex : this.zIndex;
+            this.zIndex = this.zIndex > nodes[i].zIndex ? nodes[i].zIndex : this.zIndex;
         }
 
         this.width = Math.abs(this.abXops - this.abX);
@@ -119,7 +120,7 @@ class BaseModel {
      * 匹配前对传进来的节点做处理
      */
     _initNode() {
-        
+
     }
 
     /**
@@ -138,7 +139,7 @@ class BaseModel {
             nd['isMatched'] = true;
         });
     }
-    
+
     /**
      * 是否与组件模型匹配
      * @param nodes 需要匹配的元素
@@ -156,11 +157,10 @@ class BaseModel {
         for (let i = 1; i <= 20; i++) {
             if (this['regular' + i]) {
                 result = this['regular' + i].apply(this);
-                if (!result) {  // 只要有一个不返回true
+                if (!result) { // 只要有一个不返回true
                     break;
                 }
-            }
-            else {
+            } else {
                 break;
             }
         }
@@ -169,7 +169,7 @@ class BaseModel {
             // 匹配了给一个标记
             this._setMatchedNodeSign();
             // 子模型执行
-            this._whenMatched(); 
+            this._whenMatched();
         }
         return result;
     }
@@ -307,7 +307,7 @@ class ElementModel extends BaseModel {
             nd.abXops = nd.abX + nd.width;
             nd.abYops = nd.abY + nd.height;
 
-            switch(nd.type) {
+            switch (nd.type) {
                 case Common.QText:
                     nd.modelName = 'em1-m1';
                     nd.canLeftFlex = false;
@@ -328,11 +328,12 @@ class ElementModel extends BaseModel {
                     nd.canLeftFlex = false;
                     nd.canRightFlex = false;
                     break;
-                default:;
+                default:
+                    ;
             }
         });
     }
-} 
+}
 
 /**
  * 组件模型类
@@ -357,7 +358,7 @@ class WidgetModel extends BaseModel {
      */
     _whenMatched() {
         // 组件模型匹配进来的是MatchData, 所以this._nodes的数据是matchdata
-        
+
     }
 }
 
@@ -388,7 +389,7 @@ class LayoutModel {
         for (let i = 1; i < nodes.length; i++) {
             let preNode = nodes[i - 1];
             let curNode = nodes[i];
-            
+
             // 等于也可能是竖排
             if (curNode.abY < preNode.abYops) {
                 result = false;
@@ -431,8 +432,8 @@ class MatchData {
      */
     _init(model) {
         // 默认暂时这里只使用第一个节点的id和标识, c是一个特别标识, 因为对id每特别需要
-        this.id = model.getNodes()[0].id + 'c' || null; 
-        this.type = model.type || null; 
+        this.id = model.getNodes()[0].id + 'c' || null;
+        this.type = model.type || null;
         this.modelName = model.modelName || 'no-model-name';
         this.x = model.x || 0;
         this.y = model.y || 0;
@@ -448,14 +449,13 @@ class MatchData {
 
         // 相似性标识
         this.similarParentId = null;
-        this.similarId = null;  
-        this.data = null;                                // RenderData
+        this.similarId = null;
+        this.data = null; // RenderData
 
         // 生成this.data 数据
         if (model.type == Common.QWidget) {
             this._addWidgetData(model);
-        }
-        else {
+        } else {
             this._addElementData(model);
         }
     }
@@ -476,7 +476,7 @@ class MatchData {
         renderData.set('type', modelType);
         renderData.set('modelName', modelName);
         renderData.set('modelRef', modelRef);
-        renderData.set('modelId', id);                   // 默认modelId等于id
+        renderData.set('modelId', id); // 默认modelId等于id
 
         renderData.set('abX', data.abX);
         renderData.set('abY', data.abY);
@@ -497,7 +497,7 @@ class MatchData {
      * @param {Object} nodeData 从节点匹配后的数据 
      */
     _createFromElement(renderData, nodeData) {
-        if (!nodeData['1']) {   // 单节点
+        if (!nodeData['1']) { // 单节点
             let text = nodeData['0'].text || null;
             let path = nodeData['0'].path || null;
 
@@ -505,16 +505,15 @@ class MatchData {
             renderData.set('path', path);
             renderData.set('type', nodeData['0'].type);
             renderData.set('styles', nodeData['0'].styles);
-        }
-        else {
+        } else {
             // nodes节点的记录
             renderData.nodes = {};
 
             for (let key in nodeData) {
                 let nData = {};
                 let tmpData = nodeData[key];
-                nData['0'] = nodeData[key];     // 需要构造一个可以递归解析的数据, 只有一个节点
-                
+                nData['0'] = nodeData[key]; // 需要构造一个可以递归解析的数据, 只有一个节点
+
                 let rData = this._createRenderData(tmpData.id, renderData.id, tmpData.modelName, tmpData.type, key, tmpData);
                 // 继续获取designjson里的数据
                 this._createFromElement(rData, nData);
@@ -530,14 +529,13 @@ class MatchData {
      * @param {MatchData} matchData 从节点匹配后的数据 
      */
     _createFromWidget(renderData, matchData) {
-        if (!matchData['1']) {  // 单节点
+        if (!matchData['1']) { // 单节点
             let rData = matchData['0'].getRenderData();
 
             renderData.set('text', rData.text);
             renderData.set('path', rData.path);
             renderData.set('styles', rData.styles);
-        }
-        else {
+        } else {
             renderData.nodes = {};
 
             for (let key in matchData) {
@@ -580,7 +578,7 @@ class MatchData {
     getMatchNode() {
         return this._matchNodes;
     }
-    
+
     /**
      * 获取MatchData生成的RenderData
      * @returns {RenderData}
@@ -619,8 +617,8 @@ class RenderData {
         this._similarParentId = null;
         this._modelId = null;
 
-        this.children = [];             // 子节点储存
-        this.nodes = null;              // 模型里面对应的节点储存, 也是RenderData形式, key-value形式, 对应模板ref
+        this.children = []; // 子节点储存
+        this.nodes = null; // 模型里面对应的节点储存, 也是RenderData形式, key-value形式, 对应模板ref
     }
 
     /**
@@ -679,8 +677,7 @@ class RenderData {
             for (let key in this.nodes) {
                 children.push(this.nodes[key]);
             }
-        }
-        else {
+        } else {
             children = this.children;
         }
 
@@ -707,13 +704,14 @@ class RenderData {
 
     set(prop, value) {
         if (prop == 'children') {
-            // !重要, 可能会重置designjson的zIndex
-            this._zIndex = this.children.length ? Math.min(...this.children.map(nd => nd.zIndex)) : null;
             this.children = value;
             return;
         }
 
         this["_" + prop] = value;
+    }
+    resetZIndex() {
+        // this._zIndex = this.children.length ? Math.min(...this.children.map(nd => nd.zIndex)) : null;
     }
 
     get parentId() {

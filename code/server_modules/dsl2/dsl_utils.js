@@ -463,18 +463,18 @@ const utils = {
         return o;
     },
     // 包含关系
-    isWrap(outer, inner) {
-        return this.isXWrap(outer, inner) && this.isYWrap(outer, inner);
+    isWrap(outer, inner, dir = 0) {
+        return this.isXWrap(outer, inner, dir) && this.isYWrap(outer, inner, dir);
     },
     // 在Y轴上是包含关系
-    isYWrap(a, b) {
+    isYWrap(a, b, dir = 0) {
         return Math.abs((a.abY + a.abYops) / 2 - (b.abY + b.abYops) / 2) <=
-            Math.abs(a.abYops - a.abY - b.abYops + b.abY) / 2
+            Math.abs(a.abYops - a.abY - b.abYops + b.abY) / 2 + dir
     },
     // 在X轴上是包含关系
-    isXWrap(a, b) {
+    isXWrap(a, b, dir = 0) {
         return Math.abs((a.abX + a.abXops) / 2 - (b.abX + b.abXops) / 2) <=
-            Math.abs(a.abXops - a.abX - b.abXops + b.abX) / 2
+            Math.abs(a.abXops - a.abX - b.abXops + b.abX) / 2 + dir
     },
     // 相连关系
     isConnect(a, b, dir = 0) {

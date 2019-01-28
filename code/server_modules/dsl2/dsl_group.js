@@ -1,6 +1,7 @@
 const Common = require('./dsl_common.js');
 const Utils = require('./dsl_utils.js');
 const Model = require('./dsl_model.js');
+const Constraints = require('./dsl_constraints');
 
 /**
  * 将组件进行排版布局
@@ -77,6 +78,10 @@ class Tree {
                 return Utils.isYWrap(a, b);
             }
         });
+        // 如果只有一组，则不生产新组
+        if (layers.length == 1) {
+            return;
+        }
         // 计算边界
         layers.forEach(l => {
             let range = Utils.calRange(l);
@@ -111,6 +116,8 @@ class Tree {
                 arr.forEach(child => {
                     child.set("parentId", node.id);
                     node.set('children', node.children.concat(child));
+                    // 新增节点，重置层级关系
+                    node.resetZIndex();
                 });
                 newChildren.push(node);
             }
@@ -206,11 +213,6 @@ class Tree {
                  * 在父节点上,
                  * 描述：parent面积必 大于等于 child面积，通过判断是否存在包含关系得出，child是否为parent子节点
                  */
-
-                /* if (parent.id == '2D9DC358-45CD-4444-BC55-0342236C818Ec' && child.id =='3C65FAAE-BF49-4FA8-847E-1070E8920880c'){
-                    该节点的child的zindex小于Parent，视觉上应该大于
-                    debugger
-                } */
                 if (parent.type != Common.QText &&
                     // parent.type != Common.QWidget &&
                     // 层级关系
@@ -219,7 +221,26 @@ class Tree {
                         // 包含关系
                         (
                             Utils.isWrap(parent, child)
-                        ) || (
+                        ) ||
+                        (
+                            Utils.isXConnect(parent, child, -1) &&
+                            Utils.isYWrap(parent, child)
+                        ) ||
+
+                        (
+                            parent.abY > child.abY &&
+                            Utils.isYConnect(parent, child, -1) &&
+                            Utils.isXWrap(parent, child)
+                        ) ||
+                        ( //相连关系，两个大小差值较大
+                            Utils.isConnect(parent, child, -1) &&
+                            !Utils.isXWrap(parent, child) &&
+                            !Utils.isYWrap(parent, child) &&
+                            parent.width / child.width > 2 &&
+                            parent.height / child.height > 2
+                        )
+
+                        /* (
                             Utils.isXConnect(parent, child, -1) &&
                             Utils.isYWrap(parent, child)
                         ) ||
@@ -234,7 +255,7 @@ class Tree {
                             parent.abY > child.abY &&
                             Utils.isYConnect(parent, child, -1) &&
                             Utils.isXWrap(parent, child)
-                        )
+                        ) */
 
                     )) {
 
@@ -276,9 +297,9 @@ class Tree {
             parent.set("modelName", 'layer');
         }
         // 如果父节点为widget，则当前节点绝对定位
-        // if (parent.type == Common.QWidget) {
-        //     node.constraints["LayoutSelfPosition"] = Constraints.LayoutSelfPosition.Absolute;
-        // }
+        if (parent.type == Common.QWidget) {
+            node.constraints["LayoutSelfPosition"] = Constraints.LayoutSelfPosition.Absolute;
+        }
         return node;
     }
 

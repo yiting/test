@@ -14,6 +14,7 @@ class LayoutSort extends Model.LayoutModel {
      * @param {Int} layoutType 布局的类型
      */
     handle(parent, nodes, models, layoutType) {
+        // if (~parent.id.indexOf('_0936'))debugger
         if (this._modelType != layoutType) {
             return;
         }
