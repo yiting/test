@@ -58,9 +58,6 @@ class HtmlDom {
     }
     getAttrs() {
         var result = [];
-        if (this.path && this.getTag() == "img") {
-            result.push("src='" + this.path + "'")
-        }
         if (this.tplAttr) {
             result.push(...Object.keys(this.tplAttr).map(key => {
                 if (key != "data-model") {
@@ -74,7 +71,7 @@ class HtmlDom {
     getHtmlStart(_layoutType) {
         if (_layoutType == Common.TestLayout) {
             let modelName = this.modelName ? `md="${this.modelName}"` : '';
-            return `<${this.getTag()} ${this.id} ${this.modelId} ${this.getAttrId()} ${modelName} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+            return `<${this.getTag()} ${this.id} ${this.parentNode&&this.parentNode.id} ${this.getAttrId()} ${modelName} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
         }
         return `<${this.getTag()} ${this.getAttrId()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
     }

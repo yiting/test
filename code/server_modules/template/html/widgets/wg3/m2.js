@@ -11,8 +11,8 @@ const WG3M2 = {
       </dl>
     </div>`
 }; */
-const Template = require('../../../template');
-class WG3M2 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class WG3M2 extends HtmlTemplate {
   constructor() {
     super(...arguments);
   }

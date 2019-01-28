@@ -7,8 +7,8 @@ const EM1M3 = {
 module.exports = EM1M3; */
 
 
-const Template = require('../../../template');
-class EM1M3 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class EM1M3 extends HtmlTemplate {
   constructor() {
     super(...arguments);
   }

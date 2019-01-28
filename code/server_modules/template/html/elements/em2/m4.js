@@ -8,8 +8,8 @@ const EM2M4 = {
         <span :ref="1" :class="h-line"></span>
       </div>`
 }; */
-const Template = require('../../../template');
-class EM2M4 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class EM2M4 extends HtmlTemplate {
   constructor() {
     super(...arguments);
   }

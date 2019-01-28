@@ -8,8 +8,8 @@
         <p :ref="1" :class="text"></p>
     </div>`
 }; */
-const Template = require('../../../template');
-class EM2M1 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class EM2M1 extends HtmlTemplate {
     constructor() {
         super(...arguments);
     }

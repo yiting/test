@@ -23,6 +23,7 @@ const XML_Engine = require('./XML_Engine');
 
 class Template {
     constructor(renderData, parentTpl, templateList) {
+
         // 节点引用
         this.$ref = renderData.nodes;
         // 渲染数据
@@ -53,7 +54,6 @@ class Template {
         let arr = [];
         for (let index = 0; index < structure.length; index++) {
             let nd = structure[index];
-
             // 预处理
             let res = this._preProp(nd, structure);
             if (res === null) {
@@ -109,11 +109,10 @@ class Template {
             renderData = this._renderData;
         }
         // 构建模板节点
-        tplData = new TemplateData(renderData,this._renderData);
+        tplData = new TemplateData(renderData, parentTpl, this._renderData);
         if (!isRoot && renderData && renderData.modelName && renderData.nodes && renderData.nodes['1']) {
             // 如果子节点有模型名称，则进入下一层模板
             tplDataChild = Template.parse(renderData, null, this._templateList);
-            // console.log(tplDataChild.tag,tplData.tag)
             tplData = Template._assignObj(tplDataChild, tplData);
         }
         // 遍历结构树
@@ -139,6 +138,8 @@ class Template {
     }
     // 构建对象属性
     _parseProp(refData, nd) {
+        refData.tagName = nd.tag;
+        refData.isClosedTag = nd.isClosedTag;
         Object.keys(nd.attrs).forEach(key => {
             let value = nd.attrs[key];
             if (~key.indexOf(_SYMBOL.order)) {
@@ -146,14 +147,13 @@ class Template {
                 this._parseOrder(refData, key.slice(1), value);
             } else if (~key.indexOf(_SYMBOL.var)) {
                 // 变量
+
                 this._parseVar(refData, key.slice(1), value);
             } else {
                 // 普通属性
                 this._parseAttr(refData, key, value);
             }
         });
-        refData.tagName = nd.tag;
-        refData.isClosedTag = nd.isClosedTag;
     }
     // 编译命令
     _parseOrder(refData, funcName, value) {
@@ -171,10 +171,9 @@ class Template {
             // 如果是函数
             if (this[funcName]) {
                 try {
-                    // console.log(this)
                     newValue = this[funcName].call(this, refData);
                 } catch (e) {
-                    console.error(`template function [${funcName}] error!`);
+                    console.error(`template function [${funcName}] error: ${e}`);
                     return;
                 }
             } else {

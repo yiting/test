@@ -8,8 +8,8 @@
         <p :ref="1" :class="text"></p>
     </div>`
 }; */
-const Template = require('../../../template');
-class WG2M4 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class WG2M4 extends HtmlTemplate {
     constructor() {
         super(...arguments);
     }

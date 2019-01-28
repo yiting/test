@@ -6,7 +6,7 @@
 // 2, 将结合后的json数据输出, 主要是约束的解析计算
 
 const fs = require('fs');
-const Utils = require('./render_utils');
+const Utils = require('./utils');
 const Common = require('../dsl2/dsl_common.js');
 // const Parser = require('./render_parser.js');
 const H5Builder = require('./h5/h5_builder.js');

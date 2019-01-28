@@ -10,8 +10,8 @@ const E3M7 = {
       <span :ref="2" :class="text"></span>
     </div>`
 }; */
-const Template = require('../../../template');
-class EM3M7 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class EM3M7 extends HtmlTemplate {
   constructor() {
     super(...arguments);
   }

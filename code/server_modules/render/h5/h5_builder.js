@@ -1,6 +1,6 @@
 // 此模块为h5解析模块
 const Common = require('../../dsl2/dsl_common.js');
-const Builder = require('../render_builder');
+const Builder = require('../builder');
 const CssDom = require('./css_dom');
 const SimilarCssDom = require('./similar_css_dom');
 const HtmlDom = require("./html_dom");

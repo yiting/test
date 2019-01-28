@@ -7,8 +7,8 @@ const WG2M6 = {
         <span :ref="1" :class="text"></span>
     </div>`
 }; */
-const Template = require('../../../template');
-class WG2M6 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class WG2M6 extends HtmlTemplate {
     constructor() {
         super(...arguments);
     }

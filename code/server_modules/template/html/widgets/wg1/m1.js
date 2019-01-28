@@ -6,8 +6,8 @@
     <hr class="hr" :ref="0">
     </hr>`
 }; */
-const Template = require('../../../template');
-class WG1M1 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class WG1M1 extends HtmlTemplate {
     constructor() {
         super(...arguments);
     }

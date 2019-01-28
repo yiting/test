@@ -10,8 +10,8 @@
       </span>
     </div>`
 }; */
-const Template = require('../../../template');
-class EM3M8 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class EM3M8 extends HtmlTemplate {
   constructor() {
     super(...arguments);
   }

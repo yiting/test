@@ -4,8 +4,8 @@
   desc: "1元素模板:单文本",
   template: `<span :ref="0" class="text"></span>`
 }; */
-const Template = require('../../../template');
-class EM1M1 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class EM1M1 extends HtmlTemplate {
   constructor() {
     super(...arguments);
   }

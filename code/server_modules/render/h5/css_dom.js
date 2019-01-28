@@ -1,7 +1,9 @@
 // 样式的计算处理
 const Common = require('../../dsl2/dsl_common.js');
 const Constraints = require('../../dsl2/dsl_constraints.js');
-const Utils = require('../render_utils.js');
+const Utils = require('../utils');
+const Path = require('path');
+const Config = require('../config');
 
 // 生成的Css记录树
 let cssDomTree = null,
@@ -574,7 +576,7 @@ class CssDom {
             'Start': 'start',
             'End': 'end',
             'Center': 'center',
-        }[this.constraints[axle]] || null;
+        } [this.constraints[axle]] || null;
     }
     //
     get boxPack() {
@@ -584,7 +586,7 @@ class CssDom {
             'Start': 'start',
             'End': 'end',
             'Center': 'center',
-        }[this.constraints[axle]] || null;
+        } [this.constraints[axle]] || null;
     }
     //
     get width() {
@@ -996,7 +998,8 @@ class CssDom {
             this.styles.background.type == 'linear') {
             return this.getLinearGradient(this.styles.background, this._width, this._height);
         } else if (this.path) {
-            return `url(../${this.path})`;
+            let relativePath = Path.relative(Config.HTML.output.cssPath, Config.HTML.output.imgPath);
+            return `url(./${relativePath}/${this.path})`
         } else {
             return null;
         }

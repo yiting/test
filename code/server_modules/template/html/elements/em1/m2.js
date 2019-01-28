@@ -5,8 +5,8 @@ const EM1M2 = {
   template: `<span :ref="0" :class="icon"></span>`
 };
 module.exports = EM1M2; */
-const Template = require('../../../template');
-class EM1M2 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class EM1M2 extends HtmlTemplate {
   constructor() {
     super(...arguments);
   }

@@ -9,8 +9,8 @@ const WG3M3 = {
           <p :ref="2" :class="subtext"></p>
       </div>`
 }; */
-const Template = require('../../../template');
-class WG3M3 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class WG3M3 extends HtmlTemplate {
     constructor() {
         super(...arguments);
     }

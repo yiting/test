@@ -10,15 +10,15 @@ const E3M2 = {
       </em>
     </div>`
 }; */
-const Template = require('../../../template');
-class EM3M2 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class EM3M2 extends HtmlTemplate {
   constructor() {
     super(...arguments);
   }
   get template() {
     return `
-    <div class="em3-m2" :constraints='{"LayoutDirection": "Horizontal","LayoutJustifyContent": "Start"}'>
-      <span $ref="2" class="text"></span>
+    <div class="block" :constraints='{"LayoutDirection": "Horizontal","LayoutJustifyContent": "Start"}'>
+      <span $ref="2" class="title"></span>
       <em $ref="0" class="tag">
         <span $ref="1" class="tag-text"></span>
       </em>

@@ -10,8 +10,8 @@ const WGNM1 = {
             </repeat>
           </ul>`
   }; */
-const Template = require('../../../template');
-class CYCLE01 extends Template {
+const HtmlTemplate = require('../../htmlTemplate');
+class CYCLE01 extends HtmlTemplate {
   constructor() {
     super(...arguments);
   }

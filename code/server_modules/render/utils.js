@@ -121,7 +121,7 @@ const utils = {
         o.height = o.abYops - o.abY;
         o.width = o.abXops - o.abX;
         return o;
-    },
+    }
 
 }
 
