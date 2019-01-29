@@ -138,7 +138,7 @@ class Template {
     }
     // 构建对象属性
     _parseProp(refData, nd) {
-        refData.tagName = nd.tag;
+        refData.tagName = nd.tagName;
         refData.isClosedTag = nd.isClosedTag;
         Object.keys(nd.attrs).forEach(key => {
             let value = nd.attrs[key];

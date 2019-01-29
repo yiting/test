@@ -164,6 +164,7 @@ class CssDom {
     constructor(parent, data, layoutType) {
         // 节点的信息
         this.id = data.id;
+        this.tagName = data.tagName;
         this.serialId = data.serialId;
         this.modelId = data.modelId;
         this.type = data.type;
@@ -311,6 +312,10 @@ class CssDom {
 
     }
 
+    _isImgTag() {
+        return this.tagName == 'img';
+    }
+
     /**
      * 节点是否属于绝对定位
      */
@@ -433,8 +438,6 @@ class CssDom {
     }
     // 计算左边界
     _calculateRightBoundary(isVertical) {
-        if (this.id == 'C0882E6A-627F-4F03-BB59-EDFA49B0FA82cc') debugger
-        if (this.id == '190') debugger
 
         if (!this._canRightFlex()) {
             return;
@@ -587,7 +590,7 @@ class CssDom {
             'Start': 'start',
             'End': 'end',
             'Center': 'center',
-        }[this.constraints[axle]] || null;
+        } [this.constraints[axle]] || null;
     }
     //
     get boxPack() {
@@ -597,7 +600,7 @@ class CssDom {
             'Start': 'start',
             'End': 'end',
             'Center': 'center',
-        }[this.constraints[axle]] || null;
+        } [this.constraints[axle]] || null;
     }
     //
     get width() {
@@ -648,6 +651,9 @@ class CssDom {
     }
 
     get backgroundColor() {
+        if (this._isImgTag()) {
+            return null;
+        }
         if (this.styles && this.styles.background &&
             this.styles.background.type == 'color') {
             return CssDom.getRGBA(this.styles.background.color);
@@ -1000,11 +1006,11 @@ class CssDom {
         }).join(',')})`;
     }
 
-    compareStyle() {
-
-    }
 
     get backgroundImage() {
+        if (this._isImgTag()) {
+            return null;
+        }
         if (this.styles.background &&
             this.styles.background.type == 'linear') {
             return this.getLinearGradient(this.styles.background, this._width, this._height);
@@ -1016,6 +1022,9 @@ class CssDom {
         }
     }
     get backgroundSize() {
+        if (this._isImgTag()) {
+            return null;
+        }
         if (this.path) {
             return 'contain';
         } else {
@@ -1024,6 +1033,9 @@ class CssDom {
     }
 
     get backgroundRepeat() {
+        if (this._isImgTag()) {
+            return null;
+        }
         var css = null;
         if (this.path) {
             css = 'no-repeat';

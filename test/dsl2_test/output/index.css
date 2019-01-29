@@ -20,7 +20,7 @@
 .simsp14{display: block;-webkit-box-orient: horizontal;position: relative;background-repeat: no-repeat;background-size: contain}
 .simsp5{display: block;-webkit-box-orient: horizontal;position: relative;background-repeat: no-repeat;background-size: contain}
 .simsp6{display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: start;-webkit-box-align: center;position: relative;opacity: 1;background-color: rgba(255,255,255,1)}
-.simsp21{display: block;-webkit-box-orient: horizontal;position: relative;background-repeat: no-repeat;background-size: contain}
+.simsp21{display: block;-webkit-box-orient: horizontal;position: relative}
 .simsp22{display: block;-webkit-box-orient: horizontal;-webkit-box-pack: start;-webkit-box-align: start;position: relative}
 .simsp23{display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: start;-webkit-box-align: start;position: relative;opacity: 1;white-space: nowrap;text-overflow: ellipsis;color: rgba(0,0,0,1);font-family: PingFangSC-Regular;font-size: 0.28rem;line-height: 0.28rem}
 .simsp24{display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: start;-webkit-box-align: start;position: relative}
@@ -41,7 +41,7 @@
 .simsp37{display: block;-webkit-box-orient: horizontal;position: relative;background-repeat: no-repeat;background-size: contain;background-image: url(./../img/_2475_1E6E.png)}
 .simsp38{display: block;-webkit-box-orient: horizontal;-webkit-box-pack: start;-webkit-box-align: start;position: relative}
 .simsp39{display: block;-webkit-box-orient: horizontal;position: relative;opacity: 1;white-space: nowrap;text-overflow: ellipsis;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.2rem}
-.simsp16{display: block;-webkit-box-orient: horizontal;position: relative;background-repeat: no-repeat;background-size: contain;background-image: url(./../img/1689E12A-A123-4B88-BFD6-ECFC089012BF.png)}
+.simsp16{display: block;-webkit-box-orient: horizontal;position: relative}
 .simsp2{display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: center;-webkit-box-align: center;position: relative;opacity: 1;background-color: rgba(97,75,255,1);border-radius: 0.3rem}
 .simsp3{text-align: center;display: block;-webkit-box-orient: horizontal;position: relative;opacity: 1;white-space: nowrap;text-overflow: ellipsis;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.28rem;line-height: 0.28rem}
 .simsp7{display: block;-webkit-box-orient: horizontal;position: relative;background-repeat: no-repeat;background-size: contain}
@@ -113,7 +113,7 @@
  [ui70] {display: block;-webkit-box-orient: horizontal;-webkit-box-align: center;width: 0.23rem;min-height: 0.24rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.24rem;position: relative;overflow: hidden;text-overflow: ellipsis;text-align: center;white-space: nowrap;line-height: 0.24rem;opacity: 1}
  [ui71] {display: block;-webkit-box-orient: horizontal;-webkit-box-align: center;width: 0.2rem;min-height: 0.24rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.24rem;position: relative;overflow: hidden;text-overflow: ellipsis;text-align: center;white-space: nowrap;line-height: 0.24rem;opacity: 1}
  [ui72] {display: block;-webkit-box-orient: horizontal;width: 0.24rem;min-height: 0.24rem;margin-bottom: 0px;margin-left: 0px;top: 0.96rem;left: 3.36rem;z-index: 329;color: rgba(153,153,153,1);font-family: PingFangSC-Regular;font-size: 0.24rem;position: absolute;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;line-height: 0.24rem;opacity: 1}
- [ui73] {width: 1.32rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;z-index: 339;background-image: url(./../img/_A815_FC8C.png)}
+ [ui73] {width: 1.32rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;z-index: 339}
  [ui74] {width: 5.24rem;min-height: 1.06rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui75] {width: 5rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
  [ui77] {display: block;-webkit-box-orient: horizontal;width: 2.08rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;color: rgba(0,0,0,1);font-family: PingFangSC-Regular;font-size: 0.28rem;position: relative;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;line-height: 0.28rem;opacity: 1}
@@ -127,7 +127,7 @@
  [ui86] {width: 6.8rem;min-height: 3.84rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.03rem;background-image: url(./../img/_203D_CD4C.png)}
  [ui87] {width: 6.8rem;min-height: 1.8rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.03rem}
  [ui88] {-webkit-box-align: center;width: 4.84rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
- [ui89] {width: 1.32rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;background-image: url(./../img/_EA41_F0E4.png)}
+ [ui89] {width: 1.32rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui90] {width: 3.52rem;min-height: 1.04rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui91] {display: block;width: 3.28rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem;overflow: hidden}
  [ui92] {width: 3.28rem;min-height: 0.24rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
@@ -220,7 +220,7 @@
  [ui186] {display: block;-webkit-box-orient: horizontal;width: 1.64rem;min-height: 0.24rem;margin-top: 0.27rem;margin-right: auto;margin-bottom: 0px;margin-left: auto;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.2rem;position: relative;overflow: hidden;text-overflow: ellipsis;text-align: center;white-space: nowrap;line-height: 0.24rem}
  [ui187] {width: 7.5rem;min-height: 1.32rem;margin-top: 0.24rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui188] {width: 5.54rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
- [ui189] {width: 1.32rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;background-image: url(./../img/_F9B2_B27F_8515.png)}
+ [ui189] {width: 1.32rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui190] {display: block;-webkit-box-orient: horizontal;-webkit-box-pack: start;-webkit-box-align: start;width: 4.22rem;min-height: 1.04rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px;position: relative}
  [ui191] {display: block;-webkit-box-orient: horizontal;width: 3.98rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem;color: rgba(0,0,0,1);font-family: PingFangSC-Regular;font-size: 0.28rem;position: relative;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;line-height: 0.28rem;opacity: 1}
  [ui192] {display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: start;-webkit-box-align: start;width: 3.98rem;min-height: 0.24rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem;position: relative}
@@ -247,7 +247,7 @@
  [ui216] {display: block;-webkit-box-orient: horizontal;-webkit-box-pack: start;-webkit-box-align: start;width: 7.5rem;min-height: 4.56rem;margin-top: 0.38rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px;position: relative}
  [ui217] {width: 7.5rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui218] {width: 5.54rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
- [ui219] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;background-image: url(./../img/8B948DC6-E630-4012-9C69-B487D07B797B.png)}
+ [ui219] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui220] {width: 3.28rem;min-height: 1.04rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui221] {width: 3.04rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem;color: rgba(0,0,0,1);font-size: 0.28rem;overflow: hidden;line-height: 0.28rem}
  [ui222] {display: -webkit-box;width: 3.04rem;min-height: 0.24rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
@@ -259,7 +259,7 @@
  [ui229] {width: 1.16rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;overflow: hidden}
  [ui230] {width: 7.5rem;min-height: 1.32rem;margin-top: 0.3rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui231] {width: 5.54rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
- [ui232] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;background-image: url(./../img/92D8D5A5-E506-4A81-9E44-92F96D56833B.png)}
+ [ui232] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui233] {width: 3.28rem;min-height: 1.04rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui234] {width: 3.04rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem;color: rgba(0,0,0,1);font-size: 0.28rem;overflow: hidden;line-height: 0.28rem}
  [ui235] {display: -webkit-box;width: 3.04rem;min-height: 0.24rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
@@ -271,7 +271,7 @@
  [ui242] {width: 1.16rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;overflow: hidden}
  [ui243] {width: 7.5rem;min-height: 1.32rem;margin-top: 0.3rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui244] {width: 5.54rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
- [ui245] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;background-image: url(./../img/6B4667CD-D1EC-4E63-AC34-69F2C2785650.png)}
+ [ui245] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui246] {width: 3.28rem;min-height: 1.04rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui247] {width: 3.04rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem;color: rgba(0,0,0,1);font-size: 0.28rem;overflow: hidden;line-height: 0.28rem}
  [ui248] {display: -webkit-box;width: 3.04rem;min-height: 0.24rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
@@ -306,7 +306,7 @@
  [ui278] {display: block;-webkit-box-orient: horizontal;-webkit-box-align: center;width: 0.24rem;min-height: 0.24rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.24rem;position: relative;overflow: hidden;text-overflow: ellipsis;text-align: center;white-space: nowrap;line-height: 0.24rem;opacity: 1}
  [ui279] {display: block;-webkit-box-orient: horizontal;-webkit-box-align: center;width: 0.23rem;min-height: 0.24rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.24rem;position: relative;overflow: hidden;text-overflow: ellipsis;text-align: center;white-space: nowrap;line-height: 0.24rem;opacity: 1}
  [ui280] {display: block;-webkit-box-orient: horizontal;-webkit-box-align: center;width: 0.2rem;min-height: 0.24rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.24rem;position: relative;overflow: hidden;text-overflow: ellipsis;text-align: center;white-space: nowrap;line-height: 0.24rem;opacity: 1}
- [ui281] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;z-index: 103;background-image: url(./../img/A27BE27A-AB91-4172-9F94-29299CD43A51.png)}
+ [ui281] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;z-index: 103}
  [ui282] {width: 3.28rem;min-height: 1.06rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui283] {display: -webkit-box;width: 3.04rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
  [ui285] {width: 1.52rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;overflow: hidden}
@@ -328,7 +328,7 @@
  [ui302] {display: block;-webkit-box-orient: horizontal;-webkit-box-align: center;width: 0.24rem;min-height: 0.24rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.24rem;position: relative;overflow: hidden;text-overflow: ellipsis;text-align: center;white-space: nowrap;line-height: 0.24rem;opacity: 1}
  [ui303] {display: block;-webkit-box-orient: horizontal;-webkit-box-align: center;width: 0.23rem;min-height: 0.24rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.24rem;position: relative;overflow: hidden;text-overflow: ellipsis;text-align: center;white-space: nowrap;line-height: 0.24rem;opacity: 1}
  [ui304] {display: block;-webkit-box-orient: horizontal;-webkit-box-align: center;width: 0.2rem;min-height: 0.24rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.24rem;position: relative;overflow: hidden;text-overflow: ellipsis;text-align: center;white-space: nowrap;line-height: 0.24rem;opacity: 1}
- [ui305] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;z-index: 124;background-image: url(./../img/8FCD23B5-FBB3-416C-B233-EE879B7E1BC0.png)}
+ [ui305] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;z-index: 124}
  [ui306] {width: 3.28rem;min-height: 1.06rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui307] {display: -webkit-box;width: 3.04rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
  [ui309] {width: 1.52rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;overflow: hidden}
@@ -350,7 +350,7 @@
  [ui326] {display: block;-webkit-box-orient: horizontal;-webkit-box-align: center;width: 0.24rem;min-height: 0.24rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.24rem;position: relative;overflow: hidden;text-overflow: ellipsis;text-align: center;white-space: nowrap;line-height: 0.24rem;opacity: 1}
  [ui327] {display: block;-webkit-box-orient: horizontal;-webkit-box-align: center;width: 0.23rem;min-height: 0.24rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.24rem;position: relative;overflow: hidden;text-overflow: ellipsis;text-align: center;white-space: nowrap;line-height: 0.24rem;opacity: 1}
  [ui328] {display: block;-webkit-box-orient: horizontal;-webkit-box-align: center;width: 0.2rem;min-height: 0.24rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;color: rgba(255,255,255,1);font-family: PingFangSC-Regular;font-size: 0.24rem;position: relative;overflow: hidden;text-overflow: ellipsis;text-align: center;white-space: nowrap;line-height: 0.24rem;opacity: 1}
- [ui329] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;z-index: 145;background-image: url(./../img/F6423C05-68DE-46BA-A2FA-82F30A0749F8.png)}
+ [ui329] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;z-index: 145}
  [ui330] {width: 3.28rem;min-height: 1.06rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui331] {display: -webkit-box;width: 3.04rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
  [ui333] {width: 1.52rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;overflow: hidden}
@@ -382,7 +382,7 @@
  [ui360] {display: block;-webkit-box-orient: horizontal;-webkit-box-pack: start;-webkit-box-align: start;width: 7.5rem;min-height: 4.58rem;margin-top: 0.3rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px;position: relative}
  [ui361] {width: 7.5rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui362] {width: 5.54rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
- [ui363] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;background-image: url(./../img/10FABAAA-D400-4E75-8308-F250E8D7EB0B.png)}
+ [ui363] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui364] {width: 3.28rem;min-height: 1.04rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui365] {width: 3.04rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem;color: rgba(0,0,0,1);font-size: 0.28rem;overflow: hidden;line-height: 0.28rem}
  [ui366] {display: -webkit-box;width: 3.04rem;min-height: 0.24rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
@@ -394,7 +394,7 @@
  [ui373] {width: 1.16rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;overflow: hidden}
  [ui374] {width: 7.5rem;min-height: 1.32rem;margin-top: 0.31rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui375] {width: 5.54rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
- [ui376] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;background-image: url(./../img/54E78A15-2FC5-4907-8351-C420882DB49D.png)}
+ [ui376] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui377] {width: 3.28rem;min-height: 1.04rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui378] {width: 3.04rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem;color: rgba(0,0,0,1);font-size: 0.28rem;overflow: hidden;line-height: 0.28rem}
  [ui379] {display: -webkit-box;width: 3.04rem;min-height: 0.24rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
@@ -406,7 +406,7 @@
  [ui386] {width: 1.16rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;overflow: hidden}
  [ui387] {width: 7.5rem;min-height: 1.32rem;margin-top: 0.31rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui388] {width: 5.54rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
- [ui389] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;background-image: url(./../img/1EA49746-7629-43CB-BA6B-E9E6A580A83F.png)}
+ [ui389] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui390] {width: 3.28rem;min-height: 1.04rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui391] {width: 3.04rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem;color: rgba(0,0,0,1);font-size: 0.28rem;overflow: hidden;line-height: 0.28rem}
  [ui392] {display: -webkit-box;width: 3.04rem;min-height: 0.24rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
@@ -429,7 +429,7 @@
  [ui410] {display: block;-webkit-box-orient: horizontal;-webkit-box-pack: start;-webkit-box-align: start;width: 7.5rem;min-height: 4.58rem;margin-top: 0.3rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px;position: relative}
  [ui411] {width: 7.5rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui412] {width: 5.54rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
- [ui413] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;background-image: url(./../img/FC143761-00E6-4BF3-8BDA-F380A0906148.png)}
+ [ui413] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui414] {width: 3.28rem;min-height: 1.04rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui415] {width: 3.04rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem;color: rgba(0,0,0,1);font-size: 0.28rem;overflow: hidden;line-height: 0.28rem}
  [ui416] {display: -webkit-box;width: 3.04rem;min-height: 0.24rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
@@ -441,7 +441,7 @@
  [ui423] {width: 1.02rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;overflow: hidden}
  [ui424] {width: 7.5rem;min-height: 1.32rem;margin-top: 0.31rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui425] {width: 5.54rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}
- [ui426] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;background-image: url(./../img/2B5C598E-FF58-4767-AD7A-0E0749019699.png)}
+ [ui426] {width: 2.26rem;min-height: 1.32rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px}
  [ui427] {width: 3.28rem;min-height: 1.04rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 0px}
  [ui428] {width: 3.04rem;min-height: 0.28rem;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem;color: rgba(0,0,0,1);font-size: 0.28rem;overflow: hidden;line-height: 0.28rem}
  [ui429] {display: -webkit-box;width: 3.04rem;min-height: 0.24rem;margin-top: 0.14rem;margin-right: 0px;margin-bottom: 0px;margin-left: 0.24rem}

@@ -20,7 +20,6 @@ class HtmlDom {
         this.path = node.path || null;
         this.contrains = node.contrains || {};
         this.tplAttr = node.tplAttr || {};
-        this.tplData = node.tplData || {};
         this.css = css;
     }
     get x() {
@@ -77,7 +76,7 @@ class HtmlDom {
     }
     // 闭合节点
     getHtmlEnd() {
-        return this.tplData && this.tplData.isClosedTag ? '' : `</${this.getTag()}> `
+        return this.isClosedTag ? '' : `</${this.getTag()}> `
     }
 }
 let htmlDomTree;

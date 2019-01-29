@@ -1,6 +1,6 @@
 class TemplateData {
     constructor(o = {}, parent, modelData) {
-        this.tag = o.tag || '';
+        this.tagName = o.tagName || '';
         this.serialId = TemplateData.index++;
         this.isCloseTag = o.isCloseTag;
         this.parentId = o.parentId || (parent && parent.id) || null;
