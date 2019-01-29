@@ -14,6 +14,8 @@ let process = function (data, layoutType) {
     // 构建cssTree并返回
     cssDomArr = [];
     _buildTree(null, data, layoutType);
+    _parseConstraints(cssDomTree);
+    _parseBoundary(cssDomTree);
     return cssDomTree;
 }
 
@@ -51,19 +53,25 @@ let _buildTree = function (parent, data, layoutType) {
         parent.children.push(cssNode);
     }
 
-    // if (data.children && data.children.length > 0) {
     data.children.forEach(data => {
         _buildTree(cssNode, data, layoutType);
     });
-    // 对当前节点补充约束
-    cssNode._supplementConstraints();
-    // 对当前节子节点边界进行计算
-    // cssNode.children.forEach(cn => {
-    //     cn._calculateBoundary();
-    // });
     return cssNode;
 }
+let _parseConstraints = function (tree) {
+    tree.children.forEach(cn => {
+        _parseConstraints(cn);
+    })
+    tree._supplementConstraints();
+}
 
+let _parseBoundary = function (tree) {
+    tree._calculateBoundary();
+    tree.children.forEach(cn => {
+        _parseBoundary(cn);
+    })
+
+}
 /**
  * 解析获取css属性
  * @param {Array} arr 字符串收集数组
@@ -425,6 +433,9 @@ class CssDom {
     }
     // 计算左边界
     _calculateRightBoundary(isVertical) {
+        if (this.id == 'C0882E6A-627F-4F03-BB59-EDFA49B0FA82cc') debugger
+        if (this.id == '190') debugger
+
         if (!this._canRightFlex()) {
             return;
         }
@@ -576,7 +587,7 @@ class CssDom {
             'Start': 'start',
             'End': 'end',
             'Center': 'center',
-        } [this.constraints[axle]] || null;
+        }[this.constraints[axle]] || null;
     }
     //
     get boxPack() {
@@ -586,7 +597,7 @@ class CssDom {
             'Start': 'start',
             'End': 'end',
             'Center': 'center',
-        } [this.constraints[axle]] || null;
+        }[this.constraints[axle]] || null;
     }
     //
     get width() {
