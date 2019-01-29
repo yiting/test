@@ -31,6 +31,28 @@ class similarCssDom {
             selfClassName = ''
 
         if (cssNode.similarParentId) {
+            let similarParent = this._similarData[cssNode.similarParentId]
+            prefix = similarParent.className || 'ui';
+            parentClassName = `.${prefix}-s${similarParent.similarId}`;
+        }
+
+        if (cssNode.similarId) {
+            let similarNode = this._similarData[cssNode.similarId],
+                prefix = similarNode.className || 'ui';
+            selfClassName = `.${prefix}-s${similarNode.similarId}`;
+        }
+
+        if (parentClassName) {
+            return [parentClassName, selfClassName].join(' ');
+        } else {
+            return selfClassName;
+        }
+    }
+    /* static _getClass(cssNode) {
+        let parentClassName = '',
+            selfClassName = ''
+
+        if (cssNode.similarParentId) {
             parentClassName = '.sim' + cssNode.similarParentId;
         }
 
@@ -43,7 +65,7 @@ class similarCssDom {
         } else {
             return selfClassName;
         }
-    }
+    } */
 
     static _getCssProperty(cssNode) {
         let props = [];
@@ -65,10 +87,14 @@ class similarCssDom {
                     similarId: similarId,
                     similarParentId: cssNode.similarParentId,
                     css: {},
+                    className: cssNode.tplAttr.class,
                     list: []
                 };
             }
             this._similarData[similarId].list.push(cssNode);
+            if (this._similarData[similarId].className && this._similarData[similarId].className == cssNode.tplAttr.class) {
+                this._similarData[similarId].className = null;
+            }
         }
         cssNode.children.forEach(nd => this._buildSimilarData(nd));
     }
@@ -77,6 +103,7 @@ class similarCssDom {
         Object.keys(this._similarData).forEach(key => {
             let cssDomList = this._similarData[key].list;
             let css = this._similarData[key].css;
+            
             cssDomList.forEach(cssDom => {
                 this._mergeSimilarCSS(css, cssDom);
             });

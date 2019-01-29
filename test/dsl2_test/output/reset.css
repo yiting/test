@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-size: 1.33333vh;
+    overflow-x: hidden;
 }
 
 span,
@@ -23,7 +24,8 @@ p {
 em {
     font-style: normal;
 }
-hr{
+
+hr {
     border-style: none;
 }
 
@@ -62,15 +64,15 @@ body.layer [md^="layer"] {
 body.cycle [md^="cycle"] {
     visibility: visible;
     /* background-color: rgba(0, 255, 0, .1); */
-    box-shadow:rgba(0,0,0,0.6) 0 0 0 1px;
+    box-shadow: rgba(0, 0, 0, 0.6) 0 0 0 1px;
 }
 
-body.cycle [md^="cycle"]>[class*="sim"] {
+body.cycle [md^="cycle"]>[sim] {
     visibility: visible;
     background-color: rgba(0, 233, 0, .1);
 }
 
-body.similar [class*="sim"] {
+body.similar [sim] {
     visibility: visible;
     background-color: rgba(0, 133, 100, .1);
 }

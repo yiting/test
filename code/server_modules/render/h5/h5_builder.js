@@ -32,7 +32,7 @@ class H5Builder extends Builder {
 
     // 解析html
     _parseHtml() {
-        htmlDom = HtmlDom.process(this._data, CssDom.getCssMap(cssDomTree, similarCssArr), this._layoutType);
+        htmlDom = HtmlDom.process(this._data, CssDom.getCssMap(cssDomTree), similarCssArr, this._layoutType);
     }
 
     // 解析样式

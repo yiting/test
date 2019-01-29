@@ -25,7 +25,7 @@ class Template {
     constructor(renderData, parentTpl, templateList) {
 
         // 节点引用
-        this.$ref = renderData.nodes;
+        this.$ref = renderData.nodes || {};
         // 渲染数据
         this._renderData = renderData;
         // 解析引擎
@@ -70,7 +70,6 @@ class Template {
             if (!tplData.id) {
                 tplData.resize();
                 tplData.id = tplData.serialId;
-                tplData.modelId = this._renderData.id;
                 tplData.modelName = null;
             }
             arr.push(tplData);
@@ -102,18 +101,27 @@ class Template {
             tplDataChild
         // 删除「引用」字段
         delete nd.attrs[_SYMBOL.ref];
+
+        // 如果模型根节点为引用，则把引用节点信息覆盖根节点
+        if (isRoot && this.$ref[refIndex]) {
+            this._renderData.id = this.$ref[refIndex].id;
+        }
         // 根据条件获取引用对象
-        if (this.$ref && refIndex) {
+        // 如果有引用，则用引用数据
+        if (this.$ref && this.$ref[refIndex]) {
             renderData = this.$ref[refIndex];
+            // 如果无引用且为模型根节点，则用模型数据
         } else if (isRoot) {
             renderData = this._renderData;
         }
         // 构建模板节点
         tplData = new TemplateData(renderData, parentTpl, this._renderData);
+        tplData.modelId = this._renderData.id;
+        tplData.parentId = parentTpl && parentTpl.id;
         if (!isRoot && renderData && renderData.modelName && renderData.nodes && renderData.nodes['1']) {
             // 如果子节点有模型名称，则进入下一层模板
             tplDataChild = Template.parse(renderData, null, this._templateList);
-            tplData = Template._assignObj(tplDataChild, tplData);
+            tplData = Template._assignObj(tplData, tplDataChild);
         }
         // 遍历结构树
         if (renderData && renderData.children) {
@@ -131,10 +139,13 @@ class Template {
      * 样式合并规则： 大节点【样式属性值】 覆盖小节点【样式属性值】
      */
     static _assignObj(target = {}, source = {}) {
-        source.children.push(...target.children);
+        target.children.push(...source.children);
+        target.id = source.id;
+        target.constraints = Object.assign(source.constraints, target.constraints)
+        target.styles = Object.assign(source.styles, target.styles)
         // Object.assign(source.constraints, target.constraints);
         // Object.assign(source.styles,target.styles)
-        return Object.assign({}, target, source);
+        return target;
     }
     // 构建对象属性
     _parseProp(refData, nd) {

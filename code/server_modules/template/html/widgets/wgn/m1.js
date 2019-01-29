@@ -17,7 +17,7 @@ class CYCLE01 extends HtmlTemplate {
   }
   get template() {
     return `<ul class="list">
-          <li $each>
+          <li $each class="item">
           </li>
       </ul>`
   }
