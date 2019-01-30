@@ -32,10 +32,8 @@ class HtmlDom {
     }
     getAttrClass() {
         var result = [],
-            prefix,
             _cssDom = _cssDomMap[this.id],
             _simCssDom = _similarCssDomMap[this.similarId];
-
         if (!_simCssDom || _cssDom.getCss(_simCssDom)) {
             result.push(this.selfClassName);
         }

@@ -78,7 +78,8 @@ let _parseBoundary = function (tree) {
  * @param {CssDom} dom CssDom节点
  */
 let _parseTree = function (arr, dom, similarData) {
-    let str = dom.getCss(similarData);
+    let similarCss = similarData[dom.similarId] && similarData[dom.similarId].css;
+    let str = dom.getCss(similarCss);
     if (str) {
         arr.push(str);
     }
@@ -322,8 +323,7 @@ class CssDom {
      * 父节点是否属于相对定位
      */
     _isRelative() {
-        if (this.parent && this.parent.constraints['LayoutPosition'] &&
-            this.parent.constraints['LayoutPosition'] == Constraints.LayoutPosition.Absolute) {
+        if (this.parent && this.parent.constraints['LayoutPosition'] == Constraints.LayoutPosition.Absolute) {
             return true;
         }
         return false;
@@ -504,10 +504,10 @@ class CssDom {
     /**
      * 获取得到的属性
      */
-    getCssProperty(similarData) {
+    getCssProperty(similarCss) {
         let props = [];
         // 获取属性值并进行拼接
-        let similarCss = similarData[this.similarId] && similarData[this.similarId].css;
+        // let similarCss = similarData[this.similarId] && similarData[this.similarId].css;
         cssPropertyMap.forEach(key => {
             let value = this[key],
                 similarValue = similarCss && similarCss[key];
@@ -521,10 +521,10 @@ class CssDom {
     /**
      * 获取该节点的样式
      */
-    getCss(similarData) {
+    getCss(similarCss) {
         let str = '',
             className = this.getClass(),
-            cssArr = this.getCssProperty(similarData);
+            cssArr = this.getCssProperty(similarCss);
         if (cssArr.length) {
             str = `${className} {${cssArr.join(';')}}`;
         }
@@ -860,7 +860,7 @@ class CssDom {
     }
     // 
     get zIndex() {
-        if (this._isAbsolute() || this._isRelative()) {
+        if (this._isAbsolute()) {
             return this._zIndex;
         }
         // return null;

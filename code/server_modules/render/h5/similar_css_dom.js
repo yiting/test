@@ -24,9 +24,7 @@ let mainCss = [
         "fontSize",
         "borderRadius",
         "lineHeight",
-        "zIndex"
-    ],
-    minCss = [
+        "zIndex",
         "width",
         "minHeight",
         "marginTop",
@@ -38,23 +36,24 @@ let mainCss = [
         "right",
         "bottom",
         "left",
-    ]
+    ],
+    minCss = []
 
 
 class similarCssDom {
 
     static process(cssDomTree, layoutType) {
         this._cssDomTree = cssDomTree
-        this._similarData = {}
+        this._similarMap = {}
         // 遍历节点，构建similar元素
         this._buildSimilarData(this._cssDomTree);
-        this._buildSimilarCss(this._similarData);
-        return this._similarData;
+        this._buildSimilarCss(this._similarMap);
+        return this._similarMap;
     }
     static getCssString() {
         let css = [];
-        Object.keys(this._similarData).forEach(key => {
-            let cssNode = this._similarData[key];
+        Object.keys(this._similarMap).forEach(key => {
+            let cssNode = this._similarMap[key];
             let className = this._getClass(cssNode);
             let cssStr = this._getCssProperty(cssNode.css);
             css.push(`${className}{${cssStr}}`);
@@ -85,7 +84,10 @@ class similarCssDom {
             return selfClassName;
         }
     } */
-
+    /**
+     * 输出样式属性
+     * @param {Node} cssNode 
+     */
     static _getCssProperty(cssNode) {
         let props = [];
         Object.keys(cssNode).forEach(key => {
@@ -96,12 +98,16 @@ class similarCssDom {
         });
         return props.join(';');
     }
+    /**
+     * 构建相似节点数据集
+     * @param {*} cssNode 
+     */
     static _buildSimilarData(cssNode) {
         // 如果存在相似节点，则存储相似节点到simialrData
         let similarId = cssNode.similarId;
         if (similarId) {
-            if (!this._similarData[similarId]) {
-                this._similarData[similarId] = {
+            if (!this._similarMap[similarId]) {
+                this._similarMap[similarId] = {
                     modelId: cssNode.modelId,
                     similarId: similarId,
                     similarParentId: cssNode.similarParentId,
@@ -110,17 +116,17 @@ class similarCssDom {
                     list: []
                 };
             }
-            this._similarData[similarId].list.push(cssNode);
-            if (this._similarData[similarId].className && this._similarData[similarId].className == cssNode.tplAttr.class) {
-                this._similarData[similarId].className = null;
+            this._similarMap[similarId].list.push(cssNode);
+            if (this._similarMap[similarId].className && this._similarMap[similarId].className == cssNode.tplAttr.class) {
+                this._similarMap[similarId].className = null;
             }
         }
         cssNode.children.forEach(nd => this._buildSimilarData(nd));
     }
 
     static _buildSimilarCss() {
-        Object.keys(this._similarData).forEach(sid => {
-            let cssDomList = this._similarData[sid].list;
+        Object.keys(this._similarMap).forEach(sid => {
+            let cssDomList = this._similarMap[sid].list;
 
             let cssObj = {};
             cssDomList.forEach(cssDom => {
@@ -138,10 +144,10 @@ class similarCssDom {
                 })
             });
             mainCss.forEach(key => {
-                this._similarData[sid].css[key] = this._setMainCss(cssObj[key]);
+                this._similarMap[sid].css[key] = this._setMainCss(cssObj[key]);
             });
             minCss.forEach(key => {
-                this._similarData[sid].css[key] = this._setMinCss(cssObj[key]);
+                this._similarMap[sid].css[key] = this._setMinCss(cssObj[key]);
             });
         });
     }
