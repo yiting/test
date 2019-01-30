@@ -35,15 +35,19 @@ class H5Builder extends Builder {
         this._parseCss();
         this._parseHtml();
     }
-
+    /**
+     * 编译节点样式名
+     * @param {TemplateData Tree} data 
+     */
     _parseClassName(data) {
         /**
-         * self
+         * 特性节点命名
          */
         let selfPrefix = '';
         let modelNode = _domCache[data.modelId],
             parentNode = _domCache[data.parentId]
-        let selfClassName = data.tplAttr.class || 'ui';
+        let selfClassName = data.tplAttr.class || data.tagName;
+        // 如果模型id为当前id， 即为模型跟节点， 不使用模型样式链模式
         if (data.modelId != data.id && modelNode) {
             selfPrefix = modelNode.selfClassName
             selfClassName = modelNode.tplAttr.class + '-' + selfClassName
@@ -52,6 +56,7 @@ class H5Builder extends Builder {
             data.selfClassName = selfClassName
             data.selfCssName = [selfPrefix, selfClassName];
         } else if (parentNode) {
+            // 如果有父节点，则使用父节点样式链模式
             selfPrefix = parentNode.selfClassName
             if (_domCache[parentNode.parentId]) {
                 selfClassName = parentNode.tplAttr.class + '-' + selfClassName
@@ -63,26 +68,31 @@ class H5Builder extends Builder {
             data.selfCssName = [selfPrefix, selfClassName];
 
         } else if (!parentNode) {
+            // 如果没有副节点（说明当前节点为结构跟节点），则使用自身样式名
             data.selfClassName = selfClassName;
             data.selfCssName = [selfClassName];
         } else {
+            // 否则，使用自身样式名+序列值（序列值是树的唯一值）
             data.selfClassName = selfClassName + data.serialId;
             data.selfCssName = [selfClassName + data.serialId];
         }
-
+        // 缓存样式链
         _classCache[data.selfCssName.join(' ')] = true;
 
         /**
-         * similar
+         * 相似节点命名
          */
         if (_similarClassCache[data.similarId]) {
+            // 如果相似节点已经有缓存样式链，直接使用该样式链
             data.similarClassName = _similarClassCache[data.similarId].similarClassName;
             data.similarCssName = _similarClassCache[data.similarId].similarCssName;
         } else if (data.similarId) {
+            // 如果有相似节点
             let similarPrefix = '',
                 similarParent = _domCache[data.similarParentId],
                 similarClassName = '_' + (data.tplAttr.class || data.tagName);
             if (similarParent) {
+                // 如果有similarParent，即该相似节点为某相似节点的子节点，使用相似节点样式链
                 similarPrefix = similarParent.similarClassName;
                 similarClassName = similarParent.tplAttr.class + similarClassName
                 className = [similarPrefix, similarClassName].join(' ');
@@ -90,6 +100,7 @@ class H5Builder extends Builder {
                 data.similarClassName = similarClassName;
                 data.similarCssName = [similarPrefix, similarClassName]
             } else {
+                // 否则为相似节点跟节点，使用当前跟节点样式名+相似值（相似列唯一值）
                 data.similarClassName = similarClassName + data.similarId;
                 data.similarCssName = [similarClassName + data.similarId]
             }
@@ -100,8 +111,9 @@ class H5Builder extends Builder {
             };
             _classCache[data.similarCssName.join(' ')] = true;
         }
+        // 缓存节点
         _domCache[data.id] = data;
-
+        // 遍历下一层
         data.children.forEach(d => {
             this._parseClassName(d);
         })
