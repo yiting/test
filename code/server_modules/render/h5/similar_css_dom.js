@@ -139,7 +139,7 @@ class similarCssDom {
             });
             mainCss.forEach(key => {
                 this._similarData[sid].css[key] = this._setMainCss(cssObj[key]);
-            })
+            });
             minCss.forEach(key => {
                 this._similarData[sid].css[key] = this._setMinCss(cssObj[key]);
             });
@@ -170,7 +170,7 @@ class similarCssDom {
         Object.keys(o).forEach(value => {
             if (o[value].c > max) {
                 max = o[value].c
-                maxValue = value.v;
+                maxValue = o[value].v;
             }
         })
         return maxValue;
