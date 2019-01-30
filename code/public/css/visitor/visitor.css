@@ -226,6 +226,11 @@ main {
 .page-header .header-navbar .container .header-navbar__main .navbar-nav .nav-item .nav-link:hover {
   color: #fff;
 }
+.page-header .header-navbar .container .header-navbar__main .navbar-nav2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
 .page-header .header-navbar .container .header-navbar__main .navbar-nav2 .nav-link {
   color: #999;
   display: block;

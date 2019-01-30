@@ -96,6 +96,9 @@
         }
 
         .navbar-nav2 {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: flex;
           .nav-link {
             color: #999;
             display: block;
@@ -104,7 +107,7 @@
             text-decoration: none;
             -webkit-transition: all 0.2s ease-out;
             transition: all 0.2s ease-out;
-    
+
             &:hover {
               color: #fff;
             }

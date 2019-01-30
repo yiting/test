@@ -3,8 +3,8 @@
  * @param {*} AIData
  */
 const fs = require("fs");
-let AIServiceUrl = "http://10.65.90.45:8080";
-let AIDataHandle = function(AIData) {
+let AIServiceUrl = "http://10.64.70.40:8080";
+let AIDataHandle = function (AIData) {
   let arr = [];
   try {
     AIData = AIData.trim()
@@ -33,7 +33,7 @@ let AIDataHandle = function(AIData) {
       };
       arr.push(o);
     }
-    console.log(arr);
+    //console.log(arr);
   } catch (e) {
     //未匹配到模型结果
     arr = ["none"];
@@ -48,9 +48,9 @@ let AIDataHandle = function(AIData) {
  * @param {*} cb
  */
 
-let copyFile = function(srcPath, tarPath, cb) {
+let copyFile = function (srcPath, tarPath, cb) {
   var rs = fs.createReadStream(srcPath);
-  rs.on("error", function(err) {
+  rs.on("error", function (err) {
     if (err) {
       console.log("read error", srcPath);
     }
@@ -58,13 +58,13 @@ let copyFile = function(srcPath, tarPath, cb) {
   });
 
   var ws = fs.createWriteStream(tarPath);
-  ws.on("error", function(err) {
+  ws.on("error", function (err) {
     if (err) {
       console.log("write error", tarPath);
     }
     cb && cb(err);
   });
-  ws.on("close", function(ex) {
+  ws.on("close", function (ex) {
     cb && cb(ex);
   });
 
@@ -76,14 +76,14 @@ let copyFile = function(srcPath, tarPath, cb) {
  * @param {*} tarDir
  * @param {*} cb
  */
-let copyFolder = function(srcDir, tarDir, cb) {
+let copyFolder = function (srcDir, tarDir, cb) {
   if (!fs.existsSync(tarDir)) {
     fs.mkdirSync(tarDir);
   }
 
-  fs.readdir(srcDir, function(err, files) {
+  fs.readdir(srcDir, function (err, files) {
     var count = 0;
-    var checkEnd = function() {
+    var checkEnd = function () {
       ++count == files.length && cb && cb();
     };
 
@@ -92,17 +92,17 @@ let copyFolder = function(srcDir, tarDir, cb) {
       return;
     }
 
-    files.forEach(function(file) {
+    files.forEach(function (file) {
       //var srcPath = path.join(srcDir, file);
       //var tarPath = path.join(tarDir, file);
 
       var srcPath = srcDir + "/" + file;
       var tarPath = tarDir + "/" + file;
 
-      fs.stat(srcPath, function(err, stats) {
+      fs.stat(srcPath, function (err, stats) {
         if (stats.isDirectory()) {
           console.log("mkdir", tarPath);
-          fs.mkdir(tarPath, function(err) {
+          fs.mkdir(tarPath, function (err) {
             if (err) {
               console.log(err);
               return;
@@ -124,7 +124,7 @@ let copyFolder = function(srcDir, tarDir, cb) {
  * 删除文件夹
  * @param {*} path
  */
-let deleteFolder = function(path) {
+let deleteFolder = function (path) {
   let files = [];
   if (fs.existsSync(path)) {
     files = fs.readdirSync(path);
@@ -139,9 +139,26 @@ let deleteFolder = function(path) {
     fs.rmdirSync(path);
   }
 };
+/**
+ * 是否在一周内
+ * @param {*} date 
+ */
+let isWeek = function (date) {
+  date = date.split("");
+  date.splice(4, 0, "-");
+  date.splice(7, 0, "-");
+  date.splice(10, 0, " ");
+  date.splice(13, 0, ":");
+  date.splice(16, 0, ":");
+  date = date.join("");
+  let flag = Math.abs(new Date().getTime() - new Date(date).getTime()) < 7 * 24 * 3600 * 1000 //时间差和一周时间的比较
+  return flag;
+}
+
 module.exports = {
   AIServiceUrl,
   AIDataHandle,
   copyFolder,
-  deleteFolder
+  deleteFolder,
+  isWeek
 };

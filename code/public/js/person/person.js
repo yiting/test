@@ -136,7 +136,11 @@ var vm = new Vue({
     viewProjects: function() {
       top.postMessage("/project", "http://uitocode.oa.com");
     },
-    goStandard:function(){
+    goPlug: function() {
+      //top.postMessage("/plug", "http://uitocode.oa.com");
+      window.open("/plug");
+    },
+    goStandard: function() {
       //top.postMessage("/description", "http://uitocode.oa.com");
       window.open("/description");
     },
@@ -267,7 +271,7 @@ var vm = new Vue({
       //alert(name.substr(name.lastIndexOf('/')+1))
       //文件大小
       let fileSize = file.size / 1024,
-        fileMaxSize = 1024 * 100;
+        fileMaxSize = 1024 * 200;
       //文件类型(api官方类型)
       // type = file.type;
       //根据文件名称来截取对应的类型后缀

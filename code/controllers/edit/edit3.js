@@ -8,8 +8,6 @@ const router = express.Router();
 const archiver = require("archiver");
 //网络包
 let requestHttp = require("request");
-//获取图片文件宽高
-let sizeOf = require("image-size");
 //上传文件及新的文件名称变量
 let originFileName, uploadTimeStamp;
 
@@ -50,9 +48,6 @@ let pageArtboardsData = [],
 
 //4.用户id、用户名
 let userId, userName;
-
-//用于返回AI相关数据
-let AIArtboardInfo; //包含上传的artboardid、宽高；以及识别返回模块的相关数据
 
 //定时任务，合并在这里
 require("../util/task");
@@ -253,60 +248,46 @@ let getAIDataByArtBoardId = function(artBoardID, projectName) {
   };
   let aiDataPromise = new Promise((resolve, reject) => {
     getArtBoardImg(artBoardObj, function() {
-      //resolve("success");
-      var formData = {
-        my_field: "my_value",
-        my_buffer: new Buffer([1, 2, 3]),
-        file: fs.createReadStream(
-          "./data/complie/" + projectName + "/images/" + artBoardImgName
-        )
-      };
-      requestHttp.post(
-        {
-          url: ControllerUtils.AIServiceUrl + "/upload/image",
-          formData: formData
-        },
-        function optionalCallback(error, response, body) {
-          //成功识别artBoard对应的AI数据
-          if (!error && response.statusCode == 200) {
-            //获取当前artBoard的宽高信息，及当前artboard识别的标签数据
-            sizeOf(
-              "./data/complie/" + projectName + "/images/" + artBoardImgName,
-              function(err, dimensions) {
-                //console.log(dimensions.width, dimensions.height);
-                AIImgData = ControllerUtils.AIDataHandle(body);
-                AIArtboardInfo = {
-                  artId: artBoardID,
-                  width: dimensions.width,
-                  height: dimensions.height,
-                  AIImgData
-                };
-                console.log(
-                  "成功获取artBoard AI数据:" + AIArtboardInfo.AIImgData[0].id
-                );
-                resolve("success");
-              }
-            );
-          } else {
-            AIArtboardInfo = {
-              errCode: 0,
-              errMsg: "获取AI结果错误"
-            };
-          }
-          //将AI结果返回
-          //res.json(AIImgData);
-          //AI结果作为俊标和Yone，算法模型+AI模型的数据来源
-          //或者resolve
-          //return aiDataPromise(AIImgData);
-          //return AIImgData;
-          //resolve(AIImgData)
-          //return Promise.resolve(AIArtboardInfo);
-        }
-      );
+      resolve("success");
     });
     //resolve("success");
   });
-  return aiDataPromise;
+  aiDataPromise.then(info => {
+    var formData = {
+      my_field: "my_value",
+      my_buffer: new Buffer([1, 2, 3]),
+      file: fs.createReadStream(
+        "./data/complie/" + projectName + "/images/" + artBoardImgName
+      )
+    };
+    requestHttp.post(
+      {
+        url: ControllerUtils.AIServiceUrl + "/upload/image",
+        formData: formData
+      },
+      function optionalCallback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          AIImgData = ControllerUtils.AIDataHandle(body);
+        } else {
+          AIImgData = [
+            {
+              errCode: 0,
+              errMsg: "获取AI结果错误"
+            }
+          ];
+        }
+        //将AI结果返回
+        //res.json(AIImgData);
+        //AI结果作为俊标和Yone，算法模型+AI模型的数据来源
+        //或者resolve
+        //return aiDataPromise(AIImgData);
+        //return AIImgData;
+        //resolve(AIImgData)
+        return Promise.resolve(AIImgData);
+      }
+    );
+  });
+  //return aiDataPromise;
 };
 
 /**
@@ -444,16 +425,15 @@ let getHtmlCss = function(req, res, next) {
           //currentDesignJson = JSON.parse(resultData.artboardJson);
           generateImgArr = JSON.parse(resultData.artboardImgs);
           isHtmlGenerate = false;
+          resolve("success");
         }
-        resolve("success");
       }
     );
   });
   testArtBoardPromise
     .then(data => {
       try {
-        //调用该方法，获取当前artBoard的AI数据信息AIArtboardInfo
-        return getAIDataByArtBoardId(artBoardId, projectName);
+        let AIData = getAIDataByArtBoardId(artBoardId, projectName);
       } catch (error) {
         // 触发这一句
         console.log("error");
@@ -522,14 +502,11 @@ let getHtmlCss = function(req, res, next) {
             //描述文件
             currentDocumentJson
           );
-          // currentDesignObj.getSymbolList();
           let currentDesignDom = currentDesignObj.document,
             currentPageId = currentDesignObj.pageId;
           if (currentDesignDom) {
             //01-29:AI Data传给yone，yone和大雄使用AI Data进行
             Optimize(currentDesignDom);
-            //01-30
-            //Optimize(currentDesignDom, AIArtboardInfo);
             //获取要合并的图片列表
             currentImgsList = currentDesignDom.getImage();
             //获取当前的designdom对应的json
