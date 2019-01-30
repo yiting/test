@@ -1,4 +1,3 @@
-
 const Utils = require('../dsl_utils.js');
 const Model = require('../dsl_model.js');
 
@@ -15,15 +14,16 @@ class LayoutSort extends Model.LayoutModel {
      * @param {Int} layoutType 布局的类型
      */
     handle(parent, nodes, models, layoutType) {
+        // if (~parent.id.indexOf('_0936'))debugger
         if (this._modelType != layoutType) {
             return;
         }
 
         // if (this._isVerticalLayout(nodes)) {
-        if (Utils.isVertical(nodes)) {
-            this._sort(nodes, 'abY');
-        } else {
+        if (Utils.isHorizontal(nodes)) {
             this._sort(nodes, 'abX');
+        } else {
+            this._sort(nodes, 'abY');
         }
     }
 

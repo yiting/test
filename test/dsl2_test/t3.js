@@ -8431,9 +8431,9 @@ let designjson = [{
     "name": "治愈",
     "width": 48,
     "height": 24,
-    "x": 90,
+    "x": 60,
     "y": 42,
-    "abX": 364,
+    "abX": 334,
     "abY": 1998,
     "constraints": [],
     "text": "治愈",
@@ -12351,11 +12351,9 @@ const Dsl = require('../../code/server_modules/dsl2/dsl.js');
 const Render = require('../../code/server_modules/render/render.js');
 
 
-let dslTree = Dsl.process(designjson, Common.DesignWidth, 750, Common.FlexLayout);
-let render = Render.process(dslTree);
-
-//let jsonData = dslTree.getData();
-
+let dslTree = Dsl.process(designjson, 750, 750, Common.FlexLayout);
+// let render = Render.process(dslTree, Common.FlexLayout);
+let render = Render.process(dslTree, Common.TestLayout);
 let htmlStr = render.getTagString();
 let cssStr = render.getStyleString();
 const Path = require('path');

@@ -1,8 +1,12 @@
 // 样式的计算处理
 const Common = require('../../dsl2/dsl_common.js');
 const Constraints = require('../../dsl2/dsl_constraints.js');
-const Utils = require('../render_utils.js');
+const Utils = require('../utils');
+const Path = require('path');
+const Config = require('../config');
 
+const QLog = require("../../log/qlog");
+const Loger = QLog.getInstance(QLog.moduleData.render);
 // 生成的Css记录树
 let cssDomTree = null,
     cssDomArr;
@@ -10,8 +14,17 @@ let cssDomTree = null,
 // 主流程
 let process = function (data, layoutType) {
     // 构建cssTree并返回
+    Loger.debug(`css_dom.js [process]`);
     cssDomArr = [];
+
+    Loger.debug(`css_dom.js [_buildTree]`)
     _buildTree(null, data, layoutType);
+
+    Loger.debug(`css_dom.js [_parseConstraints]`)
+    _parseConstraints(cssDomTree);
+
+    Loger.debug(`css_dom.js [_parseBoundary]`)
+    _parseBoundary(cssDomTree);
     return cssDomTree;
 }
 
@@ -22,10 +35,10 @@ let getCssString = function (cssDomTree, similarData) {
     return css.join('\n');
 }
 
-let getCssMap = function (cssDomTree, similarData) {
+let getCssMap = function (cssDomTree) {
     // 获取cssTree解析出的样式
     let css = {}; // 每个CssDom节点返回的样式数组
-    _parseMap(css, cssDomTree, similarData);
+    _parseMap(css, cssDomTree);
     return css;
 }
 
@@ -40,57 +53,87 @@ let getCssDomArr = function () {
  * @param {Int} layoutType 
  */
 let _buildTree = function (parent, data, layoutType) {
-    let cssNode = new CssDom(parent, data, layoutType);
-    cssDomArr.push(cssNode);
-    // 构建树
-    if (!parent) {
-        cssDomTree = cssNode;
-    } else {
-        parent.children.push(cssNode);
+    try {
+        let cssNode = new CssDom(parent, data, layoutType);
+        cssDomArr.push(cssNode);
+        // 构建树
+        if (!parent) {
+            cssDomTree = cssNode;
+        } else {
+            parent.children.push(cssNode);
+        }
+        data.children.forEach(data => {
+            _buildTree(cssNode, data, layoutType);
+        });
+        return cssNode;
+    } catch (e) {
+        Loger.error(`css_dom.js [_buildTree] ${e},params[parent.id:${parent&&parent.id},data.id:${data&&data.id}]`)
+    }
+}
+/**
+ * 约束补充
+ * @param {Tree} tree 
+ */
+let _parseConstraints = function (tree) {
+    try {
+        tree.children.forEach(cn => {
+            _parseConstraints(cn);
+        })
+        tree._supplementConstraints();
+    } catch (e) {
+        Loger.error(`css_dom.js [_parseConstraints] ${e},params[tree.id:${tree&&tree.id}]`)
+    }
+}
+/**
+ * 边界补充
+ * @param {Tree} tree 
+ */
+let _parseBoundary = function (tree) {
+    try {
+        tree._calculateBoundary();
+        tree.children.forEach(cn => {
+            _parseBoundary(cn);
+        })
+    } catch (e) {
+        Loger.error(`css_dom.js [_parseBoundary] ${e},params[tree.id:${tree&&tree.id}]`)
     }
 
-    // if (data.children && data.children.length > 0) {
-    data.children.forEach(data => {
-        _buildTree(cssNode, data, layoutType);
-    });
-    // 对当前节点补充约束
-    cssNode._supplementConstraints();
-    // 对当前节子节点边界进行计算
-    // cssNode.children.forEach(cn => {
-    //     cn._calculateBoundary();
-    // });
-    return cssNode;
 }
-
 /**
  * 解析获取css属性
  * @param {Array} arr 字符串收集数组
  * @param {CssDom} dom CssDom节点
  */
 let _parseTree = function (arr, dom, similarData) {
-    let str = dom.getCss(similarData);
-    if (str) {
-        arr.push(str);
-    }
+    try {
+        let similarCss = similarData[dom.similarId] && similarData[dom.similarId].css;
+        let str = dom.getCss(similarCss);
+        if (str) {
+            arr.push(str);
+        }
 
-    dom.children.forEach(child => {
-        _parseTree(arr, child, similarData);
-    });
+        dom.children.forEach(child => {
+            _parseTree(arr, child, similarData);
+        });
+    } catch (e) {
+        Loger.error(`css_dom.js [_parseTree] ${e},params[dom.id:${dom&&dom.id}]`)
+    }
 }
 /**
  * 解析获取css属性
  * @param {Array} arr 字符串收集数组
  * @param {CssDom} dom CssDom节点
  */
-let _parseMap = function (map, dom, similarData) {
-    let str = dom.getCss(similarData);
-    if (str) {
-        map[dom.id] = str;
-    }
+let _parseMap = function (map, dom) {
+    try {
+        map[dom.id] = dom;
 
-    dom.children.forEach(child => {
-        _parseMap(map, child, similarData);
-    });
+        dom.children.forEach(child => {
+            _parseMap(map, child);
+        });
+    } catch (e) {
+        Loger.error(`css_dom.js [_parseMap] ${e},params[dom.id:${dom&&dom.id}]`)
+    }
 }
 
 
@@ -104,7 +147,7 @@ const cssPropertyMap = [
     'boxPack',
     'boxAlign',
     'width',
-    // 'height',
+    //'height',
     'minHeight',
     'marginTop',
     'marginRight',
@@ -115,19 +158,7 @@ const cssPropertyMap = [
     'right',
     'bottom',
     'left',
-    // 'zIndex'
-
     // // 属性类
-
-    // "marginLeft",
-    // "marginTop",
-    // "marginRight",
-    // "marginBottom",
-    // "left",
-    // "right",
-    // "top",
-    // "bottom",
-    // "padding",
     "zIndex",
     "backgroundImage",
     "backgroundColor",
@@ -154,6 +185,7 @@ class CssDom {
     constructor(parent, data, layoutType) {
         // 节点的信息
         this.id = data.id;
+        this.tagName = data.tagName;
         this.serialId = data.serialId;
         this.modelId = data.modelId;
         this.type = data.type;
@@ -162,9 +194,8 @@ class CssDom {
         this.canRightFlex = data.canRightFlex;
         this.isCalculate = data.isCalculate;
         this.tplAttr = data.tplAttr || {};
-        this.tplData = data.tplData || {};
         this.similarId = data.similarId;
-        this.parent = parent ? parent : this;
+        this.parent = parent ? parent : null;
         this.layoutType = layoutType;
 
         // 布局计算的数值
@@ -183,6 +214,9 @@ class CssDom {
         this.styles = data.styles || {};
         // 子节点
         this.children = [];
+
+        this.selfCssName = data.selfCssName || [];
+        this.similarCssName = data.similarCssName || [];
     }
 
     /**
@@ -291,6 +325,9 @@ class CssDom {
         if (!this._hasText) {
             return null;
         }
+        if (this._canLeftFlex() && this._canRightFlex()) {
+            return true;
+        }
         if (this.parent.constraints["LayoutDirection"] == Constraints.LayoutDirection.Vertical && this.parent.constraints["LayoutAlignItems"] == Constraints.LayoutAlignItems.Center) {
             return true;
         }
@@ -299,6 +336,10 @@ class CssDom {
         }
 
 
+    }
+
+    _isImgTag() {
+        return this.tagName == 'img';
     }
 
     /**
@@ -314,21 +355,33 @@ class CssDom {
     }
 
     /**
+     * 父节点是否属于相对定位
+     */
+    _isRelative() {
+        if (this.parent && this.parent.constraints['LayoutPosition'] == Constraints.LayoutPosition.Absolute) {
+            return true;
+        }
+        return false;
+
+    }
+    /**
      * 节点的排列是否为横排
      * @returns {Boolean}
      */
     _isParentHorizontal() {
-        let res = false; // 默认为竖排
+        if (!this.parent) {
+            return false;
+        }
         if (this.parent.children.length == 1) { // 1个元素默认是横排
             return true;
         }
 
         if (this.parent &&
             this.parent.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal) {
-            res = true;
+            return true;
         }
 
-        return res;
+        return false; // 默认为竖排
     }
 
     /**
@@ -417,7 +470,7 @@ class CssDom {
         }
         let nextNode = isVertical ? null : this._nextNode();
         if (!nextNode) {
-            this._abXops = this.parent._abXops;
+            this._abXops = this._abXops < this.parent._abXops ? this.parent._abXops : this._abXops;
             return;
         }
         if (nextNode._canLeftFlex()) {
@@ -431,7 +484,7 @@ class CssDom {
      * 判断是否使用padding
      */
     _usePaddingTop(parent) {
-        return parent.constraints["LayoutDirection"] == Constraints.LayoutDirection.Vertical &&
+        return parent && parent.constraints["LayoutDirection"] == Constraints.LayoutDirection.Vertical &&
             parent.children.find(nd => !nd._isAbsolute());
     }
     _getFirstChild(node) {
@@ -443,7 +496,6 @@ class CssDom {
         if (children.length == 0) {
             return;
         }
-        // if (this.id == 'EBDB98BC-0B1A-4F08-827D-5B52B8F9C675c') debugger
         let isVertical = children.length > 1 && Utils.isVertical(children),
             baseLine = Utils.calculateBaseLine(this),
             _justifyContent = isVertical ? 'vertical' : 'horizontal',
@@ -469,62 +521,55 @@ class CssDom {
     }
     // 找到获取最接近的model
     static getClosestModelById(node, id) {
-        return null;
-        if (!id) {
-            return null;
+        try {
+            if (!id || !node) {
+                return null;
+            }
+            if (id == node.id) {
+                return node;
+            }
+            return CssDom.getClosestModelById(node.parent, id);
+        } catch (e) {
+            Loger.error(`css_dom.js [getClosestModelById],params:[id:${id}]`)
         }
-        if (id == node.id) {
-            return node;
-        }
-        return CssDom.getClosestModelById(node.parent, id);
     }
     /**
      * 获取className
      */
     getClass() {
-        let parentClass = '',
-            selfClass = '';
-        // 如果有modelId,说明当前节点为某模型子元素
-        /* if (this.modelId && this.modelId != this.id) {
-            let model = CssDom.getClosestModelById(this, this.modelId);
-            parentClass = `.u-${model.serialId}`;
-            selfClass = this.tplData.class ? `.${this.tplData.class}` : `.u-${this.serialId}`
-        } else {
-            selfClass = `.u-${this.serialId}`;
-        } */
-        selfClass = `[ui${this.serialId}]`;
-        return [parentClass, selfClass].join(' ');
+        return this.selfCssName.map(n => '.' + n).join(' ')
     }
 
     /**
      * 获取得到的属性
      */
-    getCssProperty(similarData) {
-        let props = [];
-        // 获取属性值并进行拼接
-        let similarCss = similarData[this.similarId] && similarData[this.similarId].css;
-        cssPropertyMap.forEach(key => {
-            let value = this[key],
-                similarValue = similarCss && similarCss[key];
-            if (value !== null && similarValue != value) {
-                props.push(CssDom.getCssProperty(key, value));
-            }
-        });
-        return props;
+    getCssProperty(similarCss) {
+        try {
+            let props = [];
+            // 获取属性值并进行拼接
+            cssPropertyMap.forEach(key => {
+                let value = this[key],
+                    similarValue = similarCss && similarCss[key];
+                if (value != null && value != undefined && similarValue != value) {
+                    props.push(CssDom.getCssProperty(key, value));
+                }
+            });
+            return props;
+        } catch (e) {
+            Loger.error(`css_dom.js [this.getCssProperty] ${e}, params[this.id:${this.id},${similarCss}]`)
+        }
     }
 
     /**
      * 获取该节点的样式
      */
-    getCss(similarData) {
+    getCss(similarCss) {
         let str = '',
             className = this.getClass(),
-            cssArr = this.getCssProperty(similarData);
+            cssArr = this.getCssProperty(similarCss);
         if (cssArr.length) {
             str = `${className} {${cssArr.join(';')}}`;
         }
-        // !重要, 每次获取当前节点样式信息后
-        // 动态计算该节点的子节点的根据约束而生成_abX, _abY, _abXops, _abYops等数据
         return str;
     }
 
@@ -543,7 +588,7 @@ class CssDom {
         if (this.constraints['LayoutDirection'] == Constraints.LayoutDirection.Horizontal) {
             return '-webkit-box';
         }
-        return null;
+        return 'block';
     }
     //
     get boxOrient() {
@@ -624,6 +669,9 @@ class CssDom {
     }
 
     get backgroundColor() {
+        if (this._isImgTag()) {
+            return null;
+        }
         if (this.styles && this.styles.background &&
             this.styles.background.type == 'color') {
             return CssDom.getRGBA(this.styles.background.color);
@@ -657,6 +705,7 @@ class CssDom {
     }
     //
     get left() {
+
         let css = null;
         if (false) {
             // 这里是预留给fixed定位约束
@@ -690,15 +739,15 @@ class CssDom {
         }
         let firstChild = this._usePaddingTop(this.parent);
         if (firstChild == this) {
-            return null;
+            return 0;
         }
         if (this._isParentHorizontal()) { // 横排计算与父节点距离
             // 如果垂直居中、底对齐则无margin-Top
             if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Center) {
-                return null;
+                return 0;
             }
             if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.End) {
-                return null;
+                return 0;
             }
             // LayoutAlignItems.Start
             css = this._abY - this.parent._abY;
@@ -718,8 +767,10 @@ class CssDom {
             // LayoutJustifyContent.Start
             if (preNode) {
                 css = this._abY - preNode._abYops;
-            } else {
+            } else if (this.parent) {
                 css = this._abY - this.parent._abY;
+            } else {
+                css = this._abY;
             }
         }
         return css;
@@ -741,50 +792,49 @@ class CssDom {
             return css;
         }
 
+
         if (this._isParentHorizontal()) { // 横排计算与上一节点距离
             let nextNode = this._nextNode();
-
             // 如果水平左对齐
             if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Start) {
-                return null;
+                return 0;
             }
             // 如果水平居中
-            if (!nextNode &&
-                this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center) {
-                return null;
+            if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center) {
+                return 0;
             }
 
             if (nextNode) {
-                css = nextNode._abX - this._abXops;
+                return nextNode._abX - this._abXops;
             } else {
-                css = this.parent._abXops - this._abXops;
+                return this.parent._abXops - this._abXops;
             }
         } else { // 竖排计算与父节点距离
             // 如果水平居中、或水平右对齐
-            if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Center) {
+            if (this.parent && this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Center) {
                 return 'auto';
             }
-            if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Start) {
-                return null;
+            if (this.parent && this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Start) {
+                return 0;
             }
-            // LayoutAlignItems.End
-            css = this.parent._abXops - this._abXops;
+            if (this.parent && this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.End) {
+                return this.parent._abXops - this._abXops;
+            }
             return null;
         }
-        return css;
     }
     //
     get marginBottom() {
         if (this._isAbsolute()) {
-            return null;
+            return 0;
         }
         if (this._isParentHorizontal()) { // 横排计算与父节点距离
             // 如果垂直居中、底对齐则无margin-Top
             if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Center) {
-                return null;
+                return 0;
             }
             if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Start) {
-                return null;
+                return 0;
             }
             // LayoutAlignItems.Start
             return this.parent._abYops - this._abYops;
@@ -808,52 +858,51 @@ class CssDom {
             } else {
                 css = this._abY - this.parent._abY;
             } */
-            return null;
+            return 0;
         }
     }
     //
     get marginLeft() {
-        // if (this.id == '959A012C-6A6B-4FE4-B275-003CC20568B5c') debugger
-
-        let css = null;
+        let css = 0;
         if (this._isAbsolute()) {
             return css;
         }
+
 
         if (this._isParentHorizontal()) { // 横排计算与上一节点距离
             let preNode = this._prevNode();
 
             // 如果水平居中、或水平右对齐，第一个子节点无margin-left
-            if (!preNode && this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center) {
-                return null;
+            if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.Center &&
+                !preNode) {
+                return 0;
             }
             if (this.parent.constraints.LayoutJustifyContent == Constraints.LayoutJustifyContent.End) {
-                return null;
+                return 0;
             }
             // LayoutJustifyContent.Start
             if (preNode) {
-                css = this._abX - preNode._abXops;
+                return this._abX - preNode._abXops;
             } else {
-                css = this._abX - this.parent._abX;
+                return this._abX - this.parent._abX;
             }
         } else { // 竖排计算与父节点距离
             // 如果水平居中、或水平右对齐
-            if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Center) {
+            if (this.parent && this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.Center) {
                 return 'auto';
+            } else if (this.parent && this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.End) {
+                return 0;
+            } else if (this.parent) {
+                return this._abX - this.parent._abX;
             }
-            if (this.parent.constraints.LayoutAlignItems == Constraints.LayoutAlignItems.End) {
-                return null;
-            }
-            // LayoutAlignItems.Start
-            css = this._abX - this.parent._abX;
+            return this._abX;
         }
-        return css;
     }
-    //
+    // 
     get zIndex() {
-        // if (this._isAbsolute()) {
-        return this._zIndex;
-        // }
+        if (this._isAbsolute()) {
+            return this._zIndex;
+        }
         // return null;
     }
     //
@@ -865,6 +914,10 @@ class CssDom {
         }
     }
     get overflow() {
+        // if(this.children)
+        if (this.width == Common.DesignWidth && Utils.calRange(this.children).width > this.width) {
+            return 'auto'
+        }
         if (this.styles.texts) {
             return 'hidden';
         }
@@ -975,21 +1028,25 @@ class CssDom {
         }).join(',')})`;
     }
 
-    compareStyle() {
-
-    }
 
     get backgroundImage() {
+        if (this._isImgTag()) {
+            return null;
+        }
         if (this.styles.background &&
             this.styles.background.type == 'linear') {
             return this.getLinearGradient(this.styles.background, this._width, this._height);
         } else if (this.path) {
-            return `url(../${this.path})`;
+            let relativePath = Path.relative(Config.HTML.output.cssPath, Config.HTML.output.imgPath);
+            return `url(./${relativePath}/${this.path})`
         } else {
             return null;
         }
     }
     get backgroundSize() {
+        if (this._isImgTag()) {
+            return null;
+        }
         if (this.path) {
             return 'contain';
         } else {
@@ -998,6 +1055,9 @@ class CssDom {
     }
 
     get backgroundRepeat() {
+        if (this._isImgTag()) {
+            return null;
+        }
         var css = null;
         if (this.path) {
             css = 'no-repeat';

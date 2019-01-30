@@ -22,25 +22,25 @@ class EM3M4 extends Model.ElementModel {
         let icons = this.getIconNodes();
         Utils.sortListByParam(texts, 'abX');
 
-        this._matchNodes['1'] = icons[0];           // tag的icon背景
-        this._matchNodes['2'] = texts[1];           // tag的文字
-        this._matchNodes['0'] = texts[0];           // 主文字
+        this._matchNodes['1'] = icons[0]; // tag的icon背景
+        this._matchNodes['2'] = texts[1]; // tag的文字
+        this._matchNodes['0'] = texts[0]; // 主文字
     }
 
     // 元素方向
     regular1() {
-        let bool = Feature.directionArightToB(this._matchNodes['2'], this._matchNodes['0'])
-                    && Feature.directionArightToB(this._matchNodes['1'], this._matchNodes['0']);
-        
+        let bool = Feature.directionAleftToB(this._matchNodes['0'], this._matchNodes['2']) &&
+            Feature.directionAleftToB(this._matchNodes['0'], this._matchNodes['1']);
+
         return bool;
     }
 
     // 水平轴方向
     regular2() {
         // 三者都处于水平轴方向上
-        let bool = Feature.baselineABInHorizontal(this._matchNodes['1'], this._matchNodes['0'])
-                    && Feature.baselineABInHorizontal(this._matchNodes['1'], this._matchNodes['2'])
-                    && Feature.baselineABInHorizontal(this._matchNodes['0'], this._matchNodes['2']);
+        let bool = Feature.baselineABInHorizontal(this._matchNodes['1'], this._matchNodes['0']) &&
+            Feature.baselineABInHorizontal(this._matchNodes['1'], this._matchNodes['2']) &&
+            Feature.baselineABInHorizontal(this._matchNodes['0'], this._matchNodes['2']);
 
         return bool;
     }
@@ -48,8 +48,8 @@ class EM3M4 extends Model.ElementModel {
     // 元素距离
     regular3() {
         // tagShape与mainTxt的距离必须小于24,大于0
-        let bool = Feature.distanceGreatAleftToBright(this._matchNodes['1'], this._matchNodes['0'], 0)
-                    && Feature.distanceLessAleftToBright(this._matchNodes['1'], this._matchNodes['0'], 24);
+        let bool = Feature.distanceGreatAleftToBright(this._matchNodes['1'], this._matchNodes['0'], 0) &&
+            Feature.distanceLessAleftToBright(this._matchNodes['1'], this._matchNodes['0'], 24);
 
         return bool;
     }
@@ -66,10 +66,10 @@ class EM3M4 extends Model.ElementModel {
     regular5() {
         // 1. tagShape一般占mainTxt字高度的大于1/2, 小于1.1
         // 2. tagShape的宽度一般超tagTxt字宽度小于1.2
-        let bool = Feature.sizeHeightRatioAGreatB(this._matchNodes['1'], this._matchNodes['0'], 0.5)
-                    && Feature.sizeHeightRatioALessB(this._matchNodes['1'], this._matchNodes['0'], 1.1)
-                    && Feature.sizeWidthRatioAGreatB(this._matchNodes['2'], this._matchNodes['1'], 0.5);
-        
+        let bool = Feature.sizeHeightRatioAGreatB(this._matchNodes['1'], this._matchNodes['0'], 0.5) &&
+            Feature.sizeHeightRatioALessB(this._matchNodes['1'], this._matchNodes['0'], 1.1) &&
+            Feature.sizeWidthRatioAGreatB(this._matchNodes['2'], this._matchNodes['1'], 0.5);
+
         return bool;
     }
 }

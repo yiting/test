@@ -26,7 +26,7 @@ class EM2M2 extends Model.ElementModel {
     // 元素方向
     regular1() {
         // icon位于文字右侧
-        return Feature.directionArightToB(this._matchNodes['1'], this._matchNodes['0']);
+        return Feature.directionAleftToB(this._matchNodes['0'], this._matchNodes['1']);
     }
 
     // 水平轴方向

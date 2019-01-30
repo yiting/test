@@ -269,29 +269,6 @@ let directionGroupAleftToGroupB = function (groupA, groupB) {
     return result;
 }
 
-/**
- * A位于B的右边
- * @param {Node} eleA 元素A 
- * @param {Node} eleB 元素B
- */
-let directionArightToB = function (eleA, eleB) {
-    // 通过中心点判断
-    let pA = eleA.abX + (eleA.width / 2);
-    let pB = eleB.abX + (eleB.width / 2);
-    return pA <= pB ? false : true;
-}
-
-/**
- * A位于B的上边
- * @param {Node} eleA 元素A 
- * @param {Node} eleB 元素B
- */
-let directionAtopToB = function (eleA, eleB) {
-    // 通过中心点判断
-    let pA = eleA.abY + (eleA.height / 2);
-    let pB = eleB.abY + (eleB.height / 2);
-    return pA <= pB ? true : false;
-}
 
 /**
  * A位于B的下边
@@ -693,7 +670,24 @@ let baselineGroupAInVertical = function (groupA) {
 let baselineABNotInVertical = function (eleA, eleB) {
     return !baselineABInVertical(eleA, eleB);
 }
-
+/**
+ * AB元素左侧间距
+ * @param {Node} eleA 元素A
+ * @param {Node} eleB 元素B
+ * @param {Number} distance 左对齐间距
+ */
+let baselineABJustifyLeft = function (eleA, eleB, distance) {
+    return Math.abs(eleA.abX - eleB.abX) < distance;
+}
+/**
+ * AB元素水平方向中心间距
+ * @param {Node} eleA 元素A
+ * @param {Node} eleB 元素B
+ * @param {Number} distance 中间对齐间距
+ */
+let baselineABJustifyCenter = function (eleA, eleB, distance) {
+    return Math.abs(eleA.abX + eleA.width / 2 - eleB.abX - eleB.width / 2) < distance
+}
 
 // 特征: 元素的尺寸关系
 // ---------------------------------------------------------------------------------------------------------
@@ -796,23 +790,23 @@ let sizeWidthGreat = function (eleA, num) {
 /**
  * 判断元素字号范围
  * @param {Node} eleA 节点元素
- * @param {Int} minSize 最小字号
- * @param {Int} maxSize 最大字号
+ * @param {Int} min 最小字号
+ * @param {Int} max 最大字号
  */
-let fontSizeLimit = function (eleA, minSize, maxSize) {
+let fontSizeLimit = function (eleA, min, max) {
     let size = Math.max(...eleA.styles.texts.map(s => s.size));
-    return size >= minSize && size <= maxSize;
+    return size >= min && size <= max;
 
 }
 /**
  * 判断元素行数范围
  * @param {Node} eleA 节点元素
- * @param {Int} minLines 最小行数
- * @param {Int} maxLines 最大行数
+ * @param {Int} min 最小行数
+ * @param {Int} max 最大行数
  */
-let fontLineLimit = function (eleA, minLines, maxLines) {
+let fontLineLimit = function (eleA, min, max) {
     let lines = Math.round(eleA.height / eleA.lineHeight);
-    return lines >= minLines && lines <= maxLines;
+    return lines >= min && lines <= max;
 
 }
 
@@ -827,7 +821,7 @@ module.exports = {
     propertyNodeAreQImage,
     propertyNodeIsQShape,
     propertyNodeAreQShape,
-    // 元素属性值判断
+    // 字符值判断
     fontLineLimit,
     fontSizeLimit,
     // 元素组成关系
@@ -838,8 +832,6 @@ module.exports = {
     // 元素方向关系
     directionAleftToB,
     directionGroupAleftToGroupB,
-    directionArightToB,
-    directionAtopToB,
     directionAbottomToB,
     // 元素距离关系
     distanceLessArightToBleft,
@@ -868,6 +860,11 @@ module.exports = {
     baselineABInVertical,
     baselineGroupAInVertical,
     baselineABNotInVertical,
+    // 对齐关系
+    baselineABJustifyLeft,
+    baselineABJustifyCenter,
+
+
     // 元素的尺寸关系
     sizeWidthRatioALessB,
     sizeWidthRatioAGreatB,

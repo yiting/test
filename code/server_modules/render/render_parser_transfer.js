@@ -10,7 +10,6 @@ const ATTR_TYPES = {
 }
 let uuid = 1;
 class DSLTreeTransfer {
-
     static getExtremValue(childrenNodes,prop,extremType,parentNode){
         var result = 0;
         if(prop == "abX" || prop == "abY"){
@@ -65,7 +64,7 @@ class DSLTreeTransfer {
         this.setXml(xml);
         this.process(dslNodes);
         this.xml.isRoot = true;
-        this.modelId = dslNodes[0].modelId;
+        //this.modelId = dslNodes[0].modelId;
         return this.convert(this.xml, dslNodes);
     };
     static process(dslNodes) {
@@ -105,6 +104,9 @@ class DSLTreeTransfer {
         obj.text = "";
         obj.path = "";
         obj.constraints = {};
+        obj.similarId = null;
+        obj.similarParentId = null;
+        obj.zIndex = 0;
         var nodeValue = (xml.textContent || "").replace(/(\r|\n)/g, "").replace(/^\s+|\s+$/g, "");
 
         if (nodeValue && xml.childNodes.length == 1) {
@@ -167,6 +169,8 @@ class DSLTreeTransfer {
                 node.canRightFlex = null;
             }
             node.parentId = node.parentId || node.parent || '';
+            node.width = node.abXops - node.abX;
+            node.height = node.abYops - node.abY;
         }
         // node.modelName = node. modelName || data.modelName || '';
         return node;
@@ -185,7 +189,7 @@ class DSLTreeTransfer {
         if (typeof obj !== "object") {
             return obj;
         } else {
-            Object.assign(destObj,getAttr(obj,['zIndex','similarId','abX','abY','abXops','abYops','styles','constraints','children','width','height','canLeftFlex','canRightFlex','modelRef','modelName','text','path']));
+            Object.assign(destObj,getAttr(obj,['id', 'zIndex','similarId', 'type', 'similarParentId', 'abX','abY','abXops','abYops','styles','constraints','children','width','height','canLeftFlex','canRightFlex','modelRef','modelName', 'modelId', 'text','path']));
             // for (let key in obj) {
             //     if (key === 'tagName' && obj[key]) continue;
             //     destObj[key] = obj[key];

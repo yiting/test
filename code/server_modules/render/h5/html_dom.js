@@ -1,8 +1,9 @@
-const fs = require('fs');
-let htmlTpl;
+const Common = require('../../dsl2/dsl_common.js');
+const QLog = require("../../log/qlog");
+const Loger = QLog.getInstance(QLog.moduleData.render);
 
 class HtmlDom {
-    constructor(node, parentNode, css) {
+    constructor(node, parentNode) {
         // super(node)
         this.children = [];
         this.parentNode = parentNode || null;
@@ -10,7 +11,9 @@ class HtmlDom {
         this.serialId = node.serialId;
         this.similarId = node.similarId;
         this.modelId = node.modelId;
+        this.modelName = node.modelName;
         this.tagName = node.tagName;
+        this.isClosedTag = node.isClosedTag;
         this.text = node.text;
         this.abX = node.abX || 0;
         this.abY = node.abY || 0;
@@ -19,9 +22,9 @@ class HtmlDom {
         this.path = node.path || null;
         this.contrains = node.contrains || {};
         this.tplAttr = node.tplAttr || {};
-        this.tplData = node.tplData || {};
-        this.css = css;
-        // if (this.id == '959A012C-6A6B-4FE4-B275-003CC20568B5c') debugger
+
+        this.selfClassName = node.selfClassName;
+        this.similarClassName = node.similarClassName;
     }
     get x() {
         return this.parent ? (this.abX - this.parent.abX) : this.abX
@@ -30,19 +33,14 @@ class HtmlDom {
         return this.parent ? (this.abY - this.parent.abY) : this.abY
     }
     getAttrClass() {
-
-        var result = [];
-        // if (this.css) {
-        // result.push('ui' + this.serialId);
-        // }
-        if (this.similarId) {
-            result.push('sim' + this.similarId);
+        var result = [],
+            _cssDom = _cssDomMap[this.id],
+            _simCssDom = _similarCssDomMap[this.similarId];
+        if (!_simCssDom || _cssDom.getCss(_simCssDom)) {
+            result.push(this.selfClassName);
         }
-        if (this.tplData && this.tplData.class) {
-            result.push(this.tplData.class);
-        }
-        if (this.tplAttr && this.tplAttr.class) {
-            result.push(this.tplAttr.class);
+        if (this.similarClassName) {
+            result.push(this.similarClassName);
         }
 
 
@@ -58,81 +56,82 @@ class HtmlDom {
     getContent() {
         return this.text || '';
     }
-    getAttrId() {
-        // return this.id || '';
-        return `ui${this.serialId}`;
-    }
     getAttrs() {
-        var result = "";
-        if (this.path && this.getTag() == "img") {
-            result += "src='" + this.path + "'";
-        }
+        var result = [];
         if (this.tplAttr) {
-            result += Object.keys(this.tplAttr).map(key => {
+            result.push(...Object.keys(this.tplAttr).map(key => {
                 if (key != "data-model") {
                     return `${key}="${this.tplAttr[key]}"`;
                 }
-            })
+            }))
         }
-        return result;
+        return result.join(' ');
     }
     // 开始节点
-    getHtmlStart() {
-        // return `<${this.getTag()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
-        return `<${this.getTag()} ${this.getAttrId()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+    getHtmlStart(_layoutType) {
+        if (_layoutType == Common.TestLayout) {
+            let modelName = this.modelName ? `md="${this.modelName}"` : '';
+            return `<${this.getTag()} ${this.id} ${this.similarId?'sim='+this.similarId:''} ${modelName} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+            // return `<${this.getTag()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
+        }
+        return `<${this.getTag()} ${this.getAttrClass()} ${this.getAttrs()}>${this.getContent()}`
     }
     // 闭合节点
     getHtmlEnd() {
-        return this.tplData && this.tplData.isClosedTag ? '' : `</${this.getTag()}> `
+        return this.isClosedTag ? '' : `</${this.getTag()}> `
     }
 }
-let htmlDomTree;
+let _htmlDomTree,
+    _cssDomMap,
+    _similarCssDomMap
 
 /**
  * 构建htmlDom树
  * @param {Object} parent 
  * @param {Json} data 
  */
-let _buildTree = function (data, parent, cssDomMap) {
-    let htmlNode = new HtmlDom(data, parent, cssDomMap[data.id]);
-    // 构建树
-    if (!parent) {
-        htmlDomTree = htmlNode;
-    } else {
-        parent.children.push(htmlNode);
+let _buildTree = function (data, parent) {
+    try {
+        let htmlNode = new HtmlDom(data, parent);
+        // 构建树
+        if (!parent) {
+            _htmlDomTree = htmlNode;
+        } else {
+            parent.children.push(htmlNode);
+        }
+        data.children.forEach(child => {
+            _buildTree(child, htmlNode);
+        });
+    } catch (e) {
+        Loger.error(`html_dom.js [_buildTree] ${e},params[data.id:${data&&data.id},parent.id:${parent&&parent.id}]`);
     }
-    data.children.forEach(child => {
-        _buildTree(child, htmlNode, cssDomMap);
-    });
 }
 
-function process(data, cssDomMap) {
-    htmlDomTree = null;
-    _buildTree(data, htmlDomTree, cssDomMap);
-    return htmlDomTree;
+function process(data, cssDomMap, similarCssDomMap) {
+
+    Loger.debug(`html_dom.js [process]`);
+    _htmlDomTree = null;
+    _cssDomMap = cssDomMap;
+    _similarCssDomMap = similarCssDomMap;
+    Loger.debug(`html_dom.js [_buildTree]`);
+    _buildTree(data, _htmlDomTree);
+    return _htmlDomTree;
 }
 
-function getHtmlString(htmlDom) {
+function getHtmlString(htmlDom, _layoutType) {
     // 遍历循环
-    let html = htmlDom.getHtmlStart();
+    let html = htmlDom.getHtmlStart(_layoutType);
     if (htmlDom.children) {
         htmlDom.children.forEach(child => {
-            html += getHtmlString(child);
+            html += getHtmlString(child, _layoutType);
         });
     }
     html += htmlDom.getHtmlEnd();
     return html;
 }
 
-function getHtmlTpl() {
-    if (!htmlTpl) {
-        htmlTpl = fs.readFileSync("./server_modules/render/tpl.html", "utf-8");
-    }
-    return htmlTpl;
-}
 
 module.exports = {
     process,
-    getHtmlTpl,
     getHtmlString,
 }
