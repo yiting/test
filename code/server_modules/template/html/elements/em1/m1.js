@@ -10,14 +10,7 @@ class EM1M1 extends HtmlTemplate {
     super(...arguments);
   }
   get template() {
-    return `<span :class="className()"></span>`
-  }
-  className(node){
-    if(node.styles.texts[0].size>30){
-      return 'title'
-    }
-    return 'text'
-
+    return `<span :class="textClassName()"></span>`
   }
 }
 

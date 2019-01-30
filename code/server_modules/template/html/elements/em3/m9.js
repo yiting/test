@@ -16,9 +16,9 @@ class EM3M9 extends HtmlTemplate {
   }
   get template() {
     return `
-    <div class="em3-m9" :constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
+    <div class="content" :constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
        <span $ref="0" class="text"></span>
-       <span $ref="1" class="v-line"></span>
+       <span $ref="1" class="vLine"></span>
        <span $ref="2" class="text"></span>
     </div>`
   }

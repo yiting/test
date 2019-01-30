@@ -20,7 +20,7 @@ class WG4M1 extends HtmlTemplate {
   }
   get template() {
     return `
-    <div class="img-info" :constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
+    <div class="imgInfo" :constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
       <img $ref="0" class="img" :constraints='{"LayoutSelfHorizontal":"Left","LayoutFixedWidth":"Fixed","LayoutFixedHeight":"Fixed"}' :src="this.requireImgPath(path)"/>
       <dl class="content" :constraints='{"LayoutFlex":"Auto","LayoutJustifyContent":"Start"}'>
         <dd $ref="1" class="primary" :constraints='{"LayoutFlex":"Auto"}'></dd>

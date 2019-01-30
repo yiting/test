@@ -43,19 +43,7 @@ class H5Builder extends Builder {
         let selfPrefix = '';
         let modelNode = _domCache[data.modelId],
             parentNode = _domCache[data.parentId]
-        let selfClassName = data.tplAttr.class || 'ui',
-            targetName
-        /* if (data.modelId != data.id && modelNode) {
-            selfPrefix = modelNode.selfClass
-            let className = [selfPrefix, selfClassName].join(' ');
-            data.selfClass = _classCache[className] ? selfClassName + '-' + data.serialId : selfClassName;
-        } else if (parentNode) {
-            selfPrefix = parentNode.selfClass
-            let className = [selfPrefix, selfClassName].join(' ');
-            data.selfClass = _classCache[className] ? selfClassName + '-' + data.serialId : selfClassName;
-        } else {
-            data.selfClass = selfClassName + '-' + data.serialId;
-        } */
+        let selfClassName = data.tplAttr.class || 'ui';
         if (data.modelId != data.id && modelNode) {
             selfPrefix = modelNode.selfClassName
             selfClassName = modelNode.tplAttr.class + '-' + selfClassName
@@ -65,7 +53,9 @@ class H5Builder extends Builder {
             data.selfCssName = [selfPrefix, selfClassName];
         } else if (parentNode) {
             selfPrefix = parentNode.selfClassName
-            selfClassName = parentNode.tplAttr.class + '-' + selfClassName
+            if (_domCache[parentNode.parentId]) {
+                selfClassName = parentNode.tplAttr.class + '-' + selfClassName
+            }
             let className = [selfPrefix, selfClassName].join(' ');
             // 如果存在样式，则加后缀
             selfClassName = _classCache[className] ? selfClassName + data.serialId : selfClassName;

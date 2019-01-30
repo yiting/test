@@ -17,10 +17,10 @@ class EM3M8 extends HtmlTemplate {
   }
   get template() {
     return `
-    <div class="em3-m8" :constraints='{"LayoutDirection":"Horizontal", "LayoutJustifyContent":"Start"}'>
+    <div class="title" :constraints='{"LayoutDirection":"Horizontal", "LayoutJustifyContent":"Start"}'>
       <span $ref="0" class="text"></span>
       <span $ref="1" class="tag">
-        <em $ref="2" class="tag-text"></em>
+        <em $ref="2" class="tagText"></em>
       </span>
     </div>`
   }

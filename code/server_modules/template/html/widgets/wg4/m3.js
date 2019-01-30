@@ -19,11 +19,11 @@ class WG4M3 extends HtmlTemplate {
   }
   get template() {
     return `
-  <div class="img-info" :constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
+  <div class="imgInfo" :constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
     <ul class="imglist" :constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
-        <li $ref="0" class="img1"></li>
-        <li $ref="1" class="img2"></li>
-        <li $ref="2" class="img3"></li>
+        <li $ref="0" class="img"></li>
+        <li $ref="1" class="img"></li>
+        <li $ref="2" class="img"></li>
     </ul>
     <p $ref="3" class="text"></p>
   </div>`

@@ -18,9 +18,9 @@ class EM3M2 extends HtmlTemplate {
   get template() {
     return `
     <div class="block" :constraints='{"LayoutDirection": "Horizontal","LayoutJustifyContent": "Start"}'>
-      <span $ref="2" class="title"></span>
+      <span $ref="2" :class="textClassName()"></span>
       <em $ref="0" class="tag">
-        <span $ref="1" class="tag-text"></span>
+        <span $ref="1" class="tagText"></span>
       </em>
     </div>`
   }

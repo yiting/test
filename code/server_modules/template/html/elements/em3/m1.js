@@ -19,9 +19,9 @@ class EM3M1 extends HtmlTemplate {
     return `
     <div class="em3-m1" :constraints="this.constraints">
       <span $ref="0" class="tag">
-        <em $ref="1" class="tag-text"></em>
+        <em $ref="1" class="tagText"></em>
       </span>
-      <span $ref="2" class="text"></span>
+      <span $ref="2" :class="textClassName()"></span>
     </div>`
   }
   get constraints() {

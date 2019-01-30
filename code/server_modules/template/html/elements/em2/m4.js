@@ -17,7 +17,7 @@ class EM2M4 extends HtmlTemplate {
     return `
       <div class="link">
         <span $ref="0" class="text"></span>
-        <span $ref="1" class="h-line"></span>
+        <span $ref="1" class="hLine"></span>
       </div>`
   }
 }
