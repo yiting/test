@@ -1,4 +1,6 @@
 const Common = require('../../dsl2/dsl_common.js');
+const QLog = require("../../log/qlog");
+const Loger = QLog.getInstance(QLog.moduleData.render);
 
 class HtmlDom {
     constructor(node, parentNode) {
@@ -89,22 +91,29 @@ let _htmlDomTree,
  * @param {Json} data 
  */
 let _buildTree = function (data, parent) {
-    let htmlNode = new HtmlDom(data, parent);
-    // 构建树
-    if (!parent) {
-        _htmlDomTree = htmlNode;
-    } else {
-        parent.children.push(htmlNode);
+    try {
+        let htmlNode = new HtmlDom(data, parent);
+        // 构建树
+        if (!parent) {
+            _htmlDomTree = htmlNode;
+        } else {
+            parent.children.push(htmlNode);
+        }
+        data.children.forEach(child => {
+            _buildTree(child, htmlNode);
+        });
+    } catch (e) {
+        Loger.error(`html_dom.js [_buildTree] ${e},params[data.id:${data&&data.id},parent.id:${parent&&parent.id}]`);
     }
-    data.children.forEach(child => {
-        _buildTree(child, htmlNode);
-    });
 }
 
 function process(data, cssDomMap, similarCssDomMap) {
+
+    Loger.debug(`html_dom.js [process]`);
     _htmlDomTree = null;
     _cssDomMap = cssDomMap;
     _similarCssDomMap = similarCssDomMap;
+    Loger.debug(`html_dom.js [_buildTree]`);
     _buildTree(data, _htmlDomTree);
     return _htmlDomTree;
 }

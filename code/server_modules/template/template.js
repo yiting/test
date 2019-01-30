@@ -21,9 +21,11 @@ const _SYMBOL = {
 const TemplateData = require("./templateData");
 const XML_Engine = require('./XML_Engine');
 
+const QLog = require("../log/qlog");
+const Loger = QLog.getInstance(QLog.moduleData.render);
+
 class Template {
     constructor(renderData, parentTpl, templateList) {
-
         // 节点引用
         this.$ref = renderData.nodes || {};
         // 渲染数据
@@ -224,9 +226,13 @@ class Template {
         });
     }
     static parse(renderData, parentTpl, TemplateList) {
-        let ModelTpl = Template.getModelTemplate(TemplateList, renderData.modelName) || Template;
-        let tplData = new ModelTpl(renderData, parentTpl, TemplateList).getData();
-        return tplData;
+        try {
+            let ModelTpl = Template.getModelTemplate(TemplateList, renderData.modelName) || Template;
+            let tplData = new ModelTpl(renderData, parentTpl, TemplateList).getData();
+            return tplData;
+        } catch (e) {
+            Loger.error(`template.js [parse] params[renderData.id:${renderData.id},parentTpl:${parentTpl}]`)
+        }
     }
 }
 

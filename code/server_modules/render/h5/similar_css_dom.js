@@ -1,6 +1,9 @@
 // 样式的计算处理
 const CssDom = require('./css_dom').CssDom;
 
+const QLog = require("../../log/qlog");
+const Loger = QLog.getInstance(QLog.moduleData.render);
+
 // 生成的Css记录树
 
 let mainCss = [
@@ -43,14 +46,21 @@ let mainCss = [
 class similarCssDom {
 
     static process(cssDomTree, layoutType) {
+        Loger.debug(`similar_css_dom.js [process],enter[cssDomTree:${cssDomTree&&cssDomTree.id}]`);
+
         this._cssDomTree = cssDomTree
         this._similarMap = {}
         // 遍历节点，构建similar元素
+        Loger.debug(`similar_css_dom.js [_buildSimilarData]`);
         this._buildSimilarData(this._cssDomTree);
+
+        Loger.debug(`similar_css_dom.js [_buildSimilarCss]`);
         this._buildSimilarCss(this._similarMap);
         return this._similarMap;
     }
     static getCssString() {
+        Loger.debug(`similar_css_dom.js [getCssString],enter[_similarMap:${this._similarMap&&Object.keys(this._similarMap)}]`);
+
         let css = [];
         Object.keys(this._similarMap).forEach(key => {
             let cssNode = this._similarMap[key];
@@ -103,53 +113,61 @@ class similarCssDom {
      * @param {*} cssNode 
      */
     static _buildSimilarData(cssNode) {
-        // 如果存在相似节点，则存储相似节点到simialrData
-        let similarId = cssNode.similarId;
-        if (similarId) {
-            if (!this._similarMap[similarId]) {
-                this._similarMap[similarId] = {
-                    modelId: cssNode.modelId,
-                    similarId: similarId,
-                    similarParentId: cssNode.similarParentId,
-                    similarCssName: cssNode.similarCssName,
-                    css: {},
-                    list: []
-                };
+        try {
+            // 如果存在相似节点，则存储相似节点到simialrData
+            let similarId = cssNode.similarId;
+            if (similarId) {
+                if (!this._similarMap[similarId]) {
+                    this._similarMap[similarId] = {
+                        modelId: cssNode.modelId,
+                        similarId: similarId,
+                        similarParentId: cssNode.similarParentId,
+                        similarCssName: cssNode.similarCssName,
+                        css: {},
+                        list: []
+                    };
+                }
+                this._similarMap[similarId].list.push(cssNode);
+                if (this._similarMap[similarId].className && this._similarMap[similarId].className == cssNode.tplAttr.class) {
+                    this._similarMap[similarId].className = null;
+                }
             }
-            this._similarMap[similarId].list.push(cssNode);
-            if (this._similarMap[similarId].className && this._similarMap[similarId].className == cssNode.tplAttr.class) {
-                this._similarMap[similarId].className = null;
-            }
+            cssNode.children.forEach(nd => this._buildSimilarData(nd));
+        } catch (e) {
+            Loger.error(`similar_css_dom.js [_buildSimilarData] ${e},params[cssNode.id:${cssNode.id},cssNode.similarId:${cssNode.similarId}]`);
         }
-        cssNode.children.forEach(nd => this._buildSimilarData(nd));
     }
 
     static _buildSimilarCss() {
-        Object.keys(this._similarMap).forEach(sid => {
-            let cssDomList = this._similarMap[sid].list;
+        try {
+            Object.keys(this._similarMap).forEach(sid => {
+                let cssDomList = this._similarMap[sid].list;
 
-            let cssObj = {};
-            cssDomList.forEach(cssDom => {
+                let cssObj = {};
+                cssDomList.forEach(cssDom => {
+                    mainCss.forEach(key => {
+                        if (cssObj[key] == undefined) {
+                            cssObj[key] = []
+                        }
+                        cssObj[key].push(cssDom[key])
+                    })
+                    minCss.forEach(key => {
+                        if (cssObj[key] == undefined) {
+                            cssObj[key] = []
+                        }
+                        cssObj[key].push(cssDom[key])
+                    })
+                });
                 mainCss.forEach(key => {
-                    if (cssObj[key] == undefined) {
-                        cssObj[key] = []
-                    }
-                    cssObj[key].push(cssDom[key])
-                })
+                    this._similarMap[sid].css[key] = this._setMainCss(cssObj[key]);
+                });
                 minCss.forEach(key => {
-                    if (cssObj[key] == undefined) {
-                        cssObj[key] = []
-                    }
-                    cssObj[key].push(cssDom[key])
-                })
+                    this._similarMap[sid].css[key] = this._setMinCss(cssObj[key]);
+                });
             });
-            mainCss.forEach(key => {
-                this._similarMap[sid].css[key] = this._setMainCss(cssObj[key]);
-            });
-            minCss.forEach(key => {
-                this._similarMap[sid].css[key] = this._setMinCss(cssObj[key]);
-            });
-        });
+        } catch (e) {
+            Loger.error(`similar_css_dom.js [_buildSimilarCss] ${e}`);
+        }
     }
 
     static _setMinCss(cssArr) {

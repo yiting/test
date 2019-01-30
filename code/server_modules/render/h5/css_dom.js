@@ -5,6 +5,8 @@ const Utils = require('../utils');
 const Path = require('path');
 const Config = require('../config');
 
+const QLog = require("../../log/qlog");
+const Loger = QLog.getInstance(QLog.moduleData.render);
 // 生成的Css记录树
 let cssDomTree = null,
     cssDomArr;
@@ -12,9 +14,16 @@ let cssDomTree = null,
 // 主流程
 let process = function (data, layoutType) {
     // 构建cssTree并返回
+    Loger.debug(`css_dom.js [process]`);
     cssDomArr = [];
+
+    Loger.debug(`css_dom.js [_buildTree]`)
     _buildTree(null, data, layoutType);
+
+    Loger.debug(`css_dom.js [_parseConstraints]`)
     _parseConstraints(cssDomTree);
+
+    Loger.debug(`css_dom.js [_parseBoundary]`)
     _parseBoundary(cssDomTree);
     return cssDomTree;
 }
@@ -44,32 +53,50 @@ let getCssDomArr = function () {
  * @param {Int} layoutType 
  */
 let _buildTree = function (parent, data, layoutType) {
-    let cssNode = new CssDom(parent, data, layoutType);
-    cssDomArr.push(cssNode);
-    // 构建树
-    if (!parent) {
-        cssDomTree = cssNode;
-    } else {
-        parent.children.push(cssNode);
+    try {
+        let cssNode = new CssDom(parent, data, layoutType);
+        cssDomArr.push(cssNode);
+        // 构建树
+        if (!parent) {
+            cssDomTree = cssNode;
+        } else {
+            parent.children.push(cssNode);
+        }
+        data.children.forEach(data => {
+            _buildTree(cssNode, data, layoutType);
+        });
+        return cssNode;
+    } catch (e) {
+        Loger.error(`css_dom.js [_buildTree] ${e},params[parent.id:${parent&&parent.id},data.id:${data&&data.id}]`)
     }
-
-    data.children.forEach(data => {
-        _buildTree(cssNode, data, layoutType);
-    });
-    return cssNode;
 }
+/**
+ * 约束补充
+ * @param {Tree} tree 
+ */
 let _parseConstraints = function (tree) {
-    tree.children.forEach(cn => {
-        _parseConstraints(cn);
-    })
-    tree._supplementConstraints();
+    try {
+        tree.children.forEach(cn => {
+            _parseConstraints(cn);
+        })
+        tree._supplementConstraints();
+    } catch (e) {
+        Loger.error(`css_dom.js [_parseConstraints] ${e},params[tree.id:${tree&&tree.id}]`)
+    }
 }
-
+/**
+ * 边界补充
+ * @param {Tree} tree 
+ */
 let _parseBoundary = function (tree) {
-    tree._calculateBoundary();
-    tree.children.forEach(cn => {
-        _parseBoundary(cn);
-    })
+    try {
+        tree._calculateBoundary();
+        tree.children.forEach(cn => {
+            _parseBoundary(cn);
+        })
+    } catch (e) {
+        Loger.error(`css_dom.js [_parseBoundary] ${e},params[tree.id:${tree&&tree.id}]`)
+    }
 
 }
 /**
@@ -78,15 +105,19 @@ let _parseBoundary = function (tree) {
  * @param {CssDom} dom CssDom节点
  */
 let _parseTree = function (arr, dom, similarData) {
-    let similarCss = similarData[dom.similarId] && similarData[dom.similarId].css;
-    let str = dom.getCss(similarCss);
-    if (str) {
-        arr.push(str);
-    }
+    try {
+        let similarCss = similarData[dom.similarId] && similarData[dom.similarId].css;
+        let str = dom.getCss(similarCss);
+        if (str) {
+            arr.push(str);
+        }
 
-    dom.children.forEach(child => {
-        _parseTree(arr, child, similarData);
-    });
+        dom.children.forEach(child => {
+            _parseTree(arr, child, similarData);
+        });
+    } catch (e) {
+        Loger.error(`css_dom.js [_parseTree] ${e},params[dom.id:${dom&&dom.id}]`)
+    }
 }
 /**
  * 解析获取css属性
@@ -94,11 +125,15 @@ let _parseTree = function (arr, dom, similarData) {
  * @param {CssDom} dom CssDom节点
  */
 let _parseMap = function (map, dom) {
-    map[dom.id] = dom;
+    try {
+        map[dom.id] = dom;
 
-    dom.children.forEach(child => {
-        _parseMap(map, child);
-    });
+        dom.children.forEach(child => {
+            _parseMap(map, child);
+        });
+    } catch (e) {
+        Loger.error(`css_dom.js [_parseMap] ${e},params[dom.id:${dom&&dom.id}]`)
+    }
 }
 
 
@@ -486,13 +521,17 @@ class CssDom {
     }
     // 找到获取最接近的model
     static getClosestModelById(node, id) {
-        if (!id || !node) {
-            return null;
+        try {
+            if (!id || !node) {
+                return null;
+            }
+            if (id == node.id) {
+                return node;
+            }
+            return CssDom.getClosestModelById(node.parent, id);
+        } catch (e) {
+            Loger.error(`css_dom.js [getClosestModelById],params:[id:${id}]`)
         }
-        if (id == node.id) {
-            return node;
-        }
-        return CssDom.getClosestModelById(node.parent, id);
     }
     /**
      * 获取className
@@ -505,17 +544,20 @@ class CssDom {
      * 获取得到的属性
      */
     getCssProperty(similarCss) {
-        let props = [];
-        // 获取属性值并进行拼接
-        // let similarCss = similarData[this.similarId] && similarData[this.similarId].css;
-        cssPropertyMap.forEach(key => {
-            let value = this[key],
-                similarValue = similarCss && similarCss[key];
-            if (value != null && value != undefined && similarValue != value) {
-                props.push(CssDom.getCssProperty(key, value));
-            }
-        });
-        return props;
+        try {
+            let props = [];
+            // 获取属性值并进行拼接
+            cssPropertyMap.forEach(key => {
+                let value = this[key],
+                    similarValue = similarCss && similarCss[key];
+                if (value != null && value != undefined && similarValue != value) {
+                    props.push(CssDom.getCssProperty(key, value));
+                }
+            });
+            return props;
+        } catch (e) {
+            Loger.error(`css_dom.js [this.getCssProperty] ${e}, params[this.id:${this.id},${similarCss}]`)
+        }
     }
 
     /**
@@ -528,8 +570,6 @@ class CssDom {
         if (cssArr.length) {
             str = `${className} {${cssArr.join(';')}}`;
         }
-        // !重要, 每次获取当前节点样式信息后
-        // 动态计算该节点的子节点的根据约束而生成_abX, _abY, _abXops, _abYops等数据
         return str;
     }
 
