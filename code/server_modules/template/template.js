@@ -67,9 +67,8 @@ class Template {
             // 遍历子节点
             this._traversal(nd.children, tplData)
             // 如果为模板虚拟节点，则自动构建坐标
-            if (!tplData.id) {
+            if (!tplData.type) {
                 tplData.resize();
-                tplData.id = tplData.serialId;
                 tplData.modelName = null;
             }
             arr.push(tplData);
@@ -116,6 +115,7 @@ class Template {
         }
         // 构建模板节点
         tplData = new TemplateData(renderData, parentTpl, this._renderData);
+        // console.log(tplData.id, tplData.parentId)
         tplData.modelId = this._renderData.id;
         tplData.parentId = parentTpl && parentTpl.id;
         if (!isRoot && renderData && renderData.modelName && renderData.nodes && renderData.nodes['1']) {

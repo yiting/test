@@ -29,8 +29,8 @@ class WG5M1 extends HtmlTemplate {
             <li $ref="2" class="img3" :constraints='{"LayoutFlex":"Auto"}'></li>
         </ul>
         <dl class="content" :constraints='{"LayoutFlex":"Auto","LayoutJustifyContent":"Start"}'>
-          <dd $ref="3" class="text1" :constraints='{"LayoutFlex":"Auto"}'></dd>
-          <dd $ref="4" class="text2" :constraints='{"LayoutFlex":"Auto"}'></dd>
+          <dd $ref="3" class="primary" :constraints='{"LayoutFlex":"Auto"}'></dd>
+          <dd $ref="4" class="sub" :constraints='{"LayoutFlex":"Auto"}'></dd>
         </dl>
       </div>`
   }

@@ -21,8 +21,8 @@ class WG3M1 extends HtmlTemplate {
       <div class="icon-info" :constraints='{"LayoutDirection":"Horizontal", "LayoutJustifyContent":"Start"}'>
         <span $ref="0" class="icon"></span>
         <dl>
-          <dd $ref="1" class="text1"></dd>
-          <dd $ref="2" class="text2"></dd>
+          <dd $ref="1" class="primary"></dd>
+          <dd $ref="2" class="sub"></dd>
         </dl>
       </div>`
   }

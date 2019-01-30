@@ -1,7 +1,7 @@
 const Common = require('../../dsl2/dsl_common.js');
 
 class HtmlDom {
-    constructor(node, parentNode, css) {
+    constructor(node, parentNode) {
         // super(node)
         this.children = [];
         this.parentNode = parentNode || null;
@@ -20,7 +20,9 @@ class HtmlDom {
         this.path = node.path || null;
         this.contrains = node.contrains || {};
         this.tplAttr = node.tplAttr || {};
-        this.css = css;
+
+        this.selfClassName = node.selfClassName;
+        this.similarClassName = node.similarClassName;
     }
     get x() {
         return this.parent ? (this.abX - this.parent.abX) : this.abX
@@ -33,13 +35,12 @@ class HtmlDom {
             prefix,
             _cssDom = _cssDomMap[this.id],
             _simCssDom = _similarCssDomMap[this.similarId];
-        if (this.similarId) {
-            prefix = _simCssDom.className || 'ui';
-            result.push(`${prefix}-s${this.similarId}`);
-        }
+
         if (!_simCssDom || _cssDom.getCss(_simCssDom)) {
-            prefix = this.tplAttr.class || 'ui';
-            result.push(`${prefix}-${this.serialId}`);
+            result.push(this.selfClassName);
+        }
+        if (this.similarClassName) {
+            result.push(this.similarClassName);
         }
 
 

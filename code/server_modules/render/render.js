@@ -73,31 +73,34 @@ class Render {
             let children = [];
             this._similarMap[key].forEach(nd => {
                 nd.children.forEach(child => {
-                    child.similarParentId = nd.id;
+                    child._similarSourceNodeId = nd.id;
                 })
                 children.push(...nd.children);
             });
-            this._compareSimilar(children);
+            this._compareSimilar(children, key);
         })
     }
     /**
      * 对比子节点是否相似
      * @param {Array} nodes 
      */
-    _compareSimilar(nodes) {
+    _compareSimilar(nodes, similarParentId) {
         // 获取需要比对相似的节点
         let compareNodes = nodes.filter(nd => {
             // 剔除绝对定位和已经是循环类型的节点
-            return nd.constraints["LayoutSelfPosition"] != Constraints.LayoutSelfPosition.Absolute &&
-                nd.similarId == null;
+            if (nd.constraints["LayoutSelfPosition"] != Constraints.LayoutSelfPosition.Absolute &&
+                nd.similarId == null) {
+                nd.similarParentId = similarParentId;
+                return true;
+            }
         });
         if (compareNodes.length == 0) {
             return;
         }
         // 根据特征分组，同组即应为相同similarId
         let groups = Utils.gatherByLogic(compareNodes, (a, b) => {
-            let aS = this._nodeCache[a.similarParentId],
-                bS = this._nodeCache[b.similarParentId],
+            let aS = this._nodeCache[a._similarSourceNodeId],
+                bS = this._nodeCache[b._similarSourceNodeId],
                 aX = a.abX - aS.abX,
                 aY = a.abY - aS.abY,
                 bX = b.abX - bS.abX,
@@ -112,7 +115,7 @@ class Render {
                 bCY = (bY + bYops) / 2;
             const errorCoefficient = 3;
             // 不同源，且位置相同的节点
-            return a.similarParentId != b.similarParentId &&
+            return a._similarSourceNodeId != b._similarSourceNodeId &&
                 (
                     (Math.abs(aX - bX) < errorCoefficient &&
                         Math.abs(aY - bY) < errorCoefficient) ||
@@ -125,16 +128,17 @@ class Render {
             // length为1,即没有相似位置的元素
             let nextCompareNodes = [];
             if (group.length > 1) {
-                const similarId = 'sp' + this._similarIndex++;
+                const similarId = '_' + this._similarIndex++;
                 this._similarMap[similarId] = group;
                 group.forEach(nd => {
                     nd.similarId = similarId;
+                    nd.similarParentId = similarParentId
                     nd.children.forEach(child => {
-                        child.similarParentId = nd.similarParentId;
+                        child._similarSourceNodeId = nd.id;
                     })
                     nextCompareNodes.push(...nd.children);
                 });
-                this._compareSimilar(nextCompareNodes);
+                this._compareSimilar(nextCompareNodes, similarParentId);
             }
         });
     }

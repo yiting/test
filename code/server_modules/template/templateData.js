@@ -2,10 +2,10 @@ class TemplateData {
     constructor(o = {}, parent, modelData) {
         this.tagName = o.tagName || '';
         this.serialId = TemplateData.index++;
-        this.isCloseTag = o.isCloseTag;
+        this.isClosedTag = o.isClosedTag;
         this.parentId = o.parentId || (parent && parent.id) || null;
         this.parent = o.parent || parent;
-        this.id = o.id;
+        this.id = o.id || this.serialId;
         this.type = o.type;
         this.modelName = o.modelName;
         this.modelRef = o.modelRef;

@@ -122,19 +122,7 @@ const cssPropertyMap = [
     'right',
     'bottom',
     'left',
-    // 'zIndex'
-
     // // 属性类
-
-    // "marginLeft",
-    // "marginTop",
-    // "marginRight",
-    // "marginBottom",
-    // "left",
-    // "right",
-    // "top",
-    // "bottom",
-    // "padding",
     "zIndex",
     "backgroundImage",
     "backgroundColor",
@@ -190,6 +178,9 @@ class CssDom {
         this.styles = data.styles || {};
         // 子节点
         this.children = [];
+
+        this.selfCssName = data.selfCssName || [];
+        this.similarCssName = data.similarCssName || [];
     }
 
     /**
@@ -470,7 +461,6 @@ class CssDom {
         if (children.length == 0) {
             return;
         }
-        // if (this.id == 'EBDB98BC-0B1A-4F08-827D-5B52B8F9C675c') debugger
         let isVertical = children.length > 1 && Utils.isVertical(children),
             baseLine = Utils.calculateBaseLine(this),
             _justifyContent = isVertical ? 'vertical' : 'horizontal',
@@ -508,20 +498,7 @@ class CssDom {
      * 获取className
      */
     getClass() {
-        let parentClass = '',
-            selfClass = '',
-            prefix
-        // 如果有modelId,说明当前节点为某模型子元素
-        if (this.modelId && this.modelId != this.id) {
-            let model = CssDom.getClosestModelById(this, this.modelId);
-            if (model) {
-                prefix = model.tplAttr.class || 'ui';
-                parentClass = `.${prefix}-${model.serialId}`;
-            }
-        }
-        prefix = this.tplAttr.class || 'ui'
-        selfClass = `.${prefix}-${this.serialId}`;
-        return [parentClass, selfClass].join(' ');
+        return this.selfCssName.map(n => '.' + n).join(' ')
     }
 
     /**
