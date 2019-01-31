@@ -96,6 +96,9 @@
         }
 
         .navbar-nav2 {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: flex;
           .nav-link {
             color: #999;
             display: block;

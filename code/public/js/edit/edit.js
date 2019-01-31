@@ -77,14 +77,20 @@ let TOSEEAPP = {
       top.postMessage("/", "http://uitocode.oa.com");
     });
     //下垃框点击，显示当前page下拉框
-    $(".pages-select").click(function() {
+    $(".pages-select").click(function(e) {
       $(".pages-list").show();
     });
+    //点击page下拉框其它区域，page下拉框隐藏
+    $("header#app,.screen-viewer-inner,.artboard-list").on("click", function() {
+      $(".pages-list").hide();
+    });
+
     //页面下拉框选择后，隐藏前page下拉框
     $(".pages-list").on("click", ".pages-item", function(e) {
       e.stopPropagation();
       $(".pages-list").hide();
     });
+
     //切换page
     $(".pages-list").on("change", ".pages-item input", function() {
       _this.initDomStatus();
@@ -164,6 +170,11 @@ let TOSEEAPP = {
         //隐藏预览图面板
         $(".slider-compare-panel,.design-img-panel").hide();
       }
+    });
+    //新窗口打开当前编译页面
+    $(".open-url-btn").click(function() {
+      let resultURL = $(".screen").attr("src");
+      window.open(resultURL);
     });
   },
 
@@ -286,12 +297,29 @@ let TOSEEAPP = {
           //获取初始化点击的图的url
           viewImgUrl = currentDom.find("img").attr("src");
           $(".magnify-foot-toolbar").append(
-            `<button class="magnify-button magnify-button-download" title="下载"><a href="${viewImgUrl}"download=""><i class="fa fa-download" aria-hidden="true"></i></a></button>`
+            `<button class="magnify-button magnify-button-download" title="下载"><a href="${viewImgUrl}" download=""><i class="fa fa-download" aria-hidden="true"></i></a></button>`
           );
-          //被查看弹框的的图片：增加宽高
-          $(".magnify-stage").append(
-            `<div class="show-img-info"><div class="img-width">宽:${viewImgW}px</div><div class="img-height">高:${viewImgH}px</div></div>`
-          );
+          //被查看弹框的的图片：增加宽高和base64图片信息
+          //将图片转换为base64
+          editUtil.getImgToBase64(viewImgUrl, function(data) {
+            $(".magnify-stage").append(
+              `<div class="base64-panel"><textarea id="base64-val">${data}</textarea> <div class="copybase64-btn" data-clipboard-target="#base64-val">复制</div></div>
+               <div class="show-img-info"><div class="img-width">宽:${viewImgW}px</div><div class="img-height">高:${viewImgH}px</div></div>`
+            );
+          });
+
+          //2018-10-25:复制按钮
+          let base64Clipboard = new ClipboardJS(".copybase64-btn");
+          base64Clipboard.on("success", function(e) {
+            console.info("Action:", e.action);
+            console.info("Text:", e.text);
+            console.info("Trigger:", e.trigger);
+            e.clearSelection();
+          });
+          base64Clipboard.on("error", function(e) {
+            console.error("Action:", e.action);
+            console.error("Trigger:", e.trigger);
+          });
         },
         beforeChange: function(index) {
           // Will fire before image is changed
@@ -306,9 +334,17 @@ let TOSEEAPP = {
           $(".magnify-foot-toolbar a").attr("href", viewImgUrl);
           (viewImgW = viewImgObj[0].naturalWidth),
             (viewImgH = viewImgObj[0].naturalHeight);
+          //设置base64
+          editUtil.getImgToBase64(viewImgUrl, function(data) {
+            $(".base64-panel textarea").val(data);
+          });
+
           //设置宽高
-          $(".show-img-info .img-width").html(`宽:${viewImgW}px`);
-          $(".show-img-info .img-height").html(`高:${viewImgH}px`);
+          $(".show-img-info")
+            .find(".img-width")
+            .html(`宽:${viewImgW}px`)
+            .find(".img-height")
+            .html(`高:${viewImgH}px`);
         }
       }
     });
@@ -532,9 +568,9 @@ let TOSEEAPP = {
               );
               $("#screen").load(function(event) {
                 let cssHref = $("#screen")
-                .contents()
-                .find(".contentCss")
-                .attr("href");
+                  .contents()
+                  .find(".contentCss")
+                  .attr("href");
                 $("#screen")
                   .contents()
                   .find("head")

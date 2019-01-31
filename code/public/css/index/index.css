@@ -806,6 +806,75 @@ textarea {
   background-repeat: no-repeat;
 }
 
+.version-wrapper {
+  margin: auto;
+  width: 1200px;
+  position: relative;
+  z-index: 1;
+}
+
+.version-main {
+  position: absolute;
+  top: 290px;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 386px;
+  height: 500px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.version-main:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.version-main .version-mod:nth-child(2) .version-date {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.version-main ol {
+  padding-inline-start: 40px;
+}
+
+.version-main ol li {
+  padding-left: 10px;
+  list-style: decimal;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.version-main h1 {
+  font-size: 20px;
+  margin: 0 20px;
+  padding: 20px 20px 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.version-main h2,
+.version-main time {
+  display: inline-block;
+  margin-right: -10px;
+  padding-left: 20px;
+}
+
+.version-wrapper .more {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 210px 20px 0 0;
+  text-align: right;
+  color: #108df0;
+  font-weight: bold;
+  text-shadow: #000 1px 0 10px;
+}
+
 .upgrade-box {
   width: 700px;
   height: 400px;

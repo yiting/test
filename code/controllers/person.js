@@ -26,7 +26,11 @@ let storage = multer.diskStorage({
     cb(null, "./data/upload_file/");
   },
   filename: function(req, file, cb) {
-    originFileName = Utils.getDateStr() + "_" + file.originalname.replace(/\s*/g,"");
+    let regex=/[&\|\\\*^%$#@\-\_\s+]/g;
+    //originFileName = Utils.getDateStr() + "_" + file.originalname.replace(regex,"");
+    originFileName = Utils.getDateStr() + "_" + file.originalname.replace(regex,"");
+
+    //originFileName=uuidv1().replace(/-/g,"")+".sketch";
     //originFileName = Utils.getDateStr() + "_" + file.originalname;
     //截取sketch文件前缀为项目名称(即为sketch文件名)
     potIndex = originFileName.lastIndexOf(".");

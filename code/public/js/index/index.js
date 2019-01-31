@@ -47,6 +47,8 @@ let TOSEEINDEX = {
     );
     $(".mod-header-user .name").text(CommonTool.getCookie("staffname"));
 
+    //$('.version-main').load('http://uitocode.oa.com/doc/version-cont.html');
+
     //2018-11-12
     $("#nav-header-info,.btn-consult").click(function() {
       // window.location.href = "/person";

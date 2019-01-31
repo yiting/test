@@ -31,6 +31,10 @@ var vm = new Vue({
     viewProjects: function() {
       top.postMessage("/project", "http://uitocode.oa.com");
     },
+    goPlug: function() {
+      //top.postMessage("/plug", "http://uitocode.oa.com");
+      window.open("http://uitocode.oa.com/plug/index.html");
+    },
     /**
      * 访问人数
      */

@@ -282,9 +282,5 @@ let iframeDom = {
         editUtil.hideAttrPanel();
       });
     });
-    //新窗口打开当前编译页面
-    $(".open-url-btn").click(function() {
-      window.open($(".screen").attr("src"));
-    });
   }
 };

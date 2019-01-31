@@ -49,6 +49,8 @@ let ftpConfig = require("../../config/config.js");
 //数据库业务类
 const artboard = require("../../models/artboard");
 const history = require("../../models/history");
+//当前基础库版本相关信息
+const MODULES_INFO=require("../../server_modules/version");
 
 //3.声明页面数据;生成的图片名数组
 let pageArtboardsData = [],
@@ -124,8 +126,10 @@ router.post("/getPageImgById", function(req, res, next) {
       artName: uploadTimeStamp,
       proId: projectUUID,
       proName: projectName,
-      artJsonTxt: JSON.stringify(currentDesignJson), //当前页面的designdom字符串
-      artImgsTxt: JSON.stringify(generateImgArr) //当前页面生成的图片字符串
+      //artJsonTxt: JSON.stringify(currentDesignJson), //当前页面的designdom字符串
+      artJsonTxt:"",//取消插入当前页面designdom字符串(数据较大,后期记录)
+      artImgsTxt: JSON.stringify(generateImgArr), //当前页面生成的图片字符串
+      mVersion:MODULES_INFO.version//当前基础库版本
     });
     artbd.create(function(result) {
       console.log("创建项目成功");
@@ -364,7 +368,8 @@ router.post("/download", function(req, res, next) {
               //.replace(/id=".*?"|id=.*?(?=\s|>)/g, "")
               .replace(/data-id=".*?"|data-id=.*?(?=\s|>)/g, "")
               .replace(/data-layout=".*?"|data-layout=.*?(?=\s|>)/g, "")
-              .replace(/isSource/g, "");
+              .replace(/isSource/g, "")
+              .replace(/contenteditable="true"/g, "");
             //过滤属性后，重新写入文件
             fs.writeFile(desProjectPath + "/" + item, result, "utf8", function(
               err
@@ -416,20 +421,13 @@ router.post("/download", function(req, res, next) {
  * 2018-11-09:初始化日志配置
  */
 let initLogConfig = function(req, res, next) {
+  let TOSEEURL= "http://uitocode.oa.com/";
   //平台模块日志初始化
   qlog.init({
     projectName: projectName + ".sketch",
     userName,
-    //测试环境ip访问
-    /* url:
-      "http://" +
-      req.headers.host +
-      "/edit?id=" +
-      projectUUID +
-      "&name=" +
-      encodeURIComponent(encodeURIComponent(projectName)) */
     url:
-      "http://uitocode.oa.com/edit?id=" +
+    TOSEEURL+"edit?id=" +
       projectUUID +
       "&name=" +
       encodeURIComponent(encodeURIComponent(projectName))
@@ -456,8 +454,8 @@ let getHtmlCss = (req, res, next) => {
   //检测artBoard是否生成:相同的项目需要检测是否生成，不同的项目，再次上传时，需要重新生成(projectId和artboardId同时检测)
   let artbd = new artboard();
   let testArtBoardPromise = new Promise(function(resolve, reject) {
-    //projectId和artBoard同时相同时，artBoard再次请求，才不会生成
-    artbd.getArtboardById(artBoardId, projectUUID, function(result) {
+    //projectId和artBoard、moduleVersion同时相同时，artBoard再次请求，才不会生成
+    artbd.getArtboardById(artBoardId, projectUUID,MODULES_INFO.version, function(result) {
       //查询数据库存在记录时，则不需要再次生成
       if (result.code == 0 && result.data.length != 0) {
         let resultData = result.data[0];
@@ -465,7 +463,7 @@ let getHtmlCss = (req, res, next) => {
         projectName = resultData.projectName;
         uploadTimeStamp = resultData.artboardName;
         currentArtBoardUrl = resultData.artboardUrl;
-        currentDesignJson = JSON.parse(resultData.artboardJson);
+        //currentDesignJson = JSON.parse(resultData.artboardJson);
         generateImgArr = JSON.parse(resultData.artboardImgs);
         isHtmlGenerate = false;
       }
