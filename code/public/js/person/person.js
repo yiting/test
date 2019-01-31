@@ -138,9 +138,9 @@ var vm = new Vue({
     },
     goPlug: function() {
       //top.postMessage("/plug", "http://uitocode.oa.com");
-      window.open("/plug");
+      window.open("http://uitocode.oa.com/plug/index.html");
     },
-    goStandard: function() {
+    goStandard:function(){
       //top.postMessage("/description", "http://uitocode.oa.com");
       window.open("/description");
     },

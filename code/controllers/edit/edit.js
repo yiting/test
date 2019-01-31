@@ -8,16 +8,31 @@ const router = express.Router();
 const archiver = require("archiver");
 //网络包
 let requestHttp = require("request");
-//获取图片文件宽高
-let sizeOf = require("image-size");
 //上传文件及新的文件名称变量
 let originFileName, uploadTimeStamp;
+//上传文件配置
+let storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "./data/upload_ai_img/");
+  },
+  filename: function(req, file, cb) {
+    originFileName = uploadTimeStamp + "_" + file.originalname;
+    //直接保留原始文件格式(.sketch)
+    cb(null, originFileName);
+  }
+});
+//上传文件对象
+let upload = multer({
+  storage: storage
+});
 
 /*2.base modules*/
 //日志模块(2018-11-09)
 const qlog = require("../../server_modules/log/qlog");
 let Utils = require("../../server_modules/util/utils");
 let ControllerUtils = require("../util/utils");
+//模板类
+const Template = require("../../server_modules/util/template");
 //导出类
 const Export = require("../../server_modules/util/export");
 //1.引入parser模块
@@ -25,18 +40,17 @@ const Parser = require("../../server_modules/designjson/parser/designjson_parser
   .parse;
 const Optimize = require("../../server_modules/designjson/optimize/designjson_optimize");
 //2.引入dsl模块
-const Common = require("../../server_modules/dsl2/dsl_common.js");
-const Dsl = require("../../server_modules/dsl2/dsl.js");
-const Render = require("../../server_modules/render/render.js");
+const DSL = require("../../server_modules/dsl/dsl");
 //3.引入图片模块
 let ImageCombine = require("../../server_modules/designimage/img_combine")
   .ImageCombine;
-
+//2018-10-21:线上云服务上传地址
+let ftpConfig = require("../../config/config.js");
 //数据库业务类
 const artboard = require("../../models/artboard");
 const history = require("../../models/history");
 //当前基础库版本相关信息
-const MODULES_INFO = require("../../server_modules/version");
+const MODULES_INFO=require("../../server_modules/version");
 
 //3.声明页面数据;生成的图片名数组
 let pageArtboardsData = [],
@@ -50,12 +64,6 @@ let pageArtboardsData = [],
 
 //4.用户id、用户名
 let userId, userName;
-
-//用于返回AI相关数据
-let AIArtboardInfo; //包含上传的artboardid、宽高；以及识别返回模块的相关数据
-
-//定时任务，合并在这里
-require("../util/task");
 
 /*业务逻辑*/
 //渲染页面路由:初始化编辑查看页面,填充页面数据
@@ -116,13 +124,12 @@ router.post("/getPageImgById", function(req, res, next) {
     let artbd = new artboard({
       artId: artBoardId,
       artName: uploadTimeStamp,
-      artIndex: pageArtBoardIndex, //存入当前artBoard的索引位置，便于生成图片命名
       proId: projectUUID,
       proName: projectName,
       //artJsonTxt: JSON.stringify(currentDesignJson), //当前页面的designdom字符串
-      artJsonTxt: "", //取消插入当前页面designdom字符串(数据较大,后期记录)
+      artJsonTxt:"",//取消插入当前页面designdom字符串(数据较大,后期记录)
       artImgsTxt: JSON.stringify(generateImgArr), //当前页面生成的图片字符串
-      mVersion: MODULES_INFO.version //当前基础库版本
+      mVersion:MODULES_INFO.version//当前基础库版本
     });
     artbd.create(function(result) {
       console.log("创建项目成功");
@@ -184,7 +191,7 @@ router.post("/getArtBoardImg", function(req, res, next) {
   });
 });
 
-//2018-11-20：AI服务请求方法
+//2018-11-20
 let AIImgData;
 router.post("/getAIData", function(req, res, next) {
   //console.log("获取当前artboard预览图片请求");
@@ -209,6 +216,7 @@ router.post("/getAIData", function(req, res, next) {
       // Pass data via Streams
       file: fs.createReadStream(
         "./data/complie/" + projectName + "/images/" + artBoardImgName
+        //__dirname + "/" + artBoardImgName
       )
     };
     requestHttp.post(
@@ -219,6 +227,7 @@ router.post("/getAIData", function(req, res, next) {
       function optionalCallback(error, response, body) {
         if (!error && response.statusCode == 200) {
           AIImgData = ControllerUtils.AIDataHandle(body);
+          //AIImgData = JSON.parse("{" + body + "}");
         } else {
           AIImgData = [
             {
@@ -235,79 +244,85 @@ router.post("/getAIData", function(req, res, next) {
   });
 });
 
-/**
- * AI数据请求方法:默认自动首先先创建图片文件夹，然后新建图片
- * @param {*} req
- * @param {*} res
- * @param {*} next
- */
-let getAIDataByArtBoardId = function(artBoardID, projectName) {
-  logger.debug("[edit.js-getAIData]获取当前artboard预览图片对应的AI数据");
-  //根据artBoardId来获取对应的缩略图,返回url地址到页面上
-  let artBoardImgName = artBoardID + ".png";
-  let artBoardObj = {
-    path: artBoardImgName,
-    _origin: {
-      do_objectID: artBoardID
-    }
-  };
-  let aiDataPromise = new Promise((resolve, reject) => {
-    getArtBoardImg(artBoardObj, function() {
-      //resolve("success");
-      var formData = {
-        my_field: "my_value",
-        my_buffer: new Buffer([1, 2, 3]),
-        file: fs.createReadStream(
-          "./data/complie/" + projectName + "/images/" + artBoardImgName
-        )
-      };
-      requestHttp.post(
-        {
-          url: ControllerUtils.AIServiceUrl + "/upload/image",
-          formData: formData
-        },
-        function optionalCallback(error, response, body) {
-          //成功识别artBoard对应的AI数据
-          if (!error && response.statusCode == 200) {
-            //获取当前artBoard的宽高信息，及当前artboard识别的标签数据
-            sizeOf(
-              "./data/complie/" + projectName + "/images/" + artBoardImgName,
-              function(err, dimensions) {
-                //console.log(dimensions.width, dimensions.height);
-                AIImgData = ControllerUtils.AIDataHandle(body);
-                AIArtboardInfo = {
-                  artId: artBoardID,
-                  width: dimensions.width,
-                  height: dimensions.height,
-                  AIImgData
-                };
-                console.log(
-                  "成功获取artBoard AI数据:" + AIArtboardInfo.AIImgData[0].id
-                );
-                resolve("success");
-              }
-            );
-          } else {
-            AIArtboardInfo = {
-              errCode: 0,
-              errMsg: "获取AI结果错误"
-            };
+//2018-10-16:上传本地生成的编译代码文件夹，上传到线上，返回对应的url
+router.post("/getOnlineUrl", function(req, res, next) {
+  //console.log("进入上传代码模块");
+  logger.debug("[edit.js-getOnlineUrl]进入上传代码模块");
+  let artId = req.body.artboardId;
+  let ftpServer = ftpConfig.ftpConfig.host,
+    ftpUserName = ftpConfig.ftpConfig.username,
+    ftpPort = ftpConfig.ftpConfig.port,
+    ftpPassword = ftpConfig.ftpConfig.password,
+    localPath = ftpConfig.ftpConfig.localPath,
+    remotePath = ftpConfig.ftpConfig.remotePath;
+  let node_ssh = require("node-ssh");
+  let ssh = new node_ssh();
+  //connect sftp
+  ssh
+    .connect({
+      host: ftpServer,
+      username: ftpUserName,
+      port: ftpPort,
+      password: ftpPassword,
+      tryKeyboard: true
+    })
+    .then(function() {
+      //console.log("ftp开始上传");
+      logger.debug("[edit.js-getOnlineUrl]ftp开始上传");
+      //上传整个目录
+      const failed = [];
+      const successful = [];
+      ssh
+        .putDirectory(localPath + projectName, remotePath + projectName, {
+          recursive: true,
+          concurrency: 5,
+          //concurrency: 1000,
+          validate: function(itemPath) {
+            const baseName = path.basename(itemPath);
+            return (
+              baseName.substr(0, 1) !== "." && baseName !== "node_modules" // do not allow dot files
+            ); // do not allow node_modules
+          },
+          tick: function(localPath, remotePath, error) {
+            if (error) {
+              failed.push(localPath);
+            } else {
+              successful.push(localPath);
+            }
           }
-          //将AI结果返回
-          //res.json(AIImgData);
-          //AI结果作为俊标和Yone，算法模型+AI模型的数据来源
-          //或者resolve
-          //return aiDataPromise(AIImgData);
-          //return AIImgData;
-          //resolve(AIImgData)
-          //return Promise.resolve(AIArtboardInfo);
-        }
-      );
+        })
+        .then(
+          function(status) {
+            //console.log("ftp上传成功");
+            logger.debug("[edit.js-getOnlineUrl]ftp上传成功");
+            //上传成功
+            //2018-10-29:返回页面命名简短为时间戳命名
+            let urlHeader =
+                "http://" + ftpServer + ":8080/complie/" + projectName + "/",
+              lastSuffix = ".html?_wv=131072";
+            currentArtBoardUrl = urlHeader + uploadTimeStamp + lastSuffix;
+            let artbd = new artboard({
+              artUrl: currentArtBoardUrl
+            });
+            //将线上url存储在数据库
+            artbd.updateArtBoardUrl(artId, projectUUID, function(result) {
+              //本地编译成的代码文件夹上传到线上，并返回线上地址
+              res.end(
+                JSON.stringify({
+                  message: "上传文件成功",
+                  artUrl: currentArtBoardUrl
+                })
+              );
+            });
+          },
+          function(error) {
+            //console.log("Something's wrong")
+            //console.log(error)
+            logger.error("[edit.js-getOnlineUrl]ftp上传错误:" + error);
+          }
+        );
     });
-    //resolve("success");
-  });
-  return aiDataPromise;
-};
+});
 
 /**
  * 文件下载模块
@@ -366,6 +381,18 @@ router.post("/download", function(req, res, next) {
         }
       });
 
+      /* //复制公共样式reset.css到当前目录
+      fs.copyFile(
+        "./data/complie/css/reset.css",
+        desProjectPath + "/css/reset.css",
+        function(err) {
+          if (err) {
+            console.log(err);
+            return;
+          }
+        }
+      ); */
+
       //复制sketch文件到当前目录
       if (isDownloadsketch == "true") {
         fs.copyFile(
@@ -394,14 +421,13 @@ router.post("/download", function(req, res, next) {
  * 2018-11-09:初始化日志配置
  */
 let initLogConfig = function(req, res, next) {
-  let TOSEEURL = "http://uitocode.oa.com/";
+  let TOSEEURL= "http://uitocode.oa.com/";
   //平台模块日志初始化
   qlog.init({
     projectName: projectName + ".sketch",
     userName,
     url:
-      TOSEEURL +
-      "edit?id=" +
+    TOSEEURL+"edit?id=" +
       projectUUID +
       "&name=" +
       encodeURIComponent(encodeURIComponent(projectName))
@@ -413,7 +439,7 @@ let initLogConfig = function(req, res, next) {
  type:0----designjson
  type:1----designimgs
  */
-let getHtmlCss = function(req, res, next) {
+let getHtmlCss = (req, res, next) => {
   //let currentDesignDom;
   //console.log("传到后台的pid为:" )
   let pageId = req.body.pageId;
@@ -428,63 +454,30 @@ let getHtmlCss = function(req, res, next) {
   //检测artBoard是否生成:相同的项目需要检测是否生成，不同的项目，再次上传时，需要重新生成(projectId和artboardId同时检测)
   let artbd = new artboard();
   let testArtBoardPromise = new Promise(function(resolve, reject) {
-    //projectId和artBoard、moduleVersion同时相同时，artBoard不会生成，直接从数据库去拉取对应的编译路径
-    artbd.getArtboardById(
-      artBoardId,
-      projectUUID,
-      MODULES_INFO.version,
-      function(result) {
-        //查询数据库存在记录时，则不需要再次生成
-        if (result.code == 0 && result.data.length != 0) {
-          let resultData = result.data[0];
-          //如果相同稿子上传，则直接从之前路径读取内容(即为已生成页面)
-          projectName = resultData.projectName;
-          uploadTimeStamp = resultData.artboardName;
-          currentArtBoardUrl = resultData.artboardUrl;
-          //currentDesignJson = JSON.parse(resultData.artboardJson);
-          generateImgArr = JSON.parse(resultData.artboardImgs);
-          isHtmlGenerate = false;
-        }
-        resolve("success");
+    //projectId和artBoard、moduleVersion同时相同时，artBoard再次请求，才不会生成
+    artbd.getArtboardById(artBoardId, projectUUID,MODULES_INFO.version, function(result) {
+      //查询数据库存在记录时，则不需要再次生成
+      if (result.code == 0 && result.data.length != 0) {
+        let resultData = result.data[0];
+        //如果相同稿子上传，则直接从之前路径读取内容(即为已生成页面)
+        projectName = resultData.projectName;
+        uploadTimeStamp = resultData.artboardName;
+        currentArtBoardUrl = resultData.artboardUrl;
+        //currentDesignJson = JSON.parse(resultData.artboardJson);
+        generateImgArr = JSON.parse(resultData.artboardImgs);
+        isHtmlGenerate = false;
       }
-    );
+      resolve("success");
+    });
   });
-  testArtBoardPromise
-    .then(data => {
-      try {
-        //调用该方法，获取当前artBoard的AI数据信息AIArtboardInfo
-        return getAIDataByArtBoardId(artBoardId, projectName);
-      } catch (error) {
-        // 触发这一句
-        console.log("error");
-      }
-    })
-    .then(data => {
-      //1.如果已生成，则直接返回结果
-      if (!isHtmlGenerate) {
-        //当前artBoard对应的时间戳
-        let resultJson = {
-          projectId: projectUUID,
-          projectName: projectName,
-          htmlFileName: uploadTimeStamp,
-          url:
-            "http://" +
-            req.headers.host +
-            "/complie/" +
-            projectName +
-            "/" +
-            uploadTimeStamp +
-            ".html?_wv=131072",
-          onelineUrl: currentArtBoardUrl,
-          imgPaths: generateImgArr,
-          isHtmlGenerate: false
-        };
-        res.send(JSON.stringify(resultJson));
-        return false;
-      }
-      //2.如果需要重新生成，则继续走编译过程
-      //2018-10-30:生成html重命名，简短命名--时间戳
-      let resultURL = {
+  testArtBoardPromise.then(data => {
+    //如果已生成，则直接返回结果
+    if (!isHtmlGenerate) {
+      //当前artBoard对应的时间戳
+      let resultJson = {
+        projectId: projectUUID,
+        projectName: projectName,
+        htmlFileName: uploadTimeStamp,
         url:
           "http://" +
           req.headers.host +
@@ -492,21 +485,34 @@ let getHtmlCss = function(req, res, next) {
           projectName +
           "/" +
           uploadTimeStamp +
-          ".html?_wv=131072"
+          ".html?_wv=131072",
+        onelineUrl: currentArtBoardUrl,
+        imgPaths: generateImgArr,
+        isHtmlGenerate: false
       };
-      //将pages下面所有json读取出来给到yone。根据artBoardID，[json数组]获取当前artBoard对应的degisnDom，然后调用俊标模块，获取对应的html和css;调用大雄模块，获取处理后的图片
-      let currentPagesJsonsArr = [];
-      let pagesJsonDirectory = "./data/unzip_file/" + projectName + "/pages";
-      let currentDocumentJsonPath =
-        "./data/unzip_file/" + projectName + "/document.json";
-      let currentDocumentJson = JSON.parse(
-        fs.readFileSync(currentDocumentJsonPath)
-      );
-      //根据artBoard获取AI截图
-      //let AIData =  getAIDataByArtBoardId(artBoardId);
-
-      if (fs.existsSync(pagesJsonDirectory)) {
-        let files = fs.readdirSync(pagesJsonDirectory);
+      //输出对应处理好的artBoard数据
+      //resultURL.htmlJson = h5Json;
+      res.send(JSON.stringify(resultJson));
+      return false;
+    }
+    //2018-10-30:生成html重命名，简短命名--时间戳
+    let resultURL = {
+      url:
+        "http://" +
+        req.headers.host +
+        "/complie/" +
+        projectName +
+        "/" +
+        uploadTimeStamp +
+        ".html?_wv=131072"
+    };
+    //将pages下面所有json读取出来给到yone。根据artBoardID，[json数组]获取当前artBoard对应的degisnDom，然后调用俊标模块，获取对应的html和css;调用大雄模块，获取处理后的图片
+    let currentPagesJsonsArr = [];
+    let pagesJsonDirectory = "./data/unzip_file/" + projectName + "/pages";
+    let currentDocumentJsonPath= "./data/unzip_file/" + projectName + "/document.json";
+    let currentDocumentJson= JSON.parse(fs.readFileSync(currentDocumentJsonPath));
+    if (fs.existsSync(pagesJsonDirectory)) {
+      fs.readdir(pagesJsonDirectory, function(err, files) {
         let pagesFileLen = files.length;
         for (let i = 0; i < pagesFileLen; i++) {
           let pageOneFilePath = pagesJsonDirectory + "/" + files[i];
@@ -522,14 +528,9 @@ let getHtmlCss = function(req, res, next) {
             //描述文件
             currentDocumentJson
           );
-          // currentDesignObj.getSymbolList();
-          let currentDesignDom = currentDesignObj.document,
-            currentPageId = currentDesignObj.pageId;
+          let currentDesignDom=currentDesignObj.document,currentPageId=currentDesignObj.pageId;
           if (currentDesignDom) {
-            //01-29:AI Data传给yone，yone和大雄使用AI Data进行
             Optimize(currentDesignDom);
-            //01-30
-            //Optimize(currentDesignDom, AIArtboardInfo);
             //获取要合并的图片列表
             currentImgsList = currentDesignDom.getImage();
             //获取当前的designdom对应的json
@@ -538,13 +539,15 @@ let getHtmlCss = function(req, res, next) {
             currentDesignJson = currentDesignDom.toList();
             //生成骨架
             //2018-10-10:先出骨架，再等待图片生成后，再刷新页面
-            Promise.all([jsonToHtmlCss(artBoardId, currentDesignJson)]).then(
+            Promise.all([jsonToHtmlCss2(artBoardId, currentDesignJson)]).then(
               info => {
                 //console.log("骨架输出成功");
                 logger.debug("[edit.js-getHtmlCss]结构骨架输出成功");
                 resultURL.projectId = projectUUID;
                 resultURL.projectName = projectName;
                 resultURL.htmlFileName = uploadTimeStamp;
+                //输出对应处理好的artBoard数据
+                //resultURL.htmlJson = h5Json;
                 res.send(JSON.stringify(resultURL));
               }
             );
@@ -556,9 +559,55 @@ let getHtmlCss = function(req, res, next) {
           logger.error("[edit.js-getHtmlCss]报错，不解析：" + e);
           res.send(e.toString());
         }
-      }
-    });
+      });
+    }
+  });
 };
+
+//2018-11-11
+router.post("/adjust", function(req, res) {
+  // Yone
+  const { artboardId, operate } = req.body;
+  if (!currentDesignJson)
+    res.send(
+      JSON.stringify({
+        status: "999999",
+        msg: "修改失败"
+      })
+    );
+  switch (operate) {
+    case "1":
+      {
+        currentDesignJson = DSL.insertJson(
+          currentDesignJson,
+          req.body["nodeIds[]"]
+        );
+      }
+      break; // 重组
+  }
+  //重组后，更新下当前json到数据库
+  let artbd = new artboard({
+    artJsonTxt: JSON.stringify(currentDesignJson)
+  });
+  artbd.updateArtBoardJson(artboardId, projectUUID, function(result) {
+    console.log(result);
+  });
+  //重新生成调整后的url
+  return Promise.all([jsonToHtmlCss(artboardId, currentDesignJson)]).then(
+    info => {
+      //console.log("骨架输出成功");
+      logger.debug("[edit.js-adjust]骨架输出成功");
+      //输出对应处理好的artBoard数据
+      // resultURL.htmlJson = h5Json;
+      res.send(
+        JSON.stringify({
+          status: "000000",
+          msg: "修改成功"
+        })
+      );
+    }
+  );
+});
 
 /**
  * 解析sketch pages数据基本信息---来源:meta.json
@@ -612,13 +661,69 @@ let getPagesAndArtBoards = (projectName, res, callback) => {
 };
 
 /**
- * DSL2：根据给到当前artBoardId对应designDom，调用DSL模块方法转为html和css
+ * 根据给到当前artBoardId对应designDom，调用DSL模块方法转为html和css
  * 导出html+css模块
+ * @param artBoardId
+ * @param currentDesignDom
+ * @returns {*}
+ */
+let h5Json;
+let jsonToHtmlCss = (artBoardId, currentDesignDom) => {
+  let htmlCssPromise;
+  let h5Render = DSL.mobileHtml(currentDesignDom, {
+      output: {
+        //关闭dom节点输出字段:下载时候，用正则表达式过滤去掉多余字段
+        debug: true
+      }
+    }),
+    html = h5Render.toHtml(),
+    css = h5Render.toCss();
+  //获取页面json数据，供给页面属性面板操作
+  //h5Json = DSL.getHtmlJson(currentDesignDom);
+  //动态传入css文件名称:按照遍历序号来
+  //let cssHtmlfileName = artBoardId;
+  //2018-10-29:简短html和CSS命名
+  let cssHtmlfileName = uploadTimeStamp;
+  html = Template.htmlStart(cssHtmlfileName) + html + Template.htmlEnd();
+  //console.log('html日志:' + html)
+  //生成文件导出对应路径
+  let exportPath = "./data/complie/" + projectName;
+  //console.log('全路径:' + exportPath)
+  // 导出html文件和css文件
+  try {
+    htmlCssPromise = new Promise(function(resolve, reject) {
+      if (html) {
+        Export.exportHtml(exportPath, cssHtmlfileName, html, function() {
+          //console.log("导出html成功");
+          logger.debug("[edit.js-jsonToHtmlCss]导出html成功");
+          resolve("success");
+        });
+      }
+    });
+    htmlCssPromise.then(data => {
+      if (css) {
+        Export.exportCss(exportPath + "/css", cssHtmlfileName, css, function() {
+          //console.log("导出css成功");
+          logger.debug("[edit.js-jsonToHtmlCss]导出css成功");
+        });
+      }
+    });
+  } catch (e) {
+    //console.log("导出文件出错！");
+    logger.error("[edit.js-jsonToHtmlCss]导出html或css出错!");
+  }
+  return htmlCssPromise;
+};
+
+/**
+ * DSL2
  * @param {*} artBoardId
  * @param {*} currentDesignDom
  */
-
-let jsonToHtmlCss = (artBoardId, currentDesignDom) => {
+const Common = require("../../server_modules/dsl2/dsl_common.js");
+const Dsl = require("../../server_modules/dsl2/dsl.js");
+const Render = require("../../server_modules/render/render.js");
+let jsonToHtmlCss2 = (artBoardId, currentDesignDom) => {
   let htmlCssPromise,
     cssHtmlfileName = uploadTimeStamp;
   let dslTree = Dsl.process(currentDesignDom, 750, 750, Common.FlexLayout);
@@ -626,6 +731,14 @@ let jsonToHtmlCss = (artBoardId, currentDesignDom) => {
   let htmlStr = render.getTagString("css/" + cssHtmlfileName + ".css");
   let cssStr = render.getStyleString();
 
+  //获取页面json数据，供给页面属性面板操作
+  //h5Json = DSL.getHtmlJson(currentDesignDom);
+  //动态传入css文件名称:按照遍历序号来
+  //let cssHtmlfileName = artBoardId;
+  //2018-10-29:简短html和CSS命名
+  //let cssHtmlfileName = uploadTimeStamp;
+  //html = Template.htmlStart(cssHtmlfileName) + html + Template.htmlEnd();
+  //console.log('html日志:' + html)
   //生成文件导出对应路径
   let exportPath = "./data/complie/" + projectName;
   //console.log('全路径:' + exportPath)
@@ -650,7 +763,7 @@ let jsonToHtmlCss = (artBoardId, currentDesignDom) => {
             //console.log("导出css成功");
             logger.debug("[edit.js-jsonToHtmlCss]导出css成功");
             //复制公共样式reset.css到当前目录
-            fs.copyFile(
+             fs.copyFile(
               "./data/complie/css/reset.css",
               exportPath + "/css/reset.css",
               function(err) {
@@ -659,7 +772,7 @@ let jsonToHtmlCss = (artBoardId, currentDesignDom) => {
                   return;
                 }
               }
-            );
+            ); 
           }
         );
       }
@@ -718,7 +831,7 @@ let combineImages = async imageList => {
  * @param artBoardObj
  * @returns {Promise.<void>}
  */
-let getArtBoardImg = async (artBoardObj, callback) => {
+let getArtBoardImg = async artBoardObj => {
   let imageCombine = new ImageCombine();
   if (!imageCombineConfig) {
     imageCombineConfig = {
@@ -736,7 +849,6 @@ let getArtBoardImg = async (artBoardObj, callback) => {
     artBoardObj,
     true
   );
-  callback();
 };
 
 //创建新项目
