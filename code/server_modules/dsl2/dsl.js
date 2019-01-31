@@ -65,8 +65,6 @@ let process = function(nodes, optimizeWidth, optimizeHeight, layoutType) {
     _matchModels(10000, matchedElements, matchingNodes, Common.MatchingElements, optimizeWidth, optimizeHeight, maxNodeX, maxNodeY);
     // 匹配组件模型
     _matchModels(10000, matchedWidgets, matchedElements, Common.MatchingWidgets, optimizeWidth, optimizeHeight, maxNodeX, maxNodeY);
-    //Utils.logWidgetInfo(matchedElements);
-    Utils.logWidgetInfo(matchedWidgets);
     // 生成dsl树
     dslTree = _groupModels(matchedWidgets, matchedElements);
     // 进行布局及循环处理
@@ -114,14 +112,8 @@ let _matchModels = function(matchTimes, matchedNodes, nodes, mType, optimizeWidt
             });
         }
 
-        // 匹配完删除对应的结构
-        if (mType == Common.MatchingElements) {
-            Utils.removeMatchedElements(nodes, result);
-        }
-        else if (mType == Common.MatchingWidgets) {
-            Utils.removeMatchedWidgets(nodes, result);
-        }
-
+        // 匹配完删除对应的节点
+        Utils.removeMatchedDatas(nodes, result);
         // 每次匹配完后将范围缩减
         // 这里暂时只进行y范围的处理
         beginY += parseInt(optimizeHeight / 2);
@@ -133,7 +125,7 @@ let _matchModels = function(matchTimes, matchedNodes, nodes, mType, optimizeWidt
 }
 
 /**
- * 对匹配好的模型做成组处理
+ * 对匹配好的模型做成组处理...
  * @param {Array} widgets 已匹配的组件模型
  * @param {Array} elements 已匹配的元素模型
  * @returns {DslTree}

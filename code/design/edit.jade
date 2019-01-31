@@ -1,0 +1,182 @@
+doctype html
+html
+  head
+    meta(charset="utf-8") 
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title TOOSEE
+    script(src="https://xshow.tencent.com/s/static/js/jquery.js")
+    link(rel="stylesheet", href="css/edit.css")
+    script.
+      $(document).ready(function(){
+        //厘米秀
+        $('.tab2').click(function(){
+        $('.pagewrap').removeClass("z-display");
+        $('.page-cmshow').addClass("z-display");
+        $('.md-tab li').removeClass("active");
+        $(this).addClass("active");
+        });
+        //QQ好友在玩
+        $('.mod-qqfriend').click(function(){
+        $('.pagewrap').removeClass("z-display");
+        $('.page-friendlistmore').addClass("z-display");
+        $('.page-friendlist').addClass("z-hide");
+        $('.md-tab').addClass("z-hide");
+        });
+      });
+  body#app.page-list
+    header
+      .header-left
+        ul.tab
+          li.icon-logo
+          li.current 页面
+          li 结构
+
+      .header-center
+        .zoom-widget
+          button.zoom-in
+          label.zoom-text 100%
+          button.zoom-out
+      .qr
+        i
+          img(src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535181055406&di=b86d27e8393cc82c73045b3349fcf97b&imgtype=0&src=http%3A%2F%2Fwww.boroboromi.com%2Fimages%2Fqr-code.png")
+          input(type="text" value="mage.baidu.com/search/index?tn=baiduimag")
+
+      .header-right
+        .unit-box(tabindex="0")
+          .overlay    
+          h3 Design resolution   
+          p XHDPI @2x 
+          ul
+            li
+              label
+                input(type="radio", name="resolution", data-name="Standard", data-unit="px", data-scale="1")
+                span Standard
+            li.sub-title iOS Devices
+            li
+              label
+                input(type="radio", name="resolution", data-name="Points @1x", data-unit="pt", data-scale="1")
+                span Points @1x
+            li
+              label
+                input(type="radio", name="resolution", data-name="Retina @2x", data-unit="pt", data-scale="2")
+                span Retina @2x
+            li
+              label
+                input(type="radio", name="resolution", data-name="Retina HD @3x", data-unit="pt", data-scale="3")
+                span Retina HD @3x
+            li.sub-title Android Devices
+            li
+              label
+                input(type="radio", name="resolution", data-name="LDPI @0.75x", data-unit="dp/sp", data-scale="0.75")
+                span LDPI @0.75x
+            li
+              label
+                input(type="radio", name="resolution", data-name="MDPI @1x", data-unit="dp/sp", data-scale="1")
+                span MDPI @1x
+            li
+              label
+                input(type="radio", name="resolution", data-name="HDPI @1.5x", data-unit="dp/sp", data-scale="1.5")
+                span HDPI @1.5x
+            li
+              label
+                input(type="radio", name="resolution", data-name="XHDPI @2x", data-unit="dp/sp", data-scale="2", checked="checked")
+                span XHDPI @2x
+            li
+              label
+                input(type="radio", name="resolution", data-name="XXHDPI @3x", data-unit="dp/sp", data-scale="3")
+                span XXHDPI @3x
+            li
+              label
+                input(type="radio", name="resolution", data-name="XXXHDPI @4x", data-unit="dp/sp", data-scale="4")
+                span XXXHDPI @4x
+            li.sub-title Web View
+            li
+              label
+                input(type="radio", name="resolution", data-name="CSS Rem 12px", data-unit="rem", data-scale="12")
+                span CSS Rem 12px
+            li
+              label
+                input(type="radio", name="resolution", data-name="CSS Rem 14px", data-unit="rem", data-scale="14")
+                span CSS Rem 14px
+    main
+      // 左:导航
+      aside.navbar.on
+        section#artboards
+          .pages-select
+            h3 All artboards  
+        ul.artboard-list
+          li.artboard
+            picture.preview-img
+              img(src="https://xshow.tencent.com/s/guide/180517/111532_557573_72b269d86795358003fb2adf75effecc_s.jpg")         
+            div
+              h3 feed竖版
+              small Page 1
+          li.artboard.active
+            picture.preview-img
+              img(src="https://xshow.tencent.com/s/guide/180517/111532_557573_72b269d86795358003fb2adf75effecc_s.jpg")      
+            div
+              h3 竖版视频优化方向
+              small Page 2   
+          li.artboard
+            picture.preview-img
+              img(src="https://xshow.tencent.com/s/guide/180517/111532_557573_72b269d86795358003fb2adf75effecc_s.jpg")      
+            div
+              h3 feed视频优化
+              small Page 3    
+          li.artboard
+            picture.preview-img
+              img(src="https://xshow.tencent.com/s/guide/180517/111532_557573_72b269d86795358003fb2adf75effecc_s.jpg")      
+            div
+              h3 feed视频优化11
+              small Page 4
+
+        .btn.dn 下载项目
+      // 中:预览
+      section.screen-viewer.dragscroll
+        .screen-viewer-inner(style="width:100%; height: 1573px;text-align:center;")
+          .screen(style="width:750px; height: 1573px;")
+            img(src="https://xshow.tencent.com/s/guide/180517/111532_557573_72b269d86795358003fb2adf75effecc.png?1534585023743")
+      // 右:编辑区
+      aside.inspector.active
+        h2 标题标题
+        section
+          h3 属性
+          ul.features-list
+            li(title="左对齐")
+              img(src="icons/height-left-normal.png")
+            li(title="居中齐")
+              img(src="icons/height-center-normal.png")
+            li(title="右对齐")
+              img(src="icons/height-right-normal.png")
+        section
+          h3 对齐
+          ul.features-list
+            li.opacity
+            li
+              img(src="icons/spacing-top-normal.png")
+            li.opacity
+            li
+              img(src="icons/spacing-left-normal.png")
+            li
+              img(src="icons/spacing-bottom-normal.png")
+            li
+              img(src="icons/spacing-right-normal.png")
+        section
+          h3 布局
+          ul.features-list
+            li
+              img(src="icons/properties-left-normal.png")
+            li
+              img(src="icons/properties-top-normal.png")
+            li
+              img(src="icons/properties-right-normal.png")
+        section
+          h3 平台
+          ul.features-list
+            li
+              ios  
+            li
+              img(src="icons/properties-top-normal.png")
+            li
+              webview

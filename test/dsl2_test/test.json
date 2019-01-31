@@ -1,0 +1,3474 @@
+[
+    {
+        "id": "33BA97D5-A74D-4EA7-82CE-36D75DE2058E",
+        "type": "QBody",
+        "name": "qq钱包活动聚合页",
+        "width": 750,
+        "height": 3817,
+        "x": 223,
+        "y": -1514,
+        "abX": 0,
+        "abY": 0,
+        "bodyIndex": 0,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": null,
+        "children": [
+            "C8342E9F-41B3-4475-8E78-418C32C07B8B",
+            "FFFE5E5B-4FF9-45A0-A834-76AEDC5AF28F",
+            "0756B7F3-59B3-4131-AD5F-C4BAC03054B9",
+            "2FA8E25F-87F8-40FB-A7AE-A35FAFF99E1F"
+        ],
+        "childnum": 4,
+        "isModified": true,
+        "hasStyle": false
+    },
+    {
+        "id": "C8342E9F-41B3-4475-8E78-418C32C07B8B",
+        "type": "QLayer",
+        "name": "bg",
+        "width": 750,
+        "height": 4073,
+        "x": 0,
+        "y": 0,
+        "abX": 0,
+        "abY": 0,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": {
+                "type": "color",
+                "color": {
+                    "r": 190,
+                    "g": 55,
+                    "b": 59,
+                    "a": 1
+                },
+                "hasOpacity": false
+            }
+        },
+        "parent": "33BA97D5-A74D-4EA7-82CE-36D75DE2058E",
+        "children": [],
+        "childnum": 0,
+        "isModified": true,
+        "hasStyle": true
+    },
+    {
+        "id": "FFFE5E5B-4FF9-45A0-A834-76AEDC5AF28F",
+        "type": "QLayer",
+        "name": "游戏文案",
+        "width": 682,
+        "height": 81,
+        "x": 34,
+        "y": 524,
+        "abX": 34,
+        "abY": 524,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "33BA97D5-A74D-4EA7-82CE-36D75DE2058E",
+        "children": [
+            "7CE99C2C-6E9C-4BC4-8C96-74893F10DAB1",
+            "FFE32F2A-5922-488D-8B2A-2A8FCD6253E6",
+            "C3C4A44A-1B03-4F97-8DC3-338AC06B6A12"
+        ],
+        "childnum": 3,
+        "isModified": true,
+        "hasStyle": false
+    },
+    {
+        "id": "7CE99C2C-6E9C-4BC4-8C96-74893F10DAB1",
+        "type": "QImage",
+        "name": "Fill 1",
+        "width": 92,
+        "height": 24,
+        "x": 0,
+        "y": 7,
+        "abX": 34,
+        "abY": 531,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "FFFE5E5B-4FF9-45A0-A834-76AEDC5AF28F",
+        "children": [],
+        "childnum": 0,
+        "path": "7CE99C2C-6E9C-4BC4-8C96-74893F10DAB1.png",
+        "hasStyle": true
+    },
+    {
+        "id": "FFE32F2A-5922-488D-8B2A-2A8FCD6253E6",
+        "type": "QText",
+        "name": "红包怎么花？一大波福利来袭，盘它～",
+        "width": 476,
+        "height": 81,
+        "x": 103,
+        "y": 0,
+        "abX": 137,
+        "abY": 524,
+        "text": "红包怎么花？一大波福利来袭，盘它～\n",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "红包怎么花？一大波福利来袭，盘它～\n",
+                    "font": "PingFangSC-Semibold",
+                    "size": 28
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": null,
+            "maxSize": 28,
+            "minSize": 28
+        },
+        "parent": "FFFE5E5B-4FF9-45A0-A834-76AEDC5AF28F",
+        "children": [],
+        "childnum": 0,
+        "lines": 2,
+        "hasStyle": false
+    },
+    {
+        "id": "C3C4A44A-1B03-4F97-8DC3-338AC06B6A12",
+        "type": "QImage",
+        "name": "Fill 1 Copy",
+        "width": 92,
+        "height": 24,
+        "x": 590,
+        "y": 7,
+        "abX": 624,
+        "abY": 531,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "FFFE5E5B-4FF9-45A0-A834-76AEDC5AF28F",
+        "children": [],
+        "childnum": 0,
+        "path": "C3C4A44A-1B03-4F97-8DC3-338AC06B6A12.png",
+        "hasStyle": true
+    },
+    {
+        "id": "0756B7F3-59B3-4131-AD5F-C4BAC03054B9",
+        "type": "QLayer",
+        "name": "卡片",
+        "width": 660,
+        "height": 3808,
+        "x": 45,
+        "y": 604,
+        "abX": 45,
+        "abY": 604,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "33BA97D5-A74D-4EA7-82CE-36D75DE2058E",
+        "children": [
+            "3A717E1A-791C-4DF4-ADE9-7F31E48D21AB",
+            "88557B0F-8A1C-4B89-910E-9A60661CDFB2",
+            "C03F2E98-AC03-4C9D-87F9-C82E8EF91FFF",
+            "59668ECC-72DB-4DD8-85FD-24DB899B85B7",
+            "D133B32F-4BC5-4F6E-8FC7-66781773EFFA",
+            "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+            "E93A0191-4B2A-442C-B04D-46E2FE43D99C"
+        ],
+        "childnum": 7,
+        "hasStyle": false
+    },
+    {
+        "id": "3A717E1A-791C-4DF4-ADE9-7F31E48D21AB",
+        "type": "QLayer",
+        "name": "王者荣耀",
+        "width": 660,
+        "height": 232,
+        "x": 0,
+        "y": 320,
+        "abX": 45,
+        "abY": 924,
+        "symbolRoot": [
+            "3A71"
+        ],
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "0756B7F3-59B3-4131-AD5F-C4BAC03054B9",
+        "children": [
+            "3A71---BE0804D8-2B3F-46E3-8821-9D798B194946"
+        ],
+        "childnum": 1,
+        "hasStyle": false
+    },
+    {
+        "id": "3A71---BE0804D8-2B3F-46E3-8821-9D798B194946",
+        "type": "QImage",
+        "name": "王者荣耀",
+        "width": 660,
+        "height": 232,
+        "x": 0,
+        "y": 0,
+        "abX": 45,
+        "abY": 924,
+        "symbolRoot": [
+            "3A71"
+        ],
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "3A717E1A-791C-4DF4-ADE9-7F31E48D21AB",
+        "children": [],
+        "childnum": 0,
+        "path": "3A71---BE0804D8-2B3F-46E3-8821-9D798B194946.png",
+        "hasStyle": true
+    },
+    {
+        "id": "88557B0F-8A1C-4B89-910E-9A60661CDFB2",
+        "type": "QLayer",
+        "name": "拼多多",
+        "width": 660,
+        "height": 232,
+        "x": 0,
+        "y": 824,
+        "abX": 45,
+        "abY": 1428,
+        "symbolRoot": [
+            "8855"
+        ],
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "0756B7F3-59B3-4131-AD5F-C4BAC03054B9",
+        "children": [
+            "8855---0BCC19DF-1BEB-4C3E-9BDD-1925F2284196"
+        ],
+        "childnum": 1,
+        "hasStyle": false
+    },
+    {
+        "id": "8855---0BCC19DF-1BEB-4C3E-9BDD-1925F2284196",
+        "type": "QImage",
+        "name": "拼多多",
+        "width": 660,
+        "height": 232,
+        "x": 0,
+        "y": 0,
+        "abX": 45,
+        "abY": 1428,
+        "symbolRoot": [
+            "8855"
+        ],
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "88557B0F-8A1C-4B89-910E-9A60661CDFB2",
+        "children": [],
+        "childnum": 0,
+        "path": "8855---0BCC19DF-1BEB-4C3E-9BDD-1925F2284196.png",
+        "hasStyle": true
+    },
+    {
+        "id": "C03F2E98-AC03-4C9D-87F9-C82E8EF91FFF",
+        "type": "QLayer",
+        "name": "bilibili",
+        "width": 660,
+        "height": 232,
+        "x": 0,
+        "y": 1076,
+        "abX": 45,
+        "abY": 1680,
+        "symbolRoot": [
+            "C03F"
+        ],
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "0756B7F3-59B3-4131-AD5F-C4BAC03054B9",
+        "children": [
+            "C03F---8D4BB8DA-0B68-4FA2-8254-84E2D518DFAD"
+        ],
+        "childnum": 1,
+        "hasStyle": false
+    },
+    {
+        "id": "C03F---8D4BB8DA-0B68-4FA2-8254-84E2D518DFAD",
+        "type": "QImage",
+        "name": "bilibili",
+        "width": 660,
+        "height": 232,
+        "x": 0,
+        "y": 0,
+        "abX": 45,
+        "abY": 1680,
+        "symbolRoot": [
+            "C03F"
+        ],
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "C03F2E98-AC03-4C9D-87F9-C82E8EF91FFF",
+        "children": [],
+        "childnum": 0,
+        "path": "C03F---8D4BB8DA-0B68-4FA2-8254-84E2D518DFAD.png",
+        "hasStyle": true
+    },
+    {
+        "id": "59668ECC-72DB-4DD8-85FD-24DB899B85B7",
+        "type": "QLayer",
+        "name": "手q阅读",
+        "width": 660,
+        "height": 232,
+        "x": 0,
+        "y": 572,
+        "abX": 45,
+        "abY": 1176,
+        "symbolRoot": [
+            "5966"
+        ],
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "0756B7F3-59B3-4131-AD5F-C4BAC03054B9",
+        "children": [
+            "5966---6E95B300-15F8-4519-B947-0114913CCDE8"
+        ],
+        "childnum": 1,
+        "hasStyle": false
+    },
+    {
+        "id": "5966---6E95B300-15F8-4519-B947-0114913CCDE8",
+        "type": "QImage",
+        "name": "手q阅读",
+        "width": 660,
+        "height": 232,
+        "x": 0,
+        "y": 0,
+        "abX": 45,
+        "abY": 1176,
+        "symbolRoot": [
+            "5966"
+        ],
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "59668ECC-72DB-4DD8-85FD-24DB899B85B7",
+        "children": [],
+        "childnum": 0,
+        "path": "5966---6E95B300-15F8-4519-B947-0114913CCDE8.png",
+        "hasStyle": true
+    },
+    {
+        "id": "D133B32F-4BC5-4F6E-8FC7-66781773EFFA",
+        "type": "QLayer",
+        "name": "充话费",
+        "width": 660,
+        "height": 300,
+        "x": 0,
+        "y": 0,
+        "abX": 45,
+        "abY": 604,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "0756B7F3-59B3-4131-AD5F-C4BAC03054B9",
+        "children": [
+            "0C4602FB-ABF9-4AC9-8027-1F97AEC52435",
+            "FA1511B5-E9E0-4F0D-8611-26BC91E68EB2",
+            "58836F23-3250-41B9-9097-8532A5BBD81A"
+        ],
+        "childnum": 3,
+        "hasStyle": false
+    },
+    {
+        "id": "0C4602FB-ABF9-4AC9-8027-1F97AEC52435",
+        "type": "QImage",
+        "name": "分组",
+        "width": 660,
+        "height": 300,
+        "x": 0,
+        "y": 0,
+        "abX": 45,
+        "abY": 604,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "D133B32F-4BC5-4F6E-8FC7-66781773EFFA",
+        "children": [],
+        "childnum": 0,
+        "path": "0C4602FB-ABF9-4AC9-8027-1F97AEC52435.png",
+        "hasStyle": true
+    },
+    {
+        "id": "FA1511B5-E9E0-4F0D-8611-26BC91E68EB2",
+        "type": "QLayer",
+        "name": "话费",
+        "width": 295,
+        "height": 253,
+        "x": 24,
+        "y": 24,
+        "abX": 69,
+        "abY": 628,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.1
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null
+        },
+        "parent": "D133B32F-4BC5-4F6E-8FC7-66781773EFFA",
+        "children": [
+            "B7294CCD-0C30-4537-B850-1F8A535147C8",
+            "F65782B7-49A7-4F59-9BB7-9ABE8324227F",
+            "2FDCA723-0E1A-4EE8-8D0F-B0A659EAAF40"
+        ],
+        "childnum": 3,
+        "hasStyle": true
+    },
+    {
+        "id": "B7294CCD-0C30-4537-B850-1F8A535147C8",
+        "type": "QLayer",
+        "name": "Group 4",
+        "width": 295,
+        "height": 201,
+        "x": 0,
+        "y": 0,
+        "abX": 69,
+        "abY": 628,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.1
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null
+        },
+        "parent": "FA1511B5-E9E0-4F0D-8611-26BC91E68EB2",
+        "children": [
+            "C0690444-F6BF-4E2B-A51C-C8FE5CD95655",
+            "_7714_0440"
+        ],
+        "childnum": 2,
+        "isModified": true,
+        "hasStyle": true
+    },
+    {
+        "id": "C0690444-F6BF-4E2B-A51C-C8FE5CD95655",
+        "type": "QImage",
+        "name": "位图",
+        "width": 64,
+        "height": 85,
+        "x": 115,
+        "y": 32,
+        "abX": 184,
+        "abY": 660,
+        "path": "C0690444-F6BF-4E2B-A51C-C8FE5CD95655.png",
+        "styles": {},
+        "parent": "B7294CCD-0C30-4537-B850-1F8A535147C8",
+        "children": [],
+        "childnum": 0,
+        "hasStyle": true
+    },
+    {
+        "id": "_7714_0440",
+        "type": "QImage",
+        "name": "_Bitmap_位图",
+        "width": 295,
+        "height": 201,
+        "x": 0,
+        "y": 0,
+        "abX": 69,
+        "abY": 628,
+        "path": "_7714_0440.png",
+        "isModified": true,
+        "parent": "B7294CCD-0C30-4537-B850-1F8A535147C8",
+        "children": [],
+        "childnum": 0,
+        "styles": {},
+        "hasStyle": true
+    },
+    {
+        "id": "F65782B7-49A7-4F59-9BB7-9ABE8324227F",
+        "type": "QText",
+        "name": "充话费立减5元",
+        "width": 201,
+        "height": 41,
+        "x": 50,
+        "y": 146,
+        "abX": 119,
+        "abY": 774,
+        "text": "充话费立减5元",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "充话费立",
+                    "font": "PingFang-SC-Medium",
+                    "size": 28
+                },
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "减5元",
+                    "font": "PingFang-SC-Heavy",
+                    "size": 34
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 41,
+            "maxSize": 34,
+            "minSize": 28
+        },
+        "parent": "FA1511B5-E9E0-4F0D-8611-26BC91E68EB2",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 34,
+        "textAbY": 777,
+        "hasStyle": false
+    },
+    {
+        "id": "2FDCA723-0E1A-4EE8-8D0F-B0A659EAAF40",
+        "type": "QLayer",
+        "name": "bt",
+        "width": 294,
+        "height": 56,
+        "x": 0,
+        "y": 197,
+        "abX": 69,
+        "abY": 825,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "FA1511B5-E9E0-4F0D-8611-26BC91E68EB2",
+        "children": [
+            "EEE43D72-0F95-4DE1-A40F-C33DA3B9DFF4",
+            "7D903F69-ED6A-4246-95F6-0A3FF6A10BA6"
+        ],
+        "childnum": 2,
+        "hasStyle": false
+    },
+    {
+        "id": "EEE43D72-0F95-4DE1-A40F-C33DA3B9DFF4",
+        "type": "QImage",
+        "name": "位图",
+        "width": 294,
+        "height": 56,
+        "x": 0,
+        "y": 0,
+        "abX": 69,
+        "abY": 825,
+        "path": "EEE43D72-0F95-4DE1-A40F-C33DA3B9DFF4.png",
+        "styles": {},
+        "parent": "2FDCA723-0E1A-4EE8-8D0F-B0A659EAAF40",
+        "children": [],
+        "childnum": 0,
+        "hasStyle": true
+    },
+    {
+        "id": "7D903F69-ED6A-4246-95F6-0A3FF6A10BA6",
+        "type": "QText",
+        "name": "去购买",
+        "width": 72,
+        "height": 29,
+        "x": 111,
+        "y": 15,
+        "abX": 180,
+        "abY": 840,
+        "text": "去购买",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 224,
+                        "g": 59,
+                        "b": 65,
+                        "a": 1
+                    },
+                    "string": "去购买",
+                    "font": "PingFangSC-Semibold",
+                    "size": 24
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 29,
+            "maxSize": 24,
+            "minSize": 24
+        },
+        "parent": "2FDCA723-0E1A-4EE8-8D0F-B0A659EAAF40",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 24,
+        "textAbY": 842,
+        "hasStyle": false
+    },
+    {
+        "id": "58836F23-3250-41B9-9097-8532A5BBD81A",
+        "type": "QLayer",
+        "name": "话费 copy",
+        "width": 294,
+        "height": 253,
+        "x": 341,
+        "y": 24,
+        "abX": 386,
+        "abY": 628,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.1
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null
+        },
+        "parent": "D133B32F-4BC5-4F6E-8FC7-66781773EFFA",
+        "children": [
+            "D08B7996-17B0-47DC-9B37-DF6F5D306669",
+            "F998BDC2-9027-4F18-B228-61B72FD6AF2C",
+            "8C483B86-B6E4-44BA-9602-1BF4EF228396",
+            "3129FFDF-96B3-481B-85D0-966167C6A243"
+        ],
+        "childnum": 4,
+        "hasStyle": true
+    },
+    {
+        "id": "D08B7996-17B0-47DC-9B37-DF6F5D306669",
+        "type": "QImage",
+        "name": "Group 4",
+        "width": 294,
+        "height": 201,
+        "x": 0,
+        "y": 0,
+        "abX": 386,
+        "abY": 628,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "58836F23-3250-41B9-9097-8532A5BBD81A",
+        "children": [],
+        "childnum": 0,
+        "path": "D08B7996-17B0-47DC-9B37-DF6F5D306669.png",
+        "hasStyle": true
+    },
+    {
+        "id": "F998BDC2-9027-4F18-B228-61B72FD6AF2C",
+        "type": "QLayer",
+        "name": "Bitmap",
+        "width": 132,
+        "height": 132,
+        "x": 84,
+        "y": 11,
+        "abX": 470,
+        "abY": 639,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "58836F23-3250-41B9-9097-8532A5BBD81A",
+        "children": [
+            "FD6C5873-1772-449E-90BF-18C97DD326A0"
+        ],
+        "childnum": 1,
+        "hasStyle": false
+    },
+    {
+        "id": "FD6C5873-1772-449E-90BF-18C97DD326A0",
+        "type": "QLayer",
+        "name": "Bitmap",
+        "width": 132,
+        "height": 132,
+        "x": 0,
+        "y": 0,
+        "abX": 470,
+        "abY": 639,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.2
+                    },
+                    "spread": 0,
+                    "blur": 4
+                }
+            ],
+            "background": null
+        },
+        "parent": "F998BDC2-9027-4F18-B228-61B72FD6AF2C",
+        "children": [
+            "DF645973-CA14-4C25-B40C-69C9EC37C900"
+        ],
+        "childnum": 1,
+        "isModified": true,
+        "hasStyle": true
+    },
+    {
+        "id": "DF645973-CA14-4C25-B40C-69C9EC37C900",
+        "type": "QLayer",
+        "name": "Group 11",
+        "width": 80,
+        "height": 83,
+        "x": 21,
+        "y": 20,
+        "abX": 491,
+        "abY": 659,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "FD6C5873-1772-449E-90BF-18C97DD326A0",
+        "children": [
+            "A0189201-A88E-4182-8F2D-BCEEC4878747",
+            "E7E4B9C1-66D2-4A38-B41A-90F4C29F0E62",
+            "6A31962A-48CD-473C-88ED-6C6DD95BA70D"
+        ],
+        "childnum": 3,
+        "isModified": true,
+        "hasStyle": false
+    },
+    {
+        "id": "A0189201-A88E-4182-8F2D-BCEEC4878747",
+        "type": "QImage",
+        "name": "Group 8 Copy",
+        "width": 80,
+        "height": 83,
+        "x": 0,
+        "y": 0,
+        "abX": 491,
+        "abY": 659,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "DF645973-CA14-4C25-B40C-69C9EC37C900",
+        "children": [],
+        "childnum": 0,
+        "path": "A0189201-A88E-4182-8F2D-BCEEC4878747.png",
+        "hasStyle": true
+    },
+    {
+        "id": "E7E4B9C1-66D2-4A38-B41A-90F4C29F0E62",
+        "type": "QImage",
+        "name": "Group 12",
+        "width": 13,
+        "height": 15,
+        "x": 3,
+        "y": 7,
+        "abX": 494,
+        "abY": 666,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "DF645973-CA14-4C25-B40C-69C9EC37C900",
+        "children": [],
+        "childnum": 0,
+        "isModified": true,
+        "path": "E7E4B9C1-66D2-4A38-B41A-90F4C29F0E62.png",
+        "hasStyle": true
+    },
+    {
+        "id": "6A31962A-48CD-473C-88ED-6C6DD95BA70D",
+        "type": "QImage",
+        "name": "Group 12 Copy",
+        "width": 9,
+        "height": 10,
+        "x": 71,
+        "y": 53,
+        "abX": 562,
+        "abY": 712,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "DF645973-CA14-4C25-B40C-69C9EC37C900",
+        "children": [],
+        "childnum": 0,
+        "isModified": true,
+        "path": "6A31962A-48CD-473C-88ED-6C6DD95BA70D.png",
+        "hasStyle": true
+    },
+    {
+        "id": "8C483B86-B6E4-44BA-9602-1BF4EF228396",
+        "type": "QText",
+        "name": "充Q币享91折",
+        "width": 187,
+        "height": 41,
+        "x": 54,
+        "y": 141,
+        "abX": 440,
+        "abY": 769,
+        "text": "充Q币享91折",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "充Q币",
+                    "font": "PingFang-SC-Medium",
+                    "size": 28
+                },
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "享91折",
+                    "font": "PingFang-SC-Heavy",
+                    "size": 34
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 41,
+            "maxSize": 34,
+            "minSize": 28
+        },
+        "parent": "58836F23-3250-41B9-9097-8532A5BBD81A",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 34,
+        "textAbY": 772,
+        "hasStyle": false
+    },
+    {
+        "id": "3129FFDF-96B3-481B-85D0-966167C6A243",
+        "type": "QLayer",
+        "name": "bt",
+        "width": 294,
+        "height": 56,
+        "x": 0,
+        "y": 197,
+        "abX": 386,
+        "abY": 825,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "58836F23-3250-41B9-9097-8532A5BBD81A",
+        "children": [
+            "016669FF-841F-4740-B1DB-360BFFD135A7",
+            "8ADB7288-5E4F-44D0-808F-8A3B3B36AFFD"
+        ],
+        "childnum": 2,
+        "hasStyle": false
+    },
+    {
+        "id": "016669FF-841F-4740-B1DB-360BFFD135A7",
+        "type": "QImage",
+        "name": "Bitmap",
+        "width": 294,
+        "height": 56,
+        "x": 0,
+        "y": 0,
+        "abX": 386,
+        "abY": 825,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "3129FFDF-96B3-481B-85D0-966167C6A243",
+        "children": [],
+        "childnum": 0,
+        "path": "016669FF-841F-4740-B1DB-360BFFD135A7.png",
+        "hasStyle": true
+    },
+    {
+        "id": "8ADB7288-5E4F-44D0-808F-8A3B3B36AFFD",
+        "type": "QText",
+        "name": "去购买",
+        "width": 72,
+        "height": 29,
+        "x": 111,
+        "y": 15,
+        "abX": 497,
+        "abY": 840,
+        "text": "去购买",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 224,
+                        "g": 59,
+                        "b": 65,
+                        "a": 1
+                    },
+                    "string": "去购买",
+                    "font": "PingFangSC-Semibold",
+                    "size": 24
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 29,
+            "maxSize": 24,
+            "minSize": 24
+        },
+        "parent": "3129FFDF-96B3-481B-85D0-966167C6A243",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 24,
+        "textAbY": 842,
+        "hasStyle": false
+    },
+    {
+        "id": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "type": "QLayer",
+        "name": "电影红包",
+        "width": 660,
+        "height": 1310,
+        "x": 0,
+        "y": 1268,
+        "abX": 45,
+        "abY": 1872,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "0756B7F3-59B3-4131-AD5F-C4BAC03054B9",
+        "children": [
+            "96B4BE48-58B9-4067-AA10-6CD1BF2F93EF",
+            "F2B7769E-1541-4AB7-9FAB-533A750BA4C7",
+            "1A1D5F46-01FC-4B15-B173-D678DFAFCFB3",
+            "E3764FBA-C5E2-4A89-9EAA-276904538CBC",
+            "0C7F9BA1-C23C-4B74-914C-DA43004238A1",
+            "676EC2EA-48C6-478F-A40F-E1477536C350",
+            "5792663D-DFCB-4862-A20E-7C92ED9CD7B1",
+            "FA08D003-F101-430C-B58A-A9B963FB0C5B",
+            "B73004B4-E776-44B9-A08E-58E5B8CA6850",
+            "10A0D2BC-F1E8-461B-B187-44D8D7ACCDA6",
+            "910EC98A-6C7C-4DDE-8A20-1095FB807047",
+            "E33E86E6-7455-4709-BF29-AFB045CE2A48",
+            "_BB17_80CA"
+        ],
+        "childnum": 13,
+        "isModified": true,
+        "hasStyle": false
+    },
+    {
+        "id": "96B4BE48-58B9-4067-AA10-6CD1BF2F93EF",
+        "type": "QImage",
+        "name": "Path",
+        "width": 660,
+        "height": 1250,
+        "x": 0,
+        "y": 60,
+        "abX": 45,
+        "abY": 1932,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [],
+        "childnum": 0,
+        "path": "96B4BE48-58B9-4067-AA10-6CD1BF2F93EF.png",
+        "hasStyle": true
+    },
+    {
+        "id": "F2B7769E-1541-4AB7-9FAB-533A750BA4C7",
+        "type": "QLayer",
+        "name": "更多电影",
+        "width": 138,
+        "height": 28,
+        "x": 261,
+        "y": 1245,
+        "abX": 306,
+        "abY": 3117,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [
+            "A1D0214C-E547-4341-B33A-08DF4041B803",
+            "5B10F924-423A-460C-9E4A-39552CBAC73F"
+        ],
+        "childnum": 2,
+        "hasStyle": false
+    },
+    {
+        "id": "A1D0214C-E547-4341-B33A-08DF4041B803",
+        "type": "QText",
+        "name": "查看更多电影",
+        "width": 120,
+        "height": 24,
+        "x": 0,
+        "y": 2,
+        "abX": 306,
+        "abY": 3119,
+        "text": "查看更多电影",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 1,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.3
+                    },
+                    "spread": 0,
+                    "blur": 2
+                }
+            ],
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "查看更多电影",
+                    "font": "PingFangSC-Regular",
+                    "size": 20
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 0,
+            "lineHeight": 24,
+            "maxSize": 20,
+            "minSize": 20
+        },
+        "parent": "F2B7769E-1541-4AB7-9FAB-533A750BA4C7",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 20,
+        "textAbY": 3121,
+        "hasStyle": true
+    },
+    {
+        "id": "5B10F924-423A-460C-9E4A-39552CBAC73F",
+        "type": "QImage",
+        "name": "Path",
+        "width": 10,
+        "height": 14,
+        "x": 128,
+        "y": 7,
+        "abX": 434,
+        "abY": 3124,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "F2B7769E-1541-4AB7-9FAB-533A750BA4C7",
+        "children": [],
+        "childnum": 0,
+        "path": "5B10F924-423A-460C-9E4A-39552CBAC73F.png",
+        "hasStyle": true
+    },
+    {
+        "id": "1A1D5F46-01FC-4B15-B173-D678DFAFCFB3",
+        "type": "QLayer",
+        "name": "bt",
+        "width": 508,
+        "height": 90,
+        "x": 76,
+        "y": 413,
+        "abX": 121,
+        "abY": 2285,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.2
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null
+        },
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [
+            "DF3B85ED-0A1A-4E10-81C9-8EEAA676267E",
+            "B996C83F-9E15-4474-89F9-EFDFB21D40ED"
+        ],
+        "childnum": 2,
+        "hasStyle": true
+    },
+    {
+        "id": "DF3B85ED-0A1A-4E10-81C9-8EEAA676267E",
+        "type": "QImage",
+        "name": "Rectangle",
+        "width": 508,
+        "height": 90,
+        "x": 0,
+        "y": 0,
+        "abX": 121,
+        "abY": 2285,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "1A1D5F46-01FC-4B15-B173-D678DFAFCFB3",
+        "children": [],
+        "childnum": 0,
+        "path": "DF3B85ED-0A1A-4E10-81C9-8EEAA676267E.png",
+        "hasStyle": true
+    },
+    {
+        "id": "B996C83F-9E15-4474-89F9-EFDFB21D40ED",
+        "type": "QText",
+        "name": "立即抢",
+        "width": 206,
+        "height": 43,
+        "x": 151,
+        "y": 23,
+        "abX": 272,
+        "abY": 2308,
+        "text": "立即抢",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.2
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 224,
+                        "g": 59,
+                        "b": 65,
+                        "a": 1
+                    },
+                    "string": "立即抢",
+                    "font": "PingFangSC-Semibold",
+                    "size": 36
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 43,
+            "maxSize": 36,
+            "minSize": 36
+        },
+        "parent": "1A1D5F46-01FC-4B15-B173-D678DFAFCFB3",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 36,
+        "textAbY": 2312,
+        "hasStyle": true
+    },
+    {
+        "id": "E3764FBA-C5E2-4A89-9EAA-276904538CBC",
+        "type": "QLayer",
+        "name": "Bitmap Copy 2",
+        "width": 188,
+        "height": 332,
+        "x": 236,
+        "y": 526,
+        "abX": 281,
+        "abY": 2398,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.1
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null
+        },
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [
+            "562D8DA2-CD70-4CE9-A62D-F27074715059",
+            "F46C7C9B-2906-4FFB-AE1E-1C62E82A314D",
+            "970119FB-2DB4-484B-8ABA-2C5419F6DDBA",
+            "8EBD84E4-4329-4126-9411-F3DA914062A3"
+        ],
+        "childnum": 4,
+        "hasStyle": true
+    },
+    {
+        "id": "562D8DA2-CD70-4CE9-A62D-F27074715059",
+        "type": "QImage",
+        "name": "Group 4",
+        "width": 188,
+        "height": 280,
+        "x": 0,
+        "y": 0,
+        "abX": 281,
+        "abY": 2398,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "E3764FBA-C5E2-4A89-9EAA-276904538CBC",
+        "children": [],
+        "childnum": 0,
+        "path": "562D8DA2-CD70-4CE9-A62D-F27074715059.png",
+        "hasStyle": true
+    },
+    {
+        "id": "F46C7C9B-2906-4FFB-AE1E-1C62E82A314D",
+        "type": "QText",
+        "name": "新喜剧之王",
+        "width": 100,
+        "height": 24,
+        "x": 44,
+        "y": 239,
+        "abX": 325,
+        "abY": 2637,
+        "text": "新喜剧之王",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "新喜剧之王",
+                    "font": "PingFang-SC-Medium",
+                    "size": 20
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 24,
+            "maxSize": 20,
+            "minSize": 20
+        },
+        "parent": "E3764FBA-C5E2-4A89-9EAA-276904538CBC",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 20,
+        "textAbY": 2639,
+        "hasStyle": false
+    },
+    {
+        "id": "970119FB-2DB4-484B-8ABA-2C5419F6DDBA",
+        "type": "QLayer",
+        "name": "Group 2",
+        "width": 21,
+        "height": 22,
+        "x": 96,
+        "y": 252,
+        "abX": 377,
+        "abY": 2650,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "E3764FBA-C5E2-4A89-9EAA-276904538CBC",
+        "children": [],
+        "childnum": 0,
+        "isModified": true,
+        "hasStyle": false
+    },
+    {
+        "id": "8EBD84E4-4329-4126-9411-F3DA914062A3",
+        "type": "QLayer",
+        "name": "bt",
+        "width": 188,
+        "height": 56,
+        "x": 0,
+        "y": 276,
+        "abX": 281,
+        "abY": 2674,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "E3764FBA-C5E2-4A89-9EAA-276904538CBC",
+        "children": [
+            "17221C1E-CD8C-4EE3-A416-A62A133932DB",
+            "3EE6F1C1-47AB-4B0F-9319-6CEBAC8D06E0"
+        ],
+        "childnum": 2,
+        "hasStyle": false
+    },
+    {
+        "id": "17221C1E-CD8C-4EE3-A416-A62A133932DB",
+        "type": "QImage",
+        "name": "Bitmap",
+        "width": 188,
+        "height": 56,
+        "x": 0,
+        "y": 0,
+        "abX": 281,
+        "abY": 2674,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "8EBD84E4-4329-4126-9411-F3DA914062A3",
+        "children": [],
+        "childnum": 0,
+        "path": "17221C1E-CD8C-4EE3-A416-A62A133932DB.png",
+        "hasStyle": true
+    },
+    {
+        "id": "3EE6F1C1-47AB-4B0F-9319-6CEBAC8D06E0",
+        "type": "QText",
+        "name": "立即购票",
+        "width": 96,
+        "height": 29,
+        "x": 46,
+        "y": 15,
+        "abX": 327,
+        "abY": 2689,
+        "text": "立即购票",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 224,
+                        "g": 59,
+                        "b": 65,
+                        "a": 1
+                    },
+                    "string": "立即购票",
+                    "font": "PingFangSC-Semibold",
+                    "size": 24
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 29,
+            "maxSize": 24,
+            "minSize": 24
+        },
+        "parent": "8EBD84E4-4329-4126-9411-F3DA914062A3",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 24,
+        "textAbY": 2691,
+        "hasStyle": false
+    },
+    {
+        "id": "0C7F9BA1-C23C-4B74-914C-DA43004238A1",
+        "type": "QLayer",
+        "name": "Bitmap Copy 9",
+        "width": 188,
+        "height": 332,
+        "x": 236,
+        "y": 878,
+        "abX": 281,
+        "abY": 2750,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.1
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null
+        },
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [
+            "A1D5C20C-6E33-49DB-8585-F03E15B2A665",
+            "853D932F-613D-41BF-A1A6-5913199C1915",
+            "76A8323D-A796-421D-8E92-89C6721A30E9"
+        ],
+        "childnum": 3,
+        "hasStyle": true
+    },
+    {
+        "id": "A1D5C20C-6E33-49DB-8585-F03E15B2A665",
+        "type": "QImage",
+        "name": "Group 4",
+        "width": 188,
+        "height": 280,
+        "x": 0,
+        "y": 0,
+        "abX": 281,
+        "abY": 2750,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "0C7F9BA1-C23C-4B74-914C-DA43004238A1",
+        "children": [],
+        "childnum": 0,
+        "path": "A1D5C20C-6E33-49DB-8585-F03E15B2A665.png",
+        "hasStyle": true
+    },
+    {
+        "id": "853D932F-613D-41BF-A1A6-5913199C1915",
+        "type": "QText",
+        "name": "神探蒲松龄",
+        "width": 100,
+        "height": 24,
+        "x": 44,
+        "y": 239,
+        "abX": 325,
+        "abY": 2989,
+        "text": "神探蒲松龄",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "神探蒲松龄",
+                    "font": "PingFang-SC-Medium",
+                    "size": 20
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 24,
+            "maxSize": 20,
+            "minSize": 20
+        },
+        "parent": "0C7F9BA1-C23C-4B74-914C-DA43004238A1",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 20,
+        "textAbY": 2991,
+        "hasStyle": false
+    },
+    {
+        "id": "76A8323D-A796-421D-8E92-89C6721A30E9",
+        "type": "QLayer",
+        "name": "bt",
+        "width": 188,
+        "height": 56,
+        "x": 0,
+        "y": 276,
+        "abX": 281,
+        "abY": 3026,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "0C7F9BA1-C23C-4B74-914C-DA43004238A1",
+        "children": [
+            "DEAFE745-57C1-47F0-AB35-515B02395AC8",
+            "89CBA51D-C856-4580-B60C-A98379BC7E4F"
+        ],
+        "childnum": 2,
+        "hasStyle": false
+    },
+    {
+        "id": "DEAFE745-57C1-47F0-AB35-515B02395AC8",
+        "type": "QImage",
+        "name": "Bitmap",
+        "width": 188,
+        "height": 56,
+        "x": 0,
+        "y": 0,
+        "abX": 281,
+        "abY": 3026,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "76A8323D-A796-421D-8E92-89C6721A30E9",
+        "children": [],
+        "childnum": 0,
+        "path": "DEAFE745-57C1-47F0-AB35-515B02395AC8.png",
+        "hasStyle": true
+    },
+    {
+        "id": "89CBA51D-C856-4580-B60C-A98379BC7E4F",
+        "type": "QText",
+        "name": "立即购票",
+        "width": 96,
+        "height": 29,
+        "x": 46,
+        "y": 15,
+        "abX": 327,
+        "abY": 3041,
+        "text": "立即购票",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 224,
+                        "g": 59,
+                        "b": 65,
+                        "a": 1
+                    },
+                    "string": "立即购票",
+                    "font": "PingFangSC-Semibold",
+                    "size": 24
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 29,
+            "maxSize": 24,
+            "minSize": 24
+        },
+        "parent": "76A8323D-A796-421D-8E92-89C6721A30E9",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 24,
+        "textAbY": 3043,
+        "hasStyle": false
+    },
+    {
+        "id": "676EC2EA-48C6-478F-A40F-E1477536C350",
+        "type": "QLayer",
+        "name": "Bitmap Copy 8",
+        "width": 188,
+        "height": 332,
+        "x": 24,
+        "y": 526,
+        "abX": 69,
+        "abY": 2398,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.1
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null
+        },
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [
+            "52EC093A-8C8B-4067-954F-8D57F8726D82",
+            "63FEB35B-219A-49D2-B2A0-A927E65D15D5",
+            "6183C0E2-AB69-48D3-8F6B-D6508EB6FF30",
+            "E653D1AD-0441-4F39-ABFA-0923B32BB616"
+        ],
+        "childnum": 4,
+        "hasStyle": true
+    },
+    {
+        "id": "52EC093A-8C8B-4067-954F-8D57F8726D82",
+        "type": "QImage",
+        "name": "Group 4",
+        "width": 188,
+        "height": 280,
+        "x": 0,
+        "y": 0,
+        "abX": 69,
+        "abY": 2398,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "676EC2EA-48C6-478F-A40F-E1477536C350",
+        "children": [],
+        "childnum": 0,
+        "path": "52EC093A-8C8B-4067-954F-8D57F8726D82.png",
+        "hasStyle": true
+    },
+    {
+        "id": "63FEB35B-219A-49D2-B2A0-A927E65D15D5",
+        "type": "QText",
+        "name": "飞驰人生",
+        "width": 80,
+        "height": 24,
+        "x": 54,
+        "y": 239,
+        "abX": 123,
+        "abY": 2637,
+        "text": "飞驰人生",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "飞驰人生",
+                    "font": "PingFang-SC-Medium",
+                    "size": 20
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 24,
+            "maxSize": 20,
+            "minSize": 20
+        },
+        "parent": "676EC2EA-48C6-478F-A40F-E1477536C350",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 20,
+        "textAbY": 2639,
+        "hasStyle": false
+    },
+    {
+        "id": "6183C0E2-AB69-48D3-8F6B-D6508EB6FF30",
+        "type": "QLayer",
+        "name": "Group 2",
+        "width": 21,
+        "height": 22,
+        "x": 96,
+        "y": 252,
+        "abX": 165,
+        "abY": 2650,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "676EC2EA-48C6-478F-A40F-E1477536C350",
+        "children": [],
+        "childnum": 0,
+        "isModified": true,
+        "hasStyle": false
+    },
+    {
+        "id": "E653D1AD-0441-4F39-ABFA-0923B32BB616",
+        "type": "QLayer",
+        "name": "bt",
+        "width": 188,
+        "height": 56,
+        "x": 0,
+        "y": 276,
+        "abX": 69,
+        "abY": 2674,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "676EC2EA-48C6-478F-A40F-E1477536C350",
+        "children": [
+            "E85597A5-22DC-479C-8CB2-425F169357E7",
+            "9751A17B-7DB3-4AC4-82F1-11DE12213A74"
+        ],
+        "childnum": 2,
+        "hasStyle": false
+    },
+    {
+        "id": "E85597A5-22DC-479C-8CB2-425F169357E7",
+        "type": "QImage",
+        "name": "Bitmap",
+        "width": 188,
+        "height": 56,
+        "x": 0,
+        "y": 0,
+        "abX": 69,
+        "abY": 2674,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "E653D1AD-0441-4F39-ABFA-0923B32BB616",
+        "children": [],
+        "childnum": 0,
+        "path": "E85597A5-22DC-479C-8CB2-425F169357E7.png",
+        "hasStyle": true
+    },
+    {
+        "id": "9751A17B-7DB3-4AC4-82F1-11DE12213A74",
+        "type": "QText",
+        "name": "立即购票",
+        "width": 96,
+        "height": 29,
+        "x": 46,
+        "y": 15,
+        "abX": 115,
+        "abY": 2689,
+        "text": "立即购票",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 224,
+                        "g": 59,
+                        "b": 65,
+                        "a": 1
+                    },
+                    "string": "立即购票",
+                    "font": "PingFangSC-Semibold",
+                    "size": 24
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 29,
+            "maxSize": 24,
+            "minSize": 24
+        },
+        "parent": "E653D1AD-0441-4F39-ABFA-0923B32BB616",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 24,
+        "textAbY": 2691,
+        "hasStyle": false
+    },
+    {
+        "id": "5792663D-DFCB-4862-A20E-7C92ED9CD7B1",
+        "type": "QLayer",
+        "name": "Bitmap Copy 10",
+        "width": 188,
+        "height": 332,
+        "x": 24,
+        "y": 878,
+        "abX": 69,
+        "abY": 2750,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.1
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null
+        },
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [
+            "7A9E4255-BA70-4257-9B98-6CB07984E565",
+            "087E770D-0846-47D6-8A9B-E183C64C3CAA",
+            "0777393D-2D30-4E4D-A0F1-3245C36B495F",
+            "DE8839A4-20A2-471E-BCBF-751C5A442182"
+        ],
+        "childnum": 4,
+        "hasStyle": true
+    },
+    {
+        "id": "7A9E4255-BA70-4257-9B98-6CB07984E565",
+        "type": "QImage",
+        "name": "Group 4",
+        "width": 188,
+        "height": 280,
+        "x": 0,
+        "y": 0,
+        "abX": 69,
+        "abY": 2750,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "5792663D-DFCB-4862-A20E-7C92ED9CD7B1",
+        "children": [],
+        "childnum": 0,
+        "path": "7A9E4255-BA70-4257-9B98-6CB07984E565.png",
+        "hasStyle": true
+    },
+    {
+        "id": "087E770D-0846-47D6-8A9B-E183C64C3CAA",
+        "type": "QText",
+        "name": "廉政风云",
+        "width": 80,
+        "height": 24,
+        "x": 56,
+        "y": 239,
+        "abX": 125,
+        "abY": 2989,
+        "text": "廉政风云",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "廉政风云",
+                    "font": "PingFang-SC-Medium",
+                    "size": 20
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 24,
+            "maxSize": 20,
+            "minSize": 20
+        },
+        "parent": "5792663D-DFCB-4862-A20E-7C92ED9CD7B1",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 20,
+        "textAbY": 2991,
+        "hasStyle": false
+    },
+    {
+        "id": "0777393D-2D30-4E4D-A0F1-3245C36B495F",
+        "type": "QLayer",
+        "name": "Group 2",
+        "width": 21,
+        "height": 22,
+        "x": 96,
+        "y": 252,
+        "abX": 165,
+        "abY": 3002,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "5792663D-DFCB-4862-A20E-7C92ED9CD7B1",
+        "children": [],
+        "childnum": 0,
+        "isModified": true,
+        "hasStyle": false
+    },
+    {
+        "id": "DE8839A4-20A2-471E-BCBF-751C5A442182",
+        "type": "QLayer",
+        "name": "bt",
+        "width": 188,
+        "height": 56,
+        "x": 0,
+        "y": 276,
+        "abX": 69,
+        "abY": 3026,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "5792663D-DFCB-4862-A20E-7C92ED9CD7B1",
+        "children": [
+            "A38E0535-1BBF-40A4-9F65-25B7E8C2A0F5",
+            "1A7BD5EB-B1C2-4F6E-AFB2-A4D4CDD8C3D3"
+        ],
+        "childnum": 2,
+        "hasStyle": false
+    },
+    {
+        "id": "A38E0535-1BBF-40A4-9F65-25B7E8C2A0F5",
+        "type": "QImage",
+        "name": "Bitmap",
+        "width": 188,
+        "height": 56,
+        "x": 0,
+        "y": 0,
+        "abX": 69,
+        "abY": 3026,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "DE8839A4-20A2-471E-BCBF-751C5A442182",
+        "children": [],
+        "childnum": 0,
+        "path": "A38E0535-1BBF-40A4-9F65-25B7E8C2A0F5.png",
+        "hasStyle": true
+    },
+    {
+        "id": "1A7BD5EB-B1C2-4F6E-AFB2-A4D4CDD8C3D3",
+        "type": "QText",
+        "name": "立即购票",
+        "width": 96,
+        "height": 29,
+        "x": 46,
+        "y": 15,
+        "abX": 115,
+        "abY": 3041,
+        "text": "立即购票",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 224,
+                        "g": 59,
+                        "b": 65,
+                        "a": 1
+                    },
+                    "string": "立即购票",
+                    "font": "PingFangSC-Semibold",
+                    "size": 24
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 29,
+            "maxSize": 24,
+            "minSize": 24
+        },
+        "parent": "DE8839A4-20A2-471E-BCBF-751C5A442182",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 24,
+        "textAbY": 3043,
+        "hasStyle": false
+    },
+    {
+        "id": "FA08D003-F101-430C-B58A-A9B963FB0C5B",
+        "type": "QLayer",
+        "name": "Bitmap Copy 7",
+        "width": 188,
+        "height": 332,
+        "x": 448,
+        "y": 526,
+        "abX": 493,
+        "abY": 2398,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.1
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null
+        },
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [
+            "D4204466-DBE6-4BD7-8BB5-282759E0EAF5",
+            "4D81E3A5-8771-4106-8ACB-81779D21434C",
+            "FE4F054F-B8E9-421B-A097-A1A9E2FB8E19"
+        ],
+        "childnum": 3,
+        "hasStyle": true
+    },
+    {
+        "id": "D4204466-DBE6-4BD7-8BB5-282759E0EAF5",
+        "type": "QImage",
+        "name": "Group 4",
+        "width": 188,
+        "height": 280,
+        "x": 0,
+        "y": 0,
+        "abX": 493,
+        "abY": 2398,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "FA08D003-F101-430C-B58A-A9B963FB0C5B",
+        "children": [],
+        "childnum": 0,
+        "path": "D4204466-DBE6-4BD7-8BB5-282759E0EAF5.png",
+        "hasStyle": true
+    },
+    {
+        "id": "4D81E3A5-8771-4106-8ACB-81779D21434C",
+        "type": "QText",
+        "name": "疯狂的外星人",
+        "width": 120,
+        "height": 24,
+        "x": 34,
+        "y": 239,
+        "abX": 527,
+        "abY": 2637,
+        "text": "疯狂的外星人",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "疯狂的外星人",
+                    "font": "PingFang-SC-Medium",
+                    "size": 20
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 24,
+            "maxSize": 20,
+            "minSize": 20
+        },
+        "parent": "FA08D003-F101-430C-B58A-A9B963FB0C5B",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 20,
+        "textAbY": 2639,
+        "hasStyle": false
+    },
+    {
+        "id": "FE4F054F-B8E9-421B-A097-A1A9E2FB8E19",
+        "type": "QLayer",
+        "name": "bt",
+        "width": 188,
+        "height": 56,
+        "x": 0,
+        "y": 276,
+        "abX": 493,
+        "abY": 2674,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "FA08D003-F101-430C-B58A-A9B963FB0C5B",
+        "children": [
+            "DD810CD1-35BD-45AA-AE4D-B57F99B864A6",
+            "73FFE0F4-BB4D-41C9-9F96-907F72A1003C"
+        ],
+        "childnum": 2,
+        "hasStyle": false
+    },
+    {
+        "id": "DD810CD1-35BD-45AA-AE4D-B57F99B864A6",
+        "type": "QImage",
+        "name": "Bitmap",
+        "width": 188,
+        "height": 56,
+        "x": 0,
+        "y": 0,
+        "abX": 493,
+        "abY": 2674,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "FE4F054F-B8E9-421B-A097-A1A9E2FB8E19",
+        "children": [],
+        "childnum": 0,
+        "path": "DD810CD1-35BD-45AA-AE4D-B57F99B864A6.png",
+        "hasStyle": true
+    },
+    {
+        "id": "73FFE0F4-BB4D-41C9-9F96-907F72A1003C",
+        "type": "QText",
+        "name": "立即购票",
+        "width": 96,
+        "height": 29,
+        "x": 46,
+        "y": 15,
+        "abX": 539,
+        "abY": 2689,
+        "text": "立即购票",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 224,
+                        "g": 59,
+                        "b": 65,
+                        "a": 1
+                    },
+                    "string": "立即购票",
+                    "font": "PingFangSC-Semibold",
+                    "size": 24
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 29,
+            "maxSize": 24,
+            "minSize": 24
+        },
+        "parent": "FE4F054F-B8E9-421B-A097-A1A9E2FB8E19",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 24,
+        "textAbY": 2691,
+        "hasStyle": false
+    },
+    {
+        "id": "B73004B4-E776-44B9-A08E-58E5B8CA6850",
+        "type": "QLayer",
+        "name": "Bitmap Copy 11",
+        "width": 188,
+        "height": 332,
+        "x": 448,
+        "y": 878,
+        "abX": 493,
+        "abY": 2750,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.1
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null
+        },
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [
+            "9D16A629-4156-4826-B2DE-D94206FFE6A8",
+            "7D5641FC-14AC-4BB2-9A48-7789ECFE8A06",
+            "5EFB4467-8B9E-4EDA-BCA6-CEBA4CE443BB",
+            "B0D5390E-D4D3-489B-896D-92AB03D6F0EA"
+        ],
+        "childnum": 4,
+        "hasStyle": true
+    },
+    {
+        "id": "9D16A629-4156-4826-B2DE-D94206FFE6A8",
+        "type": "QImage",
+        "name": "Group 4",
+        "width": 188,
+        "height": 280,
+        "x": 0,
+        "y": 0,
+        "abX": 493,
+        "abY": 2750,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "B73004B4-E776-44B9-A08E-58E5B8CA6850",
+        "children": [],
+        "childnum": 0,
+        "path": "9D16A629-4156-4826-B2DE-D94206FFE6A8.png",
+        "hasStyle": true
+    },
+    {
+        "id": "7D5641FC-14AC-4BB2-9A48-7789ECFE8A06",
+        "type": "QText",
+        "name": "小猪佩奇过大年",
+        "width": 140,
+        "height": 24,
+        "x": 22,
+        "y": 239,
+        "abX": 515,
+        "abY": 2989,
+        "text": "小猪佩奇过大年",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "小猪佩奇过大年",
+                    "font": "PingFang-SC-Medium",
+                    "size": 20
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 24,
+            "maxSize": 20,
+            "minSize": 20
+        },
+        "parent": "B73004B4-E776-44B9-A08E-58E5B8CA6850",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 20,
+        "textAbY": 2991,
+        "hasStyle": false
+    },
+    {
+        "id": "5EFB4467-8B9E-4EDA-BCA6-CEBA4CE443BB",
+        "type": "QLayer",
+        "name": "Group 2",
+        "width": 21,
+        "height": 22,
+        "x": 96,
+        "y": 252,
+        "abX": 589,
+        "abY": 3002,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "B73004B4-E776-44B9-A08E-58E5B8CA6850",
+        "children": [],
+        "childnum": 0,
+        "isModified": true,
+        "hasStyle": false
+    },
+    {
+        "id": "B0D5390E-D4D3-489B-896D-92AB03D6F0EA",
+        "type": "QLayer",
+        "name": "bt",
+        "width": 188,
+        "height": 56,
+        "x": 0,
+        "y": 276,
+        "abX": 493,
+        "abY": 3026,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "B73004B4-E776-44B9-A08E-58E5B8CA6850",
+        "children": [
+            "CFF7D98D-0E12-4297-82D8-29C819907E37",
+            "CD717C02-4C5A-45EB-8666-5EFF82B8B32E"
+        ],
+        "childnum": 2,
+        "hasStyle": false
+    },
+    {
+        "id": "CFF7D98D-0E12-4297-82D8-29C819907E37",
+        "type": "QImage",
+        "name": "Bitmap",
+        "width": 188,
+        "height": 56,
+        "x": 0,
+        "y": 0,
+        "abX": 493,
+        "abY": 3026,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "B0D5390E-D4D3-489B-896D-92AB03D6F0EA",
+        "children": [],
+        "childnum": 0,
+        "path": "CFF7D98D-0E12-4297-82D8-29C819907E37.png",
+        "hasStyle": true
+    },
+    {
+        "id": "CD717C02-4C5A-45EB-8666-5EFF82B8B32E",
+        "type": "QText",
+        "name": "立即购票",
+        "width": 96,
+        "height": 29,
+        "x": 46,
+        "y": 15,
+        "abX": 539,
+        "abY": 3041,
+        "text": "立即购票",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 224,
+                        "g": 59,
+                        "b": 65,
+                        "a": 1
+                    },
+                    "string": "立即购票",
+                    "font": "PingFangSC-Semibold",
+                    "size": 24
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 29,
+            "maxSize": 24,
+            "minSize": 24
+        },
+        "parent": "B0D5390E-D4D3-489B-896D-92AB03D6F0EA",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 24,
+        "textAbY": 3043,
+        "hasStyle": false
+    },
+    {
+        "id": "10A0D2BC-F1E8-461B-B187-44D8D7ACCDA6",
+        "type": "QLayer",
+        "name": "logo",
+        "width": 280,
+        "height": 120,
+        "x": 190,
+        "y": 0,
+        "abX": 235,
+        "abY": 1872,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [],
+        "childnum": 0,
+        "isModified": true,
+        "hasStyle": false
+    },
+    {
+        "id": "910EC98A-6C7C-4DDE-8A20-1095FB807047",
+        "type": "QLayer",
+        "name": "游戏文案",
+        "width": 622,
+        "height": 63,
+        "x": 19,
+        "y": 94,
+        "abX": 64,
+        "abY": 1966,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [
+            "C3C647E6-43FE-4A8A-A666-026727BEDDC6",
+            "8538347D-E1B9-41AF-9473-F74131BCFC8E",
+            "D0C5B8A2-5476-4304-B681-3D42AAD5A9CC",
+            "B555655E-6A76-4BB2-A59B-D3C74E2393BC"
+        ],
+        "childnum": 4,
+        "hasStyle": false
+    },
+    {
+        "id": "C3C647E6-43FE-4A8A-A666-026727BEDDC6",
+        "type": "QImage",
+        "name": "Combined Shape",
+        "width": 286,
+        "height": 20,
+        "x": 168,
+        "y": 43,
+        "abX": 232,
+        "abY": 2009,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "910EC98A-6C7C-4DDE-8A20-1095FB807047",
+        "children": [],
+        "childnum": 0,
+        "path": "C3C647E6-43FE-4A8A-A666-026727BEDDC6.png",
+        "hasStyle": true
+    },
+    {
+        "id": "8538347D-E1B9-41AF-9473-F74131BCFC8E",
+        "type": "QImage",
+        "name": "Fill 1",
+        "width": 92,
+        "height": 24,
+        "x": 0,
+        "y": 7,
+        "abX": 64,
+        "abY": 1973,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "910EC98A-6C7C-4DDE-8A20-1095FB807047",
+        "children": [],
+        "childnum": 0,
+        "path": "8538347D-E1B9-41AF-9473-F74131BCFC8E.png",
+        "hasStyle": true
+    },
+    {
+        "id": "D0C5B8A2-5476-4304-B681-3D42AAD5A9CC",
+        "type": "QText",
+        "name": "5-15元春节电影红包",
+        "width": 259,
+        "height": 34,
+        "x": 182,
+        "y": 4,
+        "abX": 246,
+        "abY": 1970,
+        "text": "5-15元春节电影红包",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "5-15元春节电影红包",
+                    "font": "PingFangSC-Semibold",
+                    "size": 28
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 34,
+            "maxSize": 28,
+            "minSize": 28
+        },
+        "parent": "910EC98A-6C7C-4DDE-8A20-1095FB807047",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 28,
+        "textAbY": 1972,
+        "hasStyle": false
+    },
+    {
+        "id": "B555655E-6A76-4BB2-A59B-D3C74E2393BC",
+        "type": "QImage",
+        "name": "Fill 1 Copy",
+        "width": 92,
+        "height": 24,
+        "x": 530,
+        "y": 7,
+        "abX": 594,
+        "abY": 1973,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "910EC98A-6C7C-4DDE-8A20-1095FB807047",
+        "children": [],
+        "childnum": 0,
+        "path": "B555655E-6A76-4BB2-A59B-D3C74E2393BC.png",
+        "hasStyle": true
+    },
+    {
+        "id": "E33E86E6-7455-4709-BF29-AFB045CE2A48",
+        "type": "QImage",
+        "name": "路径",
+        "width": 2,
+        "height": 2,
+        "x": 342.5,
+        "y": 1030.5,
+        "abX": 387.5,
+        "abY": 2902.5,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [],
+        "childnum": 0,
+        "originFrame": {
+            "abX": 388,
+            "abY": 2903,
+            "width": 1,
+            "height": 1,
+            "x": 388,
+            "y": 2903
+        },
+        "path": "E33E86E6-7455-4709-BF29-AFB045CE2A48.png",
+        "hasStyle": true
+    },
+    {
+        "id": "_BB17_80CA",
+        "type": "QImage",
+        "name": "_发光_钱袋1",
+        "width": 660,
+        "height": 469,
+        "x": 0,
+        "y": 94,
+        "abX": 45,
+        "abY": 1966,
+        "path": "_BB17_80CA.png",
+        "isModified": true,
+        "parent": "43575CEA-EF5C-407D-AC08-7B0DAB6C9344",
+        "children": [],
+        "childnum": 0,
+        "styles": {},
+        "hasStyle": true
+    },
+    {
+        "id": "E93A0191-4B2A-442C-B04D-46E2FE43D99C",
+        "type": "QLayer",
+        "name": "红包",
+        "width": 660,
+        "height": 1208,
+        "x": 0,
+        "y": 2600,
+        "abX": 45,
+        "abY": 3204,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "0756B7F3-59B3-4131-AD5F-C4BAC03054B9",
+        "children": [
+            "765329FF-B84F-4D75-AEF0-5A1F8282AA5D",
+            "B13CA1C6-75F6-439B-949B-C3A546746E74",
+            "E8FC580C-152B-4A37-B6A1-9E8C4B1A22AC",
+            "CAB5F38C-1449-40A9-B835-3349850BB653",
+            "F1B8E506-1042-46CB-BF53-49CC58C6C5C2",
+            "C33A0587-9C33-4192-BCE1-4B91CFF7F0CB",
+            "69D09992-1B73-4CBC-B6DD-C8EDBEABA1D7"
+        ],
+        "childnum": 7,
+        "hasStyle": false
+    },
+    {
+        "id": "765329FF-B84F-4D75-AEF0-5A1F8282AA5D",
+        "type": "QImage",
+        "name": "Path",
+        "width": 660,
+        "height": 1208,
+        "x": 0,
+        "y": 0,
+        "abX": 45,
+        "abY": 3204,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "E93A0191-4B2A-442C-B04D-46E2FE43D99C",
+        "children": [],
+        "childnum": 0,
+        "path": "765329FF-B84F-4D75-AEF0-5A1F8282AA5D.png",
+        "hasStyle": true
+    },
+    {
+        "id": "B13CA1C6-75F6-439B-949B-C3A546746E74",
+        "type": "QImage",
+        "name": "位图",
+        "width": 188,
+        "height": 282,
+        "x": 24,
+        "y": 120,
+        "abX": 69,
+        "abY": 3324,
+        "path": "B13CA1C6-75F6-439B-949B-C3A546746E74.png",
+        "styles": {},
+        "parent": "E93A0191-4B2A-442C-B04D-46E2FE43D99C",
+        "children": [],
+        "childnum": 0,
+        "hasStyle": true
+    },
+    {
+        "id": "E8FC580C-152B-4A37-B6A1-9E8C4B1A22AC",
+        "type": "QImage",
+        "name": "位图",
+        "width": 188,
+        "height": 282,
+        "x": 448,
+        "y": 120,
+        "abX": 493,
+        "abY": 3324,
+        "path": "E8FC580C-152B-4A37-B6A1-9E8C4B1A22AC.png",
+        "styles": {},
+        "parent": "E93A0191-4B2A-442C-B04D-46E2FE43D99C",
+        "children": [],
+        "childnum": 0,
+        "hasStyle": true
+    },
+    {
+        "id": "CAB5F38C-1449-40A9-B835-3349850BB653",
+        "type": "QImage",
+        "name": "位图",
+        "width": 188,
+        "height": 282,
+        "x": 236,
+        "y": 120,
+        "abX": 281,
+        "abY": 3324,
+        "path": "CAB5F38C-1449-40A9-B835-3349850BB653.png",
+        "styles": {},
+        "parent": "E93A0191-4B2A-442C-B04D-46E2FE43D99C",
+        "children": [],
+        "childnum": 0,
+        "hasStyle": true
+    },
+    {
+        "id": "F1B8E506-1042-46CB-BF53-49CC58C6C5C2",
+        "type": "QLayer",
+        "name": "更多电影",
+        "width": 138,
+        "height": 28,
+        "x": 261,
+        "y": 1143,
+        "abX": 306,
+        "abY": 4347,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "E93A0191-4B2A-442C-B04D-46E2FE43D99C",
+        "children": [
+            "9E02CD6C-4050-49F4-9470-2F3377ED0832",
+            "9984056C-9915-430C-9883-50D44027FF77"
+        ],
+        "childnum": 2,
+        "hasStyle": false
+    },
+    {
+        "id": "9E02CD6C-4050-49F4-9470-2F3377ED0832",
+        "type": "QText",
+        "name": "查看更多电影",
+        "width": 120,
+        "height": 24,
+        "x": 0,
+        "y": 2,
+        "abX": 306,
+        "abY": 4349,
+        "text": "查看更多电影",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 1,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.3
+                    },
+                    "spread": 0,
+                    "blur": 2
+                }
+            ],
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "查看更多电影",
+                    "font": "PingFangSC-Regular",
+                    "size": 20
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 0,
+            "lineHeight": 24,
+            "maxSize": 20,
+            "minSize": 20
+        },
+        "parent": "F1B8E506-1042-46CB-BF53-49CC58C6C5C2",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 20,
+        "textAbY": 4351,
+        "hasStyle": true
+    },
+    {
+        "id": "9984056C-9915-430C-9883-50D44027FF77",
+        "type": "QImage",
+        "name": "Path",
+        "width": 10,
+        "height": 14,
+        "x": 128,
+        "y": 7,
+        "abX": 434,
+        "abY": 4354,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "F1B8E506-1042-46CB-BF53-49CC58C6C5C2",
+        "children": [],
+        "childnum": 0,
+        "path": "9984056C-9915-430C-9883-50D44027FF77.png",
+        "hasStyle": true
+    },
+    {
+        "id": "C33A0587-9C33-4192-BCE1-4B91CFF7F0CB",
+        "type": "QLayer",
+        "name": "bt",
+        "width": 508,
+        "height": 90,
+        "x": 76,
+        "y": 444,
+        "abX": 121,
+        "abY": 3648,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.2
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null
+        },
+        "parent": "E93A0191-4B2A-442C-B04D-46E2FE43D99C",
+        "children": [
+            "0F64E378-1E27-4842-A35E-DED6C2B41F43",
+            "0F3CA368-BB20-49B9-922F-084D66356B66"
+        ],
+        "childnum": 2,
+        "hasStyle": true
+    },
+    {
+        "id": "0F64E378-1E27-4842-A35E-DED6C2B41F43",
+        "type": "QImage",
+        "name": "Rectangle",
+        "width": 508,
+        "height": 90,
+        "x": 0,
+        "y": 0,
+        "abX": 121,
+        "abY": 3648,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "C33A0587-9C33-4192-BCE1-4B91CFF7F0CB",
+        "children": [],
+        "childnum": 0,
+        "path": "0F64E378-1E27-4842-A35E-DED6C2B41F43.png",
+        "hasStyle": true
+    },
+    {
+        "id": "0F3CA368-BB20-49B9-922F-084D66356B66",
+        "type": "QText",
+        "name": "发送新年限定红包",
+        "width": 288,
+        "height": 43,
+        "x": 110,
+        "y": 24,
+        "abX": 231,
+        "abY": 3672,
+        "text": "发送新年限定红包",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": [
+                {
+                    "type": "inset",
+                    "x": 0,
+                    "y": 2,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.2
+                    },
+                    "spread": 0,
+                    "blur": 6
+                }
+            ],
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 224,
+                        "g": 59,
+                        "b": 65,
+                        "a": 1
+                    },
+                    "string": "发送新年限定红包",
+                    "font": "PingFangSC-Semibold",
+                    "size": 36
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 43,
+            "maxSize": 36,
+            "minSize": 36
+        },
+        "parent": "C33A0587-9C33-4192-BCE1-4B91CFF7F0CB",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 36,
+        "textAbY": 3675,
+        "hasStyle": true
+    },
+    {
+        "id": "69D09992-1B73-4CBC-B6DD-C8EDBEABA1D7",
+        "type": "QLayer",
+        "name": "游戏文案",
+        "width": 622,
+        "height": 63,
+        "x": 19,
+        "y": 34,
+        "abX": 64,
+        "abY": 3238,
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null
+        },
+        "parent": "E93A0191-4B2A-442C-B04D-46E2FE43D99C",
+        "children": [
+            "F53A977D-44CF-4B2D-9534-ACEA7A09BFAB",
+            "573795AF-428D-4C12-9060-A20E3784C2D7",
+            "195DD39A-EE0D-4BD2-B434-FFE6EFC26180",
+            "93B516D8-DBAE-4C53-B18B-BA49B89FEC85"
+        ],
+        "childnum": 4,
+        "hasStyle": false
+    },
+    {
+        "id": "F53A977D-44CF-4B2D-9534-ACEA7A09BFAB",
+        "type": "QImage",
+        "name": "Combined Shape",
+        "width": 286,
+        "height": 20,
+        "x": 168,
+        "y": 43,
+        "abX": 232,
+        "abY": 3281,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "69D09992-1B73-4CBC-B6DD-C8EDBEABA1D7",
+        "children": [],
+        "childnum": 0,
+        "path": "F53A977D-44CF-4B2D-9534-ACEA7A09BFAB.png",
+        "hasStyle": true
+    },
+    {
+        "id": "573795AF-428D-4C12-9060-A20E3784C2D7",
+        "type": "QImage",
+        "name": "Fill 1",
+        "width": 92,
+        "height": 24,
+        "x": 0,
+        "y": 7,
+        "abX": 64,
+        "abY": 3245,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "69D09992-1B73-4CBC-B6DD-C8EDBEABA1D7",
+        "children": [],
+        "childnum": 0,
+        "path": "573795AF-428D-4C12-9060-A20E3784C2D7.png",
+        "hasStyle": true
+    },
+    {
+        "id": "195DD39A-EE0D-4BD2-B434-FFE6EFC26180",
+        "type": "QText",
+        "name": "发个红包，给亲朋好友送上祝福",
+        "width": 392,
+        "height": 34,
+        "x": 115,
+        "y": 4,
+        "abX": 179,
+        "abY": 3242,
+        "text": "发个红包，给亲朋好友送上祝福",
+        "styles": {
+            "borderRadius": null,
+            "border": null,
+            "opacity": 1,
+            "rotation": 0,
+            "shadows": null,
+            "background": null,
+            "texts": [
+                {
+                    "color": {
+                        "r": 255,
+                        "g": 208,
+                        "b": 149,
+                        "a": 1
+                    },
+                    "string": "发个红包，给亲朋好友送上祝福",
+                    "font": "PingFangSC-Semibold",
+                    "size": 28
+                }
+            ],
+            "verticalAlign": 0,
+            "textAlign": 2,
+            "lineHeight": 34,
+            "maxSize": 28,
+            "minSize": 28
+        },
+        "parent": "69D09992-1B73-4CBC-B6DD-C8EDBEABA1D7",
+        "children": [],
+        "childnum": 0,
+        "lines": 1,
+        "textHeight": 28,
+        "textAbY": 3244,
+        "hasStyle": false
+    },
+    {
+        "id": "93B516D8-DBAE-4C53-B18B-BA49B89FEC85",
+        "type": "QImage",
+        "name": "Fill 1 Copy",
+        "width": 92,
+        "height": 24,
+        "x": 530,
+        "y": 7,
+        "abX": 594,
+        "abY": 3245,
+        "styles": {
+            "borderRadius": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "parent": "69D09992-1B73-4CBC-B6DD-C8EDBEABA1D7",
+        "children": [],
+        "childnum": 0,
+        "path": "93B516D8-DBAE-4C53-B18B-BA49B89FEC85.png",
+        "hasStyle": true
+    },
+    {
+        "id": "2FA8E25F-87F8-40FB-A7AE-A35FAFF99E1F",
+        "type": "QImage",
+        "name": "位图",
+        "width": 750,
+        "height": 671,
+        "x": 0,
+        "y": 0,
+        "abX": 0,
+        "abY": 0,
+        "path": "2FA8E25F-87F8-40FB-A7AE-A35FAFF99E1F.png",
+        "styles": {},
+        "parent": "33BA97D5-A74D-4EA7-82CE-36D75DE2058E",
+        "children": [],
+        "childnum": 0,
+        "hasStyle": true
+    }
+]

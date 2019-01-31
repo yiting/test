@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="css/page.css">
+    <script src="https://xshow.tencent.com/s/static/js/jquery.js"></script>
+    <script>
+      $(document).ready(function(){
+          //匹配
+          $('.modal__btn-close').click(function(){
+              $('.modal-mod').removeClass("z-display");
+              $('.modal-mod').addClass("hidden");
+          });
+          //游戏
+          $('.btn-main-add').click(function(){
+              $('.modal-mod').removeClass("hidden");
+              $('.modal-mod').addClass("z-display");
+          });
+          //玩伴
+          $('.tab3').click(function(){
+              $('.pagewrap').removeClass("z-display");
+              $('.page-friendlist').addClass("z-display");
+      
+              $('.md-tab li').removeClass("active");
+              $(this).addClass("active");
+          });
+      
+          //QQ好友在玩
+          $('.mod-qqfriend').click(function(){
+              $('.pagewrap').removeClass("z-display");
+              $('.page-friendlistmore').addClass("z-display");
+              $('.page-friendlist').addClass("z-hide");
+              $('.md-tab').addClass("z-hide");
+          });
+      });
+      
+    </script>
+  </head>
+  <body class="page-personal">
+    <div class="page-header">
+      <nav class="header-navbar">
+        <div class="container"><a href="/" class="navbar-logo router-link-active"></a>
+          <div class="header-navbar__main">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a href="/alltasxiao/" class="nav-link router-link-active">我的项目</a></li>
+              <!--li.nav-itema.nav-link(href='/alltasxiao/follow') 我的关注
+              -->
+              <li class="nav-item"><a href="/docs" class="nav-link">返回官网</a></li>
+              <li class="nav-item"><a href="/search" class="nav-link search"></a></li>
+            </ul>
+          </div>
+          <div class="user-info dropdown">
+            <div class="dropdown-toggle"><span style="background-image: url(&quot;https://xshow.tencent.com/s/avatar/5f5f4e144b73f9fc.png&quot;);" class="avatar"></span><span class="user-name">alltasxiao</span></div>
+            <div class="dropdown-menu"><a href="javascript:;" class="dropdown-item">退出登录</a></div>
+          </div>
+        </div>
+      </nav>
+      <div class="header-main">
+        <div class="container">
+          <div class="header-main-inner">
+            <div class="user-title"><span style="background-image: url(&quot;https://xshow.tencent.com/s/avatar/5f5f4e144b73f9fc.png&quot;);" class="avatar"></span>
+              <h2 class="txt"><span class="user-name">alltasxiao</span></h2>
+            </div>
+            <!--新增项目-->
+            <button role="button" class="btn-main btn-main-add btn"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-main">
+      <div class="resource-area">
+        <div class="resource-navbar">
+          <div class="container">
+            <ul class="navbar-nav">
+              <li class="nav-item"><span class="nav-link"> </span></li>
+              <li class="nav-item"><span class="nav-link"> </span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container">
+          <div class="navbar-control">
+            <div class="navbar-control__sub">
+              <h2 class="mod-title">我的项目（3）</h2>
+            </div>
+            <!--.navbar-control__mainbutton.navbar-control__btn.btn.navbar-control__btn-list
+            -->
+          </div>
+          <div class="resource-main">
+            <div class="resource-wrap">
+              <ul class="resource-list project">
+                <li class="resource-item">
+                  <div class="resource-item__inner">
+                    <div class="img-wrap">
+                      <div class="imgs">
+                        <div class="imgs-inner"><span class="img empty"><span class="empty-txt">暂无文件</span></span></div>
+                      </div>
+                      <div class="mask-wrap">
+                        <div class="btn-more-wrap dropdown">
+                          <button class="btn-more"></button>
+                          <ul class="dropdown-menu">
+                            <li class="dropdown-item">编辑</li>
+                          </ul>
+                        </div>
+                        <ul class="member-list">
+                          <li style="background-image: url(&quot;https://xshow.tencent.com/s/avatar/5f5f4e144b73f9fc.png&quot;);" class="item avatar"></li>
+                          <!-- -->
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="info-bar"><span style="background-image: url(&quot;https://xshow.tencent.com/s/avatar/5f5f4e144b73f9fc.png&quot;);" class="avatar"></span>
+                      <div class="content">
+                        <div class="name"><span class="txt">test</span></div>
+                        <div class="info">
+                          <div class="time">2018-08-08 15:47:2 更新</div>
+                          <div class="level"><span class="item">管理员</span>
+                            <!-- -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="resource-item">
+                  <div class="resource-item__inner">
+                    <div class="img-wrap">
+                      <div style="background-image: url(&quot;https://xshow.tencent.com/s/guide/180125/175858_4860515_ca03418454a2ad14ff9862775c794cfc_blur.jpg&quot;);" class="imgs less"><b class="mask"></b>
+                        <div class="imgs-inner"><span style="background-image: url(&quot;https://xshow.tencent.com/s/guide/180125/175858_4860515_ca03418454a2ad14ff9862775c794cfc_m.jpg&quot;);" class="img"></span></div>
+                      </div>
+                      <div class="mask-wrap">
+                        <div class="btn-more-wrap dropdown">
+                          <button class="btn-more"></button>
+                          <ul class="dropdown-menu">
+                            <li class="dropdown-item">编辑</li>
+                          </ul>
+                        </div>
+                        <ul class="member-list">
+                          <li style="background-image: url(&quot;https://xshow.tencent.com/s/avatar/5f5f4e144b73f9fc.png&quot;);" class="item avatar"></li>
+                          <li style="background-image: url(&quot;https://xshow.tencent.com/s/avatar/84f78636ee6597df.png&quot;);" class="item avatar"></li>
+                          <!-- -->
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="info-bar"><span style="background-image: url(&quot;https://xshow.tencent.com/s/avatar/5f5f4e144b73f9fc.png&quot;);" class="avatar"></span>
+                      <div class="content">
+                        <div class="name"><span class="txt">默认</span></div>
+                        <div class="info">
+                          <div class="time">2018-06-01 15:1:1 更新</div>
+                          <div class="level"><span class="item">管理员</span>
+                            <!-- -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="resource-item">
+                  <div class="resource-item__inner">
+                    <div class="img-wrap">
+                      <div class="imgs">
+                        <div class="imgs-inner"><span style="background-image: url(&quot;https://xshow.tencent.com/s/upload/171214/173826_4931606.png&quot;);" class="img custom"><span class="empty-txt">暂无文件</span></span></div>
+                      </div>
+                      <div class="mask-wrap">
+                        <div class="btn-more-wrap dropdown">
+                          <button class="btn-more"></button>
+                          <ul class="dropdown-menu">
+                            <li class="dropdown-item">项目信息</li>
+                          </ul>
+                        </div>
+                        <ul class="member-list">
+                          <li style="background-image: url(&quot;https://xshow.tencent.com/s/avatar/5f5f4e144b73f9fc.png&quot;);" class="item avatar"></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="info-bar"><span aria-describedby="tooltip_gj0ihedawj" style="background-image: url(&quot;https://xshow.tencent.com/s/avatar/a011165f22316bf5.png&quot;);" class="avatar"></span>
+                      <div class="content">
+                        <div class="name"><span class="txt">新手教程</span></div>
+                        <div class="info">
+                          <div class="time">1970-01-01 8:0:0 更新</div>
+                          <div class="level"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="top: 0px; right: 0px;" class="notifications"><span></span></div>
+    <div class="modal-mod hidden">
+      <div class="modal-box">
+        <div class="modal-inner">
+          <div class="creat-proj">
+            <div class="modal__title">
+              <!-- -->
+            </div>
+            <div class="modal__body">
+              <div class="proj-name">
+                <input type="text" placeholder="文件夹名称" autocomplete="off" class="proj-name-input input-txt">
+              </div>
+              <div class="proj-cover">
+                <div class="proj-cover-main">
+                  <div class="cover-wrap">
+                    <div class="upload-tips"><span class="txt">将sketch/xd拖到此处上传（体积少于200M）!</span></div>
+                    <form id="projCoverUpload" action="https://xshow.tencent.com/s/file/upload" options="[object Object]" class="vue-dropzone dropzone dz-clickable">
+                      <input type="hidden" name="token" value="xxx">
+                      <div class="dz-default dz-message"><span><i class="material-icons">cloud_upload</i><br>Drop files here to upload</span></div>
+                    </form>
+                  </div>
+                  <div style="display: none;" class="cover-view-wrap"></div>
+                </div>
+              </div>
+              <!--.proj-members
+              .title
+                | 共享成员
+                span （点击成员名，设置/取消管理员）
+                | :
+              .member-input-wrap
+                .member-items
+                  span.member-item.author(style='cursor: default;')
+                    alltasxiao(创建者)
+                  input.member-input(type='text', style='')
+              -->
+            </div>
+            <div class="modal__footer">
+              <div class="modal__footer-sub">
+                <button role="button" class="modal__act-btn modal__act-btn--primary">创建</button>
+              </div>
+            </div>
+          </div>
+          <button class="modal__btn-close btn"></button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

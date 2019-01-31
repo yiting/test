@@ -1,22 +1,69 @@
 // 样式的计算处理
 const CssDom = require('./css_dom').CssDom;
 
+const QLog = require("../../log/qlog");
+const Loger = QLog.getInstance(QLog.moduleData.render);
+
 // 生成的Css记录树
+
+let mainCss = [
+        "textAlign",
+        "display",
+        "boxOrient",
+        "boxPack",
+        "boxAlign",
+        "position",
+        "opacity",
+        "whiteSpace",
+        "backgroundRepeat",
+        "backgroundSize",
+        "filter",
+        "border",
+        "textOverflow",
+        "backgroundImage",
+        "backgroundColor",
+        "color",
+        "fontFamily",
+        "fontSize",
+        "borderRadius",
+        "lineHeight",
+        "zIndex",
+        "width",
+        "minHeight",
+        "marginTop",
+        "marginRight",
+        "marginBottom",
+        "marginLeft",
+        "paddingTop",
+        "top",
+        "right",
+        "bottom",
+        "left",
+    ],
+    minCss = []
+
 
 class similarCssDom {
 
     static process(cssDomTree, layoutType) {
+        Loger.debug(`similar_css_dom.js [process],enter[cssDomTree:${cssDomTree&&cssDomTree.id}]`);
+
         this._cssDomTree = cssDomTree
-        this._similarData = {}
+        this._similarMap = {}
         // 遍历节点，构建similar元素
+        Loger.debug(`similar_css_dom.js [_buildSimilarData]`);
         this._buildSimilarData(this._cssDomTree);
-        this._buildSimilarCss(this._similarData);
-        return this._similarData;
+
+        Loger.debug(`similar_css_dom.js [_buildSimilarCss]`);
+        this._buildSimilarCss(this._similarMap);
+        return this._similarMap;
     }
     static getCssString() {
+        Loger.debug(`similar_css_dom.js [getCssString],enter[_similarMap:${this._similarMap&&Object.keys(this._similarMap)}]`);
+
         let css = [];
-        Object.keys(this._similarData).forEach(key => {
-            let cssNode = this._similarData[key];
+        Object.keys(this._similarMap).forEach(key => {
+            let cssNode = this._similarMap[key];
             let className = this._getClass(cssNode);
             let cssStr = this._getCssProperty(cssNode.css);
             css.push(`${className}{${cssStr}}`);
@@ -27,6 +74,9 @@ class similarCssDom {
      * 重复样式命名规则，待写
      */
     static _getClass(cssNode) {
+        return cssNode.similarCssName.map(n => '.' + n).join(' ')
+    }
+    /* static _getClass(cssNode) {
         let parentClassName = '',
             selfClassName = ''
 
@@ -43,8 +93,11 @@ class similarCssDom {
         } else {
             return selfClassName;
         }
-    }
-
+    } */
+    /**
+     * 输出样式属性
+     * @param {Node} cssNode 
+     */
     static _getCssProperty(cssNode) {
         let props = [];
         Object.keys(cssNode).forEach(key => {
@@ -55,83 +108,99 @@ class similarCssDom {
         });
         return props.join(';');
     }
+    /**
+     * 构建相似节点数据集
+     * @param {*} cssNode 
+     */
     static _buildSimilarData(cssNode) {
-        // 如果存在相似节点，则存储相似节点到simialrData
-        let similarId = cssNode.similarId;
-        if (similarId) {
-            if (!this._similarData[similarId]) {
-                this._similarData[similarId] = {
-                    modelId: cssNode.modelId,
-                    similarId: similarId,
-                    similarParentId: cssNode.similarParentId,
-                    css: {},
-                    list: []
-                };
+        try {
+            // 如果存在相似节点，则存储相似节点到simialrData
+            let similarId = cssNode.similarId;
+            if (similarId) {
+                if (!this._similarMap[similarId]) {
+                    this._similarMap[similarId] = {
+                        modelId: cssNode.modelId,
+                        similarId: similarId,
+                        similarParentId: cssNode.similarParentId,
+                        similarCssName: cssNode.similarCssName,
+                        css: {},
+                        list: []
+                    };
+                }
+                this._similarMap[similarId].list.push(cssNode);
+                if (this._similarMap[similarId].className && this._similarMap[similarId].className == cssNode.tplAttr.class) {
+                    this._similarMap[similarId].className = null;
+                }
             }
-            this._similarData[similarId].list.push(cssNode);
+            cssNode.children.forEach(nd => this._buildSimilarData(nd));
+        } catch (e) {
+            Loger.error(`similar_css_dom.js [_buildSimilarData] ${e},params[cssNode.id:${cssNode.id},cssNode.similarId:${cssNode.similarId}]`);
         }
-        cssNode.children.forEach(nd => this._buildSimilarData(nd));
     }
 
     static _buildSimilarCss() {
-        Object.keys(this._similarData).forEach(key => {
-            let cssDomList = this._similarData[key].list;
-            let css = this._similarData[key].css;
-            cssDomList.forEach(cssDom => {
-                this._mergeSimilarCSS(css, cssDom);
+        try {
+            Object.keys(this._similarMap).forEach(sid => {
+                let cssDomList = this._similarMap[sid].list;
+
+                let cssObj = {};
+                cssDomList.forEach(cssDom => {
+                    mainCss.forEach(key => {
+                        if (cssObj[key] == undefined) {
+                            cssObj[key] = []
+                        }
+                        cssObj[key].push(cssDom[key])
+                    })
+                    minCss.forEach(key => {
+                        if (cssObj[key] == undefined) {
+                            cssObj[key] = []
+                        }
+                        cssObj[key].push(cssDom[key])
+                    })
+                });
+                mainCss.forEach(key => {
+                    this._similarMap[sid].css[key] = this._setMainCss(cssObj[key]);
+                });
+                minCss.forEach(key => {
+                    this._similarMap[sid].css[key] = this._setMinCss(cssObj[key]);
+                });
             });
+        } catch (e) {
+            Loger.error(`similar_css_dom.js [_buildSimilarCss] ${e}`);
+        }
+    }
+
+    static _setMinCss(cssArr) {
+        let s = cssArr.filter(value => {
+            return typeof value == 'number'
         });
+        return Math.min(...s);
+
+    }
+    static _setMainCss(cssArr) {
+        // return (target == undefined || target == source) ? source : null;
+        let o = {};
+        cssArr.forEach(value => {
+            if (!o[value]) {
+                o[value] = {
+                    v: value,
+                    c: 0
+                };
+            }
+            o[value].c++
+        });
+        let max = 0,
+            maxValue;
+        Object.keys(o).forEach(value => {
+            if (o[value].c > max) {
+                max = o[value].c
+                maxValue = o[value].v;
+            }
+        })
+        return maxValue;
     }
 
-    static _setMinCss(target, source) {
-        return typeof target == 'number' ? Math.min(target, source) : source;
-    }
-    static _setMainCss(target, source) {
-        return (target == undefined || target == source) ? source : null;
-    }
-
-    static _mergeSimilarCSS(target, source) {
-        target['textAlign'] = target.textAlign || source.textAlign;
-        target['display'] = target.display || source.display;
-        target['boxOrient'] = target.boxOrient || source.boxOrient;
-        target['boxPack'] = target.boxPack || source.boxPack;
-        target['boxAlign'] = target.boxAlign || source.boxAlign;
-        target['position'] = target.position || source.position;
-        target['opacity'] = target.opacity || source.opacity;
-        target['whiteSpace'] = target.whiteSpace || source.whiteSpace
-        target['backgroundRepeat'] = target.backgroundRepeat || source.backgroundRepeat;
-        target['backgroundSize'] = target.backgroundSize || source.backgroundSize;
-        target['filter'] = target.filter || source.filter;
-        target['border'] = target.border || source.border;
-        target['textOverflow'] = target.textOverflow || source.textOverflow;
-        // min css
-        target['width'] = this._setMinCss(target.width, source.width);
-        target['minHeight'] = this._setMinCss(target.minHeight, source.minHeight);
-        target['marginTop'] = this._setMinCss(target.marginTop, source.marginTop);
-        target['marginRight'] = this._setMinCss(target.marginRight, source.marginRight);
-        target['marginBottom'] = this._setMinCss(target.marginBottom, source.marginBottom);
-        target['marginLeft'] = this._setMinCss(target.marginLeft, source.marginLeft);
-        target['paddingTop'] = this._setMinCss(target.paddingTop, source.paddingTop);
-        target['top'] = this._setMinCss(target.top, source.top);
-        target['right'] = this._setMinCss(target.right, source.right);
-        target['bottom'] = this._setMinCss(target.bottom, source.bottom);
-        target['left'] = this._setMinCss(target.left, source.left);
-        target['zIndex'] = this._setMinCss(target.zIndex, source.zIndex);
-        // 如果存在无背景图，则以无图为主样式
-        target['backgroundImage'] = this._setMainCss(target.backgroundImage, source.backgroundImage);
-        // 如果存在无背景色，则以无色为主样式
-        target['backgroundColor'] = this._setMainCss(target.backgroundColor, source.backgroundColor);
-        // 如果存在多色，则以无色为主样式
-        target['color'] = this._setMainCss(target.color, source.color);
-        // 如果存在多字类，则以默认为主样式
-        target['fontFamily'] = this._setMainCss(target.fontFamily, source.fontFamily);
-        // 如果存在多字号，则以默认为主样式
-        target['fontSize'] = this._setMainCss(target.fontSize, source.fontSize);
-        // 如果存在多圆角，则以默认为主样式
-        target['borderRadius'] = this._setMainCss(target.borderRadius, source.borderRadius);
-        // 如果存在多行高，则以默认为主样式
-        target['lineHeight'] = this._setMainCss(target.lineHeight, source.lineHeight);
-    }
+    static _mergeSimilarCSS(target, source) {}
 }
 
 module.exports = similarCssDom

@@ -17,15 +17,15 @@ class WG2M2 extends Model.WidgetModel {
     _initNode() {
         let txtNodes = this.getTextNodes();
         let iconNodes = this.getIconNodes();
-        
-        this._matchNodes['0'] = txtNodes[0];            // txt
-        this._matchNodes['1'] = iconNodes[0];           // icon
+
+        this._matchNodes['0'] = txtNodes[0]; // txt
+        this._matchNodes['1'] = iconNodes[0]; // icon
     }
 
     // 元素方向
     regular1() {
         // icon位于文字左侧
-        let bool = Feature.directionArightToB(this._matchNodes['1'], this._matchNodes['0']);
+        let bool = Feature.directionAleftToB(this._matchNodes['0'], this._matchNodes['1']);
 
         return bool;
     }
@@ -41,9 +41,9 @@ class WG2M2 extends Model.WidgetModel {
     // 元素距离
     regular3() {
         // icon与txt的距离必须大于0,小于48
-        let bool = Feature.distanceGreatAleftToBright(this._matchNodes['1'], this._matchNodes['0'], -4)
-                    && Feature.distanceLessAleftToBright(this._matchNodes['1'], this._matchNodes['0'], 48);
-        
+        let bool = Feature.distanceGreatAleftToBright(this._matchNodes['1'], this._matchNodes['0'], -4) &&
+            Feature.distanceLessAleftToBright(this._matchNodes['1'], this._matchNodes['0'], 48);
+
         return bool;
     }
 }

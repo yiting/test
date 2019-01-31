@@ -3,14 +3,12 @@ function Artboard(conf) {
   conf = conf || {};
   this.artboardId = conf.artId;
   this.artboardName = conf.artName;
-  this.artboardIndex = conf.artIndex;
   this.artboardUrl = conf.artUrl;
   this.projectId = conf.proId;
   this.projectName = conf.proName;
   this.artboardJson = conf.artJsonTxt;
   this.artboardImgs = conf.artImgsTxt;
   this.artboardImg = conf.artImg;
-  this.moduleVersion = conf.mVersion;
 }
 //保存数据
 Artboard.prototype = {
@@ -18,16 +16,14 @@ Artboard.prototype = {
   create: function(callback) {
     var that = this;
     var addSql =
-      "INSERT INTO artboard(artboardId,artboardName,artboardIndex,projectId,projectName,artboardJson,artboardImgs,moduleVersion) VALUES(?,?,?,?,?,?,?,?)";
+      "INSERT INTO artboard(artboardId,artboardName,projectId,projectName,artboardJson,artboardImgs) VALUES(?,?,?,?,?,?)";
     var addSqlParams = [
       that.artboardId,
       that.artboardName,
-      that.artboardIndex,
       that.projectId,
       that.projectName,
       that.artboardJson,
-      that.artboardImgs,
-      that.moduleVersion
+      that.artboardImgs
     ];
     connection.query(addSql, addSqlParams, function(err, result) {
       if (err) {
@@ -91,54 +87,19 @@ Artboard.prototype = {
       }
     });
   },
-  //更新当前模块版本
-  updateModuleVersion: function(artboardId, projectId, callback) {
-    var that = this;
-    var addSql =
-      "update artboard set moduleVersion=? where artboardId =? and projectId =?";
-    var addSqlParams = [that.moduleVersion, artboardId, projectId];
-    connection.query(addSql, addSqlParams, function(err, result) {
-      if (err) {
-        callback &&
-          callback({ code: 1, msg: "修改artBoard页面记录失败", err: err });
-      } else {
-        callback &&
-          callback({ code: 0, msg: "修改artBoard页面记录成功", data: result });
-      }
-    });
-  },
-  //获取所有artBoard的name(即为其创建时间)
-  getAllArtBoards: function(callback) {
-    var that = this;
-    var sql =
-      "SELECT artboardId,artboardName,artboardIndex,projectId,projectName,moduleVersion FROM artboard";
-    connection.query(sql, "", function(err, result) {
-      if (err) {
-        callback &&
-          callback({ code: 1, msg: "获取所有artBoardName失败", err: err });
-      } else {
-        callback &&
-          callback({ code: 0, msg: "获取所有artBoardName成功", data: result });
-      }
-    });
-  },
   //获取artBoard记录
-  getArtboardById: function(artboardId, projectId, moduleVersion, callback) {
-    var that = this;
-    var sql =
-      "SELECT * FROM artboard WHERE artboardId =? and projectId =? and moduleVersion =?";
-    connection.query(sql, [artboardId, projectId, moduleVersion], function(
-      err,
-      result
-    ) {
-      if (err) {
+  getArtboardById: function(artboardId, projectId, callback) {
+    // var that = this;
+    // var sql = "SELECT * FROM artboard WHERE artboardId =? and projectId =?";
+    // connection.query(sql, [artboardId, projectId], function(err, result) {
+    //   if (err) {
         callback &&
-          callback({ code: 1, msg: "获取artBoard页面记录失败", err: err });
-      } else {
-        callback &&
-          callback({ code: 0, msg: "获取artBoard页面记录成功", data: result });
-      }
-    });
+          callback({ code: 1, msg: "获取artBoard页面记录失败", err: null });
+      // } else {
+      //   callback &&
+      //     callback({ code: 0, msg: "获取artBoard页面记录成功", data: result });
+      // }
+    // });
   },
   //根据artBoardId、projectUUID、artBoardImg查询记录
   getArtboardImg: function(artboardId, projectId, callback) {
