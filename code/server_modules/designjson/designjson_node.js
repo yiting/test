@@ -245,7 +245,8 @@ class QDocument {
         })
         // const rules = ['children','styles','parent','childnum','isLeaf','constraints'];break;
         _images.forEach((node,i) => {
-            node.path = `${OUTPUT_PATH}/${this._tree.bodyIndex}-${i}.png`
+            node.path = `${this._tree.bodyIndex}-${i}.png`
+            // node.path = `${OUTPUT_PATH}/${this._tree.bodyIndex}-${i}.png`
         });
         try {
             RepeatProcessor(_images);

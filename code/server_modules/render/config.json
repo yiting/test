@@ -2,7 +2,7 @@
     "HTML": {
         "name": "html",
         "output": {
-            "imgPath": "{project}/img/",
+            "imgPath": "{project}/images/",
             "cssPath": "{project}/css/",
             "jsPath": "{project}/js",
             "htmlPath": "{project}/"
