@@ -1,3 +1,4 @@
+临时占位图
 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1549131567387&di=46877538c3ad8a48ce5a169a13454de4&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fq_70%2Cc_zoom%2Cw_640%2Fupload%2F20170331%2F99098fa2ae0e48ac8ee8d813c1620900_th.gif" />
 通过算法把设计稿翻译为计算机语言，实现UI界面还原
 
@@ -8,5 +9,9 @@
 ## 流程图
 <img src="http://km.oa.com/files/photos/pictures/201901/1547005473_87_w966_h636.png" />
 
+## 目录
+    xxxxx
+    xxxxxxxxxxxxxxxxx
+    xxxxxxxxxxxxxxxx
 ## 相关文章
 - 视觉编译-让机器理解设计：http://km.oa.com/group/15849/articles/show/367169
