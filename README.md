@@ -10,6 +10,8 @@
 4.文字文字文字
 5.文字文字文字文字
 
+## 流程图
+<img src="http://km.oa.com/files/photos/pictures/201901/1547005473_87_w966_h636.png" />
 
 ## 特性（补充对应的hello, world 示例）
 1.DSL语言设计（这个可以再拆细一些）
@@ -18,10 +20,9 @@
 4.绘图去重
 5.图元处理
 
+## 安装/快速入门
 
 
-## 流程图
-<img src="http://km.oa.com/files/photos/pictures/201901/1547005473_87_w966_h636.png" />
 
 ## 目录
 1.文字文字文字文字
