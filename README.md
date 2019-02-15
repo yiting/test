@@ -1,6 +1,4 @@
 # 视觉编译
-![](http://km.oa.com/files/photos/pictures/201810/1540543101_80_w660_h280.png)
-
 通过算法把设计稿翻译为计算机语言，实现UI界面还原
 
 ## 目录
@@ -12,15 +10,15 @@
 6. 相关文章/辅助工具
 7. 许可声明/交流群
 
-## 解决什么问题
+## 1.解决什么问题
 1. 程序依照设计稿生成ui界面代码（支持多种语言）。
 2. 减少视觉设计师与开发联合走查设计还原的工作量。
 3. 生成页面直接供前台使用，减少ui还原的环节。
 
-## 解决方案
+## 2.解决方案
 ![](http://km.oa.com/files/photos/pictures/201901/1547005473_87_w966_h636.png)
 
-## 任务列表
+## 3.任务列表
 - [ ] DSL语言设计
   - [x] 提供组件绑定能力，A设计组件，绑定A或A相关代码片段。 demo
   - [x] 结构或样式去重处理，减少重复代码。 demo
@@ -28,53 +26,26 @@
 - [ ] AI页面元素识别
   - [ ] 识别页面元素，为合图及页面结构提供合并的判断条件。 demo
   - [ ] 识别元素接口开放，返回查询字段。 demo
-
 - [ ] 图像合成/绘图去重
   - [ ] 重复图片，去重处理  demo
   - [ ] psd 
   - [ ] sketch
   - [ ] xd
-
 - [ ] 图元处理
   - [ ]不需要任何人工参与，程序根据设计稿，自动切图。 demo
 
+## 6.相关文章/辅助工具
+相关文章
+1. 视觉编译-让机器理解设计：http://km.oa.com/group/15849/articles/show/367169
+2. 视觉编译开源宣讲PPT: http://km.oa.com/group/15849/articles/show/367169
 
-## 快速搭建环境
-环节搭建说明
+辅助工具
+1. 图元合并权重调试：http://uitocode.oa.com/plug/meta-rule/meta-rule.html
+2. 图片绝对定位检查(designTree检验工具)：http://km.oa.com/group/15849/articles/show/367169
+3. 布局及模型命中率检查(dsl检验工具)：http://km.oa.com/group/15849/articles/show/367169
+4. AI打标任务协同：http://km.oa.com/group/15849/articles/show/367169
 
-## 目录结构
-目前SparkX项目集成了一些我们微信数据平台业务开发过程中的一些类库，这个类库也适用于公司其他BG的业务，代码组织结构如下，就当抛砖引玉，欢迎后续各BG业务童鞋分享。
-```
-├── main
-│   ├── java
-│   │   └── com
-│   │       └── tencent
-│   │           └── sparkx
-│   │               └── tool
-│   ├── proto
-│   │   └── sample.proto
-│   ├── resources
-│   └── scala
-│       └── com
-│           └── tencent
-│               └── sparkx
-│                   ├── access          # 包含各存储系统的访问类库
-│                   ├── app             # Spark应用程序目录
-│                   ├── common          # 一些公用的类库
-│                   ├── Logging.scala   # 日志基类
-│                   └── util            # 一些工具类方法
-└── test
-    └── scala
-        └── com
-            └── tencent
-                └── sparkx
-                    ├── SparkXFunSuite.scala    # 单元测试基类
-                    └── util                     
-```
+## 7.许可声明/交流群
+#### 注意：项目仅供腾讯内部开源，源代码未经授权，禁止对外公开
 
-## 相关文章/辅助工具
-- 视觉编译-让机器理解设计：http://km.oa.com/group/15849/articles/show/367169
-
-## 许可声明/交流群
-项目仅供腾讯内部开源，未经授权，禁止私自对外公开
-
+![](http://km.oa.com/files/photos/pictures/201902/1550227512_64_w477_h477.jpg)
