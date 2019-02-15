@@ -23,6 +23,13 @@
 - [ ] normal **formatting**, @mentions, #1234 refs
 - [ ] incomplete
 - [x] completed
+- [ ] Figure out wormholes
+  - [ ] Call @arfon
+  - [ ] Research ([docs](http://en.wikipedia.org/wiki/Wormhole#Time_travel))
+  - [ ] Build prototype #15
+  - [ ] Test run #43 @world-domination/time-travel
+- [ ] ...?
+- [ ] Profit!
 
 ## 解决什么问题
 1. 程序依照设计稿生成ui界面代码（支持多种语言）。
