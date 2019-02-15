@@ -1,5 +1,5 @@
 # 视觉编译
-<img src="http://km.oa.com/files/photos/pictures/201810/1540543101_80_w660_h280.png" />
+![](http://km.oa.com/files/photos/pictures/201810/1540543101_80_w660_h280.png)
 
 通过算法把设计稿翻译为计算机语言，实现UI界面还原
 
