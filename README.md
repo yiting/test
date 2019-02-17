@@ -148,10 +148,10 @@
 │     ├── index.ejs       # 首页
 │     ├── material.ejs    # 素材管理页面 (规划中)
 │     ├── person.ejs      # 个人中心页面
-│     ├── projects        # 所有项目页面
+│     ├── projects.ejs    # 所有项目页面
 │     ├── start.ejs       # 鉴权服务页面(部署在linux服务器上，用于鉴权，鉴权信息传递给mac主服务)
 │     ├── tips.ejs        # 提示页面(如404错误)
-│     └── visitor.js      # 访客页面
+│     └── visitor.ejs     # 访客页面
 ├── app.js                # 服务配置总入口
 ├── package-lock.json  
 └── package.json                             
