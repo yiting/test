@@ -26,7 +26,7 @@
   - [ ] Parser图元抽象-Photoshop
   - [ ] Parser图元抽象-XD
   - [x] Optimize图元优化
-- [ ] DSL模块（负责人chrisschen）。http://mrw.so/58vvje
+- [ ] DSL（负责人chrisschen）。http://mrw.so/58vvje
   - [x] 元素模型、组件模型的识别及组合匹配算法块（识别及匹配出模型）。 
   - [x] 模型数据进行组装结构化算法块（模型数据组成DSL树）。 
   - [x] DSL树进行布局处理及循环分析算法块（DSL树布局分析）。
