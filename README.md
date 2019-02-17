@@ -24,9 +24,11 @@
   - [x] 提供组件绑定能力，A设计组件，绑定A或A相关代码片段。 
   - [x] 结构或样式去重处理，减少重复代码。 
   - [x] 生成流式布局页面，方面内容扩展。 
-- [ ] DesignJson：说明文字说明文字。http://mrw.so/57KPAJ
-  - [x] DesignJson内容内容内容
-  - [x] DesignJson内容内容内容
+- [ ] DesignJson：将视觉稿图层抽象为图元树。http://mrw.so/57KPAJ
+  - [x] Parser图元抽象-Sketch
+  - [ ] Parser图元抽象-Photoshop
+  - [ ] Parser图元抽象-XD
+  - [x] Optimize图元优化
 - [ ] AI页面元素识别
   - [ ] 识别页面元素，为合图及页面结构提供合并的判断条件。 
   - [ ] 识别元素接口开放，返回查询字段。 
