@@ -20,7 +20,12 @@
 ![](http://km.oa.com/files/photos/pictures/201901/1547005473_87_w966_h636.png)
 
 ## 3.任务列表
-<<<<<<< HEAD
+
+- [ ] DesignJson（负责人yonechen、ralychen）：将视觉稿图层抽象为图元树。http://mrw.so/57KPAJ
+  - [x] Parser图元抽象-Sketch
+  - [ ] Parser图元抽象-Photoshop
+  - [ ] Parser图元抽象-XD
+  - [x] Optimize图元优化
 - [ ] DSL模块。(链接)
   - [x] 元素模型、组件模型的识别及组合匹配算法块（识别及匹配出模型）。 
   - [x] 模型数据进行组装结构化算法块（模型数据组成DSL树）。 
@@ -28,24 +33,8 @@
   - [ ] 优化模型识别（模型设计、算法、AI辅助）。
   - [ ] 优化DSL树的结构（算法）。
   - [ ] 优化循环结构处理（算法）。
-- [ ] DesignJson：说明文字说明文字。http://mrw.so/57KPAJ
-  - [x] DesignJson内容内容内容
-  - [x] DesignJson内容内容内容
-- [ ] AI页面元素识别
-=======
-
-- [ ] DesignJson（负责人yonechen、ralychen）：将视觉稿图层抽象为图元树。http://mrw.so/57KPAJ
-  - [x] Parser图元抽象-Sketch
-  - [ ] Parser图元抽象-Photoshop
-  - [ ] Parser图元抽象-XD
-  - [x] Optimize图元优化
-- [ ] DSL语言设计（负责人chironyang、chrisschen）
-  - [x] 提供组件绑定能力，A设计组件，绑定A或A相关代码片段。 
-  - [x] 结构或样式去重处理，减少重复代码。 
-  - [x] 生成流式布局页面，方面内容扩展。 
 - [ ] Render&Template（负责人chironyang）
 - [ ] AI页面元素识别（负责人ralychen）
->>>>>>> master
   - [ ] 识别页面元素，为合图及页面结构提供合并的判断条件。 
   - [ ] 识别元素接口开放，返回查询字段。 
 - [ ] 图像合成/绘图去重（负责人bowentang、yixionglin）
