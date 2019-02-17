@@ -71,7 +71,7 @@
    - 个人中心：localhost:8080/person
    - 编译结果页(需要复制上传后的项目链接，更改为本机地址+端口)，如：localhost:8080/edit?id=9b288f20-30f8-11e9-8839-1f15855e680f&name=20190215160632_0list
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>`安装过程中有任何问题，请联系：alltasxiao(肖超)`</strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>`搭建环境过程中有任何问题，请联系：alltasxiao(肖超)`</strong>
 ## 5.目录结构
 
 ```
