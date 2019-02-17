@@ -24,7 +24,9 @@
   - [x] 提供组件绑定能力，A设计组件，绑定A或A相关代码片段。 demo
   - [x] 结构或样式去重处理，减少重复代码。 demo
   - [x] 生成流式布局页面，方面内容扩展。 demo
-  - [x] DesignJson https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/302d0fc6e320658ebbffc84224972f0fbd11b3c0/code/server_modules/docs/designjson.md
+- [ ] DesignJson：说明文字说明文字。http://mrw.so/57KPAJ
+  - [x] DesignJson内容内容内容
+  - [x] DesignJson内容内容内容
 - [ ] AI页面元素识别
   - [ ] 识别页面元素，为合图及页面结构提供合并的判断条件。 demo
   - [ ] 识别元素接口开放，返回查询字段。 demo
