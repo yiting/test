@@ -58,12 +58,11 @@
    -  gm：负责合图
       - 安装imageMagick底层绘图软件：brew install imagemagick && brew install graphicsmagick
       - 安装node桥接包(https://www.npmjs.com/package/gm)：npm install gm && npm install gm-base64
-   
   2. 下载服务代码
    - 下载项目代码到本地电脑，项目地址：http://git.code.oa.com/qqpay_ui/toSeeWeb.git
   3. 初始化数据库
    - 安装mysql数据库（建议版本Server version: 8.0.13 MySQL Community Server - GPL） 
-   - 初始化数据库命令: 如source /code/tosee.sql
+   - 初始化数据库命令: 如source /code/sql/tosee.sql
   4. 启动服务
    - 跳转到对应项目代码的路径，如：cd /Users/code 
    - 启动命令：npm run start或pm2 start ./bin/www
