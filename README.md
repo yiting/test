@@ -20,6 +20,7 @@
 ![](http://km.oa.com/files/photos/pictures/201901/1547005473_87_w966_h636.png)
 
 ## 3.任务列表
+<<<<<<< HEAD
 - [ ] DSL模块。(链接)
   - [x] 元素模型、组件模型的识别及组合匹配算法块（识别及匹配出模型）。 
   - [x] 模型数据进行组装结构化算法块（模型数据组成DSL树）。 
@@ -31,44 +32,60 @@
   - [x] DesignJson内容内容内容
   - [x] DesignJson内容内容内容
 - [ ] AI页面元素识别
+=======
+
+- [ ] DesignJson（负责人yonechen、ralychen）：将视觉稿图层抽象为图元树。http://mrw.so/57KPAJ
+  - [x] Parser图元抽象-Sketch
+  - [ ] Parser图元抽象-Photoshop
+  - [ ] Parser图元抽象-XD
+  - [x] Optimize图元优化
+- [ ] DSL语言设计（负责人chironyang、chrisschen）
+  - [x] 提供组件绑定能力，A设计组件，绑定A或A相关代码片段。 
+  - [x] 结构或样式去重处理，减少重复代码。 
+  - [x] 生成流式布局页面，方面内容扩展。 
+- [ ] Render&Template（负责人chironyang）
+- [ ] AI页面元素识别（负责人ralychen）
+>>>>>>> master
   - [ ] 识别页面元素，为合图及页面结构提供合并的判断条件。 
   - [ ] 识别元素接口开放，返回查询字段。 
-- [ ] 图像合成/绘图去重
+- [ ] 图像合成/绘图去重（负责人bowentang、yixionglin）
   - [ ] 重复图片，去重处理  
   - [ ] psd 
   - [ ] sketch
   - [ ] xd
-- [ ] 图元处理
-  - [ ]不需要任何人工参与，程序根据设计稿，自动切图。 
-- [ ] 平台
+- [ ] 平台（负责人alltasxiao）
   - [x] 上传、解析、编译、下载、预览。 
   - [x] 关键数据存储(上传文件、解压数据、编译项目、下载项目)；操作记录日志。
   - [x] 个人中心(个人项目、浏览项目)、访客统计、所有项目、开发者工具、设计规范。 
   - [x] 编译页资源提取、面板操作(测距、单位转换等)。 
-  - [ ] 底层基础库版本定时比对任务待接入
+  - [ ] 底层基础库版本比对定时任务待接入
   - [ ] AI+普通规则待接入
 
 
 ## 4.快速搭建环境
 
-##### 背景：由于视觉编译服务底层绘图模块使用了gm和sketch运行库，而sketch运行库包目前只能在mac电脑下执行(后续可研究是否可反编译，运行在其他平台)，因此该项目主要部署mac电脑,部分鉴权服务部署在linux服务器。linux服务器上主要用于获取鉴权信息(公司鉴权信息端口受限，只能80端口，而mac上80端口被系统服务占用，所以采用linux服务器鉴权，获取到鉴权用户信息后给到mac主服务)，mac服务器拿到鉴权信息完成剩下的整个编译操作。
+#### &nbsp;&nbsp;&nbsp;&nbsp;背景：由于视觉编译服务底层绘图模块使用了sketch和gm运行库，而sketch绘图库目前只能在mac电脑下运行(后续可研究是否可反编译，运行在其他平台)，因此该项目主要部署mac电脑,部分鉴权服务部署在linux服务器。linux服务器上主要用于获取鉴权信息(公司鉴权信息端口受限，只能80端口，而mac上80端口被系统服务占用，所以采用linux服务器鉴权，获取到鉴权用户信息后给到mac主服务)，mac服务器拿到鉴权信息完成剩下的整个编译操作。
 
   1. 安装绘图环境
    -  sketch：负责绘图 
-      - 在mac电脑上安装sketch软件，且获取当前软件包，将该软件包存放在基础模块-designimage下面
+      - 在mac电脑上安装sketch软件，鼠标右键显示包内容，将该软件包拷贝在项目/server_modules/designimage下面
    -  gm：负责合图
-      - 安装imageMagick底层绘图软件：brew install imagemagick && brew install graphicsmagick
-      - 安装node桥接包(https://www.npmjs.com/package/gm)：npm install gm && npm install gm-base64
-   
-  2. 下载服务代码
-   - 下载项目代码到本地电脑，项目地址：http://git.code.oa.com/qqpay_ui/toSeeWeb.git
+      - 安装imageMagick底层绘图软件：`brew install imagemagick && brew install graphicsmagick`
+      - 安装node桥接包(https://www.npmjs.com/package/gm)：`npm install gm && npm install gm-base64`
+  2. 下载项目代码
+   - 下载项目代码到本地电脑，项目地址：`http://git.code.oa.com/qqpay_ui/toSeeWeb.git`
   3. 初始化数据库
    - 安装mysql数据库（建议版本Server version: 8.0.13 MySQL Community Server - GPL） 
-   - 初始化数据库命令: 如source /code/tosee.sql
+   - 初始化数据库命令，如: `source /code/sql/tosee.sql`
   4. 启动服务
-   - 跳转到对应项目代码的路径，如：cd /Users/code 
-   - 启动命令：npm run start或pm2 start ./bin/www
+   - 跳转到对应项目代码的路径，如：`cd /Users/code `
+   - 启动命令：`npm run start或pm2 start ./bin/www`
+  5. 访问页面(由于使用了url地址透传，按钮、链接等不能直接跳转，根据路径访问对应页面)
+   - 主页：localhost:8080
+   - 个人中心：localhost:8080/person
+   - 编译结果页(需要复制上传后的项目链接，更改为本机地址+端口)，如：localhost:8080/edit?id=9b288f20-30f8-11e9-8839-1f15855e680f&name=20190215160632_0list
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>`搭建环境过程中有任何问题，请联系：alltasxiao(肖超)`</strong>
 ## 5.目录结构
 
 ```
@@ -146,10 +163,10 @@
 │     ├── index.ejs       # 首页
 │     ├── material.ejs    # 素材管理页面 (规划中)
 │     ├── person.ejs      # 个人中心页面
-│     ├── projects        # 所有项目页面
+│     ├── projects.ejs    # 所有项目页面
 │     ├── start.ejs       # 鉴权服务页面(部署在linux服务器上，用于鉴权，鉴权信息传递给mac主服务)
 │     ├── tips.ejs        # 提示页面(如404错误)
-│     └── visitor.js      # 访客页面
+│     └── visitor.ejs     # 访客页面
 ├── app.js                # 服务配置总入口
 ├── package-lock.json  
 └── package.json                             
