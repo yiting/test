@@ -54,11 +54,11 @@
 
   1. 安装绘图环境
    -  sketch：负责绘图 
-      - 在mac电脑上安装sketch软件，且获取当前软件包，将该软件包存放在基础模块-designimage下面
+      - 在mac电脑上安装sketch软件，鼠标右键显示包内容，将该软件包拷贝在项目/server_modules/designimage下面
    -  gm：负责合图
       - 安装imageMagick底层绘图软件：`brew install imagemagick && brew install graphicsmagick`
       - 安装node桥接包(https://www.npmjs.com/package/gm)：`npm install gm && npm install gm-base64`
-  2. 下载服务代码
+  2. 下载项目代码
    - 下载项目代码到本地电脑，项目地址：`http://git.code.oa.com/qqpay_ui/toSeeWeb.git`
   3. 初始化数据库
    - 安装mysql数据库（建议版本Server version: 8.0.13 MySQL Community Server - GPL） 
@@ -71,6 +71,7 @@
    - 个人中心：localhost:8080/person
    - 编译结果页(需要复制上传后的项目链接，更改为本机地址+端口)，如：localhost:8080/edit?id=9b288f20-30f8-11e9-8839-1f15855e680f&name=20190215160632_0list
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>`安装过程中有任何问题，请联系：alltasxiao(肖超)`</strong>
 ## 5.目录结构
 
 ```
