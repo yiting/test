@@ -20,26 +20,26 @@
 ![](http://km.oa.com/files/photos/pictures/201901/1547005473_87_w966_h636.png)
 
 ## 3.任务列表
-- [ ] DSL语言设计
-  - [x] 提供组件绑定能力，A设计组件，绑定A或A相关代码片段。 
-  - [x] 结构或样式去重处理，减少重复代码。 
-  - [x] 生成流式布局页面，方面内容扩展。 
-- [ ] DesignJson：将视觉稿图层抽象为图元树。http://mrw.so/57KPAJ
+
+- [ ] DesignJson（负责人yonechen、ralychen）：将视觉稿图层抽象为图元树。http://mrw.so/57KPAJ
   - [x] Parser图元抽象-Sketch
   - [ ] Parser图元抽象-Photoshop
   - [ ] Parser图元抽象-XD
   - [x] Optimize图元优化
-- [ ] AI页面元素识别
+- [ ] DSL语言设计（负责人chironyang、chrisschen）
+  - [x] 提供组件绑定能力，A设计组件，绑定A或A相关代码片段。 
+  - [x] 结构或样式去重处理，减少重复代码。 
+  - [x] 生成流式布局页面，方面内容扩展。 
+- [ ] Render&Template（负责人chironyang）
+- [ ] AI页面元素识别（负责人ralychen）
   - [ ] 识别页面元素，为合图及页面结构提供合并的判断条件。 
   - [ ] 识别元素接口开放，返回查询字段。 
-- [ ] 图像合成/绘图去重
+- [ ] 图像合成/绘图去重（负责人bowentang、yixionglin）
   - [ ] 重复图片，去重处理  
   - [ ] psd 
   - [ ] sketch
   - [ ] xd
-- [ ] 图元处理
-  - [ ]不需要任何人工参与，程序根据设计稿，自动切图。 
-- [ ] 平台
+- [ ] 平台（负责人alltasxiao）
   - [x] 上传、解析、编译、下载、预览。 
   - [x] 关键数据存储(上传文件、解压数据、编译项目、下载项目)；操作记录日志。
   - [x] 个人中心(个人项目、浏览项目)、访客统计、所有项目、开发者工具、设计规范。 
