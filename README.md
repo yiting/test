@@ -38,14 +38,15 @@
 
 ## 4.快速搭建环境
 
-##### 背景：由于视觉编译服务底层绘图库使用了gm和sketch运行库，而sketch运行库包目前只能在mac电脑下执行(后续可研究是否可反编译，运行在其他平台)，因此视觉编译项目主要部署mac电脑,部分鉴权服务部署在linux服务器。linux服务器上主要用于获取鉴权信息(公司鉴权信息端口受限，只能80端口，而mac上80端口被系统服务占用，所以采用linux服务器鉴权，获取到鉴权用户信息后给到mac主服务)，mac服务器拿到鉴权信息完成剩下的整个编译操作。
+##### 背景：由于视觉编译服务底层绘图模块使用了gm和sketch运行库，而sketch运行库包目前只能在mac电脑下执行(后续可研究是否可反编译，运行在其他平台)，因此该项目主要部署mac电脑,部分鉴权服务部署在linux服务器。linux服务器上主要用于获取鉴权信息(公司鉴权信息端口受限，只能80端口，而mac上80端口被系统服务占用，所以采用linux服务器鉴权，获取到鉴权用户信息后给到mac主服务)，mac服务器拿到鉴权信息完成剩下的整个编译操作。
 
   1. 安装绘图环境
-   -  gm：负责绘图
+   -  sketch：负责绘图 
+      - 在mac电脑上安装sketch软件，且获取当前软件包，将该软件包存放在基础模块-designimage下面
+   -  gm：负责合图
       - 安装imageMagick底层绘图软件：brew install imagemagick && brew install graphicsmagick
       - 安装node桥接包(https://www.npmjs.com/package/gm)：npm install gm && npm install gm-base64
-   -  sketch：负责合图 
-      - 在mac电脑上安装sketch软件，且获取当前软件包，将该软件包存放在基础模块-designimage下面
+   
   2. 下载服务代码
    - 下载项目代码到本地电脑，项目地址：http://git.code.oa.com/qqpay_ui/toSeeWeb.git
   3. 初始化数据库
