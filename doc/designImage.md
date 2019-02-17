@@ -87,15 +87,18 @@ Void
 #### 描述：绘图合成处理
 #### 参数
 ##### node：`QObject`
-##### param：`QObject`（可选）
+##### param：`Object`（可选）
 | 名字 | 类型 | 描述 |
 | ------ | ------ | ------ |
 | width | Number | 设置要合成的图片宽度 |
 | height | Number | 设置要合成的图片高度 |
 | cantNative | Boolean | 设置是否不能用绘图库 |
 | masked | Boolean | 标记该节点是被遮罩的 |
+
 #### 返回 
+
 Object 
+
 | 名字 | 类型 | 描述 |
 | ------ | ------ | ------ |
 | _class | String | 固定combineImg，表示这是一个合并出来的节点 |
