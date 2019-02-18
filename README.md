@@ -60,7 +60,7 @@
   - [x] 重复图片，去重处理 
 - [ ] 多语言解析和生成（`负责人chrisschen、chironyang`）：将视觉稿根据开发语言要求生成对应代码。文档待补充
   - [x] Html/css语言 
-  - [ ] Hippy
+  - [x] Hippy
   - [ ] 微信小程序
   - [ ] Vue
   - [ ] Android
