@@ -57,7 +57,14 @@
   - [x] 图片绘制-sketch http://mrw.so/58vuKI
   - [x] 图片绘制-psd http://mrw.so/4SIuXV
   - [ ] 图片绘制-xd
-  - [x] 重复图片，去重处理  
+  - [x] 重复图片，去重处理 
+- [ ] 多语言解析和生成（`负责人chrisschen、chironyang`）：将视觉稿根据开发语言要求生成对应代码。文档待补充
+  - [x] Html/css语言 
+  - [ ] Hippy
+  - [ ] 微信小程序
+  - [ ] Vue
+  - [ ] Android
+  - [ ] IOS
 - [ ] 编译平台（`负责人alltasxiao`）：将设计稿一键智能生成代码的平台。http://uitocode.oa.com/
   - [x] 上传、解析、编译、下载、预览。 
   - [x] 关键数据存储(上传文件、解压数据、编译项目、下载项目)；操作记录日志。
