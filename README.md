@@ -52,9 +52,9 @@
 - [ ] 图像合成/绘图去重（`负责人yixionglin、bowentang`）：找出该合成的图元并进行绘制，对重复的图片资源进行去重。
   - [x] 图片合成逻辑 http://mrw.so/4Lgu1W
   - [x] 图片绘制-sketch http://mrw.so/58vuKI
-  - [ ] 图片绘制-psd http://mrw.so/4SIuXV
+  - [x] 图片绘制-psd http://mrw.so/4SIuXV
   - [ ] 图片绘制-xd
-  - [ ] 重复图片，去重处理  
+  - [x] 重复图片，去重处理  
 - [ ] 编译平台（`负责人alltasxiao`）：将设计稿一键智能生成代码的平台。http://uitocode.oa.com/
   - [x] 上传、解析、编译、下载、预览。 
   - [x] 关键数据存储(上传文件、解压数据、编译项目、下载项目)；操作记录日志。
