@@ -33,7 +33,7 @@
   - [ ] 优化模型识别（模型设计、算法、AI辅助）。
   - [ ] 优化DSL树的结构（算法）。
   - [ ] 优化循环结构处理（算法）。
-- [ ] Render&Template（`负责人chironyang`）
+- [ ] Render&Template（`负责人chironyang`）。http://mrw.so/5g1Hy9
   - [x] XML解析引擎，解析XML结构模板，生成json结构的数据
   - [ ] 静态模板组装引擎，根据数据特点，把节点内容替换成模板内容
   - [x] 动态模板组装引擎，根据模板数据结合RenderTree生成TemplateData
@@ -48,7 +48,7 @@
   - [x] 识别图元(icon,img)结构，为合图提供合并的判断条件。 
   - [x] 识别页面UI模块，为页面结构生成提供判断条件。 
   - [x] 识别元素接口开放，返回查询字段。 
-- [ ] 图像合成/绘图去重（`负责人yixionglin、bowentang`）
+- [ ] 图像合成/绘图去重（`负责人yixionglin、bowentang`）。http://mrw.so/4SIuXV
   - [x] 图片合成逻辑
   - [x] 图片绘制-sketch
   - [ ] 图片绘制-psd 
