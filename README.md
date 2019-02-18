@@ -48,10 +48,10 @@
   - [x] 识别图元(icon,img)结构，为合图提供合并的判断条件。 
   - [x] 识别页面UI模块，为页面结构生成提供判断条件。 
   - [x] 识别元素接口开放，返回查询字段。 
-- [ ] 图像合成/绘图去重（`负责人yixionglin、bowentang`）。http://mrw.so/4SIuXV
-  - [x] 图片合成逻辑
-  - [x] 图片绘制-sketch
-  - [ ] 图片绘制-psd 
+- [ ] 图像合成/绘图去重（`负责人yixionglin、bowentang`）。
+  - [x] 图片合成逻辑 http://mrw.so/4Lgu1W
+  - [x] 图片绘制-sketch http://mrw.so/58vuKI
+  - [ ] 图片绘制-psd http://mrw.so/4SIuXV
   - [ ] 图片绘制-xd
   - [ ] 重复图片，去重处理  
 - [ ] 编译平台（`负责人alltasxiao`）。http://uitocode.oa.com/
