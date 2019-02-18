@@ -40,7 +40,7 @@ isClosedTag|boolean|是否闭合标签
 id|ID|ID
 tplAttr|Object|模板属性
 similarParentId|ID|相似节点源序列
-/* 以下属性来源于RenderData */|
+/* 以下属性来源于RenderData */|||
 type|String`{RenderDataType}`|数据类型
 modelName|String|模型名称
 modelRef|Object`{RenderData.modelRef}`|模型引用
@@ -131,7 +131,7 @@ styles|Object|样式
 children|Array`<CssDom>`|子节点
 selfCssName|String|节点样式名
 similarCssName|String|相似节点样式名
-|-- 以下为驼峰命名的样式属性 --|||
+|/* 以下为驼峰命名的样式属性 */|||
 color|CSS|color|
 ....|...|...
 zIndex|CSS|z-index|
@@ -143,7 +143,7 @@ zIndex|CSS|z-index|
 getCss()|null|String|获取样式片段
 getClass()|null|String|获取样式名
 getCssProperty(similarCss)| similarCss`{SimilarCss}`|Array|获取Css属性组
--- 以下为静态方法 --|
+/* 以下为静态方法 */||||
 `static` getLinearGradient(bgColor, width, height)|bgColor`{Color}`:背景色值<br>width`{Number}`:节点宽度<br>height`{Number}`:节点高度|String`{CssValue}`|获取线性渐变值
 `static` getRGBA(color)|color`{Color}`:颜色值|String|获取RGBA
 `static` getRadius(vals,maxSize = 100)|vals`Array<Number>`:圆角数组<br>maxSize`{Number}`:圆角Ï最大值|String|获取圆角值
