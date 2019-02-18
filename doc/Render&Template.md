@@ -98,7 +98,7 @@ getHtmlEnd()|null|String|获取闭合节点
 
 ### CssDom
 描述：用于构建CSS结构树
-####属性
+#### 属性
 | 名称 | 类型 | 描述 |
 | ------ | ------ | ------ |
 id|ID|ID
@@ -128,12 +128,12 @@ styles|Object|样式
 children|Array`<CssDom>`|子节点
 selfCssName|String|节点样式名
 similarCssName|String|相似节点样式名
-|/* 以下为驼峰命名的样式属性 */|||
+|-- 以下为驼峰命名的样式属性 --|||
 color|CSS|color|
 ....|...|...
 zIndex|CSS|z-index|
 
-####方法
+#### 方法
 
 | 名字 | 参数 | 返回 | 描述 |
 | ------ | ------ | ------ | ------ |
