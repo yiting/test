@@ -43,7 +43,7 @@
   - [ ] 优化Css_Dom样式输出的默认属性问题
   - [ ] 优化H5_builder中,样式名组合逻辑
   - [ ] 设计稿分辨率兼容
-- [ ] AI页面元素识别（`负责人ralychen`）。http://mrw.so/4pnNWF
+- [ ] AI页面元素识别（`负责人ralychen`）：对设计稿的图元以及UI结构识别。http://mrw.so/4pnNWF
   - [ ] 完善增加design15数据集。
   - [x] 识别图元(icon,img)结构，为合图提供合并的判断条件。 
   - [x] 识别页面UI模块，为页面结构生成提供判断条件。 
