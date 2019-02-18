@@ -80,8 +80,8 @@ eva.getEvaluationScore(nodeA,nodeB);
 | 名字 | 类型 | 描述 |
 | ------ | ------ | ------ |
 | id | `Number` | 标识 |
-| det | `Number` | 识别类型 |
-| name | `Number` | 识别内容，固定为probability |
+| det | `String` | 识别类型，值可为icon/iconDesc/banner等 |
+| name | `String` | 识别内容，固定为probability |
 | rate | `Float` | 准确率 |
 | abX | `Number` | 区域绝对坐标X |
 | abY | `Number` | 区域绝对坐标Y |
