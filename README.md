@@ -26,14 +26,14 @@
   - [ ] Parser图元抽象-Photoshop
   - [ ] Parser图元抽象-XD
   - [x] Optimize图元优化
-- [ ] DSL（`负责人chrisschen`）：通过模板引擎的重组能力和样式映射关系，把设计数据解析成终端代码。http://mrw.so/58vvje
+- [ ] DSL（`负责人chrisschen`）：对设计元素数据进行抽象并输出统一结构的模块。http://mrw.so/58vvje
   - [x] 元素模型、组件模型的识别及组合匹配算法块（识别及匹配出模型）。 
   - [x] 模型数据进行组装结构化算法块（模型数据组成DSL树）。 
   - [x] DSL树进行布局处理及循环分析算法块（DSL树布局分析）。
   - [ ] 优化模型识别（模型设计、算法、AI辅助）。
   - [ ] 优化DSL树的结构（算法）。
   - [ ] 优化循环结构处理（算法）。
-- [ ] Render&Template（`负责人chironyang`）。http://mrw.so/5g1Hy9
+- [ ] Render&Template（`负责人chironyang`）：通过模板引擎的重组能力和样式映射关系，把设计数据解析成终端代码。http://mrw.so/5g1Hy9
   - [x] XML解析引擎，解析XML结构模板，生成json结构的数据
   - [ ] 静态模板组装引擎，根据数据特点，把节点内容替换成模板内容
   - [x] 动态模板组装引擎，根据模板数据结合RenderTree生成TemplateData
@@ -54,7 +54,7 @@
   - [ ] 图片绘制-psd http://mrw.so/4SIuXV
   - [ ] 图片绘制-xd
   - [ ] 重复图片，去重处理  
-- [ ] 编译平台（`负责人alltasxiao`）。http://uitocode.oa.com/
+- [ ] 编译平台（`负责人alltasxiao`）：设计稿智能编译生成目标语言代码平台。http://uitocode.oa.com/
   - [x] 上传、解析、编译、下载、预览。 
   - [x] 关键数据存储(上传文件、解压数据、编译项目、下载项目)；操作记录日志。
   - [x] 个人中心(个人项目、浏览项目)、访客统计、所有项目、开发者工具、设计规范。 
