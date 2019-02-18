@@ -179,7 +179,7 @@
 ## 6.相关文章/辅助工具
 相关文章
 1. 视觉编译-让机器理解设计：http://km.oa.com/group/15849/articles/show/367169
-2. 视觉编译开源宣讲PPT: http://km.oa.com/group/15849/articles/show/367169
+2. 视觉编译开源宣讲PPT: `URL待补充`
 
 辅助工具
 1. 图元合并权重调试：`URL待补充`
