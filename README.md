@@ -20,7 +20,7 @@
 ## 2.解决方案
 ![](http://km.oa.com/files/photos/pictures/201901/1547005473_87_w966_h636.png)
 
-## 3.任务列表
+## 3.任务列表（勾选为已完成或进行中，未勾选表示需要大家的帮助）
 
 - [ ] DesignJson（`负责人yonechen、ralychen`）：将视觉稿图层抽象为图元树。http://mrw.so/57KPAJ
   - [x] Parser图元抽象-Sketch
