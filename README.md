@@ -182,10 +182,10 @@
 2. 视觉编译开源宣讲PPT: http://km.oa.com/group/15849/articles/show/367169
 
 辅助工具
-1. 图元合并权重调试：http://uitocode.oa.com/plug/meta-rule/meta-rule.html
-2. 图片绝对定位检查(designTree检验工具)：http://km.oa.com/group/15849/articles/show/367169
-3. 布局及模型命中率检查(dsl检验工具)：http://km.oa.com/group/15849/articles/show/367169
-4. AI打标任务协同：http://km.oa.com/group/15849/articles/show/367169
+1. 图元合并权重调试：URL待补充
+2. 图片绝对定位检查(designTree检验工具)：URL待补充
+3. 布局及模型命中率检查(dsl检验工具)：URL待补充
+4. AI打标任务协同：URL待补充
 
 ## 7.许可声明/交流群
 #### 注意：项目仅供腾讯内部开源，源代码未经授权，禁止对外公开
