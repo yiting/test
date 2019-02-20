@@ -1,8 +1,6 @@
 # 视觉编译
 通过算法把设计稿翻译为计算机语言，实现UI界面还原
 官网：http://uitocode.oa.com
-视觉编译-让机器理解设计：http://km.oa.com/group/15849/articles/show/367169
- 视觉编译-UI界面的DSL算法(上) ：http://km.oa.com/group/15849/articles/show/370283
 
 ## 目录
 1. 解决什么问题
@@ -194,8 +192,9 @@
 
 ## 6.相关文章/辅助工具
 相关文章
-1. 视觉编译-让机器理解设计：http://km.oa.com/group/15849/articles/show/367169
-2. 视觉编译开源宣讲PPT: `URL待补充`
+1.视觉编译-让机器理解设计：http://km.oa.com/group/15849/articles/show/367169
+2.视觉编译-UI界面的DSL算法(上) ：http://km.oa.com/group/15849/articles/show/370283
+3. 视觉编译开源宣讲PPT: `URL待补充`
 
 辅助工具
 1. 图元合并权重调试：`URL待补充`
