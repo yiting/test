@@ -216,7 +216,7 @@
 视觉编译开发者交QQ流群： 477963529
 ![](http://km.oa.com/files/photos/pictures/201902/1550227512_64_w477_h477.jpg)
 
-###最后，感谢以下成员业余时间友情支持：
+### 最后，感谢以下成员业余时间友情支持：
 感谢 CSIG优图实验室 hongyuzhou 对AI目标识别的技术指导！
 感谢 ISUX碳黑设计组 trevorpang、skymlhuang 交互设计指导！
 感谢 IEG互动娱乐发行线/设计中心/UI开发组 PSD技术支持！
