@@ -62,6 +62,7 @@
   - [x] Hippy
   - [ ] 微信小程序
   - [ ] Vue
+  - [ ] PC版（Html/css）支持
   - [ ] Android
   - [ ] IOS
 - [ ] 编译平台（`负责人alltasxiao`）：将设计稿一键智能生成代码的平台。http://uitocode.oa.com
