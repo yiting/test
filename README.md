@@ -1,5 +1,5 @@
 # 视觉编译
-通过算法把设计稿翻译为计算机语言，实现UI界面还原
+把设计语言翻译为计算机语言，实现UI界面还原。
 
 官网：http://uitocode.oa.com
 
@@ -9,7 +9,7 @@
 3.视觉编译-切图快到没朋友：http://km.oa.com/group/15849/articles/show/370832
 
 任务列表
-期待你加入：http://tapd.oa.com/uitocode2/board/index?board_id=1020406492000017341&board_type=resource&view_type=list
+工程师们在玩命赶工中：http://tapd.oa.com/uitocode2/board/index?board_id=1020406492000017341&board_type=resource&view_type=list
 
 ## 目录
 1. 解决什么问题
@@ -32,6 +32,7 @@
 ```
 1.勾选表示已完成或进行中，未勾选表示尚未开始，需要大家的帮助。
 2.对下述各环节有更好的思路及方案，随时加入修改。
+3.【有兴趣加入的同学，我们会安排专人帮你搭建运行环境】
 ```
 - [ ] DesignJson（`负责人yonechen、ralychen`）：将视觉稿图层抽象为图元树。http://mrw.so/57KPAJ
   - [x] Parser图元抽象-Sketch
@@ -83,7 +84,7 @@
   - [ ] AI+普通规则待接入
 
 
-## 4.快速搭建环境
+## 4.快速搭建环境 【有兴趣加入的同学，我们会安排专人帮你搭建运行环境】
 ```
 背景：由于视觉编译服务底层绘图模块使用了sketch和gm运行库，而sketch绘图库目前只能在mac电脑下运行(后续可研究是否可反编译，运行在其他平台)，因此该项目主要部署mac电脑,
 部分鉴权服务部署在linux服务器。linux服务器上主要用于获取鉴权信息(公司鉴权信息端口受限，只能80端口，而mac上80端口被系统服务占用，所以采用linux服务器鉴权，获取到鉴权
