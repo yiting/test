@@ -7,6 +7,7 @@
 1.视觉编译-让机器理解设计：http://km.oa.com/group/15849/articles/show/367169
 2.视觉编译-UI界面的DSL算法(上) ：http://km.oa.com/group/15849/articles/show/370283
 3.视觉编译-切图快到没朋友：http://km.oa.com/group/15849/articles/show/370832
+4.视觉编译-如何构建UI界面元素的布局关系：http://km.oa.com/group/15849/articles/show/374138
 
 任务列表
 工程师们在玩命赶工中：http://tapd.oa.com/uitocode2/board/index?board_id=1020406492000017341&board_type=resource&view_type=list
