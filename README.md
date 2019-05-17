@@ -3,6 +3,10 @@
 
 官网：http://uitocode.oa.com
 
+#### `注意：目前项目实现了web服务和基础模块服务的分离，最新仓库地址如下:`
+#### `web服务:http://git.code.oa.com/alltasxiao/tosee_web_server_iframe_mix.git`
+#### `基础模块服务:http://git.code.oa.com/qqpay_ui/toSeeServiceBase.git`
+
 1.视觉编译-让机器理解设计：http://km.oa.com/group/15849/articles/show/367169
 2.视觉编译-UI界面的DSL算法(上) ：http://km.oa.com/group/15849/articles/show/370283
 3.视觉编译-切图快到没朋友：http://km.oa.com/group/15849/articles/show/370832
@@ -116,7 +120,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>`搭建环境过程中有任何问题，请联系：alltasxiao(肖超)`</strong>
 ## 5.目录结构
-
+#### `提示：下面项目目录，以上述新的仓库目录结构为准`
 ```
 ├── bin
 │     └── www
