@@ -1,1 +1,0 @@
-module.exports = require("../controllers/edit/edit.js")
