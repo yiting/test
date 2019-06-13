@@ -1,40 +1,48 @@
 {
-    // 使用 IntelliSense 了解相关属性。 
-    // 悬停以查看现有属性的描述。
-    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "default-t3",
-            "program": "${workspaceFolder}/test/dsl2_test/t3.js"
-
-        },
-
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "default-t1",
-            "program": "${workspaceFolder}/test/dsl2_test/t1.js"
-
-        },
-
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "default-t0",
-            "program": "${workspaceFolder}/test/dsl2_test/t0.js"
-
-        },
-
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "test",
-            "program": "${workspaceFolder}/test/dsl2_test/testx.js"
-
-        }
-    ]
+  // 使用 IntelliSense 了解相关属性。
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "args": ["--max-old-space-size=4096"],
+      "program": "${workspaceFolder}/dist/api/index",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program 8081",
+      "args": ["--max-old-space-size=4096"],
+      "program": "${workspaceFolder}/dist/api/indexImg",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "DSL Process test",
+      "program": "${workspaceFolder}/dist/core/dsl_service_ts/test/testxProcess",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "DSL test",
+      "program": "${workspaceFolder}/dist/core/dsl_service_ts/test/testx",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "name": "vscode-jest-tests",
+      "request": "launch",
+      "args": ["--runInBand"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+    }
+  ]
 }

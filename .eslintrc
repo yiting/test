@@ -1,0 +1,50 @@
+{
+  "env": {
+    "jest/globals": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "import", "jest"],
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "directory": "./tsconfig.json"
+      }
+    }
+  },
+  "rules": {
+    "no-new-func": "off",
+    "no-underscore-dangle": "off",
+    "no-bitwise": [
+      "error",
+      {
+        "allow": ["~"]
+      }
+    ],
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "no-use-before-define": ["error", {
+      "functions": false,
+      "classes": false
+    }],
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "classes": false
+      }
+    ],
+    "no-restricted-syntax": "off",
+    "no-plusplus": ["error", {
+      "allowForLoopAfterthoughts": true
+    }]
+  }
+}
