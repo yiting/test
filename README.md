@@ -3,7 +3,8 @@
 
 官网：http://uitocode.oa.com
 
-#### 注意：目前项目实现了web服务和基础模块服务的分离，最新仓库地址如下:
+#### 注意：项目分为两个仓库地址:
+#### 基础模块服务：http://git.code.oa.com/qqpay_ui/toSeeWeb.git
 #### web服务：http://git.code.oa.com/alltasxiao/tosee_web_server_iframe_mix.git
 
 1.视觉编译-让机器理解设计：http://km.oa.com/group/15849/articles/show/367169
