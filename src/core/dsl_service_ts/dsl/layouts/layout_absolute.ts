@@ -45,7 +45,6 @@ class LayoutAbsolute extends Model.LayoutModel {
       }
     });
     // 当可计算元素大于1个，进入布局逻辑
-
     if (calNodes.length > 1) {
       if (Utils.isHorizontal(calNodes)) {
         parent.constraints.LayoutDirection =
@@ -72,19 +71,19 @@ class LayoutAbsolute extends Model.LayoutModel {
     }
   }
 
-  // 如果子节点超出边界，则为绝对定位
   static _isAbsolute(parent: any, node: any) {
     if (!parent.parentId) {
       // 如果为跟节点对子元素，超边界也为非绝对定位
       return false;
     }
+    // 如果子节点超出上下边界，则为绝对定位
     if (
       node.constraints.LayoutSelfPosition ===
         Constrains.LayoutSelfPosition.Absolute ||
       node.abY < parent.abY ||
-      node.abX < parent.abX ||
-      node.abYops > parent.abYops ||
-      node.abXops > parent.abXops
+      // node.abX < parent.abX ||
+      node.abYops > parent.abYops
+      // node.abXops > parent.abXops
     ) {
       return true;
     }

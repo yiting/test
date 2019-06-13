@@ -19,77 +19,219 @@ class LayoutCircle extends Model.LayoutModel {
       // 如果没有子节点，则返回
       return;
     }
-    // 找出需要对比的结构
-    const compareNodes = LayoutCircle._filterCompare(nodes);
+    /**
+     * 待改进：如何避免重复循环的出现
+     */
+    const circleInnerArr = LayoutCircle._findCircle(
+      parent.children,
+      LayoutCircle._innerSimilarRule,
+      LayoutCircle._innerFeatureRule,
+      LayoutCircle._innerFilter,
+    );
+    LayoutCircle._setInnerCircle(parent, circleInnerArr);
+
     // 找出相似结构组合
     const circleArr = LayoutCircle._findCircle(
-      compareNodes,
+      parent.children,
       LayoutCircle._similarRule,
       null,
-      // LayoutCircle._featureRule,
+      LayoutCircle._similarFilter,
     );
     // 相似结构处理
-    LayoutCircle._setCircle(parent, nodes, circleArr);
+    LayoutCircle._setCircle(parent, circleArr);
   }
 
+  static _innerSimilarRule(a: any, b: any) {
+    return a._similarId && b._similarId && a._similarId === b._similarId;
+  }
+  static _innerFilter(result: any) {
+    return result
+      .filter((s: any) => s.target.length > 0)
+      .sort((a: any, b: any) => {
+        // 先按最多重复次数，降序
+        // 相同次数，按最多重复因子数， 降序
+        const s = b.target.length - a.target.length;
+        if (s == 0) {
+          return b.feature - a.feature;
+        }
+        return s;
+      });
+  }
+  // 打破循环的特征规则
+  static _innerFeatureRule(feature: any) {
+    // 特征数大于2
+    if (feature.length < 2) {
+      return false;
+    }
+    return feature.every((node: any, index: number) => {
+      const child: any = node.children[0];
+      if (
+        // 剔除绝对定位元素，绝对定位元素不参与判断
+        node.constraints['LayoutSelfPosition'] ==
+          Constraints.LayoutSelfPosition.Absolute ||
+        // 只有一个子节点
+        node.children.length !== 1 ||
+        // 子节点都是循环节点
+        child.modelName !== 'cycle-01'
+      ) {
+        return false;
+      }
+      if (index === 0) {
+        return true;
+      }
+      // 子循环节点的循环数量一致
+      const prev: any = feature[index - 1].children[0];
+      if (Object.keys(prev.nodes).length !== Object.keys(child.nodes).length) {
+        return;
+      }
+      // 子循环节点的循环位置相同
+      return Object.keys(child.nodes).every((_ref: any) => {
+        const l = child.nodes[_ref];
+        const n = prev.nodes[_ref];
+        return (
+          l._abX === n._abX ||
+          l._abY === n._abY ||
+          // 末节点对齐
+          l._abXops === n._abXops ||
+          l._abYops === n._abYops ||
+          //中线对齐
+          l._abX + l._abXops === n._abX + n._abXops ||
+          l._abY + l._abYops === n._abY + n._abYops
+        );
+      });
+    });
+  }
+  // 设置内循环处理
+  static _setInnerCircle(_parent: any, _circleArr: any) {
+    _circleArr.forEach((fragment: any) => {
+      let rowSimilarIndex: number = 0;
+      if (fragment.target.length > 1) {
+        Similar.similarIndex += 1;
+        rowSimilarIndex = Similar.similarIndex;
+      }
+      Similar.similarIndex += 1;
+      const itemSimilarIndex = Similar.similarIndex;
+      fragment.target.forEach((group: any) => {
+        // 获取引用值
+        const references = Object.keys(group[0].children[0].nodes);
+        // 构建新组合
+        const target: any = {};
+        references.forEach((key: any) => {
+          group.forEach((cycle: any) => {
+            if (!target[key]) {
+              target[key] = [];
+            }
+            target[key].push(cycle.children[0].nodes[key]);
+          });
+        });
+        // 删除节点中旧节点
+        const children = _parent.children.filter(
+          (nd: any) => !group.includes(nd),
+        );
+        // 对新组合构建包含结构
+        const newChild = Object.keys(target).map((key: string) => {
+          const _group = target[key];
+          const newParent = Group.Tree.createNodeData(null);
+          _group.forEach((child: any) => {
+            child.set('parentId', newParent.id);
+          });
+          newParent.set('parentId', _parent.id);
+          newParent.set('children', _group);
+          newParent.set('similarId', itemSimilarIndex);
+          newParent.resize();
+          return [newParent];
+        });
+        const newCycleParent = Group.Tree.createNodeData(null);
+        const newCycleData = Group.Tree.createCycleData(
+          newCycleParent,
+          newChild,
+        );
+        newCycleParent.set('children', [newCycleData]);
+        if (rowSimilarIndex) {
+          newCycleParent.set('similarId', rowSimilarIndex);
+        }
+        newCycleParent.resize();
+        // 如果父节点为跟节点，则不能宽于父节点
+        if (_parent.type === Common.QBody) {
+          newCycleParent.set('abX', _parent.abX);
+          newCycleParent.set('abXops', _parent.abXops);
+        }
+        // 加入新节点到父级元素
+        children.push(newCycleParent);
+        _parent.set('children', children);
+      });
+    });
+  }
   // 相似结构处理
-  static _setCircle(_parent: any, _nodes: any, _circleArr: any) {
-    const parent: any = _parent;
-    let nodes: any = _nodes;
+  static _setCircle(_parent: any, _circleArr: any) {
+    const that = this;
     const circleArr: any = _circleArr;
     if (circleArr.length === 0) {
       // 如果没有相似结构，则返回
       return;
     }
+    circleArr.forEach((frame: any) => {
+      // 判断是否连续，连续则使用UL结构
+      if (frame.feature === 1) {
+        /**
+         * 如果循环片段是一个特征的，在寻找时已经时相连的，使用UL
+         * */
+        that._setULCircle(_parent, frame.target);
+      } else {
+        /**
+         * 如果循环片段是多个特征的
+         */
+        // 判断是否连续循环
+      }
+    });
+  }
+  // 循环特征规则
+  static _featureRule(feature: any) {
+    return feature.every((node: any, index: number) => {
+      return (
+        // 剔除绝对定位元素，绝对定位元素不参与判断
+        node.constraints['LayoutSelfPosition'] !==
+        Constraints.LayoutSelfPosition.Absolute
+      );
+    });
+  }
+  // 设置循环结构
+  static _setULCircle(_parent: any, _target: any) {
+    const parent: any = _parent;
+    const target: any = _target;
+    let { children } = parent;
     const inSimilar: any[] = [];
     // 获取循环节点
-    circleArr.forEach((item: any) => {
-      // 如果特征多于一个，暂不处理
-      if (item.feature !== 1) return;
+    target.forEach((item: any) => {
       // 提取循环节点
-      item.target.forEach((group: any) => inSimilar.push(...group));
-      // 合并循环节点为新节点
-      const newCycleData = Group.Tree.createCycleData(parent, item.target);
-      // 加入新节点到父级元素
-      nodes.push(newCycleData);
+      inSimilar.push(...item);
     });
+    // 合并循环节点为新节点
+    const newCycleData = Group.Tree.createCycleData(parent, target);
+    // 加入新节点到父级元素
+    children.push(newCycleData);
     // 从节点中剔除被循环的节点
-    nodes = nodes.filter((nd: any) => !inSimilar.includes(nd));
-    parent.set('children', nodes);
-  }
-
-  // 剔除绝对定位元素，绝对定位元素不参与循环判断
-  static _filterCompare(arr: any) {
-    return arr.filter(
-      (nd: any) =>
-        nd.constraints.LayoutSelfPosition !==
-        Constraints.LayoutSelfPosition.Absolute,
-    );
-  }
-
-  /**
-   * 特征规则
-   */
-  static _featureRule(fragment: any) {
-    return fragment.length === 1;
+    children = children.filter((nd: any) => !inSimilar.includes(nd));
+    parent.set('children', children);
   }
 
   // 相似节点逻辑
   static _similarRule(a: any, b: any) {
     return a._similarId && b._similarId && a._similarId === b._similarId;
-    /*  return (
-                         a._similarId &&
-                         b._similarId &&
-                         a._similarId===b._similarId
-                     ) || (
-                         a.type===Common.QText &&
-                         (a.abY===b.abY ||
-                             a.abYops===b.abYops ||
-                             a.ctY===b.ctY ||
-                             a.abX===b.abX ||
-                             a.abXops===b.abXops ||
-                             a.ctX===b.ctX)
-                     ) */
+  }
+
+  static _similarFilter(result: any) {
+    return result
+      .filter((s: any) => s.target.length > 1)
+      .sort((a: any, b: any) => {
+        // 先按最多重复次数，降序
+        // 相同次数，按最多重复因子数， 降序
+        const s = b.target.length - a.target.length;
+        if (s == 0) {
+          return b.feature - a.feature;
+        }
+        return s;
+      });
   }
 
   /**
@@ -111,52 +253,61 @@ class LayoutCircle extends Model.LayoutModel {
    * ]
    */
   static _findCircle(
-    arr: any,
-    similarLogic: any,
-    featureLogic: Function | null,
+    _arr: any,
+    _similarLogic: any,
+    _featureLogic: any,
+    _filterLogic: any,
   ) {
-    const pit: any[] = [];
+    const arr: any = _arr;
+    const fragmentCache: any[] = [];
+    const filterLogic: any = _filterLogic;
     // 相似特征分组
-    arr.forEach((s: any, i: any) => {
+    arr.forEach(function(s: any, i: any) {
+      const similarLogic: any = _similarLogic;
+      const featureLogic: any = _featureLogic;
       // 开始遍历
       const lastIndex = i + 1;
       for (let index = 0; index < lastIndex; index++) {
         // 获取片段
         const fragment = arr.slice(index, lastIndex);
-        if (featureLogic && !featureLogic(fragment)) {
-          // 如果不符合特征逻辑
-        } else if (
-          // 排除完全重复的独立项
+        if (
+          // 排除特征是完全重复的独立项
           fragment.length > 1 &&
-          fragment.every(
-            (t: any, j: any) =>
+          fragment.every(function(t: any, j: any) {
+            return (
               j === 0 ||
               (similarLogic
                 ? similarLogic(t, fragment[j - 1])
-                : t === fragment[j - 1]),
-          )
+                : t === fragment[j - 1])
+            );
+          })
         ) {
           // 如果完全重复的独立项
+        } else if (featureLogic && !featureLogic(fragment)) {
+          // 如果不符合特征逻辑
         } else {
+          // 如果重复片段符合逻辑，会进入当前环节
           // 判断重复片段
-          const isRepeat = pit.some((_p: any) => {
+          const isRepeat = fragmentCache.some(function(_p: any) {
             const p: any = _p;
             // existing:当前片段与缓存片段，每一段都符合逻辑特征判断
             const existing =
               p.feature === fragment.length &&
               //  只有一个特征时，还须连续的重复；多个特征时，只需逻辑相同
-              p.target.some(
-                (t: any) =>
+              p.target.some(function(t: any) {
+                return (
                   (p.feature === 1 ? index === p.lastIndex + 1 : true) &&
-                  t.every((f: any, fi: any) =>
-                    similarLogic
-                      ? similarLogic(f, fragment[fi])
-                      : f === fragment[fi],
-                  ),
-              );
-
+                  t.every(function(f: any, findex: any) {
+                    return similarLogic
+                      ? similarLogic(f, fragment[findex])
+                      : f === fragment[findex];
+                  })
+                );
+              });
+            /**
+             * 如果重复，且当前节点在上一个重复片段的节点之后
+             */
             if (existing && p.lastIndex + p.feature <= index) {
-              // 如果重复，且当前节点在上一个重复片段的节点之后
               p.target.push(fragment);
               p.indexs.push(index);
               p.lastIndex = index;
@@ -164,8 +315,9 @@ class LayoutCircle extends Model.LayoutModel {
             }
             return false;
           });
+          // 如果没有重复，则缓存当前片段
           if (!isRepeat) {
-            pit.push({
+            fragmentCache.push({
               feature: fragment.length,
               target: [fragment],
               indexs: [index],
@@ -177,38 +329,45 @@ class LayoutCircle extends Model.LayoutModel {
     });
     const indexMap = new Array(arr.length);
     //  剔除不重复项
-    const sorter = pit
-      .filter(s => s.target.length > 1)
-      //  按最高重复数，降序
-      .sort((a, b) => b.target.length - a.target.length)
-      // 按最大重复因子数， 降序
-      .sort((a, b) => b.feature - a.feature)
-      //  筛选已被选用的节点组
-      .filter((s: any) => {
-        const indexs: any[] = [];
-        const sim: any = s;
-        sim.target = sim.target.filter((target: any, idx: any) => {
-          const index = sim.indexs[idx];
-          //  提取序列组，检测重复组的序列是否已经被使用过
-          if (
-            indexMap.slice(index, index + sim.feature).every(i => i !== true)
-          ) {
-            indexs.push(index);
-            return true;
-          }
-          return false;
+    const sorter = filterLogic(fragmentCache);
+    //  筛选已被选用的节点组
+    const pond: any[] = [];
+    return sorter.filter(function(s: any) {
+      const res: any = s.target.every((target: any) => {
+        const pondIncludedTarget = target.every((t: any) => {
+          return pond.includes(t);
         });
-        //  剔除只有一个重复项的重复组
-        if (sim.target.length > 1) {
-          sim.indexs = indexs;
-          indexs.forEach(index => {
-            indexMap.fill(true, index, index + sim.feature);
-          });
-          return true;
+        if (!pondIncludedTarget) {
+          pond.push(...target);
         }
-        return false;
+        return !pondIncludedTarget;
       });
-    return sorter;
+      return res;
+
+      // const indexs: any[] = [];
+      // const sim: any = s;
+      // sim.target = sim.target.filter(function (target: any, idx: any) {
+      //   const index = sim.indexs[idx];
+      //   //  提取序列组，检测重复组的序列是否已经被使用过
+      //   if (
+      //     indexMap.slice(index, index + sim.feature).every(function (i: any) {
+      //       return i !== true
+      //     })
+      //   ) {
+      //     indexs.push(index);
+      //     return true;
+      //   }
+      //   return false;
+      // });
+      // if (sim.target.length > 1) {
+      //   sim.indexs = indexs;
+      //   indexs.forEach(function (index: any) {
+      //     indexMap.fill(true, index, index + sim.feature);
+      //   });
+      //   return true;
+      // }
+      // return false;
+    });
   }
 }
 
