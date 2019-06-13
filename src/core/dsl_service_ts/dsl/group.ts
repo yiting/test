@@ -399,31 +399,17 @@ class Tree {
       } else if (nodes.length === 1) {
         // 第二层只有一个数据直接返回
         const renderDataI = nodes[0];
-        // renderDataI.set('similarId', similarId);
         renderDataI.set('modelRef', `${i}`);
         // 递归读取nodes的节点
-        // Tree._handleCycleData(renderDataI, nodes[0]);
         // 这里先改用key-value的形式储存在nodes,规避放.childrend的问题
-        // newRenderData.children.push(renderDataI);
         newRenderData.nodes[`${i}`] = renderDataI;
       } else {
-        const nodeI = new Model.RenderData();
-        nodeI.set('parentId', newRenderData.id);
-        nodeI.set('modelRef', `${i}`);
-        nodeI.nodes = {};
-
-        for (let j = 0; j < nodes.length; j++) {
-          const nd = nodes[j];
-          const renderDataJ = nd;
-          renderDataJ.set('modelRef', `${j}`);
-          // 递归读取nodes的节点
-          Tree._handleCycleData(renderDataJ, nd);
-          // 这里同上, 先改用key-value的形式
-          // nodeI.children.push(renderDataJ);
-          nodeI.nodes[`${j}`] = renderDataJ;
-        }
-        nodeI.resize(true); // 新节点重新计算最小范围
-        newRenderData.children.push(nodeI);
+        const renderDataI = new Model.RenderData();
+        renderDataI.set('parentId', newRenderData.id);
+        renderDataI.set('modelRef', `${i}`);
+        renderDataI.children.push(...nodes);
+        renderDataI.resize(false); // 新节点重新计算最小范围
+        newRenderData.nodes[`${i}`] = renderDataI;
       }
     }
 

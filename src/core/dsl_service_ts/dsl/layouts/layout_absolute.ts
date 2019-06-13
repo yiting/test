@@ -4,6 +4,7 @@ import Utils from '../utils';
 import Model from '../model';
 import Constrains from '../constraints';
 import left from '../../render/h5/css/left';
+import { debug } from 'util';
 
 // flex layout 的处理核心是
 //
@@ -50,8 +51,8 @@ class LayoutAbsolute extends Model.LayoutModel {
         parent.constraints.LayoutDirection =
           Constrains.LayoutDirection.Horizontal;
         LayoutAbsolute._sort(calNodes, 'abX');
-        // 横排基线普查，标识所有不在基线的元素为绝对定位
         LayoutAbsolute._handleAbsolute(parent, calNodes, absNodes);
+        // 横排基线普查，标识所有不在基线的元素为绝对定位
         LayoutAbsolute._handleHorizontal(parent, calNodes, absNodes);
       } else {
         parent.constraints.LayoutDirection =
@@ -130,11 +131,6 @@ class LayoutAbsolute extends Model.LayoutModel {
     const calNodes: any = _calNodes;
     const absNodes: any = _absNodes;
     parent.constraints.LayoutDirection = Constrains.LayoutDirection.Horizontal;
-    // parent.constraints['LayoutJustifyContent'] = Constrains.LayoutJustifyContent.Start;
-    // 横向的排列原则先简单按照:
-    // 1, 从左往右,从上往下排列
-    // 2, 从最左开始计算出x轴上不相交的元素组成横向一排
-    // 3, 没能排列的元素, 若与某元素相交, 则包含进相交元素, 否则加到parent处
 
     const top = parent.abY;
     const bottom = parent.abYops;
@@ -219,9 +215,8 @@ class LayoutAbsolute extends Model.LayoutModel {
        * 且不是最左/最右的空隙
        * 则符合条件
        * */
-
       if (
-        dist1.dist / dist2.dist > 1.3 &&
+        dist1.dist / dist2.dist > 1.5 &&
         dist1.index !== 0 &&
         dist1.index !== calNodes.length
       ) {

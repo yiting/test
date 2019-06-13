@@ -4,10 +4,10 @@ import path from 'path';
 // 此模块为h5解析模块
 import Common from '../../dsl/common';
 import Builder from '../builder';
-import CssDom from './css_dom';
-import SimilarCssDom from './similar_css_dom';
-import HtmlDom from './html_dom';
-import ClassName from './class_name';
+import CssDom from './dom_css';
+import SimilarCssDom from './dom_similar_css';
+import HtmlDom from './dom_html';
+import ClassName from './dom_className';
 import QLog from '../../log/qlog';
 
 import Store from '../../helper/store';
@@ -20,10 +20,6 @@ const Loger = QLog.getInstance(QLog.moduleData.render);
 
 class H5Builder extends Builder {
   _htmlFile: any;
-
-  _testFile: any;
-
-  _layoutType: any;
 
   htmlDom: any;
 
@@ -74,12 +70,12 @@ class H5Builder extends Builder {
 
   // 解析样式
   _parseCss() {
-    this.cssDom = CssDom.process(this._data, this._layoutType);
+    this.cssDom = CssDom.process(this._data);
     this.similarCssArr = SimilarCssDom.process(this.cssDom);
   }
 
   getTagString() {
-    const htmlStr = HtmlDom.getHtmlString(this.htmlDom, this._layoutType);
+    const htmlStr = HtmlDom.getHtmlString(this.htmlDom);
 
     // 添加完整的html结构
     const tpl = this._getTpl();

@@ -552,9 +552,14 @@ const ImageCombine = function() {
       }
       let clearnList = ImageClean.cleanImg(that.pageJson, [
         'border',
+        'borders',
         'shadows',
       ]);
-      ImageClean.clearJSON(that.pageJson, clearnList, ['border', 'shadows']);
+      ImageClean.clearJSON(that.pageJson, clearnList, [
+        'borders',
+        'border',
+        'shadows',
+      ]);
       // //拷贝源文件，同时解压
       // await serverModulesUtils.copyFolderPromise(
       //   path.resolve(__dirname, `./data/unzip_file/${projectName}`),

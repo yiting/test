@@ -20,6 +20,17 @@ const walkIn = function(layoutObject: any, dslTree: any) {
   });
 };
 
+const walkOut = function(layoutObject: any, dslTree: any) {
+  const { children } = dslTree;
+  if (children.length <= 0) {
+    return;
+  }
+  children.forEach((child: any) => {
+    walkIn(layoutObject, child);
+  });
+  layoutObject.handle(dslTree, children);
+};
+
 function layout(dslTree: any) {
   let _logStep = 'start';
   try {
@@ -34,7 +45,7 @@ function layout(dslTree: any) {
     LayoutSimilar.handle(dslTree._treeData);
     // 循环
     _logStep = '循环';
-    walkIn(LayoutCircle, dslTree._treeData);
+    walkOut(LayoutCircle, dslTree._treeData);
     // 排序
     _logStep = '排序';
     walkIn(LayoutSort, dslTree._treeData);

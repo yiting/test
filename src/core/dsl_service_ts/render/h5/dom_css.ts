@@ -7,6 +7,9 @@ import Config from '../config.json';
 import Func from './css_func';
 import QLog from '../../log/qlog';
 
+import CssBoundary from './css_boundary';
+import CssConstraints from './css_constraints';
+
 import cssProperty from './css_property';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
@@ -33,23 +36,6 @@ const _parseTree = function(arr: any[], dom: any, similarData: any) {
     Loger.error(`css_dom.js [_parseTree] ${e},params[dom.id:${dom && dom.id}]`);
   }
 };
-/**
- * 解析获取css属性
- * @param {Array} arr 字符串收集数组
- * @param {CssDom} dom CssDom节点
- */
-function _parseMap(_map: any, dom: any) {
-  const map: any = _map;
-  try {
-    map[dom.id] = dom;
-
-    dom.children.forEach((child: any) => {
-      _parseMap(map, child);
-    });
-  } catch (e) {
-    Loger.error(`css_dom.js [_parseMap] ${e},params[dom.id:${dom && dom.id}]`);
-  }
-}
 
 function getCssString(_cssDomTree: any, _similarData: any) {
   // 获取cssTree解析出的样式
@@ -58,11 +44,20 @@ function getCssString(_cssDomTree: any, _similarData: any) {
   return css.join('\n');
 }
 
-function getCssMap(_cssDomTree: any) {
+function getCssMap(_cssDom: any, _map: any = {}) {
   // 获取cssTree解析出的样式
-  const css = {}; // 每个CssDom节点返回的样式数组
-  _parseMap(css, _cssDomTree);
-  return css;
+  try {
+    _map[_cssDom.id] = _cssDom;
+
+    _cssDom.children.forEach((child: any) => {
+      getCssMap(child, _map);
+    });
+  } catch (e) {
+    Loger.error(
+      `css_dom.js [getCssMap] ${e},params[dom.id:${_cssDom && _cssDom.id}]`,
+    );
+  }
+  return _map;
 }
 
 /**
@@ -92,38 +87,6 @@ const _buildTree = function(parent: any, data: any) {
   }
   return cssNode;
 };
-/**
- * 约束补充
- * @param {Tree} tree
- */
-function _parseConstraints(tree: any) {
-  try {
-    tree.children.forEach((cn: any) => {
-      _parseConstraints(cn);
-    });
-    tree._supplementConstraints();
-  } catch (e) {
-    Loger.error(
-      `css_dom.js [_parseConstraints] ${e},params[tree.id:${tree && tree.id}]`,
-    );
-  }
-}
-/**
- * 边界补充
- * @param {Tree} tree
- */
-function _parseBoundary(tree: any) {
-  try {
-    tree._calculateBoundary();
-    tree.children.forEach((cn: any) => {
-      _parseBoundary(cn);
-    });
-  } catch (e) {
-    Loger.error(
-      `css_dom.js [_parseBoundary] ${e},params[tree.id:${tree && tree.id}]`,
-    );
-  }
-}
 
 const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align'];
 const CompatibleValue = ['box'];
@@ -362,10 +325,7 @@ class CssDom {
     if (!this.parent) {
       return true;
     }
-    if (
-      this.parent.constraints.LayoutDirection ===
-      Constraints.LayoutDirection.Vertical
-    ) {
+    if (Utils.isVertical(this.parent.children)) {
       return true;
     }
     return false;
@@ -383,11 +343,7 @@ class CssDom {
     //     return true;
     // }
 
-    if (
-      this.parent &&
-      this.parent.constraints.LayoutDirection ===
-        Constraints.LayoutDirection.Horizontal
-    ) {
+    if (Utils.isHorizontal(this.parent.children)) {
       return true;
     }
 
@@ -492,77 +448,6 @@ class CssDom {
   }
 
   /**
-   * 边界重定义
-   */
-  _calculateBoundary() {
-    // 跟节点不调整
-    if (this.type === Common.QBody) {
-      return;
-    }
-    if (this._isAbsolute()) {
-      return;
-    }
-
-    const isVertical = this._isParentVertical();
-    const left = this._calculateLeftBoundary(isVertical);
-    const right = this._calculateRightBoundary(isVertical);
-    this._calculateBoundaryConstraints(isVertical, left, right);
-  }
-
-  // 计算边界变更后的约束
-  _calculateBoundaryConstraints(isVertical: boolean, left: any, right: any) {
-    if (left && right && Math.abs(left - right) < 2) {
-      if (isVertical) {
-        this.constraints.LayoutAlignItems = Constraints.LayoutAlignItems.Center;
-      } else {
-        this.constraints.LayoutJustifyContent =
-          Constraints.LayoutJustifyContent.Center;
-      }
-    }
-  }
-
-  // 计算左边界
-  _calculateLeftBoundary(isVertical: boolean) {
-    if (!this._canLeftFlex()) {
-      return undefined;
-    }
-    const prevNode = isVertical ? null : this._prevNode();
-    const { _abX } = this;
-    // 最后个节点
-    if (!prevNode) {
-      this._abX = this.parent._abX;
-    } else if (prevNode._canRightFlex()) {
-      // 前节点可右拓展，取中间线
-      this._abX = Math.floor((prevNode._abXops + this._abX) / 2);
-    } else {
-      // 其他，取末尾线
-      this._abX = prevNode._abXops;
-    }
-    return Math.abs(_abX - this._abX);
-  }
-
-  // 计算左边界
-  _calculateRightBoundary(isVertical: boolean) {
-    if (!this._canRightFlex()) {
-      return undefined;
-    }
-    const nextNode = isVertical ? null : this._nextNode();
-    const { _abXops } = this;
-    // 第一个节点
-    if (!nextNode) {
-      this._abXops =
-        this._abXops < this.parent._abXops ? this.parent._abXops : this._abXops;
-    } else if (nextNode._canLeftFlex()) {
-      // 后节点可左拓展，取中间线
-      this._abXops = Math.ceil((nextNode._abX + this._abXops) / 2);
-    } else {
-      // 其他，前节点尾线
-      this._abXops = nextNode._abX;
-    }
-    return Math.abs(_abXops - this._abXops);
-  }
-
-  /**
    * 判断文本是否可拓展，
    * 如果文本为水平方向，则不能拓展
    */
@@ -593,62 +478,10 @@ class CssDom {
     return this.children.find((nd: any) => !nd._isAbsolute());
   }
 
-  // 约束补充计算
-  _supplementConstraints() {
-    const { children } = this;
-    if (children.length === 0) {
-      return;
-    }
-    const isVertical = children.length > 0 && Utils.isVertical(children);
-    const baseLine: any = Utils.calculateBaseLine(this);
-    const _justifyContent = isVertical ? 'vertical' : 'horizontal';
-    const _alignItems = isVertical ? 'horizontal' : 'vertical';
-    // 约束方向判断
-    this.constraints.LayoutDirection =
-      this.constraints.LayoutDirection ||
-      (isVertical
-        ? Constraints.LayoutDirection.Vertical
-        : Constraints.LayoutDirection.Horizontal);
-    // 主轴约束补充
-    this.constraints.LayoutJustifyContent =
-      this.constraints.LayoutJustifyContent ||
-      (baseLine[`${_justifyContent}Center`] &&
-        Constraints.LayoutJustifyContent.Center) ||
-      (baseLine[`${_justifyContent}End`] &&
-        Constraints.LayoutJustifyContent.End) ||
-      (baseLine[`${_justifyContent}Start`] &&
-        Constraints.LayoutJustifyContent.Start);
-    // 副轴约束补充
-    this.constraints.LayoutAlignItems =
-      this.constraints.LayoutAlignItems ||
-      (baseLine[`${_alignItems}Center`] &&
-        Constraints.LayoutJustifyContent.Center) ||
-      (baseLine[`${_alignItems}End`] && Constraints.LayoutJustifyContent.End) ||
-      (baseLine[`${_alignItems}Start`] &&
-        Constraints.LayoutJustifyContent.Start);
-
-    /**
-     * H5约束修正：
-     */
-    if (
-      this.constraints.LayoutDirection ===
-        Constraints.LayoutDirection.Vertical &&
-      this.constraints.LayoutAlignItems === Constraints.LayoutAlignItems.End
-    ) {
-      this.constraints.LayoutAlignItems = Constraints.LayoutAlignItems.Start;
-    }
-    if (
-      this.constraints.LayoutDirection === Constraints.LayoutDirection.Vertical
-    ) {
-      this.constraints.LayoutJustifyContent =
-        Constraints.LayoutJustifyContent.Start;
-    }
-  }
-
   /**
    * 获取className
    */
-  getClass() {
+  getCssSelector() {
     return this.selfCss.map((n: any) => `.${n}`).join(' ');
   }
 
@@ -685,10 +518,10 @@ class CssDom {
    */
   getCss(similarCss: any) {
     let str = '';
-    const className = this.getClass();
-    const cssArr = this.getCssProperty(similarCss);
-    if (cssArr.length) {
-      str = `${className} {${cssArr.join(';')}}`;
+    const cssSelector = this.getCssSelector();
+    const cssPropArr = this.getCssProperty(similarCss);
+    if (cssPropArr.length) {
+      str = `${cssSelector} {${cssPropArr.join(';')}}`;
     }
     return str;
   }
@@ -715,7 +548,7 @@ class CssDom {
 }
 
 // 主流程
-const process = function(data: any, options: any) {
+const process = function(data: any) {
   // 构建cssTree并返回
   Loger.debug('css_dom.js [process]');
   // 构建树
@@ -724,11 +557,11 @@ const process = function(data: any, options: any) {
 
   // 计算约束
   Loger.debug('css_dom.js [_parseConstraints]');
-  _parseConstraints(cssDomTree);
+  CssBoundary(cssDomTree);
 
   // 调整边距
   Loger.debug('css_dom.js [_parseBoundary]');
-  _parseBoundary(cssDomTree);
+  CssConstraints(cssDomTree);
   return cssDomTree;
 };
 export default {

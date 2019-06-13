@@ -149,7 +149,7 @@ class HtmlDom {
   }
 
   // 开始节点
-  getHtmlStart(_layoutType: any) {
+  getHtmlStart() {
     const modelName = this.modelName ? `md="${this.modelName}"` : '';
     const tag = this.getTag();
     const id = this.id ? `nid="${this.id}"` : '';
@@ -169,12 +169,12 @@ class HtmlDom {
     return this.isClosedTag ? '' : `</${this.getTag()}> `;
   }
 
-  static getHtmlString(htmlDom: any, _layoutType: any) {
+  static getHtmlString(htmlDom: any) {
     // 遍历循环
-    let html = htmlDom.getHtmlStart(_layoutType);
+    let html = htmlDom.getHtmlStart();
     if (htmlDom.children) {
       htmlDom.children.forEach((child: any) => {
-        html += HtmlDom.getHtmlString(child, _layoutType);
+        html += HtmlDom.getHtmlString(child);
       });
     }
     html += htmlDom.getHtmlEnd();

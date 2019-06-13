@@ -14,8 +14,7 @@ class LayoutCircle extends Model.LayoutModel {
    * @param {Array} models 对应的模型数组
    * @param {Int} layoutType 布局的类型
    */
-  static handle(parent: any, nodes: any, layoutType: any) {
-    // if(parent.type==)
+  static handle(parent: any, nodes: any) {
     if (!nodes || nodes.length === 0) {
       // 如果没有子节点，则返回
       return;
@@ -26,7 +25,8 @@ class LayoutCircle extends Model.LayoutModel {
     const circleArr = LayoutCircle._findCircle(
       compareNodes,
       LayoutCircle._similarRule,
-      LayoutCircle._featureRule,
+      null,
+      // LayoutCircle._featureRule,
     );
     // 相似结构处理
     LayoutCircle._setCircle(parent, nodes, circleArr);
@@ -110,7 +110,11 @@ class LayoutCircle extends Model.LayoutModel {
    *  ...
    * ]
    */
-  static _findCircle(arr: any, similarLogic: any, featureLogic: any) {
+  static _findCircle(
+    arr: any,
+    similarLogic: any,
+    featureLogic: Function | null,
+  ) {
     const pit: any[] = [];
     // 相似特征分组
     arr.forEach((s: any, i: any) => {

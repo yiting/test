@@ -65,8 +65,9 @@ class LayoutSimilar extends Model.LayoutModel {
     // 剔除绝对定位元素，绝对定位元素不参与循环判断
     if (
       node.constraints.LayoutSelfPosition ===
-        Constraints.LayoutSelfPosition.Absolute ||
-      (node.modelName !== 'layer' && node.type !== Common.QWidget)
+      Constraints.LayoutSelfPosition
+        .Absolute /*  ||
+      (node.modelName !== 'layer' && node.type !== Common.QWidget) */
     ) {
       return;
     }
@@ -84,7 +85,9 @@ class LayoutSimilar extends Model.LayoutModel {
       ctY: (node.abY + node.abYops) / 2,
       height: node.abYops - node.abY,
       width: node.abXops - node.abX,
+      parentId: node.parentId,
       modelName: node.modelName,
+      type: node.type,
       isHorizontal: Utils.isHorizontal(node.children),
       compareChildren: node.children.filter(
         (child: any) =>
@@ -111,7 +114,7 @@ class LayoutSimilar extends Model.LayoutModel {
      * 3. 如果非layer，三基线对齐
      * 4. 如果没有子节点，则相似
      */
-    if (a.modelName !== b.modelName) {
+    if (a.type !== b.type || a.modelName !== b.modelName) {
       return false;
     }
     const isConnect = Utils.isConnect(a.node, b.node, -1);
@@ -119,21 +122,38 @@ class LayoutSimilar extends Model.LayoutModel {
       // 如果相连，则为不同
       return false;
     }
-    if (a.node.type === Common.QLayer) {
+
+    // 如果为布局类型，判断所有子节点是否相似
+    if (
+      a.type === Common.QLayer ||
+      // 部分shape是一个包含子节点的layer，故增加以下一条判断条件
+      (a.type === Common.QShape && a.compareChildren.length > 0)
+    ) {
       return (
         a.isHorizontal === b.isHorizontal &&
         a.compareChildren.length === b.compareChildren.length &&
         a.compareChildren.every((ac: any, i: any) => {
           const bc = b.compareChildren[i];
-          return ac.modelName === bc.modelName;
+          return (
+            ac.modelName === bc.modelName &&
+            (ac.abX - a.abX == bc.abX - b.abX ||
+              ac.abXops - a.abXops == bc.abXops - b.abXops) &&
+            (ac.abY - a.abY == bc.abY - b.abY ||
+              ac.abYops - a.abYops == bc.abYops - b.abYops)
+          );
         }) &&
         ((a.height === b.height &&
           (a.abX === b.abX || a.abXops === b.abXops || a.ctX === b.ctX)) ||
           (a.width === b.width &&
             (a.abY === b.abY || a.abYops === b.abYops || a.ctY === b.ctY / 2)))
+        /* (
+          (a.height === b.height || a.width === b.width) &&
+          (a.abX === b.abX || a.abXops === b.abXops || a.ctX === b.ctX ||
+            a.abY === b.abY || a.abYops === b.abYops || a.ctY === b.ctY / 2)
+        ) */
       );
-    }
-    if (a.node.type === Common.QWidget) {
+      // 如果为组件类型，判断位置是否相似
+    } else if (a.type === Common.QWidget) {
       // 如果为Widget，三线对齐相同
       return (
         a.abY === b.abY ||
@@ -144,9 +164,8 @@ class LayoutSimilar extends Model.LayoutModel {
         a.ctX === b.ctX ||
         (a.width === b.width && a.height === b.height)
       );
-    }
-    if (a.node.type === Common.ElementData) {
-      // 如果为Element，则同父节点，子节点数相同，三线对齐相同
+    } else if (a.type !== Common.QText) {
+      // 如果为其他元素（非文本），则同父节点，子节点数相同，三线对齐相同
       return (
         a.parentId === b.parentId &&
         (a.abY === b.abY ||
@@ -157,7 +176,6 @@ class LayoutSimilar extends Model.LayoutModel {
           a.ctX === b.ctX)
       );
     }
-    return false;
   }
 }
 
