@@ -1,0 +1,76 @@
+{
+  "name": "core",
+  "version": "0.0.1",
+  "description": "视觉编译-提供底层服务的相关模块",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose ./test",
+    "dist": "tsc",
+    "dev": "tsc -w",
+    "lint": "eslint src/**",
+    "commitlint": "commitlint --color",
+    "start": "tsc && node ./dist/api/index.js",
+    "serve": "PORT=3000 pm2 start /home/tosee/core_server/dist/api/index.js --name=core_server",
+    "serve-dev": "PORT=3001 pm2 start /home/tosee/core_server/dist/api/index.js --name=core_server_dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.code.oa.com/qqpay_ui/toSeeServiceBase.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "@types/archiver": "^2.1.3",
+    "@types/fs-extra": "^5.0.5",
+    "@types/jest": "^24.0.11",
+    "@types/koa": "^2.0.45",
+    "@types/koa-bodyparser": "^4.2.0",
+    "@types/koa-router": "^7.0.27",
+    "@types/node": "^9.6.5",
+    "@types/request": "^2.48.1",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-import-resolver-typescript": "^1.1.1",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.4.1",
+    "husky": "^1.3.1",
+    "jest": "^24.7.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "1.16.4",
+    "ts-jest": "^24.0.1",
+    "typescript": "^3.4.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "archiver": "^3.0.0",
+    "download-file": "^0.1.5",
+    "fs-extra": "^7.0.1",
+    "koa": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.4.0",
+    "koa2-cors": "^2.0.6",
+    "log4js": "^4.1.0",
+    "typeorm": "^0.2.16",
+    "unzip": "^0.1.11"
+  }
+}

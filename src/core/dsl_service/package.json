@@ -1,0 +1,16 @@
+{
+  "name": "dsl_service",
+  "version": "1.0.0",
+  "description": "dsl package",
+  "main": "index.js",
+  "dependencies": {
+    "log4js": "^4.1.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

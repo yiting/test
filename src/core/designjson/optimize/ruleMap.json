@@ -1,0 +1,16 @@
+{
+  "data": [
+    { "type": "ColorSimilar", "value": 0, "requireScore": 0 },
+    { "type": "ColorComplexitySimilar", "value": 0, "requireScore": 0 },
+    { "type": "SizeSimilar", "value": "30", "requireScore": "46" },
+    { "type": "IntersectSimilar", "value": "100", "requireScore": "36" },
+    { "type": "AvatarSimilar", "value": 0, "requireScore": 0 },
+    { "type": "ZIndexSimilar", "value": "30", "requireScore": 0 },
+    { "type": "MinLevelSimilar", "value": "10", "requireScore": 0 },
+    { "type": "CanCssSimilar", "value": "31", "requireScore": "20" },
+    { "type": "SymbolSimilar", "value": 0, "requireScore": 0 },
+    { "type": "AiSimilar", "value": 0, "requireScore": 0 },
+    { "type": "SliceSimilar", "value": 0, "requireScore": 0 }
+  ],
+  "Threshold": "65"
+}

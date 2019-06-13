@@ -1,0 +1,34 @@
+{
+  "commit": "120f488f43e85cae5c74eeae99d970dcf7fe443d",
+  "pagesAndArtboards": {
+    "E23F15A7-DB15-4E5C-AA29-E5746309414C": {
+      "name": "Page 2",
+      "artboards": {
+        "3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00": { "name": "附近资料卡-客态" }
+      }
+    }
+  },
+  "version": 105,
+  "fonts": [
+    ".PingFangSC-Regular",
+    "PingFangSC-Regular",
+    "HelveticaNeue",
+    "PingFangSC-Medium"
+  ],
+  "compatibilityVersion": 99,
+  "app": "com.bohemiancoding.sketch3",
+  "autosaved": 1,
+  "variant": "NONAPPSTORE",
+  "created": {
+    "commit": "120f488f43e85cae5c74eeae99d970dcf7fe443d",
+    "appVersion": "51.2",
+    "build": 57519,
+    "app": "com.bohemiancoding.sketch3",
+    "compatibilityVersion": 99,
+    "version": 105,
+    "variant": "NONAPPSTORE"
+  },
+  "saveHistory": ["NONAPPSTORE.57519"],
+  "appVersion": "51.2",
+  "build": 57519
+}

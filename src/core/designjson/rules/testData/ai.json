@@ -1,0 +1,37 @@
+[{
+    "id": "ai-0",
+    "det": "icondesc",
+    "name": "probability",
+    "rate": "0.9108423",
+    "abX":34,
+    "abY":1000,
+    "width":36,
+    "height":36
+}, {
+    "id": "ai-1",
+    "det": "icondesc",
+    "name": "probability",
+    "rate": "0.90722877",
+    "abX":34,
+    "abY":938,
+    "width":36,
+    "height":36
+}, {
+    "id": "ai-2",
+    "det": "icondesc",
+    "name": "probability",
+    "rate": "0.864721",
+    "abX":34,
+    "abY":1060,
+    "width":36,
+    "height":36
+}, {
+    "id": "ai-3",
+    "det": "icondesc",
+    "name": "probability",
+    "rate": "0.853541",
+    "abX":34,
+    "abY":1120,
+    "width":36,
+    "height":36
+}]

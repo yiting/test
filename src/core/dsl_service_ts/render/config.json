@@ -1,0 +1,18 @@
+{
+  "HTML": {
+    "name": "html",
+    "output": {
+      "imgPath": "{project}/images/",
+      "cssPath": "{project}/",
+      "jsPath": "{project}/js",
+      "htmlPath": "{project}/"
+    }
+  },
+  "ANDROID": "android",
+  "IOS": "ios",
+  "FLUTTER": "flutter",
+  "REACT": "react",
+  "VUE": "vue",
+  "REACT_NATIVE": "react-native",
+  "WEEX": "weex"
+}
