@@ -3,7 +3,7 @@ const version = {
   dsl: '1.0.1',
   json: '1.0.1',
 };
-
+//test
 function getVersion(type: string) {
   var result = {
     type: '',
