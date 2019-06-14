@@ -215,13 +215,57 @@ class CssDom {
       if (node.id === this.id) {
         canBegin = true;
       } else if (canBegin && !node._isAbsolute()) {
+        /**
+         * 新增多行的判断逻辑,如果前节点位置后于当前节点，则错误
+         */
+        const directKeyName =
+          this.parent.constraints.LayoutDirection ==
+          Constraints.LayoutDirection.Horizontal
+            ? '_abX'
+            : '_abY';
+        if (node[directKeyName] > this[directKeyName]) {
+          return null;
+        }
         return node;
       }
       i -= 1;
     }
     return null;
   }
-
+  /**
+   * 获取当前节点的上一行内容
+   * 判断逻辑：
+   * 1. 水平排列的，比当前节点位置高的
+   * 2. 垂直排列的，比当前节点位置左的
+   */
+  _prevLine() {
+    const that: any = this;
+    if (that.type === Common.QBody || !that.parent) {
+      // 根节点
+      return null;
+    }
+    const prevKey =
+      that.parent.constraints.LayoutDirection ==
+      Constraints.LayoutDirection.Horizontal
+        ? '_abYops'
+        : '_abXops';
+    const selfKey =
+      that.parent.constraints.LayoutDirection ==
+      Constraints.LayoutDirection.Horizontal
+        ? '_abY'
+        : '_abX';
+    const _prevNodes: any = [];
+    that.parent.children.some((node: any) => {
+      if (node.id === that.id) {
+        return false;
+      }
+      // 如果非绝对定位，且节点位置靠前
+      if (!node._isAbsolute() && node[prevKey] < that[selfKey]) {
+        _prevNodes.push(node);
+      }
+    });
+    return _prevNodes;
+  }
   /**
    * 获取当前节点的下一个兄弟节点,若没有则返回null
    */
@@ -325,6 +369,14 @@ class CssDom {
     if (!this.parent) {
       return true;
     }
+    if (
+      this.parent.constraints.LayoutDirection &&
+      this.parent.constraints.LayoutDirection ==
+        Constraints.LayoutDirection.Vertical
+    ) {
+      return true;
+    }
+
     if (Utils.isVertical(this.parent.children)) {
       return true;
     }
@@ -342,6 +394,14 @@ class CssDom {
     // if (this.parent.children.length===1) { // 1个元素默认是横排
     //     return true;
     // }
+
+    if (
+      this.parent.constraints.LayoutDirection &&
+      this.parent.constraints.LayoutDirection ==
+        Constraints.LayoutDirection.Horizontal
+    ) {
+      return true;
+    }
 
     if (Utils.isHorizontal(this.parent.children)) {
       return true;

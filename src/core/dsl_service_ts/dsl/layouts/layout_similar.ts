@@ -4,6 +4,9 @@ import Utils from '../utils';
 import Model from '../model';
 import Group from '../group';
 import Constraints from '../constraints';
+import Store from '../../helper/store';
+
+let ErrorCoefficient: number = 0;
 
 class LayoutSimilar extends Model.LayoutModel {
   similarIndex: number;
@@ -22,6 +25,8 @@ class LayoutSimilar extends Model.LayoutModel {
     that._compareNodes = {};
     // 找出所有需要对比的结构
     this._filterCompareNodes(parent);
+
+    ErrorCoefficient = Store.get('errorCoefficient') || 0;
     // 找出相似结构组合
     Object.keys(that._compareNodes).forEach(key => {
       const compareNodes = that._compareNodes[key];
@@ -114,11 +119,6 @@ class LayoutSimilar extends Model.LayoutModel {
      * 3. 如果非layer，三基线对齐
      * 4. 如果没有子节点，则相似
      */
-    if (
-      b.node.id == '6355FC4D-7ACA-40D6-90CF-A84D53F4C2BA-c' &&
-      a.node.id == '4CAE32F6-9A8F-4C0A-930F-4958FCAEE87B-c'
-    )
-      debugger;
     if (a.type !== b.type || a.modelName !== b.modelName) {
       return false;
     }
@@ -137,14 +137,16 @@ class LayoutSimilar extends Model.LayoutModel {
       return (
         a.isHorizontal === b.isHorizontal &&
         a.compareChildren.length === b.compareChildren.length &&
-        a.compareChildren.every((ac: any, i: any) => {
-          const bc = b.compareChildren[i];
+        a.compareChildren.every((aChild: any, i: any) => {
+          const bChild = b.compareChildren[i];
           return (
-            ac.modelName === bc.modelName &&
-            (ac.abX - a.abX == bc.abX - b.abX ||
-              ac.abXops - a.abXops == bc.abXops - b.abXops) &&
-            (ac.abY - a.abY == bc.abY - b.abY ||
-              ac.abYops - a.abYops == bc.abYops - b.abYops)
+            aChild.modelName === bChild.modelName &&
+            (aChild.abX - a.abX - (bChild.abX - b.abX) < ErrorCoefficient ||
+              aChild.abXops - a.abXops - (bChild.abXops - b.abXops) <
+                ErrorCoefficient) &&
+            (aChild.abY - a.abY - (bChild.abY - b.abY) < ErrorCoefficient ||
+              aChild.abYops - a.abYops - (bChild.abYops - b.abYops) <
+                ErrorCoefficient)
           );
         }) &&
         ((a.height === b.height &&

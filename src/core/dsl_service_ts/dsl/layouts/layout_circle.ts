@@ -6,6 +6,8 @@ import Group from '../group';
 import Constraints from '../constraints';
 import Similar from './layout_similar';
 
+const CYCLE_MODEL_NAME = 'cycle-01';
+
 class LayoutCircle extends Model.LayoutModel {
   /**
    * 主流程：对传进来的模型数组进行循环分析处理
@@ -29,7 +31,6 @@ class LayoutCircle extends Model.LayoutModel {
       LayoutCircle._innerFilter,
     );
     LayoutCircle._setInnerCircle(parent, circleInnerArr);
-
     // 找出相似结构组合
     const circleArr = LayoutCircle._findCircle(
       parent.children,
@@ -72,7 +73,7 @@ class LayoutCircle extends Model.LayoutModel {
         // 只有一个子节点
         node.children.length !== 1 ||
         // 子节点都是循环节点
-        child.modelName !== 'cycle-01'
+        child.modelName !== CYCLE_MODEL_NAME
       ) {
         return false;
       }
@@ -171,17 +172,27 @@ class LayoutCircle extends Model.LayoutModel {
       return;
     }
     circleArr.forEach((frame: any) => {
-      // 判断是否连续，连续则使用UL结构
+      /**
+       * 如果循环片段是一个特征的，在寻找时已经时相连的
+       * */
       if (frame.feature === 1) {
-        /**
-         * 如果循环片段是一个特征的，在寻找时已经时相连的，使用UL
-         * */
-        that._setULCircle(_parent, frame.target);
+        // 判断是否内嵌循环
+        const isWrapItems = frame.target.every((target: any) => {
+          return (
+            target[0].children.length == 1 &&
+            target[0].children[0].modelName == CYCLE_MODEL_NAME
+          );
+        });
+        if (isWrapItems) {
+          that._setWrapCircle(_parent, frame.target);
+        } else {
+          that._setULCircle(_parent, frame.target);
+        }
       } else {
         /**
          * 如果循环片段是多个特征的
          */
-        // 判断是否连续循环
+        that._setWrapBlock(_parent, frame.target);
       }
     });
   }
@@ -197,24 +208,65 @@ class LayoutCircle extends Model.LayoutModel {
   }
   // 设置循环结构
   static _setULCircle(_parent: any, _target: any) {
-    const parent: any = _parent;
-    const target: any = _target;
-    let { children } = parent;
+    const { children } = _parent;
     const inSimilar: any[] = [];
     // 获取循环节点
-    target.forEach((item: any) => {
+    _target.forEach((item: any) => {
       // 提取循环节点
       inSimilar.push(...item);
     });
     // 合并循环节点为新节点
-    const newCycleData = Group.Tree.createCycleData(parent, target);
+    const newCycleData = Group.Tree.createCycleData(_parent, _target);
     // 加入新节点到父级元素
     children.push(newCycleData);
     // 从节点中剔除被循环的节点
-    children = children.filter((nd: any) => !inSimilar.includes(nd));
-    parent.set('children', children);
+    const newChildren = children.filter((nd: any) => !inSimilar.includes(nd));
+    _parent.set('children', newChildren);
   }
+  // 设置换行循环结构
+  static _setWrapCircle(_parent: any, _target: any) {
+    const inWrap: any = [];
+    const inRemove: any = [];
+    const itemIndex: number = 0; // 默认单节点循环索引值为0
+    let { children } = _parent;
+    _target.forEach((node: any) => {
+      Object.keys(node[itemIndex].children[itemIndex].nodes).forEach(
+        (key: any) => {
+          const item = node[itemIndex].children[itemIndex].nodes[key];
+          inWrap.push([item]);
+        },
+      );
+      inRemove.push(...node);
+    });
 
+    // 合并循环节点为新节点
+    const newCycleData = Group.Tree.createCycleData(_parent, inWrap);
+    newCycleData.constraints['LayoutWrap'] = Constraints.LayoutWrap.Wrap;
+    // 加入新节点到父级元素
+    children.push(newCycleData);
+    // 从节点中剔除被循环的节点
+    children = children.filter((nd: any) => !inRemove.includes(nd));
+    _parent.set('children', children);
+  }
+  static _setWrapBlock(_parent: any, _target: any) {
+    const { children } = _parent;
+    const inRemove: any = [];
+    Similar.similarIndex += 1;
+    const similarId: any = Similar.similarIndex;
+
+    _target.forEach((group: any) => {
+      const newWrapData = Group.Tree.createNodeData(null);
+      newWrapData.set('children', group);
+      newWrapData.set('parentId', _parent.id);
+      newWrapData.set('similarId', similarId);
+      newWrapData.resize(false);
+      inRemove.push(...group);
+      children.push(newWrapData);
+    });
+    // 从节点中剔除被循环的节点
+    const newChildren = children.filter((nd: any) => !inRemove.includes(nd));
+    _parent.set('children', newChildren);
+  }
   // 相似节点逻辑
   static _similarRule(a: any, b: any) {
     return a._similarId && b._similarId && a._similarId === b._similarId;
@@ -327,46 +379,23 @@ class LayoutCircle extends Model.LayoutModel {
         }
       }
     });
-    const indexMap = new Array(arr.length);
     //  剔除不重复项
     const sorter = filterLogic(fragmentCache);
     //  筛选已被选用的节点组
     const pond: any[] = [];
     return sorter.filter(function(s: any) {
+      const _cache: any = [];
       const res: any = s.target.every((target: any) => {
-        const pondIncludedTarget = target.every((t: any) => {
+        const isInPond = target.some((t: any) => {
           return pond.includes(t);
         });
-        if (!pondIncludedTarget) {
-          pond.push(...target);
-        }
-        return !pondIncludedTarget;
+        _cache.push(...target);
+        return !isInPond;
       });
+      if (res) {
+        pond.push(..._cache);
+      }
       return res;
-
-      // const indexs: any[] = [];
-      // const sim: any = s;
-      // sim.target = sim.target.filter(function (target: any, idx: any) {
-      //   const index = sim.indexs[idx];
-      //   //  提取序列组，检测重复组的序列是否已经被使用过
-      //   if (
-      //     indexMap.slice(index, index + sim.feature).every(function (i: any) {
-      //       return i !== true
-      //     })
-      //   ) {
-      //     indexs.push(index);
-      //     return true;
-      //   }
-      //   return false;
-      // });
-      // if (sim.target.length > 1) {
-      //   sim.indexs = indexs;
-      //   indexs.forEach(function (index: any) {
-      //     indexMap.fill(true, index, index + sim.feature);
-      //   });
-      //   return true;
-      // }
-      // return false;
     });
   }
 }
