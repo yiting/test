@@ -3,7 +3,7 @@ const version = {
   dsl: '1.0.1',
   json: '1.0.1',
 };
-
+//test
 function getVersion(type: string) {
   var result = {
     type: '',
@@ -11,14 +11,22 @@ function getVersion(type: string) {
   };
   if (type == 'img') {
     result.version = version['img'];
+    result.type = type;
+    return result;
   }
   if (type == 'dsl') {
     result.version = version['dsl'];
+    result.type = type;
+    return result;
   }
   if (type == 'json') {
     result.version = version['json'];
+    result.type = type;
+    return result;
   }
-  result.type = type;
+  if (type == '') {
+    return version;
+  }
   return result;
 }
 
