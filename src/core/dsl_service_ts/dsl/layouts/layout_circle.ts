@@ -238,12 +238,16 @@ class LayoutCircle extends Model.LayoutModel {
       );
       inRemove.push(...node);
     });
-
     // 合并循环节点为新节点
-    const newCycleData = Group.Tree.createCycleData(_parent, inWrap);
+    const newCycleParent = Group.Tree.createNodeData(null);
+    const newCycleData = Group.Tree.createCycleData(newCycleParent, inWrap);
     newCycleData.constraints['LayoutWrap'] = Constraints.LayoutWrap.Wrap;
+    newCycleParent.set('children', [newCycleData]);
+    newCycleParent.resize();
+    const gap = inWrap[1][0].abX - inWrap[0][0].abXops;
+    newCycleData.set('abX', newCycleData.abX - gap);
     // 加入新节点到父级元素
-    children.push(newCycleData);
+    children.push(newCycleParent);
     // 从节点中剔除被循环的节点
     children = children.filter((nd: any) => !inRemove.includes(nd));
     _parent.set('children', children);

@@ -1,4 +1,4 @@
-// import Constraints from '../../../dsl/constraints';
+import Constraints from '../../../dsl/constraints';
 export default {
   key: 'width',
   value() {
