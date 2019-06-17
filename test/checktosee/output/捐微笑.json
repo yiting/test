@@ -1,0 +1,370 @@
+[
+  {
+    "id": "D3F3FA9A-618E-4804-A1C7-BB9FF297A22C",
+    "name": "捐微笑",
+    "width": 750,
+    "height": 1334,
+    "abX": 0,
+    "abY": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QLayer"
+  },
+  {
+    "id": "1DF62138-1A3F-4593-B30F-8F6AEAED7D09",
+    "name": "iPhone X Copy 80",
+    "width": 750,
+    "height": 3386,
+    "abX": 0,
+    "abY": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "1DF62138-1A3F-4593-B30F-8F6AEAED7D09.png"
+  },
+  {
+    "id": "72DE88EE-A165-42B9-AF8A-42ED96935B31",
+    "name": "Rectangle 8",
+    "width": 750,
+    "height": 1206,
+    "abX": 0,
+    "abY": 128,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 0, "g": 0, "b": 0, "a": 0.7 },
+        "hasOpacity": true
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "EE752D19-D3EB-4B4C-901C-C9E6E0C89B31",
+    "name": "拍照",
+    "width": 72,
+    "height": 54,
+    "abX": 40,
+    "abY": 1053,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 38, "g": 50, "b": 56, "a": 1 },
+          "string": "拍照",
+          "font": "PingFangSC-Medium",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 54
+    },
+    "type": "QText",
+    "text": "拍照"
+  },
+  {
+    "id": "81DE9442-F97E-4FB6-AC0F-2D3C03259D8A",
+    "name": "上传照片",
+    "width": 144,
+    "height": 54,
+    "abX": 40,
+    "abY": 1151,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 38, "g": 50, "b": 56, "a": 1 },
+          "string": "上传照片",
+          "font": "PingFangSC-Medium",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 54
+    },
+    "type": "QText",
+    "text": "上传照片"
+  },
+  {
+    "id": "8CDF48B3-154A-4660-AF65-A6CCE89291B8",
+    "name": "Rectangle 2 Copy",
+    "width": 750,
+    "height": 2,
+    "abX": 0,
+    "abY": 1126,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 108, "g": 79, "b": 59, "a": 0.1 },
+        "hasOpacity": true
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "FEE5E1BA-227A-425F-8A61-E1CCCAEAF906",
+    "name": "Fill 1",
+    "width": 53,
+    "height": 53,
+    "abX": 656,
+    "abY": 1150,
+    "styles": {},
+    "type": "QImage",
+    "path": "FEE5E1BA-227A-425F-8A61-E1CCCAEAF906.png"
+  },
+  {
+    "id": "420DE89C-00DC-44B6-B330-9D3BD37C5720",
+    "name": "Fill 1",
+    "width": 53,
+    "height": 53,
+    "abX": 656,
+    "abY": 1053,
+    "styles": {},
+    "type": "QImage",
+    "path": "420DE89C-00DC-44B6-B330-9D3BD37C5720.png"
+  },
+  {
+    "id": "70508E4F-0A8F-4A29-83B7-34FD8F7BFCD7",
+    "name": "取消",
+    "width": 72,
+    "height": 54,
+    "abX": 339,
+    "abY": 1252,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 38, "g": 50, "b": 56, "a": 1 },
+          "string": "取消",
+          "font": "PingFangSC-Medium",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 54
+    },
+    "type": "QText",
+    "text": "取消"
+  },
+  {
+    "id": "DDC3F68E-F6DD-4647-AC08-D50CB128B130",
+    "name": "Rectangle 2",
+    "width": 752,
+    "height": 2,
+    "abX": -2,
+    "abY": 1223,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 108, "g": 79, "b": 59, "a": 0.1 },
+        "hasOpacity": true
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "1236---2C07E366-A05D-4CA5-B512-A1177AA88000",
+    "name": "Label",
+    "width": 148,
+    "height": 52,
+    "abX": 301,
+    "abY": 56,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "腾讯公益",
+          "font": "PingFangSC-Medium",
+          "size": 37
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "腾讯公益",
+    "symbolRoot": ["123664B2-7CAA-4C97-B207-CE6F20E869FB"],
+    "symbolIdentity": ["dcdae3899adfeecbb6979150a2d81c0a"]
+  },
+  {
+    "id": "1236---601D2D09-FF58-4B8B-9D20-A5D890127FE2",
+    "name": "100%",
+    "width": 33,
+    "height": 14,
+    "abX": 307,
+    "abY": 4,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 3, "g": 3, "b": 3, "a": 1 },
+          "string": "100%",
+          "font": "SFProText-Regular",
+          "size": 12
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "100%",
+    "symbolRoot": ["123664B2-7CAA-4C97-B207-CE6F20E869FB"],
+    "symbolIdentity": ["dcdae3899adfeecbb6979150a2d81c0a"]
+  },
+  {
+    "id": "1236---46141257-F02E-40DE-9F5A-151517B02CB1",
+    "name": "Time",
+    "width": 49,
+    "height": 14,
+    "abX": 163,
+    "abY": 4,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 3, "g": 3, "b": 3, "a": 1 },
+          "string": "9:41 AM",
+          "font": "SFProText-Semibold",
+          "size": 12
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "9:41 AM",
+    "symbolRoot": ["123664B2-7CAA-4C97-B207-CE6F20E869FB"],
+    "symbolIdentity": ["dcdae3899adfeecbb6979150a2d81c0a"]
+  },
+  {
+    "id": "1236---0AA6E386-D5A3-4889-8221-2D6C72CE0F14",
+    "name": "Carrier",
+    "width": 40,
+    "height": 14,
+    "abX": 26,
+    "abY": 4,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 3, "g": 3, "b": 3, "a": 1 },
+          "string": "Sketch",
+          "font": "SFProText-Regular",
+          "size": 12
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "Sketch",
+    "symbolRoot": ["123664B2-7CAA-4C97-B207-CE6F20E869FB"],
+    "symbolIdentity": ["dcdae3899adfeecbb6979150a2d81c0a"]
+  },
+  {
+    "id": "_1236__123",
+    "name": "_Signal__Mobile Signal_Wifi",
+    "width": 79,
+    "height": 14,
+    "abX": 6,
+    "abY": 4,
+    "styles": { "borderRadius": null, "border": null, "shadows": null },
+    "type": "QImage",
+    "path": "_1236__123.png"
+  },
+  {
+    "id": "_1236__123",
+    "name": "_Background__Base_Global Operation_Pin Right__Battery_Bluetooth",
+    "width": 750,
+    "height": 128,
+    "abX": 0,
+    "abY": 0,
+    "styles": { "borderRadius": null, "border": null, "shadows": null },
+    "type": "QImage",
+    "path": "_1236__123.png"
+  },
+  {
+    "id": "_1C22_8E91",
+    "name": "_Rectangle_Rectangle",
+    "width": 750,
+    "height": 305,
+    "abX": 0,
+    "abY": 1029,
+    "styles": {},
+    "type": "QImage",
+    "path": "_1C22_8E91.png"
+  }
+]

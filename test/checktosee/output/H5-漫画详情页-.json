@@ -1,0 +1,1103 @@
+[
+  {
+    "id": "15714356-C6A0-4315-A085-537E5066A45C",
+    "name": "H5-漫画详情页-",
+    "width": 750,
+    "height": 1334,
+    "abX": 0,
+    "abY": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QLayer"
+  },
+  {
+    "id": "_614C_C42D_9FEF_6A34",
+    "name": "_Rectangle 15_42c337372e6f81093c8b68b4e9fd3966ff49a192565f3-LmE5mg_fw658_Rectangle 15_Rectangle 15",
+    "width": 750,
+    "height": 400,
+    "abX": 0,
+    "abY": 248,
+    "styles": { "borderRadius": null, "border": null, "shadows": null },
+    "type": "QImage",
+    "path": "_614C_C42D_9FEF_6A34.png"
+  },
+  {
+    "id": "FA216C3A-B311-48D6-91AD-8094F00A8568",
+    "name": "岩原谷二",
+    "width": 96,
+    "height": 33,
+    "abX": 28,
+    "abY": 570,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "岩原谷二",
+          "font": "PingFang-SC-Regular",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "岩原谷二"
+  },
+  {
+    "id": "35EF959A-2736-40AD-8C2B-0FDDE2EC4DEB",
+    "name": "科幻 | 热血",
+    "width": 117,
+    "height": 33,
+    "abX": 148,
+    "abY": 570,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "科幻 | 热血",
+          "font": "PingFang-SC-Regular",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "科幻 | 热血"
+  },
+  {
+    "id": "382ACD95-D99E-40B6-AC43-AFB82488C7C2",
+    "name": "Dimension W-维度战记",
+    "width": 391,
+    "height": 50,
+    "abX": 28,
+    "abY": 516,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "Dimension W-维度战记",
+          "font": "PingFang-SC-Medium",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "Dimension W-维度战记"
+  },
+  {
+    "id": "A6647C99-6316-4709-8C50-A8EEF6FF65C5",
+    "name": "Rectangle",
+    "width": 750,
+    "height": 128,
+    "abX": 0,
+    "abY": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "FE6B026C-46B0-4A0B-8BA7-B9B1AD448E50",
+    "name": "返回",
+    "width": 64,
+    "height": 45,
+    "abX": 54,
+    "abY": 62,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 0.9 },
+          "string": "返回",
+          "font": "PingFangSC-Regular",
+          "size": 32
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "返回"
+  },
+  {
+    "id": "0DF90A4B-094F-4B23-86E7-15C905ABF249",
+    "name": "返回",
+    "width": 364,
+    "height": 48,
+    "abX": 193,
+    "abY": 58,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "Dimension W-维度战记",
+          "font": "PingFangSC-Regular",
+          "size": 34
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "Dimension W-维度战记"
+  },
+  {
+    "id": "CE9759E5-08AF-435C-A339-5E979DACCB35",
+    "name": "Combined Shape",
+    "width": 42,
+    "height": 10,
+    "abX": 689,
+    "abY": 76,
+    "styles": {},
+    "type": "QImage",
+    "path": "CE9759E5-08AF-435C-A339-5E979DACCB35.png"
+  },
+  {
+    "id": "7B8DECD1-0395-450F-9CF9-7428F070D9F7",
+    "name": "Line",
+    "width": 15,
+    "height": 30,
+    "abX": 23,
+    "abY": 64,
+    "styles": {},
+    "type": "QImage",
+    "path": "7B8DECD1-0395-450F-9CF9-7428F070D9F7.png"
+  },
+  {
+    "id": "8B546C56-555D-4BD3-BFC4-87C3C3F879D4",
+    "name": "底",
+    "width": 750,
+    "height": 40,
+    "abX": 0,
+    "abY": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "DA6CCC32-1DFA-4212-A25B-08C46330D3EE",
+    "name": "Wifi",
+    "width": 29,
+    "height": 20,
+    "abX": 113,
+    "abY": 10,
+    "styles": {},
+    "type": "QImage",
+    "path": "DA6CCC32-1DFA-4212-A25B-08C46330D3EE.png"
+  },
+  {
+    "id": "7F5D1023-FB28-47CB-92E6-96F69FEFF2AA",
+    "name": "Mobile Signal",
+    "width": 29,
+    "height": 19,
+    "abX": 12,
+    "abY": 11,
+    "styles": {},
+    "type": "QImage",
+    "path": "7F5D1023-FB28-47CB-92E6-96F69FEFF2AA.png"
+  },
+  {
+    "id": "B147E078-76C8-435C-9068-026F9AAF164B",
+    "name": "Time",
+    "width": 95,
+    "height": 66,
+    "abX": 328,
+    "abY": 4,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 3, "g": 3, "b": 3, "a": 1 },
+          "string": "9:41 AM",
+          "font": "PingFang-SC-Medium",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "9:41 AM"
+  },
+  {
+    "id": "C56AEA4A-5FE1-4884-8FFC-E8494DB76E32",
+    "name": "QXD",
+    "width": 57,
+    "height": 36,
+    "abX": 50,
+    "abY": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 3, "g": 3, "b": 3, "a": 1 },
+          "string": "QXD ",
+          "font": "PingFang-SC-Regular",
+          "size": 25
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "QXD "
+  },
+  {
+    "id": "3FC7BB1A-1267-47F1-89BD-A490F322C06D",
+    "name": "100%",
+    "width": 65,
+    "height": 26,
+    "abX": 618,
+    "abY": 5,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 3, "g": 3, "b": 3, "a": 1 },
+          "string": "100%",
+          "font": "PingFangSC-Regular",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "100%"
+  },
+  {
+    "id": "62A1BEF3-867D-4E66-ADCA-302E53C8F391",
+    "name": "Battery",
+    "width": 49,
+    "height": 21,
+    "abX": 689,
+    "abY": 9,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "62A1BEF3-867D-4E66-ADCA-302E53C8F391.png"
+  },
+  {
+    "id": "B4893457-E644-40F0-992E-11BFC30EFF74",
+    "name": "Rectangle 9",
+    "width": 750,
+    "height": 92,
+    "abX": 0,
+    "abY": 648,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "5F5506B1-449D-4922-B2B7-44D7EDC2AE1A",
+    "name": "章节",
+    "width": 56,
+    "height": 28,
+    "abX": 478,
+    "abY": 679,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 194, "b": 255, "a": 1 },
+          "string": "章节",
+          "font": "PingFang-SC-Regular",
+          "size": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 28
+    },
+    "type": "QText",
+    "text": "章节"
+  },
+  {
+    "id": "43964570-33AF-42E9-8693-755EF69FB4A1",
+    "name": "Group",
+    "width": 14,
+    "height": 22,
+    "abX": 539,
+    "abY": 681,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "43964570-33AF-42E9-8693-755EF69FB4A1.png"
+  },
+  {
+    "id": "23FD19DA-6CE4-4847-A72D-3550808588A5",
+    "name": "Rectangle 10",
+    "width": 90,
+    "height": 8,
+    "abX": 470,
+    "abY": 732,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 0, "g": 194, "b": 255, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "ACBCD5A7-7750-4472-8DB5-CA1FF6EE3D04",
+    "name": "简介",
+    "width": 56,
+    "height": 28,
+    "abX": 206,
+    "abY": 679,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "简介",
+          "font": "PingFang-SC-Regular",
+          "size": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 28
+    },
+    "type": "QText",
+    "text": "简介"
+  },
+  {
+    "id": "_E65F_8E2A",
+    "name": "_Rectangle 12_Bitmap",
+    "width": 224,
+    "height": 150,
+    "abX": 0,
+    "abY": 740,
+    "styles": { "borderRadius": null, "border": null, "shadows": null },
+    "type": "QImage",
+    "path": "_E65F_8E2A.png"
+  },
+  {
+    "id": "6621AAFC-D9BB-4905-938C-FC4D4E848CA9",
+    "name": "Rectangle 12",
+    "width": 750,
+    "height": 1,
+    "abX": 0,
+    "abY": 890,
+    "styles": {
+      "borderRadius": null,
+      "border": {
+        "type": "solid",
+        "color": { "r": 233, "g": 233, "b": 233, "a": 1 },
+        "width": 1
+      },
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 233, "g": 233, "b": 233, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "916D25E3-EB57-4E27-B6B1-E4F5C5B9A420",
+    "name": "第120话",
+    "width": 116,
+    "height": 32,
+    "abX": 251,
+    "abY": 781,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "第120话",
+          "font": ".PingFang-SC-Regular",
+          "size": 32
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "第120话"
+  },
+  {
+    "id": "9AF79BFE-EFA6-4353-A114-0AE4D119E7E7",
+    "name": "男子汉的世界很精彩",
+    "width": 216,
+    "height": 24,
+    "abX": 251,
+    "abY": 825,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 119, "g": 119, "b": 119, "a": 1 },
+          "string": "男子汉的世界很精彩",
+          "font": ".PingFang-SC-Regular",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "男子汉的世界很精彩"
+  },
+  {
+    "id": "_AAC4_C9FC_91A6",
+    "name": "_Rectangle 12_Bitmap_Bitmap",
+    "width": 228,
+    "height": 150,
+    "abX": 0,
+    "abY": 895,
+    "styles": { "borderRadius": null, "border": null, "shadows": null },
+    "type": "QImage",
+    "path": "_AAC4_C9FC_91A6.png"
+  },
+  {
+    "id": "DA8069D2-3A7C-4C2C-801E-4FCB463CFEDC",
+    "name": "Rectangle 12",
+    "width": 1,
+    "height": 150,
+    "abX": 227,
+    "abY": 895,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 233, "g": 233, "b": 233, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "E2FB2629-F96B-4CE3-930D-519137A42BE1",
+    "name": "Rectangle 12",
+    "width": 750,
+    "height": 1,
+    "abX": 0,
+    "abY": 1045,
+    "styles": {
+      "borderRadius": null,
+      "border": {
+        "type": "solid",
+        "color": { "r": 233, "g": 233, "b": 233, "a": 1 },
+        "width": 1
+      },
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 233, "g": 233, "b": 233, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "397F79EB-1E79-488E-84E2-216388795A9D",
+    "name": "第121话",
+    "width": 122,
+    "height": 45,
+    "abX": 252,
+    "abY": 931,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "第121话",
+          "font": "PingFang-SC-Regular",
+          "size": 32
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "第121话"
+  },
+  {
+    "id": "D63B57F4-0756-4FBA-8B89-8A1C7583A112",
+    "name": "向着胜利前进吧！",
+    "width": 192,
+    "height": 24,
+    "abX": 252,
+    "abY": 981,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 119, "g": 119, "b": 119, "a": 1 },
+          "string": "向着胜利前进吧！",
+          "font": ".PingFang-SC-Regular",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "向着胜利前进吧！"
+  },
+  {
+    "id": "_D67B_03A7_6649_A8E8",
+    "name": "_Rectangle 12_Bitmap_Bitmap_Bitmap",
+    "width": 228,
+    "height": 150,
+    "abX": 0,
+    "abY": 1049,
+    "styles": { "borderRadius": null, "border": null, "shadows": null },
+    "type": "QImage",
+    "path": "_D67B_03A7_6649_A8E8.png"
+  },
+  {
+    "id": "D0DEC325-59CF-4AAE-8736-8D009571CE87",
+    "name": "Rectangle 12",
+    "width": 1,
+    "height": 150,
+    "abX": 227,
+    "abY": 1049,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 233, "g": 233, "b": 233, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "079F1FA0-4574-437C-A44A-41053B28FBF4",
+    "name": "Rectangle 12",
+    "width": 750,
+    "height": 1,
+    "abX": 0,
+    "abY": 1199,
+    "styles": {
+      "borderRadius": null,
+      "border": {
+        "type": "solid",
+        "color": { "r": 233, "g": 233, "b": 233, "a": 1 },
+        "width": 1
+      },
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 216, "g": 216, "b": 216, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "69645501-C563-4254-96B7-B6BF57EE6016",
+    "name": "第122话",
+    "width": 116,
+    "height": 32,
+    "abX": 252,
+    "abY": 1088,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "第122话",
+          "font": ".PingFang-SC-Regular",
+          "size": 32
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "第122话"
+  },
+  {
+    "id": "6C7C34A7-6040-4486-8543-261B4C65D684",
+    "name": "这个鲨鱼开始要行动了",
+    "width": 240,
+    "height": 24,
+    "abX": 252,
+    "abY": 1133,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 119, "g": 119, "b": 119, "a": 1 },
+          "string": "这个鲨鱼开始要行动了",
+          "font": ".PingFang-SC-Regular",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "这个鲨鱼开始要行动了"
+  },
+  {
+    "id": "9386B137-033A-426D-95CB-9ADD0D2FFDC7",
+    "name": "Rectangle 19",
+    "width": 750,
+    "height": 120,
+    "abX": 0,
+    "abY": 128,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 255, "g": 255, "b": 255, "a": 0.7 },
+        "hasOpacity": true
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "_A817_6CB8_61C7",
+    "name": "_Mask_2016QQ动漫LOGO-白色背景_iTunesArtwork@2x",
+    "width": 90,
+    "height": 90,
+    "abX": 24,
+    "abY": 142,
+    "styles": {
+      "borderRadius": [12, 12, 12, 12],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "_A817_6CB8_61C7.png"
+  },
+  {
+    "id": "11160100-1E57-4390-BCB7-7AA3231EC1C9",
+    "name": "波洞",
+    "width": 60,
+    "height": 42,
+    "abX": 134,
+    "abY": 148,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "波洞",
+          "font": "PingFangSC-Medium",
+          "size": 30
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "波洞"
+  },
+  {
+    "id": "893B3772-49B3-4CFD-9F89-479126891872",
+    "name": "最in的动漫潮流文化社区",
+    "width": 282,
+    "height": 37,
+    "abX": 134,
+    "abY": 190,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 119, "g": 119, "b": 119, "a": 1 },
+          "string": "最in的动漫潮流文化社区",
+          "font": "PingFang-SC-Regular",
+          "size": 26
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "最in的动漫潮流文化社区"
+  },
+  {
+    "id": "0BA3DDEA-3858-4C4E-92A3-07E449CEE526",
+    "name": "立即打开",
+    "width": 96,
+    "height": 33,
+    "abX": 550,
+    "abY": 174,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 51, "g": 51, "b": 51, "a": 1 },
+          "string": "立即打开",
+          "font": "PingFangSC-Regular",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "立即打开"
+  },
+  {
+    "id": "_CC3F_4851",
+    "name": "_Mask_红",
+    "width": 121,
+    "height": 48,
+    "abX": 539,
+    "abY": 164,
+    "styles": {},
+    "type": "QImage",
+    "path": "_CC3F_4851.png"
+  },
+  {
+    "id": "9FB7E937-909C-4D1B-94E6-D4969D8D210C",
+    "name": "Combined Shape",
+    "width": 21,
+    "height": 21,
+    "abX": 692,
+    "abY": 177,
+    "styles": {},
+    "type": "QImage",
+    "path": "9FB7E937-909C-4D1B-94E6-D4969D8D210C.png"
+  },
+  {
+    "id": "12C8F8FA-48D9-4B1C-9BDC-7411435F7752",
+    "name": "Rectangle 2",
+    "width": 750,
+    "height": 108,
+    "abX": 0,
+    "abY": 1226,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 247, "g": 247, "b": 248, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "3A33D14D-6FE8-4CA8-AED5-3A8435D95883",
+    "name": "Rectangle 2",
+    "width": 750,
+    "height": 1,
+    "abX": 0,
+    "abY": 1226,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 204, "g": 204, "b": 204, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "1A8FF3DB-B8F1-4990-9A7A-94348A4BB1F6",
+    "name": "Rectangle 8",
+    "width": 340,
+    "height": 80,
+    "abX": 26,
+    "abY": 1240,
+    "styles": {
+      "borderRadius": [4, 4, 4, 4],
+      "border": {
+        "type": "solid",
+        "color": { "r": 195, "g": 200, "b": 204, "a": 1 },
+        "width": 1
+      },
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "7932CA35-B1ED-4728-82D5-8C93554B1C7E",
+    "name": "查看更多",
+    "width": 239,
+    "height": 40,
+    "abX": 69,
+    "abY": 1260,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "查看更多",
+          "font": "PingFangSC-Regular",
+          "size": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "查看更多"
+  },
+  {
+    "id": "B0254CE4-9155-4D07-8CE1-90BF38741127",
+    "name": "Rectangle 8",
+    "width": 340,
+    "height": 80,
+    "abX": 384,
+    "abY": 1240,
+    "styles": {
+      "borderRadius": [4, 4, 4, 4],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 32, "g": 195, "b": 255, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "CBD8A0D6-6BF3-4265-BF3C-655F330ED165",
+    "name": "开始阅读",
+    "width": 173,
+    "height": 40,
+    "abX": 468,
+    "abY": 1260,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "开始阅读",
+          "font": "PingFangSC-Regular",
+          "size": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "开始阅读"
+  }
+]

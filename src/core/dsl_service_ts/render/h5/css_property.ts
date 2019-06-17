@@ -1,6 +1,7 @@
 // 布局类
 import display from './css/display';
 import flexDirection from './css/flexDirection';
+import flexWrap from './css/flexWrap';
 import alignItems from './css/alignItems';
 import justifyContent from './css/justifyContent';
 import flex from './css/flex';
@@ -44,6 +45,7 @@ export default {
     flexDirection,
     alignItems,
     justifyContent,
+    flexWrap,
     flex,
     // 边距
     marginTop,

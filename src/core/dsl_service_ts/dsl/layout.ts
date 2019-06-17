@@ -4,6 +4,7 @@ import LayoutCircle from './layouts/layout_circle';
 import LayoutSort from './layouts/layout_sort';
 import LayoutAbsolute from './layouts/layout_absolute';
 import LayoutFlex from './layouts/layout_flex';
+import LayoutBaseLine from './layouts/layout_baseline';
 import QLog from '../log/qlog';
 import LayoutEquality from './layouts/layout_equality';
 
@@ -34,12 +35,12 @@ const walkOut = function(layoutObject: any, dslTree: any) {
 function layout(dslTree: any) {
   let _logStep = 'start';
   try {
-    // 布局
-    _logStep = '布局';
-    walkIn(LayoutAbsolute, dslTree._treeData);
     // 等分
     _logStep = '等分';
     walkIn(LayoutEquality, dslTree._treeData);
+    // 布局
+    _logStep = '布局';
+    walkIn(LayoutBaseLine, dslTree._treeData);
     // 相似
     _logStep = '相似';
     LayoutSimilar.handle(dslTree._treeData);

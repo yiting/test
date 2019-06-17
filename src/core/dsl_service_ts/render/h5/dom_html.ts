@@ -108,9 +108,9 @@ class HtmlDom {
     const result = [];
     const _cssDom = _cssDomMap[this.id];
     const _simCssDom = _similarCssDomMap[this.similarId];
-    // if (!_simCssDom || _cssDom.getCss(_simCssDom.css)) {
     if (
       _cssDom.getCss(_simCssDom && _simCssDom.css) ||
+      // 如果有子节点，为避免自节点样式链断了，保留当前节点样式名
       this.children.length > 0
     ) {
       result.push(this.selfClassName);

@@ -1,5 +1,6 @@
 // 此模块用于定义一些在render模块包中用到的工具函数
 import Constraints from '../dsl/constraints';
+import Utils from '../uitls';
 
 export default {
   /**
@@ -14,17 +15,11 @@ export default {
   },
   // 在Y轴上是包含关系
   isYWrap(a: any, b: any, dir = 0) {
-    return (
-      Math.abs((a._abY + a._abYops) / 2 - (b._abY + b._abYops) / 2) <=
-      Math.abs(a._abYops - a._abY - b._abYops + b._abY) / 2 + dir
-    );
+    return Utils.isYWrap(a._abY, a._abYops, b._abY, b._abYops, dir);
   },
   // 在X轴上是包含关系
   isXWrap(a: any, b: any, dir = 0) {
-    return (
-      Math.abs((a._abX + a._abXops) / 2 - (b._abX + b._abXops) / 2) <=
-      Math.abs(a._abXops - a._abX - b._abXops + b._abX) / 2 + dir
-    );
+    return Utils.isXWrap(a._abX, a._abXops, b._abX, b._abXops, dir);
   },
   // 相连关系
   isConnect(a: any, b: any, dir = 0) {
@@ -32,19 +27,11 @@ export default {
   },
   // 水平方向相连
   isXConnect(a: any, b: any, dir = 0) {
-    const aCx = (a._abX + a._abXops) / 2;
-    const bCx = (b._abX + b._abXops) / 2;
-    return (
-      Math.abs(aCx - bCx) <= (a._abXops - a._abX + b._abXops - b._abX) / 2 + dir
-    );
+    return Utils.isXConnect(a._abX, a._abXops, b._abX, b._abXops, dir);
   },
   // 垂直方向相连
   isYConnect(a: any, b: any, dir = 0) {
-    const aCy = (a._abY + a._abYops) / 2;
-    const bCy = (b._abY + b._abYops) / 2;
-    return (
-      Math.abs(aCy - bCy) <= (a._abYops - a._abY + b._abYops - b._abY) / 2 + dir
-    );
+    return Utils.isYConnect(a._abY, a._abYops, b._abY, b._abYops, dir);
   },
   /**
    * 是否垂直
@@ -52,33 +39,16 @@ export default {
    */
   isVertical(arr: any, errorCoefficient = 0) {
     return !this.isHorizontal(arr, errorCoefficient);
-    /* if (arr.length===0) {
-                return false;
-            }
-            let prev;
-            errorCoefficient = parseFloat(errorCoefficient) || 0;
-            return arr.every(dom => {
-                if (!prev) {
-                    prev = dom;
-                    return true;
-                }
-                let res = dom._abX < prev._abX + prev.width + errorCoefficient &&
-                    prev._abX < dom._abX + dom.width + errorCoefficient;
-                prev = dom;
-                return res;
-            }) */
   },
   horizontalLogic(a: any, b: any, errorCoefficient: any) {
     if (
       // 如果水平方向相连
-      this.isXConnect(a, b, errorCoefficient) &&
+      this.isXConnect(a, b, -1) &&
       // 如果垂直不包含
       !this.isYWrap(a, b)
     ) {
       return false;
     }
-    // return (a_abY < b_abY + b_height + errorCoefficient) &&
-    // (b_abY < a_abY + a_height + errorCoefficient);
     return this.isYConnect(a, b, errorCoefficient);
   },
   /**

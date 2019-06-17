@@ -38,7 +38,7 @@ const join = function(widgetModels: any, elementModels: any) {
   }
   try {
     // 创建layers
-    dslTree._groupNode();
+    dslTree._rowNode();
   } catch (e) {
     Loger.error(`dsl/group.ts join()
       desc: 创建layers
@@ -87,7 +87,7 @@ class Tree {
     this._layoutType = null;
   }
 
-  _group(parent: any) {
+  _row(parent: any) {
     const { children } = parent;
 
     // 从里面到外进行组合分析
@@ -95,7 +95,7 @@ class Tree {
       const child = children[i];
       if (child.children !== 0) {
         // 继续进入下一层
-        this._group(child);
+        this._row(child);
       }
     }
 
@@ -104,6 +104,7 @@ class Tree {
       // 当只包含一个元素时就不用创建QLayer
       return;
     }
+
     // 分解行
     const layers = Utils.gatherByLogic(children, (a: any, b: any) => {
       // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
@@ -112,6 +113,7 @@ class Tree {
         return Utils.isYConnect(a, b, -1);
       }
       return Utils.isYWrap(a, b); */
+
       if (Utils.isYConnect(a, b, -1)) {
         if (
           // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
@@ -139,12 +141,28 @@ class Tree {
 
     const newChildren: any = [];
     layers.forEach((arr: any) => {
-      // 如果是单个文本，则须在文本外包布局节点
-      if (arr.length === 1 && arr[0].type !== Common.QText) {
-        // if (arr.length === 1) {
-        // 当纵向节点只有一个时
-        const child = arr[0];
-        newChildren.push(child);
+      const firstNode = arr[0];
+      /**
+       * 删除：如果是单个文本，则须在文本外包布局节点
+       */
+      // if (arr.length === 1 && arr[0].type !== Common.QText) {
+      /**
+       * 删除：当横向节点只有一个时
+       */
+      // if (arr.length === 1) {
+      /**
+       * 当横向节点只有一个，
+       * 且该节点不是绝对定位元素，
+       * 且该节点不是不与父节点等宽
+       */
+      if (
+        arr.length === 1 &&
+        firstNode.constraints['LayoutSelfPosition'] !==
+          Constraints.LayoutSelfPosition.Absolute &&
+        firstNode.abX === parent.abX &&
+        firstNode.abXops === parent.abXops
+      ) {
+        newChildren.push(firstNode);
       } else {
         // 多个节点情况
         // 自左而右排序
@@ -209,12 +227,28 @@ class Tree {
 
     const newChildren: any = [];
     layers.forEach((arr: any) => {
+      const firstNode = arr[0];
+      /**
+       *
+       */
+      // if (arr.length === 1 && arr[0].type !== Common.QText) {
+      /**
+       * 删除：当横向节点只有一个时
+       */
       // if (arr.length === 1) {
-      // 如果是单个文本，则须在文本外包布局节点
-      if (arr.length === 1 && arr[0].type !== Common.QText) {
+      /**
+       * 当列拆分只有一个节点，
+       * 且该节点不是文本：文本外须包布局节点
+       * 且该节点是绝对定位的
+       */
+      if (
+        arr.length === 1 &&
+        (firstNode.type !== Common.QText ||
+          firstNode.constraints['LayoutSelfPosition'] ===
+            Constraints.LayoutSelfPosition.Absolute)
+      ) {
         // 当纵向节点只有一个时
-        const child = arr[0];
-        newChildren.push(child);
+        newChildren.push(firstNode);
       } else {
         // 多个节点情况
         // 自上而下排序
@@ -330,8 +364,8 @@ class Tree {
   /**
    * 对节点进行成组排版
    */
-  _groupNode() {
-    this._group(this._treeData);
+  _rowNode() {
+    this._row(this._treeData);
   }
 
   /**
