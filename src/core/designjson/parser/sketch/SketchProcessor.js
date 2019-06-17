@@ -172,8 +172,9 @@ class SketchProcessor {
       // case 'QText': return; // TODO
       case 'QShape':
         {
-          if (node.shapeType === SKETCH_LAYER_TYPES.Oval)
+          if (node.shapeType === SKETCH_LAYER_TYPES.Oval) {
             node.shapeType = SKETCH_LAYER_TYPES.Rectangle; // 保留borderradius属性，去掉圆形属性
+          }
           const { shapeType, styles } = node;
           const isRectagnle =
             node.shapeType === SKETCH_LAYER_TYPES.Rectangle &&

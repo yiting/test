@@ -114,6 +114,7 @@ class ImageMergeProcessor {
     if (
       groupArr.length === 1 &&
       groupArr[0].size === parent.children.length &&
+      !parent.isModified &&
       !parent.isRoot
     ) {
       DesignTree.convert(parent, QImage.name);
