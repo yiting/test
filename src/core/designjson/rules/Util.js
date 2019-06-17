@@ -48,6 +48,26 @@ function swap(nodeA, nodeB) {
   nodeB = nodeA;
   nodeA = tmpNode;
 }
+function isInclude(nodeA, nodeB) {
+  var nodeAX = getAbX(nodeA);
+  var nodeAXOps = getAbXOps(nodeA);
+  var nodeAY = getAbY(nodeA);
+  var nodeAYOps = getAbYOps(nodeA);
+  var nodeBX = getAbX(nodeB);
+  var nodeBXOps = getAbXOps(nodeB);
+  var nodeBY = getAbY(nodeB);
+  var nodeBYOps = getAbYOps(nodeB);
+  var result = false;
+  if (
+    nodeAX <= nodeBX &&
+    nodeAXOps >= nodeBXOps &&
+    nodeAY <= nodeBY &&
+    nodeAYOps >= nodeBYOps
+  ) {
+    result = true;
+  }
+  return result;
+}
 
 function getColorRGB(node) {
   let type;
@@ -108,6 +128,66 @@ function isLine(node) {
   return result;
 }
 
+function isSimpleBackground(node) {
+  let result = true;
+  if (node.name.indexOf('Base') > -1) {
+    console.log(1);
+  }
+  if (node.name.indexOf('椭圆形') > -1) {
+    console.log(1);
+  }
+  //如果形状是矩形、圆形、直线以外的就不能css实现
+  if (
+    !(
+      (node.shapeType == 'rectangle' &&
+        node._origin.points &&
+        node._origin.points.length == 4 &&
+        (node._origin.points[0]._class == 'point' ||
+          node._origin.points[0]._class == 'curvePoint')) ||
+      ((node.shapeType == 'oval' ||
+        node.name.toLowerCase().indexOf('oval') > -1) &&
+        node.width == node.height &&
+        (typeof node._origin.layers == 'undefined' ||
+          (node._origin.layers && node._origin.layers.length < 2))) ||
+      (node.width > 50 && node.height <= 2)
+    )
+  ) {
+    result = false;
+  }
+  //如果图片则不能css实现
+  if (result && node._origin._class == 'bitmap') {
+    result = false;
+  }
+  //如果fill属性是linear/color/radical之外则不能css实现
+  if (
+    result &&
+    node.styles.background &&
+    !(
+      node.styles.background.type == 'linear' ||
+      node.styles.background.type == 'color' ||
+      node.styles.background.type == 'radical'
+    )
+  ) {
+    result = false;
+  }
+  if (result && node.styles.background == null) {
+    result = false;
+  }
+
+  //如果该节点下有多个子节点组成，则不能css实现
+  if (result && node._origin.layers && node._origin.layers.length > 1) {
+    result = false;
+  }
+
+  //如果父节点有旋转等对整体进行处理的属性时，则认为该父节点下的节点需要合并，不能用css实现
+  var parent = node.parent;
+  if (result && parent && parent.styles && parent.styles.rotation != 0) {
+    result = false;
+  }
+
+  return result;
+}
+
 module.exports = {
   getAbX,
   getAbY,
@@ -121,4 +201,6 @@ module.exports = {
   getLevelArr,
   getHeight,
   isLine,
+  isInclude,
+  isSimpleBackground,
 };

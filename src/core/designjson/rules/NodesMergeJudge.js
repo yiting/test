@@ -50,6 +50,10 @@ class NodesMergeJudge {
     let isCombine = false;
     let isFinally = false;
 
+    if (node.name.indexOf('Close') > -1 && brother.name.indexOf('More') > -1) {
+      console.log(1);
+    }
+
     //如果有一个节点是长直线，则不合并
     if (ImgConbineUtils.isLine(node) || ImgConbineUtils.isLine(brother)) {
       isCombine = false;
@@ -68,44 +72,66 @@ class NodesMergeJudge {
       isFinally = true;
     }
     //symbol合图逻辑组合，如果是在同一个symbol里，则认为该合在一起。
+    // if (isFinally == false) {
+    //   ruleConfig0 = this.getRuleConfig({
+    //     data: [{ type: 'SymbolSimilar', value: 100, requireScore: 100 }],
+    //   });
+    //   let scoreResult = this.score(node, brother, ruleConfig0);
+    //   if (scoreResult.score >= ruleConfig0.score) {
+    //     isCombine = true;
+    //   }
+    // }
+    //如果其中一个节点是大而简单的背景、背景包含另一个节点的时候，他不与其他节点合并
     if (isFinally == false) {
-      ruleConfig0 = this.getRuleConfig({
-        data: [{ type: 'SymbolSimilar', value: 100, requireScore: 100 }],
-      });
-      let scoreResult = this.score(node, brother, ruleConfig0);
-      if (scoreResult.score >= ruleConfig0.score) {
-        isCombine = true;
-      }
-    }
-    //如果其中一个节点是大而简单的背景的时候，他不与其他节点合并
-    if (isFinally == false) {
-      ruleConfig0 = this.getRuleConfig({
-        data: [{ type: 'CanCssSimilar', value: 100, requireScore: 76 }],
-      });
-      let scoreResult1 = this.score(node, node, ruleConfig0);
+      // ruleConfig0 = this.getRuleConfig({
+      //   data: [{ type: 'CanCssSimilar', value: 100, requireScore: 76 }],
+      // });
+      // let scoreResult1 = this.score(node, node, ruleConfig0);
 
       let nodeASize = ImgConbineUtils.getSize(node);
 
       let sideThreshold = 500;
       let sizeThreshold = sideThreshold * sideThreshold;
+      let sizePercentThreshold = 0.4;
 
       if (
-        scoreResult1.score >= ruleConfig0.score &&
+        ImgConbineUtils.isSimpleBackground(node) &&
         nodeASize > sizeThreshold &&
         node.width > sideThreshold &&
-        node.height > sideThreshold
+        node.height > sideThreshold &&
+        ImgConbineUtils.isInclude(node, brother)
       ) {
         isCombine = false;
         isFinally = true;
       }
 
-      let scoreResult2 = this.score(brother, brother, ruleConfig0);
+      // let scoreResult2 = this.score(brother, brother, ruleConfig0);
       let nodeBSize = ImgConbineUtils.getSize(brother);
       if (
-        scoreResult2.score >= ruleConfig0.score &&
+        ImgConbineUtils.isSimpleBackground(brother) &&
         nodeBSize > sizeThreshold &&
         brother.width > sideThreshold &&
-        brother.height > sideThreshold
+        brother.height > sideThreshold &&
+        ImgConbineUtils.isInclude(brother, node)
+      ) {
+        isCombine = false;
+        isFinally = true;
+      }
+
+      //如果节点是简单的背景，包含了另一个节点，另一节点面积比小于阈值，则不合并
+      if (
+        ImgConbineUtils.isSimpleBackground(node) &&
+        ImgConbineUtils.isInclude(node, brother) &&
+        nodeBSize / nodeASize < sizePercentThreshold
+      ) {
+        isCombine = false;
+        isFinally = true;
+      }
+
+      if (
+        ImgConbineUtils.isSimpleBackground(brother) &&
+        ImgConbineUtils.isInclude(brother, node) &&
+        nodeASize / nodeBSize < sizePercentThreshold
       ) {
         isCombine = false;
         isFinally = true;
