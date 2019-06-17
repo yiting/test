@@ -617,11 +617,11 @@ const process = function(data: any) {
 
   // 计算约束
   Loger.debug('css_dom.js [_parseConstraints]');
-  CssBoundary(cssDomTree);
+  CssConstraints(cssDomTree);
 
   // 调整边距
   Loger.debug('css_dom.js [_parseBoundary]');
-  CssConstraints(cssDomTree);
+  CssBoundary(cssDomTree);
   return cssDomTree;
 };
 export default {

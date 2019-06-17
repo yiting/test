@@ -21,9 +21,6 @@ class LayoutCircle extends Model.LayoutModel {
       // 如果没有子节点，则返回
       return;
     }
-    /**
-     * 待改进：如何避免重复循环的出现
-     */
     const circleInnerArr = LayoutCircle._findCircle(
       parent.children,
       LayoutCircle._innerSimilarRule,
@@ -150,6 +147,8 @@ class LayoutCircle extends Model.LayoutModel {
           newParent.set('parentId', _parent.id);
           newParent.set('children', _group);
           newParent.set('similarId', itemSimilarIndex);
+          newParent.constraints['LayoutFixedWidth'] =
+            Constraints.LayoutFixedWidth.Fixed;
           newParent.resize();
           return [newParent];
         });
