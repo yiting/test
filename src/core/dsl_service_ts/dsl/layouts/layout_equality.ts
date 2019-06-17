@@ -41,8 +41,8 @@ class LayoutEquality extends Model.LayoutModel {
     if (!Utils.isHorizontal(flexNodes)) {
       return;
     }
-    const centerSpace = LayoutEquality._isEqualityCenter(flexNodes, parent);
     const leftSpace = LayoutEquality._isEqualityLeft(flexNodes, parent);
+    const centerSpace = LayoutEquality._isEqualityCenter(flexNodes, parent);
     if (centerSpace) {
       LayoutEquality._adjustCenterPos(flexNodes, centerSpace);
       parent.constraints.LayoutJustifyContent =
@@ -190,7 +190,7 @@ class LayoutEquality extends Model.LayoutModel {
     });
     dirArr.sort((a: number, b: number) => a - b);
     const firstDir = dirArr[0];
-    const lastDir = dirArr[dirArr.length];
+    const lastDir = dirArr[dirArr.length - 1];
     // 如果最大和最小间距差大于系数，则不符合
     if (Math.abs(lastDir - firstDir) > COEFFICIENT) {
       return false;

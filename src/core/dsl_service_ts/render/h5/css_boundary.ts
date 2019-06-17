@@ -36,6 +36,10 @@ function _calculateBoundary(vdom: any) {
     return;
   }
 
+  // 如果是多行
+  // if (vdom.constraints.LayoutWrap === Constraints.LayoutWrap.Wrap) {
+  // }
+
   const isVertical = vdom._isParentVertical();
   const left = _calculateLeftBoundary(vdom, isVertical);
   const right = _calculateRightBoundary(vdom, isVertical);

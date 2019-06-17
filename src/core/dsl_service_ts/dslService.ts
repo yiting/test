@@ -61,6 +61,8 @@ function _initOptions(options: any) {
     isLocalTest: false,
     // 显示标签属性
     showTagAttrInfo: true,
+    // 误操作系数
+    errorCoefficient: 4, //px
     // log信息
     applyInfo_user: options.applyInfo_user || '',
     applyInfo_url: options.applyInfo_url || '',

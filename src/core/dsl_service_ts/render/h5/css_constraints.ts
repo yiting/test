@@ -30,7 +30,13 @@ function _supplementConstraints(vdom: any) {
   if (children.length === 0) {
     return;
   }
-  const isVertical = children.length > 0 && Utils.isVertical(children);
+  // 能否换行
+  const canNewLine =
+    vdom.constraints.LayoutWrap === Constraints.LayoutWrap.Wrap;
+  // 是否垂直布局
+  const isVertical =
+    !canNewLine && children.length > 0 && Utils.isVertical(children);
+  // 计算基线
   const baseLine: any = Utils.calculateBaseLine(vdom);
   const _justifyContent = isVertical ? 'vertical' : 'horizontal';
   const _alignItems = isVertical ? 'horizontal' : 'vertical';

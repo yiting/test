@@ -54,6 +54,11 @@ export default {
     Center: 'Center',
     // Between: 4
   },
+  // 换行
+  LayoutWrap: {
+    Nowrap: 'Nowrap',
+    Wrap: 'Wrap',
+  },
   // 纵轴居开始
   LayoutAlignItems: {
     Start: 'Start',

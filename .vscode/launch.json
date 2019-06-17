@@ -23,6 +23,13 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "DesignJSON output",
+      "program": "${workspaceFolder}/test/checktosee/bin/www",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "DSL Process test",
       "program": "${workspaceFolder}/dist/core/dsl_service_ts/test/testxProcess",
       "cwd": "${workspaceFolder}"
