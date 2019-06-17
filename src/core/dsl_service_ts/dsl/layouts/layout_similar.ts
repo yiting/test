@@ -119,7 +119,6 @@ class LayoutSimilar extends Model.LayoutModel {
      * 3. 如果非layer，三基线对齐
      * 4. 如果没有子节点，则相似
      */
-    if (a.node.id == 'layer2' && b.node.id == 'layer3') debugger;
     if (a.type !== b.type || a.modelName !== b.modelName) {
       return false;
     }

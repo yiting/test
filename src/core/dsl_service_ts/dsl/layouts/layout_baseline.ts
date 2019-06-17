@@ -20,8 +20,8 @@ import { debug } from 'util';
 
 class LayoutBaseLine extends Model.LayoutModel {
   /* constructor(modelType: any) {
-      super(modelType);
-    } */
+        super(modelType);
+      } */
 
   /**
    * 对传进来的模型数组进行处理

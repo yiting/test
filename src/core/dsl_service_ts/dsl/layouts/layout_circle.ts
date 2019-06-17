@@ -24,7 +24,6 @@ class LayoutCircle extends Model.LayoutModel {
     /**
      * 待改进：如何避免重复循环的出现
      */
-    if (parent.id == 'layer0') debugger;
     const circleInnerArr = LayoutCircle._findCircle(
       parent.children,
       LayoutCircle._innerSimilarRule,
@@ -338,8 +337,6 @@ class LayoutCircle extends Model.LayoutModel {
       for (let index = 0; index < lastIndex; index++) {
         // 获取片段
         const fragment = arr.slice(index, lastIndex);
-        // if(fragment.length==3&&fragment[0].id=="layer5")debugger
-        if (fragment.length == 2 && fragment[0].id == 'layer2') debugger;
         if (
           // 排除特征是完全重复的独立项
           fragment.length > 1 &&
