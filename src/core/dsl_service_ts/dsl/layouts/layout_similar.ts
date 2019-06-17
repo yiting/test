@@ -119,6 +119,7 @@ class LayoutSimilar extends Model.LayoutModel {
      * 3. 如果非layer，三基线对齐
      * 4. 如果没有子节点，则相似
      */
+    if (a.node.id == 'layer2' && b.node.id == 'layer3') debugger;
     if (a.type !== b.type || a.modelName !== b.modelName) {
       return false;
     }
@@ -149,10 +150,14 @@ class LayoutSimilar extends Model.LayoutModel {
                 ErrorCoefficient)
           );
         }) &&
-        ((a.height === b.height &&
-          (a.abX === b.abX || a.abXops === b.abXops || a.ctX === b.ctX)) ||
-          (a.width === b.width &&
-            (a.abY === b.abY || a.abYops === b.abYops || a.ctY === b.ctY / 2)))
+        ((Math.abs(a.height - b.height) < ErrorCoefficient &&
+          (Math.abs(a.abX - b.abX) < ErrorCoefficient ||
+            Math.abs(a.abXops - b.abXops) < ErrorCoefficient ||
+            Math.abs(a.ctX - b.ctX) < ErrorCoefficient)) ||
+          (Math.abs(a.width - b.width) < ErrorCoefficient &&
+            (Math.abs(a.abY - b.abY) < ErrorCoefficient ||
+              Math.abs(a.abYops - b.abYops) < ErrorCoefficient ||
+              Math.abs(a.ctY - b.ctY) < ErrorCoefficient)))
         /* (
           (a.height === b.height || a.width === b.width) &&
           (a.abX === b.abX || a.abXops === b.abXops || a.ctX === b.ctX ||

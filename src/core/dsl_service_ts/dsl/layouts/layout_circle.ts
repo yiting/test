@@ -24,6 +24,7 @@ class LayoutCircle extends Model.LayoutModel {
     /**
      * 待改进：如何避免重复循环的出现
      */
+    if (parent.id == 'layer0') debugger;
     const circleInnerArr = LayoutCircle._findCircle(
       parent.children,
       LayoutCircle._innerSimilarRule,
@@ -44,6 +45,17 @@ class LayoutCircle extends Model.LayoutModel {
 
   static _innerSimilarRule(a: any, b: any) {
     return a._similarId && b._similarId && a._similarId === b._similarId;
+    // return (
+    //   a.children[0] && b.children[0] &&
+    //   a.children[0].modelName == CYCLE_MODEL_NAME &&
+    //   b.children[0].modelName == CYCLE_MODEL_NAME &&
+    //   Object.keys(a.children[0].nodes).length == Object.keys(b.children[0].nodes).length &&
+    //   Object.keys(a.children[0].nodes).every((key: any, i: number) => {
+    //     const aSimilarId = a.children[0].nodes[key].similarId;
+    //     const bSimilarId = b.children[0].nodes[key].similarId
+    //     return aSimilarId != null && aSimilarId == bSimilarId
+    //   })
+    // )
   }
   static _innerFilter(result: any) {
     return result
@@ -326,6 +338,8 @@ class LayoutCircle extends Model.LayoutModel {
       for (let index = 0; index < lastIndex; index++) {
         // 获取片段
         const fragment = arr.slice(index, lastIndex);
+        // if(fragment.length==3&&fragment[0].id=="layer5")debugger
+        if (fragment.length == 2 && fragment[0].id == 'layer2') debugger;
         if (
           // 排除特征是完全重复的独立项
           fragment.length > 1 &&

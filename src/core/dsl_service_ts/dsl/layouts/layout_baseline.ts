@@ -18,10 +18,10 @@ import { debug } from 'util';
 // 1: 如果
 // s2: 其余的以绝对定位
 
-class LayoutAbsolute extends Model.LayoutModel {
+class LayoutBaseLine extends Model.LayoutModel {
   /* constructor(modelType: any) {
-    super(modelType);
-  } */
+      super(modelType);
+    } */
 
   /**
    * 对传进来的模型数组进行处理
@@ -37,7 +37,7 @@ class LayoutAbsolute extends Model.LayoutModel {
     const calNodes: any = [];
     // 遍历所有绝对布局
     nodes.forEach((nd: any) => {
-      if (LayoutAbsolute._isAbsolute(parent, nd)) {
+      if (LayoutBaseLine._isAbsolute(parent, nd)) {
         nd.set('isCalculate', true);
         absNodes.push(nd);
       } else {
@@ -49,20 +49,20 @@ class LayoutAbsolute extends Model.LayoutModel {
       if (Utils.isHorizontal(calNodes)) {
         parent.constraints.LayoutDirection =
           Constrains.LayoutDirection.Horizontal;
-        LayoutAbsolute._sort(calNodes, 'abX');
-        LayoutAbsolute._handleAbsolute(parent, calNodes, absNodes);
+        LayoutBaseLine._sort(calNodes, 'abX');
+        LayoutBaseLine._handleAbsolute(parent, calNodes, absNodes);
         // 横排基线普查，标识所有不在基线的元素为绝对定位
-        LayoutAbsolute._handleHorizontal(parent, calNodes, absNodes);
+        LayoutBaseLine._handleHorizontal(parent, calNodes, absNodes);
       } else {
         parent.constraints.LayoutDirection =
           Constrains.LayoutDirection.Vertical;
-        LayoutAbsolute._sort(calNodes, 'abY');
+        LayoutBaseLine._sort(calNodes, 'abY');
         // 竖排基线普查，标识所有不在基线的元素为绝对定位
-        LayoutAbsolute._handleVertical(parent, calNodes, absNodes);
+        LayoutBaseLine._handleVertical(parent, calNodes, absNodes);
       }
     }
     absNodes.forEach((nd: any) => {
-      LayoutAbsolute._setAbsolute(nd);
+      LayoutBaseLine._setAbsolute(nd);
     });
 
     if (absNodes.length > 0) {
@@ -104,7 +104,7 @@ class LayoutAbsolute extends Model.LayoutModel {
     for (let i = 0; i < calNodes.length; i++) {
       const nd = calNodes[i];
       // let prev = calNodes[i - 1];
-      const prev = LayoutAbsolute._getPrev(calNodes, nd);
+      const prev = LayoutBaseLine._getPrev(calNodes, nd);
       if (prev && Utils.isYWrap(prev, nd)) {
         // 重叠逻辑： 如果在Y轴上完全重合，则前点(层级高或面积小的）为绝对定位
         absNodes.push(prev.zIndex > nd.zIndex ? prev : nd);
@@ -182,7 +182,6 @@ class LayoutAbsolute extends Model.LayoutModel {
    * @param {Array} models
    */
   static _handleAbsolute(_parent: any, _calNodes: any, _absNodes: any) {
-    if (_parent.id == 'layer6') debugger;
     const parent: any = _parent;
     const calNodes: any = _calNodes;
     const absNodes: any = _absNodes;
@@ -233,7 +232,7 @@ class LayoutAbsolute extends Model.LayoutModel {
         for (let i = startIndex; i < endIndex; i++) {
           const absNode = calNodes[i];
           absNodes.push(absNode);
-          LayoutAbsolute._setDirection(absNode, isDirLeft);
+          LayoutBaseLine._setDirection(absNode, isDirLeft);
         }
       }
     }
@@ -280,4 +279,4 @@ class LayoutAbsolute extends Model.LayoutModel {
   }
 }
 
-export default new LayoutAbsolute();
+export default new LayoutBaseLine();
