@@ -9,7 +9,7 @@ import Feature from '../../feature';
 class EM2M4 extends Model.ElementModel {
   constructor() {
     // 元素构成规则
-    super('em2-m3', 1, 0, 0, 1, Common.LvA, Common.QText);
+    super('em2-m4', 1, 0, 0, 1, Common.LvA, Common.QText);
 
     this.canLeftFlex = false;
     this.canRightFlex = false;

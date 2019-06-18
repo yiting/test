@@ -1,12 +1,12 @@
 import Path from 'path';
-import designjson from './test2_data.json';
+import designjson from './test7_data.json';
 
 // 引入的模块包
 // import Dsl from '../dsl/dsl';
 // import Render from '../render/render';
 import dslServer from '../dslService';
 
-console.log('1节点总长度: ' + designjson.length);
+console.log('节点总长度: ' + designjson.length);
 const value: any = dslServer.process(
   {
     nodes: designjson,
