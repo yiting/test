@@ -143,7 +143,7 @@ const ImageCombine = function() {
   };
 
   //获取symbolId获取对应的json
-  this.getSymbolJson = function(symbolId) {
+  this.getSymbolJson = function(symbolId, node) {
     var that = this;
     var tmpJson = {};
     var hasFound = false;
@@ -167,7 +167,10 @@ const ImageCombine = function() {
             `${that.inputDir +
               that.projectNameWithoutAfterFix}/pages/${pageId}.json`,
           );
-          if (jsonStr.indexOf(symbolId) > -1) {
+          if (
+            jsonStr.indexOf(symbolId) > -1 &&
+            jsonStr.indexOf('symbolMaster') > -1
+          ) {
             tmpJson = JSON.parse(jsonStr);
             hasFound = true;
           }
@@ -189,64 +192,8 @@ const ImageCombine = function() {
         }
       });
     }
-    return tmpJson;
-  };
-
-  //获取symbol对应的json
-  this.getSymbolParentJson = function(
-    symbolId,
-    levelArr,
-    isInDocumentJson = false,
-  ) {
-    var that = this;
-    var tmpJson = {};
-    //获取symbol对应的pageJson
-    if (!isInDocumentJson) {
-      const files = fs.readdirSync(`${that.updateFilePath}/pages/`);
-      files.forEach(item => {
-        let pageId = item.substring(0, item.indexOf('.json'));
-        if (pageId != that.pageId) {
-          // that.pageJson = JSON.parse(
-          var jsonStr = that.getJsonFileData(
-            `${that.inputDir +
-              that.projectNameWithoutAfterFix}/pages/${pageId}.json`,
-          );
-          if (jsonStr.indexOf(symbolId) > -1) {
-            tmpJson = JSON.parse(jsonStr);
-          }
-        }
-      });
-    } else {
-      const file = fs.readFileSync(`${that.updateFilePath}/document.json`);
-      tmpJson = JSON.parse(file);
-    }
-
-    //遍历symbol，获取目标symbol
-    if (isInDocumentJson == false) {
-      tmpJson.layers.forEach((item, index) => {
-        if (item.symbolID == symbolId) {
-          tmpJson = item;
-        }
-      });
-    } else {
-      tmpJson.foreignSymbols.forEach((item, index) => {
-        if (item.symbolMaster && item.symbolMaster.symbolID == symbolId) {
-          tmpJson = item.symbolMaster;
-        }
-      });
-    }
-    //获取目标json
-    for (let i = 0, ilen = levelArr.length; i < ilen - 1; i++) {
-      if (tmpJson._class == 'symbolInstance') {
-        tmpJson = this.getSymbolParentJson(
-          tmpJson.symbolID,
-          levelArr.slice(i),
-          true,
-        );
-        break;
-      }
-      tmpJson = tmpJson.layers[levelArr[i]];
-    }
+    tmpJson.frame.x = node.frame.x;
+    tmpJson.frame.y = node.frame.y;
     return tmpJson;
   };
 
@@ -265,7 +212,7 @@ const ImageCombine = function() {
     try {
       for (let i = 0, ilen = minParentIndex; i <= ilen; i++) {
         if (tmpJson._class == 'symbolInstance') {
-          tmpJson = this.getSymbolJson(tmpJson.symbolID);
+          tmpJson = this.getSymbolJson(tmpJson.symbolID, tmpJson);
         }
         tmpJson = tmpJson.layers[levelArr[i]];
       }
@@ -273,6 +220,9 @@ const ImageCombine = function() {
       logger.warn(e);
     }
     // tmpJson = JSON.parse(JSON.stringify(tmpJson));
+    if (tmpJson._class == 'symbolInstance') {
+      tmpJson = this.getSymbolJson(tmpJson.symbolID, tmpJson);
+    }
     return tmpJson;
   };
 
@@ -285,8 +235,21 @@ const ImageCombine = function() {
       tmpJson.layers.forEach((item, index) => {
         let isShow = false;
         let isParent = false;
+        let targetImageChildrenFlatArr = [];
+        //判断symbol节点是否当前layers下要找的节点，如果不是，就将symbol节点转换成symbolMaster再继续处理
         if (item._class == 'symbolInstance') {
-          item = this.getSymbolJson(item.symbolID);
+          let isInSymbol = true;
+          imageChildrenFlatArr.forEach(imageItem => {
+            if (
+              imageItem.id == item.do_objectID ||
+              imageItem.originId == item.do_objectID
+            ) {
+              isInSymbol = false;
+            }
+          });
+          if (isInSymbol) {
+            item = this.getSymbolJson(item.symbolID, item);
+          }
         }
         imageChildrenFlatArr.forEach(imageItem => {
           if (
@@ -300,16 +263,18 @@ const ImageCombine = function() {
           if (
             imageItem.levelArr &&
             index == imageItem.levelArr[level] &&
-            level < imageItem.levelArr.length - 1 &&
-            !isParent
+            level < imageItem.levelArr.length - 1
           ) {
-            isParent = true;
-            //复制一个没有layers属性的的item
-            var layers = item['layers'];
-            item['layers'] = [];
-            var pushItem = this.cloneJson(item);
-            item['layers'] = layers;
-            generateJson.layers.push(pushItem);
+            if (!isParent) {
+              isParent = true;
+              //复制一个没有layers属性的的item
+              var layers = item['layers'];
+              item['layers'] = [];
+              var pushItem = this.cloneJson(item);
+              item['layers'] = layers;
+              generateJson.layers.push(pushItem);
+            }
+            targetImageChildrenFlatArr.push(imageItem);
           }
         });
 
@@ -317,7 +282,7 @@ const ImageCombine = function() {
           that.showNodes({
             generateJson: generateJson.layers[generateJson.layers.length - 1],
             tmpJson: item,
-            imageChildrenFlatArr,
+            imageChildrenFlatArr: targetImageChildrenFlatArr,
             level: level + 1,
           });
         } else if (!isShow && !isParent) {
@@ -634,7 +599,7 @@ const ImageCombine = function() {
     //   return item.path.indexOf('_CC3B_0788')>-1;
     // });
     // imgList = imgList.slice(0,1);
-    // imgList = [imgList[6]];
+    // imgList = [imgList[58]];
     // 通过隐藏不要图层然后用运行库合图的方式来合图
     const updateFileAfterFix = '_imgForCombine';
     const projectNameWithoutAfterFix = projectName;
@@ -667,37 +632,10 @@ const ImageCombine = function() {
         ),
       );
     }
+
+    //清除边框/阴影等属性
     let clearnList = ImageClean.cleanImg(that.pageJson, ['border', 'shadows']);
     ImageClean.clearJSON(that.pageJson, clearnList, ['border', 'shadows']);
-    // //拷贝源文件，同时解压
-    // await serverModulesUtils.copyFolderPromise(
-    //   path.resolve(__dirname, `./data/unzip_file/${projectName}`),
-    //   path.resolve(
-    //     __dirname,
-    //     `./data/unzip_file/${projectName}_imgClearn`
-    //   )
-    // );
-    // //查找源文件，替换这些，
-    // await ImageClean.cleanFile(
-    //   path.resolve(
-    //     __dirname,
-    //     `./data/unzip_file//${projectName}_imgClearn/pages`
-    //   ),
-    //   clearnList,
-    //   ["borders", "shadows"]
-    // );
-    // //生成新的源文件给合同用
-    // await serverModulesUtils.zipFolderPromise(
-    //   path.resolve(
-    //     __dirname,
-    //     `./data/upload_file/${projectName}_imgClearn.sketch`
-    //   ),
-    //   path.resolve(
-    //     __dirname,
-    //     `./data/unzip_file/${projectName}_imgClearn/`
-    //   )
-    // );
-    // logger.debug("[edit_img.js-getArtBoardImageList]成功去除属性数据");
 
     //获取artboard index
     var artboardIndex;
