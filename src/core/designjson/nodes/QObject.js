@@ -21,6 +21,7 @@ class QObject {
     this.children = [];
     this.parent = null;
     this.isModified = false;
+    this.isNew = false;
     this._origin = {};
     this._imageChildren = [];
   }
@@ -250,6 +251,7 @@ class QObject {
           _imageChildren: imgchildren,
           levelArr,
           isModified,
+          isNew,
           styles,
         } = node;
         const _imageChildren = getImageChild(imgchildren);
@@ -272,6 +274,7 @@ class QObject {
           levelArr,
           styles,
           isModified,
+          isNew,
         };
       });
   }

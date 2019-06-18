@@ -41,7 +41,7 @@ class DesignTree {
   static union(nodes, type = 'QImage', isMergeStyle = true) {
     if (!Array.isArray(nodes) || !nodes[0]) return null;
     const newNode = this.createNode(type);
-    newNode.isModified = true;
+    newNode.isModified = newNode.isNew = true;
     const [id, name] = nodes.reduce(
       (p, c) => [`${p[0]}_${c.id.slice(0, 4)}`, `${p[1]}_${c.name}`],
       ['', ''],
