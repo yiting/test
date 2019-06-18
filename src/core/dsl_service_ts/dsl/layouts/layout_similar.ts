@@ -167,13 +167,14 @@ class LayoutSimilar extends Model.LayoutModel {
     } else if (a.type === Common.QWidget) {
       // 如果为Widget，三线对齐相同
       return (
-        a.abY === b.abY ||
-        a.abYops === b.abYops ||
-        a.ctY === b.ctY ||
-        a.abX === b.abX ||
-        a.abXops === b.abXops ||
-        a.ctX === b.ctX ||
-        (a.width === b.width && a.height === b.height)
+        Math.abs(a.abY - b.abY) < ErrorCoefficient ||
+        Math.abs(a.abYops - b.abYops) < ErrorCoefficient ||
+        Math.abs(a.ctY - b.ctY) < ErrorCoefficient ||
+        Math.abs(a.abX - b.abX) < ErrorCoefficient ||
+        Math.abs(a.abXops - b.abXops) < ErrorCoefficient ||
+        Math.abs(a.ctX - b.ctX) < ErrorCoefficient ||
+        (Math.abs(a.width - b.width) < ErrorCoefficient &&
+          Math.abs(a.height - b.height) < ErrorCoefficient)
       );
     } else if (a.type !== Common.QText) {
       // 如果为其他元素（非文本），则同父节点，子节点数相同，三线对齐相同

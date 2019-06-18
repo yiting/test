@@ -5,10 +5,16 @@ import Model from '../model';
 import Group from '../group';
 import Constraints from '../constraints';
 import Similar from './layout_similar';
+import { debug } from 'util';
+import Store from '../../helper/store';
 
 const CYCLE_MODEL_NAME = 'cycle-01';
-
+let ErrorCoefficient: number = 0;
 class LayoutCircle extends Model.LayoutModel {
+  // 筛选前排序
+  static _sort(parent: any, opt: any) {
+    parent.children.sort((a: any, b: any) => a[opt] - b[opt]);
+  }
   /**
    * 主流程：对传进来的模型数组进行循环分析处理
    * @param {TreeNode} parent 树节点
@@ -21,6 +27,8 @@ class LayoutCircle extends Model.LayoutModel {
       // 如果没有子节点，则返回
       return;
     }
+    ErrorCoefficient = Store.get('errorCoefficient') || 0;
+    const isHorizontal = Utils.isHorizontal(nodes);
     const circleInnerArr = LayoutCircle._findCircle(
       parent.children,
       LayoutCircle._innerSimilarRule,
@@ -28,6 +36,11 @@ class LayoutCircle extends Model.LayoutModel {
       LayoutCircle._innerFilter,
     );
     LayoutCircle._setInnerCircle(parent, circleInnerArr);
+    if (isHorizontal) {
+      LayoutCircle._sort(parent, 'abX');
+    } else {
+      LayoutCircle._sort(parent, 'abY');
+    }
     // 找出相似结构组合
     const circleArr = LayoutCircle._findCircle(
       parent.children,
@@ -37,6 +50,11 @@ class LayoutCircle extends Model.LayoutModel {
     );
     // 相似结构处理
     LayoutCircle._setCircle(parent, circleArr);
+    if (isHorizontal) {
+      LayoutCircle._sort(parent, 'abX');
+    } else {
+      LayoutCircle._sort(parent, 'abY');
+    }
   }
 
   static _innerSimilarRule(a: any, b: any) {
@@ -98,14 +116,15 @@ class LayoutCircle extends Model.LayoutModel {
         const l = child.nodes[_ref];
         const n = prev.nodes[_ref];
         return (
-          l._abX === n._abX ||
-          l._abY === n._abY ||
+          Math.abs(l._abX - n._abX) < ErrorCoefficient ||
+          Math.abs(l._abY - n._abY) < ErrorCoefficient ||
           // 末节点对齐
-          l._abXops === n._abXops ||
-          l._abYops === n._abYops ||
+          Math.abs(l._abXops - n._abXops) < ErrorCoefficient ||
+          Math.abs(l._abYops - n._abYops) < ErrorCoefficient ||
           //中线对齐
-          l._abX + l._abXops === n._abX + n._abXops ||
-          l._abY + l._abYops === n._abY + n._abYops
+          Math.abs(l._abX + l._abXops - n._abX - n._abXops) <
+            ErrorCoefficient ||
+          Math.abs(l._abY + l._abYops - n._abY - n._abYops) < ErrorCoefficient
         );
       });
     });

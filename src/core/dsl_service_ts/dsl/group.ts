@@ -157,10 +157,11 @@ class Tree {
        */
       if (
         arr.length === 1 &&
-        firstNode.constraints['LayoutSelfPosition'] !==
-          Constraints.LayoutSelfPosition.Absolute &&
-        firstNode.abX === parent.abX &&
-        firstNode.abXops === parent.abXops
+        (firstNode.constraints['LayoutSelfPosition'] !==
+          Constraints.LayoutSelfPosition.Absolute ||
+          (firstNode.abX === parent.abX &&
+            firstNode.abXops === parent.abXops) ||
+          firstNode.modelName === 'wg1-m1')
       ) {
         newChildren.push(firstNode);
       } else {
@@ -202,7 +203,6 @@ class Tree {
         this._column(child);
       }
     }
-
     // 如果只有一个子节点，则不生成新组
     if (children.length === 1) {
       // 当只包含一个元素时就不用创建QLayer
@@ -224,7 +224,6 @@ class Tree {
     });
     // 自左向右排序
     layers.sort((a: any, b: any) => a.abX - b.abX);
-
     const newChildren: any = [];
     layers.forEach((arr: any) => {
       const firstNode = arr[0];
@@ -245,7 +244,8 @@ class Tree {
         arr.length === 1 &&
         (firstNode.type !== Common.QText ||
           firstNode.constraints['LayoutSelfPosition'] ===
-            Constraints.LayoutSelfPosition.Absolute)
+            Constraints.LayoutSelfPosition.Absolute ||
+          firstNode.modelName === 'wg1-m1')
       ) {
         // 当纵向节点只有一个时
         newChildren.push(firstNode);
