@@ -611,6 +611,7 @@ class CssDom {
 const process = function(data: any) {
   // 构建cssTree并返回
   Loger.debug('css_dom.js [process]');
+
   // 构建树
   Loger.debug('css_dom.js [_buildTree]');
   cssDomTree = _buildTree(null, data);
