@@ -1,5 +1,5 @@
 # 视觉编译
-把设计语言翻译为计算机语言，实现UI界面还原。
+让机器理解设计稿（SKETCH、PSD ），并生成对应的UI样式及结构代码(H5、iOS、Android)。
 
 官网：http://uitocode.oa.com
 
