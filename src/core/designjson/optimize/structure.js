@@ -58,6 +58,7 @@ class StructureProcessor {
           this.isCovered(child, nodelist) ||
           this.isCamouflage(child, nodelist);
         if (res) {
+          parent.isModified = true;
           parent.remove(child);
           console.log(child.name + '被清理');
           nodelist = serialize(node);
@@ -99,6 +100,7 @@ class StructureProcessor {
           : 0;
       parent.remove(target);
       visual_parent.add(target, index);
+      parent.isModified = visual_parent.isModified = true;
       console.log(target.name, '从', parent.name, '移动到', visual_parent.name);
     });
   }

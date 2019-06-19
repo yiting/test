@@ -277,6 +277,7 @@ class Sketch {
     if (!borders || !borders.length) return null;
     borders = borders.filter(({ isEnabled }) => !!isEnabled);
     if (!borders.length) return null;
+    // border.position: 0 center, 1 inside, 2 outside
     return {
       type: 'solid',
       color: this._getColor(borders[0].color),

@@ -21,6 +21,7 @@ class SketchProcessor {
     });
     walkout(node, n => {
       this.shapeToImage(n);
+      this.borderProcess(n);
       if (!n.children.length) return;
       this.maskToImage(n);
       this.modifySize(n);
@@ -93,7 +94,30 @@ class SketchProcessor {
       }
     });
   }
-
+  static borderProcess(node) {
+    const { border } = node.styles;
+    if (!border) return;
+    switch (border.position) {
+      case 0:
+        {
+          // center
+          node.width += border.width;
+          node.height += border.width;
+          node.abX -= border.width / 2;
+          node.abY -= border.width / 2;
+        }
+        break;
+      case 2:
+        {
+          // outside
+          node.width += border.width * 2;
+          node.height += border.width * 2;
+          node.abX -= border.width;
+          node.abY -= border.width;
+        }
+        break;
+    }
+  }
   static maskToImage(parent) {
     // const maskNodes = parent.children.filter(({type,isMasked,maskedNodes}) => type === QMask.name && !isMasked && Array.isArray(maskedNodes) && maskedNodes.length);
     const maskNodes = parent.children.filter(
@@ -123,6 +147,22 @@ class SketchProcessor {
       node.abY = maskNode.abY;
       const keys = ['borderRadius', 'border', 'shadows'];
       mergeStyle(node, maskNode, keys);
+      const { border } = node.styles;
+      if (!border) return;
+      switch (border.position) {
+        case 0:
+          {
+            // center
+            border.width /= 2;
+          }
+          break;
+        case 1:
+          {
+            // inside
+            node.styles.border = null;
+          }
+          break;
+      }
     });
   }
 
