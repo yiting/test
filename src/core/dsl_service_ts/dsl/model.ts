@@ -1124,6 +1124,9 @@ class RenderData {
   set(prop: any, value: any) {
     if (prop === 'children') {
       this.children = value;
+      this._zIndex =
+        this._zIndex ||
+        Math.max(...this.children.map((child: any) => child._zIndex));
       return;
     }
     const that: any = this;

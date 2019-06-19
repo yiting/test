@@ -98,7 +98,6 @@ class Tree {
         this._row(child);
       }
     }
-
     // 如果只有一个子节点，则不生成新组
     if (children.length === 1) {
       // 当只包含一个元素时就不用创建QLayer
@@ -113,7 +112,6 @@ class Tree {
         return Utils.isYConnect(a, b, -1);
       }
       return Utils.isYWrap(a, b); */
-
       if (Utils.isYConnect(a, b, -1)) {
         if (
           // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
@@ -157,6 +155,7 @@ class Tree {
        */
       if (
         arr.length === 1 &&
+        firstNode.type !== Common.QText &&
         (firstNode.constraints['LayoutSelfPosition'] !==
           Constraints.LayoutSelfPosition.Absolute ||
           (firstNode.abX === parent.abX &&
@@ -241,11 +240,9 @@ class Tree {
        * 且该节点是绝对定位的
        */
       if (
-        arr.length === 1 &&
-        (firstNode.type !== Common.QText ||
-          firstNode.constraints['LayoutSelfPosition'] ===
-            Constraints.LayoutSelfPosition.Absolute ||
-          firstNode.modelName === 'wg1-m1')
+        (arr.length === 1 && firstNode.type !== Common.QText) ||
+        firstNode.constraints['LayoutSelfPosition'] ===
+          Constraints.LayoutSelfPosition.Absolute
       ) {
         // 当纵向节点只有一个时
         newChildren.push(firstNode);
@@ -290,7 +287,6 @@ class Tree {
            * 在父节点上,
            * 描述：parent面积必 大于等于 child面积，通过判断是否存在包含关系得出，child是否为parent子节点
            */
-
           if (
             parent.type !== Common.QText &&
             child.modelName !== 'wg1-m1' &&
