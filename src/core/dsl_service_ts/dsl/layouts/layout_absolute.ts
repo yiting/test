@@ -182,7 +182,6 @@ class LayoutAbsolute extends Model.LayoutModel {
    * @param {Array} models
    */
   static _handleAbsolute(_parent: any, _calNodes: any, _absNodes: any) {
-    if (_parent.id == 'layer6') debugger;
     const parent: any = _parent;
     const calNodes: any = _calNodes;
     const absNodes: any = _absNodes;

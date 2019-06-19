@@ -48,8 +48,8 @@ function layout(dslTree: any) {
     _logStep = '循环';
     walkOut(LayoutCircle, dslTree._treeData);
     // 排序
-    _logStep = '排序';
-    walkIn(LayoutSort, dslTree._treeData);
+    // _logStep = '排序';
+    // walkIn(LayoutSort, dslTree._treeData);
   } catch (e) {
     Loger.error(`dsl/layout.ts layout()
       desc: ${_logStep}

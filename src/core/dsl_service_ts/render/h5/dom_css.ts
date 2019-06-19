@@ -611,17 +611,18 @@ class CssDom {
 const process = function(data: any) {
   // 构建cssTree并返回
   Loger.debug('css_dom.js [process]');
+
   // 构建树
   Loger.debug('css_dom.js [_buildTree]');
   cssDomTree = _buildTree(null, data);
 
   // 计算约束
   Loger.debug('css_dom.js [_parseConstraints]');
-  CssBoundary(cssDomTree);
+  CssConstraints(cssDomTree);
 
   // 调整边距
   Loger.debug('css_dom.js [_parseBoundary]');
-  CssConstraints(cssDomTree);
+  CssBoundary(cssDomTree);
   return cssDomTree;
 };
 export default {

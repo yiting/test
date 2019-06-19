@@ -173,9 +173,9 @@ class LayoutEquality extends Model.LayoutModel {
     const lastNode = nodes[nodes.length - 1];
     let leftSide = (firstNode.abX + firstNode.abXops) / 2 - parent.abX;
     let rightSide = parent.abXops - (lastNode.abX + lastNode.abXops) / 2;
-    if (Math.abs(leftSide - rightSide) > COEFFICIENT) {
-      return false;
-    }
+    // if (Math.abs(leftSide - rightSide) > COEFFICIENT) {
+    //   return false;
+    // }
     // 中心点数组
     const dirArr: any = [];
     // 得出间距数组
