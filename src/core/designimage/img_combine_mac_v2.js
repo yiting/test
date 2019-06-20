@@ -599,7 +599,7 @@ const ImageCombine = function() {
     //   return item.path.indexOf('_CC3B_0788')>-1;
     // });
     // imgList = imgList.slice(0,1);
-    // imgList = [imgList[58]];
+    // imgList = [imgList[10]];
     // 通过隐藏不要图层然后用运行库合图的方式来合图
     const updateFileAfterFix = '_imgForCombine';
     const projectNameWithoutAfterFix = projectName;
@@ -634,8 +634,16 @@ const ImageCombine = function() {
     }
 
     //清除边框/阴影等属性
-    let clearnList = ImageClean.cleanImg(that.pageJson, ['border', 'shadows']);
-    ImageClean.clearJSON(that.pageJson, clearnList, ['border', 'shadows']);
+    let clearnList = ImageClean.cleanImg(that.pageJson, [
+      'border',
+      'shadows',
+      'borders',
+    ]);
+    ImageClean.clearJSON(that.pageJson, clearnList, [
+      'border',
+      'shadows',
+      'borders',
+    ]);
 
     //获取artboard index
     var artboardIndex;
