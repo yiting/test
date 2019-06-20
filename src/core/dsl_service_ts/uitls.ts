@@ -73,7 +73,7 @@ export default {
       Math.abs(aCx - bCx) <= (a_abXops - a_abX + b_abXops - b_abX) / 2 + dir
     );
   },
-  // 垂直方向相连
+  // 垂直方向相连i
   isYConnect(
     a_abY: number,
     a_abYops: number,
