@@ -161,9 +161,9 @@ class LayoutCircle extends Model.LayoutModel {
           const _group = target[key];
           const newParent = Group.Tree.createNodeData(null);
           _group.forEach((child: any) => {
-            child.set('parentId', newParent.id);
+            child.set('parent', newParent);
           });
-          newParent.set('parentId', _parent.id);
+          newParent.set('parent', _parent);
           newParent.set('children', _group);
           newParent.set('similarId', itemSimilarIndex);
           newParent.constraints['LayoutFixedWidth'] =
@@ -290,7 +290,7 @@ class LayoutCircle extends Model.LayoutModel {
     _target.forEach((group: any) => {
       const newWrapData = Group.Tree.createNodeData(null);
       newWrapData.set('children', group);
-      newWrapData.set('parentId', _parent.id);
+      newWrapData.set('parent', _parent);
       newWrapData.set('similarId', similarId);
       newWrapData.resize(false);
       inRemove.push(...group);

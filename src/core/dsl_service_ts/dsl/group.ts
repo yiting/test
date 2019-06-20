@@ -73,7 +73,7 @@ class Tree {
   constructor() {
     // 创建根节点, 节点树总数据, 即为RenderData
     this._treeData = Tree.createNodeData(null);
-    this._treeData.set('parentId', null);
+    this._treeData.set('parent', null);
     this._treeData.set('type', Common.QBody);
     this._treeData.set('abX', 0);
     this._treeData.set('abXops', Common.DesignWidth);
@@ -169,7 +169,7 @@ class Tree {
         arr.sort((a: any, b: any) => a.abX - b.abX);
 
         const node = Tree.createNodeData(null);
-        node.set('parentId', parent.id);
+        node.set('parent', parent);
         // node.set("abX", arr.abX);
         node.set('abX', parent.abX);
         node.set('abY', arr.abY);
@@ -178,7 +178,7 @@ class Tree {
         node.set('abYops', arr.abYops);
 
         arr.forEach((child: any) => {
-          child.set('parentId', node.id);
+          child.set('parent', node);
           node.set('children', node.children.concat(child));
           // 新增节点，重置层级关系
           // node.resetZIndex();
@@ -252,14 +252,14 @@ class Tree {
         arr.sort((a: any, b: any) => a.abY - b.abY);
 
         const node = Tree.createNodeData(null);
-        node.set('parentId', parent.id);
+        node.set('parent', parent);
         node.set('abX', arr.abX);
         node.set('abY', arr.abY);
         node.set('abXops', arr.abXops);
         node.set('abYops', arr.abYops);
 
         arr.forEach((child: any) => {
-          child.set('parentId', node.id);
+          child.set('parent', node);
           node.set('children', node.children.concat(child));
         });
         newChildren.push(node);
@@ -331,7 +331,7 @@ class Tree {
   static _add(child: any, parent: any) {
     // node为RenderData
     const node = Tree.createNodeData(child);
-    node.set('parentId', parent.id);
+    node.set('parent', parent);
     parent.set('children', parent.children.concat(node));
     /**
      * 如果父节点为QShape或QImage时，添加子节点后，父节点模型类型改为layer，
@@ -418,7 +418,7 @@ class Tree {
     newRenderData = new Model.RenderData();
     newRenderData.set('id', `layer${Tree.LayerId}`);
     Tree.LayerId += 1;
-    newRenderData.set('parentId', parent.id);
+    newRenderData.set('parent', parent);
     newRenderData.nodes = {};
     // 传进来的数据暂时只有两级结构, 所以直接coding两层循环
     for (let i = 0; i < nodesArr.length; i++) {
@@ -435,7 +435,7 @@ class Tree {
         newRenderData.nodes[`${i}`] = renderDataI;
       } else {
         const renderDataI = new Model.RenderData();
-        renderDataI.set('parentId', newRenderData.id);
+        renderDataI.set('parent', newRenderData);
         renderDataI.set('modelRef', `${i}`);
         renderDataI.children.push(...nodes);
         renderDataI.resize(false); // 新节点重新计算最小范围
