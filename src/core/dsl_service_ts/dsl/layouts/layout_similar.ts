@@ -119,6 +119,7 @@ class LayoutSimilar extends Model.LayoutModel {
      * 3. 如果非layer，三基线对齐
      * 4. 如果没有子节点，则相似
      */
+
     if (a.type !== b.type || a.modelName !== b.modelName) {
       return false;
     }
@@ -178,14 +179,33 @@ class LayoutSimilar extends Model.LayoutModel {
       );
     } else if (a.type !== Common.QText) {
       // 如果为其他元素（非文本），则同父节点，子节点数相同，三线对齐相同
+      const nodeA = a.node;
+      const nodeB = b.node;
       return (
-        a.parentId === b.parentId &&
+        /* a.parentId === b.parentId &&
         (a.abY === b.abY ||
           a.abYops === b.abYops ||
           a.ctY === b.ctY ||
           a.abX === b.abX ||
           a.abXops === b.abXops ||
-          a.ctX === b.ctX)
+          a.ctX === b.ctX) */
+        a.abYops - a.abY - (b.abYops - b.abY) < ErrorCoefficient &&
+        a.abXops - a.abX - (b.abXops - b.abX) < ErrorCoefficient &&
+        nodeA.styles &&
+        nodeB.styles &&
+        // 圆角相同
+        ((nodeA.styles.borderRadius === null &&
+          nodeB.styles.borderRadius === null) ||
+          (nodeA.styles.borderRadius &&
+            nodeB.styles.borderRadius &&
+            nodeA.styles.borderRadius.join() ==
+              nodeB.styles.borderRadius.join())) &&
+        // nodeA.styles.shadows === nodeB.styles.shadows &&
+        // 边框宽度相同
+        ((nodeA.styles.border === null && nodeB.styles.border === null) ||
+          (nodeA.styles.border &&
+            nodeB.styles.border &&
+            nodeA.styles.border.width === nodeB.styles.border.width))
       );
     }
   }
