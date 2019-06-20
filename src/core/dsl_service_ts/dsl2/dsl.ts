@@ -115,22 +115,13 @@ let pipe = function(nodes: any): any {
   }
   const info2 = '元素模型数: ' + matchedElements.length + '; ';
 
-  for (let i = 0; i < matchedElements.length; i++) {
-    let ele = matchedElements[i];
-    
-    if (ele.modelName === 'em2-m3' || ele.modelName === 'em2-m4') {
-      console.log(ele._matchNodes[0]);
-      console.log(ele._matchNodes[1]);
-      console.log('-------------------');
-    } 
-  }
-  console.log('未匹配的matchingNode长度: ' + matchingNodes.length);
   // 组件模型模型的匹配
-  // try {
-  //   _matchModels(10000, matchedWidgets, matchedElements, Common.MatchingWidgets, optimizeWidth, optimizeHeight, maxNodeX, maxNodeY);
-  // } catch (e) {
-  //   console.log('match widgets error');
-  // }
+  try {
+    _matchModels(10000, matchedWidgets, matchedElements, Common.MatchingWidgets, optimizeWidth, optimizeHeight, maxNodeX, maxNodeY);
+  } catch (e) {
+    console.log(e);
+    console.log('match widgets error');
+  }
   const info3 = '组件模型数: ' + matchedWidgets.length + '; ';
 
   // 匹配成功返回

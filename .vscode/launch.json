@@ -55,7 +55,7 @@
       "type": "node",
       "request": "launch",
       "name": "DSL Model Test",
-      "program": "${workspaceFolder}/dist/core/dsl_service_ts/test/test7",
+      "program": "${workspaceFolder}/dist/core/dsl_service_ts/test/test3",
       "cwd": "${workspaceFolder}"
     }
   ]
