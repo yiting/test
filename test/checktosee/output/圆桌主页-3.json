@@ -6,6 +6,7 @@
     "height": 5047,
     "abX": 0,
     "abY": 0,
+    "zIndex": 0,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -27,6 +28,7 @@
     "height": 377,
     "abX": 40,
     "abY": 229,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -45,6 +47,7 @@
     "height": 377,
     "abX": 40,
     "abY": 228,
+    "zIndex": 2,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -77,6 +80,7 @@
     "height": 41,
     "abX": 67,
     "abY": 433,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -95,6 +99,7 @@
     "height": 36,
     "abX": 67,
     "abY": 490,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -124,6 +129,7 @@
     "height": 24,
     "abX": 186,
     "abY": 550,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -153,6 +159,7 @@
     "height": 36,
     "abX": 259,
     "abY": 489,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -182,6 +189,7 @@
     "height": 377,
     "abX": 730,
     "abY": 228,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -200,6 +208,7 @@
     "height": 182,
     "abX": 40,
     "abY": 2687,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -218,6 +227,7 @@
     "height": 33,
     "abX": 39,
     "abY": 2687,
+    "zIndex": 2,
     "styles": {
       "borderRadius": [6, 6, 6, 6],
       "border": null,
@@ -239,6 +249,7 @@
     "height": 30,
     "abX": 46,
     "abY": 2688,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -265,9 +276,10 @@
     "id": "2674FA48-87E7-406E-B55D-87338F5A0F43",
     "name": "865人评价",
     "width": 116,
-    "height": 24,
+    "height": 33,
     "abX": 40,
-    "abY": 2931,
+    "abY": 2927,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -285,7 +297,7 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 24
+      "lineHeight": null
     },
     "type": "QText",
     "text": "865人评价"
@@ -294,9 +306,10 @@
     "id": "3FF3F1A7-5C95-4D97-9C61-D547FAD69E47",
     "name": "幻想砖块",
     "width": 198,
-    "height": 28,
+    "height": 45,
     "abX": 40,
-    "abY": 2889,
+    "abY": 2881,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -314,10 +327,86 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 28
+      "lineHeight": null
     },
     "type": "QText",
     "text": "幻想砖块"
+  },
+  {
+    "id": "5D4590AF-0C41-4F47-B129-494B351EE4EA",
+    "name": "Rectangle",
+    "width": 325,
+    "height": 182,
+    "abX": 385,
+    "abY": 2687,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [10, 10, 10, 10],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "5D4590AF-0C41-4F47-B129-494B351EE4EA.png"
+  },
+  {
+    "id": "18E7555D-44F1-49C0-95D2-1BC15C840992",
+    "name": "Rectangle",
+    "width": 325,
+    "height": 182,
+    "abX": 730,
+    "abY": 2687,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [10, 10, 10, 10],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "18E7555D-44F1-49C0-95D2-1BC15C840992.png"
+  },
+  {
+    "id": "9FBF89B2-A31D-4DAD-832B-D4D64B1A12D1",
+    "name": "Rectangle",
+    "width": 325,
+    "height": 182,
+    "abX": 40,
+    "abY": 3132,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [10, 10, 10, 10],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "9FBF89B2-A31D-4DAD-832B-D4D64B1A12D1.png"
+  },
+  {
+    "id": "17B772F0-F1CB-49D5-97E6-C0D60C4375D4",
+    "name": "Rectangle",
+    "width": 325,
+    "height": 182,
+    "abX": 385,
+    "abY": 3132,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [10, 10, 10, 10],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "17B772F0-F1CB-49D5-97E6-C0D60C4375D4.png"
   },
   {
     "id": "DE411AC6-2C75-457E-9A64-13967D3A3232",
@@ -326,6 +415,7 @@
     "height": 182,
     "abX": 730,
     "abY": 3132,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -344,6 +434,7 @@
     "height": 40,
     "abX": 40,
     "abY": 168,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -373,6 +464,7 @@
     "height": 40,
     "abX": 40,
     "abY": 721,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -402,6 +494,7 @@
     "height": 40,
     "abX": 40,
     "abY": 2626,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -431,6 +524,7 @@
     "height": 40,
     "abX": 40,
     "abY": 3071,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -460,6 +554,7 @@
     "height": 337,
     "abX": 40,
     "abY": 835,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -478,10 +573,11 @@
     "height": 337,
     "abX": 40,
     "abY": 835,
+    "zIndex": 2,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
-      "opacity": 0.5,
+      "opacity": "0.5000",
       "rotation": 0,
       "shadows": null,
       "background": {
@@ -499,6 +595,7 @@
     "height": 30,
     "abX": 64,
     "abY": 1118,
+    "zIndex": 3,
     "styles": {
       "borderRadius": [6, 6, 6, 6],
       "border": null,
@@ -517,6 +614,7 @@
     "height": 24,
     "abX": 110,
     "abY": 1121,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -546,6 +644,7 @@
     "height": 24,
     "abX": 104,
     "abY": 861,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -575,6 +674,7 @@
     "height": 24,
     "abX": 273,
     "abY": 1049,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -604,6 +704,7 @@
     "height": 20,
     "abX": 247,
     "abY": 1050,
+    "zIndex": 3,
     "styles": {},
     "type": "QImage",
     "path": "235C031C-6BED-4B68-A4BA-28E4816A9C4B.png"
@@ -615,6 +716,7 @@
     "height": 24,
     "abX": 310,
     "abY": 1121,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -644,6 +746,7 @@
     "height": 108,
     "abX": 64,
     "abY": 911,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -673,6 +776,7 @@
     "height": 28,
     "abX": 64,
     "abY": 859,
+    "zIndex": 3,
     "styles": {
       "borderRadius": ["50%", "50%", "50%", "50%"],
       "border": null,
@@ -691,14 +795,16 @@
     "height": 1,
     "abX": 64,
     "abY": 1093,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": {
         "type": "solid",
         "color": { "r": 151, "g": 151, "b": 151, "a": 1 },
-        "width": 1
+        "width": 1,
+        "position": 1
       },
-      "opacity": 0.5,
+      "opacity": "0.5000",
       "rotation": 0,
       "shadows": null,
       "background": {
@@ -716,6 +822,7 @@
     "height": 337,
     "abX": 385,
     "abY": 835,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -734,10 +841,11 @@
     "height": 337,
     "abX": 385,
     "abY": 835,
+    "zIndex": 2,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
-      "opacity": 0.5,
+      "opacity": "0.5000",
       "rotation": 0,
       "shadows": null,
       "background": {
@@ -755,6 +863,7 @@
     "height": 30,
     "abX": 409,
     "abY": 1118,
+    "zIndex": 3,
     "styles": {
       "borderRadius": [6, 6, 6, 6],
       "border": null,
@@ -773,6 +882,7 @@
     "height": 24,
     "abX": 455,
     "abY": 1121,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -802,6 +912,7 @@
     "height": 24,
     "abX": 409,
     "abY": 1050,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -831,6 +942,7 @@
     "height": 24,
     "abX": 618,
     "abY": 1050,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -860,6 +972,7 @@
     "height": 20,
     "abX": 592,
     "abY": 1051,
+    "zIndex": 3,
     "styles": {},
     "type": "QImage",
     "path": "235C031C-6BED-4B68-A4BA-28E4816A9C4B.png"
@@ -871,6 +984,7 @@
     "height": 24,
     "abX": 655,
     "abY": 1121,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -900,6 +1014,7 @@
     "height": 108,
     "abX": 409,
     "abY": 911,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -929,14 +1044,16 @@
     "height": 1,
     "abX": 409,
     "abY": 1094,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": {
         "type": "solid",
         "color": { "r": 151, "g": 151, "b": 151, "a": 1 },
-        "width": 1
+        "width": 1,
+        "position": 1
       },
-      "opacity": 0.5,
+      "opacity": "0.5000",
       "rotation": 0,
       "shadows": null,
       "background": {
@@ -954,6 +1071,7 @@
     "height": 24,
     "abX": 642,
     "abY": 2635,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -983,6 +1101,7 @@
     "height": 16,
     "abX": 699,
     "abY": 2642,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1001,6 +1120,7 @@
     "height": 24,
     "abX": 642,
     "abY": 3079,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1030,6 +1150,7 @@
     "height": 16,
     "abX": 699,
     "abY": 3086,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1048,6 +1169,7 @@
     "height": 24,
     "abX": 639,
     "abY": 177,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1077,6 +1199,7 @@
     "height": 16,
     "abX": 696,
     "abY": 184,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1092,9 +1215,10 @@
     "id": "624C8E0A-B7E8-4517-A625-8E7B048C5C5B",
     "name": "9.0",
     "width": 71,
-    "height": 24,
+    "height": 67,
     "abX": 294,
-    "abY": 2909,
+    "abY": 2882,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1112,7 +1236,7 @@
       ],
       "verticalAlign": 0,
       "textAlign": 1,
-      "lineHeight": 24
+      "lineHeight": null
     },
     "type": "QText",
     "text": "9.0"
@@ -1121,9 +1245,10 @@
     "id": "05489D6E-0238-4757-AC94-9D03318AA258",
     "name": "865人评价",
     "width": 116,
-    "height": 24,
+    "height": 33,
     "abX": 385,
-    "abY": 2931,
+    "abY": 2927,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1141,7 +1266,7 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 24
+      "lineHeight": null
     },
     "type": "QText",
     "text": "865人评价"
@@ -1150,9 +1275,10 @@
     "id": "5E1C1C7B-22BA-4669-8803-9970737A60A3",
     "name": "865人评价",
     "width": 116,
-    "height": 24,
+    "height": 33,
     "abX": 730,
-    "abY": 2931,
+    "abY": 2927,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1170,7 +1296,7 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 24
+      "lineHeight": null
     },
     "type": "QText",
     "text": "865人评价"
@@ -1179,9 +1305,10 @@
     "id": "DF70A3FD-D1D9-4B07-A5E5-A67765771B19",
     "name": "幻想砖块",
     "width": 198,
-    "height": 28,
+    "height": 45,
     "abX": 385,
-    "abY": 2889,
+    "abY": 2881,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1199,7 +1326,7 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 28
+      "lineHeight": null
     },
     "type": "QText",
     "text": "幻想砖块"
@@ -1207,10 +1334,11 @@
   {
     "id": "27F5E081-B5E8-4CA1-88EB-F0ED417A66A7",
     "name": "9.0",
-    "width": 60,
-    "height": 24,
-    "abX": 641,
-    "abY": 2909,
+    "width": 71,
+    "height": 67,
+    "abX": 630,
+    "abY": 2882,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1222,13 +1350,13 @@
         {
           "color": { "r": 228, "g": 191, "b": 113, "a": 1 },
           "string": "9.0",
-          "font": "Bebas",
+          "font": "PingFang-SC-Bold",
           "size": 48
         }
       ],
       "verticalAlign": 0,
       "textAlign": 1,
-      "lineHeight": 24
+      "lineHeight": null
     },
     "type": "QText",
     "text": "9.0"
@@ -1237,9 +1365,10 @@
     "id": "6FA1D3DE-9F1D-41F4-B018-E716C12DC887",
     "name": "气球大作战",
     "width": 176,
-    "height": 28,
+    "height": 45,
     "abX": 730,
-    "abY": 2889,
+    "abY": 2881,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1257,7 +1386,7 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 28
+      "lineHeight": null
     },
     "type": "QText",
     "text": "气球大作战"
@@ -1269,6 +1398,7 @@
     "height": 182,
     "abX": 40,
     "abY": 1333,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -1287,6 +1417,7 @@
     "height": 24,
     "abX": 87,
     "abY": 1573,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1316,6 +1447,7 @@
     "height": 32,
     "abX": 40,
     "abY": 1531,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1345,6 +1477,7 @@
     "height": 182,
     "abX": 385,
     "abY": 1333,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -1363,6 +1496,7 @@
     "height": 40,
     "abX": 40,
     "abY": 1272,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1392,6 +1526,7 @@
     "height": 22,
     "abX": 628,
     "abY": 1280,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1421,12 +1556,14 @@
     "height": 44,
     "abX": 590,
     "abY": 1268,
+    "zIndex": 2,
     "styles": {
       "borderRadius": [4, 4, 4, 4],
       "border": {
         "type": "solid",
         "color": { "r": 162, "g": 141, "b": 96, "a": 1 },
-        "width": 1
+        "width": 1,
+        "position": 1
       },
       "shadows": null
     },
@@ -1440,6 +1577,7 @@
     "height": 28,
     "abX": 192,
     "abY": 1284,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1469,6 +1607,7 @@
     "height": 21,
     "abX": 178,
     "abY": 1289,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1490,6 +1629,7 @@
     "height": 24,
     "abX": 441,
     "abY": 1573,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1516,9 +1656,10 @@
     "id": "DF1B639B-B40C-4509-9D0E-E121D8E0E4DD",
     "name": "幻想砖块",
     "width": 176,
-    "height": 28,
+    "height": 32,
     "abX": 385,
-    "abY": 1533,
+    "abY": 1531,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1536,7 +1677,7 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 28
+      "lineHeight": 32
     },
     "type": "QText",
     "text": "幻想砖块"
@@ -1548,6 +1689,7 @@
     "height": 182,
     "abX": 40,
     "abY": 1629,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -1563,9 +1705,10 @@
     "id": "2836561E-20FA-46D6-9BD5-1F555FB0C941",
     "name": "跳一跳",
     "width": 205,
-    "height": 28,
+    "height": 32,
     "abX": 40,
-    "abY": 1829,
+    "abY": 1827,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1583,18 +1726,38 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 28
+      "lineHeight": 32
     },
     "type": "QText",
     "text": "跳一跳"
   },
   {
+    "id": "A8CA4404-A6DB-419F-AC25-C9BB9FC4A842",
+    "name": "Rectangle",
+    "width": 325,
+    "height": 182,
+    "abX": 385,
+    "abY": 1629,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [10, 10, 10, 10],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "18E7555D-44F1-49C0-95D2-1BC15C840992.png"
+  },
+  {
     "id": "1ABD1A54-A219-49BB-BC5D-3C943C606C78",
     "name": "气球大作战",
     "width": 176,
-    "height": 28,
+    "height": 32,
     "abX": 385,
-    "abY": 1829,
+    "abY": 1827,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1612,10 +1775,34 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 28
+      "lineHeight": 32
     },
     "type": "QText",
     "text": "气球大作战"
+  },
+  {
+    "id": "728A2B8B-1931-436D-9B32-E8902149D503",
+    "name": "Rectangle",
+    "width": 325,
+    "height": 182,
+    "abX": 40,
+    "abY": 4071,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [10, 10, 10, 10],
+      "border": {
+        "type": "solid",
+        "color": { "r": 240, "g": 240, "b": 240, "a": 1 },
+        "width": 1,
+        "position": 1
+      },
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "728A2B8B-1931-436D-9B32-E8902149D503.png"
   },
   {
     "id": "1432F4C7-DE89-46DA-A563-F60E34CB596B",
@@ -1624,12 +1811,14 @@
     "height": 182,
     "abX": 385,
     "abY": 4071,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": {
         "type": "solid",
         "color": { "r": 240, "g": 240, "b": 240, "a": 1 },
-        "width": 1
+        "width": 1,
+        "position": 1
       },
       "opacity": 1,
       "rotation": 0,
@@ -1646,6 +1835,7 @@
     "height": 182,
     "abX": 730,
     "abY": 4071,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -1664,6 +1854,7 @@
     "height": 40,
     "abX": 40,
     "abY": 4010,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1693,6 +1884,7 @@
     "height": 24,
     "abX": 642,
     "abY": 4019,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1722,6 +1914,7 @@
     "height": 16,
     "abX": 699,
     "abY": 4026,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1740,6 +1933,7 @@
     "height": 1,
     "abX": 0,
     "abY": 128,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1761,6 +1955,7 @@
     "height": 40,
     "abX": 335,
     "abY": 64,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1790,6 +1985,7 @@
     "height": 56,
     "abX": 40,
     "abY": 56,
+    "zIndex": 1,
     "styles": {
       "borderRadius": ["50%", "50%", "50%", "50%"],
       "border": null,
@@ -1808,6 +2004,7 @@
     "height": 11,
     "abX": 12,
     "abY": 17,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "9212A123-92D0-4044-91B1-04708973A4C3.png"
@@ -1819,6 +2016,7 @@
     "height": 30,
     "abX": 87,
     "abY": 8,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1848,6 +2046,7 @@
     "height": 19,
     "abX": 222,
     "abY": 13,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "5ECC1302-7BF4-438B-BB94-DFAC30B2B715.png"
@@ -1859,6 +2058,7 @@
     "height": 30,
     "abX": 325,
     "abY": 8,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1894,6 +2094,7 @@
     "height": 30,
     "abX": 617,
     "abY": 8,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1923,6 +2124,7 @@
     "height": 19,
     "abX": 689,
     "abY": 13,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1941,6 +2143,7 @@
     "height": 24,
     "abX": 87,
     "abY": 1870,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1970,6 +2173,7 @@
     "height": 24,
     "abX": 441,
     "abY": 1869,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1999,6 +2203,7 @@
     "height": 182,
     "abX": 40,
     "abY": 4516,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -2017,6 +2222,7 @@
     "height": 24,
     "abX": 83,
     "abY": 4760,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2046,6 +2252,7 @@
     "height": 28,
     "abX": 40,
     "abY": 4718,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2075,6 +2282,7 @@
     "height": 182,
     "abX": 385,
     "abY": 4516,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -2084,7 +2292,7 @@
       "background": null
     },
     "type": "QImage",
-    "path": "AD687698-820A-40B6-98F5-0433980E67FF.png"
+    "path": "5D4590AF-0C41-4F47-B129-494B351EE4EA.png"
   },
   {
     "id": "41C87D61-5AA3-4671-9502-2DA17763B9CC",
@@ -2093,6 +2301,7 @@
     "height": 182,
     "abX": 730,
     "abY": 4516,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -2102,7 +2311,7 @@
       "background": null
     },
     "type": "QImage",
-    "path": "41C87D61-5AA3-4671-9502-2DA17763B9CC.png"
+    "path": "18E7555D-44F1-49C0-95D2-1BC15C840992.png"
   },
   {
     "id": "EF0A71F1-50D5-4B04-9A56-AE858AE4069A",
@@ -2111,6 +2320,7 @@
     "height": 40,
     "abX": 40,
     "abY": 4455,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2140,6 +2350,7 @@
     "height": 24,
     "abX": 642,
     "abY": 4464,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2169,6 +2380,7 @@
     "height": 16,
     "abX": 699,
     "abY": 4471,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2187,6 +2399,7 @@
     "height": 24,
     "abX": 330,
     "abY": 4720,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2216,6 +2429,7 @@
     "height": 24,
     "abX": 439,
     "abY": 4760,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2245,6 +2459,7 @@
     "height": 28,
     "abX": 385,
     "abY": 4718,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2274,6 +2489,7 @@
     "height": 24,
     "abX": 674,
     "abY": 4720,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2303,6 +2519,7 @@
     "height": 28,
     "abX": 730,
     "abY": 4718,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2332,6 +2549,7 @@
     "height": 25,
     "abX": 730,
     "abY": 4761,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2347,9 +2565,10 @@
     "id": "80295076-4B42-4443-9987-DD09E71F7601",
     "name": "865人评价",
     "width": 116,
-    "height": 24,
+    "height": 33,
     "abX": 83,
-    "abY": 3376,
+    "abY": 3372,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2367,7 +2586,7 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 24
+      "lineHeight": null
     },
     "type": "QText",
     "text": "865人评价"
@@ -2379,6 +2598,7 @@
     "height": 26,
     "abX": 196,
     "abY": 2587,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2394,9 +2614,10 @@
     "id": "7BD2DDE1-B392-4CA2-A61D-5C6AEBB9625B",
     "name": "幻想砖块",
     "width": 198,
-    "height": 28,
+    "height": 45,
     "abX": 40,
-    "abY": 3334,
+    "abY": 3326,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2414,7 +2635,7 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 28
+      "lineHeight": null
     },
     "type": "QText",
     "text": "幻想砖块"
@@ -2422,10 +2643,11 @@
   {
     "id": "5898B454-1EDD-4689-A6D3-C681FE52EFA7",
     "name": "9.6",
-    "width": 35,
-    "height": 24,
-    "abX": 330,
-    "abY": 3336,
+    "width": 42,
+    "height": 40,
+    "abX": 323,
+    "abY": 3328,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2437,13 +2659,13 @@
         {
           "color": { "r": 228, "g": 191, "b": 113, "a": 1 },
           "string": "9.6",
-          "font": "Bebas",
+          "font": "PingFang-SC-Bold",
           "size": 28
         }
       ],
       "verticalAlign": 0,
       "textAlign": 1,
-      "lineHeight": 24
+      "lineHeight": null
     },
     "type": "QText",
     "text": "9.6"
@@ -2452,9 +2674,10 @@
     "id": "E61C8227-9A91-4689-9B23-A3D04EC88308",
     "name": "865人评价",
     "width": 116,
-    "height": 24,
+    "height": 33,
     "abX": 439,
-    "abY": 3376,
+    "abY": 3372,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2472,7 +2695,7 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 24
+      "lineHeight": null
     },
     "type": "QText",
     "text": "865人评价"
@@ -2481,9 +2704,10 @@
     "id": "5E081F6D-2074-4CAF-8418-8500D2EC8050",
     "name": "跳一跳",
     "width": 233,
-    "height": 28,
+    "height": 45,
     "abX": 385,
-    "abY": 3334,
+    "abY": 3326,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2501,7 +2725,7 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 28
+      "lineHeight": null
     },
     "type": "QText",
     "text": "跳一跳"
@@ -2509,10 +2733,11 @@
   {
     "id": "CE6B3677-9072-438D-B93C-8F29EFB884FB",
     "name": "9.0",
-    "width": 35,
-    "height": 24,
-    "abX": 675,
-    "abY": 3336,
+    "width": 42,
+    "height": 40,
+    "abX": 668,
+    "abY": 3328,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2524,13 +2749,13 @@
         {
           "color": { "r": 228, "g": 191, "b": 113, "a": 1 },
           "string": "9.0",
-          "font": "Bebas",
+          "font": "PingFang-SC-Bold",
           "size": 28
         }
       ],
       "verticalAlign": 0,
       "textAlign": 1,
-      "lineHeight": 24
+      "lineHeight": null
     },
     "type": "QText",
     "text": "9.0"
@@ -2539,9 +2764,10 @@
     "id": "F47D3653-5EEA-4B57-B623-605056702D09",
     "name": "气球大作战",
     "width": 176,
-    "height": 28,
+    "height": 45,
     "abX": 730,
-    "abY": 3334,
+    "abY": 3326,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2559,7 +2785,7 @@
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 28
+      "lineHeight": null
     },
     "type": "QText",
     "text": "气球大作战"
@@ -2571,6 +2797,7 @@
     "height": 25,
     "abX": 730,
     "abY": 3377,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2589,6 +2816,7 @@
     "height": 24,
     "abX": 83,
     "abY": 4315,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2618,6 +2846,7 @@
     "height": 28,
     "abX": 40,
     "abY": 4273,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2647,6 +2876,7 @@
     "height": 24,
     "abX": 330,
     "abY": 4275,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2676,6 +2906,7 @@
     "height": 24,
     "abX": 439,
     "abY": 4315,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2705,6 +2936,7 @@
     "height": 28,
     "abX": 385,
     "abY": 4273,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2734,6 +2966,7 @@
     "height": 24,
     "abX": 675,
     "abY": 4275,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2763,6 +2996,7 @@
     "height": 28,
     "abX": 730,
     "abY": 4273,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2792,6 +3026,7 @@
     "height": 25,
     "abX": 730,
     "abY": 4316,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2810,6 +3045,7 @@
     "height": 40,
     "abX": 40,
     "abY": 2009,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2839,6 +3075,7 @@
     "height": 40,
     "abX": 209,
     "abY": 2009,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2868,6 +3105,7 @@
     "height": 5,
     "abX": 90,
     "abY": 2061,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [2.5, 2.5, 2.5, 2.5],
       "border": null,
@@ -2889,6 +3127,7 @@
     "height": 47,
     "abX": 665,
     "abY": 2127,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2918,10 +3157,11 @@
     "height": 24,
     "abX": 331,
     "abY": 2144,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 0.99,
+      "opacity": "0.9900",
       "rotation": 0,
       "shadows": null,
       "background": null,
@@ -2947,6 +3187,7 @@
     "height": 24,
     "abX": 331,
     "abY": 2328,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2976,6 +3217,7 @@
     "height": 32,
     "abX": 331,
     "abY": 2248,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3005,10 +3247,11 @@
     "height": 24,
     "abX": 331,
     "abY": 2292,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 0.99,
+      "opacity": "0.9900",
       "rotation": 0,
       "shadows": null,
       "background": null,
@@ -3034,6 +3277,7 @@
     "height": 20,
     "abX": 657,
     "abY": 2295,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3063,6 +3307,7 @@
     "height": 120,
     "abX": 40,
     "abY": 2240,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -3081,6 +3326,7 @@
     "height": 50,
     "abX": 277,
     "abY": 2275,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3102,6 +3348,7 @@
     "height": 32,
     "abX": 284,
     "abY": 2284,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3131,6 +3378,7 @@
     "height": 24,
     "abX": 331,
     "abY": 2478,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3160,6 +3408,7 @@
     "height": 32,
     "abX": 331,
     "abY": 2398,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3189,10 +3438,11 @@
     "height": 24,
     "abX": 331,
     "abY": 2442,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 0.99,
+      "opacity": "0.9900",
       "rotation": 0,
       "shadows": null,
       "background": null,
@@ -3218,6 +3468,7 @@
     "height": 50,
     "abX": 657,
     "abY": 2427,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3247,6 +3498,7 @@
     "height": 24,
     "abX": 642,
     "abY": 2025,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3276,6 +3528,7 @@
     "height": 16,
     "abX": 699,
     "abY": 2032,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3294,10 +3547,11 @@
     "height": 20,
     "abX": 0,
     "abY": 1941,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 0.2663,
+      "opacity": "0.2663",
       "rotation": 0,
       "shadows": null,
       "background": {
@@ -3315,10 +3569,11 @@
     "height": 20,
     "abX": 0,
     "abY": 653,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 0.2663,
+      "opacity": "0.2663",
       "rotation": 0,
       "shadows": null,
       "background": {
@@ -3336,10 +3591,11 @@
     "height": 20,
     "abX": 0,
     "abY": 1200,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 0.2663,
+      "opacity": "0.2663",
       "rotation": 0,
       "shadows": null,
       "background": {
@@ -3357,10 +3613,11 @@
     "height": 20,
     "abX": 0,
     "abY": 2558,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 0.2663,
+      "opacity": "0.2663",
       "rotation": 0,
       "shadows": null,
       "background": {
@@ -3378,10 +3635,11 @@
     "height": 20,
     "abX": 0,
     "abY": 3003,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 0.2663,
+      "opacity": "0.2663",
       "rotation": 0,
       "shadows": null,
       "background": {
@@ -3399,10 +3657,11 @@
     "height": 20,
     "abX": 0,
     "abY": 3450,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 0.2663,
+      "opacity": "0.2663",
       "rotation": 0,
       "shadows": null,
       "background": {
@@ -3420,10 +3679,11 @@
     "height": 20,
     "abX": 0,
     "abY": 3942,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 0.2663,
+      "opacity": "0.2663",
       "rotation": 0,
       "shadows": null,
       "background": {
@@ -3441,10 +3701,11 @@
     "height": 20,
     "abX": 0,
     "abY": 4387,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 0.2663,
+      "opacity": "0.2663",
       "rotation": 0,
       "shadows": null,
       "background": {
@@ -3456,48 +3717,13 @@
     "type": "QShape"
   },
   {
-    "id": "B16A0452-93A1-4970-B368-FDB37A3062B5",
-    "name": "Mask",
-    "width": 214,
-    "height": 120,
-    "abX": 40,
-    "abY": 2090,
-    "styles": {
-      "borderRadius": [10, 10, 10, 10],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "B16A0452-93A1-4970-B368-FDB37A3062B5.png"
-  },
-  {
-    "id": "B968CB52-8C77-4977-9773-76E0F2E49D5A",
-    "name": "Rectangle",
-    "width": 214,
-    "height": 120,
-    "abX": 40,
-    "abY": 2390,
-    "styles": {
-      "borderRadius": [10, 10, 10, 10],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "B968CB52-8C77-4977-9773-76E0F2E49D5A.png"
-  },
-  {
     "id": "200267EB-4C42-4496-BDCD-4B33033C85CD",
     "name": "865人评价",
     "width": 116,
     "height": 24,
     "abX": 331,
     "abY": 2180,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3527,6 +3753,7 @@
     "height": 32,
     "abX": 331,
     "abY": 2100,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3556,6 +3783,7 @@
     "height": 120,
     "abX": 40,
     "abY": 2090,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -3565,7 +3793,7 @@
       "background": null
     },
     "type": "QImage",
-    "path": "B16A0452-93A1-4970-B368-FDB37A3062B5.png"
+    "path": "4DF50AFD-170E-4E0E-AD76-CB85AF239899.png"
   },
   {
     "id": "E70B3482-9DDB-4254-A02E-E9AFFA12DC79",
@@ -3574,6 +3802,7 @@
     "height": 120,
     "abX": 40,
     "abY": 2390,
+    "zIndex": 1,
     "styles": {
       "borderRadius": [10, 10, 10, 10],
       "border": null,
@@ -3583,7 +3812,7 @@
       "background": null
     },
     "type": "QImage",
-    "path": "B968CB52-8C77-4977-9773-76E0F2E49D5A.png"
+    "path": "E70B3482-9DDB-4254-A02E-E9AFFA12DC79.png"
   },
   {
     "id": "708B70C8-FA76-4284-B6AA-1B151274C1DD",
@@ -3592,6 +3821,7 @@
     "height": 50,
     "abX": 277,
     "abY": 2135,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3613,6 +3843,7 @@
     "height": 32,
     "abX": 286,
     "abY": 2144,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3642,6 +3873,7 @@
     "height": 50,
     "abX": 277,
     "abY": 2425,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3663,6 +3895,7 @@
     "height": 32,
     "abX": 284,
     "abY": 2434,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3692,12 +3925,14 @@
     "height": 32,
     "abX": 104,
     "abY": 546,
+    "zIndex": 3,
     "styles": {
       "borderRadius": ["50%", "50%", "50%", "50%"],
       "border": {
         "type": "solid",
         "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "width": 2
+        "width": 2,
+        "position": 2
       },
       "opacity": 1,
       "rotation": 0,
@@ -3714,12 +3949,14 @@
     "height": 32,
     "abX": 68,
     "abY": 546,
+    "zIndex": 3,
     "styles": {
       "borderRadius": ["50%", "50%", "50%", "50%"],
       "border": {
         "type": "solid",
         "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "width": 2
+        "width": 2,
+        "position": 2
       },
       "opacity": 1,
       "rotation": 0,
@@ -3736,12 +3973,14 @@
     "height": 32,
     "abX": 140,
     "abY": 546,
+    "zIndex": 3,
     "styles": {
       "borderRadius": ["50%", "50%", "50%", "50%"],
       "border": {
         "type": "solid",
         "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "width": 2
+        "width": 2,
+        "position": 2
       },
       "opacity": 1,
       "rotation": 0,
@@ -3758,6 +3997,7 @@
     "height": 40,
     "abX": 40,
     "abY": 3518,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3781,12 +4021,35 @@
     "text": "今日骑士"
   },
   {
+    "id": "6DAE414B-5FB5-4D97-BEB1-197B06516BA6",
+    "name": "Rectangle",
+    "width": 670,
+    "height": 148,
+    "abX": 40,
+    "abY": 3582,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [10, 10, 10, 10],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 240, "g": 248, "b": 245, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
     "id": "5B4347E9-2D9E-43A4-8230-843341F876CB",
     "name": "Rectangle 2",
     "width": 100,
     "height": 100,
     "abX": 64,
     "abY": 3606,
+    "zIndex": 2,
     "styles": {
       "borderRadius": [50, 50, 50, 50],
       "border": null,
@@ -3805,6 +4068,7 @@
     "height": 24,
     "abX": 184,
     "abY": 3625,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3834,6 +4098,7 @@
     "height": 24,
     "abX": 184,
     "abY": 3663,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3857,12 +4122,35 @@
     "text": "一天内连续评价10款游戏"
   },
   {
+    "id": "EB596A44-07F3-4FDB-906E-4AAFC5D74C07",
+    "name": "Rectangle",
+    "width": 670,
+    "height": 148,
+    "abX": 40,
+    "abY": 3750,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [10, 10, 10, 10],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 239, "g": 244, "b": 248, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
     "id": "6672F452-AD7F-4B63-AE2B-F62364F41BB6",
     "name": "Rectangle 2",
     "width": 100,
     "height": 100,
     "abX": 64,
     "abY": 3774,
+    "zIndex": 2,
     "styles": {
       "borderRadius": [50, 50, 50, 50],
       "border": null,
@@ -3881,6 +4169,7 @@
     "height": 24,
     "abX": 184,
     "abY": 3793,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3910,6 +4199,7 @@
     "height": 24,
     "abX": 184,
     "abY": 3831,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3939,6 +4229,7 @@
     "height": 28,
     "abX": 528,
     "abY": 3810,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3968,6 +4259,7 @@
     "height": 28,
     "abX": 528,
     "abY": 3642,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -3997,6 +4289,7 @@
     "height": 28,
     "abX": 120,
     "abY": 786,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -4026,34 +4319,13 @@
     "text": "软脚虾刚刚赞了幻想砖块"
   },
   {
-    "id": "_5D45_9FBF",
-    "name": "_Rectangle_Rectangle",
-    "width": 670,
-    "height": 627,
-    "abX": 40,
-    "abY": 2687,
-    "styles": {},
-    "type": "QImage",
-    "path": "_5D45_9FBF.png"
-  },
-  {
-    "id": "_18E7_17B7",
-    "name": "_Rectangle_Rectangle",
-    "width": 670,
-    "height": 627,
-    "abX": 385,
-    "abY": 2687,
-    "styles": {},
-    "type": "QImage",
-    "path": "_18E7_17B7.png"
-  },
-  {
     "id": "_732E_9425",
     "name": "_Rectangle 9_09_qq_symbol_rev",
     "width": 35,
     "height": 26,
     "abX": 40,
     "abY": 1572,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "_732E_9425.png"
@@ -4065,20 +4337,10 @@
     "height": 25,
     "abX": 385,
     "abY": 1574,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "_2D96_DD24.png"
-  },
-  {
-    "id": "_A8CA_728A",
-    "name": "_Rectangle_Rectangle",
-    "width": 670,
-    "height": 2624,
-    "abX": 40,
-    "abY": 1629,
-    "styles": {},
-    "type": "QImage",
-    "path": "_A8CA_728A.png"
   },
   {
     "id": "_6A6A_2DEA",
@@ -4087,6 +4349,7 @@
     "height": 24,
     "abX": 41,
     "abY": 1870,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "_6A6A_2DEA.png"
@@ -4098,6 +4361,7 @@
     "height": 25,
     "abX": 385,
     "abY": 1870,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "_2D96_DD24.png"
@@ -4109,6 +4373,7 @@
     "height": 26,
     "abX": 40,
     "abY": 4758,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "_732E_9425.png"
@@ -4120,6 +4385,7 @@
     "height": 25,
     "abX": 385,
     "abY": 4761,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "_2D96_DD24.png"
@@ -4131,6 +4397,7 @@
     "height": 26,
     "abX": 40,
     "abY": 3374,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "_732E_9425.png"
@@ -4142,6 +4409,7 @@
     "height": 25,
     "abX": 385,
     "abY": 3377,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "_2D96_DD24.png"
@@ -4153,6 +4421,7 @@
     "height": 26,
     "abX": 40,
     "abY": 4313,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "_732E_9425.png"
@@ -4164,20 +4433,10 @@
     "height": 25,
     "abX": 385,
     "abY": 4316,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "_2D96_DD24.png"
-  },
-  {
-    "id": "_6DAE_EB59",
-    "name": "_Rectangle_Rectangle",
-    "width": 670,
-    "height": 316,
-    "abX": 40,
-    "abY": 3582,
-    "styles": {},
-    "type": "QImage",
-    "path": "_6DAE_EB59.png"
   },
   {
     "id": "_643A_1A53",
@@ -4186,6 +4445,7 @@
     "height": 30,
     "abX": 40,
     "abY": 785,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "_643A_1A53.png"

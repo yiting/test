@@ -770,7 +770,7 @@ class MatchData {
   ) {
     const renderData = new RenderData();
     renderData.set('id', id);
-    renderData.set('parentId', parentId);
+    // renderData.set('parentId', parentId);
     renderData.set('type', modelType);
     renderData.set('modelName', modelName);
     renderData.set('modelRef', modelRef);
@@ -852,7 +852,7 @@ class MatchData {
 
       Object.keys(matchData).forEach((key: string) => {
         const rData = matchData[key].getRenderData();
-        rData.set('parentId', renderData.id);
+        rData.set('parent', renderData);
         rData.set('modelRef', key);
         // renderData.children.push(rData);
         renderData.nodes[key] = rData;
@@ -870,7 +870,7 @@ class MatchData {
     for (let i = 0; i < matchDatas.length; i++) {
       const mData = matchDatas[i];
       const rData = mData.getRenderData();
-      rData.set('parentId', renderData.id);
+      rData.set('parent', renderData);
       renderData.children.push(rData);
     }
   }
@@ -1009,8 +1009,11 @@ class RenderData {
 
   nodes: any;
 
+  _parent: any;
+
   constructor() {
     this._parentId = '';
+    this._parent = null;
     this._id = '';
     this._type = '';
     this._modelName = '';
@@ -1042,7 +1045,7 @@ class RenderData {
    */
   toJSON() {
     return {
-      parentId: this._parentId,
+      parentId: this.parentId,
       id: this._id,
       type: this._type,
       modelName: this._modelName,
@@ -1124,6 +1127,9 @@ class RenderData {
   set(prop: any, value: any) {
     if (prop === 'children') {
       this.children = value;
+      this._zIndex =
+        this._zIndex ||
+        Math.max(...this.children.map((child: any) => child._zIndex));
       return;
     }
     const that: any = this;
@@ -1133,9 +1139,11 @@ class RenderData {
   // resetZIndex() {
   // this._zIndex = this.children.length ? Math.min(...this.children.map(nd => nd.zIndex)) : null;
   // }
-
+  get parent() {
+    return this._parent;
+  }
   get parentId() {
-    return this._parentId;
+    return this._parent && this._parent.id;
   }
 
   get id() {

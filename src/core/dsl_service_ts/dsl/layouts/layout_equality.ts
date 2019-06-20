@@ -3,8 +3,10 @@
 import Common from '../common';
 import Model from '../model';
 import Utils from '../utils';
+import Store from '../../helper/store';
 import Constrains from '../constraints';
 
+let ErrorCoefficient: number = 0;
 class LayoutEquality extends Model.LayoutModel {
   /**
    * 对传进来的模型数组进行处理
@@ -18,12 +20,9 @@ class LayoutEquality extends Model.LayoutModel {
     const parent: any = _parent;
     const nodes: any = _nodes;
     // 剔除绝对定位元素
-    const flexNodes = nodes.filter(
-      (nd: any) =>
-        nd.constraints &&
-        nd.constraints.LayoutSelfPosition !==
-          Constrains.LayoutSelfPosition.Absolute,
-    );
+    const flexNodes = LayoutEquality.filterFlexNodes(nodes);
+
+    ErrorCoefficient = Store.get('errorCoefficient') || 0;
     // 如果小于两个节点，不处理
     if (flexNodes.length < 2) {
       return;
@@ -41,9 +40,19 @@ class LayoutEquality extends Model.LayoutModel {
     if (!Utils.isHorizontal(flexNodes)) {
       return;
     }
+    // 计算左对齐等分结果
     const leftSpace = LayoutEquality._isEqualityLeft(flexNodes, parent);
+    // 计算中对齐等分结果
     const centerSpace = LayoutEquality._isEqualityCenter(flexNodes, parent);
-    if (centerSpace) {
+    // 计算前节点内容是否中对齐等分
+    const prevLineIsJustifyCenter = LayoutEquality._prevLineIsJustifyCenter(
+      flexNodes,
+      parent,
+    );
+    // 当前节点是否居中等分
+    const isJustifyAround = LayoutEquality._isJustifyAround(flexNodes, parent);
+
+    if (centerSpace && (isJustifyAround || prevLineIsJustifyCenter)) {
       LayoutEquality._adjustCenterPos(flexNodes, centerSpace);
       parent.constraints.LayoutJustifyContent =
         Constrains.LayoutJustifyContent.Center;
@@ -53,7 +62,41 @@ class LayoutEquality extends Model.LayoutModel {
         Constrains.LayoutJustifyContent.Start;
     }
   }
-
+  static filterFlexNodes(nodes: any) {
+    return nodes.filter(
+      (nd: any) =>
+        nd.constraints &&
+        nd.constraints.LayoutSelfPosition !==
+          Constrains.LayoutSelfPosition.Absolute,
+    );
+  }
+  static _prevLineIsJustifyCenter(nodes: any, node: any) {
+    if (!node.parent) {
+      return false;
+    }
+    const nodeIndex = node.parent.children.indexOf(node);
+    const prev = node.parent.children[nodeIndex - 1];
+    const prevChildren = prev && LayoutEquality.filterFlexNodes(prev.children);
+    return (
+      prevChildren &&
+      prevChildren.length == nodes.length &&
+      nodes.every((nd: any, i: number) => {
+        const pd = prevChildren[i];
+        return (
+          Math.abs(nd.abX + nd.abXops - (pd.abX + pd.abXops)) < ErrorCoefficient
+        );
+      })
+    );
+  }
+  static _isJustifyAround(nodes: any, parent: any) {
+    const COEFFICIENT = 3;
+    // 左右间距判断
+    const firstNode = nodes[0];
+    const lastNode = nodes[nodes.length - 1];
+    let leftSide = (firstNode.abX + firstNode.abXops) / 2 - parent.abX;
+    let rightSide = parent.abXops - (lastNode.abX + lastNode.abXops) / 2;
+    return Math.abs(leftSide - rightSide) < COEFFICIENT;
+  }
   static _isAllCanFlex(nodes: any) {
     return nodes.every((node: any) => {
       return node.canLeftFlex !== false && node.canRightFlex !== false;
