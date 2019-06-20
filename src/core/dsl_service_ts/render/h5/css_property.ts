@@ -37,6 +37,7 @@ import textAlign from './css/textAlign';
 import whiteSpace from './css/whiteSpace';
 import lineHeight from './css/lineHeight';
 import opacity from './css/opacity';
+import margin from './css/margin';
 
 export default {
   map: [
@@ -48,11 +49,12 @@ export default {
     flexWrap,
     flex,
     // 边距
-    marginTop,
-    marginRight,
-    marginBottom,
-    marginLeft,
+    // marginTop,
+    // marginRight,
+    // marginBottom,
+    // marginLeft,
     paddingTop,
+    margin,
     // 高宽
     width,
     minHeight,
