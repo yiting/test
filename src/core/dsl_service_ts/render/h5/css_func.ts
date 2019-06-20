@@ -112,6 +112,38 @@ const Funcs = {
       .map(s => `${s.color} ${s.offset * 100}%`)
       .join(',')})`;
   },
+  /**
+   * 判断属性是否具有继承性
+   * @param {any} props css属性名
+   */
+  isExtend(props: string) {
+    const extentProps: {
+      [index: string]: Boolean;
+    } = {
+      font: true,
+      fontFamily: true,
+      fontWeight: true,
+      fontSize: true,
+      fontStyle: true,
+      fontVariant: true,
+      textIndent: true,
+      textAlign: true,
+      testShadow: true,
+      lineHeight: true,
+      wordSpacing: true,
+      letterSpacing: true,
+      textTransform: true,
+      direction: true,
+      color: true,
+      visibility: true,
+      cursor: true,
+    };
+    if (extentProps[props]) {
+      return true;
+    } else {
+      return false;
+    }
+  },
 };
 
 export default Funcs;

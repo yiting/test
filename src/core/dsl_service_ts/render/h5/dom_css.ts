@@ -145,6 +145,8 @@ class CssDom {
 
   similarCssName: any;
 
+  extentStyle: any;
+
   constructor(parent: any, data: any) {
     // 节点的信息
     this.id = data.id;
@@ -174,6 +176,8 @@ class CssDom {
     this.constraints = data.constraints;
     this.path = data.path;
     this.styles = data.styles || {};
+    //继承属性
+    this.extentStyle = {};
     // 子节点
     this.children = [];
 
@@ -557,9 +561,19 @@ class CssDom {
         const that: any = this;
         ({ key } = mod);
         const value = that[key];
+        //大家都有样式属性值，这里开始区分哪些用来显示，哪些是继承而来的。。
+        //存在父节点，当前样式具有可继承性，父节点的显示样式或者继承来的样式与当前样式值相等
+        if (Func.isExtend(key)) {
+          that.extentStyle[key] = value;
+        }
         const similarValue = similarCss && similarCss[key];
         if (value !== null && value !== undefined && similarValue !== value) {
-          props.push(CssDom.getCssProperty(key, value));
+          // console.log(`${that.id}-${that.type}来到一个${key}，父亲的值${that.parent.extentStyle[key]},当前的值${value}`)
+          if (!(that.parent && that.parent.extentStyle[key] == value)) {
+            props.push(CssDom.getCssProperty(key, value));
+          } else {
+            // console.log(`&&&&&&&&&&找到一个key，父亲的值${that.parent.extentStyle[key]},当前的值${value}`)
+          }
         }
       });
     } catch (e) {
