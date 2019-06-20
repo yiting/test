@@ -26,10 +26,17 @@ export default {
       ) {
         return 0;
       }
-      const prevLineAbYops = this._prevLine().map((n: any) => n._abYops);
-      const maxTop = Math.max(...prevLineAbYops) || this.parent._abY;
-      // LayoutAlignItems.Start
-      css = this._abY - maxTop;
+      if (this.id === '20F38E49-6FE5-4DBC-9C26-55DC3E5C22E9-c') {
+        console.log(1);
+      }
+      if (this._prevLine().length) {
+        const prevLineAbYops = this._prevLine().map((n: any) => n._abYops);
+        const maxTop = Math.max(...prevLineAbYops) || this.parent._abY;
+        // LayoutAlignItems.Start
+        css = this._abY - maxTop;
+      } else {
+        css = this._abY - this.parent._abY;
+      }
     } else {
       // 竖排计算与上一节点距离
       const preNode = this._prevNode();
