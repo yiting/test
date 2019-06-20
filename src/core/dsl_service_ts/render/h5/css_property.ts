@@ -53,7 +53,7 @@ export default {
     // marginRight,
     // marginBottom,
     // marginLeft,
-    // paddingTop,
+    paddingTop,
     margin,
     // 高宽
     width,
