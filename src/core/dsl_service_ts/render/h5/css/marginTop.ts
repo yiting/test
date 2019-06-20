@@ -26,9 +26,6 @@ export default {
       ) {
         return 0;
       }
-      if (this.id === '20F38E49-6FE5-4DBC-9C26-55DC3E5C22E9-c') {
-        console.log(1);
-      }
       if (this._prevLine().length) {
         const prevLineAbYops = this._prevLine().map((n: any) => n._abYops);
         const maxTop = Math.max(...prevLineAbYops) || this.parent._abY;
