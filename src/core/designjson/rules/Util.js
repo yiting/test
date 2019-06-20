@@ -128,6 +128,45 @@ function isLine(node) {
   return result;
 }
 
+function isRedPoint(node) {
+  var result = false;
+  if (
+    node.width >= 12 &&
+    node.height >= 12 &&
+    node.width <= 20 &&
+    node.height <= 20 &&
+    node.styles &&
+    node.styles.borderRadius &&
+    node.styles.borderRadius.filter(k => k == '50%').length ==
+      node.styles.borderRadius.length &&
+    node.styles.background &&
+    node.styles.background.color &&
+    node.styles.background.color.r > 240 &&
+    node.styles.background.color.g < 100 &&
+    node.styles.background.color.b < 100
+  ) {
+    result = true;
+  }
+  return result;
+}
+
+//如果节点是用户头像，则不合并
+function isAvatar(node) {
+  var result = false;
+  if (node.name.indexOf('头像') > -1) {
+    result = true;
+  } else if (
+    node.styles &&
+    node.styles.borderRadius &&
+    node.styles.borderRadius.filter(k => k == '50%').length ==
+      node.styles.borderRadius.length &&
+    node.type == 'QImage'
+  ) {
+    result = true;
+  }
+  return result;
+}
+
 function isSimpleBackground(node) {
   let result = true;
   if (node.name.indexOf('Base') > -1) {
@@ -203,4 +242,6 @@ module.exports = {
   isLine,
   isInclude,
   isSimpleBackground,
+  isRedPoint,
+  isAvatar,
 };

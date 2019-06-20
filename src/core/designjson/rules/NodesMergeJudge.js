@@ -60,6 +60,21 @@ class NodesMergeJudge {
       isFinally = true;
     }
 
+    //如果有一个节点是红点，则不合并
+    if (
+      ImgConbineUtils.isRedPoint(node) ||
+      ImgConbineUtils.isRedPoint(brother)
+    ) {
+      isCombine = false;
+      isFinally = true;
+    }
+
+    //如果有一个节点是头像，则不合并
+    if (ImgConbineUtils.isAvatar(node) || ImgConbineUtils.isAvatar(brother)) {
+      isCombine = false;
+      isFinally = true;
+    }
+
     //avatar合图逻辑组合，如果得分低则不合
     let ruleConfig0 = this.getRuleConfig({
       data: [
@@ -81,7 +96,7 @@ class NodesMergeJudge {
     //     isCombine = true;
     //   }
     // }
-    //如果其中一个节点是大而简单的背景、背景包含另一个节点的时候，他不与其他节点合并
+    //如果其中一个节点是大而简单的背景，他不合并
     if (isFinally == false) {
       // ruleConfig0 = this.getRuleConfig({
       //   data: [{ type: 'CanCssSimilar', value: 100, requireScore: 76 }],
@@ -89,17 +104,17 @@ class NodesMergeJudge {
       // let scoreResult1 = this.score(node, node, ruleConfig0);
 
       let nodeASize = ImgConbineUtils.getSize(node);
-
-      let sideThreshold = 500;
-      let sizeThreshold = sideThreshold * sideThreshold;
+      let widthThreshold = 339;
+      let heightThreshold = 79;
+      let sizeThreshold = widthThreshold * heightThreshold;
       let sizePercentThreshold = 0.4;
 
       if (
         ImgConbineUtils.isSimpleBackground(node) &&
         nodeASize > sizeThreshold &&
-        node.width > sideThreshold &&
-        node.height > sideThreshold &&
-        ImgConbineUtils.isInclude(node, brother)
+        node.width > widthThreshold &&
+        node.height > heightThreshold
+        // && ImgConbineUtils.isInclude(node, brother)
       ) {
         isCombine = false;
         isFinally = true;
@@ -110,9 +125,9 @@ class NodesMergeJudge {
       if (
         ImgConbineUtils.isSimpleBackground(brother) &&
         nodeBSize > sizeThreshold &&
-        brother.width > sideThreshold &&
-        brother.height > sideThreshold &&
-        ImgConbineUtils.isInclude(brother, node)
+        brother.width > widthThreshold &&
+        brother.height > heightThreshold
+        // && ImgConbineUtils.isInclude(brother, node)
       ) {
         isCombine = false;
         isFinally = true;
