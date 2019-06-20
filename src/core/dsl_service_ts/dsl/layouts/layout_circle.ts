@@ -271,6 +271,8 @@ class LayoutCircle extends Model.LayoutModel {
     const newCycleParent = Group.Tree.createNodeData(null);
     const newCycleData = Group.Tree.createCycleData(newCycleParent, inWrap);
     newCycleData.constraints['LayoutWrap'] = Constraints.LayoutWrap.Wrap;
+    newCycleData.constraints['LayoutFixedWidth'] =
+      Constraints.LayoutFixedWidth.Fixed;
     newCycleParent.set('children', [newCycleData]);
     newCycleParent.resize();
     const gap = inWrap[1][0].abX - inWrap[0][0].abXops;
