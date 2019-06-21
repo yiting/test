@@ -61,28 +61,18 @@ class SketchProcessor {
   }
 
   static setSymbolInstanceId(node) {
-    // 如果是symbol，设置实例字段
-    if (node._origin._class === SKETCH_LAYER_TYPES.SymbolInstance) {
-      if (Array.isArray(node.symbolRoot)) {
-        node.symbolRoot.push(node.id);
-      } else node.symbolRoot = [node.id];
-      if (Array.isArray(node.symbolIdentity)) {
-        node.symbolIdentity.push(node._origin.identity);
-      } else node.symbolIdentity = [node._origin.identity];
-    }
     const { parent } = node;
     if (parent && Array.isArray(parent.symbolRoot)) {
       // 如果是symbol子孙元素，设置实例字段，添加前缀
-      node.id = `${parent.symbolRoot.map(sr => sr.slice(0, 4)).join('---')}---${
-        node.id
-      }`;
+      node.id = `${parent.symbolRoot.join('---')}---${node.id}`;
       node.symbolRoot = parent.symbolRoot;
       // console.log('增加前缀',uin)
     }
-    if (parent && Array.isArray(parent.symbolIdentity)) {
-      // 如果是symbol子孙元素，设置实例字段，添加前缀
-      node.symbolIdentity = parent.symbolIdentity;
-      // console.log('增加前缀',uin)
+    // 如果是symbol，设置实例字段
+    if (node._origin._class === SKETCH_LAYER_TYPES.SymbolInstance) {
+      if (Array.isArray(node.symbolRoot)) {
+        node.symbolRoot.push(node._origin.do_objectID);
+      } else node.symbolRoot = [node.id];
     }
   }
 
