@@ -16,6 +16,7 @@ export async function init(context: Context) {
     const fileName = Date.now().toString();
     await downloadFile(data.pagesPath, fileName, TEMP_DIRECTORY);
     const pages = await unzipFile(fileName, TEMP_DIRECTORY);
+    deleteZipFile(fileName, TEMP_DIRECTORY);
     data.pages = pages;
     initData = DesignJson.init(fileType, data);
     writeData(initData.data, fileName, TEMP_DIRECTORY);
@@ -112,4 +113,8 @@ async function unzipFile(fileName: string, directory: string) {
 
     fs.createReadStream(fullName + '.zip').pipe(unzipExtractor);
   });
+}
+function deleteZipFile(fileName: string, directory: string) {
+  const fullName = directory + '/' + fileName + '.zip';
+  fs.unlink(fullName, () => {});
 }

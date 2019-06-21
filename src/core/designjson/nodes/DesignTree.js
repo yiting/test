@@ -43,7 +43,7 @@ class DesignTree {
     const newNode = this.createNode(type);
     newNode.isModified = newNode.isNew = true;
     const [id, name] = nodes.reduce(
-      (p, c) => [`${p[0]}_${c.id.slice(0, 4)}`, `${p[1]}_${c.name}`],
+      (p, c) => [`${p[0]}_${c.id}`, `${p[1]}_${c.name}`],
       ['', ''],
     );
     newNode.id = id;
