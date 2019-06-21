@@ -186,7 +186,6 @@ class QObject {
       'text',
       'zIndex',
       'symbolRoot',
-      'symbolIdentity',
     ];
     const res = {};
     for (const key in this) {
@@ -216,7 +215,6 @@ class QObject {
       'text',
       'zIndex',
       'symbolRoot',
-      'symbolIdentity',
     ];
     return serialize(this).map(node => {
       const res = {};
