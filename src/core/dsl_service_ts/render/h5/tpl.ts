@@ -17,7 +17,9 @@ export default `<!DOCTYPE html>
   <meta name="apple-mobile-web-app-title" content="" />
   <meta name="apple-mobile-web-app-status-bar-style" content="white" />
   <title></title>
-  <style>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="cssFilePath" class="contentCss" />
+  <style style="display:none">
     * {
       -webkit-touch-callout:none;
       -webkit-user-select:none;
@@ -27,8 +29,6 @@ export default `<!DOCTYPE html>
       user-select:none;
     }
   </style>
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="cssFilePath" class="contentCss" />
 </head>
 
 <body ontouchstart>
