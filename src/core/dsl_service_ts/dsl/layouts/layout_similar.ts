@@ -133,7 +133,8 @@ class LayoutSimilar extends Model.LayoutModel {
     if (
       a.type === Common.QLayer ||
       // 部分shape是一个包含子节点的layer，故增加以下一条判断条件
-      (a.type === Common.QShape && a.compareChildren.length > 0)
+      ((a.type === Common.QShape || a.type === Common.QImage) &&
+        (a.compareChildren.length > 0 || b.compareChildren.length > 0))
     ) {
       return (
         a.isHorizontal === b.isHorizontal &&

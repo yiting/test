@@ -11,7 +11,7 @@ class WG2M3 extends Model.WidgetModel {
     // 元素构成规则
     super('wg2-m3', 1, 1, 0, 0, Common.LvS, Common.QWidget);
     this.canLeftFlex = false;
-    this.canRightFlex = true;
+    this.canRightFlex = false;
   }
 
   _initNode() {

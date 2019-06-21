@@ -89,13 +89,12 @@ class LayoutEquality extends Model.LayoutModel {
     );
   }
   static _isJustifyAround(nodes: any, parent: any) {
-    const COEFFICIENT = 3;
     // 左右间距判断
     const firstNode = nodes[0];
     const lastNode = nodes[nodes.length - 1];
     let leftSide = (firstNode.abX + firstNode.abXops) / 2 - parent.abX;
     let rightSide = parent.abXops - (lastNode.abX + lastNode.abXops) / 2;
-    return Math.abs(leftSide - rightSide) < COEFFICIENT;
+    return Math.abs(leftSide - rightSide) < ErrorCoefficient;
   }
   static _isAllCanFlex(nodes: any) {
     return nodes.every((node: any) => {
@@ -164,15 +163,12 @@ class LayoutEquality extends Model.LayoutModel {
    * 节点间距相等
    */
   static _isEqualityLeft(nodes: any, parent: any) {
-    const COEFFICIENT = 3;
     // 左右间距判断
     const firstNode = nodes[0];
     const secondNode = nodes[1];
     const lastNode = nodes[nodes.length - 1];
     const leftSide = firstNode.abX - parent.abX;
     const rightSide = leftSide;
-    // 假设最大宽度为元素左边距的距离
-    let maybeDir = secondNode.abX - firstNode.abX;
     // 左边界数组
     const dirArr: any = [];
     // 计算左间距
@@ -185,20 +181,23 @@ class LayoutEquality extends Model.LayoutModel {
     });
 
     dirArr.sort((a: number, b: number) => a - b);
+    // 假设最大宽度为元素左边距的距离
+    let maybeDir = dirArr[0];
     const firstDir = dirArr[0];
-    const lastDir = dirArr[dirArr.length];
+    const lastDir = dirArr[dirArr.length - 1];
     // 如果最大和最小间距差大于系数，则不符合
-    if (Math.abs(lastDir - firstDir) > COEFFICIENT) {
+    if (Math.abs(lastDir - firstDir) > ErrorCoefficient) {
       return false;
     }
     const lastNodeAbXops = lastNode.abX + maybeDir;
     const paddingRightAbX = parent.abXops - rightSide;
-    /**
-     * 1. 如果末节点的右边界超出父节点范围，不处理
-     * 2. 如果末节点的右边界未达到父节点padding-right边界，不处理
-     * 3. 如果末节点的右边界在父节点的padding-right内，则裁剪“假设宽度”maybeDir
-     */
-    if (lastNodeAbXops < parent.abXops && lastNodeAbXops > paddingRightAbX) {
+    // 如果末节点原右边界未超出父节点范围，末节点新右边界超出父节点范围，不符合左等分
+    if (lastNode.abXops < parent.abXops && lastNodeAbXops > parent.abXops) {
+      return false;
+    }
+
+    //  如果末节点的右边界在父节点的padding-right内，则裁剪“假设宽度”maybeDir
+    if (lastNodeAbXops <= parent.abXops && lastNodeAbXops > paddingRightAbX) {
       maybeDir = maybeDir - (lastNodeAbXops - paddingRightAbX);
     }
 
@@ -210,15 +209,11 @@ class LayoutEquality extends Model.LayoutModel {
    * 左右边距相等，节点间距相等
    */
   static _isEqualityCenter(nodes: any, parent: any) {
-    const COEFFICIENT = 3;
     // 左右间距判断
     const firstNode = nodes[0];
     const lastNode = nodes[nodes.length - 1];
     let leftSide = (firstNode.abX + firstNode.abXops) / 2 - parent.abX;
     let rightSide = parent.abXops - (lastNode.abX + lastNode.abXops) / 2;
-    // if (Math.abs(leftSide - rightSide) > COEFFICIENT) {
-    //   return false;
-    // }
     // 中心点数组
     const dirArr: any = [];
     // 得出间距数组
@@ -235,10 +230,48 @@ class LayoutEquality extends Model.LayoutModel {
     const firstDir = dirArr[0];
     const lastDir = dirArr[dirArr.length - 1];
     // 如果最大和最小间距差大于系数，则不符合
-    if (Math.abs(lastDir - firstDir) > COEFFICIENT) {
+    if (Math.abs(lastDir - firstDir) > ErrorCoefficient) {
       return false;
     }
-    return Math.min(...[leftSide * 2, rightSide * 2, ...dirArr]);
+    // 获取目标宽度
+    const maybeDir = Math.min(...[leftSide * 2, rightSide * 2, ...dirArr]);
+    // 验证新节点都包含原节点范围
+    const newDir: any[] = [];
+    const isContain = nodes.every((n: any) => {
+      newDir.push({
+        abX: (n.abX + n.abXops) / 2 - maybeDir / 2,
+        abXops: (n.abX + n.abXops) / 2 + maybeDir / 2,
+      });
+      return n.abXops - n.abX <= maybeDir;
+    });
+    if (!isContain) {
+      return false;
+    }
+    // 验证新节点间相邻却不相交
+    const isNotIntersect = newDir.every((dir: any, i: number) => {
+      const prevDir: any = newDir[i - 1];
+      return (
+        prevDir === undefined ||
+        (dir.abX - prevDir.abXops >= 0 &&
+          dir.abX - prevDir.abXops <= ErrorCoefficient)
+      );
+    });
+    if (!isNotIntersect) {
+      return false;
+    }
+    // 验证不超过左测边界
+    if ((firstNode.abX + firstNode.abXops) / 2 - maybeDir / 2 < parent.abX) {
+      return false;
+    }
+    // 验证不超过右侧边界
+    if (
+      lastNode.abXops < parent.abXops &&
+      (lastNode.abXops + lastNode.abX) / 2 + maybeDir / 2 > parent.abXops
+    ) {
+      return false;
+    }
+
+    return maybeDir;
   }
 }
 
