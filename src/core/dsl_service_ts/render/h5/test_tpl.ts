@@ -17,6 +17,16 @@ export default `<!DOCTYPE html>
   <meta name="apple-mobile-web-app-title" content="" />
   <meta name="apple-mobile-web-app-status-bar-style" content="white" />
   <title></title>
+  <style>
+    * {
+      -webkit-touch-callout:none;
+      -webkit-user-select:none;
+      -khtml-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none;
+    }
+  </style>
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="index.css" />
 </head>
