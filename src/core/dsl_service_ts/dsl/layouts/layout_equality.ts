@@ -236,19 +236,25 @@ class LayoutEquality extends Model.LayoutModel {
     // 获取目标宽度
     const maybeDir = Math.min(...[leftSide * 2, rightSide * 2, ...dirArr]);
     // 验证新节点都包含原节点范围
-    const newDir: number[] = [];
+    const newDir: any[] = [];
     const isContain = nodes.every((n: any) => {
-      newDir.push((n.abX + n.abXops) / 2 - maybeDir / 2);
-      newDir.push((n.abX + n.abXops) / 2 + maybeDir / 2);
-      return n.abXops - n.abX >= maybeDir;
+      newDir.push({
+        abX: (n.abX + n.abXops) / 2 - maybeDir / 2,
+        abXops: (n.abX + n.abXops) / 2 + maybeDir / 2,
+      });
+      return n.abXops - n.abX <= maybeDir;
     });
     if (!isContain) {
       return false;
     }
-    // 验证新节点间不相交
-    const isNotIntersect = newDir.every((dir: number, i: number) => {
-      const prevDir = newDir[i - 1];
-      return prevDir === undefined || prevDir <= dir;
+    // 验证新节点间相邻却不相交
+    const isNotIntersect = newDir.every((dir: any, i: number) => {
+      const prevDir: any = newDir[i - 1];
+      return (
+        prevDir === undefined ||
+        (dir.abX - prevDir.abXops >= 0 &&
+          dir.abX - prevDir.abXops <= ErrorCoefficient)
+      );
     });
     if (!isNotIntersect) {
       return false;
