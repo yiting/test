@@ -200,7 +200,13 @@ class LayoutEquality extends Model.LayoutModel {
     if (lastNodeAbXops <= parent.abXops && lastNodeAbXops > paddingRightAbX) {
       maybeDir = maybeDir - (lastNodeAbXops - paddingRightAbX);
     }
-
+    // 验证新节点都包含原节点范围
+    const isContain = nodes.every((nd: any) => {
+      return maybeDir > nd.abXops - nd.abX;
+    });
+    if (!isContain) {
+      return false;
+    }
     return maybeDir;
   }
 

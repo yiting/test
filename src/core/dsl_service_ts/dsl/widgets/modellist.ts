@@ -36,7 +36,7 @@ const MODEL_LIST = [
   new WG3M3(),
   // 四元素模型
   new WG4M1(),
-  new WG4M2(),
+  // new WG4M2(),
   new WG4M3(),
 ];
 
