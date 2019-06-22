@@ -1,7 +1,12 @@
 // 以Icon为底,Text在里面的tag结构
-//
 // (QIcon)-(QText)
 //
+// 判断标准
+// 1, 文本位于icon中间
+// 2, 文本高度占图形超1/2
+// 3, 文本长度占图形长度7/10
+// 4, tag结构高度少于40
+// 5, tag结构长度小于250
 import Common from '../../common';
 import Model from '../../model';
 import Feature from '../../feature';
@@ -16,53 +21,40 @@ class EM2M1 extends Model.ElementModel {
   }
 
   _initNode() {
-    const texts = this.getTextNodes();
-    const icons = this.getIconNodes();
-    const that: any = this;
-
-    const textsIndex0 = 0;
-    that._matchNodes['0'] = texts[textsIndex0]; // QText
-    const iconsIndex0 = 0;
-    that._matchNodes['1'] = icons[iconsIndex0]; // QIcon
+    let texts = this.getTextNodes();
+    let icons = this.getIconNodes();
+    
+    this._matchNodes['0'] = texts[0];         // QText
+    this._matchNodes['1'] = icons[0];         // QIcon
   }
 
-  // 位置关系
+  // 1.
   regular1() {
-    const that: any = this;
-
-    const bool = Feature.positionAInBCenter(
-      that._matchNodes['0'],
-      that._matchNodes['1'],
-    );
-
+    let bool: boolean = Feature.positionAInBCenter(this._matchNodes['0'], this._matchNodes['1']);
     return bool;
   }
 
-  // 尺寸关系
+  // 2.
   regular2() {
-    // 1. 文字高度占图形超 1/2
-    // 2. 文字长度占图形超 7/10
-    const that: any = this;
-
-    const bool =
-      Feature.sizeHeightRatioAGreatB(
-        that._matchNodes['0'],
-        that._matchNodes['1'],
-        0.5,
-      ) &&
-      Feature.sizeWidthRatioAGreatB(
-        that._matchNodes['0'],
-        that._matchNodes['1'],
-        0.7,
-      );
-
+    let bool: boolean = Feature.sizeHeightRatioAGreatB(this._matchNodes['0'], this._matchNodes['1'], 0.5);
     return bool;
   }
 
-  // 高度必须小于40
+  // 3.
   regular3() {
-    let bool = Feature.sizeHeightLess(this._matchNodes['1'], 40);
+    let bool: boolean = Feature.sizeWidthRatioAGreatB(this._matchNodes['0'], this._matchNodes['1'], 0.7);
+    return bool;
+  }
 
+  // 4.
+  regular4() {
+    let bool: boolean = Feature.sizeHeightLess(this._matchNodes['1'], 40);
+    return bool;
+  }
+
+  // 5.
+  regular5() {
+    let bool: boolean = Feature.sizeWidthLess(this._matchNodes['1'], 250);
     return bool;
   }
 }
