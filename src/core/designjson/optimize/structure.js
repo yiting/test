@@ -1,6 +1,13 @@
 const Logger = require('../logger');
 const { QDocument, QLayer, QImage, QText, QShape, QMask } = require('../nodes');
-const { serialize, walkin, walkout, isBelong, isCollide } = require('../utils');
+const {
+  serialize,
+  walkin,
+  walkout,
+  isBelong,
+  isCollide,
+  isSameColor,
+} = require('../utils');
 function process(node) {
   try {
     // 树层级关系预处理
@@ -167,9 +174,5 @@ class StructureProcessor {
   static isEmtyGroup(node) {
     return node.type === QLayer.name && node.childNum === 0;
   }
-}
-function isSameColor(colorA, colorB) {
-  if (!colorA || !colorB) return false;
-  return JSON.stringify(colorA) === JSON.stringify(colorB);
 }
 module.exports = process;
