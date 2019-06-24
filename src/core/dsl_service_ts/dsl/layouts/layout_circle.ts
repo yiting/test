@@ -29,27 +29,47 @@ class LayoutCircle extends Model.LayoutModel {
     }
     ErrorCoefficient = Store.get('errorCoefficient') || 0;
     const isHorizontal = Utils.isHorizontal(nodes);
-    const circleInnerArr = LayoutCircle._findCircle(
+    /**
+     * 多重循环
+     */
+    const circleBreakArr = LayoutCircle._findCircle(
       parent.children,
-      LayoutCircle._innerSimilarRule,
-      LayoutCircle._innerFeatureRule,
-      LayoutCircle._innerFilter,
+      LayoutCircle._breakRule,
+      LayoutCircle._breakFeature,
+      LayoutCircle._breakFilter,
     );
-    LayoutCircle._setInnerCircle(parent, circleInnerArr);
+    LayoutCircle._setBreakCircle(parent, circleBreakArr);
     if (isHorizontal) {
       LayoutCircle._sort(parent, 'abX');
     } else {
       LayoutCircle._sort(parent, 'abY');
     }
-    // 找出相似结构组合
+    /**
+     * 系列结构
+     */
+    const serialArr = LayoutCircle._findCircle(
+      parent.children,
+      LayoutCircle._serialRule,
+      LayoutCircle._serialFeature,
+      LayoutCircle._serialFilter,
+    );
+    LayoutCircle._setSerialCircle(parent, serialArr);
+    if (isHorizontal) {
+      LayoutCircle._sort(parent, 'abX');
+    } else {
+      LayoutCircle._sort(parent, 'abY');
+    }
+    /**
+     * 重复循环
+     */
     const circleArr = LayoutCircle._findCircle(
       parent.children,
-      LayoutCircle._similarRule,
+      LayoutCircle._repeatRule,
       null,
-      LayoutCircle._similarFilter,
+      LayoutCircle._repeatFilter,
     );
     // 相似结构处理
-    LayoutCircle._setCircle(parent, circleArr);
+    LayoutCircle._setRepeatCircle(parent, circleArr);
     if (isHorizontal) {
       LayoutCircle._sort(parent, 'abX');
     } else {
@@ -57,21 +77,10 @@ class LayoutCircle extends Model.LayoutModel {
     }
   }
 
-  static _innerSimilarRule(a: any, b: any) {
+  static _breakRule(a: any, b: any) {
     return a._similarId && b._similarId && a._similarId === b._similarId;
-    // return (
-    //   a.children[0] && b.children[0] &&
-    //   a.children[0].modelName == CYCLE_MODEL_NAME &&
-    //   b.children[0].modelName == CYCLE_MODEL_NAME &&
-    //   Object.keys(a.children[0].nodes).length == Object.keys(b.children[0].nodes).length &&
-    //   Object.keys(a.children[0].nodes).every((key: any, i: number) => {
-    //     const aSimilarId = a.children[0].nodes[key].similarId;
-    //     const bSimilarId = b.children[0].nodes[key].similarId
-    //     return aSimilarId != null && aSimilarId == bSimilarId
-    //   })
-    // )
   }
-  static _innerFilter(result: any) {
+  static _breakFilter(result: any) {
     return result
       .filter((s: any) => s.target.length > 0)
       .sort((a: any, b: any) => {
@@ -85,7 +94,7 @@ class LayoutCircle extends Model.LayoutModel {
       });
   }
   // 打破循环的特征规则
-  static _innerFeatureRule(feature: any) {
+  static _breakFeature(feature: any) {
     // 特征数大于2
     if (feature.length < 2) {
       return false;
@@ -129,8 +138,40 @@ class LayoutCircle extends Model.LayoutModel {
       });
     });
   }
+  // 系列循环
+  static _setSerialCircle(_parent: any, _circleArr: any) {
+    const that = this;
+    const circleArr: any = _circleArr;
+    if (circleArr.length === 0) {
+      // 如果没有相似结构，则返回
+      return;
+    }
+    circleArr.forEach((frame: any) => {
+      if (frame.feature === 1) {
+        that._setWrapCircle(_parent, frame.target);
+      }
+    });
+  }
+  static _serialRule(a: any, b: any) {
+    return a._similarId && b._similarId && a._similarId === b._similarId;
+  }
+  static _serialFeature(feature: any) {
+    return (
+      feature.length == 1 &&
+      feature[0].children.length == 1 &&
+      feature[0].children[0].modelName === CYCLE_MODEL_NAME
+    );
+  }
+  static _serialFilter(result: any) {
+    return result
+      .filter((s: any) => s.target.length > 1)
+      .sort((a: any, b: any) => {
+        // 先按最多重复次数，降序
+        return b.target.length - a.target.length;
+      });
+  }
   // 设置内循环处理
-  static _setInnerCircle(_parent: any, _circleArr: any) {
+  static _setBreakCircle(_parent: any, _circleArr: any) {
     _circleArr.forEach((fragment: any) => {
       let rowSimilarIndex: number = 0;
       if (fragment.target.length > 1) {
@@ -193,8 +234,7 @@ class LayoutCircle extends Model.LayoutModel {
     });
   }
   // 相似结构处理
-  static _setCircle(_parent: any, _circleArr: any) {
-    const that = this;
+  static _setRepeatCircle(_parent: any, _circleArr: any) {
     const circleArr: any = _circleArr;
     if (circleArr.length === 0) {
       // 如果没有相似结构，则返回
@@ -205,23 +245,12 @@ class LayoutCircle extends Model.LayoutModel {
        * 如果循环片段是一个特征的，在寻找时已经时相连的
        * */
       if (frame.feature === 1) {
-        // 判断是否内嵌循环
-        const isWrapItems = frame.target.every((target: any) => {
-          return (
-            target[0].children.length == 1 &&
-            target[0].children[0].modelName == CYCLE_MODEL_NAME
-          );
-        });
-        if (isWrapItems) {
-          that._setWrapCircle(_parent, frame.target);
-        } else {
-          that._setULCircle(_parent, frame.target);
-        }
+        LayoutCircle._setULCircle(_parent, frame.target);
       } else {
         /**
          * 如果循环片段是多个特征的
          */
-        that._setWrapBlock(_parent, frame.target);
+        LayoutCircle._setWrapBlock(_parent, frame.target);
       }
     });
   }
@@ -283,6 +312,7 @@ class LayoutCircle extends Model.LayoutModel {
     children = children.filter((nd: any) => !inRemove.includes(nd));
     _parent.set('children', children);
   }
+  // 设置包含结构
   static _setWrapBlock(_parent: any, _target: any) {
     const { children } = _parent;
     const inRemove: any = [];
@@ -303,11 +333,11 @@ class LayoutCircle extends Model.LayoutModel {
     _parent.set('children', newChildren);
   }
   // 相似节点逻辑
-  static _similarRule(a: any, b: any) {
+  static _repeatRule(a: any, b: any) {
     return a._similarId && b._similarId && a._similarId === b._similarId;
   }
 
-  static _similarFilter(result: any) {
+  static _repeatFilter(result: any) {
     return result
       .filter((s: any) => s.target.length > 1)
       .sort((a: any, b: any) => {
