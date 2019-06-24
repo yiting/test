@@ -3,6 +3,7 @@
 // dsl的核心思路:
 // 匹配网页上的设计形态
 import Common from './common';
+import Config from './config';
 import Manager from './manager';
 import Model from './model';
 import Utils from './utils';
@@ -11,6 +12,16 @@ import Store from '../helper/store';
 import QLog from '../log/qlog';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
+
+
+/**
+ * 返回dsl生成的配置
+ * @return {Json}
+ */
+const config = function() {
+  return Config.create();
+};
+
 
 /**
  * dsl的使用入口
@@ -210,4 +221,5 @@ let _matchModels = function(
 // 对外接口
 export default {
   pipe,
+  config,
 };

@@ -611,7 +611,7 @@ class MatchData {
   _addElementData(model: any): void {
     // element拿到的是designjson
     const nodeData = model.getMatchNode();
-    this.data = MatchData.createRenderData(
+    this.data = MatchData._createRenderData(
       this.id,
       null,
       this.modelName,
@@ -630,7 +630,7 @@ class MatchData {
   _addWidgetData(model: any): void {
     // widget拿到的是matchdata
     const matchData = model.getMatchNode();
-    this.data = MatchData.createRenderData(
+    this.data = MatchData._createRenderData(
       this.id,
       null,
       this.modelName,
@@ -650,7 +650,7 @@ class MatchData {
   _addElementXData(model: any, datas: any[]): void {
     // 可变节点元素模型拿到的是一系列基础ElementModel
     // 创建一个总MatchData来包装datas
-    this.data = MatchData.createRenderData(
+    this.data = MatchData._createRenderData(
       this.id,
       null,
       this.modelName,

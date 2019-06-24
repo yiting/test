@@ -5,13 +5,13 @@ class WG3M2 extends HtmlTemplate {
     super(...args);
     this._template = `
       <div class="imageInfo" :constraints='{"LayoutDirection":"Horizontal"}'>
-        <span $ref="0" class="icon" :style="'background-image:url('+this.requireImgPath(path)+')'"></span>
+        <span $ref="2" class="icon" :style="'background-image:url('+this.requireImgPath(path)+')'"></span>
         <dl>
           <dd class="text">
-            <span $ref="1"></span>
+            <span $ref="0"></span>
           </dd>
           <dd class="subtext">
-            <span $ref="2"></span>
+            <span $ref="1"></span>
           </dd>
         </dl>
       </div>`;

@@ -243,4 +243,6 @@ export default {
   pipe,
   getSymbolIdentity,
   config,
+  _groupModels,
+  _layoutModels,
 };
