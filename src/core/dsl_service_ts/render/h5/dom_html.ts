@@ -158,9 +158,9 @@ class HtmlDom {
     const attrs = this.getAttrs();
     const content = this.getContent();
     const showTagAttrInfo = Store.get('showTagAttrInfo');
-    if (showTagAttrInfo) {
-      return `<${tag} ${id} ${similarId} ${modelName} ${attrClass} ${attrs}>${content}`;
-    }
+    // if (showTagAttrInfo) {
+    //   return `<${tag} ${id} ${similarId} ${modelName} ${attrClass} ${attrs}>${content}`;
+    // }
     return `<${tag} ${attrClass} ${attrs}>${content}`;
   }
 
