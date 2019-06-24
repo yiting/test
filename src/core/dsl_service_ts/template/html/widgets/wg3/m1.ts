@@ -4,11 +4,15 @@ class WG3M1 extends HtmlTemplate {
   constructor(...args: any[]) {
     super(...args);
     this._template = `
-      <div class="iconInfo" :constraints='{"LayoutDirection":"Horizontal", "LayoutJustifyContent":"Start"}'>
-        <span $ref="0" class="icon"></span>
+      <div class="iconInfo" :constraints='{"LayoutDirection":"Horizontal"}'>
+        <span $ref="2" class="icon" :style="'background-image:url('+this.requireImgPath(path)+')'"></span>
         <dl>
-          <dd $ref="1" class="primary"></dd>
-          <dd $ref="2" class="sub"></dd>
+          <dd class="text">
+            <span $ref="0"></span>
+          </dd>
+          <dd class="subtext">
+            <span $ref="1"></span>
+          </dd>
         </dl>
       </div>`;
   }
