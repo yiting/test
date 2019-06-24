@@ -45,14 +45,19 @@ class LayoutEquality extends Model.LayoutModel {
     // 计算中对齐等分结果
     const centerSpace = LayoutEquality._isEqualityCenter(flexNodes, parent);
     // 计算前节点内容是否中对齐等分
-    const prevLineIsJustifyCenter = LayoutEquality._prevLineIsJustifyCenter(
-      flexNodes,
-      parent,
-    );
-    // 当前节点是否居中等分
-    const isJustifyAround = LayoutEquality._isJustifyAround(flexNodes, parent);
+    const prevLineIsJustifyCenter =
+      centerSpace && LayoutEquality._prevLineIsJustifyCenter(flexNodes, parent);
 
-    if (centerSpace && (isJustifyAround || prevLineIsJustifyCenter)) {
+    const nextLineIsJustifyCenter =
+      centerSpace && LayoutEquality._nextLineIsJustifyCenter(flexNodes, parent);
+    // 当前节点是否居中等分
+    const isJustifyAround =
+      centerSpace && LayoutEquality._isJustifyAround(flexNodes, parent);
+
+    if (
+      centerSpace &&
+      (isJustifyAround || prevLineIsJustifyCenter || nextLineIsJustifyCenter)
+    ) {
       LayoutEquality._adjustCenterPos(flexNodes, centerSpace);
       parent.constraints.LayoutJustifyContent =
         Constrains.LayoutJustifyContent.Center;
@@ -68,6 +73,24 @@ class LayoutEquality extends Model.LayoutModel {
         nd.constraints &&
         nd.constraints.LayoutSelfPosition !==
           Constrains.LayoutSelfPosition.Absolute,
+    );
+  }
+  static _nextLineIsJustifyCenter(nodes: any, node: any) {
+    if (!node.parent) {
+      return false;
+    }
+    const nodeIndex = node.parent.children.indexOf(node);
+    const next = node.parent.children[nodeIndex + 1];
+    const nextChildren = next && LayoutEquality.filterFlexNodes(next.children);
+    return (
+      nextChildren &&
+      nextChildren.length == nodes.length &&
+      nodes.every((nd: any, i: number) => {
+        const pd = nextChildren[i];
+        return (
+          Math.abs(nd.abX + nd.abXops - (pd.abX + pd.abXops)) < ErrorCoefficient
+        );
+      })
     );
   }
   static _prevLineIsJustifyCenter(nodes: any, node: any) {

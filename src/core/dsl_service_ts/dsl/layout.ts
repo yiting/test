@@ -27,7 +27,7 @@ const walkOut = function(layoutObject: any, dslTree: any) {
     return;
   }
   children.forEach((child: any) => {
-    walkIn(layoutObject, child);
+    walkOut(layoutObject, child);
   });
   layoutObject.handle(dslTree, children);
 };
