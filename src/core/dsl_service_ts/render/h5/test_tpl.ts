@@ -19,6 +19,16 @@ export default `<!DOCTYPE html>
   <title></title>
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="index.css" />
+  <style style="display:none">
+    * {
+      -webkit-touch-callout:none;
+      -webkit-user-select:none;
+      -khtml-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none;
+    }
+  </style>
 </head>
 
 <body ontouchstart>

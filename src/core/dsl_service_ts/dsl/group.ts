@@ -5,6 +5,7 @@ import Constraints from './constraints';
 
 import QLog from '../log/qlog';
 import uitls from '../uitls';
+import constraints from './constraints';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
@@ -155,8 +156,8 @@ class Tree {
        */
       if (
         arr.length === 1 &&
-        firstNode.type !== Common.QText &&
-        (firstNode.constraints['LayoutSelfPosition'] !==
+        // firstNode.type !== Common.QText &&
+        (firstNode.constraints['LayoutSelfPosition'] ===
           Constraints.LayoutSelfPosition.Absolute ||
           (firstNode.abX === parent.abX &&
             firstNode.abXops === parent.abXops) ||
@@ -239,8 +240,16 @@ class Tree {
        * 且该节点不是文本：文本外须包布局节点
        * 且该节点是绝对定位的
        */
+      // if (
+      //   (
+      //     arr.length === 1 &&
+      //     firstNode.type !== Common.QText
+      //   ) ||
+      //   firstNode.constraints['LayoutSelfPosition'] ===
+      //   Constraints.LayoutSelfPosition.Absolute
+      // ) {
       if (
-        (arr.length === 1 && firstNode.type !== Common.QText) ||
+        arr.length === 1 &&
         firstNode.constraints['LayoutSelfPosition'] ===
           Constraints.LayoutSelfPosition.Absolute
       ) {
@@ -322,15 +331,39 @@ class Tree {
       }
     });
   }
-
+  static _isAbsoluteRelation(node: any, parent: any) {
+    /**
+     * 如果子节点在父节点的角点上，切高宽为一定比例，则认为是父节点外的绝对定位
+     * */
+    const leftTop = node.abX <= parent.abX && node.abY <= parent.abY;
+    const rightTop = node.abXops >= parent.abXops && node.abY <= parent.abY;
+    const leftBottom = node.abX <= parent.abX && node.abYops >= parent.abYops;
+    const rightBottom =
+      node.abXops >= parent.abXops && node.abYops >= parent.abYops;
+    const rate = 3;
+    const rateX =
+      (parent.abXops - parent.abX) / (node.abXops - node.abX) > rate;
+    const rateY =
+      (parent.abYops - parent.abY) / (node.abYops - node.abY) > rate;
+    return (leftTop || rightTop || leftBottom || rightBottom) && rateX && rateY;
+  }
   /**
    * 往父节点添加子节点
    * @param {MatchData} child 子节点
    * @param {MatchData} parent 父节点
    */
-  static _add(child: any, parent: any) {
+  static _add(_child: any, _parent: any) {
     // node为RenderData
+    let parent: any = _parent;
+    let child: any = _child;
     const node = Tree.createNodeData(child);
+    if (Tree._isAbsoluteRelation(node, parent)) {
+      parent = parent.parent || parent;
+      parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
+      node.constraints.LayoutSelfPosition =
+        Constraints.LayoutSelfPosition.Absolute;
+    }
+
     node.set('parent', parent);
     parent.set('children', parent.children.concat(node));
     /**

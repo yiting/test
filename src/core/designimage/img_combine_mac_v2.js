@@ -453,6 +453,18 @@ const ImageCombine = function() {
     return JSON.parse(JSON.stringify(json));
   };
 
+  this.getSliceLayer = function(node) {
+    var result = null;
+    if (node.layers) {
+      node.layers.forEach((item, index) => {
+        if (item._class == 'slice') {
+          result = item;
+        }
+      });
+    }
+    return result;
+  };
+
   this.getUpdateJson = function(param) {
     let { imageItem, index } = param;
     var generateId, tmpJson;
@@ -496,15 +508,30 @@ const ImageCombine = function() {
         generateJson.layers[0] = tmpJson;
       }
 
-      generateJson.layers[0].do_objectID =
-        'Update-inner-' + generateJson.layers[0].do_objectID;
-      generateId = generateJson.do_objectID;
-      generateId = 'Update-' + index + '-' + generateId;
-      generateJson.do_objectID = generateId;
-      generateJson.name = imageItem.path.substring(
-        0,
-        imageItem.path.indexOf('.png'),
-      );
+      //检查是否里面有slice，如果有则合成slice的图层
+      var slice = that.getSliceLayer(generateJson.layers[0]);
+      if (slice) {
+        generateJson.layers[0].do_objectID =
+          'Update-inner-' + generateJson.layers[0].do_objectID;
+        generateId = imageItem.id;
+        generateId = 'Update-' + index + '-' + generateId;
+        slice.do_objectID = generateId;
+        slice.name = imageItem.path.substring(
+          0,
+          imageItem.path.indexOf('.png'),
+        );
+      } else {
+        generateJson.layers[0].do_objectID =
+          'Update-inner-' + generateJson.layers[0].do_objectID;
+        generateId = generateJson.do_objectID;
+        generateId = 'Update-' + index + '-' + generateId;
+        generateJson.do_objectID = generateId;
+        generateJson.name = imageItem.path.substring(
+          0,
+          imageItem.path.indexOf('.png'),
+        );
+      }
+
       // if(imageItem._origin && imageItem._origin._class == "artboard"){
       //   tmpJson._class = 'group';
       //   tmpJson.frame.x = 0;

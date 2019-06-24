@@ -119,7 +119,6 @@ class LayoutSimilar extends Model.LayoutModel {
      * 3. 如果非layer，三基线对齐
      * 4. 如果没有子节点，则相似
      */
-
     if (a.type !== b.type || a.modelName !== b.modelName) {
       return false;
     }
@@ -133,7 +132,8 @@ class LayoutSimilar extends Model.LayoutModel {
     if (
       a.type === Common.QLayer ||
       // 部分shape是一个包含子节点的layer，故增加以下一条判断条件
-      (a.type === Common.QShape && a.compareChildren.length > 0)
+      ((a.type === Common.QShape || a.type === Common.QImage) &&
+        (a.compareChildren.length > 0 || b.compareChildren.length > 0))
     ) {
       return (
         a.isHorizontal === b.isHorizontal &&
@@ -150,11 +150,11 @@ class LayoutSimilar extends Model.LayoutModel {
                 ErrorCoefficient)
           );
         }) &&
-        ((Math.abs(a.height - b.height) < ErrorCoefficient &&
+        ((Math.abs(a.abYops - a.abY - b.abYops + b.abY) < ErrorCoefficient &&
           (Math.abs(a.abX - b.abX) < ErrorCoefficient ||
             Math.abs(a.abXops - b.abXops) < ErrorCoefficient ||
             Math.abs(a.ctX - b.ctX) < ErrorCoefficient)) ||
-          (Math.abs(a.width - b.width) < ErrorCoefficient &&
+          (Math.abs(a.abXops - a.abX - b.abXops + b.abX) < ErrorCoefficient &&
             (Math.abs(a.abY - b.abY) < ErrorCoefficient ||
               Math.abs(a.abYops - b.abYops) < ErrorCoefficient ||
               Math.abs(a.ctY - b.ctY) < ErrorCoefficient)))

@@ -1,6 +1,6 @@
 // dsl模块服务通过输入设计稿抽象过后的数据，然后输出对应的字符串
 import Common from './dsl/common';
-import Dsl from './dsl/dsl';
+import Dsl from './dsl2/dsl';
 import Render from './render/render';
 import Store from './helper/store';
 
@@ -19,18 +19,18 @@ function _process(_input: any, _options: any): object {
   _initOptions(_options);
   // 调用DSL模块
   const dslTree = Dsl.pipe(input.nodes);
-
+  console.log(dslTree);
   // 调用Render模块输出
-  const config = Dsl.config();
-  const render = Render.pipe(
-    dslTree,
-    config,
-  );
-  const htmlStr = render.getTagString();
-  const cssStr = render.getStyleString();
+  // const config = Dsl.config();
+  // const render = Render.pipe(
+  //   dslTree,
+  //   config,
+  // );
+  // const htmlStr = render.getTagString();
+  // const cssStr = render.getStyleString();
 
-  output.uiString = htmlStr;
-  output.styleString = cssStr;
+  // output.uiString = htmlStr;
+  // output.styleString = cssStr;
   return output;
 }
 
