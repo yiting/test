@@ -28,12 +28,12 @@ const MODEL_LIST = [
   new WG2M1(),
   new WG2M2(),
   new WG2M3(),
-  new WG2M4(),
+  // new WG2M4(),
   // new WG2M5(),
   // 三元素模型
   new WG3M1(),
   new WG3M2(),
-  new WG3M3(),
+  // new WG3M3(),
   // 四元素模型
   new WG4M1(),
   // new WG4M2(),
