@@ -4,10 +4,9 @@ class EM2M3 extends HtmlTemplate {
   constructor(...args: any[]) {
     super(...args);
     this._template = `
-    <div class="tag">
-      <i $ref="1"></i>
-      <span $ref="0" class="text"></span>
-    </div>`;
+      <div class="btnImage" $ref="1">
+        <span $ref="0" class="text"></span>
+      </div>`;
   }
 }
 
