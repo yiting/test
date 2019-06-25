@@ -72,6 +72,12 @@ class StructureProcessor {
         }
       });
     });
+    nodelist
+      .filter(n => n.type === QLayer.name && this.isEmtyGroup(n))
+      .forEach(n => {
+        console.log(n.name + '被清理');
+        n.removeSelf();
+      });
   }
 
   static justify(node) {
@@ -163,7 +169,7 @@ class StructureProcessor {
     if (bgNode_index + 1 < node_index)
       return !nodelist
         .slice(bgNode_index + 1, node_index)
-        .some(n => isCollide(node, n));
+        .some(n => isCollide(node, n) && n.type !== QLayer.name);
     return false;
   }
 
