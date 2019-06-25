@@ -3,7 +3,13 @@
  * 树的节点储存信息为QObject类型
  */
 const QNODES = require('./');
-const { generateGroupAttr, getBiggestNode, mergeStyle } = require('../utils');
+const {
+  generateGroupAttr,
+  getBiggestNode,
+  mergeStyle,
+  serialize,
+  isCollide,
+} = require('../utils');
 /**
  * @class 设计树控制类
  */
@@ -78,13 +84,20 @@ class DesignTree {
       default:
         break;
     }
-    let parent = nodes[0].parent;
+    const { parent } = nodes[0];
+    const lastIndex = nodes.reduce((i, n) => {
+      const index = parent.children.indexOf(n);
+      return index > i ? index : i;
+    }, -1);
+    if (!~lastIndex) return null;
+    parent.add(newNode, lastIndex);
     try {
-      nodes.forEach(n => parent.remove(n)); // 删除旧节点
+      nodes.forEach(n => {
+        parent.remove(n);
+      }); // 删除旧节点
     } catch (error) {
       console.error('删除失败');
     }
-    parent.add(newNode);
     return newNode;
   }
 
@@ -158,6 +171,29 @@ class DesignTree {
         opacity: 1,
       });
     }
+  }
+
+  static zIndexCompute(rootNode) {
+    function _setNodeZIndex(node) {
+      let n = node;
+      while (n._behindNode) {
+        node.zIndex++;
+        n = n._behindNode;
+      }
+    }
+    const nodeList = serialize(rootNode);
+    for (let index = nodeList.length - 1; index > 0; index--) {
+      const node = nodeList[index];
+      node.zIndex = 0;
+      const list = nodeList.slice(0, index).reverse();
+      const bNode = list.find(
+        n =>
+          isCollide(node, n) &&
+          !(n.type === QNODES.QText.name && node.type === QNODES.QText.name),
+      );
+      if (bNode) node._behindNode = bNode;
+    }
+    nodeList.forEach(node => _setNodeZIndex(node));
   }
 }
 module.exports = DesignTree;

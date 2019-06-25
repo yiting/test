@@ -4,6 +4,7 @@ const {
   generateGroupAttr,
   mergeStyle,
   isBelong,
+  isSameColor,
 } = require('../../utils');
 const { SKETCH_LAYER_TYPES } = require('./SketchLayerTypes');
 const DesignTree = require('../../nodes/DesignTree');
@@ -85,7 +86,7 @@ class SketchProcessor {
     });
   }
   static borderProcess(node) {
-    const { border } = node.styles;
+    const { border, background } = node.styles;
     if (!border) return;
     switch (border.position) {
       case 0:
@@ -106,6 +107,10 @@ class SketchProcessor {
           node.abY -= border.width;
         }
         break;
+    }
+    // 剔除边框与背景色
+    if (background && isSameColor(border.color, background.color)) {
+      node.styles.border = null;
     }
   }
   static maskToImage(parent) {

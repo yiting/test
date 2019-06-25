@@ -100,6 +100,12 @@ function hasText(node, root) {
     .filter(n => n.type === 'QText')
     .find(n => isBelong(n, node));
 }
+
+function isSameColor(colorA, colorB) {
+  if (!colorA || !colorB) return false;
+  return Object.values(colorA).join(',') === Object.values(colorB).join(',');
+}
+
 module.exports = {
   walkout,
   walkin,
@@ -113,5 +119,6 @@ module.exports = {
   generateGroupAttr,
   getBiggestNode,
   hasText,
+  isSameColor,
   // isPureColor
 };

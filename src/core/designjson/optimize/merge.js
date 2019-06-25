@@ -45,7 +45,7 @@ const [
   'arrow',
   'shapePath',
 ];
-const { walkout } = require('../utils');
+const { walkout, isSameColor } = require('../utils');
 var sliceArr = require('../rules/testData/ai.json');
 var nodesMergeJudgeode = new NodesMergeJudgeode();
 
@@ -82,7 +82,9 @@ class ImageMergeProcessor {
     // 组合成图片
     this.root = node;
     allScoreData = [];
+    DesignTree.zIndexCompute(node);
     walkout(node, this._nodeMerge.bind(this));
+    DesignTree.zIndexCompute(node);
   }
   static _nodeMerge(node) {
     // 规则判断
@@ -255,9 +257,6 @@ function needConvertToImage(node) {
     default:
       return false;
   }
-}
-function isSameColor(color1, color2) {
-  return JSON.stringify(color1) === JSON.stringify(color2);
 }
 function mergeJudge(nodelist, ruleConfig, root) {
   // 对每条边进行评分
