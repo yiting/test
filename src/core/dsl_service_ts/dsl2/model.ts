@@ -1,6 +1,7 @@
 // 此模块定义了元素模型及组件模型的构造类
 // 并提供dsl模块model使用的对外接口
 import Common from './common';
+import { debug } from 'util';
 
 /**
  * 元素模型组件模型基类

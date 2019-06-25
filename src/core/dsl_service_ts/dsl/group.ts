@@ -4,9 +4,8 @@ import Model from './model';
 import Constraints from './constraints';
 
 import QLog from '../log/qlog';
-import uitls from '../uitls';
-import constraints from './constraints';
-
+import EMXM1 from '../dsl2/elements/emx/m1';
+import { debug } from 'util';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 /**
@@ -335,17 +334,23 @@ class Tree {
     /**
      * 如果子节点在父节点的角点上，切高宽为一定比例，则认为是父节点外的绝对定位
      * */
-    const leftTop = node.abX <= parent.abX && node.abY <= parent.abY;
-    const rightTop = node.abXops >= parent.abXops && node.abY <= parent.abY;
-    const leftBottom = node.abX <= parent.abX && node.abYops >= parent.abYops;
-    const rightBottom =
-      node.abXops >= parent.abXops && node.abYops >= parent.abYops;
-    const rate = 3;
+    // const leftTop = node.abX <= parent.abX && node.abY <= parent.abY;
+    // const rightTop = node.abXops >= parent.abXops && node.abY <= parent.abY;
+    // const leftBottom = node.abX <= parent.abX && node.abYops >= parent.abYops;
+    // const rightBottom =
+    //   node.abXops >= parent.abXops && node.abYops >= parent.abYops;
+    const left = node.abX <= parent.abX;
+    const right = node.abXops >= parent.abXops;
+    const bottom = node.abYops >= parent.abYops;
+    const top = node.abY <= parent.abY;
+    const rate = 2.1;
     const rateX =
+      node.abXops - node.abX <= 28 * 2 &&
       (parent.abXops - parent.abX) / (node.abXops - node.abX) > rate;
     const rateY =
+      node.abYops - node.abY <= 28 * 2 &&
       (parent.abYops - parent.abY) / (node.abYops - node.abY) > rate;
-    return (leftTop || rightTop || leftBottom || rightBottom) && rateX && rateY;
+    return (left || right || top || bottom) && rateX && rateY;
   }
   /**
    * 往父节点添加子节点

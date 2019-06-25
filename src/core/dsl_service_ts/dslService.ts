@@ -5,6 +5,7 @@ import Dsl from './dsl2/dsl';
 import Layout from './dsl/dsl';
 import Render from './render/render';
 import Store from './helper/store';
+import { debug } from 'util';
 
 /**
  * dsl服务的主使用接口
@@ -51,7 +52,7 @@ function _process(_input: any, _options: any): object {
     //   desc: 布局处理
     //  error:${e}`);
   }
-  
+
   // render模块
   const render = Render.pipe(
     dslTree,
