@@ -50,7 +50,7 @@ class AvatarSimilar extends Rule {
     // 比较两个节点是否小于某个值
     let nodeASize = Util.getSize(nodeA);
     let nodeBSize = Util.getSize(nodeB);
-    let sizeThreshold = 10000;
+    let sizeThreshold = 64 * 64;
     let result = false;
     // 比较两个节点是否都是同一种形状
     if (
@@ -78,7 +78,7 @@ class AvatarSimilar extends Rule {
     // 比较两个节点是否小于某个值
     let nodeASize = Util.getSize(nodeA);
     let nodeBSize = Util.getSize(nodeB);
-    let sizeThreshold = 10000;
+    let sizeThreshold = 64 * 64;
     let result = false;
     // 比较两个节点是否都是同一种形状
     if (
