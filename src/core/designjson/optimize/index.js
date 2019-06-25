@@ -1,6 +1,6 @@
 const merge = require('./merge');
 const structure = require('./structure');
-const calculator = require('./calculator');
+// const calculator = require('./calculator');
 // import transfer from './dom_optimize_transfer';
 /**
  * 优化器
@@ -12,7 +12,7 @@ const calculator = require('./calculator');
 let optimize = (node, { aiData, ruleMap }) => {
   structure(node);
   merge(node, aiData, ruleMap);
-  calculator(node);
+  // calculator(node);
   // transfer(node);
 };
 module.exports = optimize;

@@ -82,7 +82,9 @@ class ImageMergeProcessor {
     // 组合成图片
     this.root = node;
     allScoreData = [];
+    DesignTree.zIndexCompute(node);
     walkout(node, this._nodeMerge.bind(this));
+    DesignTree.zIndexCompute(node);
   }
   static _nodeMerge(node) {
     // 规则判断

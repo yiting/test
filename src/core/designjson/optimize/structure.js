@@ -72,6 +72,7 @@ class StructureProcessor {
         }
       });
     });
+    this._cleanEmptyGroup(nodelist);
   }
 
   static justify(node) {
@@ -87,7 +88,8 @@ class StructureProcessor {
         visual_parent &&
         parent.id !== visual_parent.id &&
         parent.width * parent.height >
-          visual_parent.width * visual_parent.height
+          visual_parent.width * visual_parent.height &&
+        !hasBarrier(n, visual_parent, nodelist)
       ) {
         // 如果候选父节点不是原先父节点，而且面积还小于原先父节点
         // 组复制
@@ -110,6 +112,16 @@ class StructureProcessor {
       parent.isModified = visual_parent.isModified = true;
       console.log(target.name, '从', parent.name, '移动到', visual_parent.name);
     });
+    this._cleanEmptyGroup(serialize(node));
+  }
+
+  static _cleanEmptyGroup(nodelist) {
+    nodelist
+      .filter(n => n.type === QLayer.name && this.isEmtyGroup(n))
+      .forEach(n => {
+        console.log(n.name + '被清理');
+        n.removeSelf();
+      });
   }
 
   static isTransparentStyle(node) {
@@ -128,10 +140,7 @@ class StructureProcessor {
   // 节点是否被覆盖
   static isCovered(node, nodelist) {
     const index = nodelist.indexOf(node);
-    const arr2 = nodelist.slice(index + 1).filter(n => {
-      const parentList = n.getParentList();
-      return !~parentList.indexOf(node);
-    }); // 越往后节点的z-index越大
+    const arr2 = nodelist.slice(index + 1).filter(n => !isContained(n, node)); // 越往后节点的z-index越大
     return arr2.some(
       brother =>
         brother.type !== QLayer.name &&
@@ -163,7 +172,7 @@ class StructureProcessor {
     if (bgNode_index + 1 < node_index)
       return !nodelist
         .slice(bgNode_index + 1, node_index)
-        .some(n => isCollide(node, n));
+        .some(n => isCollide(node, n) && n.type !== QLayer.name);
     return false;
   }
 
@@ -174,5 +183,25 @@ class StructureProcessor {
   static isEmtyGroup(node) {
     return node.type === QLayer.name && node.childNum === 0;
   }
+}
+function hasBarrier(a, b, nodelist) {
+  const indexA = nodelist.indexOf(a);
+  const indexB = nodelist.indexOf(b);
+  const list =
+    indexA > indexB
+      ? nodelist.slice(indexB + 1, indexA)
+      : nodelist.slice(indexA + 1, indexB);
+  const res = list.find(n => {
+    if (n.type === QLayer.name) return false;
+    const parentList = n.getParentList();
+    return (
+      !~parentList.indexOf(a) && !~parentList.indexOf(b) && isCollide(a, n)
+    );
+  });
+  return res;
+}
+function isContained(n, node) {
+  const parentList = n.getParentList();
+  return ~parentList.indexOf(node);
 }
 module.exports = process;
