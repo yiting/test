@@ -50,7 +50,15 @@ class NodesMergeJudge {
     let isCombine = false;
     let isFinally = false;
 
-    if (node.name.indexOf('Close') > -1 && brother.name.indexOf('More') > -1) {
+    if (
+      ImgConbineUtils.findNodeByCond(
+        node,
+        brother,
+        'name',
+        '矩形 copy 8',
+        '矩形 copy 16',
+      )
+    ) {
       console.log(1);
     }
 
