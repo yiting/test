@@ -3,10 +3,9 @@ import designjson from './test3_data.json';
 
 // 引入的模块包
 // import Dsl from '../dsl/dsl';
-// import Render from '../render/render';
+import Render from '../render/render';
 import dslServer from '../dslService';
 
-console.log('1节点总长度: ' + designjson.length);
 const value: any = dslServer.process(
   {
     nodes: designjson,
@@ -22,12 +21,12 @@ const value: any = dslServer.process(
   },
 );
 
-// // 输出文件
-// Render.outputFileWithPath(
-//   Path.join(__dirname, './output/index.html'),
-//   value.uiString,
-// );
-// Render.outputFileWithPath(
-//   Path.join(__dirname, './output/index.css'),
-//   value.styleString,
-// );
+// 输出文件
+Render.outputFileWithPath(
+  Path.join(__dirname, './output/index.html'),
+  value.uiString,
+);
+Render.outputFileWithPath(
+  Path.join(__dirname, './output/index.css'),
+  value.styleString,
+);

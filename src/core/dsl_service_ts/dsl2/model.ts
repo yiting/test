@@ -738,11 +738,17 @@ class MatchData {
    */
   _createFromElementX(matchDatas: any): void {
     const renderData: any = this.data;
+
+    // 记录成循环模式
+    renderData.nodes = {};
+    renderData.set('type', Common.QLayer);
     for (let i = 0; i < matchDatas.length; i++) {
       const mData = matchDatas[i];
       const rData = mData.getRenderData();
       rData.set('parent', renderData);
-      renderData.children.push(rData);
+      // 这里加入循环标识
+      rData.set('modelRef', `${i}`);
+      renderData.nodes[`${i}`] = rData;
     }
   }
 
