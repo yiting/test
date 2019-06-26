@@ -131,27 +131,34 @@ class LayoutBaseLine extends Model.LayoutModel {
     const absNodes: any = _absNodes;
     parent.constraints.LayoutDirection = Constrains.LayoutDirection.Horizontal;
 
-    const top = parent.abY;
-    const bottom = parent.abYops;
-    const middle = (parent.abY + parent.abYops) / 2;
-    const topArr: any = [];
-    const bottomArr: any = [];
-    const middleArr: any = [];
+    // const top = parent.abY;
+    // const bottom = parent.abYops;
+    // const middle = (parent.abY + parent.abYops) / 2;
+    let topArr: any = [];
+    let bottomArr: any = [];
+    let middleArr: any = [];
     calNodes.forEach((nd: any) => {
-      if (Math.abs(nd.abY - top) < 3) {
-        topArr.push(nd);
-      }
-      if (Math.abs(nd.abYops - bottom) < 3) {
-        bottomArr.push(nd);
-      }
-      if (Math.abs((nd.abYops + nd.abY) / 2 - middle) < 3) {
-        middleArr.push(nd);
-      }
+      topArr.push(nd);
+      bottomArr.push(nd);
+      middleArr.push(nd);
     });
+    topArr.sort((a: any, b: any) => b.abY - a.abY);
+    bottomArr.sort((a: any, b: any) => b.abYops + b.abY - a.abYops - a.abY);
+    middleArr.sort((a: any, b: any) => b.abYops - a.abYops);
+
+    topArr = topArr.filter((n: any) => topArr[0].abY - n.abY < 3);
+    bottomArr = bottomArr.filter(
+      (n: any) => bottomArr[0].abY + bottomArr[0].abYops - n.abY - n.abYops < 3,
+    );
+    middleArr = middleArr.filter(
+      (n: any) => middleArr[0].abYops - n.abYops < 3,
+    );
+
     // 获得最多相同基线的节点
     let maxArr = [topArr, bottomArr, middleArr].sort(
       (a, b) => b.length - a.length,
     )[0];
+
     // 赋予副轴约束
     if (maxArr.length === 1) {
       // 如果最大基线元素只有一个，则选面积最大的
