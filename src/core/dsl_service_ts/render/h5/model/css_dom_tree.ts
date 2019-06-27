@@ -530,9 +530,6 @@ class CssDom {
           }
         } else {
           if (that.countStyle.add[key]) {
-            console.log(
-              `来了一个${key}++++${that.countStyle.add[key]['value']}`,
-            );
             props.push(
               CssDom.getCssProperty(key, that.countStyle.add[key]['value']),
             );
