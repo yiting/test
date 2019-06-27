@@ -121,10 +121,6 @@ let pipe = function(nodes: any): any {
   // 匹配完的可变节点元素模型添加回元素模型列表
   if (matchedElementX.length > 0) {
     matchedElementX.forEach((ele: any) => {
-      if (ele.id == '4CFDF613-77FE-4165-9DF5-A0D7E6578559-c-ex') {
-        debugger;
-      }
-
       matchedElements.push(ele);
     });
   }
