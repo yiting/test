@@ -116,6 +116,17 @@ function getSize(node) {
   return node.width * node.height;
 }
 
+function findNodeByCond(node, brother, type, id1, id2) {
+  let result = false;
+  if (node[type].indexOf(id1) > -1 && brother[type].indexOf(id2) > -1) {
+    result = true;
+  }
+  if (node[type].indexOf(id2) > -1 && brother[type].indexOf(id1) > -1) {
+    result = true;
+  }
+  return result;
+}
+
 function isLine(node) {
   //如果形状是矩形、圆形、直线以外的就不能css实现
   var result = false;
@@ -244,4 +255,5 @@ module.exports = {
   isSimpleBackground,
   isRedPoint,
   isAvatar,
+  findNodeByCond,
 };

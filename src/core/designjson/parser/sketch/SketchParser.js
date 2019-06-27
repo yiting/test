@@ -12,7 +12,7 @@ class SketchParser {
    * @param {Array.<Object>} pages
    * @param {Object} documentJson
    */
-  static init({ pages = [], documentJson = {}, filePath = '' }) {
+  static init({ pages = [], documentJson = {}, filePath = '', version = '' }) {
     if (!Array.isArray(pages) || !pages.length) return null;
     let frameMap = null;
     // if (filePath) frameMap = getSketchRect(filePath);
@@ -24,6 +24,7 @@ class SketchParser {
         symbolMap,
         artboardMap,
         frameMap,
+        version,
       },
     };
   }
