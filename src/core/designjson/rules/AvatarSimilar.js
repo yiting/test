@@ -2,6 +2,7 @@ const Rule = require('./Rule');
 const Util = require('./Util');
 var maxVal = Math.sqrt(Math.pow(255, 2) * 3);
 const Util2 = require('../utils');
+const ImgConbineUtils = require('./Util');
 let weight = 1;
 
 /**
@@ -56,7 +57,9 @@ class AvatarSimilar extends Rule {
     if (
       nodeA.shapeType == nodeB.shapeType &&
       HalfYGap < 10 &&
-      (nodeASize >= sizeThreshold || nodeBSize >= sizeThreshold)
+      (nodeASize >= sizeThreshold || nodeBSize >= sizeThreshold) &&
+      ImgConbineUtils.isIntersect(nodeA, nodeB) ==
+        ImgConbineUtils.INTERSECT_TYPE.DISJOINT
     ) {
       result = true;
     } else if (
@@ -84,7 +87,9 @@ class AvatarSimilar extends Rule {
     if (
       nodeA.shapeType == nodeB.shapeType &&
       HalfYGap < 10 &&
-      (nodeASize >= sizeThreshold || nodeBSize >= sizeThreshold)
+      (nodeASize >= sizeThreshold || nodeBSize >= sizeThreshold) &&
+      ImgConbineUtils.isIntersect(nodeA, nodeB) ==
+        ImgConbineUtils.INTERSECT_TYPE.DISJOINT
     ) {
       result = true;
     } else if (
