@@ -68,14 +68,36 @@ function _supplementConstraints(vdom: any) {
   /**
    * H5约束修正：
    */
+  // 修正为水平左对齐
   if (
+    vdom.constraints.LayoutDirection ===
+      Constraints.LayoutDirection.Horizontal &&
+    vdom.constraints.LayoutJustifyContent ===
+      Constraints.LayoutJustifyContent.End
+  ) {
+    vdom.constraints.LayoutJustifyContent =
+      Constraints.LayoutJustifyContent.Start;
+  }
+  if (
+    // 修正为水平顶对齐
+    vdom.constraints.LayoutDirection ===
+      Constraints.LayoutDirection.Horizontal &&
+    vdom.constraints.LayoutAlignItems === Constraints.LayoutAlignItems.End
+  ) {
+    vdom.constraints.LayoutAlignItems = Constraints.LayoutAlignItems.Start;
+  }
+  if (
+    // 修正为垂直左对齐
     vdom.constraints.LayoutDirection === Constraints.LayoutDirection.Vertical &&
     vdom.constraints.LayoutAlignItems === Constraints.LayoutAlignItems.End
   ) {
     vdom.constraints.LayoutAlignItems = Constraints.LayoutAlignItems.Start;
   }
   if (
-    vdom.constraints.LayoutDirection === Constraints.LayoutDirection.Vertical
+    // 修正为垂直顶对齐
+    vdom.constraints.LayoutDirection === Constraints.LayoutDirection.Vertical &&
+    vdom.constraints.LayoutJustifyContent ===
+      Constraints.LayoutJustifyContent.End
   ) {
     vdom.constraints.LayoutJustifyContent =
       Constraints.LayoutJustifyContent.Start;
