@@ -130,7 +130,14 @@ class Tree {
     }
     // 计算边界
     layers.forEach((l: any) => {
-      const range = Utils.calRange(l);
+      const range = Utils.calRange(
+        l.filter(
+          (n: any) =>
+            n.constraints &&
+            n.constraints.LayoutSelfPosition !==
+              Constraints.LayoutSelfPosition.Absolute,
+        ),
+      );
       Object.assign(l, range);
     });
     // 自上向下排序
@@ -217,7 +224,14 @@ class Tree {
     }
     // 计算边界
     layers.forEach((l: any) => {
-      const range = Utils.calRange(l);
+      const range = Utils.calRange(
+        l.filter(
+          (n: any) =>
+            n.constraints &&
+            n.constraints.LayoutSelfPosition !==
+              Constraints.LayoutSelfPosition.Absolute,
+        ),
+      );
       Object.assign(l, range);
     });
     // 自左向右排序
@@ -340,7 +354,7 @@ class Tree {
       node.abXops >= parent.abXops && node.abXops < DSLOptions.optimizeWidth;
     const bottom = node.abYops >= parent.abYops;
     const top = node.abY <= parent.abY;
-    const rate = 2.1;
+    const rate = 2;
     const rateX =
       (parent.abXops - parent.abX) / (node.abXops - node.abX) > rate;
     const rateY =
