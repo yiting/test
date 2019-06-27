@@ -5,7 +5,7 @@
 // 1, icon在文字上方,
 // 2, icon和文字位于垂直轴上
 // 3, icon和文字的间距大于0小于文字高度
-// 4, 文字的长度不大于icon的长度的1.2倍
+// 4, 文字的长度不大于标准icon长度(80)
 // 5, 文字的长度不小于icon的长度的一半
 import Common from '../../common';
 import Model from '../../model';
@@ -48,7 +48,8 @@ class WG2M1 extends Model.WidgetModel {
     }
     // 4
     regular4() {
-        let bool: boolean = Feature.sizeWidthRatioALessB(this._matchNodes['0'], this._matchNodes['1'], 1.2);
+        //let bool: boolean = Feature.sizeWidthRatioALessB(this._matchNodes['0'], this._matchNodes['1'], 1.2);
+        let bool: boolean = Feature.sizeWidthLess(this._matchNodes['0'], 80 * 1.1);
         return bool;
     }
     // 5
