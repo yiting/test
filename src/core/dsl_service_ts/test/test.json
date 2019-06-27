@@ -1,9 +1,9 @@
 [
   {
-    "id": "59519B5E-E0C5-4F78-A73F-E490DF4EF054",
-    "name": "大屏状态-广告位露出",
+    "id": "1612BEB7-9177-450F-9688-4B3DC0739F62",
+    "name": "捐微笑成功",
     "width": 750,
-    "height": 1624,
+    "height": 1334,
     "abX": 0,
     "abY": 0,
     "zIndex": 0,
@@ -15,432 +15,20 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": { "r": 245, "g": 246, "b": 250, "a": 1 },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
     "type": "QLayer"
   },
   {
-    "id": "CB0F9300-11DD-4A65-856D-5A1A67B8D040",
-    "name": "Rectangle",
-    "width": 130,
-    "height": 52,
-    "abX": 517,
-    "abY": 305,
+    "id": "77F257D7-DB79-42AA-8FD1-DED6B4A33EA0",
+    "name": "iPhone X Copy 80",
+    "width": 750,
+    "height": 3386,
+    "abX": 0,
+    "abY": 0,
     "zIndex": 1,
-    "styles": {
-      "borderRadius": [100, 100, 100, 100],
-      "border": {
-        "type": "solid",
-        "color": { "r": 235, "g": 237, "b": 245, "a": 1 },
-        "width": 1,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "9F9FAC74-E196-4603-AB8B-C40F77ADDB2C",
-    "name": "Combined Shape",
-    "width": 24,
-    "height": 24,
-    "abX": 532,
-    "abY": 319,
-    "zIndex": 2,
-    "styles": {},
-    "type": "QImage",
-    "path": "34279b3f84f685989fe45aec0b4e86c6.png"
-  },
-  {
-    "id": "CCF12C8E-141C-4DB9-B239-4809F38D4870",
-    "name": "充Q币",
-    "width": 71,
-    "height": 24,
-    "abX": 563,
-    "abY": 319,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "充Q币",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 24
-    },
-    "type": "QText",
-    "text": "充Q币"
-  },
-  {
-    "id": "3B83CA5A-5EBA-43DB-B9BF-973E1BF367FC",
-    "name": "Rectangle",
-    "width": 130,
-    "height": 52,
-    "abX": 134,
-    "abY": 305,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [100, 100, 100, 100],
-      "border": {
-        "type": "solid",
-        "color": { "r": 235, "g": 237, "b": 245, "a": 1 },
-        "width": 1,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "63E2390A-F572-4889-8405-E7939902D1AA",
-    "name": "充值",
-    "width": 48,
-    "height": 24,
-    "abX": 185,
-    "abY": 319,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "充值",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 24
-    },
-    "type": "QText",
-    "text": "充值"
-  },
-  {
-    "id": "0731686D-141B-49B0-9A11-6A93E32E3C68",
-    "name": "Combined Shape",
-    "width": 24,
-    "height": 24,
-    "abX": 149,
-    "abY": 319,
-    "zIndex": 2,
-    "styles": {},
-    "type": "QImage",
-    "path": "878a78b68ef97aae08bbaade1ac5bffe.png"
-  },
-  {
-    "id": "A78B0388-ECD3-4609-9718-901DAF640997",
-    "name": "Rectangle",
-    "width": 130,
-    "height": 52,
-    "abX": 284,
-    "abY": 305,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [100, 100, 100, 100],
-      "border": {
-        "type": "solid",
-        "color": { "r": 235, "g": 237, "b": 245, "a": 1 },
-        "width": 1,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "8A4837B6-15AA-4052-9E62-AD14728336AC",
-    "name": "提现",
-    "width": 52,
-    "height": 24,
-    "abX": 339,
-    "abY": 319,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "提现",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 24
-    },
-    "type": "QText",
-    "text": "提现"
-  },
-  {
-    "id": "51BED71D-A3F4-4416-8474-7CF60036F1BF",
-    "name": "Combined Shape",
-    "width": 24,
-    "height": 22,
-    "abX": 301,
-    "abY": 320,
-    "zIndex": 2,
-    "styles": {},
-    "type": "QImage",
-    "path": "4986ff3ad2c7e7e96195ef416cb8d1bb.png"
-  },
-  {
-    "id": "9702462D-4AD3-4779-BB03-AE5F04EB3C62",
-    "name": "QQ钱包 Copy 3",
-    "width": 151,
-    "height": 90,
-    "abX": 506,
-    "abY": 197,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 51, "g": 51, "b": 51, "a": 1 },
-          "string": "30   ",
-          "font": "DINAlternate-Bold",
-          "size": 90
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": 90
-    },
-    "type": "QText",
-    "text": "30   "
-  },
-  {
-    "id": "C5C1ACF2-8453-47F4-82BD-C693A5F0EA6A",
-    "name": "Q币 (个)",
-    "width": 86,
-    "height": 24,
-    "abX": 539,
-    "abY": 160,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 135, "g": 139, "b": 153, "a": 1 },
-          "string": "Q币",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        },
-        {
-          "color": { "r": 135, "g": 139, "b": 153, "a": 1 },
-          "string": " ",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        },
-        {
-          "color": { "r": 135, "g": 139, "b": 153, "a": 1 },
-          "string": "(个)",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": 24
-    },
-    "type": "QText",
-    "text": "Q币 (个)"
-  },
-  {
-    "id": "4E3CF1F0-7CBA-4E3F-9279-27D4DE18F636",
-    "name": "120.80",
-    "width": 238,
-    "height": 90,
-    "abX": 153,
-    "abY": 197,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 51, "g": 51, "b": 51, "a": 1 },
-          "string": "120.80",
-          "font": "DINAlternate-Bold",
-          "size": 90
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": 90
-    },
-    "type": "QText",
-    "text": "120.80"
-  },
-  {
-    "id": "C442F7EF-3883-4CA6-82D6-B362FED73FF9",
-    "name": "余额 (元)",
-    "width": 91,
-    "height": 24,
-    "abX": 228,
-    "abY": 160,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 143, "g": 147, "b": 160, "a": 1 },
-          "string": "余额",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        },
-        {
-          "color": { "r": 143, "g": 147, "b": 160, "a": 1 },
-          "string": " ",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        },
-        {
-          "color": { "r": 143, "g": 147, "b": 160, "a": 1 },
-          "string": "(元)",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": 24
-    },
-    "type": "QText",
-    "text": "余额 (元)"
-  },
-  {
-    "id": "CD1D7314-4996-4435-B124-A261874D2935",
-    "name": "Rectangle",
-    "width": 690,
-    "height": 130,
-    "abX": 30,
-    "abY": 410,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [12, 12, 12, 12],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": [
-        {
-          "type": "inset",
-          "x": 0,
-          "y": 0,
-          "color": { "r": 0, "g": 0, "b": 0, "a": 0.05 },
-          "spread": 4,
-          "blur": 20
-        }
-      ],
-      "background": {
-        "type": "color",
-        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "B30FB734-A4E2-46B0-9C09-E041CA37D87A",
-    "name": "理财通",
-    "width": 102,
-    "height": 34,
-    "abX": 172,
-    "abY": 459,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 3, "g": 8, "b": 26, "a": 1 },
-          "string": "理财通",
-          "font": "PingFangSC-Regular",
-          "size": 34
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "理财通"
-  },
-  {
-    "id": "8A52600A-EB8D-4D45-9DF8-BFCBBE87B5CE---267FDDD3-7372-4815-BAA8-F6EC053FF092",
-    "name": "小图标/右箭头/默认态",
-    "width": 18,
-    "height": 30,
-    "abX": 680,
-    "abY": 460,
-    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -450,16 +38,15 @@
       "background": null
     },
     "type": "QImage",
-    "symbolRoot": ["8A52600A-EB8D-4D45-9DF8-BFCBBE87B5CE"],
-    "path": "87aa1b393cb847406a75f254eb7b79cc.png"
+    "path": "54c15c9e8debe21b67bab3dfde2ee5e5.png"
   },
   {
-    "id": "20E61905-9E64-4AA1-8338-B2B146D75DCA",
-    "name": "工资计划赢好礼",
-    "width": 196,
-    "height": 28,
-    "abX": 464,
-    "abY": 461,
+    "id": "208D8F2D-39E5-4D89-B5A9-B89BFCEB5FB5",
+    "name": "Rectangle 8",
+    "width": 750,
+    "height": 1206,
+    "abX": 0,
+    "abY": 128,
     "zIndex": 2,
     "styles": {
       "borderRadius": null,
@@ -467,87 +54,28 @@
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 176, "g": 179, "b": 191, "a": 1 },
-          "string": "工资计划赢好礼",
-          "font": "PingFangSC-Regular",
-          "size": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 1,
-      "lineHeight": 28
-    },
-    "type": "QText",
-    "text": "工资计划赢好礼"
-  },
-  {
-    "id": "BC650221-360E-40E4-9D4E-80C6019317F4",
-    "name": "Mask",
-    "width": 96,
-    "height": 96,
-    "abX": 52,
-    "abY": 429,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": "0.0700",
-      "rotation": 0,
-      "shadows": null,
       "background": {
-        "type": "linear",
-        "color": null,
-        "hasOpacity": false,
-        "x": "0.14761085693124606",
-        "y": " 0.11862534823274892",
-        "x1": "0.85995668742110021",
-        "y1": " 0.89573683373015023",
-        "colorStops": [
-          { "color": { "r": 128, "g": 191, "b": 255, "a": 1 }, "offset": 0 },
-          { "color": { "r": 51, "g": 153, "b": 255, "a": 1 }, "offset": 1 }
-        ]
+        "type": "color",
+        "color": { "r": 0, "g": 0, "b": 0, "a": 0.7 },
+        "hasOpacity": true
       }
     },
     "type": "QShape"
   },
   {
-    "id": "07061DC1-C5A2-4A41-B860-E1CDBB39398C",
-    "name": "Shape 2",
-    "width": 48,
-    "height": 47,
-    "abX": 76,
-    "abY": 454,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "c11e66fb1a725ca12cc5b3672846a3c6.png"
-  },
-  {
-    "id": "E27FF8C0-9ADA-4CC0-83D7-8043F3653829",
+    "id": "61646BB1-2585-4AFA-A911-0DE3BFFEDCED",
     "name": "Rectangle",
-    "width": 690,
-    "height": 130,
-    "abX": 30,
-    "abY": 560,
-    "zIndex": 1,
+    "width": 622,
+    "height": 640,
+    "abX": 64,
+    "abY": 394,
+    "zIndex": 3,
     "styles": {
       "borderRadius": [12, 12, 12, 12],
       "border": null,
       "opacity": 1,
       "rotation": 0,
-      "shadows": [
-        {
-          "type": "inset",
-          "x": 0,
-          "y": 0,
-          "color": { "r": 0, "g": 0, "b": 0, "a": 0.05 },
-          "spread": 4,
-          "blur": 20
-        }
-      ],
+      "shadows": null,
       "background": {
         "type": "color",
         "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
@@ -557,781 +85,43 @@
     "type": "QShape"
   },
   {
-    "id": "E6B39478-B529-4D70-BAE0-B4CE150B6C36",
-    "name": "实名认证",
-    "width": 136,
-    "height": 34,
-    "abX": 172,
-    "abY": 609,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 3, "g": 8, "b": 26, "a": 1 },
-          "string": "实名认证",
-          "font": "PingFangSC-Regular",
-          "size": 34
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "实名认证"
-  },
-  {
-    "id": "2460F4C3-F94B-459D-8440-BA748424788F---267FDDD3-7372-4815-BAA8-F6EC053FF092",
-    "name": "小图标/右箭头/默认态",
-    "width": 18,
-    "height": 30,
-    "abX": 680,
-    "abY": 610,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": ["2460F4C3-F94B-459D-8440-BA748424788F"],
-    "path": "8A52600A-EB8D-4D45-9DF8-BFCBBE87B5CE---267FDDD3-7372-4815-BAA8-F6EC053FF092.png"
-  },
-  {
-    "id": "8646F0A7-3467-4B70-9375-30C664B88600",
-    "name": "3项资料待补充",
-    "width": 185,
-    "height": 28,
-    "abX": 475,
-    "abY": 611,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 176, "g": 179, "b": 191, "a": 1 },
-          "string": "3项资料待补充",
-          "font": "PingFangSC-Regular",
-          "size": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 1,
-      "lineHeight": 28
-    },
-    "type": "QText",
-    "text": "3项资料待补充"
-  },
-  {
-    "id": "052C1BEB-26CE-4E7A-A466-58D8908D6A95",
-    "name": "Mask",
-    "width": 96,
+    "id": "52A1316D-7B2E-4723-9F5D-254BA20554EC",
+    "name": "Rectangle 3",
+    "width": 526,
     "height": 96,
-    "abX": 52,
-    "abY": 579,
-    "zIndex": 2,
+    "abX": 112,
+    "abY": 850,
+    "zIndex": 4,
     "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
+      "borderRadius": [90, 90, 90, 90],
       "border": null,
-      "opacity": "0.0700",
+      "opacity": 1,
       "rotation": 0,
       "shadows": null,
       "background": {
         "type": "linear",
         "color": null,
         "hasOpacity": false,
-        "x": "1.2872656249999603",
-        "y": " -0.30436197916666669",
-        "x1": "-0.32187500000003555",
-        "y1": " 1.2919921875",
+        "x": "1",
+        "y": " 0.80778950325511312",
+        "x1": "0.07065247592092716",
+        "y1": " 0.029639133462553313",
         "colorStops": [
-          { "color": { "r": 23, "g": 230, "b": 212, "a": 1 }, "offset": 0 },
-          { "color": { "r": 0, "g": 204, "b": 187, "a": 1 }, "offset": 1 }
+          { "color": { "r": 255, "g": 128, "b": 170, "a": 1 }, "offset": 0 },
+          { "color": { "r": 255, "g": 164, "b": 194, "a": 1 }, "offset": 1 }
         ]
       }
     },
     "type": "QShape"
   },
   {
-    "id": "6D819BE1-6A8F-46CC-9290-30AEC5C51BDE",
-    "name": "Combined Shape",
-    "width": 50,
-    "height": 36,
-    "abX": 75,
-    "abY": 609,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "ff97a8b8e98cccdca24d9a655fefc7f4.png"
-  },
-  {
-    "id": "E4946DDF-27F6-4DF0-A80C-D4C253235FC7",
-    "name": "Rectangle",
-    "width": 690,
-    "height": 130,
-    "abX": 30,
-    "abY": 710,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [12, 12, 12, 12],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": [
-        {
-          "type": "inset",
-          "x": 0,
-          "y": 0,
-          "color": { "r": 0, "g": 0, "b": 0, "a": 0.05 },
-          "spread": 4,
-          "blur": 20
-        }
-      ],
-      "background": {
-        "type": "color",
-        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "94A4E2E7-D92F-41AD-A262-94F9FD124417",
-    "name": "我的银行卡",
-    "width": 170,
-    "height": 34,
-    "abX": 172,
-    "abY": 759,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 3, "g": 8, "b": 26, "a": 1 },
-          "string": "我的银行卡",
-          "font": "PingFangSC-Regular",
-          "size": 34
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "我的银行卡"
-  },
-  {
-    "id": "925A2D0B-929C-4CA1-ACA4-F1DDAE969C4D---267FDDD3-7372-4815-BAA8-F6EC053FF092",
-    "name": "小图标/右箭头/默认态",
-    "width": 18,
-    "height": 30,
-    "abX": 680,
-    "abY": 760,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": ["925A2D0B-929C-4CA1-ACA4-F1DDAE969C4D"],
-    "path": "8A52600A-EB8D-4D45-9DF8-BFCBBE87B5CE---267FDDD3-7372-4815-BAA8-F6EC053FF092.png"
-  },
-  {
-    "id": "05B121A0-B1E6-48F0-B71D-9CC57098CE62",
-    "name": "已绑定3张",
-    "width": 129,
-    "height": 28,
-    "abX": 531,
-    "abY": 761,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 176, "g": 179, "b": 191, "a": 1 },
-          "string": "已绑定3张",
-          "font": "PingFangSC-Regular",
-          "size": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 1,
-      "lineHeight": 28
-    },
-    "type": "QText",
-    "text": "已绑定3张"
-  },
-  {
-    "id": "41A4D0BB-5735-4730-AA67-015127F66B5C",
-    "name": "Mask",
-    "width": 96,
-    "height": 96,
-    "abX": 52,
-    "abY": 729,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": "0.0700",
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "linear",
-        "color": null,
-        "hasOpacity": false,
-        "x": "0.1435546875",
-        "y": " 0.10366586538461539",
-        "x1": "0.85637019230769229",
-        "y1": " 0.87702824519230771",
-        "colorStops": [
-          { "color": { "r": 38, "g": 231, "b": 252, "a": 1 }, "offset": 0 },
-          { "color": { "r": 5, "g": 201, "b": 250, "a": 1 }, "offset": 1 }
-        ]
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "C0C32577-F2B3-4882-9EA7-B3C3F6339E3B",
-    "name": "合并形状",
-    "width": 50,
-    "height": 36,
-    "abX": 75,
-    "abY": 759,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "545a2044882975c0a3a7ff1487a7e103.png"
-  },
-  {
-    "id": "920B057B-A0DF-47F9-A044-50BD83DA45A6",
-    "name": "Path",
-    "width": 24,
-    "height": 42,
-    "abX": 32,
-    "abY": 59,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "1081d80d195fd69f1e33dfcb30e81ee7.png"
-  },
-  {
-    "id": "CAB762B1-7F99-4B52-9832-9DA9888B6C2C",
-    "name": "交易记录",
-    "width": 112,
-    "height": 34,
-    "abX": 616,
-    "abY": 69,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "交易记录",
-          "font": "PingFangSC-Regular",
-          "size": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 1,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "交易记录"
-  },
-  {
-    "id": "BB9E9F01-9AFB-4920-8E72-F7532E16D395",
-    "name": "Oval 1",
-    "width": 67,
-    "height": 11,
-    "abX": 12,
-    "abY": 15,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "8530d709acbc2c9e7e453f5ee06e57b2.png"
-  },
-  {
-    "id": "B1D21CDA-25E8-4725-8268-9ACF6155E8E1",
-    "name": "上午9:41",
+    "id": "D0E1442C-1358-4F19-A3B2-C964FD5DF06E",
+    "name": "按钮",
     "width": 128,
-    "height": 36,
-    "abX": 325,
-    "abY": 2,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 38, "g": 38, "b": 38, "a": 1 },
-          "string": "上午9:41",
-          "font": "PingFangSC-Regular",
-          "size": 25
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "上午9:41"
-  },
-  {
-    "id": "2940E351-CD42-4595-8846-620BE97DA1C9",
-    "name": "100%",
-    "width": 75,
-    "height": 29,
-    "abX": 611,
-    "abY": 5,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 38, "g": 38, "b": 38, "a": 1 },
-          "string": "100%",
-          "font": ".HelveticaNeueDeskInterface-Regular",
-          "size": 25
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "100%"
-  },
-  {
-    "id": "3A0CD042-7EE3-4F86-B9BC-28BF28729D9D",
-    "name": "Group",
-    "width": 49,
-    "height": 19,
-    "abX": 689,
-    "abY": 10,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "f3c2420e6e9352b62105cb981415a487.png"
-  },
-  {
-    "id": "EB21904B-6124-4A8F-AEFF-242E774FC788",
-    "name": "中国人民财产保险股份有限公司 为您的支付",
-    "width": 336,
-    "height": 60,
-    "abX": 207,
-    "abY": 1446,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 187, "g": 187, "b": 187, "a": 1 },
-          "string": "中国人民财产保险股份有限公司\n为您的",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        },
-        {
-          "color": { "r": 25, "g": 186, "b": 255, "a": 1 },
-          "string": "支付安全",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        },
-        {
-          "color": { "r": 187, "g": 187, "b": 187, "a": 1 },
-          "string": "保驾护航",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": 24
-    },
-    "type": "QText",
-    "text": "中国人民财产保险股份有限公司\n为您的支付安全保驾护航"
-  },
-  {
-    "id": "49389694-0734-4C1F-BF54-B010B6B6DAB5",
-    "name": "摩拜2",
-    "width": 750,
-    "height": 200,
-    "abX": 0,
-    "abY": 1212,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "2bbe87c73cd74cd9e2b0dcc9dd5b0bd1.png"
-  },
-  {
-    "id": "772370B4-A5E4-4BF1-9F16-89BE1B2B883B",
-    "name": "Rectangle",
-    "width": 750,
-    "height": 305,
-    "abX": 0,
-    "abY": 882,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "695011DA-9352-4D6C-A591-BF8F145859C4",
-    "name": "矩形",
-    "width": 750,
-    "height": 1,
-    "abX": 0,
-    "abY": 1106,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 235, "g": 237, "b": 245, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "17FC7D35-6DBE-416A-9E58-32C9E2CAD432",
-    "name": "0f28d67a-15a3-4937-a073-9f076e2ec7f9",
-    "width": 186,
-    "height": 116,
-    "abX": 30,
-    "abY": 942,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": [10, 10, 10, 10],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "926bc4de28fa6531896ffb4f6f1cfeb5.png"
-  },
-  {
-    "id": "D826387A-6F4B-424B-B840-24444367914A",
-    "name": "腾讯联名信用卡(广发、兴业)",
-    "width": 355,
-    "height": 28,
-    "abX": 263,
-    "abY": 942,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 3, "g": 8, "b": 26, "a": 1 },
-          "string": "腾讯联名信用卡(广发、兴业)",
-          "font": "PingFangSC-Regular",
-          "size": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 28
-    },
-    "type": "QText",
-    "text": "腾讯联名信用卡(广发、兴业)"
-  },
-  {
-    "id": "736E6755-6B97-47E5-BD0D-69A8B20E541C",
-    "name": "椭圆形",
-    "width": 8,
-    "height": 8,
-    "abX": 265,
-    "abY": 1000,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 25, "g": 186, "b": 255, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "BDA4E085-9146-438B-9834-D945DDE14E56",
-    "name": "新用户送价值最高210元奖励",
-    "width": 303,
-    "height": 28,
-    "abX": 289,
-    "abY": 990,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 135, "g": 139, "b": 153, "a": 1 },
-          "string": "新用户送价值最高",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        },
-        {
-          "color": { "r": 3, "g": 8, "b": 26, "a": 1 },
-          "string": "210元奖励",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 28
-    },
-    "type": "QText",
-    "text": "新用户送价值最高210元奖励"
-  },
-  {
-    "id": "D6AAA750-5855-46ED-BA71-B15D2A2F66E9",
-    "name": "椭圆形",
-    "width": 8,
-    "height": 8,
-    "abX": 265,
-    "abY": 1039,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 25, "g": 186, "b": 255, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "EE098D6F-E9E0-4BA5-8414-93D841B0D3A1",
-    "name": "开卡享腾讯视频会员",
-    "width": 216,
-    "height": 28,
-    "abX": 289,
-    "abY": 1029,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 135, "g": 139, "b": 153, "a": 1 },
-          "string": "开卡享",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        },
-        {
-          "color": { "r": 3, "g": 8, "b": 26, "a": 1 },
-          "string": "腾讯视频会员",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 28
-    },
-    "type": "QText",
-    "text": "开卡享腾讯视频会员"
-  },
-  {
-    "id": "AB27E7DE-EC6A-413D-A150-DE644059F302",
-    "name": "去申领",
-    "width": 90,
-    "height": 42,
-    "abX": 146,
-    "abY": 1125,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 202, "b": 252, "a": 1 },
-          "string": "去申领",
-          "font": "PingFangSC-Regular",
-          "size": 30
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "去申领"
-  },
-  {
-    "id": "53B07BD8-FC25-4F1E-97B5-95272ACEFFC9",
-    "name": "查看更多",
-    "width": 120,
-    "height": 42,
-    "abX": 475,
-    "abY": 1125,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 3, "g": 8, "b": 26, "a": 1 },
-          "string": "查看更多",
-          "font": "PingFangSC-Regular",
-          "size": 30
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "查看更多"
-  },
-  {
-    "id": "853AE232-A79C-490E-A65A-6DCC9F7AB749",
-    "name": "Rectangle 47",
-    "width": 59,
-    "height": 25,
-    "abX": 618,
-    "abY": 292,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": [12, 12, 12, 12],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "linear",
-        "color": null,
-        "hasOpacity": false,
-        "x": "0.5",
-        "y": " 0",
-        "x1": "0.5",
-        "y1": " 0.9784365968208093",
-        "colorStops": [
-          { "color": { "r": 255, "g": 65, "b": 75, "a": 1 }, "offset": 0 },
-          { "color": { "r": 255, "g": 68, "b": 78, "a": 1 }, "offset": 1 }
-        ]
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "C5286691-E3F9-4FF3-8B5B-DA4A8823176B",
-    "name": "9.1折",
-    "width": 42,
-    "height": 25,
-    "abX": 627,
-    "abY": 292,
-    "zIndex": 3,
+    "height": 45,
+    "abX": 311,
+    "abY": 876,
+    "zIndex": 5,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1342,9 +132,9 @@
       "texts": [
         {
           "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-          "string": "9.1折",
-          "font": "PingFangTC-Semibold",
-          "size": 18
+          "string": "继续支持",
+          "font": "PingFangSC-Medium",
+          "size": 32
         }
       ],
       "verticalAlign": 0,
@@ -1352,6 +142,519 @@
       "lineHeight": null
     },
     "type": "QText",
-    "text": "9.1折"
+    "text": "继续支持"
+  },
+  {
+    "id": "EA0F7F53-A29F-4719-9372-0D639FBB9D37",
+    "name": "你已经捐出你的微笑 贡献了43点热度",
+    "width": 324,
+    "height": 108,
+    "abX": 213,
+    "abY": 678,
+    "zIndex": 4,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 38, "g": 50, "b": 56, "a": 1 },
+          "string": "你已经捐出你的微笑\n贡献了",
+          "font": "PingFangSC-Medium",
+          "size": 36
+        },
+        {
+          "color": { "r": 223, "g": 35, "b": 20, "a": 1 },
+          "string": "43",
+          "font": "PingFangSC-Medium",
+          "size": 36
+        },
+        {
+          "color": { "r": 38, "g": 50, "b": 56, "a": 1 },
+          "string": "点热度",
+          "font": "PingFangSC-Medium",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": 54
+    },
+    "type": "QText",
+    "text": "你已经捐出你的微笑\n贡献了43点热度"
+  },
+  {
+    "id": "3A61F613-3861-4DE4-9E1A-24A1538F7AFF",
+    "name": "你的微笑指数",
+    "width": 192,
+    "height": 54,
+    "abX": 280,
+    "abY": 506,
+    "zIndex": 4,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 38, "g": 50, "b": 56, "a": 1 },
+          "string": "你的微笑指数",
+          "font": "PingFangSC-Medium",
+          "size": 32
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": 54
+    },
+    "type": "QText",
+    "text": "你的微笑指数"
+  },
+  {
+    "id": "1CDB64C6-1F45-4671-A4BF-DCFF21731E34",
+    "name": "98",
+    "width": 77,
+    "height": 54,
+    "abX": 337,
+    "abY": 576,
+    "zIndex": 4,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 38, "g": 50, "b": 56, "a": 1 },
+          "string": "98",
+          "font": "PingFangSC-Semibold",
+          "size": 64
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": 54
+    },
+    "type": "QText",
+    "text": "98"
+  },
+  {
+    "id": "5908C356-737E-4178-9B9E-FB1088F7855F",
+    "name": "关闭",
+    "width": 56,
+    "height": 56,
+    "abX": 347,
+    "abY": 1088,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "symbolRoot": ["5908C356-737E-4178-9B9E-FB1088F7855F"],
+    "path": "2657449653e35d05f26d50928e4c0f1d.png"
+  },
+  {
+    "id": "AE4E1530-8E10-4B9C-A366-C95BD382B1EC",
+    "name": "Oval 11",
+    "width": 176,
+    "height": 176,
+    "abX": 297,
+    "abY": 306,
+    "zIndex": 4,
+    "styles": {
+      "borderRadius": ["50%", "50%", "50%", "50%"],
+      "border": {
+        "type": "solid",
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+        "width": 8,
+        "position": 2
+      },
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "20F38E49-6FE5-4DBC-9C26-55DC3E5C22E9",
+    "name": "合并形状",
+    "width": 56,
+    "height": 35,
+    "abX": 357,
+    "abY": 370,
+    "zIndex": 5,
+    "styles": {},
+    "type": "QImage",
+    "path": "ee9859784251101e613529aa30694b92.png"
+  },
+  {
+    "id": "3B5D1A9D-1F0A-46F9-A96C-A3A463946301",
+    "name": "Bitmap",
+    "width": 160,
+    "height": 160,
+    "abX": 105,
+    "abY": 404,
+    "zIndex": 4,
+    "styles": {
+      "borderRadius": ["50%", "50%", "50%", "50%"],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "e39b3938b4becb3c14348d579423b5d0.png"
+  },
+  {
+    "id": "687BE7CC-B6D6-48F6-A51B-9B42529E441D---AA956D70-142D-4DDC-BA65-A49EB94A7259",
+    "name": "Background",
+    "width": 750,
+    "height": 128,
+    "abX": 0,
+    "abY": 0,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape",
+    "symbolRoot": [
+      "687BE7CC-B6D6-48F6-A51B-9B42529E441D",
+      "FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B",
+      "6001E1EF-DF96-40A7-83E6-CC85346D1D0E",
+      "5BE01BD4-3D99-41FF-94D4-04311CEDCDBC",
+      "63764B60-DA82-4F00-AD07-ECEED3CFA585"
+    ]
+  },
+  {
+    "id": "687BE7CC-B6D6-48F6-A51B-9B42529E441D---25169FC1-7F2A-4431-B19E-D584C06BE85E",
+    "name": "Base",
+    "width": 174,
+    "height": 64,
+    "abX": 562,
+    "abY": 48,
+    "zIndex": 4,
+    "styles": {
+      "borderRadius": [32, 32, 32, 32],
+      "border": {
+        "type": "solid",
+        "color": { "r": 0, "g": 0, "b": 0, "a": 0.08 },
+        "width": 1,
+        "position": 1
+      },
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 255, "g": 255, "b": 255, "a": 0.6 },
+        "hasOpacity": true
+      }
+    },
+    "type": "QShape",
+    "symbolRoot": [
+      "687BE7CC-B6D6-48F6-A51B-9B42529E441D",
+      "FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B",
+      "6001E1EF-DF96-40A7-83E6-CC85346D1D0E",
+      "5BE01BD4-3D99-41FF-94D4-04311CEDCDBC",
+      "63764B60-DA82-4F00-AD07-ECEED3CFA585"
+    ]
+  },
+  {
+    "id": "687BE7CC-B6D6-48F6-A51B-9B42529E441D---1E6F96BF-A8DA-4F65-BB03-BDEF7D612BB4",
+    "name": "Close",
+    "width": 34,
+    "height": 34,
+    "abX": 675,
+    "abY": 63,
+    "zIndex": 5,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "symbolRoot": [
+      "687BE7CC-B6D6-48F6-A51B-9B42529E441D",
+      "FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B",
+      "6001E1EF-DF96-40A7-83E6-CC85346D1D0E",
+      "5BE01BD4-3D99-41FF-94D4-04311CEDCDBC",
+      "63764B60-DA82-4F00-AD07-ECEED3CFA585"
+    ],
+    "path": "2e1221b5d7b6719dd9c8138cbff4ee4f.png"
+  },
+  {
+    "id": "687BE7CC-B6D6-48F6-A51B-9B42529E441D---1CE452C8-C770-4B63-9061-21974ABC3C45",
+    "name": "Line",
+    "width": 2,
+    "height": 37,
+    "abX": 649,
+    "abY": 61,
+    "zIndex": 5,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": "0.2000",
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape",
+    "symbolRoot": [
+      "687BE7CC-B6D6-48F6-A51B-9B42529E441D",
+      "FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B",
+      "6001E1EF-DF96-40A7-83E6-CC85346D1D0E",
+      "5BE01BD4-3D99-41FF-94D4-04311CEDCDBC",
+      "63764B60-DA82-4F00-AD07-ECEED3CFA585"
+    ]
+  },
+  {
+    "id": "687BE7CC-B6D6-48F6-A51B-9B42529E441D---A7A3B468-B71B-4B94-A02D-4683379C7180",
+    "name": "More",
+    "width": 37,
+    "height": 13,
+    "abX": 589,
+    "abY": 74,
+    "zIndex": 5,
+    "styles": {},
+    "type": "QImage",
+    "symbolRoot": [
+      "687BE7CC-B6D6-48F6-A51B-9B42529E441D",
+      "FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B",
+      "6001E1EF-DF96-40A7-83E6-CC85346D1D0E",
+      "5BE01BD4-3D99-41FF-94D4-04311CEDCDBC",
+      "63764B60-DA82-4F00-AD07-ECEED3CFA585"
+    ],
+    "path": "8aa617f7906c6f4d0ca3313a72491842.png"
+  },
+  {
+    "id": "687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---6001E1EF-DF96-40A7-83E6-CC85346D1D0E---CE86085F-FDA2-4E73-8D91-5DB8B3533C2F",
+    "name": "Label",
+    "width": 148,
+    "height": 52,
+    "abX": 301,
+    "abY": 56,
+    "zIndex": 4,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "腾讯公益",
+          "font": "PingFangSC-Medium",
+          "size": 37
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "腾讯公益",
+    "symbolRoot": [
+      "687BE7CC-B6D6-48F6-A51B-9B42529E441D",
+      "FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B",
+      "6001E1EF-DF96-40A7-83E6-CC85346D1D0E",
+      "5BE01BD4-3D99-41FF-94D4-04311CEDCDBC",
+      "63764B60-DA82-4F00-AD07-ECEED3CFA585"
+    ]
+  },
+  {
+    "id": "687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---6001E1EF-DF96-40A7-83E6-CC85346D1D0E---5BE01BD4-3D99-41FF-94D4-04311CEDCDBC---601D2D09-FF58-4B8B-9D20-A5D890127FE2",
+    "name": "100%",
+    "width": 33,
+    "height": 14,
+    "abX": 307,
+    "abY": 4,
+    "zIndex": 4,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 3, "g": 3, "b": 3, "a": 1 },
+          "string": "100%",
+          "font": "SFProText-Regular",
+          "size": 12
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "100%",
+    "symbolRoot": [
+      "687BE7CC-B6D6-48F6-A51B-9B42529E441D",
+      "FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B",
+      "6001E1EF-DF96-40A7-83E6-CC85346D1D0E",
+      "5BE01BD4-3D99-41FF-94D4-04311CEDCDBC",
+      "63764B60-DA82-4F00-AD07-ECEED3CFA585"
+    ]
+  },
+  {
+    "id": "687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---6001E1EF-DF96-40A7-83E6-CC85346D1D0E---5BE01BD4-3D99-41FF-94D4-04311CEDCDBC---46141257-F02E-40DE-9F5A-151517B02CB1",
+    "name": "Time",
+    "width": 49,
+    "height": 14,
+    "abX": 163,
+    "abY": 4,
+    "zIndex": 4,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 3, "g": 3, "b": 3, "a": 1 },
+          "string": "9:41 AM",
+          "font": "SFProText-Semibold",
+          "size": 12
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "9:41 AM",
+    "symbolRoot": [
+      "687BE7CC-B6D6-48F6-A51B-9B42529E441D",
+      "FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B",
+      "6001E1EF-DF96-40A7-83E6-CC85346D1D0E",
+      "5BE01BD4-3D99-41FF-94D4-04311CEDCDBC",
+      "63764B60-DA82-4F00-AD07-ECEED3CFA585"
+    ]
+  },
+  {
+    "id": "687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---6001E1EF-DF96-40A7-83E6-CC85346D1D0E---5BE01BD4-3D99-41FF-94D4-04311CEDCDBC---63764B60-DA82-4F00-AD07-ECEED3CFA585---0AA6E386-D5A3-4889-8221-2D6C72CE0F14",
+    "name": "Carrier",
+    "width": 40,
+    "height": 14,
+    "abX": 26,
+    "abY": 4,
+    "zIndex": 4,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 3, "g": 3, "b": 3, "a": 1 },
+          "string": "Sketch",
+          "font": "SFProText-Regular",
+          "size": 12
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "Sketch",
+    "symbolRoot": [
+      "687BE7CC-B6D6-48F6-A51B-9B42529E441D",
+      "FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B",
+      "6001E1EF-DF96-40A7-83E6-CC85346D1D0E",
+      "5BE01BD4-3D99-41FF-94D4-04311CEDCDBC",
+      "63764B60-DA82-4F00-AD07-ECEED3CFA585"
+    ]
+  },
+  {
+    "id": "__687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---2617401A-9072-4172-B4BB-DDDDE3FE1C11_687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---1A8D9761-0EA2-4A6E-A4D6-62F663D3AD8A_687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---6001E1EF-DF96-40A7-83E6-CC85346D1D0E---5BE01BD4-3D99-41FF-94D4-04311CEDCDBC---B1B17512-635A-4EA4-A3B3-F448519C9740",
+    "name": "__Border_Nub_Battery",
+    "width": 27,
+    "height": 12,
+    "abX": 343,
+    "abY": 5,
+    "zIndex": 4,
+    "styles": {},
+    "type": "QImage",
+    "path": "a69137af35e14cb26690ef351d61ddec.png"
+  },
+  {
+    "id": "_687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---48139D9E-B983-499D-AA51-E510533C471D_687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---6001E1EF-DF96-40A7-83E6-CC85346D1D0E---5BE01BD4-3D99-41FF-94D4-04311CEDCDBC---6B038EDB-C719-495D-B6A9-7648C4D794FF",
+    "name": "_Bluetooth_Bluetooth",
+    "width": 6,
+    "height": 10,
+    "abX": 299,
+    "abY": 5,
+    "zIndex": 4,
+    "styles": {},
+    "type": "QImage",
+    "path": "cff94e410b4355983819124d9dc66b3c.png"
+  },
+  {
+    "id": "_687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---6001E1EF-DF96-40A7-83E6-CC85346D1D0E---A757A3CC-3F40-4EAF-B07F-0E69A07F9957_687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---6001E1EF-DF96-40A7-83E6-CC85346D1D0E---5BE01BD4-3D99-41FF-94D4-04311CEDCDBC---63764B60-DA82-4F00-AD07-ECEED3CFA585---1523C6D2-0407-4950-A849-F3F7CB82C01F",
+    "name": "_Mobile Signal_Mobile Signal",
+    "width": 17,
+    "height": 10,
+    "abX": 6,
+    "abY": 5,
+    "zIndex": 4,
+    "styles": {},
+    "type": "QImage",
+    "path": "3b4f9722b382cec22e01c148ef9dc3c9.png"
+  },
+  {
+    "id": "_687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---6001E1EF-DF96-40A7-83E6-CC85346D1D0E---AB7893FC-FB45-4A6E-BC6D-698911B8C7A2_687BE7CC-B6D6-48F6-A51B-9B42529E441D---FBA2E36C-18D5-42CB-B61D-6A86BF35DA2B---6001E1EF-DF96-40A7-83E6-CC85346D1D0E---5BE01BD4-3D99-41FF-94D4-04311CEDCDBC---63764B60-DA82-4F00-AD07-ECEED3CFA585---2AD65EA2-8909-4487-AA86-F7BA2C45A140",
+    "name": "_Wifi_Wifi",
+    "width": 14,
+    "height": 10,
+    "abX": 71,
+    "abY": 5,
+    "zIndex": 4,
+    "styles": {},
+    "type": "QImage",
+    "path": "bac21272277b8d97105e0f20fe7bf796.png"
   }
 ]
