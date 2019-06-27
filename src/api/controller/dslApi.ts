@@ -3,10 +3,11 @@ import dslService from '../../core/dsl_service_ts/dslService';
 // import dslProcess from '../../core/dsl_service_ts/process';
 
 export default async function process(context: Context) {
-  const { designJSON, options } = context.request.body;
+  const { designJSON, renderData, options } = context.request.body;
   const dslValue = dslService.process(
     {
       nodes: designJSON,
+      renderData: renderData,
     },
     options || {},
   );

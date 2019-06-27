@@ -277,11 +277,11 @@ class LayoutBaseLine extends Model.LayoutModel {
   static _setDirection(_node: any, _isDirLeft: boolean) {
     const node: any = _node;
     if (_isDirLeft) {
-      node.constraints.LayoutJustifyContent =
-        Constrains.LayoutJustifyContent.Start;
+      node.constraints.LayoutSelfHorizontal =
+        Constrains.LayoutSelfHorizontal.Left;
     } else {
-      node.constraints.LayoutJustifyContent =
-        Constrains.LayoutJustifyContent.End;
+      node.constraints.LayoutSelfHorizontal =
+        Constrains.LayoutSelfHorizontal.Right;
     }
   }
 }

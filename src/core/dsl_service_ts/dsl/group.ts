@@ -239,19 +239,16 @@ class Tree {
        * 且该节点不是文本：文本外须包布局节点
        * 且该节点是绝对定位的
        */
-      // if (
-      //   (
-      //     arr.length === 1 &&
-      //     firstNode.type !== Common.QText
-      //   ) ||
-      //   firstNode.constraints['LayoutSelfPosition'] ===
-      //   Constraints.LayoutSelfPosition.Absolute
-      // ) {
       if (
-        arr.length === 1 &&
+        (arr.length === 1 && firstNode.type !== Common.QText) ||
         firstNode.constraints['LayoutSelfPosition'] ===
           Constraints.LayoutSelfPosition.Absolute
       ) {
+        // if (
+        //   arr.length === 1 &&
+        //   firstNode.constraints['LayoutSelfPosition'] ===
+        //   Constraints.LayoutSelfPosition.Absolute
+        // ) {
         // 当纵向节点只有一个时
         newChildren.push(firstNode);
       } else {
@@ -345,7 +342,6 @@ class Tree {
     const top = node.abY <= parent.abY;
     const rate = 2.1;
     const rateX =
-      node.abXops - node.abX <= 28 * 2 &&
       (parent.abXops - parent.abX) / (node.abXops - node.abX) > rate;
     const rateY =
       node.abYops - node.abY <= 28 * 2 &&

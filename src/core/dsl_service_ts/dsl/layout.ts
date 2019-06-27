@@ -1,8 +1,8 @@
 // 模块用于对模型进行布局及结构分析, 生成可用于渲染的数据
 import LayoutSimilar from './layouts/layout_similar';
 import LayoutCircle from './layouts/layout_circle';
-import LayoutSort from './layouts/layout_sort';
-import LayoutAbsolute from './layouts/layout_absolute';
+// import LayoutSort from './layouts/layout_sort';
+// import LayoutAbsolute from './layouts/layout_absolute';
 import LayoutFlex from './layouts/layout_flex';
 import LayoutBaseLine from './layouts/layout_baseline';
 import QLog from '../log/qlog';

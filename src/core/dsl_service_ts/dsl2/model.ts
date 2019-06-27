@@ -741,7 +741,7 @@ class MatchData {
 
     // 记录成循环模式
     renderData.nodes = {};
-    renderData.set('type', Common.QLayer);
+    // renderData.set('type', Common.QLayer);
     for (let i = 0; i < matchDatas.length; i++) {
       const mData = matchDatas[i];
       const rData = mData.getRenderData();

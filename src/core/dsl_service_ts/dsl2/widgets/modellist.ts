@@ -13,16 +13,16 @@ import WG3M3 from './wg3/m3';
 import WG4M1 from './wg4/m1';
 
 const MODEL_LIST: any[] = [
-    new WG1M1(),
-    new WG1M2(),
+  new WG1M1(),
+  new WG1M2(),
 
-    new WG2M1(),
+  new WG2M1(),
 
-    new WG3M1(), 
-    new WG3M2(), 
-    new WG3M3(),
+  new WG3M1(),
+  new WG3M2(),
+  // new WG3M3(),
 
-    new WG4M1(),
+  new WG4M1(),
 ];
 
 export default MODEL_LIST;
