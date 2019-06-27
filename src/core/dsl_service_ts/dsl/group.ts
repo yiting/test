@@ -2,12 +2,10 @@ import Common from './common';
 import Utils from './utils';
 import Model from './model';
 import Constraints from './constraints';
-
 import QLog from '../log/qlog';
-import EMXM1 from '../dsl2/elements/emx/m1';
-import { debug } from 'util';
+import Store from '../helper/store';
 const Loger = QLog.getInstance(QLog.moduleData.render);
-
+const DSLOptions: any = {};
 /**
  * 将组件进行排版布局
  * @param {Array} widgetModels 进行布局的组件模型
@@ -18,6 +16,7 @@ const join = function(widgetModels: any, elementModels: any) {
   if (!widgetModels && !elementModels) {
     return null;
   }
+  Object.assign(DSLOptions, Store.getAll());
   const dslTree: any = new Tree(); // dsl树
   const arr = elementModels.concat(widgetModels);
   // 按面积排序
@@ -336,8 +335,9 @@ class Tree {
     // const leftBottom = node.abX <= parent.abX && node.abYops >= parent.abYops;
     // const rightBottom =
     //   node.abXops >= parent.abXops && node.abYops >= parent.abYops;
-    const left = node.abX <= parent.abX;
-    const right = node.abXops >= parent.abXops;
+    const left = node.abX <= parent.abX && node.abX > 0;
+    const right =
+      node.abXops >= parent.abXops && node.abXops < DSLOptions.optimizeWidth;
     const bottom = node.abYops >= parent.abYops;
     const top = node.abY <= parent.abY;
     const rate = 2.1;
