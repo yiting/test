@@ -662,15 +662,15 @@ const ImageCombine = function() {
 
     //清除边框/阴影等属性
     let clearnList = ImageClean.cleanImg(that.pageJson, [
-      'border',
+      // 'border',
       'shadows',
-      'borders',
+      // 'borders',
     ]);
-    // ImageClean.clearJSON(that.pageJson, clearnList, [
-    //   'border',
-    //   'shadows',
-    //   'borders',
-    // ]);
+    ImageClean.clearJSON(that.pageJson, clearnList, [
+      // 'border',
+      'shadows',
+      // 'borders',
+    ]);
 
     //获取artboard index
     var artboardIndex;
