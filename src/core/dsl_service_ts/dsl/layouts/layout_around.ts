@@ -1,10 +1,7 @@
 // 循环结构的逻辑处理模块
-import Common from '../common';
 import Utils from '../utils';
 import Model from '../model';
-import Group from '../group';
 import Constraints from '../constraints';
-import Similar from './layout_similar';
 import { debug } from 'util';
 import Store from '../../helper/store';
 
@@ -45,14 +42,14 @@ class LayoutAround extends Model.LayoutModel {
     const prev: any = nodes[centerIndex - 1];
     const next: any = nodes[centerIndex + 1];
     let fixed = false;
-    if (prev && next) {
+    if (centerNode && prev && next) {
       fixed =
         prev.abX > 0 &&
         next.abXops < OptimizeWidth &&
         prev.abX - (OptimizeWidth - next.abXops) <= ErrorCoefficient;
-    } else if (prev) {
+    } else if (centerNode && prev) {
       fixed = prev.abX > 0 && prev.abX / OptimizeWidth < 0.1;
-    } else if (next) {
+    } else if (centerNode && next) {
       fixed = next.abXops < OptimizeWidth && next.abXops / OptimizeWidth > 0.9;
     }
 
