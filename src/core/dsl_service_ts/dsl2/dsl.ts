@@ -3,6 +3,7 @@
 // dsl的核心思路:
 // 匹配网页上的设计形态
 import Common from './common';
+import Config from './config';
 import Manager from './manager';
 import Model from './model';
 import Utils from './utils';
@@ -13,16 +14,38 @@ import QLog from '../log/qlog';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 /**
- * dsl的使用入口
- * 传入designjson节点,并返回MatchData
- * @param {Array} nodes
- * @return {Array} <MatchData>
+ * 返回dsl生成的配置
+ * @return {Json}
  */
-let pipe = function(nodes: any) {
+const config = function() {
+  return Config.create();
+};
+
+/**
+ * dsl的使用入口
+ * 传入designjson节点
+ * @param {Array} nodes
+ * @return {Object}
+ * code: 返回码,1为成功其余为失败错误码;
+ * elements: 匹配的元素模型;
+ * widgets: 匹配的组件模型;
+ * symbols: 自定义组件;
+ * info: 匹配的结果信息;
+ */
+let pipe = function(nodes: any): any {
+  let result: any = {};
+  result.code = 0;
+  result.elements = [];
+  result.widgets = [];
+  result.symbols = [];
+  result.info = '';
+
   let res: any[] = [];
 
   if (!nodes || !nodes.length || nodes.length === 0) {
-    return res;
+    result.code = 1001;
+    result.info = '传进匹配的节点为空！';
+    return result;
   }
 
   // 生成一些配置用参数
@@ -40,7 +63,7 @@ let pipe = function(nodes: any) {
   const optimizeHeight = Store.get('optimizeHeight');
   const layoutType = Store.get('layoutType');
 
-  // 节点匹配前的
+  // 节点匹配前的分类
   nodes.forEach((item: any, index: number) => {
     maxNodeX = maxNodeX > item.abX ? maxNodeX : item.abX;
     maxNodeY = maxNodeY > item.abY ? maxNodeY : item.abY;
@@ -64,9 +87,11 @@ let pipe = function(nodes: any) {
         matchingNodes.push(item);
         break;
       default:
-        console.log('nodes分类遇到没有对应类型的节点');
+        console.log('nodes分类遇到没有对应类型的节');
+      //console.log(item.id);
     }
   });
+  const info1 = '分类后的节点总数:' + matchingNodes.length + '; ';
 
   // 匹配元素模型
   try {
@@ -81,10 +106,7 @@ let pipe = function(nodes: any) {
       maxNodeY,
     );
   } catch (e) {
-    console.log('match element error');
-    // Loger.error(`dsl/dsl.ts pipe()
-    //         desc:匹配元素
-    //         error:${e}`);
+    console.log('match elements error');
   }
 
   // 剩下因各种情况未能匹配的,变成基础元素模型
@@ -112,20 +134,39 @@ let pipe = function(nodes: any) {
     console.log('match elementX error');
   }
 
-  for (let i = 0; i < matchedElementX.length; i++) {
-    console.log(matchedElementX[i]);
+  // 匹配完的可变节点元素模型添加回元素模型列表
+  if (matchedElementX.length > 0) {
+    matchedElementX.forEach((ele: any) => {
+      matchedElements.push(ele);
+    });
   }
-  console.log('可变节点模型个数: ' + matchedElementX.length);
+  const info2 = '元素模型数: ' + matchedElements.length + '; ';
 
-  // // 匹配组件模型
-  // try {
-  //   _matchModels(10000, matchedWidgets, matchedElements, Common.MatchingWidgets, optimizeWidth, optimizeHeight, maxNodeX, maxNodeY);
-  // } catch (e) {
-  //   console.log('match widget error');
-  // }
-  // console.log('组件匹配-元素模型匹配后数量: ' + matchedElements.length);
-  // console.log('组件模型匹配的长度: ' + matchedWidgets.length);
-  // Utils.logWidgetInfo(matchedWidgets);
+  // 组件模型模型的匹配
+  try {
+    _matchModels(
+      10000,
+      matchedWidgets,
+      matchedElements,
+      Common.MatchingWidgets,
+      optimizeWidth,
+      optimizeHeight,
+      maxNodeX,
+      maxNodeY,
+    );
+  } catch (e) {
+    console.log(e);
+    console.log('match widgets error');
+  }
+  const info3 = '组件模型数: ' + matchedWidgets.length + '; ';
+
+  // 匹配成功返回
+  result.code = 1;
+  result.elements = matchedElements;
+  result.widgets = matchedWidgets;
+  result.info = info1 + info2 + info3;
+
+  return result;
 };
 
 /**
@@ -205,4 +246,5 @@ let _matchModels = function(
 // 对外接口
 export default {
   pipe,
+  config,
 };

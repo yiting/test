@@ -1,6 +1,8 @@
 // (1节点基础元素)绘图Shape
-//
-// 此模型为纯Shape组件模型, 只包含一个QShape
+// (QShape)
+// 
+// 判断标准
+// 1, 只包含一个QShape
 import Common from '../../common';
 import Model from '../../model';
 import Feature from '../../feature';
@@ -14,9 +16,8 @@ class EM1M4 extends Model.ElementModel {
   }
 
   _initNode() {
-    const that: any = this;
-    const NodesIndex0 = 0;
-    that._matchNodes['0'] = this.getShapeNodes()[NodesIndex0];
+    let shapes = this.getShapeNodes();
+    this._matchNodes['0'] = shapes[0];
   }
 
   // 节点必须是QShape节点

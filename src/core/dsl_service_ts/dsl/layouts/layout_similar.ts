@@ -80,6 +80,11 @@ class LayoutSimilar extends Model.LayoutModel {
     if (!that._compareNodes[node.modelName]) {
       that._compareNodes[node.modelName] = [];
     }
+    const compareChildren = node.children.filter(
+      (child: any) =>
+        child.constraints.LayoutSelfPosition !==
+        Constraints.LayoutSelfPosition.Absolute,
+    );
     that._compareNodes[node.modelName].push({
       node,
       abX: node.abX,
@@ -93,12 +98,8 @@ class LayoutSimilar extends Model.LayoutModel {
       parentId: node.parentId,
       modelName: node.modelName,
       type: node.type,
-      isHorizontal: Utils.isHorizontal(node.children),
-      compareChildren: node.children.filter(
-        (child: any) =>
-          child.constraints.LayoutSelfPosition !==
-          Constraints.LayoutSelfPosition.Absolute,
-      ),
+      isHorizontal: Utils.isHorizontal(compareChildren),
+      compareChildren: compareChildren,
     });
   }
 

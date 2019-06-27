@@ -4,9 +4,9 @@ export default class WG2M1 extends HtmlTemplate {
   constructor(...args: any[]) {
     super(...args);
     this._template = `
-    <div class="label" :constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
-      <span $ref="0" class="icon"></span>
-      <p $ref="1" class="text"></p>
-    </div>`;
+      <div class="iconTxt" :constraints='{"LayoutDirection":"Vertical"}'>
+        <span $ref="1" class="icon"></span>
+        <p $ref="0" class="text"></p>
+      </div>`;
   }
 }

@@ -4,10 +4,10 @@ class EM2M4 extends HtmlTemplate {
   constructor(...args: any[]) {
     super(...args);
     this._template = `
-      <div>
+      <div class="btnShape" $ref="1">
         <span $ref="0" class="text"></span>
-        <i $ref="1" class="icon"></i>
       </div>`;
   }
 }
+
 export default EM2M4;
