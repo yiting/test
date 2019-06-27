@@ -125,7 +125,7 @@ class StructureProcessor {
   }
 
   static isTransparentStyle(node) {
-    let { background, border } = node.styles;
+    let { background, border, shadows } = node.styles;
     return (
       !node.childNum &&
       (node.isTransparent ||
@@ -133,7 +133,8 @@ class StructureProcessor {
           background.hasOpacity &&
           background.type === 'color' &&
           +background.color.a === 0) ||
-        (border && +border.color.a === 0))
+        (border && +border.color.a === 0) ||
+        (node.type === QShape.name && !background && !border && !shadows))
     );
   }
 

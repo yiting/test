@@ -2,6 +2,9 @@
 export default {
   key: 'height',
   value() {
-    return Math.abs(this._abYops - this._abY);
+    if (this._hasHeight()) {
+      return Math.abs(this._abYops - this._abY);
+    }
+    return null;
   },
 };

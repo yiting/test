@@ -57,6 +57,7 @@ export default {
     margin,
     // 高宽
     width,
+    // height,
     minHeight,
     // 位置
     top,
