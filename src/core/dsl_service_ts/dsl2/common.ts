@@ -4,7 +4,7 @@ export default {
   // 一些特定尺寸
   DesignWidth: 750, // 默认750的设计稿宽
   DesignHeight: -1, // 默认auto的设计稿高
-  IconSize: 70, // 默认Icon的大小
+  IconSize: 80, // 默认Icon的大小
 
   // 模型匹配的优先级
   LvSS: 5,

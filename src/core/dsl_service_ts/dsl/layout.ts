@@ -1,8 +1,8 @@
 // 模块用于对模型进行布局及结构分析, 生成可用于渲染的数据
 import LayoutSimilar from './layouts/layout_similar';
 import LayoutCircle from './layouts/layout_circle';
-import LayoutSort from './layouts/layout_sort';
-import LayoutAbsolute from './layouts/layout_absolute';
+// import LayoutSort from './layouts/layout_sort';
+import LayoutAround from './layouts/layout_around';
 import LayoutFlex from './layouts/layout_flex';
 import LayoutBaseLine from './layouts/layout_baseline';
 import QLog from '../log/qlog';
@@ -35,6 +35,9 @@ const walkOut = function(layoutObject: any, dslTree: any) {
 function layout(dslTree: any) {
   let _logStep = 'start';
   try {
+    // 两端
+    _logStep = '两端';
+    walkIn(LayoutAround, dslTree._treeData);
     // 等分
     _logStep = '等分';
     walkIn(LayoutEquality, dslTree._treeData);

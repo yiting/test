@@ -233,20 +233,20 @@ class CssDom {
     }
     return null;
   }
-  // _hasHeight() {
-  //   if (
-  //     this.type == Common.QShape ||
-  //     this.type == Common.QImage ||
-  //     !!this.path
-  //   ) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
+  _hasHeight() {
+    if (
+      this.type === Common.QShape ||
+      this.type === Common.QImage ||
+      !!this.path
+    ) {
+      return true;
+    }
+    return false;
+  }
 
   _hasWidth() {
     if (
-      this._hasText &&
+      this.type === Common.QText &&
       !this._isParentVertical() &&
       this.constraints.LayoutFixedWidth !== Constraints.LayoutFixedWidth.Fixed
     ) {

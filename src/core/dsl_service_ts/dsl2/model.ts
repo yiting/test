@@ -1,7 +1,7 @@
 // 此模块定义了元素模型及组件模型的构造类
-// 及dsl中用到的数据对象
-
+// 并提供dsl模块model使用的对外接口
 import Common from './common';
+import { debug } from 'util';
 
 /**
  * 元素模型组件模型基类
@@ -440,7 +440,7 @@ class MatchData {
    * @param {Int} modelRef 节点属于第几个
    * @param {Object} data 数据
    */
-  static createRenderData(
+  static _createRenderData(
     id: any,
     parentId: any,
     modelName: any,
@@ -450,7 +450,7 @@ class MatchData {
   ): any {
     const renderData = new RenderData();
     renderData.set('id', id);
-    renderData.set('parentId', parentId);
+    // renderData.set('parentId', parentId);
     renderData.set('type', modelType);
     renderData.set('modelName', modelName);
     renderData.set('modelRef', modelRef);
@@ -612,7 +612,7 @@ class MatchData {
   _addElementData(model: any): void {
     // element拿到的是designjson
     const nodeData = model.getMatchNode();
-    this.data = MatchData.createRenderData(
+    this.data = MatchData._createRenderData(
       this.id,
       null,
       this.modelName,
@@ -631,7 +631,7 @@ class MatchData {
   _addWidgetData(model: any): void {
     // widget拿到的是matchdata
     const matchData = model.getMatchNode();
-    this.data = MatchData.createRenderData(
+    this.data = MatchData._createRenderData(
       this.id,
       null,
       this.modelName,
@@ -651,7 +651,7 @@ class MatchData {
   _addElementXData(model: any, datas: any[]): void {
     // 可变节点元素模型拿到的是一系列基础ElementModel
     // 创建一个总MatchData来包装datas
-    this.data = MatchData.createRenderData(
+    this.data = MatchData._createRenderData(
       this.id,
       null,
       this.modelName,
@@ -687,7 +687,7 @@ class MatchData {
         const tmpData = nodeData[key];
         nData['0'] = nodeData[key]; // 需要构造一个可以递归解析的数据, 只有一个节点
 
-        const rData = MatchData.createRenderData(
+        const rData = MatchData._createRenderData(
           tmpData.id,
           renderData.id,
           tmpData.modelName,
@@ -723,7 +723,7 @@ class MatchData {
 
       Object.keys(matchData).forEach((key: string) => {
         const rData = matchData[key].getRenderData();
-        rData.set('parentId', renderData.id);
+        rData.set('parent', renderData);
         rData.set('modelRef', key);
         // renderData.children.push(rData);
         renderData.nodes[key] = rData;
@@ -738,11 +738,17 @@ class MatchData {
    */
   _createFromElementX(matchDatas: any): void {
     const renderData: any = this.data;
+
+    // 记录成循环模式
+    renderData.nodes = {};
+    // renderData.set('type', Common.QLayer);
     for (let i = 0; i < matchDatas.length; i++) {
       const mData = matchDatas[i];
       const rData = mData.getRenderData();
-      rData.set('parentId', renderData.id);
-      renderData.children.push(rData);
+      rData.set('parent', renderData);
+      // 这里加入循环标识
+      rData.set('modelRef', `${i}`);
+      renderData.nodes[`${i}`] = rData;
     }
   }
 
@@ -792,8 +798,11 @@ class RenderData {
   children: any[];
   nodes: any;
 
+  _parent: any;
+
   constructor() {
     this._parentId = '';
+    this._parent = null;
     this._id = '';
     this._type = '';
     this._modelName = '';
@@ -907,6 +916,9 @@ class RenderData {
   set(prop: any, value: any) {
     if (prop === 'children') {
       this.children = value;
+      this._zIndex =
+        this._zIndex ||
+        Math.max(...this.children.map((child: any) => child._zIndex));
       return;
     }
     const that: any = this;
@@ -916,9 +928,11 @@ class RenderData {
   // resetZIndex() {
   // this._zIndex = this.children.length ? Math.min(...this.children.map(nd => nd.zIndex)) : null;
   // }
-
+  get parent() {
+    return this._parent;
+  }
   get parentId() {
-    return this._parentId;
+    return this._parent && this._parent.id;
   }
 
   get id() {
@@ -1008,6 +1022,7 @@ class RenderData {
 
 // 对外接口
 export default {
+  BaseModel,
   ElementModel,
   ElementXModel,
   WidgetModel,
