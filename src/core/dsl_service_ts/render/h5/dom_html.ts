@@ -161,7 +161,7 @@ class HtmlDom {
     if (showTagAttrInfo) {
       return `<${tag} ${id} ${similarId} ${modelName} ${attrClass} ${attrs}>${content}`;
     }
-    return `<${tag} ${attrClass} ${attrs}>${content}`;
+    return `<${tag} ${id} ${similarId} ${modelName} ${attrClass} ${attrs}>${content}`;
   }
 
   // 闭合节点
