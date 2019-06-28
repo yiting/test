@@ -278,16 +278,17 @@ class Tree {
        * 且该节点不是文本：文本外须包布局节点
        * 且该节点是绝对定位的
        */
+      // if (
+      //   (arr.length === 1 && firstNode.type !== Common.QText) ||
+      //   firstNode.constraints['LayoutSelfPosition'] ===
+      //     Constraints.LayoutSelfPosition.Absolute
+      // ) {
+
       if (
-        (arr.length === 1 && firstNode.type !== Common.QText) ||
+        arr.length === 1 &&
         firstNode.constraints['LayoutSelfPosition'] ===
           Constraints.LayoutSelfPosition.Absolute
       ) {
-        // if (
-        //   arr.length === 1 &&
-        //   firstNode.constraints['LayoutSelfPosition'] ===
-        //   Constraints.LayoutSelfPosition.Absolute
-        // ) {
         // 当纵向节点只有一个时
         newChildren.push(firstNode);
       } else {
@@ -338,7 +339,7 @@ class Tree {
             child.modelName !== 'wg1-m1' &&
             child.modelName !== 'wg1-m2' &&
             // 层级关系
-            child.zIndex > parent.zIndex &&
+            // child.zIndex > parent.zIndex &&
             // 包含关系
             (Utils.isWrap(parent, child) ||
               // 水平相连、垂直包含关系
