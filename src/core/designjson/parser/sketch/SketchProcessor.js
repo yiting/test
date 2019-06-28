@@ -23,6 +23,7 @@ class SketchProcessor {
     walkout(node, n => {
       this.shapeToImage(n);
       this.borderProcess(n);
+      this.rotationProcess(n);
       if (!n.children.length) return;
       this.maskToImage(n);
       this.modifySize(n);
@@ -85,6 +86,7 @@ class SketchProcessor {
       }
     });
   }
+
   static borderProcess(node) {
     const { border, background } = node.styles;
     if (!border) return;
@@ -113,6 +115,26 @@ class SketchProcessor {
       node.styles.border = null;
     }
   }
+
+  static rotationProcess(node) {
+    const { rotation } = node.styles;
+    if (!(node.type === 'QShape' || node.type === 'QImage') || !rotation)
+      return;
+    const { abX, abY, abXops, abYops } = node;
+    const center = [(abX + abXops) / 2, (abY + abYops) / 2];
+    const [x1, y1] = getRotatePos([abX, abY], center, rotation);
+    const [x2, y2] = getRotatePos([abX, abYops], center, rotation);
+    const [x3, y3] = getRotatePos([abXops, abY], center, rotation);
+    const [x4, y4] = getRotatePos([abXops, abYops], center, rotation);
+    node.abX = Math.min(x1, x2, x3, x4);
+    node.abY = Math.min(y1, y2, y3, y4);
+    const _abXops = Math.max(x1, x2, x3, x4);
+    const _abYops = Math.max(y1, y2, y3, y4);
+    node.width = _abXops - node.abX;
+    node.height = _abYops - node.abY;
+    node.rotation = 0;
+  }
+
   static maskToImage(parent) {
     // const maskNodes = parent.children.filter(({type,isMasked,maskedNodes}) => type === QMask.name && !isMasked && Array.isArray(maskedNodes) && maskedNodes.length);
     const maskNodes = parent.children.filter(
@@ -216,6 +238,9 @@ class SketchProcessor {
       node.styles.opacity *= node.parent.styles.opacity;
       node.parent.styles.opacity = 1;
     }
+    if (node.parent.styles.rotation) {
+      // TODO
+    }
   }
 }
 function isMaskShape(node) {
@@ -230,4 +255,18 @@ function isUnavailableMask(maskNode, maskedNodes) {
       n.width / maskNode.width < 0.9,
   );
 }
+// 顺时针旋转角度
+function getRotatePos(point, center, angle) {
+  const [x1, y1] = point;
+  const [x2, y2] = center;
+  const radian = (angle / 180) * Math.PI;
+  const x = Math.round(
+    (x1 - x2) * Math.cos(radian) - (y1 - y2) * Math.sin(radian) + x2,
+  );
+  const y = Math.round(
+    (x1 - x2) * Math.sin(radian) + (y1 - y2) * Math.cos(radian) + y2,
+  );
+  return [x, y];
+}
+
 module.exports = SketchProcessor;
