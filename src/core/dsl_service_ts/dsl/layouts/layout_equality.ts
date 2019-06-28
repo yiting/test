@@ -4,9 +4,11 @@ import Common from '../common';
 import Model from '../model';
 import Utils from '../utils';
 import Store from '../../helper/store';
-import Constrains from '../constraints';
+import Constraints from '../constraints';
 
 let ErrorCoefficient: number = 0;
+let OptimizeWidth: number = 0;
+
 class LayoutEquality extends Model.LayoutModel {
   /**
    * 对传进来的模型数组进行处理
@@ -17,12 +19,34 @@ class LayoutEquality extends Model.LayoutModel {
    */
   handle(_parent: any, _nodes: any) {
     const that: any = this;
-    const parent: any = _parent;
-    const nodes: any = _nodes;
     // 剔除绝对定位元素
-    const flexNodes = LayoutEquality.filterFlexNodes(nodes);
-
+    const flexNodes = LayoutEquality.filterFlexNodes(_nodes);
     ErrorCoefficient = Store.get('errorCoefficient') || 0;
+    OptimizeWidth = Store.get('optimizeWidth') || 0;
+    // 如果子节点不水平，则返回
+    if (!Utils.isHorizontal(flexNodes)) {
+      return;
+    }
+    const isEquality = LayoutEquality._equalityLayout(_parent, flexNodes);
+    if (!isEquality) {
+      LayoutEquality._aroundLayout(_parent, flexNodes);
+    }
+  }
+
+  static filterFlexNodes(nodes: any) {
+    return nodes.filter(
+      (nd: any) =>
+        nd.constraints &&
+        nd.constraints.LayoutSelfPosition !==
+          Constraints.LayoutSelfPosition.Absolute,
+    );
+  }
+  /**
+   * 等分对齐
+   * @param parent
+   * @param flexNodes
+   */
+  static _equalityLayout(parent: any, flexNodes: any) {
     // 如果小于两个节点，不处理
     if (flexNodes.length < 2) {
       return;
@@ -34,10 +58,6 @@ class LayoutEquality extends Model.LayoutModel {
     }
     // 如果子节点类型不一样，则返回
     if (!LayoutEquality._isAllSameModel(flexNodes)) {
-      return;
-    }
-    // 如果子节点不水平，则返回
-    if (!Utils.isHorizontal(flexNodes)) {
       return;
     }
     // 计算左对齐等分结果
@@ -60,20 +80,64 @@ class LayoutEquality extends Model.LayoutModel {
     ) {
       LayoutEquality._adjustCenterPos(flexNodes, centerSpace);
       parent.constraints.LayoutJustifyContent =
-        Constrains.LayoutJustifyContent.Center;
+        Constraints.LayoutJustifyContent.Center;
     } else if (leftSpace) {
       LayoutEquality._adjustLeftPos(flexNodes, leftSpace);
       parent.constraints.LayoutJustifyContent =
-        Constrains.LayoutJustifyContent.Start;
+        Constraints.LayoutJustifyContent.Start;
     }
+    return true;
   }
-  static filterFlexNodes(nodes: any) {
-    return nodes.filter(
-      (nd: any) =>
-        nd.constraints &&
-        nd.constraints.LayoutSelfPosition !==
-          Constrains.LayoutSelfPosition.Absolute,
-    );
+  /**
+   * 两端对齐
+   * @param parent
+   * @param flexNodes
+   */
+  static _aroundLayout(parent: any, flexNodes: any) {
+    if (flexNodes.length > 3) {
+      return;
+    }
+
+    const centerNode: any = flexNodes.find((nd: any) => {
+      return Math.abs(nd.abX + nd.abXops - OptimizeWidth) < ErrorCoefficient;
+    });
+    const centerIndex = flexNodes.indexOf(centerNode);
+    const prev: any = flexNodes[centerIndex - 1];
+    const next: any = flexNodes[centerIndex + 1];
+    let fixed = false;
+    if (centerNode && prev && next) {
+      fixed =
+        prev.abX > 0 &&
+        next.abXops < OptimizeWidth &&
+        (centerNode.abX - prev.abXops) / OptimizeWidth > 0.1 &&
+        (next.abX - centerNode.abXops) / OptimizeWidth > 0.1 &&
+        Math.abs(prev.abX - (OptimizeWidth - next.abXops)) <= ErrorCoefficient;
+    } else if (centerNode && prev) {
+      fixed = prev.abX > 0 && prev.abX / OptimizeWidth < 0.1;
+    } else if (centerNode && next) {
+      fixed = next.abXops < OptimizeWidth && next.abXops / OptimizeWidth > 0.9;
+    }
+
+    if (fixed) {
+      // centerNode
+      parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
+      parent.constraints.LayoutJustifyContent =
+        Constraints.LayoutJustifyContent.Center;
+      if (prev) {
+        // prev
+        prev.constraints.LayoutSelfPosition =
+          Constraints.LayoutSelfPosition.Absolute;
+        prev.constraints.LayoutSelfHorizontal =
+          Constraints.LayoutSelfHorizontal.Left;
+      }
+      if (next) {
+        // next
+        next.constraints.LayoutSelfPosition =
+          Constraints.LayoutSelfPosition.Absolute;
+        next.constraints.LayoutSelfHorizontal =
+          Constraints.LayoutSelfHorizontal.Right;
+      }
+    }
   }
   static _nextLineIsJustifyCenter(nodes: any, node: any) {
     if (!node.parent) {
@@ -134,8 +198,8 @@ class LayoutEquality extends Model.LayoutModel {
       nd.set('abXops', nd.abXops + dir);
       // 设置居中
       nd.constraints.LayoutJustifyContent =
-        Constrains.LayoutJustifyContent.Center;
-      nd.constraints.LayoutFixedWidth = Constrains.LayoutFixedWidth.Fixed;
+        Constraints.LayoutJustifyContent.Center;
+      nd.constraints.LayoutFixedWidth = Constraints.LayoutFixedWidth.Fixed;
       nd.set('constraints', nd.constraints);
     });
   }
@@ -146,8 +210,8 @@ class LayoutEquality extends Model.LayoutModel {
       nd.set('abXops', nd.abX + width);
       // 设置居中
       nd.constraints.LayoutJustifyContent =
-        Constrains.LayoutJustifyContent.Start;
-      nd.constraints.LayoutFixedWidth = Constrains.LayoutFixedWidth.Fixed;
+        Constraints.LayoutJustifyContent.Start;
+      nd.constraints.LayoutFixedWidth = Constraints.LayoutFixedWidth.Fixed;
       nd.set('constraints', nd.constraints);
     });
   }

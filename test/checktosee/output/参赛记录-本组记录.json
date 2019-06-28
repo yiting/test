@@ -6,6 +6,7 @@
     "height": 1334,
     "abX": 0,
     "abY": 0,
+    "zIndex": 0,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -27,6 +28,7 @@
     "height": 42,
     "abX": 199,
     "abY": 739,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -56,6 +58,7 @@
     "height": 42,
     "abX": 187,
     "abY": 168,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -85,6 +88,7 @@
     "height": 33,
     "abX": 98,
     "abY": 340,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -114,6 +118,7 @@
     "height": 33,
     "abX": 327,
     "abY": 340,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -143,6 +148,7 @@
     "height": 33,
     "abX": 558,
     "abY": 340,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -172,6 +178,7 @@
     "height": 33,
     "abX": 649,
     "abY": 396,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -201,6 +208,7 @@
     "height": 56,
     "abX": 109,
     "abY": 387,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -230,6 +238,7 @@
     "height": 56,
     "abX": 351,
     "abY": 387,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -259,6 +268,7 @@
     "height": 56,
     "abX": 568,
     "abY": 387,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -288,6 +298,7 @@
     "height": 100,
     "abX": 310,
     "abY": 226,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -311,15 +322,46 @@
     "text": "500"
   },
   {
+    "id": "AB36E6AF-65A8-4087-97B5-D5EC774B75B4",
+    "name": "元",
+    "width": 24,
+    "height": 33,
+    "abX": 460,
+    "abY": 269,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "元",
+          "font": "PingFang-SC-Medium",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "元"
+  },
+  {
     "id": "30A5F12D-505E-4F2A-B34F-DAED4FA1FBE8",
     "name": "矩形 1 拷贝",
     "width": 752,
     "height": 4,
     "abX": -1,
     "abY": 576,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
-    "path": "30A5F12D-505E-4F2A-B34F-DAED4FA1FBE8.png"
+    "path": "402e509c6cbd8fa91d126582d2dd9539.png"
   },
   {
     "id": "E71FE7A8-2B11-4E8A-BCFD-49E6EEB5D365",
@@ -328,6 +370,7 @@
     "height": 33,
     "abX": 28,
     "abY": 527,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -357,6 +400,7 @@
     "height": 33,
     "abX": 673,
     "abY": 527,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -386,9 +430,10 @@
     "height": 4,
     "abX": -1,
     "abY": 1176,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
-    "path": "0F8EDFC7-7ADC-4D36-8B29-C9D81B7EFB58.png"
+    "path": "a6e0fa0efbeb9d45807be40eb9a9b1b7.png"
   },
   {
     "id": "CE9D269C-A4D3-41BB-89FE-6CE0AB476752",
@@ -397,6 +442,7 @@
     "height": 48,
     "abX": 45,
     "abY": 1098,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -426,6 +472,7 @@
     "height": 48,
     "abX": 45,
     "abY": 976,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -455,6 +502,7 @@
     "height": 42,
     "abX": 200,
     "abY": 1101,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -484,6 +532,7 @@
     "height": 60,
     "abX": 110,
     "abY": 1092,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -493,7 +542,7 @@
       "background": null
     },
     "type": "QImage",
-    "path": "6DB83484-F35C-4B80-A9FC-FFC1ACA1ECD5.png"
+    "path": "41d3f8ae2483ba389a9b0697e35701f4.png"
   },
   {
     "id": "A33E8C64-20C2-4E54-8DAC-BFC3B3485A1A",
@@ -502,6 +551,7 @@
     "height": 4,
     "abX": -1,
     "abY": 1296,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
     "path": "0F8EDFC7-7ADC-4D36-8B29-C9D81B7EFB58.png"
@@ -513,6 +563,7 @@
     "height": 48,
     "abX": 45,
     "abY": 1218,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -542,6 +593,7 @@
     "height": 42,
     "abX": 200,
     "abY": 1221,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -571,6 +623,7 @@
     "height": 60,
     "abX": 110,
     "abY": 1212,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -589,6 +642,7 @@
     "height": 42,
     "abX": 631,
     "abY": 1221,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -618,6 +672,7 @@
     "height": 42,
     "abX": 630,
     "abY": 981,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -647,6 +702,7 @@
     "height": 42,
     "abX": 635,
     "abY": 861,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -676,6 +732,7 @@
     "height": 42,
     "abX": 630,
     "abY": 741,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -705,6 +762,7 @@
     "height": 42,
     "abX": 630,
     "abY": 1101,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -734,9 +792,10 @@
     "height": 1,
     "abX": 0,
     "abY": 695,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
-    "path": "E3102EB1-827F-44E3-8EA2-1A8117FA59BA.png"
+    "path": "e05ce580a9eeb4c8b045dd5f51ad4666.png"
   },
   {
     "id": "4C4C571A-8A1D-4F1C-8BD2-058DA1CBF1F4",
@@ -745,6 +804,7 @@
     "height": 48,
     "abX": 35,
     "abY": 615,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -774,6 +834,7 @@
     "height": 48,
     "abX": 49,
     "abY": 736,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -803,6 +864,7 @@
     "height": 48,
     "abX": 45,
     "abY": 856,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -832,6 +894,7 @@
     "height": 42,
     "abX": 199,
     "abY": 618,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -861,6 +924,7 @@
     "height": 60,
     "abX": 110,
     "abY": 609,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -870,7 +934,7 @@
       "background": null
     },
     "type": "QImage",
-    "path": "FE97363F-ABB8-49F9-9AAF-2BB1BD2A68E1.png"
+    "path": "372f469624f6a0d73d0602aae7d3c702.png"
   },
   {
     "id": "59C61158-E81B-4F32-8D81-FFF6F59A6735",
@@ -879,6 +943,7 @@
     "height": 42,
     "abX": 648,
     "abY": 618,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -908,9 +973,10 @@
     "height": 4,
     "abX": -1,
     "abY": 816,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
-    "path": "E004C724-5C34-4D47-BBE5-04910B63BF27.png"
+    "path": "33a3ed621393e8db319ccfe0d0dba4c4.png"
   },
   {
     "id": "54BF06B5-B9E3-41EF-9E5A-C4C2B85AEC97",
@@ -919,6 +985,7 @@
     "height": 60,
     "abX": 110,
     "abY": 730,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -928,7 +995,7 @@
       "background": null
     },
     "type": "QImage",
-    "path": "54BF06B5-B9E3-41EF-9E5A-C4C2B85AEC97.png"
+    "path": "41a06cf49dd71f17f8823a3f989ec78a.png"
   },
   {
     "id": "55B8987C-0E96-4E2D-AE70-0F460B21A163",
@@ -937,9 +1004,10 @@
     "height": 4,
     "abX": -1,
     "abY": 936,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
-    "path": "55B8987C-0E96-4E2D-AE70-0F460B21A163.png"
+    "path": "4c834109e2ca99e20a7cd3348eeab560.png"
   },
   {
     "id": "D4497C13-5723-40CD-977E-AFA1A2F2FAAA",
@@ -948,6 +1016,7 @@
     "height": 42,
     "abX": 199,
     "abY": 859,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -977,6 +1046,7 @@
     "height": 60,
     "abX": 110,
     "abY": 850,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -986,7 +1056,7 @@
       "background": null
     },
     "type": "QImage",
-    "path": "8AFEDF47-6436-4AF9-9D15-23B4739DF0A8.png"
+    "path": "98e8ae7a886b707745ba4f3036677c40.png"
   },
   {
     "id": "A132AC8D-19FA-4A56-B2F1-19031BF6F0DF",
@@ -995,9 +1065,10 @@
     "height": 4,
     "abX": -1,
     "abY": 1056,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
-    "path": "A132AC8D-19FA-4A56-B2F1-19031BF6F0DF.png"
+    "path": "c72a43ddbee673345035c9608e198b90.png"
   },
   {
     "id": "F47D507D-CFDA-4E35-83DD-679D855D4F6B",
@@ -1006,6 +1077,7 @@
     "height": 42,
     "abX": 199,
     "abY": 979,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1035,6 +1107,7 @@
     "height": 60,
     "abX": 110,
     "abY": 970,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1044,7 +1117,7 @@
       "background": null
     },
     "type": "QImage",
-    "path": "01D0AC31-2680-492E-9352-C8E9A717AA96.png"
+    "path": "ed6e9c5424b663583fdddbcdb7597777.png"
   },
   {
     "id": "C1368727-3B0D-4BC5-A8FA-D39BC8A2D048",
@@ -1053,6 +1126,7 @@
     "height": 128,
     "abX": 0,
     "abY": 0,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1074,6 +1148,7 @@
     "height": 50,
     "abX": 304,
     "abY": 59,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1103,6 +1178,7 @@
     "height": 45,
     "abX": 645,
     "abY": 61,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1132,9 +1208,10 @@
     "height": 38,
     "abX": 34,
     "abY": 65,
+    "zIndex": 2,
     "styles": {},
     "type": "QImage",
-    "path": "B727AAD4-676D-4481-963B-F70C05125040.png"
+    "path": "2546796a4d8b37427ee68c73722d6389.png"
   },
   {
     "id": "5693E7C2-A0D3-4B72-AA10-0046C84D60EC",
@@ -1143,6 +1220,7 @@
     "height": 45,
     "abX": 65,
     "abY": 61,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1172,9 +1250,10 @@
     "height": 11,
     "abX": 13,
     "abY": 15,
+    "zIndex": 2,
     "styles": {},
     "type": "QImage",
-    "path": "75C468AC-CD7F-48CC-A05C-FEB1185D27A7.png"
+    "path": "2769370851ee0d75f6356a6e240b836e.png"
   },
   {
     "id": "B012C2E5-5794-4DD9-9A13-8A3ABA1FD9B5",
@@ -1183,6 +1262,7 @@
     "height": 33,
     "abX": 90,
     "abY": 4,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1212,9 +1292,10 @@
     "height": 19,
     "abX": 248,
     "abY": 10,
+    "zIndex": 2,
     "styles": {},
     "type": "QImage",
-    "path": "CD519567-BE79-4EE9-868F-13118353970E.png"
+    "path": "d494418a117075b537f8a2b99d81cb80.png"
   },
   {
     "id": "701668BC-2B28-4462-8FC1-A78757FE4B4B",
@@ -1223,6 +1304,7 @@
     "height": 36,
     "abX": 311,
     "abY": 2,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1252,6 +1334,7 @@
     "height": 36,
     "abX": 612,
     "abY": 2,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1281,6 +1364,7 @@
     "height": 19,
     "abX": 690,
     "abY": 11,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1290,7 +1374,7 @@
       "background": null
     },
     "type": "QImage",
-    "path": "5E902D61-7682-4A53-96C8-DADFB0AC31E0.png"
+    "path": "7f8b04b08998e5d09b57289239853262.png"
   },
   {
     "id": "70FC12F1-1AC7-4A0E-9E5E-EBBA26988209",
@@ -1299,8 +1383,9 @@
     "height": 24,
     "abX": 0,
     "abY": 476,
+    "zIndex": 1,
     "styles": {},
     "type": "QImage",
-    "path": "70FC12F1-1AC7-4A0E-9E5E-EBBA26988209.png"
+    "path": "10687dbfe9e09e714826f2c99957a630.png"
   }
 ]

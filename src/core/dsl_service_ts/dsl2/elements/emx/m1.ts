@@ -39,9 +39,14 @@ class EMXM1 extends Model.ElementXModel {
   // 判断条件1：元素的高度小于等于40
   regular1(nodes: any[]) {
     let result: any[] = [];
-
+    let sizes = nodes.map(
+      (nd: any) =>
+        (nd.styles && nd.styles.texts && nd.styles.texts[0].size) || 0,
+    );
+    let maxSize = Math.max(...sizes);
+    maxSize = maxSize > 0 ? maxSize : 50;
     nodes.forEach((nd: any) => {
-      if (nd.height <= 40) {
+      if (nd.height <= maxSize) {
         result.push(nd);
       }
     });

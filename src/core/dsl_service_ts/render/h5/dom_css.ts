@@ -3,7 +3,7 @@ import QLog from '../../log/qlog';
 
 import CssBoundary from './css_boundary';
 import CssConstraints from './css_constraints';
-import css_combo_extend_tree from './css_combo_extend_tree';
+// import css_combo_extend_tree from './css_combo_extend_tree';
 
 import CssDom from './model/css_dom_tree';
 
@@ -37,7 +37,7 @@ const _parseTree = function(arr: any[], dom: any, similarData: any) {
 function getCssString(_cssDomTree: any, _similarData: any) {
   // 获取cssTree解析出的样式
   const css: any[] = []; // 每个CssDom节点返回的样式数组
-  css_combo_extend_tree.countCombo(_cssDomTree);
+  // css_combo_extend_tree.countCombo(_cssDomTree);
   _parseTree(css, _cssDomTree, _similarData);
   return css.join('\n');
 }

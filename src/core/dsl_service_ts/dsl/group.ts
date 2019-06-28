@@ -104,7 +104,7 @@ class Tree {
     }
 
     // 分解行
-    const layers = Utils.gatherByLogic(children, (a: any, b: any) => {
+    const rowLayers = Utils.gatherByLogic(children, (a: any, b: any) => {
       // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
       /* if (a._abY < b._abY && a._zIndex > b._zIndex) {
         // 使用-1是因为避免相连元素为一组
@@ -124,6 +124,35 @@ class Tree {
       }
       return false;
     });
+    const layers = rowLayers;
+    // 判断是否横跨两行结构
+    // const layers: any[] = [];
+    // rowLayers.forEach((layer: any) => {
+    //   // 中心点排序
+    //   layer.sort((a: any, b: any) => a.abY + a.abYops - b.abYops - b.abY);
+    //   let prevIndex = 0;
+    //   layer.forEach((l: any, i: number) => {
+    //     const prev = layer[i - 1];
+    //     const next = layer[i + 1];
+    //     // 如果存在在两个间隙间的元素，则绝对定位，拆分行
+    //     if (
+    //       prev &&
+    //       next &&
+    //       prev.abYops < next.abY &&
+    //       l.abY <= prev.abYops &&
+    //       l.abYops >= next.abY
+    //     ) {
+    //       // 赋予绝对定位
+    //       l.constraints.LayoutSelfPosition =
+    //         Constraints.LayoutSelfPosition.Absolute;
+    //       // 拆分行
+    //       layers.push(layer.slice(prevIndex, i));
+    //       layers.push([l]);
+    //       prevIndex = i + 1;
+    //     }
+    //   });
+    //   layers.push(layer.slice(prevIndex));
+    // });
     // 如果只有一组，则不生产新组
     if (layers.length === 1) {
       return;
@@ -161,7 +190,6 @@ class Tree {
        */
       if (
         arr.length === 1 &&
-        // firstNode.type !== Common.QText &&
         (firstNode.constraints['LayoutSelfPosition'] ===
           Constraints.LayoutSelfPosition.Absolute ||
           (firstNode.abX === parent.abX &&
@@ -252,16 +280,17 @@ class Tree {
        * 且该节点不是文本：文本外须包布局节点
        * 且该节点是绝对定位的
        */
+      // if (
+      //   (arr.length === 1 && firstNode.type !== Common.QText) ||
+      //   firstNode.constraints['LayoutSelfPosition'] ===
+      //     Constraints.LayoutSelfPosition.Absolute
+      // ) {
+
       if (
-        (arr.length === 1 && firstNode.type !== Common.QText) ||
+        arr.length === 1 &&
         firstNode.constraints['LayoutSelfPosition'] ===
           Constraints.LayoutSelfPosition.Absolute
       ) {
-        // if (
-        //   arr.length === 1 &&
-        //   firstNode.constraints['LayoutSelfPosition'] ===
-        //   Constraints.LayoutSelfPosition.Absolute
-        // ) {
         // 当纵向节点只有一个时
         newChildren.push(firstNode);
       } else {
@@ -306,18 +335,23 @@ class Tree {
            * 描述：parent面积必 大于等于 child面积，通过判断是否存在包含关系得出，child是否为parent子节点
            */
           if (
+            // 父节点必须不是文本类型
             parent.type !== Common.QText &&
+            // 子节点不能分割线
             child.modelName !== 'wg1-m1' &&
-            // parent.type !== Common.QWidget &&
+            child.modelName !== 'wg1-m2' &&
             // 层级关系
             // child.zIndex > parent.zIndex &&
             // 包含关系
             (Utils.isWrap(parent, child) ||
-            (Utils.isXConnect(parent, child, -1) &&
-              Utils.isYWrap(parent, child)) ||
-            (parent.abY > child.abY &&
-              Utils.isYConnect(parent, child, -1) &&
-              Utils.isXWrap(parent, child)) || // 相连关系，两个大小差值较大
+              // 水平相连、垂直包含关系
+              (Utils.isXConnect(parent, child, -1) &&
+                Utils.isYWrap(parent, child)) ||
+              // 水平包含、垂直相连
+              (parent.abY > child.abY &&
+                Utils.isYConnect(parent, child, -1) &&
+                Utils.isXWrap(parent, child)) ||
+              // 相连不包含关系（占只4个角），两个面积差值较大
               (Utils.isConnect(parent, child, -1) &&
                 !Utils.isXWrap(parent, child) &&
                 !Utils.isYWrap(parent, child) &&

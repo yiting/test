@@ -51,8 +51,11 @@ class LayoutBaseLine extends Model.LayoutModel {
           Constrains.LayoutDirection.Horizontal;
         LayoutBaseLine._sort(calNodes, 'abX');
         LayoutBaseLine._handleAbsolute(parent, calNodes, absNodes);
+        const newCalNodes = calNodes.filter(
+          (node: any) => !absNodes.includes(node),
+        );
         // 横排基线普查，标识所有不在基线的元素为绝对定位
-        LayoutBaseLine._handleHorizontal(parent, calNodes, absNodes);
+        LayoutBaseLine._handleHorizontal(parent, newCalNodes, absNodes);
       } else {
         parent.constraints.LayoutDirection =
           Constrains.LayoutDirection.Vertical;
@@ -143,15 +146,15 @@ class LayoutBaseLine extends Model.LayoutModel {
       middleArr.push(nd);
     });
     topArr.sort((a: any, b: any) => b.abY - a.abY);
-    bottomArr.sort((a: any, b: any) => b.abYops + b.abY - a.abYops - a.abY);
-    middleArr.sort((a: any, b: any) => b.abYops - a.abYops);
+    middleArr.sort((a: any, b: any) => b.abYops + b.abY - a.abYops - a.abY);
+    bottomArr.sort((a: any, b: any) => b.abYops - a.abYops);
 
     topArr = topArr.filter((n: any) => topArr[0].abY - n.abY < 3);
-    bottomArr = bottomArr.filter(
-      (n: any) => bottomArr[0].abY + bottomArr[0].abYops - n.abY - n.abYops < 3,
-    );
     middleArr = middleArr.filter(
-      (n: any) => middleArr[0].abYops - n.abYops < 3,
+      (n: any) => middleArr[0].abY + middleArr[0].abYops - n.abY - n.abYops < 3,
+    );
+    bottomArr = bottomArr.filter(
+      (n: any) => bottomArr[0].abYops - n.abYops < 3,
     );
 
     // 获得最多相同基线的节点
