@@ -124,33 +124,35 @@ class Tree {
       }
       return false;
     });
-    const layers: any[] = [];
-    rowLayers.forEach((layer: any) => {
-      // 中心点排序
-      layer.sort((a: any, b: any) => a.abY + a.abYops - b.abYops - b.abY);
-      let prevIndex = 0;
-      layer.forEach((l: any, i: number) => {
-        const prev = layer[i - 1];
-        const next = layer[i + 1];
-        // 如果存在在两个间隙间的元素，则绝对定位，拆分行
-        if (
-          prev &&
-          next &&
-          prev.abYops < next.abY &&
-          l.abY <= prev.abYops &&
-          l.abYops >= next.abY
-        ) {
-          // 赋予绝对定位
-          l.constraints.LayoutSelfPosition =
-            Constraints.LayoutSelfPosition.Absolute;
-          // 拆分行
-          layers.push(layer.slice(prevIndex, i));
-          layers.push([l]);
-          prevIndex = i + 1;
-        }
-      });
-      layers.push(layer.slice(prevIndex));
-    });
+    const layers = rowLayers;
+    // 判断是否横跨两行结构
+    // const layers: any[] = [];
+    // rowLayers.forEach((layer: any) => {
+    //   // 中心点排序
+    //   layer.sort((a: any, b: any) => a.abY + a.abYops - b.abYops - b.abY);
+    //   let prevIndex = 0;
+    //   layer.forEach((l: any, i: number) => {
+    //     const prev = layer[i - 1];
+    //     const next = layer[i + 1];
+    //     // 如果存在在两个间隙间的元素，则绝对定位，拆分行
+    //     if (
+    //       prev &&
+    //       next &&
+    //       prev.abYops < next.abY &&
+    //       l.abY <= prev.abYops &&
+    //       l.abYops >= next.abY
+    //     ) {
+    //       // 赋予绝对定位
+    //       l.constraints.LayoutSelfPosition =
+    //         Constraints.LayoutSelfPosition.Absolute;
+    //       // 拆分行
+    //       layers.push(layer.slice(prevIndex, i));
+    //       layers.push([l]);
+    //       prevIndex = i + 1;
+    //     }
+    //   });
+    //   layers.push(layer.slice(prevIndex));
+    // });
     // 如果只有一组，则不生产新组
     if (layers.length === 1) {
       return;

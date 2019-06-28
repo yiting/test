@@ -35,9 +35,6 @@ const walkOut = function(layoutObject: any, dslTree: any) {
 function layout(dslTree: any) {
   let _logStep = 'start';
   try {
-    // 两端
-    _logStep = '两端';
-    walkIn(LayoutAround, dslTree._treeData);
     // 等分
     _logStep = '等分';
     walkIn(LayoutEquality, dslTree._treeData);
