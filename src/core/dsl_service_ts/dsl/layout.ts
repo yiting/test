@@ -2,8 +2,6 @@
 import LayoutSimilar from './layouts/layout_similar';
 import LayoutCircle from './layouts/layout_circle';
 // import LayoutSort from './layouts/layout_sort';
-import LayoutAround from './layouts/layout_around';
-import LayoutFlex from './layouts/layout_flex';
 import LayoutBaseLine from './layouts/layout_baseline';
 import QLog from '../log/qlog';
 import LayoutEquality from './layouts/layout_equality';
