@@ -4,7 +4,7 @@ class EM2M1 extends HtmlTemplate {
   constructor(...args: any[]) {
     super(...args);
     this._template = `
-    <div class="shape" $ref="1" @constraints>
+    <div class="tagIcon" $ref="1" @constraints>
       <span $ref="0" class="text"></span>
     </div>`;
 
@@ -13,7 +13,7 @@ class EM2M1 extends HtmlTemplate {
         const node: any = _node;
         node.constraints = {
           LayoutDirection: 'Horizontal',
-          LayoutJustifyContent: 'Start',
+          LayoutJustifyContent: 'Center',
         };
       },
     };

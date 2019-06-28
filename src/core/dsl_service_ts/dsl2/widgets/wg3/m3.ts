@@ -1,7 +1,13 @@
-// (3节点元素)上QImage下二QText
+// (3节点元素) 上image下两text的设计图标带text设计
+// (QImage + QText + QText)
 //
-// (QImage) + (QText) + (QText)
-//
+// 判断标准
+// 1, image位于text的上边
+// 2, image与两text位于垂直轴
+// 3, image与上text距离大于0小于text高
+// 4, 两text上下距离大于0小于下text高
+// 5, 两text其中之一的长度必须大于图片长度1半,text长度必须小于图标长度
+// 6, image下边距到文字底边的高度与图片的高度比必须大于0.5小于1
 import Common from '../../common';
 import Model from '../../model';
 import Feature from '../../feature';
@@ -10,113 +16,72 @@ import Utils from '../../utils';
 class WG3M3 extends Model.WidgetModel {
   constructor() {
     // 元素构成规则
-    super('wg3-m3', 2, 0, 1, 0, Common.LvS, Common.QWidget);
+    super('wg3-m3', 2, 0, 1, 0, Common.LvA, Common.QWidget);
     this.canLeftFlex = false;
     this.canRightFlex = false;
   }
 
   _initNode() {
-    const texts: any = this.getTextNodes();
-    const images: any = this.getImageNodes();
+    let texts: any = this.getTextNodes();
+    let images: any = this.getImageNodes();
     Utils.sortListByParam(texts, 'abY', false);
-    const that: any = this;
 
-    const imagesIndex0 = 0;
-    that._matchNodes['0'] = images[imagesIndex0]; // 图片
-    const textsIndex0 = 0;
-    that._matchNodes['1'] = texts[textsIndex0]; // 文本1
-    const textsIndex1 = 1;
-    that._matchNodes['2'] = texts[textsIndex1]; // 文本2
+    this._matchNodes['0'] = texts[0];
+    this._matchNodes['1'] = texts[1];
+    this._matchNodes['2'] = images[0];
   }
 
-  // 元素方向
+  // 1.
   regular1() {
-    const that: any = this;
-    // image位于二文字上侧
-    const bool =
-      Feature.directionAbottomToB(
-        that._matchNodes['1'],
-        that._matchNodes['0'],
-      ) &&
-      Feature.directionAbottomToB(that._matchNodes['2'], that._matchNodes['0']);
-
+    let bool: boolean = Feature.directionAtopToB(this._matchNodes['2'], this._matchNodes['0'])
+                        && Feature.directionAtopToB(this._matchNodes['2'], this._matchNodes['1']);
     return bool;
   }
 
-  // 水平轴方向
+  // 2.
   regular2() {
-    const that: any = this;
-    // 图片与二文字行位于垂直轴
-    const bool =
-      Feature.baselineABInVertical(
-        that._matchNodes['0'],
-        that._matchNodes['1'],
-      ) &&
-      Feature.baselineABInVertical(
-        that._matchNodes['0'],
-        that._matchNodes['2'],
-      );
-
+    let gA: any = [this._matchNodes['0'], this._matchNodes['1'], this._matchNodes['2']];
+    let bool: boolean = Feature.baselineGroupAInVertical(gA);
     return bool;
   }
 
+  // 3.
   regular3() {
-    const that: any = this;
-    // 二个文字位于垂直轴
-    const bool = Feature.baselineGroupAInVertical([
-      that._matchNodes['1'],
-      that._matchNodes['2'],
-    ]);
+    let txtHeight: number = this._matchNodes['0'].height * 1.05;      // 1.05系数修正系数
 
+    let bool: boolean = Feature.distanceGreatAbottomToBtop(this._matchNodes['2'], this._matchNodes['0'], -4)
+                        && Feature.distanceLessAbottomToBtop(this._matchNodes['2'], this._matchNodes['0'], txtHeight);
     return bool;
   }
 
-  // 元素距离
+  // 4.
   regular4() {
-    const that: any = this;
-    // image与文字与文字之间的间距大于0小于44
-    const bool =
-      Feature.distanceGreatAbottomToBtop(
-        that._matchNodes['0'],
-        that._matchNodes['1'],
-        0,
-      ) &&
-      Feature.distanceLessAbottomToBtop(
-        that._matchNodes['0'],
-        that._matchNodes['1'],
-        44,
-      ) &&
-      Feature.distanceGreatAbottomToBtop(
-        that._matchNodes['1'],
-        that._matchNodes['2'],
-        0,
-      ) &&
-      Feature.distanceLessAbottomToBtop(
-        that._matchNodes['1'],
-        that._matchNodes['2'],
-        44,
-      );
+    let txtHeight: number = this._matchNodes['1'].height * 1.05;    // 文字间距离修正系数
 
+    let bool: boolean = Feature.distanceGreatAbottomToBtop(this._matchNodes['0'], this._matchNodes['1'], -4)
+                        && Feature.distanceLessAbottomToBtop(this._matchNodes['0'], this._matchNodes['1'], txtHeight);
     return bool;
   }
 
-  // 尺寸关系
+  // 5.
   regular5() {
-    const that: any = this;
-    // 文字必须小于图片的长度
-    const bool =
-      Feature.sizeWidthRatioALessB(
-        that._matchNodes['1'],
-        that._matchNodes['0'],
-        1.1,
-      ) &&
-      Feature.sizeWidthRatioALessB(
-        that._matchNodes['2'],
-        that._matchNodes['0'],
-        1.1,
-      );
+    let imgW = this._matchNodes['2'].height;
 
-    return bool;
+    let b1: boolean = Feature.sizeWidthGreat(this._matchNodes['0'], imgW / 2)
+                      || Feature.sizeWidthGreat(this._matchNodes['1'], imgW / 2);
+    
+    let b2: boolean = Feature.sizeWidthLess(this._matchNodes['0'], imgW * 1.05)
+                      && Feature.sizeWidthLess(this._matchNodes['1'], imgW * 1.05);
+
+    return (b1 && b2);
+  }
+
+  // 6.
+  regular6() {
+    let imgTxtHeight: number = Math.abs(this._matchNodes['2'].abYops - this._matchNodes['1'].abYops);
+    let rate: number = imgTxtHeight / this._matchNodes['2'].height;
+
+    return (rate >= 0.5 && rate <= 1); 
   }
 }
 

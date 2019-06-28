@@ -120,7 +120,7 @@ class EMXM1 extends Model.ElementXModel {
 
           if (
             curNode.abX - preNode.abXops <= 30 &&
-            curNode.abX - preNode.abXops >= 0
+            curNode.abX - preNode.abXops >= -4
           ) {
             // 连续的元素
             if (temp.length === 0) {

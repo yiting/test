@@ -322,6 +322,7 @@ class Template {
 
   static parse(renderData: any, parentTpl: any, TemplateList: any) {
     let tplData: any;
+
     try {
       const ModelTpl =
         Template.getModelTemplate(TemplateList, renderData.modelName) ||

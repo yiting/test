@@ -46,6 +46,7 @@ import WG4M3 from './widgets/wg4/m3';
 import WG5M1 from './widgets/wg5/m1';
 
 import WGNM1 from './widgets/wgn/m1';
+import WG1M2 from './widgets/wg1/m2';
 // 模板数组
 export default [
   EMXM1,
@@ -59,38 +60,19 @@ export default [
   EM2M2,
   EM2M3,
   EM2M4,
-  EM2M5,
-  EM2M6,
-  EM2M7,
-
-  EM3M1,
-  EM3M2,
-  EM3M3,
-  EM3M4,
-  EM3M5,
-  EM3M6,
-  EM3M7,
-  EM3M8,
-  EM3M9,
 
   WG0M1,
 
   WG1M1,
+  WG1M2,
 
   WG2M1,
-  WG2M2,
-  WG2M3,
-  WG2M4,
-  WG2M7,
 
   WG3M1,
   WG3M2,
   WG3M3,
-  WG4M1,
-  WG4M2,
-  WG4M3,
 
-  WG5M1,
+  WG4M1,
 
   WGNM1,
 ];

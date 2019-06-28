@@ -1,7 +1,12 @@
 // 以Image为底, Text在里面的紧凑型按钮结构
-//
 // (QImage)-(QText)
 //
+// 判断标准
+// 1, 文本位于QImage中间
+// 2, 文本高度占图形超1/2
+// 3, 文本长度占图形长度超1/2
+// 4, 按钮高度超过40
+// 5, 按钮长度小于200
 import Common from '../../common';
 import Model from '../../model';
 import Feature from '../../feature';
@@ -19,44 +24,37 @@ class EM2M3 extends Model.ElementModel {
     let texts = this.getTextNodes();
     let images = this.getImageNodes();
 
-    this._matchNodes['0'] = texts[0]; // QText
-    this._matchNodes['1'] = images[0]; // QImage
+    this._matchNodes['0'] = texts[0];           // QText
+    this._matchNodes['1'] = images[0];          // QImage
   }
 
-  // 位置关系
+  // 1.
   regular1() {
-    let bool = Feature.positionAInBCenter(
-      this._matchNodes['0'],
-      this._matchNodes['1'],
-    );
-
+    let bool: boolean = Feature.positionAInB(this._matchNodes['0'], this._matchNodes['1']);
     return bool;
   }
 
-  // 尺寸关系
+  // 2.
   regular2() {
-    // 1. 文字高度占图形超 1/2
-    // 2. 文字长度占图形超 1/2
-    let bool =
-      Feature.sizeHeightRatioAGreatB(
-        this._matchNodes['0'],
-        this._matchNodes['1'],
-        0.5,
-      ) &&
-      Feature.sizeHeightRatioAGreatB(
-        this._matchNodes['0'],
-        this._matchNodes['1'],
-        0.4,
-      );
-
+    let bool: boolean = Feature.sizeHeightRatioAGreatB(this._matchNodes['0'], this._matchNodes['1'], 0.5);
     return bool;
   }
 
-  // 尺寸关系
+  // 3.
   regular3() {
-    // 1.按钮高度必须大于40
-    let bool = Feature.sizeHeightGreat(this._matchNodes['1'], 40);
+    let bool: boolean = Feature.sizeWidthRatioAGreatB(this._matchNodes['0'], this._matchNodes['1'], 0.4);
+    return bool;
+  }
 
+  // 4.
+  regular4() {
+    let bool: boolean = Feature.sizeHeightGreat(this._matchNodes['1'], 40);
+    return bool;
+  }
+
+  // 5.
+  regular() {
+    let bool: boolean = Feature.sizeWidthLess(this._matchNodes['1'], 200);
     return bool;
   }
 }

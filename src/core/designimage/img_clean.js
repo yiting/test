@@ -6,6 +6,7 @@ let logger = qlog.getInstance(store.default.getAll());
 var fs = require('fs');
 
 function clean(domList, styleArray) {
+  logger = qlog.getInstance(store.default.getAll());
   let clearnList = [];
   // logger.debug( domList );
   let getshadowImg = (item, isArray) => {
@@ -94,18 +95,18 @@ function clearJSON(tmpJSONData, idList, styleArray) {
     if (JSONx.style) {
       idList.forEach((items, indexs) => {
         if (JSONx.do_objectID == items.id) {
-          logger.info('[去除特定属性]找到一个' + JSONx.do_objectID);
+          logger.debug('[去除特定属性]找到一个' + JSONx.do_objectID);
           // JSONx.style[style] = null
           // delete JSONx.style[style]
           if (items.type == 'shadows') {
-            logger.info('[去除特定属性]进入一个纯' + items.id);
+            logger.debug('[去除特定属性]进入一个纯' + items.id);
             if (!JSONx.style['shadows']) {
               JSONx.style['shadows'] = items.value;
             }
           }
           styleArray.forEach(sk => {
             if (JSONx.style[sk]) {
-              logger.info('[去除特定属性]删除一个' + sk);
+              logger.debug('[去除特定属性]删除一个' + sk);
               delete JSONx.style[sk];
             }
           });

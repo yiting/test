@@ -2,13 +2,10 @@ import Common from './common';
 import Utils from './utils';
 import Model from './model';
 import Constraints from './constraints';
-
 import QLog from '../log/qlog';
-import uitls from '../uitls';
-import constraints from './constraints';
-
+import Store from '../helper/store';
 const Loger = QLog.getInstance(QLog.moduleData.render);
-
+const DSLOptions: any = {};
 /**
  * 将组件进行排版布局
  * @param {Array} widgetModels 进行布局的组件模型
@@ -19,6 +16,7 @@ const join = function(widgetModels: any, elementModels: any) {
   if (!widgetModels && !elementModels) {
     return null;
   }
+  Object.assign(DSLOptions, Store.getAll());
   const dslTree: any = new Tree(); // dsl树
   const arr = elementModels.concat(widgetModels);
   // 按面积排序
@@ -132,7 +130,14 @@ class Tree {
     }
     // 计算边界
     layers.forEach((l: any) => {
-      const range = Utils.calRange(l);
+      const range = Utils.calRange(
+        l.filter(
+          (n: any) =>
+            n.constraints &&
+            n.constraints.LayoutSelfPosition !==
+              Constraints.LayoutSelfPosition.Absolute,
+        ),
+      );
       Object.assign(l, range);
     });
     // 自上向下排序
@@ -219,7 +224,14 @@ class Tree {
     }
     // 计算边界
     layers.forEach((l: any) => {
-      const range = Utils.calRange(l);
+      const range = Utils.calRange(
+        l.filter(
+          (n: any) =>
+            n.constraints &&
+            n.constraints.LayoutSelfPosition !==
+              Constraints.LayoutSelfPosition.Absolute,
+        ),
+      );
       Object.assign(l, range);
     });
     // 自左向右排序
@@ -240,19 +252,16 @@ class Tree {
        * 且该节点不是文本：文本外须包布局节点
        * 且该节点是绝对定位的
        */
-      // if (
-      //   (
-      //     arr.length === 1 &&
-      //     firstNode.type !== Common.QText
-      //   ) ||
-      //   firstNode.constraints['LayoutSelfPosition'] ===
-      //   Constraints.LayoutSelfPosition.Absolute
-      // ) {
       if (
-        arr.length === 1 &&
+        (arr.length === 1 && firstNode.type !== Common.QText) ||
         firstNode.constraints['LayoutSelfPosition'] ===
           Constraints.LayoutSelfPosition.Absolute
       ) {
+        // if (
+        //   arr.length === 1 &&
+        //   firstNode.constraints['LayoutSelfPosition'] ===
+        //   Constraints.LayoutSelfPosition.Absolute
+        // ) {
         // 当纵向节点只有一个时
         newChildren.push(firstNode);
       } else {
@@ -335,17 +344,23 @@ class Tree {
     /**
      * 如果子节点在父节点的角点上，切高宽为一定比例，则认为是父节点外的绝对定位
      * */
-    const leftTop = node.abX <= parent.abX && node.abY <= parent.abY;
-    const rightTop = node.abXops >= parent.abXops && node.abY <= parent.abY;
-    const leftBottom = node.abX <= parent.abX && node.abYops >= parent.abYops;
-    const rightBottom =
-      node.abXops >= parent.abXops && node.abYops >= parent.abYops;
-    const rate = 3;
+    // const leftTop = node.abX <= parent.abX && node.abY <= parent.abY;
+    // const rightTop = node.abXops >= parent.abXops && node.abY <= parent.abY;
+    // const leftBottom = node.abX <= parent.abX && node.abYops >= parent.abYops;
+    // const rightBottom =
+    //   node.abXops >= parent.abXops && node.abYops >= parent.abYops;
+    const left = node.abX <= parent.abX && node.abX > 0;
+    const right =
+      node.abXops >= parent.abXops && node.abXops < DSLOptions.optimizeWidth;
+    const bottom = node.abYops >= parent.abYops;
+    const top = node.abY <= parent.abY;
+    const rate = 2;
     const rateX =
       (parent.abXops - parent.abX) / (node.abXops - node.abX) > rate;
     const rateY =
+      node.abYops - node.abY <= 28 * 2 &&
       (parent.abYops - parent.abY) / (node.abYops - node.abY) > rate;
-    return (leftTop || rightTop || leftBottom || rightBottom) && rateX && rateY;
+    return (left || right || top || bottom) && rateX && rateY;
   }
   /**
    * 往父节点添加子节点

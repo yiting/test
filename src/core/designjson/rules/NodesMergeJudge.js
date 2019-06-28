@@ -50,13 +50,17 @@ class NodesMergeJudge {
     let isCombine = false;
     let isFinally = false;
 
+    if (node.id.indexOf('D7108BB2-A9D5-49AA-9781-E2A8319F7F3E') > -1) {
+      console.log(1);
+    }
+
     if (
       ImgConbineUtils.findNodeByCond(
         node,
         brother,
-        'name',
-        '矩形 copy 8',
-        '矩形 copy 16',
+        'id',
+        'D7108BB2-A9D5-49AA-9781-E2A8319F7F3E',
+        'F4EDFEB4-50D1-4626-86AA-5881C7B3C4AA',
       )
     ) {
       console.log(1);
@@ -64,6 +68,12 @@ class NodesMergeJudge {
 
     //如果有一个节点是长直线，则不合并
     if (ImgConbineUtils.isLine(node) || ImgConbineUtils.isLine(brother)) {
+      isCombine = false;
+      isFinally = true;
+    }
+
+    //如果有一个是气泡图片，则不合并
+    if (ImgConbineUtils.isBubble(node) || ImgConbineUtils.isBubble(brother)) {
       isCombine = false;
       isFinally = true;
     }
@@ -144,7 +154,8 @@ class NodesMergeJudge {
       //如果节点是简单的背景，包含了另一个节点，另一节点面积比小于阈值，则不合并
       if (
         ImgConbineUtils.isSimpleBackground(node) &&
-        ImgConbineUtils.isInclude(node, brother) &&
+        ImgConbineUtils.isIntersect(node, brother) ==
+          ImgConbineUtils.INTERSECT_TYPE.INCLUDE &&
         nodeBSize / nodeASize < sizePercentThreshold
       ) {
         isCombine = false;
@@ -153,7 +164,8 @@ class NodesMergeJudge {
 
       if (
         ImgConbineUtils.isSimpleBackground(brother) &&
-        ImgConbineUtils.isInclude(brother, node) &&
+        ImgConbineUtils.isIntersect(brother, node) ==
+          ImgConbineUtils.INTERSECT_TYPE.INCLUDE &&
         nodeASize / nodeBSize < sizePercentThreshold
       ) {
         isCombine = false;
@@ -161,7 +173,7 @@ class NodesMergeJudge {
       }
     }
     //面积大小合图逻辑组合，如果得分低则不合
-    //处理情况2:面积大小相似，面积很大的不合在一起（处理多个用户上传图片形成的九宫格情况）
+    //处理情况2:面积大小相似，面积很大，不合在一起（处理多个用户上传图片形成的九宫格情况）
     if (isFinally == false) {
       ruleConfig0 = this.getRuleConfig({
         data: [{ type: 'SizeSimilar', value: 100, requireScore: 76 }],
@@ -173,7 +185,7 @@ class NodesMergeJudge {
       let sideThreshold = 120;
       if (
         scoreResult.score < ruleConfig0.score &&
-        (nodeASize > sizeThreshold || nodeBSize > sizeThreshold)
+        (nodeASize > sizeThreshold || nodeBSize > sizeThreshold) //&& !(ImgConbineUtils.isIntersect(brother,node) == ImgConbineUtils.INTERSECT_TYPE.INCLUDE  || ImgConbineUtils.isIntersect(node, brother) == ImgConbineUtils.INTERSECT_TYPE.INCLUDE )
       ) {
         isCombine = false;
         isFinally = true;
@@ -193,38 +205,48 @@ class NodesMergeJudge {
         isFinally = true;
       }
     }
-    if (isFinally == false) {
-      //slice合图逻辑组合
-      if (isCombine == false) {
-        let ruleConfig2 = this.getRuleConfig({
-          data: [{ type: 'SliceSimilar', value: 50, requireScore: 100 }],
-        });
-        //需切换为yone给的数据
-        // ruleConfig2.sliceArr = sliceArr;
-        scoreResult = this.score(node, brother, ruleConfig2);
-        if (scoreResult.score >= ruleConfig2.score) {
-          isCombine = true;
-          scoreResult = this.score(node, brother, ruleConfig2);
-        }
-      }
-    }
-    if (isFinally == false) {
-      //ai合图逻辑组合
-      if (isCombine == false) {
-        let ruleConfig3 = this.getRuleConfig({
-          data: [{ type: 'AiSimilar', value: 50, requireScore: 0 }],
-        });
-        //需切换为yone给的数据
-        // ruleConfig3.aiArr = sliceArr;
-        scoreResult = this.score(node, brother, ruleConfig3);
-        if (scoreResult.score > ruleConfig3.score) {
-          isCombine = true;
-        }
-      }
-    }
+    // if (isFinally == false) {
+    //   //slice合图逻辑组合
+    //   if (isCombine == false) {
+    //     let ruleConfig2 = this.getRuleConfig({
+    //       data: [{ type: 'SliceSimilar', value: 50, requireScore: 100 }],
+    //     });
+    //     //需切换为yone给的数据
+    //     // ruleConfig2.sliceArr = sliceArr;
+    //     scoreResult = this.score(node, brother, ruleConfig2);
+    //     if (scoreResult.score >= ruleConfig2.score) {
+    //       isCombine = true;
+    //       scoreResult = this.score(node, brother, ruleConfig2);
+    //     }
+    //   }
+    // }
+    // if (isFinally == false) {
+    //   //ai合图逻辑组合
+    //   if (isCombine == false) {
+    //     let ruleConfig3 = this.getRuleConfig({
+    //       data: [{ type: 'AiSimilar', value: 50, requireScore: 0 }],
+    //     });
+    //     //需切换为yone给的数据
+    //     // ruleConfig3.aiArr = sliceArr;
+    //     scoreResult = this.score(node, brother, ruleConfig3);
+    //     if (scoreResult.score > ruleConfig3.score) {
+    //       isCombine = true;
+    //     }
+    //   }
+    // }
     if (isFinally == false) {
       //调试工具的合图逻辑组合
-
+      if (
+        ImgConbineUtils.findNodeByCond(
+          node,
+          brother,
+          'id',
+          'C80AE7A7-34D4-4F87-AB75-9B0C3887F90D',
+          'A8EEA0B0-A80D-47E4-AD50-291413A8D248',
+        )
+      ) {
+        console.log(2);
+      }
       scoreResult = this.score(node, brother, ruleConfig);
       if (scoreResult.score > ruleConfig.score) {
         isCombine = true;
