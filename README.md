@@ -1,6 +1,6 @@
 # 视觉编译
 
-让机器理解设计稿（SKETCH、PSD ），并生成对应的 UI 样式及结构代码(H5、iOS、Android)
+让机器理解设计稿（SKETCH、PSD ），并生成对应的 UI 样式及结构代码(H5、iOS、Android)。
 
 官网：http://uitocode.oa.com
 
