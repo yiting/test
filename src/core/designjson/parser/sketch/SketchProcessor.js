@@ -142,10 +142,10 @@ class SketchProcessor {
     );
     maskNodes.forEach(maskNode => {
       // 将所有mask关联的节点合成组
-      const m = maskNode._origin.maskedNodes.find(
+      const m = maskNode._origin.maskedNodes.filter(
         maskedNode => ~maskNodes.indexOf(maskedNode),
       );
-      if (m) m._origin.maskedNodes = []; // 如果遮罩里套了子遮罩，则删除子遮罩数据
+      m.forEach(m => (m._origin.maskedNodes = [])); // 如果遮罩里套了子遮罩，则删除子遮罩数据
       if (!maskNode._origin.maskedNodes.length) return;
       const maskedCollection = [...maskNode._origin.maskedNodes];
       if (isUnavailableMask(maskNode, maskedCollection)) return;
