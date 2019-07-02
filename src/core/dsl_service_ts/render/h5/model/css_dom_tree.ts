@@ -517,6 +517,7 @@ class CssDom {
         if (Func.isExtend(key)) {
           that.extendStyle[key] = value;
         }
+
         const similarValue = similarCss && similarCss[key];
         if (value !== null && value !== undefined && similarValue !== value) {
           // console.log(`${that.id}-${that.type}来到一个${key}，父亲的值${that.parent.extendStyle[key]},当前的值${value}`)
@@ -529,11 +530,11 @@ class CssDom {
             // console.log(`&&&&&&&&&&找到一个key，父亲的值${that.parent.extendStyle[key]},当前的值${value}`)
           }
         } else {
-          if (that.countStyle.add[key]) {
-            props.push(
-              CssDom.getCssProperty(key, that.countStyle.add[key]['value']),
-            );
-          }
+          // if (that.countStyle.add[key]) {
+          //   props.push(
+          //     CssDom.getCssProperty(key, that.countStyle.add[key]['value']),
+          //   );
+          // }
         }
       });
     } catch (e) {
