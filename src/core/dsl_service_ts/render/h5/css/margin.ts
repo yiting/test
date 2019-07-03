@@ -1,4 +1,4 @@
-import Constraints from '../../../dsl/constraints';
+import Constraints from '../../../helper/constraints';
 import Func from '../css_func';
 import marginTop from './marginTop';
 import marginBottom from './marginBottom';

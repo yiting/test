@@ -3,13 +3,13 @@
 import Common from './common';
 
 export default {
-  create() {
+  create(optWidth: any) {
     let width = 0; // 设计稿宽
     const height = 0; // 设计稿高
     let unit; // 换算单位
     let dpr; // 设备像素比
 
-    switch (`${Common.DesignWidth}`) {
+    switch (optWidth.toString()) {
       case '1080': {
         // 基于安卓设计
         width = 1080;

@@ -137,8 +137,8 @@ class HtmlDom {
     const result = [];
     if (this.tplAttr) {
       result.push(
-        ...Object.keys(this.tplAttr).map(key => {
-          if (key !== 'data-model') {
+        ...Object.keys(this.tplAttr).map((key: string) => {
+          if (key !== 'data-model' && key !== 'class') {
             return `${key}="${this.tplAttr[key]}"`;
           }
           return undefined;

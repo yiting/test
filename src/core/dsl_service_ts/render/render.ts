@@ -8,7 +8,7 @@
 import fs from 'fs';
 
 import Utils from './utils';
-import Constraints from '../dsl/constraints';
+import Constraints from '../helper/constraints';
 // import Builder from './builder';
 import H5Builder from './h5/builder';
 import TemplateList from '../template/html/templatelist';

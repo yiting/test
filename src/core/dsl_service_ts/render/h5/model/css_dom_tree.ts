@@ -1,7 +1,7 @@
 // 样式的计算处理
 import { debug } from 'util';
-import Common from '../../../dsl/common';
-import Constraints from '../../../dsl/constraints';
+import Common from '../../../dsl2/common';
+import Constraints from '../../../helper/constraints';
 import Utils from '../../utils';
 import Func from '../css_func';
 import QLog from '../../../log/qlog';
@@ -517,7 +517,6 @@ class CssDom {
         if (Func.isExtend(key)) {
           that.extendStyle[key] = value;
         }
-
         const similarValue = similarCss && similarCss[key];
         if (value !== null && value !== undefined && similarValue !== value) {
           // console.log(`${that.id}-${that.type}来到一个${key}，父亲的值${that.parent.extendStyle[key]},当前的值${value}`)
@@ -530,11 +529,11 @@ class CssDom {
             // console.log(`&&&&&&&&&&找到一个key，父亲的值${that.parent.extendStyle[key]},当前的值${value}`)
           }
         } else {
-          // if (that.countStyle.add[key]) {
-          //   props.push(
-          //     CssDom.getCssProperty(key, that.countStyle.add[key]['value']),
-          //   );
-          // }
+          if (that.countStyle.add[key]) {
+            props.push(
+              CssDom.getCssProperty(key, that.countStyle.add[key]['value']),
+            );
+          }
         }
       });
     } catch (e) {
