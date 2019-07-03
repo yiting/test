@@ -41,10 +41,14 @@ class EMXM1 extends Model.ElementXModel {
     let result: any[] = [];
     let sizes = nodes.map(
       (nd: any) =>
-        (nd.styles && nd.styles.texts && nd.styles.texts[0].size) || 0,
+        (nd.data.styles &&
+          nd.data.styles.texts &&
+          nd.data.styles.texts[0].size) ||
+        0,
     );
     let maxSize = Math.max(...sizes);
-    maxSize = maxSize > 0 ? maxSize : 50;
+    const lineHeight = 1.33; //sketch 默认行高
+    maxSize = maxSize > 0 ? maxSize * lineHeight : 50;
     nodes.forEach((nd: any) => {
       if (nd.height <= maxSize) {
         result.push(nd);

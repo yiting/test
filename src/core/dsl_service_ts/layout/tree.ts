@@ -238,8 +238,10 @@ class Tree {
 
       if (
         arr.length === 1 &&
-        firstNode.constraints['LayoutSelfPosition'] ===
-          Constraints.LayoutSelfPosition.Absolute
+        (firstNode.type === Common.QWidget ||
+          firstNode.type === Common.QLayer ||
+          firstNode.constraints['LayoutSelfPosition'] ===
+            Constraints.LayoutSelfPosition.Absolute)
       ) {
         // 当纵向节点只有一个时
         newChildren.push(firstNode);
@@ -284,6 +286,7 @@ class Tree {
            * 在父节点上,
            * 描述：parent面积必 大于等于 child面积，通过判断是否存在包含关系得出，child是否为parent子节点
            */
+          const _utils = Utils;
           if (
             // 父节点必须不是文本类型
             parent.type !== Common.QText &&
@@ -291,20 +294,20 @@ class Tree {
             child.modelName !== 'wg1-m1' &&
             child.modelName !== 'wg1-m2' &&
             // 层级关系
-            // child.zIndex > parent.zIndex &&
+            child.zIndex >= parent.zIndex &&
             // 包含关系
-            (Utils.isWrap(parent, child) ||
+            (_utils.isWrap(parent, child) ||
               // 水平相连、垂直包含关系
-              (Utils.isXConnect(parent, child, -1) &&
-                Utils.isYWrap(parent, child)) ||
+              (_utils.isXConnect(parent, child, -1) &&
+                _utils.isYWrap(parent, child)) ||
               // 水平包含、垂直相连
               (parent.abY > child.abY &&
-                Utils.isYConnect(parent, child, -1) &&
-                Utils.isXWrap(parent, child)) ||
+                _utils.isYConnect(parent, child, -1) &&
+                _utils.isXWrap(parent, child)) ||
               // 相连不包含关系（占只4个角），两个面积差值较大
-              (Utils.isConnect(parent, child, -1) &&
-                !Utils.isXWrap(parent, child) &&
-                !Utils.isYWrap(parent, child) &&
+              (_utils.isConnect(parent, child, -1) &&
+                !_utils.isXWrap(parent, child) &&
+                !_utils.isYWrap(parent, child) &&
                 parent.width / child.width > 2 &&
                 parent.height / child.height > 2))
           ) {
@@ -356,12 +359,12 @@ class Tree {
     let parent: any = _parent;
     let child: any = _child;
     const node = Tree.createNodeData(child);
-    if (Tree._isAbsoluteRelation(node, parent)) {
-      parent = parent.parent || parent;
-      parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
-      node.constraints.LayoutSelfPosition =
-        Constraints.LayoutSelfPosition.Absolute;
-    }
+    // if (Tree._isAbsoluteRelation(node, parent)) {
+    //   parent = parent.parent || parent;
+    //   parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
+    //   node.constraints.LayoutSelfPosition =
+    //     Constraints.LayoutSelfPosition.Absolute;
+    // }
 
     node.set('parent', parent);
     parent.set('children', parent.children.concat(node));
