@@ -9,14 +9,14 @@ import Model from '../../model';
 import Feature from '../../feature';
 import Store from '../../../helper/store';
 
-let optimizeWidth: number = 0;
+let designWidth: number = 0;
 class WG1M1 extends Model.WidgetModel {
   constructor() {
     // 元素构成规则
     super('wg1-m1', 0, 0, 0, 1, Common.LvS, Common.QWidget);
     this.canLeftFlex = false;
     this.canRightFlex = false;
-    optimizeWidth = Store.get('optimizeWidth');
+    designWidth = Store.get('designWidth');
   }
 
   _initNode() {
@@ -26,10 +26,7 @@ class WG1M1 extends Model.WidgetModel {
 
   // 元素大小
   regular1() {
-    let bool = Feature.sizeWidthGreat(
-      this._matchNodes['0'],
-      optimizeWidth * 0.6,
-    );
+    let bool = Feature.sizeWidthGreat(this._matchNodes['0'], designWidth * 0.6);
     return bool;
   }
 

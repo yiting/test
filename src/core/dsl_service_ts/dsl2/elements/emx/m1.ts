@@ -11,6 +11,7 @@ import Model from '../../model';
 import Utils from '../../utils';
 
 class EMXM1 extends Model.ElementXModel {
+  _maxSize: number;
   constructor() {
     // 无限节点
     super('emx-m1', 0, 0, 0, 0, Common.LvA, Common.QText);
@@ -23,6 +24,7 @@ class EMXM1 extends Model.ElementXModel {
     if (nodes.length === 0) {
       return result;
     }
+    this._maxSize = 0;
 
     let res1: any[] = this.regular1(nodes);
     let res2: any[] = this.regular2(res1);
@@ -46,11 +48,12 @@ class EMXM1 extends Model.ElementXModel {
           nd.data.styles.texts[0].size) ||
         0,
     );
-    let maxSize = Math.max(...sizes);
+    this._maxSize = Math.max(...sizes);
     const lineHeight = 1.33; //sketch 默认行高
-    maxSize = maxSize > 0 ? maxSize * lineHeight : 50;
+    this._maxSize = this._maxSize > 0 ? this._maxSize : 50;
+    const _maxSize = this._maxSize * lineHeight;
     nodes.forEach((nd: any) => {
-      if (nd.height <= maxSize) {
+      if (nd.height <= _maxSize) {
         result.push(nd);
       }
     });
@@ -107,6 +110,7 @@ class EMXM1 extends Model.ElementXModel {
 
   // 判断条件3, 4：元素间彼此相间距离小于30, 个数大于等于2个
   regular3(groups: any[]) {
+    const that = this;
     let result: any[] = [];
 
     if (groups.length === 0) {
@@ -128,7 +132,7 @@ class EMXM1 extends Model.ElementXModel {
           let curNode: any = nodes[i];
 
           if (
-            curNode.abX - preNode.abXops <= 30 &&
+            curNode.abX - preNode.abXops <= that._maxSize &&
             curNode.abX - preNode.abXops >= -4
           ) {
             // 连续的元素

@@ -75,7 +75,7 @@ class H5Builder extends Builder {
 
   getTagString() {
     const htmlStr = HtmlDom.getHtmlString(this.htmlDom);
-    const optimizeWidth = Store.get('optimizeWidth');
+    const designWidth = Store.get('designWidth');
     // 添加完整的html结构
     const tpl = this._getTpl();
     const cssPath = path.relative(
@@ -83,7 +83,7 @@ class H5Builder extends Builder {
       renderConfig.HTML.output.cssPath,
     );
     const result = tpl(htmlStr, {
-      designWidth: optimizeWidth,
+      designWidth: designWidth,
     }).replace(/%\{cssFilePath\}/gim, cssPath);
     return result;
   }

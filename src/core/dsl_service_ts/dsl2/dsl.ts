@@ -18,7 +18,7 @@ const Loger = QLog.getInstance(QLog.moduleData.render);
  * @return {Json}
  */
 const config = function() {
-  const width = Store.get('optimizeWidth');
+  const width = Store.get('designWidth');
   return Config.create(width);
 };
 

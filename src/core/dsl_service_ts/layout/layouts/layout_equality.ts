@@ -5,7 +5,7 @@ import Store from '../../helper/store';
 import Constraints from '../../helper/constraints';
 
 let ErrorCoefficient: number = 0;
-let OptimizeWidth: number = 0;
+let designWidth: number = 0;
 
 class LayoutEquality {
   /**
@@ -17,11 +17,12 @@ class LayoutEquality {
    */
   handle(_parent: any, _nodes: any) {
     const that: any = this;
+
     // 剔除绝对定位元素
     const parent: any = _parent;
     const flexNodes = LayoutEquality.filterFlexNodes(_nodes);
     ErrorCoefficient = Store.get('errorCoefficient') || 0;
-    OptimizeWidth = Store.get('optimizeWidth') || 0;
+    designWidth = Store.get('designWidth') || 0;
     // 如果子节点不水平，则返回
     if (!Utils.isHorizontal(flexNodes)) {
       return;
@@ -93,7 +94,7 @@ class LayoutEquality {
     }
 
     const centerNode: any = flexNodes.find((nd: any) => {
-      return Math.abs(nd.abX + nd.abXops - OptimizeWidth) < ErrorCoefficient;
+      return Math.abs(nd.abX + nd.abXops - designWidth) < ErrorCoefficient;
     });
     const centerIndex = flexNodes.indexOf(centerNode);
     const prev: any = flexNodes[centerIndex - 1];
@@ -102,14 +103,14 @@ class LayoutEquality {
     if (centerNode && prev && next) {
       fixed =
         prev.abX > 0 &&
-        next.abXops < OptimizeWidth &&
-        (centerNode.abX - prev.abXops) / OptimizeWidth > 0.1 &&
-        (next.abX - centerNode.abXops) / OptimizeWidth > 0.1 &&
-        Math.abs(prev.abX - (OptimizeWidth - next.abXops)) <= ErrorCoefficient;
+        next.abXops < designWidth &&
+        (centerNode.abX - prev.abXops) / designWidth >= 0.09 &&
+        (next.abX - centerNode.abXops) / designWidth >= 0.09 &&
+        Math.abs(prev.abX - (designWidth - next.abXops)) <= ErrorCoefficient;
     } else if (centerNode && prev) {
-      fixed = prev.abX > 0 && prev.abX / OptimizeWidth < 0.1;
+      fixed = prev.abX > 0 && prev.abX / designWidth < 0.1;
     } else if (centerNode && next) {
-      fixed = next.abXops < OptimizeWidth && next.abXops / OptimizeWidth > 0.9;
+      fixed = next.abXops < designWidth && next.abXops / designWidth > 0.9;
     }
 
     return fixed && [prev, centerNode, next];

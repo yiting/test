@@ -6,8 +6,8 @@ export default {
     // if(this.children)
     const range: any = Utils.calRange(this.children);
 
-    const OptimizeWidth = Store.get('optimizeWidth') || 0;
-    if (this.width === OptimizeWidth && range.width > this.width) {
+    const designWidth = Store.get('designWidth') || 0;
+    if (this.width === designWidth && range.width > this.width) {
       return 'auto';
     }
     if (this.styles.texts) {

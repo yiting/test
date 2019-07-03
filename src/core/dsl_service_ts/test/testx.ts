@@ -11,7 +11,8 @@ const value: any = dslServer.process(
   },
   {
     optimizeWidth: 750,
-    optimizeHeight: 750,
+    designWidth: 750,
+    optimizeHeight: 375,
     showTagAttrInfo: true,
     isLocalTest: true,
     applyInfo_user: 'testuser',

@@ -25,7 +25,7 @@ class Tree {
     this._treeData.set('parent', null);
     this._treeData.set('type', Common.QBody);
     this._treeData.set('abX', 0);
-    this._treeData.set('abXops', DSLOptions.optimizeWidth);
+    this._treeData.set('abXops', DSLOptions.designWidth);
     this._treeData.set('isCalculate', true);
 
     // 组件模型信息储存
@@ -294,7 +294,7 @@ class Tree {
             child.modelName !== 'wg1-m1' &&
             child.modelName !== 'wg1-m2' &&
             // 层级关系
-            child.zIndex >= parent.zIndex &&
+            // child.zIndex >= parent.zIndex &&
             // 包含关系
             (_utils.isWrap(parent, child) ||
               // 水平相连、垂直包含关系
@@ -338,7 +338,7 @@ class Tree {
     //   node.abXops >= parent.abXops && node.abYops >= parent.abYops;
     const left = node.abX <= parent.abX && node.abX > 0;
     const right =
-      node.abXops >= parent.abXops && node.abXops < DSLOptions.optimizeWidth;
+      node.abXops >= parent.abXops && node.abXops < DSLOptions.designWidth;
     const bottom = node.abYops >= parent.abYops;
     const top = node.abY <= parent.abY;
     const rate = 2;

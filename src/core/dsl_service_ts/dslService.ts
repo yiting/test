@@ -81,6 +81,8 @@ function _initOptions(options: any) {
     // options.optimizeWidth, options.optimizeHeight 匹配范围的优化
     optimizeWidth: 750,
     optimizeHeight: 750,
+    designWidth: 750,
+    designHeight: 750,
     // 布局类型
     layoutType: Common.FlexLayout,
     // 调试模式
