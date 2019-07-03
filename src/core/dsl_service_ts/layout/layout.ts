@@ -30,7 +30,7 @@ const walkOut = function(layoutObject: any, dslTree: any) {
   layoutObject.handle(dslTree, children);
 };
 
-function layout(dslTree: any) {
+function handle(dslTree: any) {
   let _logStep = 'start';
   try {
     // 等分
@@ -56,5 +56,5 @@ function layout(dslTree: any) {
 }
 
 export default {
-  layout,
+  handle,
 };

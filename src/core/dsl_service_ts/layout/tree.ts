@@ -1,60 +1,9 @@
-import Common from './common';
+import Common from '../dsl2/common';
 import Utils from './utils';
-import Model from './model';
-import Constraints from './constraints';
-import QLog from '../log/qlog';
+import Model from '../dsl2/model';
+import Constraints from '../helper/constraints';
 import Store from '../helper/store';
-const Loger = QLog.getInstance(QLog.moduleData.render);
 const DSLOptions: any = {};
-/**
- * 将组件进行排版布局
- * @param {Array} widgetModels 进行布局的组件模型
- * @param {Array} elementModels 进行布局的元素模型
- * @returns {Object} 返回结构树
- */
-const join = function(widgetModels: any, elementModels: any) {
-  if (!widgetModels && !elementModels) {
-    return null;
-  }
-  Object.assign(DSLOptions, Store.getAll());
-  const dslTree: any = new Tree(); // dsl树
-  const arr = elementModels.concat(widgetModels);
-  // 按面积排序
-  arr.sort((a: any, b: any) => b.width * b.height - a.width * a.height);
-  try {
-    dslTree._setModelData(arr);
-  } catch (e) {
-    Loger.error(`dsl/group.ts join()
-      desc: 储存记录添加的MatchData
-      error:${e}`);
-  }
-  try {
-    dslTree._addNode(arr);
-  } catch (e) {
-    Loger.error(`dsl/group.ts join()
-      desc: 元素重组
-      error:${e}`);
-  }
-  try {
-    // 创建layers
-    dslTree._rowNode();
-  } catch (e) {
-    Loger.error(`dsl/group.ts join()
-      desc: 创建layers
-      error:${e}`);
-  }
-  try {
-    dslTree._columnNode();
-  } catch (e) {
-    Loger.error(`dsl/group.ts join()
-      desc: 对节点进行成列排版
-      error:${e}`);
-  }
-  return dslTree;
-};
-function con(a: any, b: any, aid: string, bid: string) {
-  return (a.id == aid || a.id == bid) && (b.id == aid || b.id == bid);
-}
 /**
  * DSL树的构建类,用于生成和输出标准数据
  */
@@ -70,12 +19,13 @@ class Tree {
   static LayerId: number;
 
   constructor() {
+    Object.assign(DSLOptions, Store.getAll());
     // 创建根节点, 节点树总数据, 即为RenderData
     this._treeData = Tree.createNodeData(null);
     this._treeData.set('parent', null);
     this._treeData.set('type', Common.QBody);
     this._treeData.set('abX', 0);
-    this._treeData.set('abXops', Common.DesignWidth);
+    this._treeData.set('abXops', DSLOptions.designWidth);
     this._treeData.set('isCalculate', true);
 
     // 组件模型信息储存
@@ -107,10 +57,10 @@ class Tree {
     const rowLayers = Utils.gatherByLogic(children, (a: any, b: any) => {
       // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
       /* if (a._abY < b._abY && a._zIndex > b._zIndex) {
-        // 使用-1是因为避免相连元素为一组
-        return Utils.isYConnect(a, b, -1);
-      }
-      return Utils.isYWrap(a, b); */
+              // 使用-1是因为避免相连元素为一组
+              return Utils.isYConnect(a, b, -1);
+            }
+            return Utils.isYWrap(a, b); */
       if (Utils.isYConnect(a, b, -1)) {
         if (
           // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
@@ -288,8 +238,10 @@ class Tree {
 
       if (
         arr.length === 1 &&
-        firstNode.constraints['LayoutSelfPosition'] ===
-          Constraints.LayoutSelfPosition.Absolute
+        (firstNode.type === Common.QWidget ||
+          firstNode.type === Common.QLayer ||
+          firstNode.constraints['LayoutSelfPosition'] ===
+            Constraints.LayoutSelfPosition.Absolute)
       ) {
         // 当纵向节点只有一个时
         newChildren.push(firstNode);
@@ -334,6 +286,7 @@ class Tree {
            * 在父节点上,
            * 描述：parent面积必 大于等于 child面积，通过判断是否存在包含关系得出，child是否为parent子节点
            */
+          const _utils = Utils;
           if (
             // 父节点必须不是文本类型
             parent.type !== Common.QText &&
@@ -341,20 +294,20 @@ class Tree {
             child.modelName !== 'wg1-m1' &&
             child.modelName !== 'wg1-m2' &&
             // 层级关系
-            // child.zIndex > parent.zIndex &&
+            // child.zIndex >= parent.zIndex &&
             // 包含关系
-            (Utils.isWrap(parent, child) ||
+            (_utils.isWrap(parent, child) ||
               // 水平相连、垂直包含关系
-              (Utils.isXConnect(parent, child, -1) &&
-                Utils.isYWrap(parent, child)) ||
+              (_utils.isXConnect(parent, child, -1) &&
+                _utils.isYWrap(parent, child)) ||
               // 水平包含、垂直相连
               (parent.abY > child.abY &&
-                Utils.isYConnect(parent, child, -1) &&
-                Utils.isXWrap(parent, child)) ||
+                _utils.isYConnect(parent, child, -1) &&
+                _utils.isXWrap(parent, child)) ||
               // 相连不包含关系（占只4个角），两个面积差值较大
-              (Utils.isConnect(parent, child, -1) &&
-                !Utils.isXWrap(parent, child) &&
-                !Utils.isYWrap(parent, child) &&
+              (_utils.isConnect(parent, child, -1) &&
+                !_utils.isXWrap(parent, child) &&
+                !_utils.isYWrap(parent, child) &&
                 parent.width / child.width > 2 &&
                 parent.height / child.height > 2))
           ) {
@@ -385,7 +338,7 @@ class Tree {
     //   node.abXops >= parent.abXops && node.abYops >= parent.abYops;
     const left = node.abX <= parent.abX && node.abX > 0;
     const right =
-      node.abXops >= parent.abXops && node.abXops < DSLOptions.optimizeWidth;
+      node.abXops >= parent.abXops && node.abXops < DSLOptions.designWidth;
     const bottom = node.abYops >= parent.abYops;
     const top = node.abY <= parent.abY;
     const rate = 2;
@@ -406,12 +359,12 @@ class Tree {
     let parent: any = _parent;
     let child: any = _child;
     const node = Tree.createNodeData(child);
-    if (Tree._isAbsoluteRelation(node, parent)) {
-      parent = parent.parent || parent;
-      parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
-      node.constraints.LayoutSelfPosition =
-        Constraints.LayoutSelfPosition.Absolute;
-    }
+    // if (Tree._isAbsoluteRelation(node, parent)) {
+    //   parent = parent.parent || parent;
+    //   parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
+    //   node.constraints.LayoutSelfPosition =
+    //     Constraints.LayoutSelfPosition.Absolute;
+    // }
 
     node.set('parent', parent);
     parent.set('children', parent.children.concat(node));
@@ -578,7 +531,4 @@ class Tree {
 // 创建layer时的自增id
 Tree.LayerId = 0;
 
-export default {
-  join,
-  Tree,
-};
+export default Tree;

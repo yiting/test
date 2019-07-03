@@ -1,8 +1,8 @@
 /**
  * 边界重定义
  */
-import Common from '../../dsl/common';
-import Constraints from '../../dsl/constraints';
+import Common from '../../dsl2/common';
+import Constraints from '../../helper/constraints';
 import QLog from '../../log/qlog';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);

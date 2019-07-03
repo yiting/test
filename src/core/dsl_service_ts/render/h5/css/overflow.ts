@@ -1,11 +1,13 @@
 import Utils from '../../utils';
-
+import Store from '../../../helper/store';
 export default {
   key: 'overflow',
   value() {
     // if(this.children)
     const range: any = Utils.calRange(this.children);
-    if (this.width === 750 && range.width > this.width) {
+
+    const designWidth = Store.get('designWidth') || 0;
+    if (this.width === designWidth && range.width > this.width) {
       return 'auto';
     }
     if (this.styles.texts) {

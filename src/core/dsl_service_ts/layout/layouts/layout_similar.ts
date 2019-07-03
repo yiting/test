@@ -1,18 +1,15 @@
 // 循环结构的逻辑处理模块
-import Common from '../common';
+import Common from '../../dsl2/common';
 import Utils from '../utils';
-import Model from '../model';
-import Group from '../group';
-import Constraints from '../constraints';
+import Constraints from '../../helper/constraints';
 import Store from '../../helper/store';
 
 let ErrorCoefficient: number = 0;
 
-class LayoutSimilar extends Model.LayoutModel {
+class LayoutSimilar {
   similarIndex: number;
 
   constructor() {
-    super();
     this.similarIndex = 1;
   }
 

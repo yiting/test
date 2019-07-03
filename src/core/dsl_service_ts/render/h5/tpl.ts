@@ -1,5 +1,10 @@
-export default `<!DOCTYPE html>
-<html lang="zh-cmn-Hans" data-use-rem="750">
+export default (
+  htmlStr: string,
+  option: {
+    designWidth: number;
+  },
+) => `<!DOCTYPE html>
+<html lang="zh-cmn-Hans" data-use-rem="${option.designWidth}">
 
 <head>
   <meta charset="UTF-8" />
@@ -19,20 +24,10 @@ export default `<!DOCTYPE html>
   <title></title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="cssFilePath" class="contentCss" />
-  <style style="display:none">
-    * {
-      -webkit-touch-callout:none;
-      -webkit-user-select:none;
-      -khtml-user-select:none;
-      -moz-user-select:none;
-      -ms-user-select:none;
-      user-select:none;
-    }
-  </style>
 </head>
 
 <body ontouchstart>
-  %{htmlStr}
+  ${htmlStr}
   <script type="text/javascript">
     (function (win) {
       var doc = win.document,
@@ -51,6 +46,9 @@ export default `<!DOCTYPE html>
       win.addEventListener(resizeEvt, recalc, false);
       doc.addEventListener("DOMContentLoaded", recalc, false);
     })(window);
+  </script>
+  <script>
+  if(parent==self){[].map.call(document.getElementsByTagName("*"),(item)=>{item.removeAttribute("nid");item.removeAttribute("sim");item.removeAttribute("md")});}
   </script>
 </body>
 

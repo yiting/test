@@ -1,16 +1,15 @@
 // 循环结构的逻辑处理模块
-import Common from '../common';
+import Common from '../../dsl2/common';
 import Utils from '../utils';
-import Model from '../model';
 import Group from '../group';
-import Constraints from '../constraints';
+import Constraints from '../../helper/constraints';
 import Similar from './layout_similar';
-import { debug } from 'util';
 import Store from '../../helper/store';
+import Tree from '../tree';
 
 const CYCLE_MODEL_NAME = 'cycle-01';
 let ErrorCoefficient: number = 0;
-class LayoutCircle extends Model.LayoutModel {
+class LayoutCircle {
   // 筛选前排序
   static _sort(parent: any, opt: any) {
     parent.children.sort((a: any, b: any) => a[opt] - b[opt]);
@@ -200,7 +199,7 @@ class LayoutCircle extends Model.LayoutModel {
         // 对新组合构建包含结构
         const newChild = Object.keys(target).map((key: string) => {
           const _group = target[key];
-          const newParent = Group.Tree.createNodeData(null);
+          const newParent = Tree.createNodeData(null);
           _group.forEach((child: any) => {
             child.set('parent', newParent);
           });
@@ -212,11 +211,8 @@ class LayoutCircle extends Model.LayoutModel {
           newParent.resize();
           return [newParent];
         });
-        const newCycleParent = Group.Tree.createNodeData(null);
-        const newCycleData = Group.Tree.createCycleData(
-          newCycleParent,
-          newChild,
-        );
+        const newCycleParent = Tree.createNodeData(null);
+        const newCycleData = Tree.createCycleData(newCycleParent, newChild);
         newCycleParent.set('children', [newCycleData]);
         if (rowSimilarIndex) {
           newCycleParent.set('similarId', rowSimilarIndex);
@@ -274,7 +270,7 @@ class LayoutCircle extends Model.LayoutModel {
       inSimilar.push(...item);
     });
     // 合并循环节点为新节点
-    const newCycleData = Group.Tree.createCycleData(_parent, _target);
+    const newCycleData = Tree.createCycleData(_parent, _target);
     // 加入新节点到父级元素
     children.push(newCycleData);
     // 从节点中剔除被循环的节点
@@ -297,8 +293,8 @@ class LayoutCircle extends Model.LayoutModel {
       inRemove.push(...node);
     });
     // 合并循环节点为新节点
-    const newCycleParent = Group.Tree.createNodeData(null);
-    const newCycleData = Group.Tree.createCycleData(newCycleParent, inWrap);
+    const newCycleParent = Tree.createNodeData(null);
+    const newCycleData = Tree.createCycleData(newCycleParent, inWrap);
     newCycleData.constraints['LayoutWrap'] = Constraints.LayoutWrap.Wrap;
     newCycleData.constraints['LayoutFixedWidth'] =
       Constraints.LayoutFixedWidth.Fixed;
@@ -320,7 +316,7 @@ class LayoutCircle extends Model.LayoutModel {
     const similarId: any = Similar.similarIndex;
 
     _target.forEach((group: any) => {
-      const newWrapData = Group.Tree.createNodeData(null);
+      const newWrapData = Tree.createNodeData(null);
       newWrapData.set('children', group);
       newWrapData.set('parent', _parent);
       newWrapData.set('similarId', similarId);

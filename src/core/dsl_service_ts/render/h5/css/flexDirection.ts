@@ -1,4 +1,4 @@
-import Constraints from '../../../dsl/constraints';
+import Constraints from '../../../helper/constraints';
 
 export default {
   key: 'flexDirection',
