@@ -45,7 +45,7 @@ const [
   'arrow',
   'shapePath',
 ];
-const { walkout, isSameColor } = require('../utils');
+const { walkout, isSameColor, serialize } = require('../utils');
 var sliceArr = require('../rules/testData/ai.json');
 var nodesMergeJudgeode = new NodesMergeJudgeode();
 
@@ -70,6 +70,7 @@ let process = function(node, aiData, ruleMap) {
     // ruleConfig.aiArr = sliceArr;
     ImageMergeProcessor.init(ruleConfig);
     ImageMergeProcessor.merge(node); // 合并图片
+    modifySize(node);
   } catch (err) {
     Logger.error('图元合并报错！');
   }
@@ -241,6 +242,26 @@ class ImageMergeProcessor {
       }
     });
   }
+}
+// 裁剪越界图片
+function modifySize(rootNode) {
+  const images = serialize(rootNode).filter(({ type }) => type === QImage.name);
+  images.forEach(img => {
+    if (img.abX < 0) {
+      img.width += img.abX;
+      img.abX = 0;
+    }
+    if (img.abY < 0) {
+      img.height += img.abY;
+      img.abY = 0;
+    }
+    if (img.abXops > rootNode.abXops) {
+      img.width += rootNode.abXops - img.abXops;
+    }
+    if (img.abYops > rootNode.abYops) {
+      img.height += rootNode.abYops - img.abYops;
+    }
+  });
 }
 function needConvertToImage(node) {
   switch (node.type) {
