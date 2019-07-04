@@ -25,7 +25,6 @@ class EMXM1 extends Model.ElementXModel {
       return result;
     }
     this._maxSize = 0;
-
     let res1: any[] = this.regular1(nodes);
     let res2: any[] = this.regular2(res1);
     let res3: any[] = this.regular3(res2);
@@ -130,7 +129,6 @@ class EMXM1 extends Model.ElementXModel {
         for (let i = 1; i < nodes.length; i++) {
           let preNode: any = nodes[i - 1];
           let curNode: any = nodes[i];
-
           if (
             curNode.abX - preNode.abXops <= that._maxSize &&
             curNode.abX - preNode.abXops >= -4
