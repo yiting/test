@@ -245,6 +245,15 @@ class CssDom {
   }
 
   _hasWidth() {
+    if (this.type === Common.QText && this.styles.texts) {
+      const lineHeight =
+        this.styles.lineHeight ||
+        Math.max(this.styles.texts.map((s: any) => s.size)) * 1.33;
+      if (this._height / lineHeight > 1.1) {
+        // 如果高度高于行高，则为多行，固定宽度
+        return true;
+      }
+    }
     if (
       this.type === Common.QText &&
       !this._isParentVertical() &&
@@ -266,22 +275,8 @@ class CssDom {
     ) {
       return true;
     }
-    if (
-      this.parent &&
-      this.parent.constraints.LayoutDirection ===
-        Constraints.LayoutDirection.Horizontal &&
-      this.parent.constraints.LayoutJustifyContent ===
-        Constraints.LayoutJustifyContent.Center
-    ) {
-      return true;
-    }
-    if (
-      this.parent &&
-      this.parent.constraints.LayoutDirection ===
-        Constraints.LayoutDirection.Vertical &&
-      this.parent.constraints.LayoutAlignItems ===
-        Constraints.LayoutAlignItems.Center
-    ) {
+
+    if (this.styles.textAlign == 1) {
       return true;
     }
     return false;
