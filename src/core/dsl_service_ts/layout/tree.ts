@@ -3,6 +3,53 @@ import Utils from './utils';
 import Model from '../dsl2/model';
 import Constraints from '../helper/constraints';
 import Store from '../helper/store';
+
+function calColumn(layer: any[]) {
+  layer.sort((a: any, b: any) => a.abY + a.abYops - b.abYops - b.abY);
+  const rowNodes: any[] = [];
+  const outer: any[] = [];
+  layer.forEach((l: any, i: number) => {
+    // 如果存在在两个间隙间的元素，则绝对定位，拆分行
+    const cache: any = [];
+    let prev: any;
+    let next: any;
+    const isOuter = cache.some((c: any) => {
+      if (!prev && c.abYops > l.abY) {
+        prev = c;
+        return false;
+      }
+      if (prev && c.abY < l.abYops) {
+        next = c;
+        return true;
+      }
+      return false;
+    });
+    if (isOuter) {
+      outer.push(l);
+    } else {
+      rowNodes.push(l);
+    }
+  });
+  const absNodes: any[] = [];
+  const colNodes: any[] = [];
+  outer.forEach((a: any) => {
+    const isAbsolute = rowNodes.some((b: any) => {
+      return Utils.isConnect(a, b);
+    });
+    if (isAbsolute) {
+      absNodes.push(a);
+    } else {
+      colNodes.push(a);
+    }
+  });
+
+  return {
+    absNodes,
+    colNodes,
+    rowNodes,
+  };
+}
+
 const DSLOptions: any = {};
 /**
  * DSL树的构建类,用于生成和输出标准数据
@@ -38,15 +85,15 @@ class Tree {
 
   _row(parent: any) {
     const { children } = parent;
-
-    // 从里面到外进行组合分析
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-      if (child.children !== 0) {
-        // 继续进入下一层
-        this._row(child);
-      }
-    }
+    /* 
+        // 从里面到外进行组合分析
+        for (let i = 0; i < children.length; i++) {
+          const child = children[i];
+          if (child.children !== 0) {
+            // 继续进入下一层
+            this._row(child);
+          }
+        } */
     // 如果只有一个子节点，则不生成新组
     if (children.length === 1) {
       // 当只包含一个元素时就不用创建QLayer
@@ -54,7 +101,7 @@ class Tree {
     }
 
     // 分解行
-    const rowLayers = Utils.gatherByLogic(children, (a: any, b: any) => {
+    const layers = Utils.gatherByLogic(children, (a: any, b: any) => {
       // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
       /* if (a._abY < b._abY && a._zIndex > b._zIndex) {
               // 使用-1是因为避免相连元素为一组
@@ -74,35 +121,6 @@ class Tree {
       }
       return false;
     });
-    const layers = rowLayers;
-    // 判断是否横跨两行结构
-    // const layers: any[] = [];
-    // rowLayers.forEach((layer: any) => {
-    //   // 中心点排序
-    //   layer.sort((a: any, b: any) => a.abY + a.abYops - b.abYops - b.abY);
-    //   let prevIndex = 0;
-    //   layer.forEach((l: any, i: number) => {
-    //     const prev = layer[i - 1];
-    //     const next = layer[i + 1];
-    //     // 如果存在在两个间隙间的元素，则绝对定位，拆分行
-    //     if (
-    //       prev &&
-    //       next &&
-    //       prev.abYops < next.abY &&
-    //       l.abY <= prev.abYops &&
-    //       l.abYops >= next.abY
-    //     ) {
-    //       // 赋予绝对定位
-    //       l.constraints.LayoutSelfPosition =
-    //         Constraints.LayoutSelfPosition.Absolute;
-    //       // 拆分行
-    //       layers.push(layer.slice(prevIndex, i));
-    //       layers.push([l]);
-    //       prevIndex = i + 1;
-    //     }
-    //   });
-    //   layers.push(layer.slice(prevIndex));
-    // });
     // 如果只有一组，则不生产新组
     if (layers.length === 1) {
       return;
@@ -119,8 +137,6 @@ class Tree {
       );
       Object.assign(l, range);
     });
-    // 自上向下排序
-    layers.sort((a: any, b: any) => a.abY - b.abY);
 
     const newChildren: any = [];
     layers.forEach((arr: any) => {
@@ -148,6 +164,12 @@ class Tree {
       ) {
         newChildren.push(firstNode);
       } else {
+        // // 判断是否横跨两行结构
+        // const { absNodes, rowNodes, colNodes } = calColumn(arr);
+        // absNodes.forEach((nd: any) => {
+        //   nd.constraints.LayoutSelfPosition = Constraints.LayoutSelfPosition.Absolute;
+        // });
+
         // 多个节点情况
         // 自左而右排序
         arr.sort((a: any, b: any) => a.abX - b.abX);
@@ -177,15 +199,14 @@ class Tree {
 
   _column(parent: any) {
     const { children } = parent;
-
     // 从里面到外进行组合分析
-    for (let i = 0; i < children.length; i++) {
+    /* for (let i = 0; i < children.length; i++) {
       const child = children[i];
       if (child.children !== 0) {
         // 继续进入下一层
         this._column(child);
       }
-    }
+    } */
     // 如果只有一个子节点，则不生成新组
     if (children.length === 1) {
       // 当只包含一个元素时就不用创建QLayer
@@ -359,12 +380,12 @@ class Tree {
     let parent: any = _parent;
     let child: any = _child;
     const node = Tree.createNodeData(child);
-    // if (Tree._isAbsoluteRelation(node, parent)) {
-    //   parent = parent.parent || parent;
-    //   parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
-    //   node.constraints.LayoutSelfPosition =
-    //     Constraints.LayoutSelfPosition.Absolute;
-    // }
+    if (Tree._isAbsoluteRelation(node, parent)) {
+      parent = parent.parent || parent;
+      parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
+      node.constraints.LayoutSelfPosition =
+        Constraints.LayoutSelfPosition.Absolute;
+    }
 
     node.set('parent', parent);
     parent.set('children', parent.children.concat(node));
@@ -395,15 +416,18 @@ class Tree {
   /**
    * 对节点进行成组排版
    */
-  _rowNode() {
-    this._row(this._treeData);
-  }
-
-  /**
-   * 对节点进行成列排版
-   */
-  _columnNode() {
-    this._column(this._treeData);
+  createLayer(_treeData: any) {
+    this._row(_treeData);
+    this._column(_treeData);
+    // 从里面到外进行组合分析
+    const { children } = _treeData;
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      if (child.children !== 0) {
+        // 继续进入下一层
+        this.createLayer(child);
+      }
+    }
   }
 
   //
@@ -415,25 +439,9 @@ class Tree {
     that._modelData[mdata.id] = mdata;
   }
 
-  //
-  setLayoutType(layoutType: any) {
-    this._layoutType = layoutType;
-  }
-
-  //
-  getModelData(id: any) {
-    const that: any = this;
-    return that._modelData[id];
-  }
-
   // 获取RenderData数据
   getRenderData() {
     return this._treeData;
-  }
-
-  //
-  getLayoutType() {
-    return this._layoutType;
   }
 
   /**

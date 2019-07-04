@@ -28,6 +28,11 @@ class LayoutCircle {
     }
     ErrorCoefficient = Store.get('errorCoefficient') || 0;
     const isHorizontal = Utils.isHorizontal(nodes);
+    if (isHorizontal) {
+      LayoutCircle._sort(parent, 'abX');
+    } else {
+      LayoutCircle._sort(parent, 'abY');
+    }
     /**
      * 多重循环
      */

@@ -22,7 +22,7 @@ const MODEL_LIST: any[] = [
   new WG3M2(),
   // new WG3M3(),
 
-  new WG4M1(),
+  // new WG4M1(),
 ];
 
 export default MODEL_LIST;

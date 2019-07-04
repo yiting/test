@@ -32,9 +32,18 @@ const handle = function(widgetModels: any, elementModels: any) {
       desc: 元素重组
       error:${e}`);
   }
+
   try {
     // 创建layers
-    dslTree._rowNode();
+    dslTree.createLayer(dslTree._treeData);
+  } catch (e) {
+    Loger.error(`dsl/group.ts createLayer()
+      desc: 创建layers
+      error:${e}`);
+  }
+  /* try {
+    // 创建layers
+    dslTree._rowNode(dslTree._treeData);
   } catch (e) {
     Loger.error(`dsl/group.ts join()
       desc: 创建layers
@@ -46,7 +55,7 @@ const handle = function(widgetModels: any, elementModels: any) {
     Loger.error(`dsl/group.ts join()
       desc: 对节点进行成列排版
       error:${e}`);
-  }
+  } */
   return dslTree;
 };
 function con(a: any, b: any, aid: string, bid: string) {
