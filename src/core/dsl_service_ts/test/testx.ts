@@ -10,7 +10,7 @@ const value: any = dslServer.process(
     nodes: designjson,
   },
   {
-    designWidth: 1081,
+    designWidth: 375,
     optimizeWidth: 750,
     optimizeHeight: 375,
     showTagAttrInfo: true,
