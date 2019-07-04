@@ -27,7 +27,7 @@ class ZIndexSimilar extends Rule {
       nodeB.name.indexOf('Group 6 Copy') > -1
     ) {
       // debugger;
-      console.log(1);
+      // console.log(1);
     }
     if (nodeALevelArr.length == 0 || nodeBLevelArr.length == 0) {
       return value;

@@ -17,10 +17,12 @@ export async function downloadSketch(context: Context) {
   const { sketchPath: url } = request.body;
   util.storeLoginData(context);
   logger = qlog.getInstance(store.getAll());
+  logger.debug('开始下载设计稿');
   const imgCombineMac = new ImgCombineMac();
   imgCombineMac.init({});
   let result = await imgCombineMac.downloadSketch(url);
   // 解压缩
+  logger.debug('开始解压缩设计稿');
   let projectName = url.substring(
     url.lastIndexOf('/') + 1,
     url.lastIndexOf('.sketch'),
