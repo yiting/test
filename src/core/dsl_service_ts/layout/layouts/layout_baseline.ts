@@ -1,10 +1,7 @@
 // 绝对定位布局模型处理
-import Common from '../common';
 import Utils from '../utils';
-import Model from '../model';
-import Constrains from '../constraints';
-import left from '../../render/h5/css/left';
-import { debug } from 'util';
+// import Model from '../model';
+import Constrains from '../../helper/constraints';
 
 // flex layout 的处理核心是
 //
@@ -18,7 +15,7 @@ import { debug } from 'util';
 // 1: 如果
 // s2: 其余的以绝对定位
 
-class LayoutBaseLine extends Model.LayoutModel {
+class LayoutBaseLine {
   /* constructor(modelType: any) {
         super(modelType);
       } */

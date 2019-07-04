@@ -1,7 +1,6 @@
 import Utils from '../utils';
-import Model from '../model';
 
-class LayoutSort extends Model.LayoutModel {
+class LayoutSort {
   /* constructor(modelType: any) {
     super(modelType);
   } */

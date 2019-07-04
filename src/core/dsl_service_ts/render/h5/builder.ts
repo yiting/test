@@ -2,7 +2,6 @@
 import path from 'path';
 
 // 此模块为h5解析模块
-import Common from '../../dsl/common';
 import Builder from '../builder';
 import CssDom from './dom_css';
 import SimilarCssDom from './dom_similar_css';
@@ -12,8 +11,8 @@ import QLog from '../../log/qlog';
 
 import Store from '../../helper/store';
 
-import tplString from './tpl';
-import testTplString from './test_tpl';
+import tpl from './tpl';
+import testTpl from './test_tpl';
 import * as renderConfig from '../config.json';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
@@ -76,16 +75,16 @@ class H5Builder extends Builder {
 
   getTagString() {
     const htmlStr = HtmlDom.getHtmlString(this.htmlDom);
-
+    const designWidth = Store.get('designWidth');
     // 添加完整的html结构
     const tpl = this._getTpl();
     const cssPath = path.relative(
       renderConfig.HTML.output.htmlPath,
       renderConfig.HTML.output.cssPath,
     );
-    const result = tpl
-      .replace(/%\{cssPath\}/gim, cssPath)
-      .replace(/%\{htmlStr\}/gim, htmlStr);
+    const result = tpl(htmlStr, {
+      designWidth: designWidth,
+    }).replace(/%\{cssFilePath\}/gim, cssPath);
     return result;
   }
 
@@ -100,9 +99,9 @@ class H5Builder extends Builder {
   _getTpl() {
     const isLocalTest = Store.get('isLocalTest');
     if (isLocalTest) {
-      return testTplString;
+      return testTpl;
     }
-    return tplString;
+    return tpl;
   }
 }
 

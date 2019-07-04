@@ -1,8 +1,9 @@
 // dsl模块服务通过输入设计稿抽象过后的数据，然后输出对应的字符串
-import Common from './dsl/common';
+import Common from './dsl2/common';
 import Dsl from './dsl2/dsl';
 // 暂时起名为Layout模块
-import Layout from './dsl/dsl';
+import Layout from './layout/layout';
+import Group from './layout/group';
 import Render from './render/render';
 import Store from './helper/store';
 import { debug } from 'util';
@@ -34,23 +35,16 @@ function _process(_input: any, _options: any): object {
   let dslTree: any;
   try {
     // 生成dsl树, 传入match的组件模型和元素模型
-    dslTree = Layout._groupModels(dslModel.widgets, dslModel.elements);
+    dslTree = Group.handle(dslModel.widgets, dslModel.elements);
   } catch (e) {
     console.log('生成dsl树出错');
-    // Loger.error(`dsl/dsl.ts pipe()
-    //   desc: 生成dsl树
-    //  error:${e}`);
   }
 
   try {
     // 进行布局及循环处理
-    const layoutType = Store.get('layoutType');
-    Layout._layoutModels(dslTree, layoutType);
+    Layout.handle(dslTree);
   } catch (e) {
     console.log('布局处理出错');
-    // Loger.error(`dsl/dsl.ts pipe()
-    //   desc: 布局处理
-    //  error:${e}`);
   }
 
   // render模块
@@ -87,6 +81,8 @@ function _initOptions(options: any) {
     // options.optimizeWidth, options.optimizeHeight 匹配范围的优化
     optimizeWidth: 750,
     optimizeHeight: 750,
+    designWidth: 750,
+    designHeight: 750,
     // 布局类型
     layoutType: Common.FlexLayout,
     // 调试模式

@@ -1,5 +1,10 @@
-export default `<!DOCTYPE html>
-<html lang="zh-cmn-Hans" data-use-rem="750" style="font-size: 50px;">
+export default (
+  htmlStr: string,
+  option: {
+    designWidth: number;
+  },
+) => `<!DOCTYPE html>
+<html lang="zh-cmn-Hans" data-use-rem="${option.designWidth}">
 
 <head>
   <meta charset="UTF-8" />
@@ -19,20 +24,10 @@ export default `<!DOCTYPE html>
   <title></title>
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="index.css" />
-  <style style="display:none">
-    * {
-      -webkit-touch-callout:none;
-      -webkit-user-select:none;
-      -khtml-user-select:none;
-      -moz-user-select:none;
-      -ms-user-select:none;
-      user-select:none;
-    }
-  </style>
 </head>
 
 <body ontouchstart>
-  %{htmlStr}
+  ${htmlStr}
   <div class="test-bar">
     <label><input type="checkbox" value="default" onchange="change_css(event)">Default</label>
     <label><input type="checkbox" value="element" onchange="change_css(event)">Element</label>

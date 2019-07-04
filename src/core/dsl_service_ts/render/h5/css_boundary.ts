@@ -1,9 +1,11 @@
 /**
  * 边界重定义
  */
-import Common from '../../dsl/common';
-import Constraints from '../../dsl/constraints';
+import Common from '../../dsl2/common';
+import Constraints from '../../helper/constraints';
 import QLog from '../../log/qlog';
+import Store from '../../helper/store';
+let ErrorCoefficient: number = 0;
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
@@ -12,6 +14,7 @@ const Loger = QLog.getInstance(QLog.moduleData.render);
  * @param {Tree} tree
  */
 function _parseBoundary(vdom: any) {
+  ErrorCoefficient = Store.get('errorCoefficient') || 0;
   try {
     _calculateBoundary(vdom);
     vdom.children.forEach((cn: any) => {
@@ -53,7 +56,7 @@ function _calculateBoundaryConstraints(
   left: any,
   right: any,
 ) {
-  if (left && right && Math.abs(left - right) < 2) {
+  if (left && right && Math.abs(left - right) <= ErrorCoefficient) {
     if (isVertical) {
       vdom.constraints.LayoutAlignItems = Constraints.LayoutAlignItems.Center;
     } else {
