@@ -569,7 +569,7 @@ class MatchData {
     this.height = Math.abs(this.abYops - this.abY);
     this.canLeftFlex = model.canLeftFlex;
     this.canRightFlex = model.canRightFlex;
-    this.zIndex = model.zIndex || 0;
+    // this.zIndex = model.zIndex || 0;
 
     // 相似性标识
     this.similarParentId = null;

@@ -23,26 +23,37 @@ class EM2M2 extends Model.ElementModel {
   _initNode() {
     let texts = this.getTextNodes();
     let shapes = this.getShapeNodes();
-    
-    this._matchNodes['0'] = texts[0];           // QText
-    this._matchNodes['1'] = shapes[0];          // QShape
+
+    this._matchNodes['0'] = texts[0]; // QText
+    this._matchNodes['1'] = shapes[0]; // QShape
   }
 
   // 1.
   regular1() {
-    let bool: boolean = Feature.positionAInBCenter(this._matchNodes['0'], this._matchNodes['1']);
+    let bool: boolean = Feature.positionAInBCenter(
+      this._matchNodes['0'],
+      this._matchNodes['1'],
+    );
     return bool;
   }
 
   // 2.
   regular2() {
-    let bool: boolean = Feature.sizeHeightRatioAGreatB(this._matchNodes['0'], this._matchNodes['1'], 0.5);
+    let bool: boolean = Feature.sizeHeightRatioAGreatB(
+      this._matchNodes['0'],
+      this._matchNodes['1'],
+      0.5,
+    );
     return bool;
   }
 
   // 3.
   regular3() {
-    let bool: boolean = Feature.sizeWidthRatioAGreatB(this._matchNodes['0'], this._matchNodes['1'], 0.7);
+    let bool: boolean = Feature.sizeWidthRatioAGreatB(
+      this._matchNodes['0'],
+      this._matchNodes['1'],
+      0.7,
+    );
     return bool;
   }
 

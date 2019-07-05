@@ -317,7 +317,7 @@ class Tree {
             child.modelName !== 'wg1-m1' &&
             child.modelName !== 'wg1-m2' &&
             // 层级关系
-            // child.zIndex >= parent.zIndex &&
+            child.zIndex >= parent.zIndex &&
             // 包含关系
             (_utils.isWrap(parent, child) ||
               // 水平相连、垂直包含关系

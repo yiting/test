@@ -9,6 +9,21 @@ const DSLOptions: any = {};
  * @param {Array} elementModels 进行布局的元素模型
  * @returns {Object} 返回结构树
  */
+function clean(arr: any[]) {
+  arr.forEach((node: any) => {
+    if (node.data.text && node.data.text[node.data.text.length - 1] == '\n') {
+      const text = node.data.text.slice(0, -1);
+      const abYops = node.abYops - node.data.styles.lineHeight;
+      const height = abYops - node.abY;
+      node.data.set('text', text);
+      node.data.set('abYops', abYops);
+      node.data.set('height', height);
+      node.abYops = abYops;
+      node.height = height;
+    }
+  });
+}
+
 const handle = function(widgetModels: any, elementModels: any) {
   if (!widgetModels && !elementModels) {
     return null;
@@ -19,16 +34,23 @@ const handle = function(widgetModels: any, elementModels: any) {
   // 按面积排序
   arr.sort((a: any, b: any) => b.width * b.height - a.width * a.height);
   try {
+    clean(arr);
+  } catch (e) {
+    Loger.error(`dsl/group.ts clean()
+      desc: 储存记录添加的MatchData
+      error:${e}`);
+  }
+  try {
     dslTree._setModelData(arr);
   } catch (e) {
-    Loger.error(`dsl/group.ts join()
+    Loger.error(`dsl/group.ts _setModelData()
       desc: 储存记录添加的MatchData
       error:${e}`);
   }
   try {
     dslTree._addNode(arr);
   } catch (e) {
-    Loger.error(`dsl/group.ts join()
+    Loger.error(`dsl/group.ts _addNode()
       desc: 元素重组
       error:${e}`);
   }
