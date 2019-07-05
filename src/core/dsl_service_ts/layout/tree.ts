@@ -158,9 +158,11 @@ class Tree {
         arr.length === 1 &&
         (firstNode.constraints['LayoutSelfPosition'] ===
           Constraints.LayoutSelfPosition.Absolute ||
-          (firstNode.abX === parent.abX &&
+          (firstNode.type !== Common.QText &&
+            firstNode.abX === parent.abX &&
             firstNode.abXops === parent.abXops) ||
-          firstNode.modelName === 'wg1-m1')
+          firstNode.modelName === 'wg1-m1' ||
+          firstNode.modelName === 'wg1-m2')
       ) {
         newChildren.push(firstNode);
       } else {
