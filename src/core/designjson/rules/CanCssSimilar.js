@@ -80,7 +80,7 @@ class CanCssSimilar extends Rule {
       (nodeA.name == nodeAName && nodeB.name == nodeBName) ||
       (nodeA.name == nodeBName && nodeB.name == nodeAName)
     ) {
-      console.log(1);
+      // console.log(1);
     }
     if (this.canCss(nodeA) && this.canCss(nodeB)) {
       value = 0;

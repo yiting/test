@@ -189,6 +189,11 @@ const ImageCombine = function() {
       tmpJson.foreignSymbols.forEach((item, index) => {
         if (item.symbolMaster && item.symbolMaster.symbolID == symbolId) {
           tmpJson = item.symbolMaster;
+        } else if (
+          item.originalMaster &&
+          item.originalMaster.symbolID == symbolId
+        ) {
+          tmpJson = item.originalMaster;
         }
       });
     }
@@ -328,8 +333,36 @@ const ImageCombine = function() {
     return minParentIndex;
   };
 
-  this.makeNewBlankNode = function(tmpJson) {
+  this.makeNewBlankNode = function(tmpJson, imageItem) {
+    //imageItem:具体要合的图层，用于判断这个图层是否超出边界，如果无超出边界，则将图层放在左上角，否则按原位置放置；如果没传进来，说明是不能直接合成的图片，则取父节点的坐标和宽高来判断是否超出边界
     var groundId = '94EB1372-43F1-41A5-B082-1887B1B0F235';
+    let x = 0,
+      y = 0;
+    if (typeof imageItem != 'undefined') {
+      if (imageItem.width >= that.artboardWidth) {
+        x = imageItem.x;
+      } else {
+        x = 10;
+      }
+      if (imageItem.height >= that.artboardHeight) {
+        y = imageItem.y;
+      } else {
+        y = 10;
+      }
+    } else {
+      x =
+        tmpJson._class == 'page' || tmpJson._class == 'artboard'
+          ? 0
+          : tmpJson.frame.width >= that.artboardWidth
+          ? tmpJson.frame.x
+          : 10;
+      y =
+        tmpJson._class == 'page' || tmpJson._class == 'artboard'
+          ? 0
+          : tmpJson.frame.width >= that.artboardWidth
+          ? tmpJson.frame.y
+          : 10;
+    }
     var groupJson = {
       _class: 'group',
       do_objectID: groundId,
@@ -346,18 +379,8 @@ const ImageCombine = function() {
         constrainProportions: false,
         height: tmpJson.frame.height,
         width: tmpJson.frame.width,
-        x:
-          tmpJson._class == 'page' || tmpJson._class == 'artboard'
-            ? 0
-            : tmpJson.frame.width >= 750
-            ? tmpJson.frame.x
-            : 10,
-        y:
-          tmpJson._class == 'page' || tmpJson._class == 'artboard'
-            ? 0
-            : tmpJson.frame.width >= 750
-            ? tmpJson.frame.y
-            : 10,
+        x: x,
+        y: y,
       },
       isFixedToViewport: tmpJson.isFixedToViewport,
       isFlippedHorizontal: tmpJson.isFlippedHorizontal,
@@ -491,7 +514,7 @@ const ImageCombine = function() {
       });
 
       // generateJson = that.cloneJson(tmpJson);
-      generateJson = that.makeNewBlankNode(tmpJson);
+      generateJson = that.makeNewBlankNode(tmpJson, imageItem);
       if (
         tmpJson._class != 'page' &&
         tmpJson._class != 'artboard' &&
@@ -621,12 +644,17 @@ const ImageCombine = function() {
     // try {
     let { projectName, imgList } = param;
 
+    if (imgList.length == 0) {
+      return new Promise(function(resolve, reject) {
+        resolve([]);
+      });
+    }
     var that = this;
     // imgList = imgList.filter(function(item) {
     //   return item.path.indexOf('_CC3B_0788')>-1;
     // });
     // imgList = imgList.slice(0,1);
-    // imgList = [imgList[16]];
+    // imgList = [imgList[18]];
     // 通过隐藏不要图层然后用运行库合图的方式来合图
     const updateFileAfterFix = '_imgForCombine';
     const projectNameWithoutAfterFix = projectName;
@@ -659,18 +687,6 @@ const ImageCombine = function() {
         ),
       );
     }
-
-    //清除边框/阴影等属性
-    let clearnList = ImageClean.cleanImg(that.pageJson, [
-      // 'border',
-      'shadows',
-      // 'borders',
-    ]);
-    ImageClean.clearJSON(that.pageJson, clearnList, [
-      // 'border',
-      'shadows',
-      // 'borders',
-    ]);
 
     //获取artboard index
     var artboardIndex;
@@ -708,6 +724,8 @@ const ImageCombine = function() {
         that.pageJson.layers.splice(i, 1);
       } else {
         pageJsonOriginLength = that.pageJson.layers[i].layers.length;
+        that.artboardHeight = that.pageJson.layers[i].frame.height;
+        that.artboardWidth = that.pageJson.layers[i].frame.width;
       }
     }
 
@@ -744,6 +762,18 @@ const ImageCombine = function() {
       artboardIndex
     ].layers.slice(pageJsonOriginLength);
     // }
+
+    //清除边框/阴影等属性
+    let clearnList = ImageClean.cleanImg(tmpPageJson, [
+      // 'border',
+      'shadows',
+      // 'borders',
+    ]);
+    ImageClean.clearJSON(tmpPageJson, clearnList, [
+      // 'border',
+      'shadows',
+      // 'borders',
+    ]);
 
     fs.unlinkSync(`${updateFilePath}/pages/${that.pageId}.json`);
 
