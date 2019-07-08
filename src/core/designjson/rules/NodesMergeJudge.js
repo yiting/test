@@ -122,8 +122,8 @@ class NodesMergeJudge {
       // let scoreResult1 = this.score(node, node, ruleConfig0);
 
       let nodeASize = ImgConbineUtils.getSize(node);
-      let widthThreshold = 339;
-      let heightThreshold = 79;
+      let widthThreshold = 342;
+      let heightThreshold = 69;
       let sizeThreshold = widthThreshold * heightThreshold;
       let sizePercentThreshold = 0.4;
 

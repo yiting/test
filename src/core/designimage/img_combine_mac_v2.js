@@ -92,6 +92,23 @@ const ImageCombine = function() {
     });
   };
 
+  this.deleteScaleFilename = async dirPath => {
+    fs.readdir(dirPath, (err, files) => {
+      files.forEach(file => {
+        if (file.indexOf('@') > -1) {
+          //去掉2倍图@2X等文件名字符
+          fs.renameSync(
+            dirPath + file,
+            dirPath +
+              file.substring(0, file.indexOf('@')) +
+              file.substring(file.lastIndexOf('.')),
+            function(err) {},
+          );
+        }
+      });
+    });
+  };
+
   this.downloadSketch = async url => {
     const that = this;
     let projectName = url.substring(
@@ -649,9 +666,10 @@ const ImageCombine = function() {
         resolve([]);
       });
     }
+    // imgList.filter
     var that = this;
     // imgList = imgList.filter(function(item) {
-    //   return item.path.indexOf('_CC3B_0788')>-1;
+    //   return item.path.indexOf('fd96d7f2d51e8ab71f388e6edbddb21d')>-1;
     // });
     // imgList = imgList.slice(0,1);
     // imgList = [imgList[18]];
@@ -858,13 +876,19 @@ const ImageCombine = function() {
       const that = this;
       const { sketchDir } = that;
       const outputDir = `${that.outputDir + projectName}/images/`;
+      let scales = 750 / that.artboardWidth;
       return new Promise(function(resolve, reject) {
         const command = `${BIN} export layers --output=${outputDir} --formats=png ${`${sketchDir +
-          sketchName}.sketch`} --items=${itemIds}`;
+          sketchName}.sketch`} --items=${itemIds} --scales=${scales}`;
         logData.num._combineShapeGroupNodeWithNative++;
+        // console.log(command);
         exec(command, function(a, b, c) {
           if (a) {
             logger.error(a);
+          } else {
+            if (scales != 1) {
+              that.deleteScaleFilename(outputDir);
+            }
           }
           resolve(`${projectName}/images/1111`);
         });
@@ -903,19 +927,21 @@ const ImageCombine = function() {
   };
 
   //预览图查看
-  this.preview = function(param) {
+  this.previewItem = function(param, item) {
     const main = async () => {
       let { projectName, sketchName } = param;
-      let itemIds = [param.imgList[0]['id']];
+      let itemIds = [item['id']];
       if (typeof sketchName == 'undefined') {
         sketchName = projectName;
       }
       const that = this;
       const { sketchDir } = that;
       const outputDir = `${that.outputDir + projectName}/images/`;
+      // let scales = 750 / that.artboardWidth ;
       return new Promise(function(resolve, reject) {
-        const command = `${BIN} export layers --output=${outputDir} --formats=png ${`${sketchDir +
-          sketchName}.sketch`} --items=${itemIds}`;
+        let command = `${BIN} export layers --output=${outputDir} --formats=png ${`${sketchDir +
+          sketchName}.sketch`} --items=${itemIds} --scales=2`;
+        // console.log(command);
         exec(command, function(a, b, c) {
           if (a) {
             logger.error(a);
@@ -940,6 +966,26 @@ const ImageCombine = function() {
       });
     };
 
+    try {
+      return main();
+    } catch (e) {
+      logger.warn(e);
+    }
+  };
+  this.preview = function(param) {
+    let that = this;
+    const main = async () => {
+      let imgList = param.imgList;
+      let promiseList = [];
+      return new Promise(function(resolve, reject) {
+        imgList.forEach(item => {
+          promiseList.push(that.previewItem(param, item));
+        });
+        Promise.all(promiseList).then(resultList => {
+          resolve(resultList);
+        });
+      });
+    };
     try {
       return main();
     } catch (e) {

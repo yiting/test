@@ -31,7 +31,8 @@ class CanCssSimilar extends Rule {
         (node.shapeType == 'rectangle' &&
           node._origin.points &&
           node._origin.points.length == 4 &&
-          node._origin.points[0]._class == 'point') ||
+          (node._origin.points[0]._class == 'point' ||
+            node._origin.points[0]._class == 'curvePoint')) || //
         ((node.shapeType == 'oval' ||
           node.name.toLowerCase().indexOf('oval') > -1) &&
           node.width == node.height &&
