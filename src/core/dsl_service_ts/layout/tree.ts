@@ -158,9 +158,11 @@ class Tree {
         arr.length === 1 &&
         (firstNode.constraints['LayoutSelfPosition'] ===
           Constraints.LayoutSelfPosition.Absolute ||
-          (firstNode.abX === parent.abX &&
+          (firstNode.type !== Common.QText &&
+            firstNode.abX === parent.abX &&
             firstNode.abXops === parent.abXops) ||
-          firstNode.modelName === 'wg1-m1')
+          firstNode.modelName === 'wg1-m1' ||
+          firstNode.modelName === 'wg1-m2')
       ) {
         newChildren.push(firstNode);
       } else {
@@ -315,7 +317,7 @@ class Tree {
             child.modelName !== 'wg1-m1' &&
             child.modelName !== 'wg1-m2' &&
             // 层级关系
-            // child.zIndex >= parent.zIndex &&
+            child.zIndex >= parent.zIndex &&
             // 包含关系
             (_utils.isWrap(parent, child) ||
               // 水平相连、垂直包含关系

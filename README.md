@@ -54,14 +54,14 @@
   - [ ] Parser 图元抽象-Photoshop
   - [ ] Parser 图元抽象-XD
   - [x] Optimize 图元优化
-- [ ] DSL（`负责人chrisschen`）：对设计元素数据进行抽象并输出统一结构的模块。http://mrw.so/58vvje
+- [ ] DSL（`负责人chrisschen`）：对设计元素数据进行抽象并输出统一结构的模块。[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/dsl.md)
   - [x] 元素模型、组件模型的识别及组合匹配算法块（识别及匹配出模型）。
   - [x] 模型数据进行组装结构化算法块（模型数据组成 DSL 树）。
   - [x] DSL 树进行布局处理及循环分析算法块（DSL 树布局分析）。
   - [ ] 优化模型识别（模型设计、算法、AI 辅助）。
   - [ ] 优化 DSL 树的结构（算法）。
   - [ ] 优化循环结构处理（算法）。
-- [ ] Render&Template（`负责人chironyang`）：通过模板引擎的重组能力和样式映射关系，把设计数据解析成终端代码。http://mrw.so/5g1Hy9
+- [ ] Render&Template（`负责人chironyang`）：通过模板引擎的重组能力和样式映射关系，把设计数据解析成终端代码。[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/Render&Template.md)
   - [x] XML 解析引擎，解析 XML 结构模板，生成 json 结构的数据
   - [ ] 静态模板组装引擎，根据数据特点，把节点内容替换成模板内容
   - [x] 动态模板组装引擎，根据模板数据结合 RenderTree 生成 TemplateData
@@ -71,15 +71,15 @@
   - [ ] 优化 Css_Dom 样式输出的默认属性问题
   - [ ] 优化 H5_builder 中,样式名组合逻辑
   - [ ] 设计稿分辨率兼容
-- [ ] AI 虚拟目标识别（`负责人ralychen`）：对设计稿的图元以及 UI 结构识别。http://mrw.so/4pnNWF
+- [ ] AI 虚拟目标识别（`负责人ralychen`）：对设计稿的图元以及 UI 结构识别。[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/AI.md)
   - [ ] 完善增加 design15 数据集。
   - [x] 识别图元(icon,img)结构，为合图提供合并的判断条件。
   - [x] 识别页面 UI 模块，为页面结构生成提供判断条件。
   - [x] 识别元素接口开放，返回查询字段。
 - [ ] 图像合成/绘图去重（`负责人yixionglin、bowentang`）：找出该合成的图元并进行绘制，对重复的图片资源进行去重。
-  - [x] 图片合成逻辑 http://mrw.so/4Lgu1W
-  - [x] 图片绘制-sketch http://mrw.so/58vuKI
-  - [x] 图片绘制-psd http://mrw.so/4SIuXV
+  - [x] 图片合成逻辑;[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/designRule.md)
+  - [x] 图片绘制-sketch [点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/designImage.md)
+  - [x] 图片绘制-psd [点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/designPS.md)
   - [ ] 图片绘制-xd
   - [x] 重复图片，去重处理
 - [ ] 多语言解析和生成（`负责人chrisschen、chironyang`）：将视觉稿根据开发语言要求生成对应代码。文档待补充

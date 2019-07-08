@@ -2,6 +2,7 @@
 import Utils from '../utils';
 // import Model from '../model';
 import Constrains from '../../helper/constraints';
+import Store from '../../helper/store';
 
 // flex layout 的处理核心是
 //
@@ -14,6 +15,8 @@ import Constrains from '../../helper/constraints';
 // （可继续优化, 基于对模型分析）
 // 1: 如果
 // s2: 其余的以绝对定位
+
+let ErrorCoefficient: number = 0;
 
 class LayoutBaseLine {
   /* constructor(modelType: any) {
@@ -29,6 +32,7 @@ class LayoutBaseLine {
    */
   handle(parent: any, nodes: any) {
     const that: any = this;
+    ErrorCoefficient = Store.get('errorCoefficient') || 0;
     // 剔除绝对定位节点
     const absNodes: any = [];
     const calNodes: any = [];
@@ -146,12 +150,16 @@ class LayoutBaseLine {
     middleArr.sort((a: any, b: any) => b.abYops + b.abY - a.abYops - a.abY);
     bottomArr.sort((a: any, b: any) => b.abYops - a.abYops);
 
-    topArr = topArr.filter((n: any) => topArr[0].abY - n.abY < 3);
+    topArr = topArr.filter(
+      (n: any) => topArr[0].abY - n.abY <= ErrorCoefficient,
+    );
     middleArr = middleArr.filter(
-      (n: any) => middleArr[0].abY + middleArr[0].abYops - n.abY - n.abYops < 3,
+      (n: any) =>
+        middleArr[0].abY + middleArr[0].abYops - n.abY - n.abYops <=
+        ErrorCoefficient,
     );
     bottomArr = bottomArr.filter(
-      (n: any) => bottomArr[0].abYops - n.abYops < 3,
+      (n: any) => bottomArr[0].abYops - n.abYops <= ErrorCoefficient,
     );
 
     // 获得最多相同基线的节点
