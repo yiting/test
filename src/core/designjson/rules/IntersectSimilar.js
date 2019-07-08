@@ -22,7 +22,7 @@ class IntersectSimilar extends Rule {
       nodeB.name.indexOf('Rectangle 281') > -1
     ) {
       // debugger;
-      console.log(1);
+      // console.log(1);
     }
     var nodeAName = '矩形 copy 13';
     var nodeBName = '矩形';
@@ -30,7 +30,7 @@ class IntersectSimilar extends Rule {
       (nodeA.name == nodeAName && nodeB.name == nodeBName) ||
       (nodeA.name == nodeBName && nodeB.name == nodeAName)
     ) {
-      console.log(1);
+      // console.log(1);
     }
     let nodeAabX = nodeA.abX;
     let nodeBabX = nodeB.abX;

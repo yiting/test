@@ -160,7 +160,7 @@ const ImageCombine = function() {
     const that = this;
     // try {
     if (typeof tmpJson == 'undefined') {
-      console.log(12);
+      // console.log(12);
     }
     tmpJson.layers.forEach((item, index) => {
       let isShow = false;

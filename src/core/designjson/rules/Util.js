@@ -278,10 +278,10 @@ function isBubble(node) {
 function isSimpleBackground(node) {
   let result = true;
   if (node.name.indexOf('Base') > -1) {
-    console.log(1);
+    // console.log(1);
   }
   if (node.name.indexOf('椭圆形') > -1) {
-    console.log(1);
+    // console.log(1);
   }
   //如果形状是矩形、圆形、直线以外的就不能css实现
   if (

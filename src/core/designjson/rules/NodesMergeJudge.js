@@ -50,8 +50,8 @@ class NodesMergeJudge {
     let isCombine = false;
     let isFinally = false;
 
-    if (node.id.indexOf('D7108BB2-A9D5-49AA-9781-E2A8319F7F3E') > -1) {
-      console.log(1);
+    if (node.id.indexOf('5BF4D936-80A2-4C83-9A19-EDBD8E5B2C49') > -1) {
+      // console.log(1);
     }
 
     if (
@@ -59,11 +59,11 @@ class NodesMergeJudge {
         node,
         brother,
         'id',
-        'D7108BB2-A9D5-49AA-9781-E2A8319F7F3E',
-        'F4EDFEB4-50D1-4626-86AA-5881C7B3C4AA',
+        '99E17DDF-6814-49C3-A338-925767D8313B',
+        '6122A814-0CB2-4841-9178-83C41BF2D306',
       )
     ) {
-      console.log(1);
+      // console.log(1);
     }
 
     //如果有一个节点是长直线，则不合并
