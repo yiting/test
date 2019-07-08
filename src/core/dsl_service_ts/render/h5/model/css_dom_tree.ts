@@ -321,12 +321,11 @@ class CssDom {
     if (!this.parent) {
       return true;
     }
-    if (
-      this.parent.constraints.LayoutDirection &&
-      this.parent.constraints.LayoutDirection ==
+    if (this.parent.constraints.LayoutDirection) {
+      return (
+        this.parent.constraints.LayoutDirection ==
         Constraints.LayoutDirection.Vertical
-    ) {
-      return true;
+      );
     }
 
     if (Utils.isVertical(this.parent.children)) {

@@ -132,7 +132,7 @@ let pipe = function(nodes: any): any {
       maxNodeY,
     );
   } catch (e) {
-    console.log('match elementX error');
+    console.log(`match elementX error:${e}`);
   }
 
   // 匹配完的可变节点元素模型添加回元素模型列表
