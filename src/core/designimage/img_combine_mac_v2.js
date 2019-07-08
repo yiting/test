@@ -876,7 +876,10 @@ const ImageCombine = function() {
       const that = this;
       const { sketchDir } = that;
       const outputDir = `${that.outputDir + projectName}/images/`;
-      let scales = 750 / that.artboardWidth;
+      let scales = 1;
+      if (that.artboardWidth < 750) {
+        scales = 750 / that.artboardWidth;
+      }
       return new Promise(function(resolve, reject) {
         const command = `${BIN} export layers --output=${outputDir} --formats=png ${`${sketchDir +
           sketchName}.sketch`} --items=${itemIds} --scales=${scales}`;
