@@ -44,6 +44,8 @@ class SketchParser {
       pageObj.artboards.push({
         id: layer.do_objectID,
         name: layer.name,
+        width: layer.frame.width,
+        height: layer.frame.height,
       });
     });
     return list;
@@ -110,8 +112,6 @@ class SketchParser {
         if (_class === SKETCH_LAYER_TYPES.Artboard && layers.length) {
           // eslint-disable-next-line @typescript-eslint/camelcase
           obj[do_objectID] = layer;
-          obj[do_objectID].width = layer.frame.width;
-          obj[do_objectID].height = layer.frame.height;
           obj[do_objectID].childIndex = index;
           obj[do_objectID].page = {
             id: json.do_objectID,
