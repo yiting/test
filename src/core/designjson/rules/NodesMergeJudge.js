@@ -125,7 +125,7 @@ class NodesMergeJudge {
       let widthThreshold = 342;
       let heightThreshold = 69;
       let sizeThreshold = widthThreshold * heightThreshold;
-      let sizePercentThreshold = 0.4;
+      let sizePercentThreshold = 0.38;
 
       if (
         ImgConbineUtils.isSimpleBackground(node) &&

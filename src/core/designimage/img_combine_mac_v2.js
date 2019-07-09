@@ -159,6 +159,25 @@ const ImageCombine = function() {
     return imageChildrenFlatArr;
   };
 
+  //将symbol instance覆盖的内容补回去
+  this.overrideSymbol = function(instance, master) {
+    let that = this;
+    master.layers.forEach(masterItem => {
+      instance.forEach(instanceItem => {
+        if (instanceItem.overrideId == masterItem.do_objectID) {
+          if (instanceItem.overrideType == 'stringValue') {
+            masterItem.attributedString.string = instanceItem.value;
+          } else if (instanceItem.overrideType == 'image') {
+            masterItem.image._ref = instanceItem.value._ref;
+          }
+        }
+      });
+      if (masterItem.layers && masterItem.layers.length > 0) {
+        that.overrideSymbol(instance, masterItem);
+      }
+    });
+  };
+
   //获取symbolId获取对应的json
   this.getSymbolJson = function(symbolId, node) {
     var that = this;
@@ -214,6 +233,24 @@ const ImageCombine = function() {
         }
       });
     }
+
+    //将覆盖的内容补回去
+    let overrideValues = node.overrideValues;
+    if (overrideValues && overrideValues.length > 0) {
+      overrideValues.forEach(item => {
+        if (item._class == 'overrideValue') {
+          item.overrideId = item.overrideName.substring(
+            0,
+            item.overrideName.indexOf('_'),
+          );
+          item.overrideType = item.overrideName.substring(
+            item.overrideName.indexOf('_') + 1,
+          );
+        }
+      });
+      that.overrideSymbol(overrideValues, tmpJson);
+    }
+
     tmpJson.frame.x = node.frame.x;
     tmpJson.frame.y = node.frame.y;
     return tmpJson;
@@ -535,7 +572,7 @@ const ImageCombine = function() {
       if (
         tmpJson._class != 'page' &&
         tmpJson._class != 'artboard' &&
-        tmpJson.frame.width < 750
+        tmpJson.frame.width < that.artboardWidth
       ) {
         tmpJson.frame.x = tmpJson.frame.x - 10;
         tmpJson.frame.y = tmpJson.frame.y - 10;
@@ -566,6 +603,8 @@ const ImageCombine = function() {
         generateId = generateJson.do_objectID;
         generateId = 'Update-' + index + '-' + generateId;
         generateJson.do_objectID = generateId;
+        generateJson.layers[0].frame.x = 0;
+        generateJson.layers[0].frame.y = 0;
         generateJson.name = imageItem.path.substring(
           0,
           imageItem.path.indexOf('.png'),
@@ -669,7 +708,7 @@ const ImageCombine = function() {
     // imgList.filter
     var that = this;
     // imgList = imgList.filter(function(item) {
-    //   return item.path.indexOf('fd96d7f2d51e8ab71f388e6edbddb21d')>-1;
+    //   return item.path.indexOf('9986601c15d6fabbf56995210cc5dfc5')>-1;
     // });
     // imgList = imgList.slice(0,1);
     // imgList = [imgList[18]];
