@@ -4,6 +4,7 @@ export default {
   key: 'overflow',
   value() {
     // if(this.children)
+    return null;
     const range: any = Utils.calRange(this.children);
 
     const designWidth = Store.get('designWidth') || 0;

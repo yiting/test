@@ -171,6 +171,7 @@ class Template {
     }
     // 构建模板节点
     let tplData = new TemplateData(renderData, parentTpl, this._renderData);
+
     /* 以下两句貌似在上一句new中赋值了，所以注释掉 */
 
     // 如果为跟节点，则合并跟节点信息
@@ -219,6 +220,7 @@ class Template {
       child.parentId = target.id;
       child.parent = target;
     });
+    target.text = subNode.text;
     target.id = subNode.id;
     target.constraints = Object.assign(subNode.constraints, target.constraints);
     target.styles = Object.assign(subNode.styles, target.styles);
