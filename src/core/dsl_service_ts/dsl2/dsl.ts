@@ -55,6 +55,8 @@ let pipe = function(nodes: any): any {
 
   let maxNodeX = 0; // 用于将空间分割的辅助参数
   let maxNodeY = 0; // 用于将空间分割的辅助参数
+  // let noMatchNodes: any[] = [];
+  let bodyModel: any = null;
   let matchingNodes: any[] = []; // 需要进行匹配的节点
   let matchedElements: any[] = []; // 匹配完毕的元素模型
   let matchedElementX: any[] = []; // 可变节点模型
@@ -69,7 +71,6 @@ let pipe = function(nodes: any): any {
     maxNodeX = maxNodeX > item.abX ? maxNodeX : item.abX;
     maxNodeY = maxNodeY > item.abY ? maxNodeY : item.abY;
     item.zIndex = item.zIndex > 0 ? item.zIndex : index; // 默认zIndex的值, 越大显示层级越高
-
     switch (item.type) {
       case 'QShape':
         item.type = Common.QShape;
@@ -87,6 +88,9 @@ let pipe = function(nodes: any): any {
         item.type = Common.QText;
         matchingNodes.push(item);
         break;
+      case 'QLayer':
+        item.type = Common.QBody;
+        bodyModel = item;
       default:
         console.log('nodes分类遇到没有对应类型的节');
       //console.log(item.id);
@@ -165,6 +169,7 @@ let pipe = function(nodes: any): any {
   result.code = 1;
   result.elements = matchedElements;
   result.widgets = matchedWidgets;
+  result.bodyModel = bodyModel;
   result.info = info1 + info2 + info3;
 
   return result;

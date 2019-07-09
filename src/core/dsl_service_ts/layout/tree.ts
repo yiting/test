@@ -65,15 +65,17 @@ class Tree {
 
   static LayerId: number;
 
-  constructor() {
+  constructor(bodyModel: any) {
     Object.assign(DSLOptions, Store.getAll());
     // 创建根节点, 节点树总数据, 即为RenderData
     this._treeData = Tree.createNodeData(null);
+    this._treeData.set('id', bodyModel.id);
     this._treeData.set('parent', null);
     this._treeData.set('type', Common.QBody);
     this._treeData.set('abX', 0);
     this._treeData.set('abXops', DSLOptions.designWidth);
     this._treeData.set('isCalculate', true);
+    this._treeData.set('styles', bodyModel.styles);
 
     // 组件模型信息储存
     this._modelData = {};
@@ -301,6 +303,8 @@ class Tree {
     const body = this._treeData;
     const compareArr = [body];
     const leftArr = [];
+    // 按面积排序
+    arr.sort((a: any, b: any) => b.width * b.height - a.width * a.height);
     // let segmentings = []
     arr.forEach((child: any, i: any) => {
       if (child && child.type !== Common.QBody) {
