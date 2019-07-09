@@ -248,14 +248,14 @@ function isBubble(node) {
       if (
         item.frame &&
         item._class == 'rectangle' &&
-        getSize(item.frame) > 190 * 40
+        getSize(item.frame) > 150 * 20
       ) {
         hasRectangle = true;
       }
       if (
         item.frame &&
-        item._class == 'triangle' &&
-        getSize(item.frame) < 30 * 20
+        getSize(item.frame) < 30 * 20 &&
+        (item._class == 'triangle' || (item.points && item.points.length == 3))
       ) {
         hasTriangle = true;
       }

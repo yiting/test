@@ -44,6 +44,8 @@ class SketchParser {
       pageObj.artboards.push({
         id: layer.do_objectID,
         name: layer.name,
+        width: layer.frame.width,
+        height: layer.frame.height,
       });
     });
     return list;

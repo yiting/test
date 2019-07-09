@@ -2,7 +2,7 @@ const Rule = require('./Rule');
 const Util = require('./Util');
 var maxVal = Math.sqrt(Math.pow(255, 2) * 3);
 let weight = 0.1;
-var threshold = 20;
+var threshold = 15;
 /**
  * 节点相交相似度的规则
  * 计算两节点的相交面积，面积越大得分越高；若两节点相离，则计算最接近的两个端点形成的面积，面积越大得分越低。
