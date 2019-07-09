@@ -24,18 +24,17 @@ function _process(_input: any, _options: any): object {
 
   // 模型识别模块
   const dslModel = Dsl.pipe(input.nodes);
-  //console.log(dslTree);
   // 调用Render模块输出
   const config = Dsl.config();
 
   // layout模块
-  // !重要, 这里开始使用group, circle等layout模块构建dsl树, 待俊标独立出模块后
-  // 再迁移逻辑至新模块
-  // 这里的逻辑还是继续使用dsl文件夹下抛出的方法,暂时引入的包另起名为Layout
   let dslTree: any;
   try {
     // 生成dsl树, 传入match的组件模型和元素模型
-    dslTree = Group.handle(dslModel.widgets, dslModel.elements);
+    const arr = [];
+    arr.push(...dslModel.widgets);
+    arr.push(...dslModel.elements);
+    dslTree = Group.handle(arr, dslModel.bodyModel);
   } catch (e) {
     console.log('生成dsl树出错');
   }
