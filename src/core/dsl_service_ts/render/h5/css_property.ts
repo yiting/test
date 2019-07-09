@@ -36,6 +36,7 @@ import overflow from './css/overflow';
 import textOverflow from './css/textOverflow';
 import textAlign from './css/textAlign';
 import whiteSpace from './css/whiteSpace';
+import verticalAlign from './css/verticalAlign';
 import lineHeight from './css/lineHeight';
 import opacity from './css/opacity';
 import margin from './css/margin';
@@ -68,6 +69,7 @@ export default {
     left,
     position,
     zIndex,
+    verticalAlign,
     // 背景
     backgroundImage,
     backgroundColor,

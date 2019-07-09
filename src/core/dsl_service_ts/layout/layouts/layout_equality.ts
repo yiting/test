@@ -17,7 +17,6 @@ class LayoutEquality {
    */
   handle(_parent: any, _nodes: any) {
     const that: any = this;
-
     // 剔除绝对定位元素
     const parent: any = _parent;
     const flexNodes = LayoutEquality.filterFlexNodes(_nodes);

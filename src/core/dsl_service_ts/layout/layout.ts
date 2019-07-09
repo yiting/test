@@ -33,6 +33,9 @@ const walkOut = function(layoutObject: any, dslTree: any) {
 function handle(dslTree: any) {
   let _logStep = 'start';
   try {
+    // 排序
+    _logStep = '排序';
+    walkIn(LayoutSort, dslTree._treeData);
     // 等分
     _logStep = '等分';
     walkIn(LayoutEquality, dslTree._treeData);
@@ -45,9 +48,6 @@ function handle(dslTree: any) {
     // 循环
     _logStep = '循环';
     walkOut(LayoutCircle, dslTree._treeData);
-    // 排序
-    // _logStep = '排序';
-    // walkIn(LayoutSort, dslTree._treeData);
   } catch (e) {
     Loger.error(`dsl/layout.ts layout()
       desc: ${_logStep}
