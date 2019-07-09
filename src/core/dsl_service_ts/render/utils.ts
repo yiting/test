@@ -104,8 +104,10 @@ export default {
     const horizontalCenter = hCenter && !hStart && !hEnd;
     const horizontalEnd = hEnd && !hStart;
     const horizontalStart = !horizontalCenter && !horizontalEnd;
-    const verticalCenter = vCenter && !vStart && !vEnd;
-    const verticalEnd = vEnd && !vStart;
+    // const verticalCenter = vCenter && !vStart && !vEnd;
+    const verticalCenter = vCenter;
+    // const verticalEnd = vEnd && !vStart;
+    const verticalEnd = vEnd && !vCenter && !vStart;
     const verticalStart = !verticalCenter && !verticalEnd;
 
     return {

@@ -19,6 +19,7 @@ class EM1M1 extends HtmlTemplate {
             LayoutFixedWidth: 'default',
           },
           styles: {
+            lineHeight: this._renderData.styles.lineHeight,
             texts: [text],
           },
           text: text.string,

@@ -29,13 +29,16 @@ function calAcross(layer: any[]) {
   const maxSizeArr: any = [];
   layer.forEach((nd: any) => {
     if (nd.data.styles && nd.data.styles.texts) {
-      maxSizeArr.push(...nd.data.styles.texts.map((t: any) => t.size));
+      const max = Math.max(...nd.data.styles.texts.map((t: any) => t.size));
+      nd.data.styles.maxSize = max;
+      maxSizeArr.push(max);
     }
   });
   const maxSize: number = Math.max(...maxSizeArr);
   const _maxSize = maxSize > 0 ? maxSize * lineHeight : VHeight;
   layer = layer.filter((nd: any) => {
-    return nd.height <= _maxSize;
+    const max = nd.data.styles.maxSize;
+    return (max ? max : nd.height) <= _maxSize;
   });
   layer.sort((a: any, b: any) => a.abYops + a.abY - b.abYops - b.abY);
 
@@ -163,7 +166,7 @@ class EMXM1 extends Model.ElementXModel {
     });
 
     rows.forEach((rowGroup: any) => {
-      // if (rowGroup.arr.some((nd: any) => ~nd.id.indexOf("2FE169CB-89B0-4B60-820D-088595FF0736-c"))) debugger
+      // if (rowGroup.arr.some((nd: any) => ~nd.id.indexOf("9A61C529-E2A9-46F8-8943-ED90FC718A2C-c"))) debugger
 
       const list = calAcross(rowGroup.arr);
       result.push(...list);
