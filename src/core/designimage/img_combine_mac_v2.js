@@ -63,7 +63,7 @@ const ImageCombine = function() {
     this.pageId = param.pageId;
 
     logger = qlog.getInstance(store.default.getAll());
-    logger = console;
+    // logger = console;
   };
 
   this.unzipSketch = async projectName => {
