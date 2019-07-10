@@ -1,36 +1,36 @@
 [
   {
-    "id": "2D5FBC8F-9B81-4708-A6ED-D17FC0B91B77",
-    "name": "游戏中心-直播 copy 3",
-    "width": 750,
-    "height": 2956,
-    "abX": 0,
-    "abY": 0,
+    "id": "0EFF336B-3BE2-4B37-94EB-41C0378BE6C4",
+    "name": "填写收货地址",
+    "width": 753,
+    "height": 1337,
+    "abX": -0.5,
+    "abY": -0.5,
     "zIndex": 0,
     "styles": {
       "borderRadius": null,
-      "border": null,
+      "border": {
+        "type": "solid",
+        "color": { "r": 151, "g": 151, "b": 151, "a": 1 },
+        "width": 1,
+        "position": 0
+      },
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 242,
-          "g": 242,
-          "b": 242,
-          "a": 1
-        },
+        "color": { "r": 216, "g": 216, "b": 216, "a": 1 },
         "hasOpacity": false
       }
     },
     "type": "QLayer"
   },
   {
-    "id": "94A69CCE-108D-416F-98D8-1D4F30732A70",
-    "name": "Rectangle 31 Copy 2",
-    "width": 750,
-    "height": 128,
+    "id": "AEB1EFD6-5A4C-492C-AA88-9BBE3CC7BA9A",
+    "name": "Bitmap",
+    "width": 752,
+    "height": 1336.5,
     "abX": 0,
     "abY": 0,
     "zIndex": 1,
@@ -40,51 +40,31 @@
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
+      "background": null
     },
-    "type": "QShape"
+    "type": "QImage",
+    "path": "328d9870ae0d51c2758963620ed614c6.png"
   },
   {
-    "id": "B77F83F2-BEC9-4404-8F0C-F7D5A0FB5647",
-    "name": "Combined Shape",
-    "width": 24,
-    "height": 44,
-    "abX": 24,
-    "abY": 62,
+    "id": "DF8758DE-2CDB-473C-88DC-0FD232E11159",
+    "name": "Rectangle 2",
+    "width": 560,
+    "height": 752,
+    "abX": 96,
+    "abY": 296,
     "zIndex": 2,
     "styles": {},
     "type": "QImage",
-    "path": "789d798aaeafad5aff1e547cb0da8376.png"
+    "path": "e680c6d86392ccc5e6bfc209b89d33b0.png"
   },
   {
-    "id": "33D6B18E-3FAC-4A37-B7E8-61B23988C510",
-    "name": "Oval 1",
-    "width": 67,
-    "height": 11,
-    "abX": 12,
-    "abY": 15,
-    "zIndex": 2,
-    "styles": {},
-    "type": "QImage",
-    "path": "12b5935f3f10130a9b94d08edb562e29.png"
-  },
-  {
-    "id": "3550FF37-2450-410B-B7F4-C23D36D65C29",
-    "name": "ISUX",
-    "width": 54,
-    "height": 33,
-    "abX": 87,
-    "abY": 5,
-    "zIndex": 2,
+    "id": "081D327E-A3B5-4D21-BFF0-9612753E7E18",
+    "name": "填写收货地址",
+    "width": 208,
+    "height": 48,
+    "abX": 272,
+    "abY": 344,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -94,44 +74,35 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "ISUX",
+          "color": { "r": 36, "g": 36, "b": 36, "a": 1 },
+          "string": "填写收货地址",
           "font": "PingFangSC-Regular",
-          "size": 24
+          "size": 34
         }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
+      ]
     },
-    "type": "QText",
-    "text": "ISUX"
+    "type": "QText"
   },
   {
-    "id": "99FA1A4E-DBE4-4EC3-85E8-731E67EDAAC0",
-    "name": "Oval 6",
-    "width": 26,
-    "height": 19,
-    "abX": 143,
-    "abY": 11,
-    "zIndex": 2,
+    "id": "845D7424-92F9-438F-B2DD-D579CA7C815B",
+    "name": "Rectangle 145",
+    "width": 480,
+    "height": 64,
+    "abX": 136,
+    "abY": 456,
+    "zIndex": 3,
     "styles": {},
     "type": "QImage",
-    "path": "941afb488f8a4f4c8af3b91a7b23e32c.png"
+    "path": "00156a8978ee8501dd52429e67826dda.png"
   },
   {
-    "id": "594164F0-5CEE-46E6-837B-3AC7E0B905FD",
-    "name": "上午9:41",
-    "width": 128,
-    "height": 36,
-    "abX": 312,
-    "abY": 2,
-    "zIndex": 2,
+    "id": "5175A5A0-5E22-4FAE-8B91-FF35ABD37E69",
+    "name": "收件人姓名",
+    "width": 480,
+    "height": 32,
+    "abX": 136,
+    "abY": 416,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -141,79 +112,35 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "上午9:41",
+          "color": { "r": 102, "g": 102, "b": 102, "a": 1 },
+          "string": "收件人姓名",
           "font": "PingFangSC-Regular",
-          "size": 25
+          "size": 28
         }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": null
+      ]
     },
-    "type": "QText",
-    "text": "上午9:41"
+    "type": "QText"
   },
   {
-    "id": "489B35C2-A32D-4578-A21C-9DE9D658085F",
-    "name": "100%",
-    "width": 75,
-    "height": 29,
-    "abX": 611,
-    "abY": 5,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "100%",
-          "font": ".HelveticaNeueDeskInterface-Regular",
-          "size": 25
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "100%"
-  },
-  {
-    "id": "_1BFA5905-3664-436A-85C2-4348C0D2419C_2D1C2296-9EF8-469E-9F37-A76560BD6B1A_D2C7172E-0720-4937-82BE-F016794BF90D",
-    "name": "_Rectangle 4_Rectangle 5_Rectangle 6",
-    "width": 49,
-    "height": 19,
-    "abX": 689,
-    "abY": 10,
-    "zIndex": 2,
+    "id": "0AF35A78-5AF0-46AF-90D0-7F2F0826A312",
+    "name": "Rectangle 145",
+    "width": 480,
+    "height": 64,
+    "abX": 136,
+    "abY": 584,
+    "zIndex": 3,
     "styles": {},
     "type": "QImage",
-    "path": "8a735a9d05447214c13c15ebfc6248da.png"
+    "path": "a19106710283c2be7f2ff0923edcb615.png"
   },
   {
-    "id": "ACD01107-BB33-4FE2-BB73-4545A4CF641E",
-    "name": "游戏中心",
-    "width": 145,
-    "height": 50,
-    "abX": 303,
-    "abY": 59,
-    "zIndex": 2,
+    "id": "E942293A-0CDC-4087-B035-2D9CA6CF2A96",
+    "name": "13600405560",
+    "width": 180,
+    "height": 40,
+    "abX": 152,
+    "abY": 596,
+    "zIndex": 4,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -223,32 +150,151 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "游戏中心",
+          "color": { "r": 102, "g": 102, "b": 102, "a": 1 },
+          "string": "13600405560",
+          "font": "PingFangSC-Regular",
+          "size": 28
+        }
+      ]
+    },
+    "type": "QText"
+  },
+  {
+    "id": "691EDA5D-285E-491D-AA48-FFFDDECBCB7B",
+    "name": "手机号码",
+    "width": 480,
+    "height": 32,
+    "abX": 136,
+    "abY": 544,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 102, "g": 102, "b": 102, "a": 1 },
+          "string": "手机号码",
+          "font": "PingFangSC-Regular",
+          "size": 28
+        }
+      ]
+    },
+    "type": "QText"
+  },
+  {
+    "id": "6D28D102-8852-49CC-8EA7-E1C0340A9CC3",
+    "name": "Rectangle 145",
+    "width": 480,
+    "height": 64,
+    "abX": 136,
+    "abY": 712,
+    "zIndex": 3,
+    "styles": {},
+    "type": "QImage",
+    "path": "9deed3b62f110c785603f476fc14a5bf.png"
+  },
+  {
+    "id": "61448737-1FD5-40CC-9C3A-EAA8B96648BD",
+    "name": "QQ",
+    "width": 480,
+    "height": 32,
+    "abX": 136,
+    "abY": 672,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 102, "g": 102, "b": 102, "a": 1 },
+          "string": "QQ",
+          "font": "PingFangSC-Regular",
+          "size": 28
+        }
+      ]
+    },
+    "type": "QText"
+  },
+  {
+    "id": "001149F7-81F1-4C4B-9AAE-535DB3E7F1D2",
+    "name": "Rectangle 145",
+    "width": 480,
+    "height": 64,
+    "abX": 136,
+    "abY": 840,
+    "zIndex": 3,
+    "styles": {},
+    "type": "QImage",
+    "path": "0AF35A78-5AF0-46AF-90D0-7F2F0826A312.png"
+  },
+  {
+    "id": "F0FD6721-6E4E-41AD-9A3D-F7E867400AF7",
+    "name": "收件地址",
+    "width": 480,
+    "height": 32,
+    "abX": 136,
+    "abY": 800,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 102, "g": 102, "b": 102, "a": 1 },
+          "string": "收件地址",
+          "font": "PingFangSC-Regular",
+          "size": 28
+        }
+      ]
+    },
+    "type": "QText"
+  },
+  {
+    "id": "37B01590-6C0D-4DAD-8B36-1FBF6915B788",
+    "name": "取消",
+    "width": 72,
+    "height": 48,
+    "abX": 200,
+    "abY": 976,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 102, "g": 102, "b": 102, "a": 1 },
+          "string": "取消",
           "font": "PingFangSC-Regular",
           "size": 36
         }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": null
+      ]
     },
-    "type": "QText",
-    "text": "游戏中心"
+    "type": "QText"
   },
   {
-    "id": "137F5A58-5F5C-40FB-93CC-0500CF12E441",
-    "name": "返回",
-    "width": 68,
+    "id": "437980CE-99EB-45C8-9F58-B3A97466D81E",
+    "name": "保存",
+    "width": 72,
     "height": 48,
-    "abX": 54,
-    "abY": 60,
-    "zIndex": 2,
+    "abX": 480,
+    "abY": 976,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -258,1729 +304,37 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "动态",
-          "font": ".PingFang-SC-Regular",
-          "size": 34
+          "color": { "r": 76, "g": 154, "b": 250, "a": 1 },
+          "string": "保存",
+          "font": "PingFangSC-Regular",
+          "size": 36
         }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
+      ]
     },
-    "type": "QText",
-    "text": "动态"
+    "type": "QText"
   },
   {
-    "id": "59A076B4-FB92-4AA7-9427-C56974FD988B",
-    "name": "搜索",
-    "width": 34,
-    "height": 49,
-    "abX": 689,
-    "abY": 60,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 45,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "fac4f0295382ea818b750b0a54bc8aae.png"
-  },
-  {
-    "id": "24FC1993-5F87-42FE-940A-73F993524AE5",
-    "name": "Group + Group Copy 17 + Group Copy 19 + Group Copy 16 + Group Copy 18 + Group Copy 23 Mask",
-    "width": 750,
-    "height": 80,
-    "abX": 0,
-    "abY": 129,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "8e56830cc729357fa3cf3336d8e89bb4.png"
-  },
-  {
-    "id": "69D7DD1D-482E-441D-B085-2D4D2CBFCC51",
-    "name": "Rectangle",
-    "width": 94,
-    "height": 68,
-    "abX": 656,
-    "abY": 135,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "linear",
-        "color": null,
-        "hasOpacity": true,
-        "x": "0",
-        "y": " 0.5",
-        "x1": "1",
-        "y1": " 0.5",
-        "colorStops": [
-          {
-            "color": {
-              "r": 255,
-              "g": 255,
-              "b": 255,
-              "a": 0
-            },
-            "offset": 0
-          },
-          {
-            "color": {
-              "r": 255,
-              "g": 255,
-              "b": 255,
-              "a": 0.9675753933566433
-            },
-            "offset": 0.2158965330020146
-          },
-          {
-            "color": {
-              "r": 255,
-              "g": 255,
-              "b": 255,
-              "a": 1
-            },
-            "offset": 0.6616731784357398
-          },
-          {
-            "color": {
-              "r": 255,
-              "g": 255,
-              "b": 255,
-              "a": 1
-            },
-            "offset": 1
-          }
-        ]
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "4DA1DE72-07F5-4EA2-9884-D842A4AA5319",
+    "id": "634577B4-1F44-4315-90B9-53C0A4E3F9D6",
     "name": "Combined Shape",
-    "width": 36,
-    "height": 36,
-    "abX": 700,
-    "abY": 151,
-    "zIndex": 3,
+    "width": 560,
+    "height": 96,
+    "abX": 96,
+    "abY": 952,
+    "zIndex": 4,
     "styles": {},
     "type": "QImage",
-    "path": "ebc97c55cf5a6c98f4482ac743bf3277.png"
+    "path": "ccaacc14fba76e7e40291f6faf458892.png"
   },
   {
-    "id": "F399F6DF-99C6-48B3-9527-78EF734A4301",
-    "name": "矩形",
-    "width": 750,
-    "height": 108,
+    "id": "86DEF102-1140-470D-A044-87B9162A37E3",
+    "name": "Rectangle 1",
+    "width": 752,
+    "height": 1336,
     "abX": 0,
-    "abY": 2848,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 247,
-          "g": 247,
-          "b": 248,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "B685B2BE-0598-4345-A0B3-2885A9F1C537",
-    "name": "游戏",
-    "width": 68,
-    "height": 48,
-    "abX": 341,
-    "abY": 2878,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 119,
-            "g": 119,
-            "b": 119,
-            "a": 1
-          },
-          "string": "游戏",
-          "font": "PingFangSC-Regular",
-          "size": 34
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "游戏"
-  },
-  {
-    "id": "29E8E389-D010-48B3-BBEC-264D7BF91004",
-    "name": "游戏",
-    "width": 68,
-    "height": 48,
-    "abX": 91,
-    "abY": 2878,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 119,
-            "g": 119,
-            "b": 119,
-            "a": 1
-          },
-          "string": "游戏",
-          "font": "PingFangSC-Regular",
-          "size": 34
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "游戏"
-  },
-  {
-    "id": "_B5CD9A4C-1284-4E5E-ADD1-12892E1C86C0_DEB36BB8-C72F-4E52-94AD-0FE60AB7BE20",
-    "name": "_直播_矩形",
-    "width": 120,
-    "height": 94,
-    "abX": 569,
-    "abY": 2857,
-    "zIndex": 2,
+    "abY": 0,
+    "zIndex": 5,
     "styles": {},
     "type": "QImage",
-    "path": "90c853dcd97f174f8b8ceeaed3b39008.png"
-  },
-  {
-    "id": "2AE0B33C-DDE4-448C-AB4D-2E32470DF57E",
-    "name": "热",
-    "width": 28,
-    "height": 40,
-    "abX": 647,
-    "abY": 2856,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "string": "热",
-          "font": "PingFangSC-Regular",
-          "size": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "热"
-  },
-  {
-    "id": "1AE2CFFF-0538-4026-855E-AF2844A242CB",
-    "name": "4周年",
-    "width": 690,
-    "height": 191,
-    "abX": 30,
-    "abY": 220,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [12, 12, 12, 12],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "4d7d717657c96fb39d1813ca237232cf.png"
-  },
-  {
-    "id": "C3627338-50F0-4A5A-A509-05A898BFB557",
-    "name": "Q飞萌宠送好礼",
-    "width": 297,
-    "height": 38,
-    "abX": 246,
-    "abY": 291,
-    "zIndex": 2,
-    "styles": {},
-    "type": "QImage",
-    "path": "21dfde4d7dd05c01f9fd4179bd96525b.png"
-  },
-  {
-    "id": "3E6F55AC-FAF6-43FA-81D0-2BC557CD2ADF",
-    "name": "邀请好友、收集卡牌领大奖！",
-    "width": 364,
-    "height": 28,
-    "abX": 246,
-    "abY": 343,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "string": "邀请好友、收集卡牌领大奖！",
-          "font": "PingFangSC-Medium",
-          "size": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 28
-    },
-    "type": "QText",
-    "text": "邀请好友、收集卡牌领大奖！"
-  },
-  {
-    "id": "7803EE66-7FCE-4437-BBC4-D79D184DFB44",
-    "name": "Group 8",
-    "width": 22,
-    "height": 33,
-    "abX": 681,
-    "abY": 315,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "8ca722a943ba7b4a432ad65b070b4288.png"
-  },
-  {
-    "id": "1797DAD8-047C-4914-912F-66756D3C23EF",
-    "name": "矩形",
-    "width": 690,
-    "height": 566,
-    "abX": 30,
-    "abY": 441,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [12, 12, 12, 12],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "_7158CAD6-A718-4AC4-B8A4-BD0019D4097B_1CD476EB-1F66-4F62-82E8-AEE934119674_B22A9859-D856-4A55-9119-5B2FB16A5DB1",
-    "name": "_Mask_Bitmap_Group 8",
-    "width": 690,
-    "height": 419,
-    "abX": 30,
-    "abY": 440,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": [12, 12, 0, 0],
-      "border": null,
-      "shadows": null
-    },
-    "type": "QImage",
-    "path": "2ad406cf66f35828a3a135e8de5b857a.png"
-  },
-  {
-    "id": "1C829255-255D-4A7D-8ECD-907713711C54",
-    "name": "直播",
-    "width": 51,
-    "height": 18,
-    "abX": 637,
-    "abY": 817,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "string": "直播",
-          "font": ".PingFang-SC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 18
-    },
-    "type": "QText",
-    "text": "直播"
-  },
-  {
-    "id": "_F6DC67A7-41A9-4D5D-BFD5-566D07AF14B9_53A2AE09-2BD9-40CE-A00A-4E1765AA7E1B",
-    "name": "_Rectangle 20 Copy_Oval 9",
-    "width": 86,
-    "height": 34,
-    "abX": 610,
-    "abY": 809,
-    "zIndex": 4,
-    "styles": {
-      "borderRadius": [4, 4, 4, 0, 4],
-      "border": null,
-      "shadows": null
-    },
-    "type": "QImage",
-    "path": "77e8dddfd39a5b4788bc5860999db567.png"
-  },
-  {
-    "id": "AA1775EC-11AD-47DC-AC54-078C8F0CE128",
-    "name": "Rectangle 2",
-    "width": 102,
-    "height": 34,
-    "abX": 58,
-    "abY": 809,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": "0.8000",
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "FE4AECE5-C266-4ECC-9128-48E1ED678F7B",
-    "name": "3245",
-    "width": 48,
-    "height": 20,
-    "abX": 101,
-    "abY": 817,
-    "zIndex": 4,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "string": "3245",
-          "font": "PingFangSC-Regular",
-          "size": 20
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 20
-    },
-    "type": "QText",
-    "text": "3245"
-  },
-  {
-    "id": "052145E3-B99E-4B7E-8469-4D920D8833E1",
-    "name": "小9",
-    "width": 26,
-    "height": 20,
-    "abX": 70,
-    "abY": 816,
-    "zIndex": 4,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "9a10fa8a80ca15c771505ccf6758005e.png"
-  },
-  {
-    "id": "4D847F0E-14EC-466D-BF58-D3ADCC029F0C",
-    "name": "四杀杨戬教学视频",
-    "width": 256,
-    "height": 45,
-    "abX": 56,
-    "abY": 874,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "四杀杨戬教学视频",
-          "font": "PingFang-SC-Medium",
-          "size": 32
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "四杀杨戬教学视频"
-  },
-  {
-    "id": "D6FDBC99-DD08-4A29-8A11-1C52EC180A1F",
-    "name": "Mask",
-    "width": 48,
-    "height": 48,
-    "abX": 58,
-    "abY": 928,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "42532d1b04c85bf5f1bb6e76341eed52.png"
-  },
-  {
-    "id": "65544742-5780-4257-9006-3976496538F6",
-    "name": "香花鸢尾27",
-    "width": 124,
-    "height": 34,
-    "abX": 126,
-    "abY": 933,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 119,
-            "g": 119,
-            "b": 119,
-            "a": 1
-          },
-          "string": "香花鸢尾27",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "香花鸢尾27"
-  },
-  {
-    "id": "5D7D1621-E915-4B42-A24F-8BC6E74B04BF",
-    "name": "更多",
-    "width": 36,
-    "height": 8,
-    "abX": 660,
-    "abY": 948,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "49f14e53b9374c765f0a6ceb1c7106a5.png"
-  },
-  {
-    "id": "15E37460-18E6-455A-A354-88874C6B5F2E",
-    "name": "Oval 4",
-    "width": 120,
-    "height": 120,
-    "abX": 315,
-    "abY": 592,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": "0.5000",
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "F4209C89-350F-45B8-834B-DDCC75283CD7",
-    "name": "Triangle 12",
-    "width": 44,
-    "height": 33,
-    "abX": 357,
-    "abY": 636,
-    "zIndex": 4,
-    "styles": {},
-    "type": "QImage",
-    "path": "81e232412b1a0368a0d3f8bfb48c6d62.png"
-  },
-  {
-    "id": "EC95E931-0033-414B-84B7-AE6360FCC4A1",
-    "name": "矩形",
-    "width": 690,
-    "height": 566,
-    "abX": 30,
-    "abY": 1635,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [12, 12, 12, 12],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": [
-        {
-          "type": "inset",
-          "x": 0,
-          "y": 2,
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0.1
-          },
-          "spread": 0,
-          "blur": 20
-        }
-      ],
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "_5B2CBCFC-1C27-46D2-B631-315297DE8C7D_EB0745B1-A8A4-43BC-9930-64751C04CDAF_9E31A64F-502B-4C7A-A4E5-ED26FB16CF02",
-    "name": "_Mask_Bitmap_Group 8",
-    "width": 690,
-    "height": 419,
-    "abX": 30,
-    "abY": 1635,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": [12, 12, 0, 0],
-      "border": null,
-      "shadows": null
-    },
-    "type": "QImage",
-    "path": "383a190979c4822568b2f4b4c42101e6.png"
-  },
-  {
-    "id": "275CC513-74A5-4837-AC7D-456AE24DE3BC",
-    "name": "直播",
-    "width": 51,
-    "height": 18,
-    "abX": 647,
-    "abY": 2011,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "string": "直播",
-          "font": ".PingFang-SC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 18
-    },
-    "type": "QText",
-    "text": "直播"
-  },
-  {
-    "id": "_994D591A-C1DB-4D86-BD01-A9A558C50E02_A1E7BD1E-0FA6-4114-8A53-7F1679388379",
-    "name": "_Rectangle 20 Copy_Oval 9",
-    "width": 86,
-    "height": 34,
-    "abX": 620,
-    "abY": 2003,
-    "zIndex": 4,
-    "styles": {
-      "borderRadius": [4, 4, 4, 0, 4],
-      "border": null,
-      "shadows": null
-    },
-    "type": "QImage",
-    "path": "_F6DC67A7-41A9-4D5D-BFD5-566D07AF14B9_53A2AE09-2BD9-40CE-A00A-4E1765AA7E1B.png"
-  },
-  {
-    "id": "B97849D8-C9E8-4123-99E3-6CA088E221D6",
-    "name": "Rectangle 2",
-    "width": 102,
-    "height": 34,
-    "abX": 44,
-    "abY": 2003,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": "0.8000",
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "B30A836F-39BD-4C91-A7B4-6F68242B4174",
-    "name": "3245",
-    "width": 48,
-    "height": 20,
-    "abX": 87,
-    "abY": 2011,
-    "zIndex": 4,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "string": "3245",
-          "font": "PingFangSC-Regular",
-          "size": 20
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 20
-    },
-    "type": "QText",
-    "text": "3245"
-  },
-  {
-    "id": "207932FC-CFB3-4875-90AE-581EC27E9A34",
-    "name": "小9",
-    "width": 26,
-    "height": 20,
-    "abX": 56,
-    "abY": 2010,
-    "zIndex": 4,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "052145E3-B99E-4B7E-8469-4D920D8833E1.png"
-  },
-  {
-    "id": "050E6B38-8C4D-42BD-AB3A-C287D22C2C1C",
-    "name": "王者荣耀新服人气火爆堪比热门新游",
-    "width": 512,
-    "height": 45,
-    "abX": 44,
-    "abY": 2068,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "王者荣耀新服人气火爆堪比热门新游",
-          "font": "PingFang-SC-Medium",
-          "size": 32
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "王者荣耀新服人气火爆堪比热门新游"
-  },
-  {
-    "id": "BF0DE4D6-C129-405D-92C7-B07214164958",
-    "name": "Bitmap",
-    "width": 48,
-    "height": 48,
-    "abX": 46,
-    "abY": 2122,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "d4e9160c5fe32908ad2a309b47fb5eee.png"
-  },
-  {
-    "id": "E8541B46-B235-4D64-B084-2F2D6B9ED07F",
-    "name": "香花鸢尾27",
-    "width": 124,
-    "height": 34,
-    "abX": 114,
-    "abY": 2127,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 119,
-            "g": 119,
-            "b": 119,
-            "a": 1
-          },
-          "string": "香花鸢尾27",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "香花鸢尾27"
-  },
-  {
-    "id": "5E9A0868-D41D-4B1B-96B1-8DB088382C13",
-    "name": "更多",
-    "width": 36,
-    "height": 8,
-    "abX": 670,
-    "abY": 2142,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "5D7D1621-E915-4B42-A24F-8BC6E74B04BF.png"
-  },
-  {
-    "id": "DD291505-0AED-440F-87F6-CD048557D0D4",
-    "name": "Oval 4",
-    "width": 120,
-    "height": 120,
-    "abX": 315,
-    "abY": 1786,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": "0.5000",
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "DB99CF5E-E5FB-4C9B-AFBF-EC8F095AF367",
-    "name": "Triangle 12",
-    "width": 44,
-    "height": 33,
-    "abX": 357,
-    "abY": 1830,
-    "zIndex": 4,
-    "styles": {},
-    "type": "QImage",
-    "path": "F4209C89-350F-45B8-834B-DDCC75283CD7.png"
-  },
-  {
-    "id": "215808B9-BE0A-4EDA-A37F-3AAD6A7DA2AD",
-    "name": "矩形",
-    "width": 690,
-    "height": 566,
-    "abX": 30,
-    "abY": 1038,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [12, 12, 12, 12],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "_00323B1E-4221-4A49-8C82-50F636D5E108_728286CB-D1D8-4327-8F08-91FA8E83B1D7_6FD918C4-7BAA-44A1-9264-12BD7F80E176",
-    "name": "_Mask_位图_Group 8",
-    "width": 690,
-    "height": 419,
-    "abX": 30,
-    "abY": 1038,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": [12, 12, 0, 0],
-      "border": null,
-      "shadows": null
-    },
-    "type": "QImage",
-    "path": "00402edf9748f1c88d7ffe670f5a2ba6.png"
-  },
-  {
-    "id": "9E06BD01-F11A-4777-B025-4BA026B2E24E",
-    "name": "05:30",
-    "width": 64,
-    "height": 24,
-    "abX": 633,
-    "abY": 1416,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "string": "05:30",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 1,
-      "lineHeight": 24
-    },
-    "type": "QText",
-    "text": "05:30"
-  },
-  {
-    "id": "054A8AD7-9097-4352-B135-6C1F361F2B30",
-    "name": "Rectangle 2",
-    "width": 102,
-    "height": 34,
-    "abX": 60,
-    "abY": 1406,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": "0.8000",
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "045D7CCF-961A-47F3-97E5-91CD86E63244",
-    "name": "Triangle 12",
-    "width": 24,
-    "height": 18,
-    "abX": 69,
-    "abY": 1415,
-    "zIndex": 4,
-    "styles": {},
-    "type": "QImage",
-    "path": "0ffc127011739a5b4ee0cf6b4f60f0e2.png"
-  },
-  {
-    "id": "E3B116FF-93C2-41B7-9880-FABB23C57D84",
-    "name": "3245",
-    "width": 48,
-    "height": 20,
-    "abX": 103,
-    "abY": 1414,
-    "zIndex": 4,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "string": "3245",
-          "font": "PingFangSC-Regular",
-          "size": 20
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 20
-    },
-    "type": "QText",
-    "text": "3245"
-  },
-  {
-    "id": "2C80AD3C-0C4A-489A-B5B8-C0C2AF47BDCB",
-    "name": "进阶氮气对比暴力出弯提速，每局跑第一名",
-    "width": 608,
-    "height": 45,
-    "abX": 57,
-    "abY": 1471,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "进阶氮气对比暴力出弯提速，每局跑第一名",
-          "font": "PingFang-SC-Medium",
-          "size": 32
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "进阶氮气对比暴力出弯提速，每局跑第一名"
-  },
-  {
-    "id": "AC732090-9020-4425-A618-FD8304F01558",
-    "name": "Bitmap",
-    "width": 48,
-    "height": 48,
-    "abX": 59,
-    "abY": 1525,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "3ae429abd8a4f41e980e59b068c22437.png"
-  },
-  {
-    "id": "F4F1F170-1AED-4779-A15F-5A38F08EDF5B",
-    "name": "猫大大006",
-    "width": 116,
-    "height": 34,
-    "abX": 127,
-    "abY": 1530,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 119,
-            "g": 119,
-            "b": 119,
-            "a": 1
-          },
-          "string": "猫大大006",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "猫大大006"
-  },
-  {
-    "id": "111E3BEE-B3B9-45E8-8D57-0DAF2CE9C41B",
-    "name": "更多",
-    "width": 36,
-    "height": 8,
-    "abX": 670,
-    "abY": 1545,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "5D7D1621-E915-4B42-A24F-8BC6E74B04BF.png"
-  },
-  {
-    "id": "C266F67C-0E9C-4EB8-9318-989DB854ABD8",
-    "name": " 评论",
-    "width": 31,
-    "height": 29,
-    "abX": 504,
-    "abY": 1539,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "4b22441698174407aa6fd94db5a03887.png"
-  },
-  {
-    "id": "47188C0D-14B8-4CEE-BCDE-08802CC5AD2D",
-    "name": "3214",
-    "width": 53,
-    "height": 34,
-    "abX": 545,
-    "abY": 1533,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 119,
-            "g": 119,
-            "b": 119,
-            "a": 1
-          },
-          "string": "3214",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "3214"
-  },
-  {
-    "id": "0E9DA7DA-B840-4230-BF3F-EAD7CFF5D452",
-    "name": "Oval 4",
-    "width": 120,
-    "height": 120,
-    "abX": 315,
-    "abY": 1189,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": "0.5000",
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "CBC8B1D8-D08E-4B60-895B-1D179DEC4577",
-    "name": "Triangle 12",
-    "width": 44,
-    "height": 33,
-    "abX": 357,
-    "abY": 1233,
-    "zIndex": 4,
-    "styles": {},
-    "type": "QImage",
-    "path": "F4209C89-350F-45B8-834B-DDCC75283CD7.png"
-  },
-  {
-    "id": "E021EF87-ED3A-4CC4-AEF6-9E3C1A674821",
-    "name": "矩形",
-    "width": 690,
-    "height": 566,
-    "abX": 30,
-    "abY": 2232,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [12, 12, 12, 12],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "_67F6ECFC-B0F9-44F2-9FC6-02F55D888B72_16A577B4-4FCB-45FD-BB14-81D92E3896F0_A625CA57-A6C9-4A38-A030-6449F2ADD8A8",
-    "name": "_Mask_位图_Group 8",
-    "width": 690,
-    "height": 422,
-    "abX": 30,
-    "abY": 2232,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": [12, 12, 0, 0],
-      "border": null,
-      "shadows": null
-    },
-    "type": "QImage",
-    "path": "c811d96d12836bbbeb960fa52d5a0998.png"
-  },
-  {
-    "id": "5C0BB2DA-54B8-4697-B682-03272E6CCB0F",
-    "name": "05:30",
-    "width": 64,
-    "height": 24,
-    "abX": 632,
-    "abY": 2610,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "string": "05:30",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 1,
-      "lineHeight": 24
-    },
-    "type": "QText",
-    "text": "05:30"
-  },
-  {
-    "id": "D0E5FB6F-A31A-481B-874C-D26A803F3F74",
-    "name": "Rectangle 2",
-    "width": 102,
-    "height": 34,
-    "abX": 60,
-    "abY": 2600,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": "0.8000",
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "685B2629-D9B4-4B2A-A12E-B6EA32E2D880",
-    "name": "Triangle 12",
-    "width": 24,
-    "height": 18,
-    "abX": 69,
-    "abY": 2609,
-    "zIndex": 4,
-    "styles": {},
-    "type": "QImage",
-    "path": "045D7CCF-961A-47F3-97E5-91CD86E63244.png"
-  },
-  {
-    "id": "47DC4C21-8757-4D18-A9DA-BB467D64C5D0",
-    "name": "3245",
-    "width": 48,
-    "height": 20,
-    "abX": 103,
-    "abY": 2608,
-    "zIndex": 4,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "string": "3245",
-          "font": "PingFangSC-Regular",
-          "size": 20
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 20
-    },
-    "type": "QText",
-    "text": "3245"
-  },
-  {
-    "id": "7F3E6D0D-537D-4493-AE5F-6C9433CDBAB8",
-    "name": "大吉大利，今晚吃鸡",
-    "width": 288,
-    "height": 45,
-    "abX": 57,
-    "abY": 2665,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "大吉大利，今晚吃鸡",
-          "font": "PingFang-SC-Medium",
-          "size": 32
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "大吉大利，今晚吃鸡"
-  },
-  {
-    "id": "B909E76F-CD4A-4B51-962E-8DA73544144B",
-    "name": "Bitmap",
-    "width": 48,
-    "height": 48,
-    "abX": 59,
-    "abY": 2719,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "dacf9969d93b8133c9871e10991aa01b.png"
-  },
-  {
-    "id": "CCDCBDC0-9325-483C-8C63-3CD7C1F2893B",
-    "name": "玄铁",
-    "width": 48,
-    "height": 34,
-    "abX": 127,
-    "abY": 2724,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 119,
-            "g": 119,
-            "b": 119,
-            "a": 1
-          },
-          "string": "玄铁",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "玄铁"
-  },
-  {
-    "id": "7BECEB94-C1DD-43ED-9171-BBCE8A5F289E",
-    "name": "更多",
-    "width": 36,
-    "height": 8,
-    "abX": 660,
-    "abY": 2739,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "5D7D1621-E915-4B42-A24F-8BC6E74B04BF.png"
-  },
-  {
-    "id": "97051F72-2B59-4D72-9B23-BB15FFF3E2B9",
-    "name": " 评论",
-    "width": 31,
-    "height": 29,
-    "abX": 494,
-    "abY": 2733,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "C266F67C-0E9C-4EB8-9318-989DB854ABD8.png"
-  },
-  {
-    "id": "8E453CF8-B273-4B2D-A9DC-5F99ECC310C4",
-    "name": "3214",
-    "width": 53,
-    "height": 34,
-    "abX": 535,
-    "abY": 2727,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 119,
-            "g": 119,
-            "b": 119,
-            "a": 1
-          },
-          "string": "3214",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "3214"
-  },
-  {
-    "id": "7D87225B-FD99-4294-B057-FF07FE6F2E00",
-    "name": "Oval 4",
-    "width": 120,
-    "height": 120,
-    "abX": 315,
-    "abY": 2383,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": "0.5000",
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "4ADC56B1-A3CC-474D-A2DE-4A015E336DA3",
-    "name": "Triangle 12",
-    "width": 44,
-    "height": 33,
-    "abX": 357,
-    "abY": 2427,
-    "zIndex": 4,
-    "styles": {},
-    "type": "QImage",
-    "path": "F4209C89-350F-45B8-834B-DDCC75283CD7.png"
+    "path": "7bdc0588434af5bf1a60257bad572988.png"
   }
 ]

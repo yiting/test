@@ -8,7 +8,8 @@ export default {
     if (
       this.parent &&
       this.parent.type === Common.QText &&
-      this.type === Common.QText
+      this.type === Common.QText &&
+      this._hasText
     ) {
       return 'inline';
     }

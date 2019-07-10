@@ -25,10 +25,7 @@ class EM1M1 extends HtmlTemplate {
           text: text.string,
         });
       });
-      const firstText = texts[0];
-      this._renderData.styles.texts = [firstText];
       this._renderData.children = children;
-      this._renderData.text = firstText.string;
       this._renderData.constraints['LayoutDirection'] =
         Constraints.LayoutDirection.Horizontal;
     }

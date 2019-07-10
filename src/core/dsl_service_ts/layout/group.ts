@@ -9,20 +9,6 @@ const DSLOptions: any = {};
  * @param {Array} elementModels 进行布局的元素模型
  * @returns {Object} 返回结构树
  */
-function clean(arr: any[]) {
-  arr.forEach((node: any) => {
-    if (node.data.text && node.data.text[node.data.text.length - 1] == '\n') {
-      const text = node.data.text.slice(0, -1);
-      const abYops = node.abYops - node.data.styles.lineHeight;
-      const height = abYops - node.abY;
-      node.data.set('text', text);
-      node.data.set('abYops', abYops);
-      node.data.set('height', height);
-      node.abYops = abYops;
-      node.height = height;
-    }
-  });
-}
 
 const handle = function(models: any[], bodyModel: any) {
   if (!models) {
@@ -30,13 +16,6 @@ const handle = function(models: any[], bodyModel: any) {
   }
   Object.assign(DSLOptions, Store.getAll());
   const dslTree: any = new Tree(bodyModel); // dsl树
-  try {
-    clean(models);
-  } catch (e) {
-    Loger.error(`dsl/group.ts clean()
-      desc: 数据清洗
-      error:${e}`);
-  }
   try {
     dslTree._setModelData(models);
   } catch (e) {
