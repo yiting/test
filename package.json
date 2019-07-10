@@ -11,7 +11,8 @@
     "commitlint": "commitlint --color",
     "start": "tsc && node ./dist/api/index.js",
     "serve": "PORT=3000 pm2 start /home/tosee/core_server/dist/api/index.js --name=core_server",
-    "serve-dev": "PORT=3001 pm2 start /home/tosee/core_server/dist/api/index.js --name=core_server_dev"
+    "serve-dev": "PORT=3001 pm2 start /home/tosee/core_server/dist/api/index.js --name=core_server_dev",
+    "serve-img": "PORT=8081 pm2 start /home/tosee/core_server/dist/api/indexImg.js --name=img_server_dev"
   },
   "repository": {
     "type": "git",
