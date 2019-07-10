@@ -7,8 +7,6 @@ import Group from './layout/group';
 import Render from './render/render';
 import Clean from './clean/manage';
 import Store from './helper/store';
-import { debug } from 'util';
-import { Logger } from 'log4js';
 
 /**
  * dsl服务的主使用接口
