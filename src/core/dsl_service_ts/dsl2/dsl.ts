@@ -92,7 +92,7 @@ let pipe = function(nodes: any): any {
         item.type = Common.QBody;
         bodyModel = item;
       default:
-        console.log('nodes分类遇到没有对应类型的节');
+        Loger.log('nodes分类遇到没有对应类型的节');
       //console.log(item.id);
     }
   });
@@ -111,7 +111,7 @@ let pipe = function(nodes: any): any {
       maxNodeY,
     );
   } catch (e) {
-    console.log('match elements error');
+    Loger.log(`match elements error:${e}`);
   }
 
   // 剩下因各种情况未能匹配的,变成基础元素模型
@@ -119,7 +119,7 @@ let pipe = function(nodes: any): any {
     try {
       Manager.matchElementBase(matchingNodes, matchedElements);
     } catch (e) {
-      console.log('match base error');
+      Loger.log(`match base error:${e}`);
     }
   }
 
@@ -136,7 +136,7 @@ let pipe = function(nodes: any): any {
       maxNodeY,
     );
   } catch (e) {
-    console.log(`match elementX error:${e}`);
+    Loger.log(`match elementX error:${e}`);
   }
 
   // 匹配完的可变节点元素模型添加回元素模型列表
@@ -160,8 +160,7 @@ let pipe = function(nodes: any): any {
       maxNodeY,
     );
   } catch (e) {
-    console.log(e);
-    console.log('match widgets error');
+    Loger.log(`match widgets error:${e}`);
   }
   const info3 = '组件模型数: ' + matchedWidgets.length + '; ';
 

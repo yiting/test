@@ -7,8 +7,8 @@ import Func from '../css_func';
 import QLog from '../../../log/qlog';
 
 import cssProperty from '../css_property';
-
 const Loger = QLog.getInstance(QLog.moduleData.render);
+
 // 生成的Css记录树
 let cssDomTree = null;
 
@@ -77,6 +77,7 @@ class CssDom {
     add: any;
     subtract: any;
   };
+  _textWidth: number | null;
 
   constructor(parent: any, data: any) {
     // 节点的信息
@@ -98,10 +99,11 @@ class CssDom {
     this._abY = data.abY;
     this._abXops = data.abXops;
     this._abYops = data.abYops;
-    this._width = data.width;
-    this._height = data.height;
+    this._width = data.abXops - data.abX;
+    this._height = data.abYops - data.abY;
     this._zIndex = data.zIndex;
     this._hasText = !!data.text;
+    this._textWidth = null;
 
     // 样式属性
     this.constraints = data.constraints;
@@ -270,6 +272,7 @@ class CssDom {
     if (!this._hasText) {
       return null;
     }
+    const fontWidth = this.styles.texts.map((t: any) => {});
     if (
       this.constraints.LayoutJustifyContent ===
         Constraints.LayoutJustifyContent.Center ||

@@ -72,6 +72,8 @@ class HtmlDom {
 
   parent: any;
 
+  styles: any;
+
   constructor(node: any, parentNode: any) {
     // super(node)
     this.children = [];
@@ -91,6 +93,7 @@ class HtmlDom {
     this.path = node.path || null;
     this.contrains = node.contrains || {};
     this.tplAttr = node.tplAttr || {};
+    this.styles = node.styles || {};
 
     this.selfClassName = node.selfClassName;
     this.similarClassName = node.similarClassName;
@@ -130,7 +133,7 @@ class HtmlDom {
   }
 
   getContent() {
-    return this.text || '';
+    return (this.styles.texts && this.styles.texts[0].string) || '';
   }
 
   getAttrs() {
@@ -166,7 +169,7 @@ class HtmlDom {
 
   // 闭合节点
   getHtmlEnd() {
-    return this.isClosedTag ? '' : `</${this.getTag()}> `;
+    return this.isClosedTag ? '' : `</${this.getTag()}>`;
   }
 
   static getHtmlString(htmlDom: any) {

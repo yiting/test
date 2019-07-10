@@ -65,7 +65,7 @@ class Render {
 
   _builder: any;
 
-  constructor(data: any, Builder: any, layoutType: any) {
+  constructor(data: any, Builder: any) {
     if (!data) {
       return;
     }
@@ -83,7 +83,7 @@ class Render {
     this._setSimilarChild();
 
     Loger.debug('render.js [new builder]');
-    this._builder = new Builder(this._data, layoutType);
+    this._builder = new Builder(this._data);
   }
 
   /**
@@ -236,7 +236,7 @@ class Render {
    * @param {DslTree} dslTree
    * @param {string} layoutType
    */
-  static pipe(dslTree: any, config: any) {
+  static pipe(dslTree: any) {
     Loger.debug('render.js [pipe]');
     // 默认直接使用h5模板引擎输出
     TemplateData.reset();
@@ -250,7 +250,7 @@ class Render {
       templateData = Template.parse(renderJSON, null, TemplateList);
 
       Loger.debug('render.js [new Render]');
-      render = new Render(templateData, H5Builder, config.layoutType);
+      render = new Render(templateData, H5Builder);
     } catch (e) {
       Loger.error(`render.js [pipe] ${e}`);
     }

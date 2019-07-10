@@ -5,8 +5,10 @@ import Dsl from './dsl2/dsl';
 import Layout from './layout/layout';
 import Group from './layout/group';
 import Render from './render/render';
+import Clean from './clean/manage';
 import Store from './helper/store';
 import { debug } from 'util';
+import { Logger } from 'log4js';
 
 /**
  * dsl服务的主使用接口
@@ -21,11 +23,12 @@ function _process(_input: any, _options: any): object {
   _initInput(input);
   // 初始化进程参数
   _initOptions(_options);
+  // 数据清洗
+  const nodes = input.nodes;
+  Clean(nodes);
 
   // 模型识别模块
-  const dslModel = Dsl.pipe(input.nodes);
-  // 调用Render模块输出
-  const config = Dsl.config();
+  const dslModel = Dsl.pipe(nodes);
 
   // layout模块
   let dslTree: any;
@@ -47,10 +50,7 @@ function _process(_input: any, _options: any): object {
   }
 
   // render模块
-  const render = Render.pipe(
-    dslTree,
-    config,
-  );
+  const render = Render.pipe(dslTree);
   const htmlStr = render.getTagString();
   const cssStr = render.getStyleString();
 
