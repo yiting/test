@@ -92,7 +92,7 @@ let pipe = function(nodes: any): any {
         item.type = Common.QBody;
         bodyModel = item;
       default:
-        Loger.log('nodes分类遇到没有对应类型的节');
+        console.log('nodes分类遇到没有对应类型的节');
       //console.log(item.id);
     }
   });
