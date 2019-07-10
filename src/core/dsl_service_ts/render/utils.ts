@@ -128,4 +128,56 @@ export default {
     o.width = o._abXops - o._abX;
     return o;
   },
+  calculateBaseLine(vdom: any) {
+    let X = 0;
+    let Y = 0;
+    let Xops = 0;
+    let Yops = 0;
+    let Xctr = 0;
+    let Yctr = 0;
+    const pXctr = (vdom._abX + vdom._abXops) / 2;
+    const pYctr = (vdom._abY + vdom._abYops) / 2;
+    let nodeCount = 0;
+    const errorCoefficient = 2; // 误差系数
+    vdom.children.forEach((node: any) => {
+      if (
+        node.constraints.LayoutSelfPosition ===
+        Constraints.LayoutSelfPosition.Absolute
+      ) {
+        // 剔除绝对定位
+        return;
+      }
+      nodeCount += 1;
+      X += Math.abs(node._abX - vdom._abX);
+      Y += Math.abs(node._abY - vdom._abY);
+      Xops += Math.abs(vdom._abXops - node._abXops);
+      Yops += Math.abs(vdom._abYops - node._abYops);
+      Xctr += Math.abs(pXctr - (node._abX + node._abXops) / 2);
+      Yctr += Math.abs(pYctr - (node._abY + node._abYops) / 2);
+    });
+    const hStart = Math.abs(X / nodeCount) < errorCoefficient;
+    const hCenter = Math.abs(Xctr / nodeCount) < errorCoefficient;
+    const hEnd = Xops / nodeCount === 0;
+    const vStart = Math.abs(Y / nodeCount) < errorCoefficient;
+    const vCenter = Math.abs(Yctr / nodeCount) < errorCoefficient;
+    const vEnd = Yops / nodeCount === 0;
+
+    const horizontalCenter = hCenter && !hStart && !hEnd;
+    const horizontalEnd = hEnd && !hStart;
+    const horizontalStart = !horizontalCenter && !horizontalEnd;
+    // const verticalCenter = vCenter && !vStart && !vEnd;
+    const verticalCenter = vCenter;
+    // const verticalEnd = vEnd && !vStart;
+    const verticalEnd = vEnd && !vCenter && !vStart;
+    const verticalStart = !verticalCenter && !verticalEnd;
+
+    return {
+      horizontalStart,
+      horizontalCenter,
+      horizontalEnd,
+      verticalStart,
+      verticalCenter,
+      verticalEnd,
+    };
+  },
 };
