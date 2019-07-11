@@ -71,9 +71,10 @@ function _calculateLeftBoundary(vdom: any, isVertical: boolean) {
     return undefined;
   }
   const prevNode = isVertical ? null : vdom._prevNode();
+  const prevLine = vdom._prevLine();
   const { _abX } = vdom;
-  // 最后个节点
-  if (!prevNode) {
+  // 第一个节点
+  if (!prevNode || prevLine.includes(prevNode)) {
     vdom._abX = vdom.parent._abX;
   } else if (prevNode._canRightFlex()) {
     // 前节点可右拓展，取中间线
@@ -90,9 +91,10 @@ function _calculateRightBoundary(vdom: any, isVertical: boolean) {
     return undefined;
   }
   const nextNode = isVertical ? null : vdom._nextNode();
+  const nextLine = vdom._nextLine();
   const { _abXops } = vdom;
-  // 第一个节点
-  if (!nextNode) {
+  // 最后个节点
+  if (!nextNode || nextLine.includes(nextNode)) {
     vdom._abXops =
       vdom._abXops < vdom.parent._abXops ? vdom.parent._abXops : vdom._abXops;
   } else if (nextNode._canLeftFlex()) {

@@ -26,6 +26,7 @@ class LayoutCircle {
       // 如果没有子节点，则返回
       return;
     }
+
     ErrorCoefficient = Store.get('errorCoefficient') || 0;
     const isHorizontal = Utils.isHorizontal(nodes);
     if (isHorizontal) {

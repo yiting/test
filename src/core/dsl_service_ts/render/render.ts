@@ -243,7 +243,6 @@ class Render {
     const renderJSON = dslTree.getRenderData().toJSON();
     let render: any;
     let templateData: any;
-    // con(renderJSON)
     try {
       // 这里直接使用h5 builder
       Loger.debug('render.js [Template parse]');
