@@ -86,7 +86,7 @@ const ImageCombine = function() {
         };
         setTimeout(function() {
           resolve(result);
-        }, 10);
+        }, 50);
       });
       fs.createReadStream(sketchPath).pipe(extract);
     });
@@ -969,62 +969,33 @@ const ImageCombine = function() {
   };
 
   //预览图查看
-  this.previewItem = function(param, item) {
+  this.preview = function(param) {
     const main = async () => {
-      let { projectName, sketchName } = param;
-      let itemIds = [item['id']];
+      const that = this;
+      let { projectName, sketchName, imgList } = param;
+      let itemIds = [];
+      let result = [];
+      imgList.forEach(item => {
+        itemIds.push(item['id']);
+        result.push({
+          path: that.getUrl(`${projectName}/images/${item['id']}.png`),
+        });
+      });
       if (typeof sketchName == 'undefined') {
         sketchName = projectName;
       }
-      const that = this;
       const { sketchDir } = that;
       const outputDir = `${that.outputDir + projectName}/images/`;
       // let scales = 750 / that.artboardWidth ;
       return new Promise(function(resolve, reject) {
         let command = `${BIN} export layers --output=${outputDir} --formats=png ${`${sketchDir +
-          sketchName}.sketch`} --items=${itemIds} --scales=2`;
+          sketchName}.sketch`} --items=${itemIds} --use-id-for-name`;
         // console.log(command);
         exec(command, function(a, b, c) {
           if (a) {
             logger.error(a);
           }
-          var newFileName = b.substring(9, b.length - 1);
-          fileName = itemIds[0] + '.png';
-          filePath = outputDir + fileName;
-          try {
-            fs.renameSync(
-              that.findFilePath(outputDir, newFileName),
-              filePath,
-              function(err) {},
-            );
-          } catch (e) {
-            logger.error(e);
-          }
-          const result = {
-            path: that.getUrl(`${projectName}/images/${fileName}`),
-          };
           resolve(result);
-        });
-      });
-    };
-
-    try {
-      return main();
-    } catch (e) {
-      logger.warn(e);
-    }
-  };
-  this.preview = function(param) {
-    let that = this;
-    const main = async () => {
-      let imgList = param.imgList;
-      let promiseList = [];
-      return new Promise(function(resolve, reject) {
-        imgList.forEach(item => {
-          promiseList.push(that.previewItem(param, item));
-        });
-        Promise.all(promiseList).then(resultList => {
-          resolve(resultList);
         });
       });
     };
