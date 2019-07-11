@@ -180,7 +180,7 @@ class Sketch {
   _getOpcity(style) {
     //获取透明度
     const opacity = style.contextSettings
-      ? (+style.contextSettings.opacity).toFixed(4)
+      ? +style.contextSettings.opacity.toFixed(4)
       : 1;
     return opacity;
   }
