@@ -287,7 +287,7 @@ class CssDom {
       const lineHeight =
         this.styles.lineHeight ||
         Math.max(this.styles.texts.map((s: any) => s.size)) * 1.33;
-      if (this._height / lineHeight > 1.5) {
+      if (this._height / lineHeight > 1.6) {
         // 如果高度高于行高，则为多行，固定宽度
         return true;
       }

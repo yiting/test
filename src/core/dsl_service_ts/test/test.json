@@ -1,7 +1,7 @@
 [
   {
     "id": "C27F3E20-BCAD-4ADD-B53C-FF3C104A2CA2",
-    "name": "28练习",
+    "name": "123",
     "width": 750,
     "height": 1334,
     "abX": 0,
@@ -15,12 +15,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 247,
-          "g": 248,
-          "b": 252,
-          "a": 1
-        },
+        "color": { "r": 247, "g": 248, "b": 252, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -43,12 +38,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "5-10 MIN",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -72,18 +62,13 @@
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": "0.8500",
+      "opacity": 0.85,
       "rotation": 0,
       "shadows": null,
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "回想一下，想要和对方说的话里面，哪些是观察，哪些是评判",
           "font": "PingFangSC-Medium",
           "size": 36
@@ -112,12 +97,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -134,18 +114,13 @@
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": "0.2500",
+      "opacity": 0.25,
       "rotation": 0,
       "shadows": null,
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "或者写下你的答案…",
           "font": "PingFangSC-Regular",
           "size": 32
@@ -170,12 +145,7 @@
       "borderRadius": null,
       "border": {
         "type": "solid",
-        "color": {
-          "r": 229,
-          "g": 229,
-          "b": 229,
-          "a": 1
-        },
+        "color": { "r": 229, "g": 229, "b": 229, "a": 1 },
         "width": 1,
         "position": 1
       },
@@ -184,12 +154,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -207,12 +172,7 @@
       "borderRadius": [10, 10, 10, 10],
       "border": {
         "type": "solid",
-        "color": {
-          "r": 5,
-          "g": 5,
-          "b": 5,
-          "a": 0.08222939311594203
-        },
+        "color": { "r": 5, "g": 5, "b": 5, "a": 0.08222939311594203 },
         "width": 2,
         "position": 1
       },
@@ -221,12 +181,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 34,
-          "g": 89,
-          "b": 202,
-          "a": 1
-        },
+        "color": { "r": 34, "g": 89, "b": 202, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -249,12 +204,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "下一步",
           "font": "PingFangSC-Regular",
           "size": 36
@@ -284,12 +234,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 34,
-            "g": 89,
-            "b": 202,
-            "a": 1
-          },
+          "color": { "r": 34, "g": 89, "b": 202, "a": 1 },
           "string": "观察",
           "font": "PingFangSC-Medium",
           "size": 64
@@ -313,18 +258,13 @@
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": "0.1500",
+      "opacity": 0.15,
       "rotation": 0,
       "shadows": null,
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "认知",
           "font": "PingFangSC-Medium",
           "size": 64
@@ -348,18 +288,13 @@
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": "0.1500",
+      "opacity": 0.15,
       "rotation": 0,
       "shadows": null,
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "调整",
           "font": "PingFangSC-Medium",
           "size": 64
@@ -389,12 +324,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 34,
-            "g": 89,
-            "b": 202,
-            "a": 1
-          },
+          "color": { "r": 34, "g": 89, "b": 202, "a": 1 },
           "string": "1",
           "font": "PingFangSC-Medium",
           "size": 88
@@ -418,18 +348,13 @@
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": "0.1500",
+      "opacity": 0.15,
       "rotation": 0,
       "shadows": null,
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "2",
           "font": "PingFangSC-Medium",
           "size": 88
@@ -453,18 +378,13 @@
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": "0.1500",
+      "opacity": 0.15,
       "rotation": 0,
       "shadows": null,
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "3",
           "font": "PingFangSC-Medium",
           "size": 88
@@ -513,12 +433,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "100%",
           "font": "PingFangSC-Semibold",
           "size": 24
@@ -548,12 +463,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "1:21 AM",
           "font": "PingFangSC-Semibold",
           "size": 24
@@ -595,12 +505,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "中国移动",
           "font": "PingFangSC-Medium",
           "size": 23
@@ -649,12 +554,7 @@
       "borderRadius": [32, 32, 32, 32],
       "border": {
         "type": "solid",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 0.2
-        },
+        "color": { "r": 0, "g": 0, "b": 0, "a": 0.2 },
         "width": 1,
         "position": 2
       },
@@ -663,12 +563,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -702,12 +597,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 0.2
-        },
+        "color": { "r": 0, "g": 0, "b": 0, "a": 0.2 },
         "hasOpacity": true
       }
     },
@@ -742,12 +632,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "练习CBT",
           "font": "PingFangSC-Medium",
           "size": 37
@@ -781,12 +666,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 230,
-          "g": 236,
-          "b": 248,
-          "a": 1
-        },
+        "color": { "r": 230, "g": 236, "b": 248, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -809,12 +689,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 34,
-            "g": 89,
-            "b": 202,
-            "a": 1
-          },
+          "color": { "r": 34, "g": 89, "b": 202, "a": 1 },
           "string": "知识点",
           "font": "PingFangSC-Medium",
           "size": 24
@@ -848,12 +723,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 34,
-          "g": 89,
-          "b": 202,
-          "a": 1
-        },
+        "color": { "r": 34, "g": 89, "b": 202, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -880,12 +750,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 230,
-          "g": 236,
-          "b": 248,
-          "a": 1
-        },
+        "color": { "r": 230, "g": 236, "b": 248, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -912,12 +777,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 230,
-          "g": 236,
-          "b": 248,
-          "a": 1
-        },
+        "color": { "r": 230, "g": 236, "b": 248, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -944,12 +804,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 230,
-          "g": 236,
-          "b": 248,
-          "a": 1
-        },
+        "color": { "r": 230, "g": 236, "b": 248, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -976,12 +831,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 230,
-          "g": 236,
-          "b": 248,
-          "a": 1
-        },
+        "color": { "r": 230, "g": 236, "b": 248, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1008,12 +858,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 230,
-          "g": 236,
-          "b": 248,
-          "a": 1
-        },
+        "color": { "r": 230, "g": 236, "b": 248, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1040,12 +885,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 230,
-          "g": 236,
-          "b": 248,
-          "a": 1
-        },
+        "color": { "r": 230, "g": 236, "b": 248, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1072,12 +912,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 230,
-          "g": 236,
-          "b": 248,
-          "a": 1
-        },
+        "color": { "r": 230, "g": 236, "b": 248, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1104,12 +939,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 230,
-          "g": 236,
-          "b": 248,
-          "a": 1
-        },
+        "color": { "r": 230, "g": 236, "b": 248, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1136,12 +966,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 230,
-          "g": 236,
-          "b": 248,
-          "a": 1
-        },
+        "color": { "r": 230, "g": 236, "b": 248, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1164,12 +989,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "从不",
           "font": "PingFangSC-Regular",
           "size": 36
@@ -1199,12 +1019,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "从不",
           "font": "PingFangSC-Regular",
           "size": 36
@@ -1234,12 +1049,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "从不",
           "font": "PingFangSC-Regular",
           "size": 36
@@ -1269,12 +1079,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "从不",
           "font": "PingFangSC-Regular",
           "size": 36
@@ -1304,12 +1109,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "从不",
           "font": "PingFangSC-Regular",
           "size": 36
@@ -1339,12 +1139,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "多标签情况",
           "font": "PingFangSC-Regular",
           "size": 36
@@ -1374,12 +1169,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "多标签情况",
           "font": "PingFangSC-Regular",
           "size": 36
@@ -1409,12 +1199,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "多标签情况",
           "font": "PingFangSC-Regular",
           "size": 36
@@ -1444,12 +1229,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "多标签情况",
           "font": "PingFangSC-Regular",
           "size": 36
@@ -1479,12 +1259,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 33,
-            "g": 43,
-            "b": 54,
-            "a": 1
-          },
+          "color": { "r": 33, "g": 43, "b": 54, "a": 1 },
           "string": "多标签情况",
           "font": "PingFangSC-Regular",
           "size": 36
