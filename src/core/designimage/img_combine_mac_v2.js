@@ -86,7 +86,7 @@ const ImageCombine = function() {
         };
         setTimeout(function() {
           resolve(result);
-        }, 10);
+        }, 50);
       });
       fs.createReadStream(sketchPath).pipe(extract);
     });
