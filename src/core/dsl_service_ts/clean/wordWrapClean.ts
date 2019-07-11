@@ -5,6 +5,6 @@ export default function(node: any) {
     const lastTextIndex = node.styles.texts.length - 1;
     node.styles.texts[lastTextIndex].string = node.styles.texts[
       lastTextIndex
-    ].slice(0, -1);
+    ].string.slice(0, -1);
   }
 }
