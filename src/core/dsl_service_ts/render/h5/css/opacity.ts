@@ -1,8 +1,9 @@
 export default {
   key: 'opacity',
   value() {
-    if (typeof this.styles.opacity === 'number') {
-      return this.styles.opacity;
+    const opacity = +this.styles.opacity;
+    if (typeof opacity === 'number' && !isNaN(opacity)) {
+      return opacity;
     }
     return null;
   },

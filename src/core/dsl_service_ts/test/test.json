@@ -1,38 +1,489 @@
 [
   {
-    "id": "0EFF336B-3BE2-4B37-94EB-41C0378BE6C4",
-    "name": "填写收货地址",
-    "width": 753,
-    "height": 1337,
-    "abX": -0.5,
-    "abY": -0.5,
+    "id": "C27F3E20-BCAD-4ADD-B53C-FF3C104A2CA2",
+    "name": "28练习",
+    "width": 750,
+    "height": 1334,
+    "abX": 0,
+    "abY": 0,
     "zIndex": 0,
     "styles": {
       "borderRadius": null,
-      "border": {
-        "type": "solid",
-        "color": { "r": 151, "g": 151, "b": 151, "a": 1 },
-        "width": 1,
-        "position": 0
-      },
+      "border": null,
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
       "background": {
         "type": "color",
-        "color": { "r": 216, "g": 216, "b": 216, "a": 1 },
+        "color": {
+          "r": 247,
+          "g": 248,
+          "b": 252,
+          "a": 1
+        },
         "hasOpacity": false
       }
     },
     "type": "QLayer"
   },
   {
-    "id": "AEB1EFD6-5A4C-492C-AA88-9BBE3CC7BA9A",
-    "name": "Bitmap",
-    "width": 752,
-    "height": 1336.5,
+    "id": "A4B805C9-A7FC-4FD7-A3E2-E9B86C90FBCB",
+    "name": "Label Copy",
+    "width": 106,
+    "height": 32,
+    "abX": 743,
+    "abY": 992,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "string": "5-10 MIN",
+          "font": "PingFangSC-Regular",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 32
+    },
+    "type": "QText",
+    "text": "5-10 MIN"
+  },
+  {
+    "id": "11ED0511-BDE5-4D4B-8B61-5796CEBFD866",
+    "name": "回想一下，想要和对方说的话里面，哪些是观",
+    "width": 670,
+    "height": 100,
+    "abX": 40,
+    "abY": 388,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": "0.8500",
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "回想一下，想要和对方说的话里面，哪些是观察，哪些是评判",
+          "font": "PingFangSC-Medium",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "回想一下，想要和对方说的话里面，哪些是观察，哪些是评判"
+  },
+  {
+    "id": "E3393A0D-2960-4291-8BD0-4F6D7700F734",
+    "name": "Rectangle",
+    "width": 670,
+    "height": 700,
+    "abX": 40,
+    "abY": 888,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [10, 10, 10, 10],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "9FD22C30-C598-4A6D-8794-7153B5B79463",
+    "name": "或者写下你的答案…",
+    "width": 288,
+    "height": 45,
+    "abX": 80,
+    "abY": 928,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": "0.2500",
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "或者写下你的答案…",
+          "font": "PingFangSC-Regular",
+          "size": 32
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "或者写下你的答案…"
+  },
+  {
+    "id": "15C2F5B5-A12B-4C3A-B2BA-96A80ED76A4C",
+    "name": "Rectangle",
+    "width": 750,
+    "height": 158,
     "abX": 0,
-    "abY": 0,
+    "abY": 1176,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": {
+        "type": "solid",
+        "color": {
+          "r": 229,
+          "g": 229,
+          "b": 229,
+          "a": 1
+        },
+        "width": 1,
+        "position": 1
+      },
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "53A130D9-D7C0-4E04-A959-227F649B019D",
+    "name": "Rectangle ",
+    "width": 670,
+    "height": 94,
+    "abX": 40,
+    "abY": 1208,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": [10, 10, 10, 10],
+      "border": {
+        "type": "solid",
+        "color": {
+          "r": 5,
+          "g": 5,
+          "b": 5,
+          "a": 0.08222939311594203
+        },
+        "width": 2,
+        "position": 1
+      },
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 34,
+          "g": 89,
+          "b": 202,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "7CE4DF00-8481-4CA9-869C-DECB8B99F637",
+    "name": "Label",
+    "width": 108,
+    "height": 50,
+    "abX": 321,
+    "abY": 1230,
+    "zIndex": 4,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "string": "下一步",
+          "font": "PingFangSC-Regular",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "下一步"
+  },
+  {
+    "id": "01E843A8-83E2-4C9E-B3CB-57A7F6BF53F9",
+    "name": "观察",
+    "width": 128,
+    "height": 72,
+    "abX": 108,
+    "abY": 180,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 34,
+            "g": 89,
+            "b": 202,
+            "a": 1
+          },
+          "string": "观察",
+          "font": "PingFangSC-Medium",
+          "size": 64
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 72
+    },
+    "type": "QText",
+    "text": "观察"
+  },
+  {
+    "id": "24338C09-D642-48C5-A29C-2B692A85C432",
+    "name": "认知",
+    "width": 128,
+    "height": 72,
+    "abX": 367,
+    "abY": 180,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": "0.1500",
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "认知",
+          "font": "PingFangSC-Medium",
+          "size": 64
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 72
+    },
+    "type": "QText",
+    "text": "认知"
+  },
+  {
+    "id": "F8478E42-1A19-4439-8A43-D1ED4793B03F",
+    "name": "调整",
+    "width": 128,
+    "height": 72,
+    "abX": 626,
+    "abY": 180,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": "0.1500",
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "调整",
+          "font": "PingFangSC-Medium",
+          "size": 64
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 72
+    },
+    "type": "QText",
+    "text": "调整"
+  },
+  {
+    "id": "88AFDB6B-2E28-4080-A3E4-73210E46E9CA",
+    "name": "1",
+    "width": 36,
+    "height": 96,
+    "abX": 40,
+    "abY": 168,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 34,
+            "g": 89,
+            "b": 202,
+            "a": 1
+          },
+          "string": "1",
+          "font": "PingFangSC-Medium",
+          "size": 88
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 96
+    },
+    "type": "QText",
+    "text": "1"
+  },
+  {
+    "id": "2E1A8275-E406-4053-9D40-29DF335BAD62",
+    "name": "2",
+    "width": 53,
+    "height": 96,
+    "abX": 299,
+    "abY": 168,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": "0.1500",
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "2",
+          "font": "PingFangSC-Medium",
+          "size": 88
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 96
+    },
+    "type": "QText",
+    "text": "2"
+  },
+  {
+    "id": "844C398F-600F-4387-BF5A-417946B3D7DB",
+    "name": "3",
+    "width": 53,
+    "height": 96,
+    "abX": 558,
+    "abY": 168,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": "0.1500",
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "3",
+          "font": "PingFangSC-Medium",
+          "size": 88
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 96
+    },
+    "type": "QText",
+    "text": "3"
+  },
+  {
+    "id": "ED73DAD0-1EF8-4EE4-A16A-1044EA429EA0",
+    "name": "Battery Icon",
+    "width": 49,
+    "height": 19,
+    "abX": 691,
+    "abY": 11,
     "zIndex": 1,
     "styles": {
       "borderRadius": null,
@@ -43,298 +494,1007 @@
       "background": null
     },
     "type": "QImage",
-    "path": "328d9870ae0d51c2758963620ed614c6.png"
+    "path": "f7f44ac01ac1304fe2fd639fc7d95426.png"
   },
   {
-    "id": "DF8758DE-2CDB-473C-88DC-0FD232E11159",
-    "name": "Rectangle 2",
-    "width": 560,
-    "height": 752,
-    "abX": 96,
-    "abY": 296,
+    "id": "0E7084C0-AB3F-4DC0-B47A-89882EA53D72",
+    "name": "100%",
+    "width": 63,
+    "height": 33,
+    "abX": 619,
+    "abY": 6,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1
+          },
+          "string": "100%",
+          "font": "PingFangSC-Semibold",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "100%"
+  },
+  {
+    "id": "2D3EC8C0-3DAF-4902-81F2-91D9DD71AA0B",
+    "name": "Label",
+    "width": 87,
+    "height": 33,
+    "abX": 332,
+    "abY": 6,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1
+          },
+          "string": "1:21 AM",
+          "font": "PingFangSC-Semibold",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "1:21 AM"
+  },
+  {
+    "id": "39C71948-813D-4B77-9A8B-40629D2C3A9E",
+    "name": "Wifi",
+    "width": 24,
+    "height": 18,
+    "abX": 189,
+    "abY": 12,
+    "zIndex": 1,
+    "styles": {},
+    "type": "QImage",
+    "path": "5fc625babec9e293080c74560de8689c.png"
+  },
+  {
+    "id": "07B45FAB-2CEB-4BB8-A81B-7840688A5588",
+    "name": "中国移动",
+    "width": 89,
+    "height": 32,
+    "abX": 90,
+    "abY": 5,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1
+          },
+          "string": "中国移动",
+          "font": "PingFangSC-Medium",
+          "size": 23
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "中国移动"
+  },
+  {
+    "id": "D98B50BB-849C-46BE-9D96-E3F9075E3D70",
+    "name": "Signal",
+    "width": 67,
+    "height": 11,
+    "abX": 13,
+    "abY": 15,
+    "zIndex": 1,
+    "styles": {},
+    "type": "QImage",
+    "path": "9092794f471627da481fcc454ca81d3f.png"
+  },
+  {
+    "id": "A11D01FA-0E57-4B3B-8DBC-4A5041694EB4",
+    "name": "Rectangle ",
+    "width": 20,
+    "height": 35,
+    "abX": 20,
+    "abY": 66,
+    "zIndex": 1,
+    "styles": {},
+    "type": "QImage",
+    "path": "21560da50907897969f87c129ed81a32.png"
+  },
+  {
+    "id": "B69568CC-0CB9-4EB7-8690-DA5BDE84B255",
+    "name": "button",
+    "width": 174,
+    "height": 64,
+    "abX": 557,
+    "abY": 45,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [32, 32, 32, 32],
+      "border": {
+        "type": "solid",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.2
+        },
+        "width": 1,
+        "position": 2
+      },
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "1961D2EE-13F2-46C7-B6A7-BB8660387F4A",
+    "name": "Combined Shape",
+    "width": 34,
+    "height": 34,
+    "abX": 670,
+    "abY": 60,
     "zIndex": 2,
     "styles": {},
     "type": "QImage",
-    "path": "e680c6d86392ccc5e6bfc209b89d33b0.png"
+    "path": "6c57f3d8fbf6348dfc889472911d52ee.png"
   },
   {
-    "id": "081D327E-A3B5-4D21-BFF0-9612753E7E18",
-    "name": "填写收货地址",
-    "width": 208,
-    "height": 48,
-    "abX": 272,
-    "abY": 344,
-    "zIndex": 3,
+    "id": "CE562B53-FA77-447F-80CB-ACD5A44352DE",
+    "name": "Rectangle 3",
+    "width": 1,
+    "height": 37,
+    "abX": 644,
+    "abY": 58,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 36, "g": 36, "b": 36, "a": 1 },
-          "string": "填写收货地址",
-          "font": "PingFangSC-Regular",
-          "size": 34
-        }
-      ]
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.2
+        },
+        "hasOpacity": true
+      }
     },
-    "type": "QText"
+    "type": "QShape"
   },
   {
-    "id": "845D7424-92F9-438F-B2DD-D579CA7C815B",
-    "name": "Rectangle 145",
-    "width": 480,
-    "height": 64,
-    "abX": 136,
-    "abY": 456,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "00156a8978ee8501dd52429e67826dda.png"
-  },
-  {
-    "id": "5175A5A0-5E22-4FAE-8B91-FF35ABD37E69",
-    "name": "收件人姓名",
-    "width": 480,
-    "height": 32,
-    "abX": 136,
-    "abY": 416,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 102, "g": 102, "b": 102, "a": 1 },
-          "string": "收件人姓名",
-          "font": "PingFangSC-Regular",
-          "size": 28
-        }
-      ]
-    },
-    "type": "QText"
-  },
-  {
-    "id": "0AF35A78-5AF0-46AF-90D0-7F2F0826A312",
-    "name": "Rectangle 145",
-    "width": 480,
-    "height": 64,
-    "abX": 136,
-    "abY": 584,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "a19106710283c2be7f2ff0923edcb615.png"
-  },
-  {
-    "id": "E942293A-0CDC-4087-B035-2D9CA6CF2A96",
-    "name": "13600405560",
-    "width": 180,
-    "height": 40,
-    "abX": 152,
-    "abY": 596,
-    "zIndex": 4,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 102, "g": 102, "b": 102, "a": 1 },
-          "string": "13600405560",
-          "font": "PingFangSC-Regular",
-          "size": 28
-        }
-      ]
-    },
-    "type": "QText"
-  },
-  {
-    "id": "691EDA5D-285E-491D-AA48-FFFDDECBCB7B",
-    "name": "手机号码",
-    "width": 480,
-    "height": 32,
-    "abX": 136,
-    "abY": 544,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 102, "g": 102, "b": 102, "a": 1 },
-          "string": "手机号码",
-          "font": "PingFangSC-Regular",
-          "size": 28
-        }
-      ]
-    },
-    "type": "QText"
-  },
-  {
-    "id": "6D28D102-8852-49CC-8EA7-E1C0340A9CC3",
-    "name": "Rectangle 145",
-    "width": 480,
-    "height": 64,
-    "abX": 136,
-    "abY": 712,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "9deed3b62f110c785603f476fc14a5bf.png"
-  },
-  {
-    "id": "61448737-1FD5-40CC-9C3A-EAA8B96648BD",
-    "name": "QQ",
-    "width": 480,
-    "height": 32,
-    "abX": 136,
-    "abY": 672,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 102, "g": 102, "b": 102, "a": 1 },
-          "string": "QQ",
-          "font": "PingFangSC-Regular",
-          "size": 28
-        }
-      ]
-    },
-    "type": "QText"
-  },
-  {
-    "id": "001149F7-81F1-4C4B-9AAE-535DB3E7F1D2",
-    "name": "Rectangle 145",
-    "width": 480,
-    "height": 64,
-    "abX": 136,
-    "abY": 840,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "0AF35A78-5AF0-46AF-90D0-7F2F0826A312.png"
-  },
-  {
-    "id": "F0FD6721-6E4E-41AD-9A3D-F7E867400AF7",
-    "name": "收件地址",
-    "width": 480,
-    "height": 32,
-    "abX": 136,
-    "abY": 800,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 102, "g": 102, "b": 102, "a": 1 },
-          "string": "收件地址",
-          "font": "PingFangSC-Regular",
-          "size": 28
-        }
-      ]
-    },
-    "type": "QText"
-  },
-  {
-    "id": "37B01590-6C0D-4DAD-8B36-1FBF6915B788",
-    "name": "取消",
-    "width": 72,
-    "height": 48,
-    "abX": 200,
-    "abY": 976,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 102, "g": 102, "b": 102, "a": 1 },
-          "string": "取消",
-          "font": "PingFangSC-Regular",
-          "size": 36
-        }
-      ]
-    },
-    "type": "QText"
-  },
-  {
-    "id": "437980CE-99EB-45C8-9F58-B3A97466D81E",
-    "name": "保存",
-    "width": 72,
-    "height": 48,
-    "abX": 480,
-    "abY": 976,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 76, "g": 154, "b": 250, "a": 1 },
-          "string": "保存",
-          "font": "PingFangSC-Regular",
-          "size": 36
-        }
-      ]
-    },
-    "type": "QText"
-  },
-  {
-    "id": "634577B4-1F44-4315-90B9-53C0A4E3F9D6",
+    "id": "D54D1C95-4EFE-4D13-AB41-840E36ACE6D3",
     "name": "Combined Shape",
-    "width": 560,
-    "height": 96,
-    "abX": 96,
-    "abY": 952,
-    "zIndex": 4,
+    "width": 37,
+    "height": 13,
+    "abX": 584,
+    "abY": 71,
+    "zIndex": 2,
     "styles": {},
     "type": "QImage",
-    "path": "ccaacc14fba76e7e40291f6faf458892.png"
+    "path": "c0b087b99aa0f4b105cc55ba95c65d17.png"
   },
   {
-    "id": "86DEF102-1140-470D-A044-87B9162A37E3",
-    "name": "Rectangle 1",
-    "width": 752,
-    "height": 1336,
-    "abX": 0,
-    "abY": 0,
-    "zIndex": 5,
-    "styles": {},
-    "type": "QImage",
-    "path": "7bdc0588434af5bf1a60257bad572988.png"
+    "id": "307C8D2D-AA26-4349-939B-502F49B83E77",
+    "name": "Label",
+    "width": 150,
+    "height": 52,
+    "abX": 300,
+    "abY": 58,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1
+          },
+          "string": "练习CBT",
+          "font": "PingFangSC-Medium",
+          "size": 37
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "练习CBT"
+  },
+  {
+    "id": "7AA91357-0B16-42A1-B5FA-49AD71516726",
+    "name": "Rectangle",
+    "width": 120,
+    "height": 63,
+    "abX": 40,
+    "abY": 309,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458
+      ],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 230,
+          "g": 236,
+          "b": 248,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "E53FC6EC-1E43-4187-9E8E-2DDABCBC068E",
+    "name": "知识点",
+    "width": 72,
+    "height": 32,
+    "abX": 64,
+    "abY": 324,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 34,
+            "g": 89,
+            "b": 202,
+            "a": 1
+          },
+          "string": "知识点",
+          "font": "PingFangSC-Medium",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": 32
+    },
+    "type": "QText",
+    "text": "知识点"
+  },
+  {
+    "id": "21FC4D00-F664-4737-BCE8-C1D463DEC80F",
+    "name": "Rectangle",
+    "width": 120,
+    "height": 66,
+    "abX": 40,
+    "abY": 527,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458
+      ],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 34,
+          "g": 89,
+          "b": 202,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "A157107C-C744-4E46-87E2-1F970D38FA36",
+    "name": "Rectangle Copy 2",
+    "width": 120,
+    "height": 66,
+    "abX": 420,
+    "abY": 527,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458
+      ],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 230,
+          "g": 236,
+          "b": 248,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "358FCD62-1147-456E-9CD8-B2C19D4D1505",
+    "name": "Rectangle Copy 4",
+    "width": 120,
+    "height": 66,
+    "abX": 556,
+    "abY": 527,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458
+      ],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 230,
+          "g": 236,
+          "b": 248,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "039243A0-B9BB-49FB-A26C-218FF3B5A294",
+    "name": "Rectangle Copy 6",
+    "width": 120,
+    "height": 66,
+    "abX": 534,
+    "abY": 617,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458
+      ],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 230,
+          "g": 236,
+          "b": 248,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "631B6C13-1A89-43EE-A3DA-672F6CC169C1",
+    "name": "Rectangle Copy 7",
+    "width": 120,
+    "height": 66,
+    "abX": 290,
+    "abY": 707,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458
+      ],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 230,
+          "g": 236,
+          "b": 248,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "B6BD2E36-0702-4CDF-9324-588DF944DE83",
+    "name": "Rectangle Copy",
+    "width": 228,
+    "height": 66,
+    "abX": 176,
+    "abY": 527,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458
+      ],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 230,
+          "g": 236,
+          "b": 248,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "22CEC335-5042-4514-A871-5739FFDC10B5",
+    "name": "Rectangle Copy 3",
+    "width": 228,
+    "height": 66,
+    "abX": 46,
+    "abY": 617,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458
+      ],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 230,
+          "g": 236,
+          "b": 248,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "F6978738-D706-408D-A912-2DBAE35E1487",
+    "name": "Rectangle Copy 8",
+    "width": 228,
+    "height": 66,
+    "abX": 46,
+    "abY": 707,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458
+      ],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 230,
+          "g": 236,
+          "b": 248,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "07ABC997-9F2B-4472-95DD-C93F4BB2C05F",
+    "name": "Rectangle Copy 5",
+    "width": 228,
+    "height": 66,
+    "abX": 290,
+    "abY": 617,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458
+      ],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 230,
+          "g": 236,
+          "b": 248,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "F3B5B6DE-B22A-40D1-9C94-88F8A6261E48",
+    "name": "Rectangle Copy 9",
+    "width": 228,
+    "height": 66,
+    "abX": 426,
+    "abY": 707,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458,
+        31.50000000000458
+      ],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 230,
+          "g": 236,
+          "b": 248,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "85F91AAA-8E2A-4A48-BD25-8C8A2CF4AA5B",
+    "name": "从不",
+    "width": 72,
+    "height": 50,
+    "abX": 64,
+    "abY": 535,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "string": "从不",
+          "font": "PingFangSC-Regular",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "从不"
+  },
+  {
+    "id": "513DD668-68A9-472E-B7A5-240CDB1EE2F7",
+    "name": "从不 copy",
+    "width": 72,
+    "height": 50,
+    "abX": 444,
+    "abY": 535,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "从不",
+          "font": "PingFangSC-Regular",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "从不"
+  },
+  {
+    "id": "01A24FEC-4572-4331-BD8E-3686BF668DE0",
+    "name": "从不 copy 2",
+    "width": 72,
+    "height": 50,
+    "abX": 580,
+    "abY": 535,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "从不",
+          "font": "PingFangSC-Regular",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "从不"
+  },
+  {
+    "id": "A239094B-A31A-4686-8FD1-05C3418A0A8D",
+    "name": "从不 copy 3",
+    "width": 72,
+    "height": 50,
+    "abX": 558,
+    "abY": 625,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "从不",
+          "font": "PingFangSC-Regular",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "从不"
+  },
+  {
+    "id": "6BB40BA9-611B-4582-B19B-FC38ED65D7A8",
+    "name": "从不 copy 4",
+    "width": 72,
+    "height": 50,
+    "abX": 314,
+    "abY": 715,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "从不",
+          "font": "PingFangSC-Regular",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "从不"
+  },
+  {
+    "id": "51A0C3FB-C15F-4960-8A34-B8EE57621908",
+    "name": "多标签情况",
+    "width": 180,
+    "height": 50,
+    "abX": 200,
+    "abY": 535,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "多标签情况",
+          "font": "PingFangSC-Regular",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "多标签情况"
+  },
+  {
+    "id": "A0B8B082-2F16-4F9C-A20B-75BC06793323",
+    "name": "多标签情况 copy",
+    "width": 180,
+    "height": 50,
+    "abX": 70,
+    "abY": 625,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "多标签情况",
+          "font": "PingFangSC-Regular",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "多标签情况"
+  },
+  {
+    "id": "D1F79053-3F70-4415-98E3-83D8454C3E46",
+    "name": "多标签情况 copy 3",
+    "width": 180,
+    "height": 50,
+    "abX": 70,
+    "abY": 715,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "多标签情况",
+          "font": "PingFangSC-Regular",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "多标签情况"
+  },
+  {
+    "id": "9DC6D17C-05B7-46CD-B454-0F4982FC2DE5",
+    "name": "多标签情况 copy 2",
+    "width": 180,
+    "height": 50,
+    "abX": 314,
+    "abY": 625,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "多标签情况",
+          "font": "PingFangSC-Regular",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "多标签情况"
+  },
+  {
+    "id": "7978D8B5-77D5-4DC5-AD55-C3F008D6EE7F",
+    "name": "多标签情况 copy 4",
+    "width": 180,
+    "height": 50,
+    "abX": 450,
+    "abY": 715,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 33,
+            "g": 43,
+            "b": 54,
+            "a": 1
+          },
+          "string": "多标签情况",
+          "font": "PingFangSC-Regular",
+          "size": 36
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "多标签情况"
   }
 ]

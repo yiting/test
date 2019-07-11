@@ -187,9 +187,10 @@ class CssDom {
    */
   _prevLine() {
     const that: any = this;
+    const _prevNodes: any = [];
     if (that.type === Common.QBody || !that.parent) {
       // 根节点
-      return null;
+      return _prevNodes;
     }
     const prevKey =
       that.parent.constraints.LayoutDirection ==
@@ -201,7 +202,6 @@ class CssDom {
       Constraints.LayoutDirection.Horizontal
         ? '_abY'
         : '_abX';
-    const _prevNodes: any = [];
     that.parent.children.some((node: any) => {
       if (node.id === that.id) {
         return false;
@@ -212,6 +212,40 @@ class CssDom {
       }
     });
     return _prevNodes;
+  }
+  /**
+   * 获取当前节点的下一行内容
+   * 判断逻辑：
+   * 1. 水平排列的，比当前节点位置低的
+   * 2. 垂直排列的，比当前节点位置右的
+   */
+  _nextLine() {
+    const that: any = this;
+    const _nextNodes: any = [];
+    if (that.type === Common.QBody || !that.parent) {
+      // 根节点
+      return _nextNodes;
+    }
+    const nextKey =
+      that.parent.constraints.LayoutDirection ==
+      Constraints.LayoutDirection.Horizontal
+        ? '_abY'
+        : '_abX';
+    const selfKey =
+      that.parent.constraints.LayoutDirection ==
+      Constraints.LayoutDirection.Horizontal
+        ? '_abYops'
+        : '_abXops';
+    that.parent.children.some((node: any) => {
+      if (node.id === that.id) {
+        return false;
+      }
+      // 如果非绝对定位，且节点位置靠前
+      if (!node._isAbsolute() && node[nextKey] > that[selfKey]) {
+        _nextNodes.push(node);
+      }
+    });
+    return _nextNodes;
   }
   /**
    * 获取当前节点的下一个兄弟节点,若没有则返回null
@@ -253,7 +287,7 @@ class CssDom {
       const lineHeight =
         this.styles.lineHeight ||
         Math.max(this.styles.texts.map((s: any) => s.size)) * 1.33;
-      if (this._height / lineHeight > 1.1) {
+      if (this._height / lineHeight > 1.5) {
         // 如果高度高于行高，则为多行，固定宽度
         return true;
       }
