@@ -893,24 +893,22 @@ class RenderData {
     for (let i = 0; i < children.length; i++) {
       const child = children[i];
       if (i === 0) {
-        this._abX = children[0].abX;
-        this._abY = children[0].abY;
-        this._abXops = children[0].abXops;
-        this._abYops = children[0].abYops;
-        this._width = children[0].width;
-        this._height = children[0].height;
+        this._abX = Math.floor(children[0].abX);
+        this._abY = Math.floor(children[0].abY);
+        this._abXops = Math.ceil(children[0].abXops);
+        this._abYops = Math.ceil(children[0].abYops);
       } else {
-        this._abX = child.abX < this._abX ? child.abX : this._abX;
-        this._abY = child.abY < this._abY ? child.abY : this._abY;
+        this._abX = child.abX < this._abX ? Math.floor(child.abX) : this._abX;
+        this._abY = child.abY < this._abY ? Math.floor(child.abY) : this._abY;
         this._abXops =
-          child.abXops > this._abXops ? child.abXops : this._abXops;
+          child.abXops > this._abXops ? Math.ceil(child.abXops) : this._abXops;
         this._abYops =
-          child.abYops > this._abYops ? child.abYops : this._abYops;
+          child.abYops > this._abYops ? Math.ceil(child.abYops) : this._abYops;
       }
     }
 
-    this._width = Math.abs(this._abXops - this._abX);
-    this._height = Math.abs(this._abYops - this._abY);
+    this._width = this._abXops - this._abX;
+    this._height = this._abYops - this._abY;
   }
 
   set(prop: any, value: any) {

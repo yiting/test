@@ -132,6 +132,9 @@ class LayoutBaseLine {
   static _handleHorizontal(_parent: any, _calNodes: any, _absNodes: any) {
     const parent: any = _parent;
     const calNodes: any = _calNodes;
+    if (calNodes.length < 3) {
+      return;
+    }
     const absNodes: any = _absNodes;
     parent.constraints.LayoutDirection = Constrains.LayoutDirection.Horizontal;
 
@@ -155,7 +158,7 @@ class LayoutBaseLine {
     );
     middleArr = middleArr.filter(
       (n: any) =>
-        middleArr[0].abY + middleArr[0].abYops - n.abY - n.abYops <=
+        (middleArr[0].abY + middleArr[0].abYops - n.abY - n.abYops) / 2 <=
         ErrorCoefficient,
     );
     bottomArr = bottomArr.filter(

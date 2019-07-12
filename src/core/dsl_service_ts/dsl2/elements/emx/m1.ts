@@ -166,7 +166,7 @@ class EMXM1 extends Model.ElementXModel {
     });
 
     rows.forEach((rowGroup: any) => {
-      // if (rowGroup.arr.some((nd: any) => ~nd.id.indexOf("9A61C529-E2A9-46F8-8943-ED90FC718A2C-c"))) debugger
+      // if (rowGroup.arr.some((nd: any) => ~nd.id.indexOf("9BE0CE54-1992-4052-B53F-DF378938C66F-c"))) debugger
 
       const list = calAcross(rowGroup.arr);
       result.push(...list);
@@ -187,7 +187,6 @@ class EMXM1 extends Model.ElementXModel {
     // 计算每一组里面节点的间隔
     groups.forEach((nodes: any) => {
       // const nodes: any[] = gp.arr;
-
       if (nodes.length >= 2) {
         // 按abX排列
         Utils.sortListByParam(nodes, 'abX', false);
@@ -199,7 +198,6 @@ class EMXM1 extends Model.ElementXModel {
           let curNode: any = nodes[i];
           let preSize = 0;
           let curSize = 0;
-          // if (preNode.id == "AA453FF1-84B5-4576-BECD-2B4CFD0E5C32-c") debugger
           if (preNode.type == 'QText' && preNode.data.styles.texts) {
             preSize = preNode.data.styles.texts.slice(-1)[0].size;
           }

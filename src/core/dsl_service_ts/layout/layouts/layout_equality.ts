@@ -3,6 +3,7 @@
 import Utils from '../utils';
 import Store from '../../helper/store';
 import Constraints from '../../helper/constraints';
+import { debug } from 'util';
 
 let ErrorCoefficient: number = 0;
 let designWidth: number = 0;
@@ -58,7 +59,11 @@ class LayoutEquality {
       centerSpace &&
       (isJustifyAround || prevLineIsJustifyCenter || nextLineIsJustifyCenter)
     ) {
-      LayoutEquality._adjustCenterPos(flexNodes, centerSpace);
+      LayoutEquality._adjustCenterPos(
+        flexNodes,
+        centerSpace,
+        prevLineIsJustifyCenter,
+      );
       parent.constraints.LayoutJustifyContent =
         Constraints.LayoutJustifyContent.Center;
     } else if (aroundArr) {
@@ -138,15 +143,22 @@ class LayoutEquality {
     const nodeIndex = node.parent.children.indexOf(node);
     const next = node.parent.children[nodeIndex + 1];
     const nextChildren = next && LayoutEquality.filterFlexNodes(next.children);
+    const result: any[] = [];
     return (
       nextChildren &&
       nextChildren.length == nodes.length &&
       nodes.every((nd: any, i: number) => {
         const pd = nextChildren[i];
+        result.push({
+          abX: pd.abX,
+          abXops: pd.abXops,
+        });
         return (
-          Math.abs(nd.abX + nd.abXops - (pd.abX + pd.abXops)) < ErrorCoefficient
+          Math.abs((nd.abX + nd.abXops - (pd.abX + pd.abXops)) / 2) <
+          ErrorCoefficient
         );
-      })
+      }) &&
+      result
     );
   }
   static _prevLineIsJustifyCenter(nodes: any, node: any) {
@@ -156,15 +168,37 @@ class LayoutEquality {
     const nodeIndex = node.parent.children.indexOf(node);
     const prev = node.parent.children[nodeIndex - 1];
     const prevChildren = prev && LayoutEquality.filterFlexNodes(prev.children);
+    const result: any[] = [];
     return (
       prevChildren &&
       prevChildren.length == nodes.length &&
       nodes.every((nd: any, i: number) => {
         const pd = prevChildren[i];
+        result.push({
+          abX: pd.abX,
+          abXops: pd.abXops,
+        });
         return (
-          Math.abs(nd.abX + nd.abXops - (pd.abX + pd.abXops)) < ErrorCoefficient
+          Math.abs((nd.abX + nd.abXops - (pd.abX + pd.abXops)) / 2) <
+          ErrorCoefficient
         );
-      })
+        /* 
+        // 计算是否对齐函数
+        const range = .1
+        const ndC = (nd.abX + nd.abXops) / 2
+        const ndCX = ndC - (nd.abXops - nd.abX) * range
+        const ndCXops = ndC + (nd.abXops - nd.abX) * range
+        const pdC = (pd.abX + pd.abXops) / 2
+        const pdCX = pdC - (pd.abXops - pd.abX) * range
+        const pdCXops = pdC + (pd.abXops - pd.abX) * range
+        if (
+          (ndCX > pdCX && ndCXops < pdCXops) ||
+          (ndCX < pdCX && ndCXops > pdCXops)
+        ) {
+          return true;
+        } */
+      }) &&
+      result
     );
   }
   static _isJustifyAround(nodes: any, parent: any) {
@@ -181,13 +215,17 @@ class LayoutEquality {
     });
   }
   //  调整居中模型位置
-  static _adjustCenterPos(nodes: any, width: any) {
-    nodes.forEach((_nd: any) => {
+  static _adjustCenterPos(nodes: any, width: any, prevLineCenterPos: any) {
+    nodes.forEach((_nd: any, i: number) => {
       const nd: any = _nd;
       const ndWidth = nd.abXops - nd.abX;
-      const dir = Math.floor(width - ndWidth) / 2;
-      nd.set('abX', nd.abX - dir);
-      nd.set('abXops', nd.abXops + dir);
+      const dir = Math.floor((width - ndWidth) / 2);
+      const abX = prevLineCenterPos ? prevLineCenterPos[i].abX : nd.abX - dir;
+      const abXops = prevLineCenterPos
+        ? prevLineCenterPos[i].abXops
+        : nd.abXops + dir;
+      nd.set('abX', abX);
+      nd.set('abXops', abXops);
       // 设置居中
       nd.constraints.LayoutJustifyContent =
         Constraints.LayoutJustifyContent.Center;
@@ -299,6 +337,7 @@ class LayoutEquality {
     const lastNode = nodes[nodes.length - 1];
     let leftSide = (firstNode.abX + firstNode.abXops) / 2 - parent.abX;
     let rightSide = parent.abXops - (lastNode.abX + lastNode.abXops) / 2;
+
     // 中心点数组
     const dirArr: any = [];
     // 得出间距数组
