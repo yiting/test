@@ -217,8 +217,10 @@ class LayoutCircle {
           newParent.resize();
           return [newParent];
         });
+        // 构建新循环
         const newCycleParent = Tree.createNodeData(null);
         const newCycleData = Tree.createCycleData(newCycleParent, newChild);
+
         newCycleParent.set('children', [newCycleData]);
         if (rowSimilarIndex) {
           newCycleParent.set('similarId', rowSimilarIndex);
@@ -306,7 +308,15 @@ class LayoutCircle {
       Constraints.LayoutFixedWidth.Fixed;
     newCycleParent.set('children', [newCycleData]);
     newCycleParent.resize();
-    const gap = inWrap[1][0].abX - inWrap[0][0].abXops;
+    const gap = Math.max(
+      ...inWrap.map((n: any, i: number) => {
+        if (i == 0) {
+          return -Infinity;
+        }
+        const prve = inWrap[i - 1][0];
+        return n[0].abX - prve.abXops;
+      }),
+    );
     newCycleData.set('abX', newCycleData.abX - gap);
     // 加入新节点到父级元素
     children.push(newCycleParent);
