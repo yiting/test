@@ -121,9 +121,17 @@ class IntersectSimilar extends Rule {
       //AB相交的情况
       let intersectWidth;
       if (nodeAabXOpsOri >= nodeBabXOpsOri) {
+        //A右边超过B右边（真实坐标）
         intersectWidth = Math.abs(nodeBabXOpsOri - nodeBabX);
-      } else {
+      } else if (nodeAabXOpsOri >= nodeBabX) {
+        //A右边不超过B右边（真实坐标）
         intersectWidth = Math.abs(nodeAabXOpsOri - nodeBabX);
+      } else if (nodeAabXOps >= nodeBabXOps) {
+        //A右边超过B右边（加阈值坐标）
+        intersectWidth = Math.abs(nodeBabXOps - nodeBabX);
+      } else if (nodeAabXOps >= nodeBabX) {
+        //A右边不超过B右边（加阈值坐标）
+        intersectWidth = Math.abs(nodeAabXOps - nodeBabX);
       }
       let intersectHeight;
       let intersectSize;

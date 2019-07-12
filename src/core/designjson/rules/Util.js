@@ -184,7 +184,7 @@ function findNodeByCond(node, brother, type, id1, id2) {
 function isLine(node) {
   //如果形状是矩形、圆形、直线以外的就不能css实现
   var result = false;
-  if (node.width > 50 && node.height <= 2) {
+  if (node.width > 50 && node.height <= 4) {
     result = true;
   }
   if (node.width <= 2 && node.height >= 20) {
