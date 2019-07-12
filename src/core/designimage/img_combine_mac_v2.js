@@ -387,36 +387,12 @@ const ImageCombine = function() {
     return minParentIndex;
   };
 
-  this.makeNewBlankNode = function(tmpJson, imageItem) {
+  this.makeNewBlankNode = function(param) {
     //imageItem:具体要合的图层，用于判断这个图层是否超出边界，如果无超出边界，则将图层放在左上角，否则按原位置放置；如果没传进来，说明是不能直接合成的图片，则取父节点的坐标和宽高来判断是否超出边界
+    var { tmpJson, imageItem } = param;
     var groundId = '94EB1372-43F1-41A5-B082-1887B1B0F235';
     let x = 0,
       y = 0;
-    if (typeof imageItem != 'undefined') {
-      if (imageItem.width >= that.artboardWidth) {
-        x = imageItem.x;
-      } else {
-        x = 10;
-      }
-      if (imageItem.height >= that.artboardHeight) {
-        y = imageItem.y;
-      } else {
-        y = 10;
-      }
-    } else {
-      x =
-        tmpJson._class == 'page' || tmpJson._class == 'artboard'
-          ? 0
-          : tmpJson.frame.width >= that.artboardWidth
-          ? tmpJson.frame.x
-          : 10;
-      y =
-        tmpJson._class == 'page' || tmpJson._class == 'artboard'
-          ? 0
-          : tmpJson.frame.width >= that.artboardWidth
-          ? tmpJson.frame.y
-          : 10;
-    }
     var groupJson = {
       _class: 'group',
       do_objectID: groundId,
@@ -467,7 +443,7 @@ const ImageCombine = function() {
   };
 
   this.makeGroup = function(tmpJson) {
-    var groupJson = this.makeNewBlankNode(tmpJson);
+    var groupJson = this.makeNewBlankNode({ tmpJson });
     var that = this;
     for (var i = tmpJson.layers.length - 1; i >= 0; i--) {
       if (tmpJson.layers[i].isVisible == false) {
@@ -542,6 +518,44 @@ const ImageCombine = function() {
     return result;
   };
 
+  this.getAbsoultePosition = function(param) {
+    let { tmpPageJson, minParentIndex, levelArr } = param;
+    let tmpJson = tmpPageJson;
+    let abX = 0,
+      abY = 0;
+    for (var i = 0, ilen = minParentIndex; i <= ilen; i++) {
+      tmpJson = tmpJson.layers[levelArr[i]];
+      if (i > 0) {
+        abX += tmpJson.frame.x;
+        abY += tmpJson.frame.y;
+      }
+    }
+    return { abX, abY };
+  };
+
+  this.updatePosition = function(param) {
+    let that = this;
+    let { generateJson } = param;
+    let innerJson = generateJson.layers[0];
+    //如果目标超过artboard范围，则外层坐标设为距离artboard的相对位置
+    if (
+      (innerJson.frame.x <= 0 &&
+        innerJson.frame.x + innerJson.frame.width > that.artboardWidth) ||
+      (innerJson.frame.y <= 0 &&
+        innerJson.frame.y + innerJson.frame.height > that.artboardHeight)
+    ) {
+      let { abX, abY } = that.getAbsoultePosition(param);
+      generateJson.frame.x = abX;
+      generateJson.frame.y = abY;
+    } else {
+      //不超过artboard范围，将图层移到左上角
+      generateJson.frame.x = 10;
+      generateJson.frame.y = 10;
+      innerJson.frame.x = innerJson.frame.x - 10;
+      innerJson.frame.y = innerJson.frame.y - 10;
+    }
+  };
+
   this.getUpdateJson = function(param) {
     let { imageItem, index } = param;
     var generateId, tmpJson;
@@ -550,11 +564,7 @@ const ImageCombine = function() {
 
     if (imageItem.id.indexOf('_') == -1) {
       //可以直接合成的情况
-      //如果是artboard缩略图合成，则要再补充levelArr数据
       imageItem.levelArr[0] = 0;
-      if (imageItem._origin && imageItem._origin._class == 'artboard') {
-        this.updateLevelArr(imageItem);
-      }
       const imageChildren = [imageItem];
       let tmpPageJson = that.pageJson;
 
@@ -566,18 +576,7 @@ const ImageCombine = function() {
         imageChildrenFlatArr: imageChildren,
         minParentIndex,
       });
-
-      // generateJson = that.cloneJson(tmpJson);
-      generateJson = that.makeNewBlankNode(tmpJson, imageItem);
-      if (
-        tmpJson._class != 'page' &&
-        tmpJson._class != 'artboard' &&
-        tmpJson.frame.width < that.artboardWidth
-      ) {
-        tmpJson.frame.x = tmpJson.frame.x - 10;
-        tmpJson.frame.y = tmpJson.frame.y - 10;
-      }
-      // generateJson.layers[0] = that.cloneJson(tmpJson);
+      generateJson = that.makeNewBlankNode({ tmpJson, imageItem });
       if (tmpJson._class != 'symbolInstance') {
         generateJson.layers[0] =
           tmpJson.layers[imageChildren[0]['levelArr'][minParentIndex + 1]];
@@ -603,19 +602,17 @@ const ImageCombine = function() {
         generateId = generateJson.do_objectID;
         generateId = 'Update-' + index + '-' + generateId;
         generateJson.do_objectID = generateId;
-        generateJson.layers[0].frame.x = 0;
-        generateJson.layers[0].frame.y = 0;
+        that.updatePosition({
+          generateJson,
+          tmpPageJson,
+          minParentIndex,
+          levelArr: imageItem.levelArr,
+        });
         generateJson.name = imageItem.path.substring(
           0,
           imageItem.path.indexOf('.png'),
         );
       }
-
-      // if(imageItem._origin && imageItem._origin._class == "artboard"){
-      //   tmpJson._class = 'group';
-      //   tmpJson.frame.x = 0;
-      //   tmpJson.frame.y = 0;
-      // }
     } else {
       //不可以直接合成的情况
       const imageChildren =
@@ -625,7 +622,6 @@ const ImageCombine = function() {
 
       let tmpPageJson = that.pageJson;
       // Object.assign(tmpPageJson, that.pageJson);
-      // tmpPageJson.aa = 'bb';
       // 4、获取所有imageChildren的平铺数据
       let imageChildrenFlatArr = [];
       imageChildrenFlatArr = this.getImageChildrenFlatsData(
@@ -634,9 +630,6 @@ const ImageCombine = function() {
       );
       // 1、获取所有子图层的最小父层级
       const minParentIndex = this.getMinParentIndex(imageChildrenFlatArr);
-      // if(imageChildrenFlatArr[0]["id"].indexOf("E23075AB-79C5-4CD1-A91C-17806FC31")>-1){
-      //   debugger;
-      // }
       // 1、获取最小父层级对应的json
       tmpJson = this.getMinParentJson({
         tmpPageJson,
@@ -645,7 +638,7 @@ const ImageCombine = function() {
       });
 
       // 5、如果不是直接合成的节点，将最小父层级下无关的层级隐藏
-      generateJson = that.makeNewBlankNode(tmpJson);
+      generateJson = that.makeNewBlankNode({ tmpJson });
       if (imageItem.id.indexOf('_') != -1) {
         that.showNodes({
           generateJson,
@@ -678,15 +671,6 @@ const ImageCombine = function() {
     };
   };
 
-  // this.isGenerateArtboard = function(imgList) {
-  //   var imageItem = imgList[0];
-  //   var result = false;
-  //   if (imageItem._origin && imageItem._origin._class == 'artboard') {
-  //     result = true;
-  //   }
-  //   return result;
-  // };
-
   this.getJsonFileData = function(path) {
     let data = {};
     let str;
@@ -708,7 +692,7 @@ const ImageCombine = function() {
     // imgList.filter
     var that = this;
     // imgList = imgList.filter(function(item) {
-    //   return item.path.indexOf('9986601c15d6fabbf56995210cc5dfc5')>-1;
+    //   return item.path.indexOf('82699732af10c8cf159511c08d828cd1')>-1;
     // });
     // imgList = imgList.slice(0,1);
     // imgList = [imgList[18]];
