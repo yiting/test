@@ -11,8 +11,9 @@ export default (node: any) => {
       Context.font = `${text.size}px ${text.font}`;
       textWidth += Context.measureText(text.string).width;
     });
+    textWidth = Math.ceil(textWidth);
     if (textWidth && textWidth < node.width) {
-      Math.ceil((node.width = textWidth));
+      node.width = textWidth;
       if (node.styles.textAlign == 1) {
         // 中对齐
         node.abX = Math.ceil(node.abX + node.width / 2 - textWidth / 2);
