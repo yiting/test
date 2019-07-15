@@ -24,7 +24,7 @@ export default class HtmlTemplate extends Template {
     };
 
     this.textClassName = function(node: any): string {
-      if (node.styles.texts[0].size > 30) {
+      if (node.styles.texts[0] && node.styles.texts[0].size > 30) {
         return 'title';
       }
       return 'text';

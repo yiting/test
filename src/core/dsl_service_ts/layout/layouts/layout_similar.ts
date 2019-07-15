@@ -110,6 +110,7 @@ class LayoutSimilar {
 
   // 相似节点逻辑
   static _similarRule(a: any, b: any): boolean {
+    // if(b.node.id=="B3133B0B-4CE4-47B1-B1C5-0681FE750B16-c"&&a.node.id=="06F4A3D3-B7FD-448C-AB6E-F060580B7402-c")debugger
     /**
      * 逻辑：
      * 1. 模型名称相似
@@ -187,8 +188,8 @@ class LayoutSimilar {
           a.abX === b.abX ||
           a.abXops === b.abXops ||
           a.ctX === b.ctX) */
-        a.abYops - a.abY - (b.abYops - b.abY) < ErrorCoefficient &&
-        a.abXops - a.abX - (b.abXops - b.abX) < ErrorCoefficient &&
+        Math.abs(a.abYops - a.abY - (b.abYops - b.abY)) < ErrorCoefficient &&
+        Math.abs(a.abXops - a.abX - (b.abXops - b.abX)) < ErrorCoefficient &&
         nodeA.styles &&
         nodeB.styles &&
         // 圆角相同

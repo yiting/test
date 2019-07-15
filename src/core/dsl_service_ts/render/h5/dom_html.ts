@@ -133,7 +133,12 @@ class HtmlDom {
   }
 
   getContent() {
-    return (this.styles.texts && this.styles.texts[0].string) || '';
+    return (
+      (this.styles.texts &&
+        this.styles.texts[0] &&
+        this.styles.texts[0].string) ||
+      ''
+    );
   }
 
   getAttrs() {
