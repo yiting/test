@@ -571,7 +571,7 @@ class CssDom {
       });
     } catch (e) {
       Loger.error(
-        `css_dom.js [this.getCssProperty] ${e}, 
+        `css_dom_tree.js [this.getCssProperty] ${e}, 
         params[this.id:${this.id},
         key:${key},
         similarCss;${similarCss}]`,

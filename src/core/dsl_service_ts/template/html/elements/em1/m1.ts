@@ -7,10 +7,10 @@ class EM1M1 extends HtmlTemplate {
     super(...args);
     const that = this;
     const texts = this._renderData.styles && this._renderData.styles.texts;
-    if (texts && texts.length > 0) {
+    if (texts && texts.length > 1) {
       const children: any[] = [];
       texts.forEach((text: any, i: number) => {
-        if (i === 0) return;
+        // if (i === 0) return;
         children.push({
           id: that._renderData.id + '_' + i,
           type: Common.QText,
@@ -26,6 +26,7 @@ class EM1M1 extends HtmlTemplate {
         });
       });
       this._renderData.children = children;
+      this._renderData.styles.texts = [];
       this._renderData.constraints['LayoutDirection'] =
         Constraints.LayoutDirection.Horizontal;
     }

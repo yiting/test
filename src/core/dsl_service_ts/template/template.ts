@@ -274,7 +274,7 @@ class Template {
           newValue = that[funcName].call(this, refData);
         } catch (e) {
           Loger.error(
-            `[id:${refData.id}]'s template [${
+            `Template.js [id:${refData.id}]'s template [${
               this._name
             }] function [${funcName}] error: ${e}`,
           );
