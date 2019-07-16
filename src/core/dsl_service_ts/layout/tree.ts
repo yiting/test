@@ -4,7 +4,7 @@ import Model from '../dsl2/model';
 import Constraints from '../helper/constraints';
 import Store from '../helper/store';
 
-function calColumn(layer: any[]) {
+/* function calColumn(layer: any[]) {
   layer.sort((a: any, b: any) => a.abY + a.abYops - b.abYops - b.abY);
   const rowNodes: any[] = [];
   const outer: any[] = [];
@@ -48,7 +48,7 @@ function calColumn(layer: any[]) {
     colNodes,
     rowNodes,
   };
-}
+} */
 
 const DSLOptions: any = {};
 /**
@@ -304,7 +304,10 @@ class Tree {
     const compareArr = [body];
     const leftArr = [];
     // 按面积排序
-    arr.sort((a: any, b: any) => b.width * b.height - a.width * a.height);
+
+    arr
+      .sort((a: any, b: any) => b.zIndex - a.zIndex)
+      .sort((a: any, b: any) => b.width * b.height - a.width * a.height);
     // let segmentings = []
     arr.forEach((child: any, i: any) => {
       if (child && child.type !== Common.QBody) {
@@ -316,13 +319,17 @@ class Tree {
           const _utils = Utils;
           if (
             // 父节点必须不是文本类型
-            parent.type !== Common.QText &&
-            // 子节点不能分割线
-            child.modelName !== 'wg1-m1' &&
-            child.modelName !== 'wg1-m2' &&
-            // 层级关系
-            child.zIndex >= parent.zIndex &&
-            // 包含关系
+            (parent.type !== Common.QText &&
+              // 层级关系
+              child.zIndex >= parent.zIndex &&
+              /**
+               * 分割线逻辑
+               */
+              ((child.modelName === 'wg1-m1' || child.modelName === 'wg1-m2') &&
+                !_utils.isYConnect(parent, child, -2))) || // 包含关系
+            /**
+             *  其他通用逻辑
+             */
             (_utils.isWrap(parent, child) ||
               // 水平相连、垂直包含关系
               (_utils.isXConnect(parent, child, -1) &&
