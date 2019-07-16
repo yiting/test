@@ -5,6 +5,7 @@ const {
   mergeStyle,
   isBelong,
   isSameColor,
+  serialize,
 } = require('../../utils');
 const { SKETCH_LAYER_TYPES } = require('./SketchLayerTypes');
 const DesignTree = require('../../nodes/DesignTree');
@@ -28,6 +29,7 @@ class SketchProcessor {
       this.maskToImage(n);
       this.modifySize(n);
     });
+    this.mergeMasktoImg(node);
   }
 
   static setPosition(node) {
@@ -242,6 +244,45 @@ class SketchProcessor {
       // TODO
     }
   }
+  // 遮罩处理
+  static mergeMasktoImg(rootNode) {
+    function isArtboardMask(n) {
+      const { background } = n.styles;
+      const isMaskShape =
+        n.type === 'QShape' &&
+        n.abX <= 0 &&
+        n.abY <= 0 &&
+        n.abXops >= rootNode.abXops &&
+        n.abYops >= rootNode.abYops;
+      const isMaskStyle =
+        background &&
+        background.type == 'color' &&
+        background.color.a &&
+        background.color.a < 1;
+      return isMaskShape && isMaskStyle;
+    }
+    const nodes = serialize(rootNode);
+    const index = nodes.findIndex(isArtboardMask);
+    if (!~index) return;
+    // const artboardMask = nodes[index]
+    const restNodes = nodes.slice(1, index);
+    restNodes
+      .filter(n => n.type == 'QLayer')
+      .forEach(n => {
+        if (!n.parent) {
+          if (n.children.length) n.removeAll();
+          return;
+        }
+        DesignTree.convert(n, 'QImage');
+      });
+    const list = restNodes.filter(n => !!n.parent);
+    list.forEach(n => {
+      if (n.parent === rootNode) return;
+      n.parent.remove(n);
+      rootNode.add(n);
+    });
+    DesignTree.union(list, 'QImage');
+  }
 }
 function isMaskShape(node) {
   // 这里判断这个Layer是一个Mask还是一个图形
@@ -268,5 +309,4 @@ function getRotatePos(point, center, angle) {
   );
   return [x, y];
 }
-
 module.exports = SketchProcessor;
