@@ -2,17 +2,13 @@
 //
 import Common from './common';
 import Utils from './utils';
-import ElementList from './elements/modellist';
-import WidgetList from './widgets/modellist';
-import ElementBaseList from './elements/baselist';
-import ElementXList from './elements/emxlist';
-
-// 按优先级排序匹配模型列表,(1.模型排序计算已测)
-let sortElementList: any[] = Utils.sortModelList(ElementList);
-let sortWidgetList: any[] = Utils.sortModelList(WidgetList);
-let sortElementBaseList: any[] = ElementBaseList; // 基础元素则不用排序优先级了
-let sortElementXList: any[] = ElementXList; // 可变节点元素模型列表
-
+import Store from '../helper/store';
+import H5ModelList from './modellist/h5';
+import ArkModelList from './modellist/ark';
+const modelListMap: any = {
+  h5: H5ModelList,
+  ark: ArkModelList,
+};
 /**
  * 进行节点匹配的核心流程
  * 传入节点匹配出各模型
@@ -26,18 +22,21 @@ let matchModel = function(nodes: any[], matchType: any, endY: number): any {
   // 进行随机取出，最后交由组件模型进行匹配
   // 匹配完毕后要对元素进行去重处理
   let result: any[] = [];
-  let modelList: any[];
+  const outputType = Store.get('outputType');
+  const model: any = modelListMap[outputType];
+  let modelList: any;
 
   //console.log('while循环匹配前节点长度: ' + nodes.length);
+  // 按优先级排序匹配模型列表,(1.模型排序计算已测)
   switch (matchType) {
     case Common.MatchingElements:
-      modelList = sortElementList;
+      modelList = Utils.sortModelList(model.base.concat(model.elements));
       break;
     case Common.MatchingWidgets:
-      modelList = sortWidgetList;
+      modelList = Utils.sortModelList(model.widgets);
       break;
     case Common.MatchingBase:
-      modelList = sortElementBaseList;
+      modelList = model.base; // 基础元素则不用排序优先级了;
       break;
     default:
   }
@@ -124,6 +123,9 @@ let matchElementX = function(elements: any[], endY: number): any {
   // 可变节点模型的匹配用于匹配特殊设计形态的设计,就是节点是可增可减,
   // 所以这里的逻辑直接交回模型本身去处理,而不再像常规匹配那样获取匹配的节点组合给模型处理
   let result: any[] = [];
+  const outputType = Store.get('outputType');
+  const model: any = modelListMap[outputType];
+  const sortElementXList: any[] = model.emx; // 可变节点元素模型列表
 
   sortElementXList.forEach((model: any) => {
     let bool = model.isMatch(elements);

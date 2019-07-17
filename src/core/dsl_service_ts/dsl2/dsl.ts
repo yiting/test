@@ -64,7 +64,6 @@ let pipe = function(nodes: any): any {
   let matchedSymbols: any[] = []; // 匹配完毕的自定义组件
   const optimizeWidth = Store.get('optimizeWidth') * 2; // 这里*2是增加获取数据的范围, 防止超出设计稿外的元素没被匹配
   const optimizeHeight = Store.get('optimizeHeight');
-  const layoutType = Store.get('layoutType');
 
   // 节点匹配前的分类
   nodes.forEach((item: any, index: number) => {
