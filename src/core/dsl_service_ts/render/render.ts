@@ -9,13 +9,26 @@ import fs from 'fs';
 
 import Utils from './utils';
 import Constraints from '../helper/constraints';
-// import Builder from './builder';
+// builder
 import H5Builder from './h5/builder';
-import TemplateList from '../template/html/templatelist';
+import ArkBuilder from './ark/builder';
+// template
+import H5TemplateList from '../template/html/templatelist';
+import ArkTemplateList from '../template/ark/templatelist';
+// template engine
 import Template from '../template/template';
 import TemplateData from '../template/templateData';
 import QLog from '../log/qlog';
+import Store from '../helper/store';
 
+const builderMap: any = {
+  h5: H5Builder,
+  ark: ArkBuilder,
+};
+const templateMap: any = {
+  h5: H5TemplateList,
+  ark: ArkTemplateList,
+};
 const Loger = QLog.getInstance(QLog.moduleData.render);
 /**
  *
@@ -234,7 +247,6 @@ class Render {
   /**
    * 方法
    * @param {DslTree} dslTree
-   * @param {string} layoutType
    */
   static pipe(dslTree: any) {
     Loger.debug('render.js [pipe]');
@@ -243,13 +255,17 @@ class Render {
     const renderJSON = dslTree.getRenderData().toJSON();
     let render: any;
     let templateData: any;
+    const outputType = Store.get('outputType');
+    const builder = builderMap[outputType];
+    const TemplateList = templateMap[outputType];
+
     try {
       // 这里直接使用h5 builder
       Loger.debug('render.js [Template parse]');
       templateData = Template.parse(renderJSON, null, TemplateList);
 
       Loger.debug('render.js [new Render]');
-      render = new Render(templateData, H5Builder);
+      render = new Render(templateData, builder);
     } catch (e) {
       Loger.error(`render.js [pipe] ${e}`);
     }
