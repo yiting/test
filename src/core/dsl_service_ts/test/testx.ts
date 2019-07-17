@@ -10,6 +10,7 @@ const value: any = dslServer.process(
     nodes: designjson,
   },
   {
+    outputType: 'h5',
     designWidth: 750,
     optimizeWidth: 750,
     optimizeHeight: 750,
