@@ -49,10 +49,10 @@ function _process(_input: any, _options: any): object {
 
   // render模块
   const render = Render.pipe(dslTree);
-  const htmlStr = render.getTagString();
+  const tagStr = render.getTagString();
   const cssStr = render.getStyleString();
 
-  output.uiString = htmlStr;
+  output.uiString = tagStr;
   output.styleString = cssStr;
   return output;
 }
@@ -74,14 +74,13 @@ function _initInput(_input: any) {
 function _initOptions(options: any) {
   const processOption: any = {
     // options.outputType, 输出数据的类型, 默认h5,
-    outputType: 'h5',
+    // 布局类型
+    outputType: options.outputType || 'h5',
     // options.optimizeWidth, options.optimizeHeight 匹配范围的优化
     optimizeWidth: 750,
     optimizeHeight: 750,
     designWidth: 750,
     designHeight: 750,
-    // 布局类型
-    layoutType: Common.FlexLayout,
     // 调试模式
     isLocalTest: false,
     // 显示标签属性
