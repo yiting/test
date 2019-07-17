@@ -61,8 +61,6 @@ class Tree {
 
   _layoutData: {};
 
-  _layoutType: any;
-
   static LayerId: number;
 
   constructor(bodyModel: any) {
@@ -81,8 +79,6 @@ class Tree {
     this._modelData = {};
     // 布局模型信息储存
     this._layoutData = {};
-    // 布局形式
-    this._layoutType = null;
   }
 
   _row(parent: any) {

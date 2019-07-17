@@ -14,7 +14,6 @@ class LayoutEquality {
    * @param {TreeNode} parent 树节点
    * @param {Array} nodes 树节点数组
    * @param {Array} models 对应的模型数组
-   * @param {Int} layoutType 布局的类型
    */
   handle(_parent: any, _nodes: any) {
     const that: any = this;
