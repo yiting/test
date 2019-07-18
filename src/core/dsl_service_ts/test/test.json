@@ -1,9 +1,9 @@
 [
   {
-    "id": "F0989A4B-ED5D-4CB3-A2E0-5E9433DCB229",
-    "name": "loding",
-    "width": 750,
-    "height": 1624,
+    "id": "25182556-EC68-490C-99DE-C1FB5A8BC379",
+    "name": "0708_01",
+    "width": 502,
+    "height": 287,
     "abX": 0,
     "abY": 0,
     "zIndex": 0,
@@ -18,95 +18,32 @@
     "type": "QLayer"
   },
   {
-    "id": "_95608463-A085-4F58-933F-5FA9A10C2EEE_AC58DEB9-DEA9-49D8-AAB9-A1068F3E7532",
-    "name": "_9ec4c041-83c9-45e6-a7c6-73773e5fddf9_aa4a29a3-d5da-4f31-9726-9a304ff4a56b",
-    "width": 750,
-    "height": 1624,
+    "id": "C4D56BD2-C7F1-4209-ADD8-7F2CA657290A",
+    "name": "1",
+    "width": 502,
+    "height": 287,
     "abX": 0,
     "abY": 0,
     "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "shadows": null
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
     },
     "type": "QImage",
-    "path": "f315d71957c8bcfaf76994130625bca5.png"
+    "path": "e4c8bd95d37c5a450cf6c47e5f0788f2.png"
   },
   {
-    "id": "C0A625BC-AE50-4A6F-91C9-7CC3EA351A4E",
-    "name": "矩形",
-    "width": 750,
-    "height": 1624,
-    "abX": 0,
-    "abY": 0,
+    "id": "4445EB54-5ED7-4ADD-9EC3-01E8384E2151",
+    "name": "一起组队赢A车鸭~",
+    "width": 213,
+    "height": 37,
+    "abX": 36,
+    "abY": 169,
     "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 0.5
-        },
-        "hasOpacity": true
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "99390D25-9513-4AB2-9133-B009290EC9A2",
-    "name": "矩形",
-    "width": 220,
-    "height": 220,
-    "abX": 265,
-    "abY": 702,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": [12, 12, 12, 12],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 0.6
-        },
-        "hasOpacity": true
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "161C9A7B-144B-4548-B74F-8D361AAB207A",
-    "name": "形状结合",
-    "width": 96,
-    "height": 96,
-    "abX": 327,
-    "abY": 734,
-    "zIndex": 4,
-    "styles": {},
-    "type": "QImage",
-    "path": "5e949183c8b0f8341e90463401e7e13b.png"
-  },
-  {
-    "id": "CAEA731B-1058-423A-97E5-1A8B9AFA1A7A",
-    "name": "QQ提醒",
-    "width": 99,
-    "height": 40,
-    "abX": 326,
-    "abY": 838,
-    "zIndex": 4,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -116,49 +53,55 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "string": "QQ提醒",
+          "color": { "r": 244, "g": 245, "b": 255, "a": 1 },
+          "string": "一起组队赢A车鸭~",
           "font": "PingFangSC-Regular",
-          "size": 28
+          "size": 26
         }
       ],
       "verticalAlign": 0,
-      "textAlign": 2,
+      "textAlign": 0,
       "lineHeight": null
     },
     "type": "QText",
-    "text": "QQ提醒"
+    "text": "一起组队赢A车鸭~"
   },
   {
-    "id": "848A1D8C-947E-4AAB-8DE3-717A47AC0909",
-    "name": "矩形",
-    "width": 100,
-    "height": 4,
-    "abX": 325,
-    "abY": 886,
-    "zIndex": 4,
+    "id": "7C7BD927-EA19-48CE-8C52-9FBD37B1DD5A",
+    "name": "2",
+    "width": 173,
+    "height": 194,
+    "abX": 302,
+    "abY": 92,
+    "zIndex": 2,
     "styles": {
-      "borderRadius": [2, 2, 2, 2],
+      "borderRadius": null,
       "border": null,
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
+      "background": null
     },
-    "type": "QShape"
+    "type": "QImage",
+    "path": "59ea7c352873e13d37a6558a5e7baeb1.png"
+  },
+  {
+    "id": "C3508818-C473-4A42-B2AB-D87F2847ECA9",
+    "name": "3",
+    "width": 237,
+    "height": 45,
+    "abX": 34,
+    "abY": 123,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "d45e28044ffc566d1a16dc6105a714a0.png"
   }
 ]

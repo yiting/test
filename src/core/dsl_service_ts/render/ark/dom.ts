@@ -135,9 +135,9 @@ class Dom {
     const content = this.getContent();
     const showTagAttrInfo = Store.get('showTagAttrInfo');
     if (showTagAttrInfo) {
-      return `<${tag} ${id} ${attrs}>${content}`;
+      return `<${tag} ${id} ${attrs}>`;
     }
-    return `<${tag} ${attrs}>${content}`;
+    return `<${tag} ${attrs}>`;
   }
 
   // 闭合节点

@@ -30,7 +30,13 @@ class EM1M1 extends ArkTemplate {
       this._renderData.constraints['LayoutDirection'] =
         Constraints.LayoutDirection.Horizontal;
     }
-    this._template = `<Text></Text>`;
+    const text =
+      this._renderData.styles.texts && this._renderData.styles.texts[0].string;
+    if (text) {
+      this._template = `<Text value="${text}"></Text>`;
+    } else {
+      this._template = `<Text></Text>`;
+    }
   }
 }
 
