@@ -21,9 +21,8 @@ export default {
     css[1] = marginRight.value.call(this);
     css[2] = marginBottom.value.call(this);
     css[3] = marginLeft.value.call(this);
-
     if (Number(css.join('')) === 0) {
-      return 0;
+      return '0';
     }
     //最终回溯，水平方向如果只有一个节点，并且左右偏差不是很大，就直接水平居中
     if (

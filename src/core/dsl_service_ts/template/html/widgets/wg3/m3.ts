@@ -6,8 +6,8 @@ class WG3M3 extends HtmlTemplate {
     this._template = `
       <div class="imageDesc">
           <img $ref="2" class="img" :src="this.requireImgPath(path)"/>
-          <p $ref="0" class="text"></p>
-          <p $ref="1" class="subtext"></p>
+          <p class="text"><span $ref="0"></span></p>
+          <p class="subtext"><span $ref="1"></span></p>
       </div>`;
   }
 }

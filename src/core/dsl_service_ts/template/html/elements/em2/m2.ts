@@ -1,5 +1,5 @@
 import HtmlTemplate from '../../htmlTemplate';
-
+import Constraints from '../../../../helper/constraints';
 class EM2M2 extends HtmlTemplate {
   constructor(...args: any[]) {
     super(...args);
@@ -13,8 +13,9 @@ class EM2M2 extends HtmlTemplate {
       constraints(_node: any) {
         const node: any = _node;
         Object.assign(node.constraints, {
-          LayoutDirection: 'Horizontal',
-          LayoutJustifyContent: 'Center',
+          LayoutDirection: Constraints.LayoutDirection.Horizontal,
+          LayoutJustifyContent: Constraints.LayoutJustifyContent.Center,
+          LayoutFixedHeight: Constraints.LayoutFixedHeight.Fixed,
         });
       },
     };

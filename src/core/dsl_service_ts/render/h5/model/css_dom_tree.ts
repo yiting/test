@@ -102,7 +102,8 @@ class CssDom {
     this._width = data.abXops - data.abX;
     this._height = data.abYops - data.abY;
     this._zIndex = data.zIndex;
-    this._hasText = !!data.text;
+    // this._hasText = !!data.text;
+    this._hasText = !!data.styles.texts && data.styles.texts.length > 0;
     this._textWidth = null;
 
     // 样式属性
@@ -292,9 +293,10 @@ class CssDom {
         return true;
       }
     }
+    // 如果为文本，则无宽度
     if (
       this.type === Common.QText &&
-      !this._isParentVertical() &&
+      // !this._isParentVertical() &&
       this.constraints.LayoutFixedWidth !== Constraints.LayoutFixedWidth.Fixed
     ) {
       return false;
@@ -398,15 +400,18 @@ class CssDom {
     return false; // 默认为竖排
   }
 
-  _canFlex(isLeft: boolean) {
+  _needFlex(isLeft: boolean) {
     if (
       this.constraints.LayoutFixedWidth === Constraints.LayoutFixedWidth.Fixed
     ) {
       return false;
     }
-    // 如果文本为水平布局，则不计算拓展；
     // 如果文本为垂直布局，则继续判断
-    if (this._hasText && !this._textCanFlex()) {
+    // if (this._hasText && !this._textCanFlex()) {
+    // return false;
+    // }
+    // 如果文本为水平布局，则不计算拓展；
+    if (this.type === Common.QText) {
       return false;
     }
     // 如果有拓展属性，则应用默认拓展属性
@@ -463,12 +468,12 @@ class CssDom {
    * 节点是否为固定宽度节点
    * @param {CssDom} node CssDom节点
    */
-  _canLeftFlex() {
-    return this._canFlex(true);
+  _needLeftFlex() {
+    return this._needFlex(true);
   }
 
-  _canRightFlex() {
-    return this._canFlex(false);
+  _needRightFlex() {
+    return this._needFlex(false);
   }
 
   /**
@@ -499,13 +504,13 @@ class CssDom {
    * 判断文本是否可拓展，
    * 如果文本为水平方向，则不能拓展
    */
-  _textCanFlex() {
-    return (
-      this.parent &&
-      this.parent.constraints.LayoutDirection ===
-        Constraints.LayoutDirection.Vertical
-    );
-  }
+  // _textCanFlex() {
+  //   return (
+  //     this.parent &&
+  //     this.parent.constraints.LayoutDirection ===
+  //     Constraints.LayoutDirection.Vertical
+  //   );
+  // }
 
   /**
    * 判断是否使用paddingTop，如果是垂直布局，则用paddingTop，则返回第一个非绝对定位节点
@@ -524,6 +529,15 @@ class CssDom {
 
   _getFirstChild() {
     return this.children.find((nd: any) => !nd._isAbsolute());
+  }
+
+  _getLastChild() {
+    for (let i = this.children.length - 1; i >= 0; i--) {
+      const child = this.children[i];
+      if (!child._isAbsolute()) {
+        return child;
+      }
+    }
   }
 
   /**

@@ -67,7 +67,7 @@ function _calculateBoundaryConstraints(
 }
 // 计算左边界
 function _calculateLeftBoundary(vdom: any, isVertical: boolean) {
-  if (!vdom._canLeftFlex()) {
+  if (!vdom._needLeftFlex()) {
     return undefined;
   }
   const prevNode = isVertical ? null : vdom._prevNode();
@@ -76,7 +76,7 @@ function _calculateLeftBoundary(vdom: any, isVertical: boolean) {
   // 第一个节点
   if (!prevNode || prevLine.includes(prevNode)) {
     vdom._abX = vdom.parent._abX;
-  } else if (prevNode._canRightFlex()) {
+  } else if (prevNode._needRightFlex()) {
     // 前节点可右拓展，取中间线
     vdom._abX = Math.floor((prevNode._abXops + vdom._abX) / 2);
   } else {
@@ -87,7 +87,7 @@ function _calculateLeftBoundary(vdom: any, isVertical: boolean) {
 }
 // 计算右边界
 function _calculateRightBoundary(vdom: any, isVertical: boolean) {
-  if (!vdom._canRightFlex()) {
+  if (!vdom._needRightFlex()) {
     return undefined;
   }
   const nextNode = isVertical ? null : vdom._nextNode();
@@ -97,7 +97,7 @@ function _calculateRightBoundary(vdom: any, isVertical: boolean) {
   if (!nextNode || nextLine.includes(nextNode)) {
     vdom._abXops =
       vdom._abXops < vdom.parent._abXops ? vdom.parent._abXops : vdom._abXops;
-  } else if (nextNode._canLeftFlex()) {
+  } else if (nextNode._needLeftFlex()) {
     // 后节点可左拓展，取中间线
     vdom._abXops = Math.ceil((nextNode._abX + vdom._abXops) / 2);
   } else {

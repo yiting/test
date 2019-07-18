@@ -1,4 +1,9 @@
-export default function(node: any) {
+export default function(nodes: any) {
+  nodes.forEach(pipe);
+  return nodes;
+}
+
+function pipe(node: any) {
   if (node.text && node.text[node.text.length - 1] == '\n') {
     node.text = node.text.slice(0, -1);
     node.height = node.height - node.styles.lineHeight;
