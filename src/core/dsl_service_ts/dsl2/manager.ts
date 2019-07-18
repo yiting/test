@@ -47,9 +47,7 @@ let matchModel = function(nodes: any[], matchType: any, endY: number): any {
     groups = Utils.getGroupFromNodes(
       nodes,
       model.getTextNumber(),
-      model.getIconNumber(),
       model.getImageNumber(),
-      model.getShapeNumber(),
     );
     //console.log(groups);
     if (groups && groups.length > 0) {

@@ -19,4 +19,19 @@ export default class HtmlTemplate extends Template {
   get path() {
     return this._renderData.path;
   }
+  get bgColor() {
+    if (this._renderData.styles && this._renderData.styles.background) {
+      const bg = this._renderData.styles.background;
+      const color = bg.color;
+      return [
+        '0x',
+        Math.ceil(color['a'] * 255).toString(16),
+        color['r'].toString(16),
+        color['g'].toString(16),
+        color['b'].toString(16),
+      ].join('');
+    } else {
+      return '';
+    }
+  }
 }

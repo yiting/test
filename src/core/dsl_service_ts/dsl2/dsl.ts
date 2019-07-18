@@ -72,15 +72,11 @@ let pipe = function(nodes: any): any {
     item.zIndex = item.zIndex > 0 ? item.zIndex : index; // 默认zIndex的值, 越大显示层级越高
     switch (item.type) {
       case 'QShape':
-        item.type = Common.QShape;
+        item.type = Common.QImage;
         matchingNodes.push(item);
         break;
       case 'QImage':
-        if (item.width <= Common.IconSize && item.height <= Common.IconSize) {
-          item.type = Common.QIcon;
-        } else {
-          item.type = Common.QImage;
-        }
+        item.type = Common.QImage;
         matchingNodes.push(item);
         break;
       case 'QText':

@@ -17,6 +17,9 @@ export default class HtmlTemplate extends Template {
     this._template = '';
 
     this.requireImgPath = function(path: string) {
+      if (!path) {
+        return '';
+      }
       return Path.join(
         Path.relative(Config.HTML.output.htmlPath, Config.HTML.output.imgPath),
         path,

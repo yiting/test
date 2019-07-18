@@ -300,7 +300,9 @@ class Tree {
     const compareArr = [body];
     const leftArr = [];
     // 按面积排序
-    arr.sort((a: any, b: any) => b.width * b.height - a.width * a.height);
+    arr
+      .sort((a: any, b: any) => a.zIndex - b.zIndex)
+      .sort((a: any, b: any) => b.width * b.height - a.width * a.height);
     // let segmentings = []
     arr.forEach((child: any, i: any) => {
       if (child && child.type !== Common.QBody) {
@@ -315,7 +317,6 @@ class Tree {
             parent.type !== Common.QText &&
             // 子节点不能分割线
             child.modelName !== 'wg1-m1' &&
-            child.modelName !== 'wg1-m2' &&
             // 层级关系
             child.zIndex >= parent.zIndex &&
             // 包含关系
@@ -392,10 +393,10 @@ class Tree {
     node.set('parent', parent);
     parent.set('children', parent.children.concat(node));
     /**
-     * 如果父节点为QShape或QImage时，添加子节点后，父节点模型类型改为layer，
-     * 让父节点取代使用QShape或QImage模板
+     * 如果父节点为QImage时，添加子节点后，父节点模型类型改为layer，
+     * 让父节点取代使用QImage模板
      * */
-    if (parent.type === Common.QShape || parent.type === Common.QImage) {
+    if (parent.type === Common.QImage) {
       parent.set('modelName', 'layer');
     }
     // 如果父节点为widget，则当前节点绝对定位

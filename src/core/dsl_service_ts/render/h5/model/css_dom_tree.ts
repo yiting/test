@@ -273,7 +273,6 @@ class CssDom {
     if (
       this.constraints.LayoutFixedHeight ===
         Constraints.LayoutFixedHeight.Fixed ||
-      this.type === Common.QShape ||
       this.type === Common.QImage ||
       !!this.path
     ) {
