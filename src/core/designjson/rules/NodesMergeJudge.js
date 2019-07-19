@@ -186,7 +186,7 @@ class NodesMergeJudge {
 
       //如果节点是大背景，包含了另一个节点，另一节点面积比小于阈值，则不合并
       let sizePercentThresholdForNormalBg = 0.1;
-      let bgWidthThreshold = 689;
+      let bgWidthThreshold = 685;
       let bgHeightThreshold = 100;
       if (
         ImgConbineUtils.isIntersect(node, brother) ==

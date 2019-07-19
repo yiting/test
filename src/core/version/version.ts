@@ -1,5 +1,5 @@
 const version = {
-  img: '2.0.18',
+  img: '2.0.19',
   dsl: '1.0.37',
   json: '1.0.1',
 };
