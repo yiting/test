@@ -72,18 +72,18 @@ function _calculateLeftBoundary(vdom: any, isVertical: boolean) {
   }
   const prevNode = isVertical ? null : vdom._prevNode();
   const prevLine = vdom._prevLine();
-  const { _abX } = vdom;
+  const { abX } = vdom;
   // 第一个节点
   if (!prevNode || prevLine.includes(prevNode)) {
-    vdom._abX = vdom.parent._abX;
+    vdom.abX = vdom.parent.abX;
   } else if (prevNode._canRightFlex()) {
     // 前节点可右拓展，取中间线
-    vdom._abX = Math.floor((prevNode._abXops + vdom._abX) / 2);
+    vdom.abX = Math.floor((prevNode.abXops + vdom.abX) / 2);
   } else {
     // 其他，取末尾线
-    vdom._abX = prevNode._abXops;
+    vdom.abX = prevNode.abXops;
   }
-  return Math.abs(_abX - vdom._abX);
+  return Math.abs(abX - vdom.abX);
 }
 // 计算右边界
 function _calculateRightBoundary(vdom: any, isVertical: boolean) {
@@ -92,19 +92,19 @@ function _calculateRightBoundary(vdom: any, isVertical: boolean) {
   }
   const nextNode = isVertical ? null : vdom._nextNode();
   const nextLine = vdom._nextLine();
-  const { _abXops } = vdom;
+  const { abXops } = vdom;
   // 最后个节点
   if (!nextNode || nextLine.includes(nextNode)) {
-    vdom._abXops =
-      vdom._abXops < vdom.parent._abXops ? vdom.parent._abXops : vdom._abXops;
+    vdom.abXops =
+      vdom.abXops < vdom.parent.abXops ? vdom.parent.abXops : vdom.abXops;
   } else if (nextNode._canLeftFlex()) {
     // 后节点可左拓展，取中间线
-    vdom._abXops = Math.ceil((nextNode._abX + vdom._abXops) / 2);
+    vdom.abXops = Math.ceil((nextNode.abX + vdom.abXops) / 2);
   } else {
     // 其他，前节点尾线
-    vdom._abXops = nextNode._abX;
+    vdom.abXops = nextNode.abX;
   }
-  return Math.abs(_abXops - vdom._abXops);
+  return Math.abs(abXops - vdom.abXops);
 }
 
 export default _parseBoundary;

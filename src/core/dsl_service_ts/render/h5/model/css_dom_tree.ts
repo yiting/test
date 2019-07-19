@@ -5,7 +5,7 @@ import Constraints from '../../../helper/constraints';
 import Utils from '../../utils';
 import Func from '../css_func';
 import QLog from '../../../log/qlog';
-
+import VDom from '../../vdom';
 import cssProperty from '../css_property';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
@@ -16,50 +16,8 @@ const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align'];
 const CompatibleValue = ['box'];
 const cssPropertyMap = cssProperty.map;
 
-class CssDom {
-  id: any;
-
-  tagName: any;
-
-  serialId: any;
-
-  modelId: any;
-
-  type: any;
-
-  modelName: any;
-
-  canLeftFlex: any;
-
-  canRightFlex: any;
-
-  isCalculate: any;
-
-  tplAttr: any;
-
-  similarId: any;
-
-  parent: any;
-
-  _abX: any;
-
-  _abY: any;
-
-  _abXops: any;
-
-  _abYops: any;
-
+class CssDom extends VDom {
   _zIndex: any;
-
-  _hasText: boolean;
-
-  constraints: any;
-
-  path: any;
-
-  styles: any;
-
-  children: any;
 
   selfCss: any;
 
@@ -75,36 +33,12 @@ class CssDom {
   };
   _textWidth: number | null;
 
-  constructor(parent: any, data: any) {
+  constructor(data: any, parent: any) {
+    super(data, parent);
     // 节点的信息
-    this.id = data.id;
-    this.tagName = data.tagName;
-    this.serialId = data.serialId;
-    this.modelId = data.modelId;
-    this.type = data.type;
-    this.modelName = data.modelName;
-    this.canLeftFlex = data.canLeftFlex;
-    this.canRightFlex = data.canRightFlex;
-    this.isCalculate = data.isCalculate;
-    this.tplAttr = data.tplAttr || {};
-    this.similarId = data.similarId;
-    this.parent = parent || null;
-
     // 布局计算的数值
-    this._abX = data.abX;
-    this._abY = data.abY;
-    this._abXops = data.abXops;
-    this._abYops = data.abYops;
     this._zIndex = data.zIndex;
-    this._hasText = !!data.text;
     this._textWidth = null;
-
-    // 样式属性
-    this.constraints = data.constraints;
-    this.path = data.path;
-
-    //具体元素的sketch样式
-    this.styles = data.styles || {};
     //继承属性
     this.extendStyle = {};
     //最终输出css时候当前节点的样式
@@ -115,8 +49,6 @@ class CssDom {
       add: [],
       subtract: [],
     };
-    // 子节点
-    this.children = [];
 
     this.selfCss = data.selfCss || [];
     this.similarCssName = data.similarCssName || [];
@@ -130,138 +62,12 @@ class CssDom {
 
   // 转换过的基于父节点的parentX
   get parentX() {
-    return this._abX - this.parent._abX;
+    return this.abX - this.parent.abX;
   }
 
   // 转换过的基于父节点的parentY
   get parentY() {
-    return this._abY - this.parent._abY;
-  }
-
-  /**
-   * 获取当前节点的前一个兄弟节点,若没有则返回null
-   */
-  _prevNode() {
-    if (this.type === Common.QBody || !this.parent) {
-      // 根节点
-      return null;
-    }
-
-    const len = this.parent.children.length;
-
-    let canBegin = false;
-    for (let i = len - 1; i >= 0; ) {
-      const node = this.parent.children[i];
-
-      if (node.id === this.id) {
-        canBegin = true;
-      } else if (canBegin && !node._isAbsolute()) {
-        /**
-         * 新增多行的判断逻辑,如果前节点位置后于当前节点，则错误
-         */
-        const directKeyName =
-          this.parent.constraints.LayoutDirection ==
-          Constraints.LayoutDirection.Horizontal
-            ? '_abX'
-            : '_abY';
-        if (node[directKeyName] > this[directKeyName]) {
-          return null;
-        }
-        return node;
-      }
-      i -= 1;
-    }
-    return null;
-  }
-  /**
-   * 获取当前节点的上一行内容
-   * 判断逻辑：
-   * 1. 水平排列的，比当前节点位置高的
-   * 2. 垂直排列的，比当前节点位置左的
-   */
-  _prevLine() {
-    const that: any = this;
-    const _prevNodes: any = [];
-    if (that.type === Common.QBody || !that.parent) {
-      // 根节点
-      return _prevNodes;
-    }
-    const prevKey =
-      that.parent.constraints.LayoutDirection ==
-      Constraints.LayoutDirection.Horizontal
-        ? '_abYops'
-        : '_abXops';
-    const selfKey =
-      that.parent.constraints.LayoutDirection ==
-      Constraints.LayoutDirection.Horizontal
-        ? '_abY'
-        : '_abX';
-    that.parent.children.some((node: any) => {
-      if (node.id === that.id) {
-        return false;
-      }
-      // 如果非绝对定位，且节点位置靠前
-      if (!node._isAbsolute() && node[prevKey] < that[selfKey]) {
-        _prevNodes.push(node);
-      }
-    });
-    return _prevNodes;
-  }
-  /**
-   * 获取当前节点的下一行内容
-   * 判断逻辑：
-   * 1. 水平排列的，比当前节点位置低的
-   * 2. 垂直排列的，比当前节点位置右的
-   */
-  _nextLine() {
-    const that: any = this;
-    const _nextNodes: any = [];
-    if (that.type === Common.QBody || !that.parent) {
-      // 根节点
-      return _nextNodes;
-    }
-    const nextKey =
-      that.parent.constraints.LayoutDirection ==
-      Constraints.LayoutDirection.Horizontal
-        ? '_abY'
-        : '_abX';
-    const selfKey =
-      that.parent.constraints.LayoutDirection ==
-      Constraints.LayoutDirection.Horizontal
-        ? '_abYops'
-        : '_abXops';
-    that.parent.children.some((node: any) => {
-      if (node.id === that.id) {
-        return false;
-      }
-      // 如果非绝对定位，且节点位置靠前
-      if (!node._isAbsolute() && node[nextKey] > that[selfKey]) {
-        _nextNodes.push(node);
-      }
-    });
-    return _nextNodes;
-  }
-  /**
-   * 获取当前节点的下一个兄弟节点,若没有则返回null
-   */
-  _nextNode() {
-    if (this.type === Common.QBody || !this.parent) {
-      // 根节点
-      return null;
-    }
-
-    const len = this.parent.children.length;
-
-    let canBegin = false;
-    for (let i = 0; i < len; i++) {
-      const node: any = this.parent.children[i];
-      if (node.id === this.id) {
-        canBegin = true;
-      } else if (canBegin && !node._isAbsolute()) {
-        return node;
-      }
-    }
-    return null;
+    return this.abY - this.parent.abY;
   }
   _hasHeight() {
     if (
@@ -280,7 +86,7 @@ class CssDom {
       const lineHeight =
         this.styles.lineHeight ||
         Math.max(this.styles.texts.map((s: any) => s.size)) * 1.33;
-      const _height = this._abYops - this._abY;
+      const _height = this.abYops - this.abY;
       if (_height / lineHeight > 1.6) {
         // 如果高度高于行高，则为多行，固定宽度
         return true;
@@ -297,7 +103,8 @@ class CssDom {
   }
 
   _isTextCenter() {
-    if (!this._hasText) {
+    const hasText = this.text;
+    if (!hasText) {
       return null;
     }
     const fontWidth = this.styles.texts.map((t: any) => {});
@@ -348,123 +155,6 @@ class CssDom {
     return false;
   }
 
-  _isParentVertical() {
-    if (!this.parent) {
-      return true;
-    }
-    if (this.parent.constraints.LayoutDirection) {
-      return (
-        this.parent.constraints.LayoutDirection ==
-        Constraints.LayoutDirection.Vertical
-      );
-    }
-
-    if (Utils.isVertical(this.parent.children)) {
-      return true;
-    }
-    return false;
-  }
-
-  /**
-   * 节点的排列是否为横排
-   * @returns {Boolean}
-   */
-  _isParentHorizontal() {
-    if (!this.parent) {
-      return false;
-    }
-    // if (this.parent.children.length===1) { // 1个元素默认是横排
-    //     return true;
-    // }
-
-    if (
-      this.parent.constraints.LayoutDirection &&
-      this.parent.constraints.LayoutDirection ==
-        Constraints.LayoutDirection.Horizontal
-    ) {
-      return true;
-    }
-
-    if (Utils.isHorizontal(this.parent.children)) {
-      return true;
-    }
-
-    return false; // 默认为竖排
-  }
-
-  _canFlex(isLeft: boolean) {
-    if (
-      this.constraints.LayoutFixedWidth === Constraints.LayoutFixedWidth.Fixed
-    ) {
-      return false;
-    }
-    // 如果文本为水平布局，则不计算拓展；
-    // 如果文本为垂直布局，则继续判断
-    if (this._hasText && !this._textCanFlex()) {
-      return false;
-    }
-    // 如果有拓展属性，则应用默认拓展属性
-    if (isLeft && typeof this.canLeftFlex === 'boolean') {
-      return this.canLeftFlex;
-    }
-    if (!isLeft && typeof this.canRightFlex === 'boolean') {
-      return this.canRightFlex;
-    }
-
-    const _dir: string = isLeft ? 'End' : 'Start';
-    const _c: any = this.constraints;
-    const _C: any = Constraints;
-
-    const isHorizontal = _c.LayoutDirection === _C.LayoutDirection.Horizontal;
-    const isJustifyDir =
-      _c.LayoutJustifyContent === _C.LayoutJustifyContent[_dir];
-    const isAlignDir = _c.LayoutAlignItems === _C.LayoutAlignItems[_dir];
-    const isJustifyCenter =
-      _c.LayoutJustifyContent === _C.LayoutJustifyContent.Center;
-    const isAlignCenter =
-      _c.LayoutAlignItems === Constraints.LayoutAlignItems.Center;
-    // 如果左对齐，不能向左拓展
-    if (
-      isHorizontal
-        ? isJustifyCenter || isJustifyDir
-        : isAlignCenter || isAlignDir
-    ) {
-      return true;
-    }
-    if (this.parent) {
-      const _pc: any = this.parent.constraints;
-      const isPHorizontal =
-        _pc.LayoutDirection === _C.LayoutDirection.Horizontal;
-      const isPJustifyDir =
-        _pc.LayoutJustifyContent === _C.LayoutJustifyContent[_dir];
-      const isPAlignDir = _pc.LayoutAlignItems === _C.LayoutAlignItems[_dir];
-      const isPJustifyCenter =
-        _pc.LayoutJustifyContent === _C.LayoutJustifyContent.Center;
-      const isPAlignCenter =
-        _pc.LayoutAlignItems === Constraints.LayoutAlignItems.Center;
-      if (
-        isPHorizontal
-          ? isPJustifyCenter || isPJustifyDir
-          : isPAlignCenter || isPAlignDir
-      ) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
-   * 节点是否为固定宽度节点
-   * @param {CssDom} node CssDom节点
-   */
-  _canLeftFlex() {
-    return this._canFlex(true);
-  }
-
-  _canRightFlex() {
-    return this._canFlex(false);
-  }
-
   /**
    * 节点是否为固定宽度节点
    * @param {CssDom} node CssDom节点
@@ -487,18 +177,6 @@ class CssDom {
       result = true;
     }
     return result;
-  }
-
-  /**
-   * 判断文本是否可拓展，
-   * 如果文本为水平方向，则不能拓展
-   */
-  _textCanFlex() {
-    return (
-      this.parent &&
-      this.parent.constraints.LayoutDirection ===
-        Constraints.LayoutDirection.Vertical
-    );
   }
 
   /**

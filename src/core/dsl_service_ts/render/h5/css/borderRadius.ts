@@ -6,7 +6,7 @@ export default {
     if (this.styles.borderRadius) {
       return Func.getRadius(
         this.styles.borderRadius,
-        Math.min(this._abYops - this._abY, this._abXops - this._abX),
+        Math.min(this.abYops - this.abY, this.abXops - this.abX),
       );
     }
     return null;

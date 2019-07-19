@@ -21,7 +21,6 @@ export default {
     css[1] = marginRight.value.call(this);
     css[2] = marginBottom.value.call(this);
     css[3] = marginLeft.value.call(this);
-
     if (Number(css.join('')) === 0) {
       return 0;
     }
@@ -31,8 +30,8 @@ export default {
       !preNode &&
       (Math.abs(Math.abs(css[1]) - Math.abs(css[3])) < 10 ||
         Math.abs(
-          Math.abs(this._abX - this.parent._abX) -
-            Math.abs(this.parent._abXops - this._abXops),
+          Math.abs(this.abX - this.parent.abX) -
+            Math.abs(this.parent.abXops - this.abXops),
         ) < 10)
     ) {
       css[1] = css[3] = 'auto';

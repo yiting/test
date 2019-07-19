@@ -28,9 +28,9 @@ export default {
       }
       // LayoutJustifyContent.Start
       if (preNode) {
-        return this._abX - preNode._abXops;
+        return this.abX - preNode.abXops;
       }
-      return this._abX - this.parent._abX;
+      return this.abX - this.parent.abX;
     }
     // 竖排计算与父节点距离
     // 如果水平居中、或水平右对齐
@@ -49,8 +49,8 @@ export default {
       return 0;
     }
     if (this.parent) {
-      return this._abX - this.parent._abX;
+      return this.abX - this.parent.abX;
     }
-    return this._abX;
+    return this.abX;
   },
 };

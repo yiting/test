@@ -4,7 +4,7 @@ export default {
     // let firstChild = this._getFirstChild(this);
     const firstChild = this._usePaddingTop();
     if (firstChild) {
-      return firstChild._abY - this._abY;
+      return firstChild.abY - this.abY;
     }
     return null;
   },

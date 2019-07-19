@@ -31,8 +31,8 @@ function calculateBaseLine(vdom: any) {
   let Yops = 0;
   let Xctr = 0;
   let Yctr = 0;
-  const pXctr = (vdom._abX + vdom._abXops) / 2;
-  const pYctr = (vdom._abY + vdom._abYops) / 2;
+  const pXctr = (vdom.abX + vdom.abXops) / 2;
+  const pYctr = (vdom.abY + vdom.abYops) / 2;
   let nodeCount = 0;
   const errorCoefficient = 2; // 误差系数
   vdom.children.forEach((node: any) => {
@@ -44,12 +44,12 @@ function calculateBaseLine(vdom: any) {
       return;
     }
     nodeCount += 1;
-    X += Math.abs(node._abX - vdom._abX);
-    Y += Math.abs(node._abY - vdom._abY);
-    Xops += Math.abs(vdom._abXops - node._abXops);
-    Yops += Math.abs(vdom._abYops - node._abYops);
-    Xctr += Math.abs(pXctr - (node._abX + node._abXops) / 2);
-    Yctr += Math.abs(pYctr - (node._abY + node._abYops) / 2);
+    X += Math.abs(node.abX - vdom.abX);
+    Y += Math.abs(node.abY - vdom.abY);
+    Xops += Math.abs(vdom.abXops - node.abXops);
+    Yops += Math.abs(vdom.abYops - node.abYops);
+    Xctr += Math.abs(pXctr - (node.abX + node.abXops) / 2);
+    Yctr += Math.abs(pYctr - (node.abY + node.abYops) / 2);
   });
   const hStart = Math.abs(X / nodeCount) < errorCoefficient;
   const hCenter = Math.abs(Xctr / nodeCount) < errorCoefficient;

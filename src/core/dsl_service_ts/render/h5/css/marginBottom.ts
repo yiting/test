@@ -23,7 +23,7 @@ export default {
         return 0;
       }
       // LayoutAlignItems.Start
-      return this.parent._abYops - this._abYops;
+      return this.parent.abYops - this.abYops;
     }
     // 竖排计算与上一节点距离
     /**
@@ -43,9 +43,9 @@ export default {
 
         // LayoutJustifyContent.Start
         if (nextNode) {
-            css = this._abY - nextNode._abYops;
+            css = this.abY - nextNode.abYops;
         } else {
-            css = this._abY - this.parent._abY;
+            css = this.abY - this.parent.abY;
         } */
     return 0;
   },

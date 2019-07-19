@@ -27,12 +27,12 @@ export default {
         return 0;
       }
       if (this._prevLine().length) {
-        const prevLineAbYops = this._prevLine().map((n: any) => n._abYops);
-        const maxTop = Math.max(...prevLineAbYops) || this.parent._abY;
+        const prevLineAbYops = this._prevLine().map((n: any) => n.abYops);
+        const maxTop = Math.max(...prevLineAbYops) || this.parent.abY;
         // LayoutAlignItems.Start
-        css = this._abY - maxTop;
+        css = this.abY - maxTop;
       } else {
-        css = this._abY - this.parent._abY;
+        css = this.abY - this.parent.abY;
       }
     } else {
       // 竖排计算与上一节点距离
@@ -52,11 +52,11 @@ export default {
 
       // LayoutJustifyContent.Start
       if (preNode) {
-        css = this._abY - preNode._abYops;
+        css = this.abY - preNode.abYops;
       } else if (this.parent) {
-        css = this._abY - this.parent._abY;
+        css = this.abY - this.parent.abY;
       } else {
-        css = this._abY;
+        css = this.abY;
       }
     }
     return css;

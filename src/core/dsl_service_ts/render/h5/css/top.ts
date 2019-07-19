@@ -6,7 +6,7 @@ export default {
 
     if (false) {
       // 这里是预留给fixed定位约束
-      css = this._abY;
+      css = this.abY;
     } else if (this._isAbsolute()) {
       css = this.parentY;
     } else {

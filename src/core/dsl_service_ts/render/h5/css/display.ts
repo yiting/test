@@ -5,11 +5,12 @@ export default {
     /* if (this._isParentVertical()) {
       return 'block';
     } */
+    const hasText = this.text;
     if (
       this.parent &&
       this.parent.type === Common.QText &&
       this.type === Common.QText &&
-      this._hasText
+      !hasText
     ) {
       return 'inline';
     }

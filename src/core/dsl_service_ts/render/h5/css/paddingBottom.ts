@@ -12,7 +12,7 @@ export default {
         cssDom.constraints.LayoutSelfPosition !==
         Constraints.LayoutSelfPosition.Absolute
       ) {
-        const pd = that._abYops - cssDom._abYops;
+        const pd = that.abYops - cssDom.abYops;
         minPaddingBottom =
           pd >= 0 && (minPaddingBottom === null || minPaddingBottom > pd)
             ? pd

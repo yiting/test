@@ -11,8 +11,8 @@ export default {
     if (this.styles.background && this.styles.background.type === 'linear') {
       return Funcs.getLinearGradient(
         this.styles.background,
-        this._abXops - this._abX,
-        this._abYops - this._abY,
+        this.abXops - this.abX,
+        this.abYops - this.abY,
       );
     }
     if (this.path) {

@@ -7,7 +7,6 @@ import justifyContent from './css/justifyContent';
 import flex from './css/flex';
 import width from './css/width';
 import height from './css/height';
-import minHeight from './css/minHeight';
 import marginTop from './css/marginTop';
 import marginRight from './css/marginRight';
 import marginBottom from './css/marginBottom';

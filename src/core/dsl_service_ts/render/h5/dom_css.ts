@@ -66,7 +66,7 @@ function getCssMap(_cssDom: any, _map: any = {}) {
 const _buildTree = function(parent: any, data: any) {
   let cssNode: any;
   try {
-    cssNode = new CssDom(parent, data);
+    cssNode = new CssDom(data, parent);
     // 构建树
     if (!parent) {
       cssDomTree = cssNode;

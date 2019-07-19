@@ -26,9 +26,9 @@ export default {
       }
 
       if (nextNode) {
-        return nextNode._abX - this._abXops;
+        return nextNode.abX - this.abXops;
       }
-      return this.parent._abXops - this._abXops;
+      return this.parent.abXops - this.abXops;
     }
     // 竖排计算与父节点距离
     // 如果水平居中、或水平右对齐
@@ -51,7 +51,7 @@ export default {
       this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.End
     ) {
-      return this.parent._abXops - this._abXops;
+      return this.parent.abXops - this.abXops;
     }
     return null;
   },
