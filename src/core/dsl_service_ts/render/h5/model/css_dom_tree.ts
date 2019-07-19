@@ -107,7 +107,6 @@ class CssDom extends VDom {
     if (!hasText) {
       return null;
     }
-    const fontWidth = this.styles.texts.map((t: any) => {});
     if (
       this.constraints.LayoutJustifyContent ===
         Constraints.LayoutJustifyContent.Center ||
