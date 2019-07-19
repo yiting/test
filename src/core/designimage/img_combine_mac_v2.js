@@ -253,7 +253,22 @@ const ImageCombine = function() {
 
     tmpJson.frame.x = node.frame.x;
     tmpJson.frame.y = node.frame.y;
+    // let scale = node.scale;
+    // if(scale && scale != 1){
+    //   that.updateScaleProp(tmpJson,scale);
+    // }
     return tmpJson;
+  };
+
+  this.updateScaleProp = function(node, scale) {
+    let that = this;
+    node.frame.width = node.frame.width * scale;
+    node.frame.height = node.frame.height * scale;
+    if (node._class != 'shapeGroup' && node.layers && node.layers.length > 0) {
+      node.layers.forEach(item => {
+        that.updateScaleProp(item, scale);
+      });
+    }
   };
 
   // 将最小父层级对应的json
@@ -523,6 +538,9 @@ const ImageCombine = function() {
     let tmpJson = tmpPageJson;
     let abX = 0,
       abY = 0;
+    if (typeof levelArr == 'undefined') {
+      return { abX, abY };
+    }
     for (var i = 0, ilen = minParentIndex; i <= ilen; i++) {
       tmpJson = tmpJson.layers[levelArr[i]];
       if (i > 0) {
@@ -531,6 +549,50 @@ const ImageCombine = function() {
       }
     }
     return { abX, abY };
+  };
+
+  //当父节点里实际元素占的面积比父节点圈出来的面积少很多，这时要重新计算父节点的坐标和宽高
+  this.updateParentPositionAndSize = function(node) {
+    let abX = 10000;
+    let abY = 10000;
+    let abXPos = 0;
+    let abYPos = 0;
+    let isInMask = false;
+    let widthThreshold = 200;
+    if (node.layers && node.frame.width > 300) {
+      node.layers.forEach(item => {
+        if (isInMask && item.hasClippingMask == false) {
+          //这是在遮罩层里的图层
+          isInMask = true;
+        } else {
+          isInMask = false;
+        }
+        if (!isInMask) {
+          if (item.frame.x < abX) {
+            abX = item.frame.x;
+          }
+          if (item.frame.y < abY) {
+            abY = item.frame.y;
+          }
+          if (item.frame.x + item.frame.width > abXPos) {
+            abXPos = item.frame.x + item.frame.width;
+          }
+          if (item.frame.y + item.frame.height > abYPos) {
+            abYPos = item.frame.y + item.frame.height;
+          }
+          if (item.hasClippingMask == true) {
+            isInMask = true;
+          }
+        }
+      });
+      if (node.frame.width - (abXPos - abX) > widthThreshold) {
+        //表示组里实际元素占的面积比组圈出来的面积少很多，这时要重新计算组的坐标和宽高
+        node.frame.x = abX;
+        node.frame.y = abY;
+        node.frame.width = abXPos - abX;
+        node.frame.height = abYPos - abY;
+      }
+    }
   };
 
   this.updatePosition = function(param) {
@@ -551,8 +613,31 @@ const ImageCombine = function() {
       //不超过artboard范围，将图层移到左上角
       generateJson.frame.x = 10;
       generateJson.frame.y = 10;
-      innerJson.frame.x = innerJson.frame.x - 10;
-      innerJson.frame.y = innerJson.frame.y - 10;
+      //如果要合的图较小但移动位置后去到屏幕外了，则反向移回来相应但距离
+      generateJson.layers.forEach(item => {
+        that.updateParentPositionAndSize(item);
+        if (
+          generateJson.frame.x + item.frame.x + item.frame.width >
+          that.artboardWidth
+        ) {
+          item.frame.x = item.frame.x - generateJson.frame.x;
+        }
+        if (
+          generateJson.frame.y + item.frame.y + item.frame.height >
+          that.artboardHeight
+        ) {
+          item.frame.y = item.frame.y - generateJson.frame.y;
+        }
+      });
+
+      // if(typeof levelArr != "undefined"){
+      //   generateJson.layers.forEach(item=>{
+      //     item.frame.x = item.frame.x - 10;
+      //     item.frame.y = item.frame.y - 10;
+      //   });
+      // }
+      // innerJson.frame.x = innerJson.frame.x - 10;
+      // innerJson.frame.y = innerJson.frame.y - 10;
     }
   };
 
@@ -660,6 +745,10 @@ const ImageCombine = function() {
         0,
         imageItem.path.indexOf('.png'),
       );
+
+      that.updatePosition({
+        generateJson,
+      });
     }
 
     //将json里的id都改一下，避免重复

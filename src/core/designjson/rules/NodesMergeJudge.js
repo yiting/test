@@ -114,18 +114,28 @@ class NodesMergeJudge {
     //     isCombine = true;
     //   }
     // }
-    //如果其中一个节点是大而简单的背景，他不合并
+    //如果其中一个是symbolInstance，则不合并
+    if (isFinally == false) {
+      if (
+        ImgConbineUtils.isSymbolInstance(node) ||
+        ImgConbineUtils.isSymbolInstance(brother)
+      ) {
+        isCombine = false;
+        isFinally = true;
+      }
+    }
+    //如果其中一个节点是大而简单的背景，则不合并
     if (isFinally == false) {
       // ruleConfig0 = this.getRuleConfig({
       //   data: [{ type: 'CanCssSimilar', value: 100, requireScore: 76 }],
       // });
       // let scoreResult1 = this.score(node, node, ruleConfig0);
 
-      let nodeASize = ImgConbineUtils.getSize(node);
-      let widthThreshold = 342;
-      let heightThreshold = 69;
-      let sizeThreshold = widthThreshold * heightThreshold;
-      let sizePercentThreshold = 0.38;
+      var nodeASize = ImgConbineUtils.getSize(node);
+      var widthThreshold = 342;
+      var heightThreshold = 69;
+      var sizeThreshold = widthThreshold * heightThreshold;
+      var sizePercentThreshold = 0.38;
 
       if (
         ImgConbineUtils.isSimpleBackground(node) &&
@@ -139,7 +149,7 @@ class NodesMergeJudge {
       }
 
       // let scoreResult2 = this.score(brother, brother, ruleConfig0);
-      let nodeBSize = ImgConbineUtils.getSize(brother);
+      var nodeBSize = ImgConbineUtils.getSize(brother);
       if (
         ImgConbineUtils.isSimpleBackground(brother) &&
         nodeBSize > sizeThreshold &&
@@ -151,12 +161,13 @@ class NodesMergeJudge {
         isFinally = true;
       }
 
-      //如果节点是简单的背景，包含了另一个节点，另一节点面积比小于阈值，则不合并
+      //如果节点是简单的背景，包含了另一个节点，另一节点是图片（多用于用户头像），面积比小于阈值，则不合并
       if (
         ImgConbineUtils.isSimpleBackground(node) &&
         ImgConbineUtils.isIntersect(node, brother) ==
           ImgConbineUtils.INTERSECT_TYPE.INCLUDE &&
-        nodeBSize / nodeASize < sizePercentThreshold
+        nodeBSize / nodeASize < sizePercentThreshold &&
+        ImgConbineUtils.isImage(brother)
       ) {
         isCombine = false;
         isFinally = true;
@@ -166,12 +177,62 @@ class NodesMergeJudge {
         ImgConbineUtils.isSimpleBackground(brother) &&
         ImgConbineUtils.isIntersect(brother, node) ==
           ImgConbineUtils.INTERSECT_TYPE.INCLUDE &&
+        nodeASize / nodeBSize < sizePercentThreshold &&
+        ImgConbineUtils.isImage(node)
+      ) {
+        isCombine = false;
+        isFinally = true;
+      }
+
+      //如果节点是大背景，包含了另一个节点，另一节点面积比小于阈值，则不合并
+      let sizePercentThresholdForNormalBg = 0.1;
+      let bgWidthThreshold = 689;
+      let bgHeightThreshold = 100;
+      if (
+        ImgConbineUtils.isIntersect(node, brother) ==
+          ImgConbineUtils.INTERSECT_TYPE.INCLUDE &&
+        node.width > bgWidthThreshold &&
+        node.height > bgHeightThreshold &&
+        nodeBSize / nodeASize < sizePercentThresholdForNormalBg
+      ) {
+        isCombine = false;
+        isFinally = true;
+      }
+      if (
+        ImgConbineUtils.isIntersect(brother, node) ==
+          ImgConbineUtils.INTERSECT_TYPE.INCLUDE &&
+        brother.width > bgWidthThreshold &&
+        brother.height > bgHeightThreshold &&
+        nodeASize / nodeBSize < sizePercentThresholdForNormalBg
+      ) {
+        isCombine = false;
+        isFinally = true;
+      }
+    }
+    //如果其中一个是一个大的边框，则不与它包含的里面的东西的合在一起
+    //例子：红色任务中心的右上角商城和圆框
+    let borderWidthThreshold = 169;
+    let borderHeightThreshold = 46;
+    if (isFinally == false) {
+      if (
+        ImgConbineUtils.isOnlyBorder(node) &&
+        node.width > borderWidthThreshold &&
+        node.height > borderHeightThreshold &&
+        nodeBSize / nodeASize < sizePercentThreshold
+      ) {
+        isCombine = false;
+        isFinally = true;
+      } else if (
+        ImgConbineUtils.isOnlyBorder(brother) &&
+        brother.width > borderWidthThreshold &&
+        brother.height > borderHeightThreshold &&
         nodeASize / nodeBSize < sizePercentThreshold
       ) {
         isCombine = false;
         isFinally = true;
       }
     }
+
     //面积大小合图逻辑组合，如果得分低则不合
     //处理情况2:面积大小相似，面积很大，不合在一起（处理多个用户上传图片形成的九宫格情况）
     if (isFinally == false) {
@@ -183,13 +244,15 @@ class NodesMergeJudge {
       let nodeBSize = ImgConbineUtils.getSize(brother);
       let sizeThreshold = 10000;
       let sideThreshold = 120;
-      if (
-        scoreResult.score < ruleConfig0.score &&
-        (nodeASize > sizeThreshold || nodeBSize > sizeThreshold) //&& !(ImgConbineUtils.isIntersect(brother,node) == ImgConbineUtils.INTERSECT_TYPE.INCLUDE  || ImgConbineUtils.isIntersect(node, brother) == ImgConbineUtils.INTERSECT_TYPE.INCLUDE )
-      ) {
-        isCombine = false;
-        isFinally = true;
-      }
+      //处理情况1
+      // if (
+      //   scoreResult.score < ruleConfig0.score &&
+      //   (nodeASize > sizeThreshold || nodeBSize > sizeThreshold) //&& !(ImgConbineUtils.isIntersect(brother,node) == ImgConbineUtils.INTERSECT_TYPE.INCLUDE  || ImgConbineUtils.isIntersect(node, brother) == ImgConbineUtils.INTERSECT_TYPE.INCLUDE )
+      // ) {
+      //   isCombine = false;
+      //   isFinally = true;
+      // }
+      //处理情况2
       if (
         scoreResult.score > ruleConfig0.score &&
         (node.type == 'QImage' &&

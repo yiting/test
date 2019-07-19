@@ -76,6 +76,28 @@ let INTERSECT_TYPE = {
   UNKONWN: -1,
 };
 
+function isOnlyBorder(node) {
+  let style = (node._origin && node._origin.style) || {};
+  let fills = style.fills || [];
+  let borders = style.borders || [];
+  let result = false;
+  if (fills) {
+    fills.forEach(item => {
+      if (item.isEnabled == true) {
+        return result;
+      }
+    });
+  }
+  if (borders) {
+    borders.forEach(item => {
+      if (item.isEnabled == true) {
+        result = true;
+      }
+    });
+  }
+  return result;
+}
+
 function isIntersect(inputNodeA, inputNodeB) {
   let nodeA = Object.assign(inputNodeA);
   let nodeB = Object.assign(inputNodeB);
@@ -238,6 +260,15 @@ function cloneJson(json) {
   return JSON.parse(JSON.stringify(json));
 }
 
+//查看是否symbolInstance
+function isSymbolInstance(node) {
+  return (
+    typeof node.symbolRoot != 'undefined' &&
+    node.parent &&
+    typeof node.parent.symbolRoot == 'undefined'
+  );
+}
+
 //如果节点由大的矩形和小的三角形/小的旋转了45度的尖角组成，则认为是气泡
 function isBubble(node) {
   let hasTriangle = false;
@@ -271,6 +302,25 @@ function isBubble(node) {
   }
   if (hasTriangle && hasRectangle) {
     result = true;
+  }
+  return result;
+}
+
+function isImage(_origin) {
+  let result = false;
+  let that = this;
+  if (typeof _origin == 'undefined' || _origin._class == 'shapeGroup') {
+    result = false;
+  } else if (_origin._class == 'bitmap') {
+    result = true;
+  } else if (_origin.layers) {
+    for (var i = 0, ilen = _origin.layers.length; i < ilen; i++) {
+      let itemResult = that.isImage(_origin.layers[i]);
+      if (itemResult == true) {
+        result = true;
+        break;
+      }
+    }
   }
   return result;
 }
@@ -419,4 +469,7 @@ module.exports = {
   isIntersect,
   INTERSECT_TYPE,
   isBubble,
+  isImage,
+  isOnlyBorder,
+  isSymbolInstance,
 };
