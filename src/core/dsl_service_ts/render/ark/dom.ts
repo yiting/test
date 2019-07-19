@@ -53,10 +53,6 @@ class Dom {
 
   abY: any;
 
-  width: any;
-
-  height: any;
-
   path: any;
 
   contrains: any;
@@ -70,6 +66,8 @@ class Dom {
   parent: any;
 
   styles: any;
+  abXops: any;
+  abYops: any;
 
   constructor(node: any, parentNode: any) {
     // super(node)
@@ -83,8 +81,8 @@ class Dom {
     this.text = node.text;
     this.abX = node.abX || 0;
     this.abY = node.abY || 0;
-    this.width = node.width || 0;
-    this.height = node.height || 0;
+    this.abXops = node.abXops;
+    this.abYops = node.abYops;
     this.path = node.path || null;
     this.contrains = node.contrains || {};
     this.tplAttr = node.tplAttr || {};
@@ -97,6 +95,13 @@ class Dom {
 
   get y() {
     return this.parent ? this.abY - this.parent.abY : this.abY;
+  }
+  get width() {
+    return this.abXops - this.abX;
+  }
+
+  get height() {
+    return this.abYops - this.abY;
   }
 
   getTag() {
@@ -143,6 +148,27 @@ class Dom {
   // 闭合节点
   getXmlEnd() {
     return this.isClosedTag ? '' : `</${this.getTag()}>`;
+  }
+
+  toJSON() {
+    return {
+      parentNodeId: this.parentNode && this.parentNode.id,
+      id: this.id,
+      children: this.children.map((node: any) => node.toJSON()),
+      modelId: this.modelId,
+      modelName: this.modelName,
+      tagName: this.tagName,
+      isClosedTag: this.isClosedTag,
+      text: this.text,
+      abX: this.abX,
+      abY: this.abY,
+      width: this.width,
+      height: this.height,
+      path: this.path,
+      contrains: this.contrains,
+      tplAttr: this.tplAttr,
+      styles: this.styles,
+    };
   }
 
   static getXmlString(xmlDom: any) {

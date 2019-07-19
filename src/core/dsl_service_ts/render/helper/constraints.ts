@@ -1,5 +1,5 @@
 /**
- * 边界重定义
+ * 约束计算
  */
 import Constraints from '../../helper/constraints';
 import QLog from '../../log/qlog';

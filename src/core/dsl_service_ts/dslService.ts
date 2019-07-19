@@ -15,7 +15,6 @@ import Store from './helper/store';
  * @return {Object}
  */
 function _process(_input: any, _options: any): object {
-  const output: any = {};
   const input: any = _input || {};
   // 参数的初始化处理
   _initInput(input);
@@ -48,13 +47,9 @@ function _process(_input: any, _options: any): object {
   }
 
   // render模块
-  const render = Render.pipe(dslTree);
-  const tagStr = render.getTagString();
-  const cssStr = render.getStyleString();
+  const Builder = Render.handle(dslTree);
 
-  output.uiString = tagStr;
-  output.styleString = cssStr;
-  return output;
+  return Builder.getResult();
 }
 
 /**

@@ -25,13 +25,6 @@ class EM1M2 extends Model.ElementModel {
     const nodes = this.getNodes();
     return Feature.propertyNodeAreQImage(nodes);
   }
-  regular2() {
-    const icon = this.getNodes()[0];
-    return (
-      Feature.sizeHeightGreat(icon, Common.IconSize) &&
-      Feature.sizeHeightGreat(icon, Common.IconSize)
-    );
-  }
 }
 
 export default EM1M2;

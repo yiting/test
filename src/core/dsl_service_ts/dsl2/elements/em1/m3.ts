@@ -1,4 +1,4 @@
-// (1节点基础元素)图片Image
+// (1节点基础元素)图片Icon
 // (QImage)
 //
 // 判断标准
@@ -9,7 +9,7 @@ import Feature from '../../feature';
 
 class EM1M3 extends Model.ElementModel {
   constructor() {
-    super('em1-m3', 0, 1, Common.LvD, Common.QImage);
+    super('em1-m3', 0, 1, Common.LvC, Common.QImage);
 
     this.canLeftFlex = false;
     this.canRightFlex = false;

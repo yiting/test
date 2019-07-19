@@ -49,10 +49,6 @@ class CssDom {
 
   _abYops: any;
 
-  _width: any;
-
-  _height: any;
-
   _zIndex: any;
 
   _hasText: boolean;
@@ -99,8 +95,6 @@ class CssDom {
     this._abY = data.abY;
     this._abXops = data.abXops;
     this._abYops = data.abYops;
-    this._width = data.abXops - data.abX;
-    this._height = data.abYops - data.abY;
     this._zIndex = data.zIndex;
     this._hasText = !!data.text;
     this._textWidth = null;
@@ -286,7 +280,8 @@ class CssDom {
       const lineHeight =
         this.styles.lineHeight ||
         Math.max(this.styles.texts.map((s: any) => s.size)) * 1.33;
-      if (this._height / lineHeight > 1.6) {
+      const _height = this._abYops - this._abY;
+      if (_height / lineHeight > 1.6) {
         // 如果高度高于行高，则为多行，固定宽度
         return true;
       }

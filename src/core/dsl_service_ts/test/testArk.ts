@@ -11,8 +11,8 @@ const value: any = dslServer.process(
   },
   {
     outputType: 'ark',
-    designWidth: 750,
-    optimizeWidth: 750,
+    designWidth: 667,
+    optimizeWidth: 667,
     optimizeHeight: 750,
     showTagAttrInfo: false,
     isLocalTest: true,
@@ -25,5 +25,9 @@ const value: any = dslServer.process(
 // // 输出文件
 Render.outputFileWithPath(
   Path.join(__dirname, './output/index.xml'),
-  value.uiString,
+  value.xml,
+);
+Render.outputFileWithPath(
+  Path.join(__dirname, './output/index.json'),
+  JSON.stringify(value.json),
 );

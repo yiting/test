@@ -1,41 +1,39 @@
-// import fs from 'fs';
-import path from 'path';
-
 // 此模块为h5解析模块
 import Builder from '../builder';
 import Dom from './dom';
 import QLog from '../../log/qlog';
-import Store from '../../helper/store';
-
-import * as renderConfig from '../config.json';
+import CssConstraints from '../helper/constraints';
+import CssBoundary from '../helper/boundary';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 class ArkBuilder extends Builder {
   _htmlFile: any;
 
-  htmlDom: any;
-
-  cssDom: any;
-
+  dom: any;
   // 解析逻辑
   _parseData() {
-    Loger.debug('h5_builder.js [_parseHtml]');
-    this._parseHtml();
+    Loger.debug('h5_builder.js [_parseXml]');
+    this._parseXml();
+
+    // 计算约束
+    Loger.debug('css_dom.js [_parseConstraints]');
+    CssConstraints(this.dom);
+
+    // 调整边距
+    Loger.debug('css_dom.js [_parseBoundary]');
+    CssBoundary(this.dom);
   }
 
   // 解析html
-  _parseHtml() {
-    this.htmlDom = Dom.process(this._data);
+  _parseXml() {
+    this.dom = Dom.process(this._data);
   }
-
-  getTagString() {
-    const htmlStr = Dom.getXmlString(this.htmlDom);
-    return htmlStr;
-  }
-
-  getStyleString() {
-    return '';
+  getResult() {
+    return {
+      xml: Dom.getXmlString(this.dom),
+      json: this.dom.toJSON(),
+    };
   }
 }
 

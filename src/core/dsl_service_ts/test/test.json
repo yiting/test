@@ -1,9 +1,9 @@
 [
   {
-    "id": "25182556-EC68-490C-99DE-C1FB5A8BC379",
-    "name": "0708_01",
-    "width": 502,
-    "height": 287,
+    "id": "45D4B1D4-98FE-420A-BB80-C7C7AE6F82CF",
+    "name": "画板",
+    "width": 667,
+    "height": 1188,
     "abX": 0,
     "abY": 0,
     "zIndex": 0,
@@ -18,12 +18,12 @@
     "type": "QLayer"
   },
   {
-    "id": "C4D56BD2-C7F1-4209-ADD8-7F2CA657290A",
-    "name": "1",
-    "width": 502,
-    "height": 287,
+    "id": "BA1789CF-C6B1-4ACE-B1BB-6AF6D5CCB4EE",
+    "name": "5",
+    "width": 667,
+    "height": 710,
     "abX": 0,
-    "abY": 0,
+    "abY": 151,
     "zIndex": 1,
     "styles": {
       "borderRadius": null,
@@ -34,16 +34,98 @@
       "background": null
     },
     "type": "QImage",
-    "path": "e4c8bd95d37c5a450cf6c47e5f0788f2.png"
+    "path": "4c49bdfc7d0fe77b9dbc329fe571a5e5.png"
   },
   {
-    "id": "4445EB54-5ED7-4ADD-9EC3-01E8384E2151",
-    "name": "一起组队赢A车鸭~",
-    "width": 213,
-    "height": 37,
-    "abX": 36,
-    "abY": 169,
+    "id": "3642F8B5-10C8-48BF-AD67-800C669F6E2C",
+    "name": "2",
+    "width": 614,
+    "height": 305,
+    "abX": 25,
+    "abY": 527,
     "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "15fb6cd0e0e37daba2e7ae99400c1bf0.png"
+  },
+  {
+    "id": "3E14B983-983F-448C-96CA-D0FCCEEF4B22",
+    "name": "3",
+    "width": 614,
+    "height": 350,
+    "abX": 27,
+    "abY": 232,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "4f66143378c40e625f4acdba23ead2f4.png"
+  },
+  {
+    "id": "505376EA-0E73-47D5-82FA-2E479ED123C4",
+    "name": "矩形",
+    "width": 315,
+    "height": 62,
+    "abX": 176,
+    "abY": 801,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": {
+        "type": "solid",
+        "color": { "r": 66, "g": 50, "b": 15, "a": 1 },
+        "width": 1,
+        "position": 1
+      },
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": [
+        {
+          "type": "initial",
+          "x": 0,
+          "y": 1,
+          "color": { "r": 236, "g": 229, "b": 202, "a": 1 },
+          "spread": 0,
+          "blur": 18
+        }
+      ],
+      "background": {
+        "type": "linear",
+        "color": null,
+        "hasOpacity": false,
+        "x": "0.5",
+        "y": " 0",
+        "x1": "0.5",
+        "y1": " 1",
+        "colorStops": [
+          { "color": { "r": 198, "g": 172, "b": 107, "a": 1 }, "offset": 0 },
+          { "color": { "r": 255, "g": 251, "b": 236, "a": 1 }, "offset": 1 }
+        ]
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "26AC5F69-E978-42FB-A50E-FDE39FE51A62",
+    "name": "立即查看道具",
+    "width": 144,
+    "height": 33,
+    "abX": 261,
+    "abY": 816,
+    "zIndex": 4,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -53,27 +135,27 @@
       "background": null,
       "texts": [
         {
-          "color": { "r": 244, "g": 245, "b": 255, "a": 1 },
-          "string": "一起组队赢A车鸭~",
+          "color": { "r": 66, "g": 50, "b": 15, "a": 1 },
+          "string": "立即查看道具",
           "font": "PingFangSC-Regular",
-          "size": 26
+          "size": 24
         }
       ],
       "verticalAlign": 0,
-      "textAlign": 0,
+      "textAlign": 2,
       "lineHeight": null
     },
     "type": "QText",
-    "text": "一起组队赢A车鸭~"
+    "text": "立即查看道具"
   },
   {
-    "id": "7C7BD927-EA19-48CE-8C52-9FBD37B1DD5A",
-    "name": "2",
-    "width": 173,
-    "height": 194,
-    "abX": 302,
-    "abY": 92,
-    "zIndex": 2,
+    "id": "5571D5B5-0423-48A6-B01C-AD498AD76258",
+    "name": "编组 2",
+    "width": 81,
+    "height": 79,
+    "abX": 132,
+    "abY": 654,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -83,16 +165,16 @@
       "background": null
     },
     "type": "QImage",
-    "path": "59ea7c352873e13d37a6558a5e7baeb1.png"
+    "path": "510b0aafacc6391cb8f41773e670ff2a.png"
   },
   {
-    "id": "C3508818-C473-4A42-B2AB-D87F2847ECA9",
-    "name": "3",
-    "width": 237,
-    "height": 45,
-    "abX": 34,
-    "abY": 123,
-    "zIndex": 2,
+    "id": "AD959E2B-8F9A-4ABA-9EAD-4D58CF0BD774",
+    "name": "编组 3",
+    "width": 81,
+    "height": 79,
+    "abX": 293,
+    "abY": 654,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -102,6 +184,145 @@
       "background": null
     },
     "type": "QImage",
-    "path": "d45e28044ffc566d1a16dc6105a714a0.png"
+    "path": "5571D5B5-0423-48A6-B01C-AD498AD76258.png"
+  },
+  {
+    "id": "79CC31D8-E110-4F58-B157-8DBD75CAD8E4",
+    "name": "编组 4",
+    "width": 81,
+    "height": 79,
+    "abX": 454,
+    "abY": 654,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "5571D5B5-0423-48A6-B01C-AD498AD76258.png"
+  },
+  {
+    "id": "AD4A32C6-BFDE-4809-8930-76F82F08C0B4",
+    "name": "花花仙子卷轴",
+    "width": 108,
+    "height": 25,
+    "abX": 119,
+    "abY": 744,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "花花仙子卷轴",
+          "font": "PingFangSC-Regular",
+          "size": 18
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "花花仙子卷轴"
+  },
+  {
+    "id": "E270BAD5-3132-4758-AEA1-9E4534FB76E2",
+    "name": "奇趣莫名其妙...",
+    "width": 123,
+    "height": 25,
+    "abX": 273,
+    "abY": 744,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "奇趣莫名其妙...",
+          "font": "PingFangSC-Regular",
+          "size": 18
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "奇趣莫名其妙..."
+  },
+  {
+    "id": "8FA40929-47F9-410B-B1CB-70B4F2E9C08C",
+    "name": "小主，等你好久了！带上补给快进入战斗吧！",
+    "width": 500,
+    "height": 36,
+    "abX": 92,
+    "abY": 591,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 0.8,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "小主，等你好久了！带上补给快进入战斗吧！",
+          "font": "PingFangSC-Regular",
+          "size": 25
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "小主，等你好久了！带上补给快进入战斗吧！"
+  },
+  {
+    "id": "5287F108-E9AB-4105-8B0E-8E0A686C8D58",
+    "name": "宝箱礼包",
+    "width": 72,
+    "height": 25,
+    "abX": 458,
+    "abY": 744,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "宝箱礼包",
+          "font": "PingFangSC-Regular",
+          "size": 18
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "宝箱礼包"
   }
 ]
