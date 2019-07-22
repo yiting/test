@@ -49,7 +49,7 @@
 3.【有兴趣加入的同学，我们会安排专人帮你搭建运行环境】
 ```
 
-- [ ] DesignJson（`负责人yonechen、ralychen`）：将视觉稿图层抽象为图元树。http://mrw.so/57KPAJ
+- [ ] DesignJson（`负责人yonechen、ralychen`）：将视觉稿图层抽象为图元树。[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/src/core/docs/designjson.md)
   - [x] Parser 图元抽象-Sketch
   - [ ] Parser 图元抽象-Photoshop
   - [ ] Parser 图元抽象-XD
