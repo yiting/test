@@ -72,7 +72,7 @@ let process = function(node, aiData, ruleMap) {
     ImageMergeProcessor.merge(node); // 合并图片
     modifySize(node);
   } catch (err) {
-    Logger.error('图元合并报错！');
+    Logger.error('图元合并报错！' + err);
   }
 };
 class ImageMergeProcessor {
