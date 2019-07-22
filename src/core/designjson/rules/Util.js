@@ -209,7 +209,7 @@ function isLine(node) {
   if (node.width > 50 && node.height <= 4) {
     result = true;
   }
-  if (node.width <= 2 && node.height >= 20) {
+  if (node.width <= 2 && node.height >= 35) {
     result = true;
   }
   return result;
