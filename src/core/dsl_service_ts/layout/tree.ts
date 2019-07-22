@@ -71,7 +71,14 @@ class Tree {
     this._treeData.set('parent', null);
     this._treeData.set('type', Common.QBody);
     this._treeData.set('abX', 0);
-    this._treeData.set('abXops', DSLOptions.designWidth);
+    this._treeData.set(
+      'abXops',
+      bodyModel.width > DSLOptions.designWidth
+        ? DSLOptions.designWidth
+        : bodyModel.width,
+    );
+    this._treeData.set('abY', 0);
+    this._treeData.set('abYops', bodyModel.height);
     this._treeData.set('isCalculate', true);
     this._treeData.set('styles', bodyModel.styles);
 

@@ -329,9 +329,14 @@ class VDom {
   }
   toJSON() {
     return {
+      children: this.children.map((node: any) => node.toJSON()),
       parentNodeId: this.parent && this.parent.id,
       id: this.id,
-      children: this.children.map((node: any) => node.toJSON()),
+      type: this.type,
+      serialId: this.serialId,
+      similarId: this.similarId,
+      canLeftFlex: this.canLeftFlex,
+      canRightFlex: this.canRightFlex,
       modelId: this.modelId,
       modelName: this.modelName,
       tagName: this.tagName,
@@ -339,12 +344,12 @@ class VDom {
       text: this.text,
       abX: this.abX,
       abY: this.abY,
-      width: this.width,
-      height: this.height,
       path: this.path,
-      constraints: this.constraints,
       tplAttr: this.tplAttr,
       styles: this.styles,
+      abXops: this.abXops,
+      abYops: this.abYops,
+      constraints: this.constraints,
     };
   }
 }

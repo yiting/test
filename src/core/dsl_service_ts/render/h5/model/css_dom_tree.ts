@@ -211,9 +211,9 @@ class CssDom extends VDom {
     const props: any[] = [];
     let key = '';
     try {
+      const that: any = this;
       // 获取属性值并进行拼接
       cssPropertyMap.forEach((mod: any) => {
-        const that: any = this;
         ({ key } = mod);
         const value = that[key];
         //大家都有样式属性值，这里开始区分哪些用来显示，哪些是继承而来的。。

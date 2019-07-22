@@ -94,7 +94,6 @@ class HtmlDom {
     this.contrains = node.contrains || {};
     this.tplAttr = node.tplAttr || {};
     this.styles = node.styles || {};
-
     this.selfClassName = node.selfClassName;
     this.similarClassName = node.similarClassName;
   }
@@ -166,8 +165,9 @@ class HtmlDom {
     const attrs = this.getAttrs();
     const content = this.getContent();
     const showTagAttrInfo = Store.get('showTagAttrInfo');
+    const isSource = !~this.id.indexOf('layer') ? 'isSource' : '';
     if (showTagAttrInfo) {
-      return `<${tag} ${id} ${similarId} ${modelName} ${attrClass} ${attrs}>${content}`;
+      return `<${tag} ${id} ${similarId} ${isSource} ${modelName} ${attrClass} ${attrs}>${content}`;
     }
     return `<${tag} ${attrClass} ${attrs}>${content}`;
   }
