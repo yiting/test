@@ -24,6 +24,7 @@ class VDom {
   abXops: any;
   abYops: any;
   constraints: any;
+  zindex: any;
 
   constructor(node: any, parent: any) {
     // super(node)
@@ -46,8 +47,34 @@ class VDom {
     this.tplAttr = node.tplAttr || {};
     this.styles = node.styles || {};
     this.constraints = node.constraints || {};
+    this.zindex = node.zIndex;
   }
-
+  toJSON() {
+    return {
+      children: this.children.map((node: any) => node.toJSON()),
+      parentId: this.parent && this.parent.id,
+      id: this.id,
+      type: this.type,
+      serialId: this.serialId,
+      similarId: this.similarId,
+      canLeftFlex: this.canLeftFlex,
+      canRightFlex: this.canRightFlex,
+      modelId: this.modelId,
+      modelName: this.modelName,
+      tagName: this.tagName,
+      isClosedTag: this.isClosedTag,
+      text: this.text,
+      abX: this.abX,
+      abY: this.abY,
+      path: this.path,
+      tplAttr: this.tplAttr,
+      styles: this.styles,
+      abXops: this.abXops,
+      abYops: this.abYops,
+      constraints: this.constraints,
+      zIndex: this.zindex,
+    };
+  }
   get x() {
     return this.parent ? this.abX - this.parent.abX : this.abX;
   }
@@ -326,31 +353,6 @@ class VDom {
       }
     }
     return null;
-  }
-  toJSON() {
-    return {
-      children: this.children.map((node: any) => node.toJSON()),
-      parentNodeId: this.parent && this.parent.id,
-      id: this.id,
-      type: this.type,
-      serialId: this.serialId,
-      similarId: this.similarId,
-      canLeftFlex: this.canLeftFlex,
-      canRightFlex: this.canRightFlex,
-      modelId: this.modelId,
-      modelName: this.modelName,
-      tagName: this.tagName,
-      isClosedTag: this.isClosedTag,
-      text: this.text,
-      abX: this.abX,
-      abY: this.abY,
-      path: this.path,
-      tplAttr: this.tplAttr,
-      styles: this.styles,
-      abXops: this.abXops,
-      abYops: this.abYops,
-      constraints: this.constraints,
-    };
   }
 }
 

@@ -37,7 +37,6 @@ class CssDom extends VDom {
     super(data, parent);
     // 节点的信息
     // 布局计算的数值
-    this._zIndex = data.zIndex;
     this._textWidth = null;
     //继承属性
     this.extendStyle = {};
