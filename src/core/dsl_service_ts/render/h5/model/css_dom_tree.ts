@@ -92,15 +92,9 @@ class CssDom extends VDom {
       return true;
     }
     // 多行
-    if (this.type === Common.QText && this.styles.texts) {
-      const lineHeight =
-        this.styles.lineHeight ||
-        Math.max(this.styles.texts.map((s: any) => s.size)) * 1.33;
-      const _height = this.abYops - this.abY;
-      if (_height / lineHeight > 1.6) {
-        // 如果高度高于行高，则为多行，固定宽度
-        return true;
-      }
+    if (this.isMultiline) {
+      // 如果高度高于行高，则为多行，固定宽度
+      return true;
     }
     // 垂直排列
     if (this._isParentVertical()) {
