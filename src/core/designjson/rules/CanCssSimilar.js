@@ -23,6 +23,23 @@ class CanCssSimilar extends Rule {
   getRuleType() {
     return this.constructor.name;
   }
+  //检查多边形的点是否有修改过，例如长方形拖成梯形，例子见游戏城的红包碎片
+  validCurPointModify(points) {
+    var result = false;
+    if (points && points.length > 0) {
+      points.forEach(item => {
+        var pointStr = item.point;
+        var x = parseFloat(pointStr.substring(1, pointStr.indexOf(', ')));
+        var y = parseFloat(
+          pointStr.substring(pointStr.indexOf(', ') + 2, pointStr.indexOf('}')),
+        );
+        if (1 - x > 0.02 || 1 - y > 0.02) {
+          result = true;
+        }
+      });
+    }
+    return result;
+  }
   canCss(node) {
     let result = true;
     //如果形状是矩形、圆形、直线以外的就不能css实现
@@ -32,7 +49,8 @@ class CanCssSimilar extends Rule {
           node._origin.points &&
           node._origin.points.length == 4 &&
           (node._origin.points[0]._class == 'point' ||
-            node._origin.points[0]._class == 'curvePoint')) || //
+            (node._origin.points[0]._class == 'curvePoint' &&
+              !this.validCurPointModify(node._origin.points)))) || //
         ((node.shapeType == 'oval' ||
           node.name.toLowerCase().indexOf('oval') > -1) &&
           node.width == node.height &&

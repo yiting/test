@@ -185,14 +185,20 @@ class NodesMergeJudge {
       }
 
       //如果节点是大背景，包含了另一个节点，另一节点面积比小于阈值，则不合并
+      //分横背景和竖背景
+      //宽度 194 更新自游戏城的好友热玩右边的模糊图
       let sizePercentThresholdForNormalBg = 0.1;
-      let bgWidthThreshold = 689;
-      let bgHeightThreshold = 100;
+      let horizonBgWidthThreshold = 685;
+      let horizonBgHeightThreshold = 100;
+      let verticalBgWidthThreshold = 194;
+      let verticalBgHeightThreshold = 285;
       if (
         ImgConbineUtils.isIntersect(node, brother) ==
           ImgConbineUtils.INTERSECT_TYPE.INCLUDE &&
-        node.width > bgWidthThreshold &&
-        node.height > bgHeightThreshold &&
+        ((node.width > horizonBgWidthThreshold &&
+          node.height > horizonBgHeightThreshold) ||
+          (node.width > verticalBgWidthThreshold &&
+            node.height > verticalBgHeightThreshold)) &&
         nodeBSize / nodeASize < sizePercentThresholdForNormalBg
       ) {
         isCombine = false;
@@ -201,8 +207,10 @@ class NodesMergeJudge {
       if (
         ImgConbineUtils.isIntersect(brother, node) ==
           ImgConbineUtils.INTERSECT_TYPE.INCLUDE &&
-        brother.width > bgWidthThreshold &&
-        brother.height > bgHeightThreshold &&
+        ((brother.width > horizonBgWidthThreshold &&
+          brother.height > horizonBgHeightThreshold) ||
+          (brother.width > verticalBgWidthThreshold &&
+            brother.height > verticalBgHeightThreshold)) &&
         nodeASize / nodeBSize < sizePercentThresholdForNormalBg
       ) {
         isCombine = false;
@@ -211,8 +219,8 @@ class NodesMergeJudge {
     }
     //如果其中一个是一个大的边框，则不与它包含的里面的东西的合在一起
     //例子：红色任务中心的右上角商城和圆框
-    let borderWidthThreshold = 169;
-    let borderHeightThreshold = 46;
+    let borderWidthThreshold = 150;
+    let borderHeightThreshold = 44;
     if (isFinally == false) {
       if (
         ImgConbineUtils.isOnlyBorder(node) &&
