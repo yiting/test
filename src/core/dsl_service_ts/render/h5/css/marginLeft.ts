@@ -3,9 +3,12 @@ import Constraints from '../../../helper/constraints';
 export default {
   key: 'marginLeft ',
   value() {
-    const css = 0;
     if (this._isAbsolute()) {
-      return css;
+      return 0;
+    }
+    // 如果为文本节点子节点
+    if (this.parent && this.parent.modelName == 'em1-m1') {
+      return null;
     }
 
     if (this._isParentHorizontal()) {

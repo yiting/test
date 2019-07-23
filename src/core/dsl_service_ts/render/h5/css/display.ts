@@ -2,15 +2,12 @@ import Common from '../../../dsl2/common';
 export default {
   key: 'display',
   value() {
-    /* if (this._isParentVertical()) {
-      return 'block';
-    } */
     const hasText = this.text;
     if (
       this.parent &&
       this.parent.type === Common.QText &&
       this.type === Common.QText &&
-      !hasText
+      hasText
     ) {
       return 'inline';
     }

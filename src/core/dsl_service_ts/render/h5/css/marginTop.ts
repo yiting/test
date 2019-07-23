@@ -7,6 +7,10 @@ export default {
     if (this._isAbsolute()) {
       return css;
     }
+    // 如果为文本节点子节点
+    if (this.parent && this.parent.modelName == 'em1-m1') {
+      return null;
+    }
     const firstChild = this.parent && this.parent._usePaddingTop();
     if (firstChild === this) {
       return 0;

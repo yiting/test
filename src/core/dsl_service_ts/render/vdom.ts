@@ -32,10 +32,12 @@ class VDom {
     this.parent = parent || null;
     this.id = node.id;
     this.type = node.type;
-    this.modelId = node.modelId;
-    this.modelName = node.modelName;
+    this.serialId = node.serialId;
+    this.similarId = node.similarId;
     this.canLeftFlex = node.canLeftFlex;
     this.canRightFlex = node.canRightFlex;
+    this.modelId = node.modelId;
+    this.modelName = node.modelName;
     this.tagName = node.tagName;
     this.isClosedTag = node.isClosedTag;
     this.text = node.text;
@@ -44,10 +46,10 @@ class VDom {
     this.abXops = node.abXops;
     this.abYops = node.abYops;
     this.path = node.path || null;
+    this.zindex = node.zIndex;
     this.tplAttr = node.tplAttr || {};
     this.styles = node.styles || {};
     this.constraints = node.constraints || {};
-    this.zindex = node.zIndex;
   }
   toJSON() {
     return {
@@ -66,13 +68,13 @@ class VDom {
       text: this.text,
       abX: this.abX,
       abY: this.abY,
-      path: this.path,
-      tplAttr: this.tplAttr,
-      styles: this.styles,
       abXops: this.abXops,
       abYops: this.abYops,
-      constraints: this.constraints,
+      path: this.path,
       zIndex: this.zindex,
+      tplAttr: this.tplAttr,
+      styles: this.styles,
+      constraints: this.constraints,
     };
   }
   get x() {
@@ -100,18 +102,6 @@ class VDom {
     }
 
     return false;
-  }
-
-  /**
-   * 判断文本是否可拓展，
-   * 如果文本为水平方向，则不能拓展
-   */
-  _textCanFlex() {
-    return (
-      this.parent &&
-      this.parent.constraints.LayoutDirection ===
-        Constraints.LayoutDirection.Vertical
-    );
   }
   _isParentVertical() {
     if (!this.parent) {
@@ -176,7 +166,13 @@ class VDom {
     }
     // 如果文本为水平布局，则不计算拓展；
     // 如果文本为垂直布局，则继续判断
-    if (this.text && !this._textCanFlex()) {
+    // if (this.text && !this._textCanFlex()) {
+    if (
+      this.type === Common.QText &&
+      (!this.parent ||
+        this.parent.constraints.LayoutDirection !==
+          Constraints.LayoutDirection.Vertical)
+    ) {
       return false;
     }
     // 如果有拓展属性，则应用默认拓展属性

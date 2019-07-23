@@ -7,6 +7,10 @@ export default {
     if (this._isAbsolute()) {
       return 0;
     }
+    // 如果为文本节点子节点
+    if (this.parent && this.parent.modelName == 'em1-m1') {
+      return null;
+    }
     if (this._isParentHorizontal()) {
       // 横排计算与父节点距离
       // 如果垂直居中、底对齐则无margin-Top

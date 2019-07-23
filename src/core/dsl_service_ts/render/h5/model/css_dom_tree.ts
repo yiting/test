@@ -70,17 +70,28 @@ class CssDom extends VDom {
   }
   _hasHeight() {
     if (
-      this.constraints.LayoutFixedHeight ===
-        Constraints.LayoutFixedHeight.Fixed ||
-      this.type === Common.QImage ||
-      !!this.path
+      this.constraints.LayoutFixedHeight === Constraints.LayoutFixedHeight.Fixed
     ) {
+      return true;
+    }
+    if (this.type === Common.QImage || !!this.path) {
       return true;
     }
     return false;
   }
 
   _hasWidth() {
+    // 约束-固定宽度
+    if (
+      this.constraints.LayoutFixedWidth === Constraints.LayoutFixedWidth.Fixed
+    ) {
+      return true;
+    }
+    // 图片
+    if (this.type === Common.QImage || !!this.path) {
+      return true;
+    }
+    // 多行
     if (this.type === Common.QText && this.styles.texts) {
       const lineHeight =
         this.styles.lineHeight ||
@@ -91,14 +102,11 @@ class CssDom extends VDom {
         return true;
       }
     }
-    if (
-      this.type === Common.QText &&
-      !this._isParentVertical() &&
-      this.constraints.LayoutFixedWidth !== Constraints.LayoutFixedWidth.Fixed
-    ) {
-      return false;
+    // 垂直排列
+    if (this._isParentVertical()) {
+      return true;
     }
-    return true;
+    return false;
   }
 
   _isTextCenter() {
@@ -184,16 +192,35 @@ class CssDom extends VDom {
     if (this._isAbsolute()) {
       return false;
     }
-    return (
-      this.constraints.LayoutDirection ===
-        Constraints.LayoutDirection.Vertical &&
+    if (
+      this.constraints.LayoutDirection === Constraints.LayoutDirection.Vertical
+    ) {
       // parent.children.find(nd => !nd._isAbsolute());
-      this._getFirstChild()
-    );
+      return this._getFirstChild();
+    }
+    // 水平布局、唯一子节点、节点非绝对定位
+    if (
+      this.constraints.LayoutDirection ===
+        Constraints.LayoutDirection.Horizontal &&
+      this.children.length === 1 &&
+      this.children[0].constraints.LayoutSelfPosition !==
+        Constraints.LayoutSelfPosition.Absolute
+    ) {
+      return this._getFirstChild();
+    }
   }
 
   _getFirstChild() {
     return this.children.find((nd: any) => !nd._isAbsolute());
+  }
+
+  _getLastChild() {
+    for (let i = this.children.length - 1; i >= 0; i--) {
+      const child = this.children[i];
+      if (!child._isAbsolute()) {
+        return child;
+      }
+    }
   }
 
   /**
@@ -217,27 +244,28 @@ class CssDom extends VDom {
         const value = that[key];
         //大家都有样式属性值，这里开始区分哪些用来显示，哪些是继承而来的。。
         //存在父节点，当前样式具有可继承性，父节点的显示样式或者继承来的样式与当前样式值相等
-        if (Func.isExtend(key)) {
+        /* if (Func.isExtend(key)) {
           that.extendStyle[key] = value;
-        }
+        } */
         const similarValue = similarCss && similarCss[key];
         if (value !== null && value !== undefined && similarValue !== value) {
-          // console.log(`${that.id}-${that.type}来到一个${key}，父亲的值${that.parent.extendStyle[key]},当前的值${value}`)
-          if (!(that.parent && that.parent.extendStyle[key] == value)) {
-            //查看样式是否已经属于合并过的。。
-            if (!that.countStyle.subtract[key]) {
-              props.push(CssDom.getCssProperty(key, value));
-            }
-          } else {
-            // console.log(`&&&&&&&&&&找到一个key，父亲的值${that.parent.extendStyle[key]},当前的值${value}`)
-          }
-        } else {
-          if (that.countStyle.add[key]) {
-            props.push(
-              CssDom.getCssProperty(key, that.countStyle.add[key]['value']),
-            );
-          }
+          // // console.log(`${that.id}-${that.type}来到一个${key}，父亲的值${that.parent.extendStyle[key]},当前的值${value}`)
+          // if (!(that.parent && that.parent.extendStyle[key] == value)) {
+          // //查看样式是否已经属于合并过的。。
+          // if (!that.countStyle.subtract[key]) {
+          props.push(CssDom.getCssProperty(key, value));
+          // }
+          // } else {
+          // console.log(`&&&&&&&&&&找到一个key，父亲的值${that.parent.extendStyle[key]},当前的值${value}`)
+          // }
         }
+        // else {
+        //   if (that.countStyle.add[key]) {
+        //     props.push(
+        //       CssDom.getCssProperty(key, that.countStyle.add[key]['value']),
+        //     );
+        //   }
+        // }
       });
     } catch (e) {
       Loger.error(

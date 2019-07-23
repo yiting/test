@@ -53,10 +53,10 @@ function calculateBaseLine(vdom: any) {
     Yctr += Math.abs(pYctr - (node.abY + node.abYops) / 2);
   });
   const hStart = Math.abs(X / nodeCount) < errorCoefficient;
-  const hCenter = Math.abs(Xctr / nodeCount) < errorCoefficient;
+  const hCenter = X > Xctr && Math.abs(Xctr / nodeCount) < errorCoefficient;
   const hEnd = Xops / nodeCount === 0;
   const vStart = Math.abs(Y / nodeCount) < errorCoefficient;
-  const vCenter = Math.abs(Yctr / nodeCount) < errorCoefficient;
+  const vCenter = Y > Yctr && Math.abs(Yctr / nodeCount) < errorCoefficient;
   const vEnd = Yops / nodeCount === 0;
 
   const horizontalCenter = hCenter && !hStart && !hEnd;
@@ -84,6 +84,7 @@ function _supplementConstraints(vdom: any) {
   if (children.length === 0) {
     return;
   }
+
   // 能否换行
   const canNewLine =
     vdom.constraints.LayoutWrap === Constraints.LayoutWrap.Wrap;

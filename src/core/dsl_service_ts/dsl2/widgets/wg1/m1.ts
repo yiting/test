@@ -16,12 +16,12 @@ class WG1M1 extends Model.WidgetModel {
     super('wg1-m1', 0, 1, Common.LvS, Common.QWidget);
     this.canLeftFlex = false;
     this.canRightFlex = false;
-    designWidth = Store.get('designWidth');
   }
 
   _initNode() {
     let images: any = this.getImageNodes();
     this._matchNodes['0'] = images[0];
+    designWidth = Store.get('designWidth');
   }
 
   // 元素大小

@@ -38,7 +38,6 @@ function _calculateBoundary(vdom: any) {
   if (vdom._isAbsolute()) {
     return;
   }
-
   // 如果是多行
   // if (vdom.constraints.LayoutWrap === Constraints.LayoutWrap.Wrap) {
   // }

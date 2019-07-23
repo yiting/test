@@ -7,6 +7,10 @@ export default {
       return null;
     }
 
+    // 如果为文本节点子节点
+    if (this.parent && this.parent.modelName == 'em1-m1') {
+      return null;
+    }
     if (this._isParentHorizontal()) {
       // 横排计算与上一节点距离
       const nextNode = this._nextNode();

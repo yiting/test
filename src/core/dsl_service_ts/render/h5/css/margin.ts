@@ -28,12 +28,14 @@ export default {
     if (
       !nextNode &&
       !preNode &&
+      this._hasWidth() &&
       (Math.abs(Math.abs(css[1]) - Math.abs(css[3])) < 10 ||
         Math.abs(
           Math.abs(this.abX - this.parent.abX) -
             Math.abs(this.parent.abXops - this.abXops),
         ) < 10)
     ) {
+      console.log(this.id);
       css[1] = css[3] = 'auto';
     }
     css.forEach((item: any, key: number) => {

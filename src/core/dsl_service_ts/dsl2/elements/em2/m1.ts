@@ -56,15 +56,8 @@ class EM2M1 extends Model.ElementModel {
     );
     return bool;
   }
-
-  // 4.
-  regular4() {
-    let bool: boolean = Feature.sizeHeightGreat(this._matchNodes['1'], 40);
-    return bool;
-  }
-
   // 5.
-  regular() {
+  regular4() {
     let bool: boolean = Feature.sizeWidthLess(this._matchNodes['1'], 200);
     return bool;
   }
