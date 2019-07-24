@@ -3,7 +3,7 @@ export default {
   key: 'zIndex',
   value() {
     if (this._isAbsolute()) {
-      return this._zIndex;
+      return this.zindex;
     }
     return null;
   },

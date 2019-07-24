@@ -8,10 +8,6 @@ export default {
   key: 'padding',
   value() {
     const css: any[] = [0, 0, 0, 0];
-    //绝对定位就不需要padding了
-    if (this._isAbsolute()) {
-      return null;
-    }
     //横排
     css[0] = paddingTop.value.call(this) || 0;
     css[1] = paddingRight.value.call(this) || 0;
