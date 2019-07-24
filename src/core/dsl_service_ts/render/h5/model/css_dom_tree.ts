@@ -87,12 +87,12 @@ class CssDom extends VDom {
     ) {
       return false;
     }
-    // 单行
+
     if (
-      this.type == Common.QText &&
-      (!this.isMultiline || this._isParentVertical())
+      this.type == Common.QText && // 是文本
+      !this.isMultiline && // 单行
+      this._isParentHorizontal() //水平布局
     ) {
-      // 如果高度高于行高，则为多行，固定宽度
       return false;
     }
     return true;
