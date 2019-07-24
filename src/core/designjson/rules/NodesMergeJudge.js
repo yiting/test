@@ -14,6 +14,7 @@ class NodesMergeJudge {
    */
   getRuleConfig(ruleMap, aiData) {
     let ruleConfig = {};
+    let ratio = ruleMap.ratio;
     ruleMap.data.forEach(item => {
       ruleConfig[item.type] = {
         weight: item.value,
@@ -24,6 +25,7 @@ class NodesMergeJudge {
       }
     });
     ruleConfig.score = ruleMap.Threshold || 90;
+    ruleConfig.ratio = ruleMap.ratio || 1;
     let aiArr =
       aiData && Array.isArray(aiData.AIImgData) ? aiData.AIImgData : [];
     ruleConfig.aiArr = aiArr
@@ -45,7 +47,8 @@ class NodesMergeJudge {
    * @param {QObject} brother
    * @returns {Object} resultData 是否合并
    */
-  isMerge(node, brother, ruleConfig, root) {
+  isMerge(param) {
+    let { node, brother, ruleConfig, root, ratio = 1 } = param;
     //合图逻辑组合，如果满足其中一种组合，则认为两图层该合并
     let isCombine = false;
     let isFinally = false;
@@ -132,8 +135,8 @@ class NodesMergeJudge {
       // let scoreResult1 = this.score(node, node, ruleConfig0);
 
       var nodeASize = ImgConbineUtils.getSize(node);
-      var widthThreshold = 342;
-      var heightThreshold = 69;
+      var widthThreshold = 342 * ratio;
+      var heightThreshold = 69 * ratio;
       var sizeThreshold = widthThreshold * heightThreshold;
       var sizePercentThreshold = 0.38;
 
@@ -187,13 +190,16 @@ class NodesMergeJudge {
       //如果节点是大背景，包含了另一个节点，另一节点面积比小于阈值，则不合并
       //分横背景和竖背景
       //宽度 194 更新自游戏城的好友热玩右边的模糊图
-      let sizePercentThresholdForNormalBg = 0.1;
-      let horizonBgWidthThreshold = 685;
-      let horizonBgHeightThreshold = 100;
-      let verticalBgWidthThreshold = 194;
-      let verticalBgHeightThreshold = 285;
+      //高度 83 更新自小说设计稿的礼包领取气泡高度
+      //面积比 0.12 更新自小说设计稿的礼包领取气泡与按钮的面积比
+      let sizePercentThresholdForNormalBg = 0.12;
+      let horizonBgWidthThreshold = 685 * ratio;
+      let horizonBgHeightThreshold = 83 * ratio;
+      let verticalBgWidthThreshold = 194 * ratio;
+      let verticalBgHeightThreshold = 285 * ratio;
+      let includeThreshold = 3;
       if (
-        ImgConbineUtils.isIntersect(node, brother) ==
+        ImgConbineUtils.isIntersect(node, brother, includeThreshold) ==
           ImgConbineUtils.INTERSECT_TYPE.INCLUDE &&
         ((node.width > horizonBgWidthThreshold &&
           node.height > horizonBgHeightThreshold) ||
@@ -251,7 +257,7 @@ class NodesMergeJudge {
       let nodeASize = ImgConbineUtils.getSize(node);
       let nodeBSize = ImgConbineUtils.getSize(brother);
       let sizeThreshold = 10000;
-      let sideThreshold = 120;
+      let sideThreshold = 120 * ratio;
       //处理情况1
       // if (
       //   scoreResult.score < ruleConfig0.score &&

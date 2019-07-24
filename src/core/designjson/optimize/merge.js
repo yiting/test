@@ -283,16 +283,18 @@ function mergeJudge(nodelist, ruleConfig, root) {
   // 对每条边进行评分
   let groups = [];
   let relations = [];
+  let ratio = 1;
   for (let i = 0; i < nodelist.length; i++) {
     let node = nodelist[i];
     for (let j = i + 1; j < nodelist.length; j++) {
       let brother = nodelist[j];
-      var isMergeData = nodesMergeJudgeode.isMerge(
+      var isMergeData = nodesMergeJudgeode.isMerge({
         node,
         brother,
         ruleConfig,
         root,
-      );
+        ratio,
+      });
       if (isMergeData.isCombine == true) {
         allScoreData.push({
           nodes: [

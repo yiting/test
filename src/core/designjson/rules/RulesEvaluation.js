@@ -32,7 +32,9 @@ class RulesEvaluation {
     this.rules = {
       ColorSimilar: new ColorSimilar(ruleParamObj.ColorSimilar),
       SizeSimilar: new SizeSimilar(ruleParamObj.SizeSimilar),
-      IntersectSimilar: new IntersectSimilar(ruleParamObj.IntersectSimilar),
+      IntersectSimilar: new IntersectSimilar(ruleParamObj.IntersectSimilar, {
+        ratio: ruleParamObj.ratio,
+      }),
       ZIndexSimilar: new ZIndexSimilar(ruleParamObj.ZIndexSimilar),
       MinLevelSimilar: new MinLevelSimilar(ruleParamObj.MinLevelSimilar),
       ColorComplexitySimilar: new ColorComplexitySimilar(
@@ -49,6 +51,7 @@ class RulesEvaluation {
     this.aiArr = ruleParamObj.aiArr || [];
     this.scoreDetail = {};
     this.pureScoreDetail = {};
+    this.ratio = ruleParamObj.ratio || 1;
   }
   /**
    * 检查两个节点是否能用颜色相似度规则，当两个节点都存在颜色数据才能使用颜色相似度规则
@@ -84,18 +87,6 @@ class RulesEvaluation {
   getEvaluationScore(nodeA, nodeB) {
     var that = this;
     var score = 0;
-    if (
-      nodeA.name.indexOf('Fill 55') > -1 &&
-      nodeB.name.indexOf('Fill 57') > -1
-    ) {
-      // debugger;
-    }
-    if (
-      nodeA.name.indexOf('Fill 57') > -1 &&
-      nodeB.name.indexOf('Fill 55') > -1
-    ) {
-      // debugger;
-    }
     for (let ruleType in Rules) {
       var rule = that.rules[ruleType];
       var singleScore = 0;

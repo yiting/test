@@ -9,9 +9,11 @@ var threshold = 15;
  * 优化1：添加阈值，扩大节点范围，使相离较近的节点也认为是相交，能得到较高分数。
  */
 class IntersectSimilar extends Rule {
-  constructor(param) {
+  constructor(param, option) {
     super(param);
     this.maxValue = param && param.maxValue ? param.maxValue : maxVal;
+    this.ratio = option && option.ratio ? option.ratio : 1;
+    threshold = threshold * this.ratio;
   }
   getRuleType() {
     return this.constructor.name;
@@ -86,7 +88,10 @@ class IntersectSimilar extends Rule {
       nodeAabYOpsOri >= nodeBabYOpsOri
     ) {
       //A包含B的情况
-      if (nodeASize > 750 * 640 || nodeBSize > 750 * 640) {
+      if (
+        nodeASize > 750 * this.ratio * (640 * this.ratio) ||
+        nodeBSize > 750 * this.ratio * (640 * this.ratio)
+      ) {
         result = 0;
       } else {
         result = 1;
@@ -138,8 +143,7 @@ class IntersectSimilar extends Rule {
       if (nodeAabYOpsOri >= nodeBabY && nodeBabYOpsOri >= nodeAabYOpsOri) {
         //A左上B右下（真实坐标）
         intersectHeight = nodeAabYOpsOri - nodeBabY;
-      }
-      if (nodeAabYOps >= nodeBabY && nodeBabYOps >= nodeAabYOps) {
+      } else if (nodeAabYOps >= nodeBabY && nodeBabYOps >= nodeAabYOps) {
         //A左上B右下（加阀值坐标）
         intersectHeight = nodeAabYOps - nodeBabY;
       } else if (
