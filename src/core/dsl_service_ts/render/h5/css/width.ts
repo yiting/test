@@ -2,7 +2,6 @@
 export default {
   key: 'width',
   value() {
-    // let constraints: any = this.constraints;
     const _hasWidth = this._hasWidth();
     if (_hasWidth) {
       const width = Math.abs(this.abXops - this.abX);

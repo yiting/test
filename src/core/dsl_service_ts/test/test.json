@@ -1,9 +1,9 @@
 [
   {
-    "id": "7DE2B5A9-B0E8-416E-98ED-85BB0A1EC22E",
-    "name": "A2vip_人脸",
+    "id": "27D3824A-5D96-4D6A-906F-1585D501BADB",
+    "name": "画板 copy",
     "width": 750,
-    "height": 1548,
+    "height": 1334,
     "abX": 0,
     "abY": 0,
     "zIndex": 0,
@@ -22,42 +22,12 @@
     "type": "QLayer"
   },
   {
-    "id": "8D4420F0-BE83-47B5-86A6-397E14BBAF62",
-    "name": "空间使用",
-    "width": 80,
-    "height": 20,
-    "abX": 419,
-    "abY": 203,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.5,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 247, "b": 226, "a": 1 },
-          "string": "空间使用",
-          "font": "PingFangSC-Regular",
-          "size": 20
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 20
-    },
-    "type": "QText",
-    "text": "空间使用"
-  },
-  {
-    "id": "08157D4C-9804-4ACD-9EB0-6F925E09B333",
-    "name": "25%",
-    "width": 62,
-    "height": 40,
-    "abX": 428,
-    "abY": 164,
+    "id": "33D7822B-543B-4BB7-AA19-AA67C8B6A9E7",
+    "name": "Rectangle 46",
+    "width": 750,
+    "height": 128,
+    "abX": 0,
+    "abY": 0,
     "zIndex": 1,
     "styles": {
       "borderRadius": null,
@@ -65,188 +35,605 @@
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 227, "b": 155, "a": 1 },
-          "string": "25%",
-          "font": "PingFangSC-Medium",
-          "size": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "25%"
-  },
-  {
-    "id": "4D0084BD-E483-4256-96F3-5AED50ED8214",
-    "name": "有效期剩余",
-    "width": 100,
-    "height": 20,
-    "abX": 568,
-    "abY": 203,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.5,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 247, "b": 226, "a": 1 },
-          "string": "有效期剩余",
-          "font": "PingFangSC-Regular",
-          "size": 20
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": 20
-    },
-    "type": "QText",
-    "text": "有效期剩余"
-  },
-  {
-    "id": "EFAC4F95-13E2-4966-B0D4-81E951E65423",
-    "name": "25天",
-    "width": 62,
-    "height": 40,
-    "abX": 587,
-    "abY": 164,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 227, "b": 155, "a": 1 },
-          "string": "25天",
-          "font": "PingFangSC-Medium",
-          "size": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "25天"
-  },
-  {
-    "id": "9B22FA60-C221-4A40-92D6-C302F3D0AD2A",
-    "name": "空间容量",
-    "width": 80,
-    "height": 20,
-    "abX": 259,
-    "abY": 202,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.5,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 247, "b": 226, "a": 1 },
-          "string": "空间容量",
-          "font": "PingFangSC-Regular",
-          "size": 20
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 20
-    },
-    "type": "QText",
-    "text": "空间容量"
-  },
-  {
-    "id": "4907F845-587D-41D7-8425-4870223F29E6",
-    "name": "500MB",
-    "width": 95,
-    "height": 40,
-    "abX": 251,
-    "abY": 163,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 227, "b": 155, "a": 1 },
-          "string": "500MB",
-          "font": "PingFangSC-Medium",
-          "size": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "500MB"
-  },
-  {
-    "id": "F98E15BB-4837-44EA-8930-8B2120BE8CEF",
-    "name": "cloud_btn_w",
-    "width": 470,
-    "height": 60,
-    "abX": 219,
-    "abY": 240,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [100, 100, 100, 100],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": [
-        {
-          "type": "inset",
-          "x": 0,
-          "y": 10,
-          "color": { "r": 25, "g": 21, "b": 6, "a": 0.6592504528985508 },
-          "spread": 0,
-          "blur": 30
-        }
-      ],
       "background": {
-        "type": "linear",
-        "color": null,
-        "hasOpacity": false,
-        "x": "0",
-        "y": " 1",
-        "x1": "0.98106664540816324",
-        "y1": " 0.01893335459183676",
-        "colorStops": [
-          { "color": { "r": 255, "g": 229, "b": 182, "a": 1 }, "offset": 0 },
-          { "color": { "r": 222, "g": 181, "b": 97, "a": 1 }, "offset": 1 }
-        ]
+        "type": "color",
+        "color": { "r": 18, "g": 183, "b": 245, "a": 1 },
+        "hasOpacity": false
       }
     },
     "type": "QShape"
   },
   {
-    "id": "0F2D8DA5-B648-412C-8A19-A717D1855A95",
-    "name": "扩容空间",
-    "width": 111,
-    "height": 33,
-    "abX": 399,
-    "abY": 254,
+    "id": "3A90A08C-D726-4AC4-AA3F-DC0975398860",
+    "name": "Oval 1",
+    "width": 67,
+    "height": 11,
+    "abX": 13,
+    "abY": 16,
+    "zIndex": 2,
+    "styles": {},
+    "type": "QImage",
+    "path": "88bfdccd4de15c31accebcbf1bb4c667.png"
+  },
+  {
+    "id": "F5C38CA3-24BA-4808-A975-64452D327B91",
+    "name": "isux ",
+    "width": 49,
+    "height": 29,
+    "abX": 88,
+    "abY": 5,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "isux ",
+          "font": ".HelveticaNeueDeskInterface-Regular",
+          "size": 25
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "isux "
+  },
+  {
+    "id": "71546DE7-7C54-4360-BF18-79DB20F4C04F",
+    "name": "Oval 6",
+    "width": 26,
+    "height": 19,
+    "abX": 137,
+    "abY": 12,
+    "zIndex": 3,
+    "styles": {},
+    "type": "QImage",
+    "path": "45cc89d259d99f4cc98251d34d7ee73b.png"
+  },
+  {
+    "id": "C387FE83-8A2B-4231-AF25-14B28E9009AF",
+    "name": "上午9:41",
+    "width": 128,
+    "height": 26,
+    "abX": 326,
+    "abY": 6,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "上午9:41",
+          "font": "STHeitiSC-Light",
+          "size": 25
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "上午9:41"
+  },
+  {
+    "id": "5B2533ED-F63D-47FC-BF9C-FD0C6D8AB43E",
+    "name": "100%",
+    "width": 75,
+    "height": 29,
+    "abX": 612,
+    "abY": 6,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "100%",
+          "font": ".HelveticaNeueDeskInterface-Regular",
+          "size": 25
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "100%"
+  },
+  {
+    "id": "7F30A6F6-3157-4FE6-9725-9535E8F8128F",
+    "name": "Group",
+    "width": 49,
+    "height": 19,
+    "abX": 690,
+    "abY": 11,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "73ed9289ce42c4f947a2442e5a0032f8.png"
+  },
+  {
+    "id": "632A9568-1402-4E19-8B7E-79CE43DFC4C7",
+    "name": "返回",
+    "width": 68,
+    "height": 48,
+    "abX": 46,
+    "abY": 60,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "返回",
+          "font": "PingFangSC-Regular",
+          "size": 34
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "返回"
+  },
+  {
+    "id": "7E1690FC-29B5-4F0F-89CF-5ABDBEA9338D",
+    "name": "Line",
+    "width": 24,
+    "height": 42,
+    "abX": 16,
+    "abY": 62,
+    "zIndex": 2,
+    "styles": {},
+    "type": "QImage",
+    "path": "40324c86793d50cb3571710940249975.png"
+  },
+  {
+    "id": "6D153A56-0B19-47B7-A4C9-966A197C55B9",
+    "name": "Bitmap",
+    "width": 391,
+    "height": 257,
+    "abX": 163,
+    "abY": 209,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "d2fb0da556dd60f58f79ecef5bf19f64.png"
+  },
+  {
+    "id": "E9440BC0-141B-460B-8C18-E103EBFD153F",
+    "name": "矩形",
+    "width": 630,
+    "height": 2,
+    "abX": 60,
+    "abY": 524,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 0.4904,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 216, "g": 216, "b": 216, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "F24FE903-90F0-4896-A3FC-A21F3DB4AD1B",
+    "name": "奥尔托",
+    "width": 90,
+    "height": 28,
+    "abX": 190,
+    "abY": 858,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "奥尔托",
+          "font": "PingFangSC-Regular",
+          "size": 30
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 28
+    },
+    "type": "QText",
+    "text": "奥尔托"
+  },
+  {
+    "id": "9C808121-8249-4A02-AC4F-EDF0AA98BAB1",
+    "name": "2345人在玩",
+    "width": 119,
+    "height": 24,
+    "abX": 176,
+    "abY": 900,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "2345人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 24
+    },
+    "type": "QText",
+    "text": "2345人在玩"
+  },
+  {
+    "id": "_78679C5A-8869-4D11-A17F-964F70CB962C_E909D94C-DA11-4531-93BC-9FAF5672D4A0",
+    "name": "_Rectangle 9_图层 4",
+    "width": 160,
+    "height": 160,
+    "abX": 155,
+    "abY": 674,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [30, 30, 30, 30],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "722e238b06698cb11beffd98cafd1d0c.png"
+  },
+  {
+    "id": "7FB6DE07-0BC0-4797-A5A5-45E9899AC4BB",
+    "name": "阿洛哈",
+    "width": 90,
+    "height": 28,
+    "abX": 190,
+    "abY": 1138,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "阿洛哈",
+          "font": "PingFangSC-Regular",
+          "size": 30
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": 28
+    },
+    "type": "QText",
+    "text": "阿洛哈"
+  },
+  {
+    "id": "B881F4DF-D20D-490E-B3B3-9DADB2B030BA",
+    "name": "2.1W人在玩",
+    "width": 115,
+    "height": 24,
+    "abX": 177,
+    "abY": 1180,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "2.1W人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": 24
+    },
+    "type": "QText",
+    "text": "2.1W人在玩"
+  },
+  {
+    "id": "_228DF3D7-0E26-4DDE-907A-96170DC670AF_1E09CC1C-70D6-4C9F-9030-BC97F8FD74D1",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 160,
+    "height": 160,
+    "abX": 155,
+    "abY": 954,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [30, 30, 30, 30],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "d899a07fa7d8c0123e607fb10e5181b1.png"
+  },
+  {
+    "id": "063AE56C-E081-49D8-80A6-3407E97526A4",
+    "name": "皮皮猫",
+    "width": 90,
+    "height": 28,
+    "abX": 470,
+    "abY": 858,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "皮皮猫",
+          "font": "PingFangSC-Regular",
+          "size": 30
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": 28
+    },
+    "type": "QText",
+    "text": "皮皮猫"
+  },
+  {
+    "id": "D4CD9CD1-1D01-4B74-97BA-845A6561B3B8",
+    "name": "1.2W人在玩",
+    "width": 115,
+    "height": 24,
+    "abX": 458,
+    "abY": 900,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "1.2W人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": 24
+    },
+    "type": "QText",
+    "text": "1.2W人在玩"
+  },
+  {
+    "id": "_C774B2F2-D89A-43DA-BBD6-C15819157C1E_D6FC45C8-6E54-4B92-B7C6-216721E1A555",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 160,
+    "height": 160,
+    "abX": 435,
+    "abY": 674,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [30, 30, 30, 30],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "d30547cea62e06b0092c2f76f831ca5a.png"
+  },
+  {
+    "id": "379DD75D-1EA0-4094-AFC7-735F15DA3D20",
+    "name": "CRYPTO",
+    "width": 123,
+    "height": 28,
+    "abX": 454,
+    "abY": 1138,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "CRYPTO",
+          "font": "PingFangSC-Regular",
+          "size": 30
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": 28
+    },
+    "type": "QText",
+    "text": "CRYPTO"
+  },
+  {
+    "id": "3851BD25-C8FD-4E12-A6FA-C2F1869C9118",
+    "name": "9812人在玩",
+    "width": 115,
+    "height": 24,
+    "abX": 458,
+    "abY": 1180,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "9812人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": 24
+    },
+    "type": "QText",
+    "text": "9812人在玩"
+  },
+  {
+    "id": "_AF387C0F-742A-4613-8140-D2B26C5422AB_415B116C-850D-4A35-B308-0602BE274721",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 160,
+    "height": 160,
+    "abX": 435,
+    "abY": 954,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": [30, 30, 30, 30],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "cd89350004764897f609d278df5c538a.png"
+  },
+  {
+    "id": "4F2185F2-E028-4DA1-A395-FA38D123DA65",
+    "name": "超火爆免下载游戏，点开即玩！",
+    "width": 392,
+    "height": 28,
+    "abX": 179,
+    "abY": 586,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "超火爆免下载游戏，点开即玩！",
+          "font": "PingFangSC-Medium",
+          "size": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": 28
+    },
+    "type": "QText",
+    "text": "超火爆免下载游戏，点开即玩！"
+  },
+  {
+    "id": "72170D00-59CC-430B-BE31-A876EEA9B511",
+    "name": "矩形",
+    "width": 750,
+    "height": 80,
+    "abX": 0,
+    "abY": 1254,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 251, "g": 245, "b": 213, "a": 1 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "8EB9F1D7-0494-4343-AB14-8CCCA068E15B",
+    "name": "路径",
+    "width": 12,
+    "height": 12,
+    "abX": 675,
+    "abY": 1288,
+    "zIndex": 2,
+    "styles": {},
+    "type": "QImage",
+    "path": "325d35fe5d4a05fb06ada0f45bc26655.png"
+  },
+  {
+    "id": "9ED161C4-CCF4-48AB-BA93-2AEB5FA51697",
+    "name": "最新最全轻游戏，尽在开心玩",
+    "width": 312,
+    "height": 28,
+    "abX": 60,
+    "abY": 1280,
     "zIndex": 2,
     "styles": {
       "borderRadius": null,
@@ -258,881 +645,16 @@
       "texts": [
         {
           "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "扩容空间",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "扩容空间"
-  },
-  {
-    "id": "59A2CE9D-4522-405E-AD1E-C569109E0E63",
-    "name": "米拉酱",
-    "width": 102,
-    "height": 48,
-    "abX": 324,
-    "abY": 59,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 227, "b": 155, "a": 1 },
-          "string": "米拉酱",
-          "font": "PingFangSC-Regular",
-          "size": 34
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "米拉酱"
-  },
-  {
-    "id": "63C37E11-3C10-49B2-8F0F-5AB61B805364---04BE3397-0C73-459D-AC4F-BEF0ED1EA59F",
-    "name": "Shape",
-    "width": 32,
-    "height": 32,
-    "abX": 39,
-    "abY": 68,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "symbolRoot": ["63C37E11-3C10-49B2-8F0F-5AB61B805364"],
-    "path": "a74e6848d0791e877611e9fe65fd126f.png"
-  },
-  {
-    "id": "C0EF1DFB-4006-453A-AFA5-8B89D6FF18FF---7C5116B8-84E5-49FE-98F4-F253750C38ED",
-    "name": "Shape",
-    "width": 37,
-    "height": 37,
-    "abX": 676,
-    "abY": 65,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "symbolRoot": ["C0EF1DFB-4006-453A-AFA5-8B89D6FF18FF"],
-    "path": "a08548cc84939ffcbdeebc739ac4d186.png"
-  },
-  {
-    "id": "858AB985-562F-491A-96FB-95E1D419C86D",
-    "name": "Photo",
-    "width": 140,
-    "height": 140,
-    "abX": 30,
-    "abY": 160,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": [
-        {
-          "type": "inset",
-          "x": 0,
-          "y": 10,
-          "color": { "r": 36, "g": 23, "b": 13, "a": 0.5497905344202898 },
-          "spread": 0,
-          "blur": 20
-        }
-      ],
-      "background": null
-    },
-    "type": "QImage",
-    "path": "442eb21f45726c29ffbdb4fd0445c01d.png"
-  },
-  {
-    "id": "B7708784-865F-495E-81DB-3CFAFF53EC71---6B5ADB13-2EDD-41E3-9966-BFC92D828EC7",
-    "name": "Shape",
-    "width": 37,
-    "height": 37,
-    "abX": 676,
-    "abY": 65,
-    "zIndex": 2,
-    "styles": {},
-    "type": "QImage",
-    "symbolRoot": ["B7708784-865F-495E-81DB-3CFAFF53EC71"],
-    "path": "6581e7c736c903832e5a3ba85aa1d0e0.png"
-  },
-  {
-    "id": "A8398578-B7CD-4240-87EF-40739407A112---637C3158-39F2-4C22-8F71-B3B0FF476373",
-    "name": "Wifi",
-    "width": 26,
-    "height": 18,
-    "abX": 147,
-    "abY": 11,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "symbolRoot": ["A8398578-B7CD-4240-87EF-40739407A112"],
-    "path": "3a078fabcda9f39f72fa6dc7a13d6c4d.png"
-  },
-  {
-    "id": "A8398578-B7CD-4240-87EF-40739407A112---BC2F1625-B6D6-4240-B676-0F0CB2A0F314",
-    "name": "Tencent",
-    "width": 90,
-    "height": 24,
-    "abX": 50,
-    "abY": 8,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-          "string": "Tencent",
+          "string": "最新最全轻游戏，尽在开心玩",
           "font": "PingFangSC-Regular",
           "size": 24
         }
       ],
       "verticalAlign": 0,
       "textAlign": 0,
-      "lineHeight": 24
+      "lineHeight": 28
     },
     "type": "QText",
-    "text": "Tencent",
-    "symbolRoot": ["A8398578-B7CD-4240-87EF-40739407A112"]
-  },
-  {
-    "id": "A8398578-B7CD-4240-87EF-40739407A112---B20B2271-ACF1-463C-AFA4-EABFB1BE9C35",
-    "name": "Mobile Signal",
-    "width": 29,
-    "height": 19,
-    "abX": 14,
-    "abY": 10,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "symbolRoot": ["A8398578-B7CD-4240-87EF-40739407A112"],
-    "path": "bf64202429e2e72a422e45f7df43f765.png"
-  },
-  {
-    "id": "A8398578-B7CD-4240-87EF-40739407A112---764CA486-8F0F-42DE-B76A-30BC41EE1769",
-    "name": "9:41 AM",
-    "width": 81,
-    "height": 30,
-    "abX": 335,
-    "abY": 5,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-          "string": "9:41 AM",
-          "font": "PingFangSC-Regular",
-          "size": 22
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "9:41 AM",
-    "symbolRoot": ["A8398578-B7CD-4240-87EF-40739407A112"]
-  },
-  {
-    "id": "A8398578-B7CD-4240-87EF-40739407A112---4F6DD02D-CC5E-4C3F-BAE1-4CDB264B4074",
-    "name": "60%",
-    "width": 48,
-    "height": 30,
-    "abX": 628,
-    "abY": 5,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-          "string": "60%",
-          "font": "PingFangSC-Regular",
-          "size": 22
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "60%",
-    "symbolRoot": ["A8398578-B7CD-4240-87EF-40739407A112"]
-  },
-  {
-    "id": "A8398578-B7CD-4240-87EF-40739407A112---72C81EE7-D609-4499-9CD9-5A77D9C60D19",
-    "name": "Battery",
-    "width": 49,
-    "height": 21,
-    "abX": 686,
-    "abY": 10,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": ["A8398578-B7CD-4240-87EF-40739407A112"],
-    "path": "3d8b0f56beebabf8385133ffb33ecd61.png"
-  },
-  {
-    "id": "C1AA912F-5E8E-4165-A674-5A98DBC70CA9---FC4805DB-8E93-4216-80F0-B55BCE4D2F0D",
-    "name": "盾",
-    "width": 41,
-    "height": 47,
-    "abX": 138,
-    "abY": 252,
-    "zIndex": 2,
-    "styles": { "opacity": 1, "rotation": 0, "background": null },
-    "type": "QImage",
-    "symbolRoot": ["C1AA912F-5E8E-4165-A674-5A98DBC70CA9"],
-    "path": "e799b80e63b5788d5473d44fdafb1397.png"
-  },
-  {
-    "id": "DD2B01B9-3135-4580-84AC-205A48386156",
-    "name": "Bitmap",
-    "width": 196,
-    "height": 196,
-    "abX": 277,
-    "abY": 464,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 244, "g": 244, "b": 244, "a": 1 },
-        "width": 8,
-        "position": 2
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "56994a2c729c000b70845a073c799653.png"
-  },
-  {
-    "id": "20A69AE2-92C2-4815-A171-AC1F63B321C6",
-    "name": "Bitmap Copy 3",
-    "width": 196,
-    "height": 196,
-    "abX": 277,
-    "abY": 719,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 244, "g": 244, "b": 244, "a": 1 },
-        "width": 8,
-        "position": 2
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "8074edfe231c02b0141f9c36275f90d1.png"
-  },
-  {
-    "id": "F02AD120-39CA-40C0-A750-F6DA96D7FD70",
-    "name": "Bitmap Copy 6",
-    "width": 196,
-    "height": 196,
-    "abX": 277,
-    "abY": 976,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 244, "g": 244, "b": 244, "a": 1 },
-        "width": 8,
-        "position": 2
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "dd9000f5df0ace884839189bc5df16fc.png"
-  },
-  {
-    "id": "3FDCEE63-D00B-4612-9153-A9648C7E6A75",
-    "name": "Bitmap Copy 9",
-    "width": 196,
-    "height": 196,
-    "abX": 277,
-    "abY": 1233,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 244, "g": 244, "b": 244, "a": 1 },
-        "width": 8,
-        "position": 2
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "cc9f6a1746c4101badd1f3240088df63.png"
-  },
-  {
-    "id": "4B3ADBB2-2480-4007-B450-D1503F3650CB",
-    "name": "Bitmap Copy",
-    "width": 196,
-    "height": 196,
-    "abX": 43,
-    "abY": 464,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 244, "g": 244, "b": 244, "a": 1 },
-        "width": 8,
-        "position": 2
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "40abf53f967896f8f716cf1fe71e582a.png"
-  },
-  {
-    "id": "BA3A719C-BD7A-4FF4-9706-66CC3BDF8E60",
-    "name": "Bitmap Copy 4",
-    "width": 196,
-    "height": 196,
-    "abX": 43,
-    "abY": 719,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 244, "g": 244, "b": 244, "a": 1 },
-        "width": 8,
-        "position": 2
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "6303222328f779ae58208d1f4bbbef2c.png"
-  },
-  {
-    "id": "952B8165-8670-41EB-934F-FE8E5FCDE6E5",
-    "name": "Bitmap Copy 7",
-    "width": 196,
-    "height": 196,
-    "abX": 43,
-    "abY": 976,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 244, "g": 244, "b": 244, "a": 1 },
-        "width": 8,
-        "position": 2
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "9882e0076a74e9e230a76a88c78b245f.png"
-  },
-  {
-    "id": "A25547ED-4276-4CDC-8260-B20226B302BA",
-    "name": "Bitmap Copy 10",
-    "width": 196,
-    "height": 196,
-    "abX": 43,
-    "abY": 1233,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 244, "g": 244, "b": 244, "a": 1 },
-        "width": 8,
-        "position": 2
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "fa31a6fbd6616610cabfcd2d51e20f66.png"
-  },
-  {
-    "id": "2752E271-4F4F-4842-96FC-509DC23ABE70",
-    "name": "Bitmap Copy 2",
-    "width": 196,
-    "height": 196,
-    "abX": 511,
-    "abY": 464,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 244, "g": 244, "b": 244, "a": 1 },
-        "width": 8,
-        "position": 2
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "4f8c2aa32c46f6436e41ce32f0be2e94.png"
-  },
-  {
-    "id": "E6EB0F1F-79A1-4DE0-A692-77938B764FCB",
-    "name": "Bitmap Copy 5",
-    "width": 196,
-    "height": 196,
-    "abX": 511,
-    "abY": 719,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 0, "g": 0, "b": 0, "a": 0.04056272644927536 },
-        "width": 8,
-        "position": 2
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "caa99ccf3c8ef83ff34ce6ac3d8f8eb5.png"
-  },
-  {
-    "id": "AE542985-8B3E-4D9B-A0AE-894D6C4A78AB",
-    "name": "Bitmap Copy 8",
-    "width": 196,
-    "height": 196,
-    "abX": 511,
-    "abY": 976,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 244, "g": 244, "b": 244, "a": 1 },
-        "width": 8,
-        "position": 2
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "00df4a6ba7e74ba5aa43d640630f945c.png"
-  },
-  {
-    "id": "A4D688A0-4245-44C1-959A-E0B8F1AB9939",
-    "name": "Bitmap Copy 11",
-    "width": 196,
-    "height": 196,
-    "abX": 511,
-    "abY": 1233,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 244, "g": 244, "b": 244, "a": 1 },
-        "width": 8,
-        "position": 2
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "7da1d5076e060f3654a9b624a5023737.png"
-  },
-  {
-    "id": "BACF9238-42F4-45C0-ADD4-DE8A275EFFEB",
-    "name": "310张",
-    "width": 63,
-    "height": 33,
-    "abX": 347,
-    "abY": 668,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 155, "g": 155, "b": 155, "a": 1 },
-          "string": "310张",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "310张"
-  },
-  {
-    "id": "FA20B32A-7FEF-4E72-94CB-1F5DBDEF43BB",
-    "name": "222张",
-    "width": 68,
-    "height": 33,
-    "abX": 348,
-    "abY": 925,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 155, "g": 155, "b": 155, "a": 1 },
-          "string": "222张",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "222张"
-  },
-  {
-    "id": "9B87886E-83A5-49E7-802F-3D0079AFC5FF",
-    "name": "122张",
-    "width": 63,
-    "height": 33,
-    "abX": 348,
-    "abY": 1182,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 155, "g": 155, "b": 155, "a": 1 },
-          "string": "122张",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "122张"
-  },
-  {
-    "id": "8FC21DBF-3A50-423F-96ED-9536BF718865",
-    "name": "390张",
-    "width": 68,
-    "height": 33,
-    "abX": 116,
-    "abY": 668,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 155, "g": 155, "b": 155, "a": 1 },
-          "string": "390张",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "390张"
-  },
-  {
-    "id": "5EED3957-BB80-4ED6-8AF0-51EED51D23C9",
-    "name": "230张",
-    "width": 68,
-    "height": 33,
-    "abX": 105,
-    "abY": 925,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 155, "g": 155, "b": 155, "a": 1 },
-          "string": "230张",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "230张"
-  },
-  {
-    "id": "E8CFA867-6259-4C4A-BE3C-312266FE91B5",
-    "name": "154张",
-    "width": 63,
-    "height": 33,
-    "abX": 105,
-    "abY": 1182,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 155, "g": 155, "b": 155, "a": 1 },
-          "string": "154张",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "154张"
-  },
-  {
-    "id": "86C9BA04-EA9C-48F8-850C-EB04968F0627",
-    "name": "270张",
-    "width": 66,
-    "height": 33,
-    "abX": 582,
-    "abY": 668,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 155, "g": 155, "b": 155, "a": 1 },
-          "string": "270张",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "270张"
-  },
-  {
-    "id": "A3A70EA1-6C5A-4759-A02D-D3033737F083",
-    "name": "197张",
-    "width": 62,
-    "height": 33,
-    "abX": 585,
-    "abY": 925,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 155, "g": 155, "b": 155, "a": 1 },
-          "string": "197张",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "197张"
-  },
-  {
-    "id": "15EE3769-1FE0-4C16-90BA-97B0BF8E7B7B",
-    "name": "112张",
-    "width": 58,
-    "height": 33,
-    "abX": 585,
-    "abY": 1182,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 155, "g": 155, "b": 155, "a": 1 },
-          "string": "112张",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "112张"
-  },
-  {
-    "id": "_8CAA286D-BFC4-4FD1-803D-15759D6EA970_148356F2-7ABC-4873-8D83-1DEF1E05202B",
-    "name": "_cloud_bg_black_Rectangle",
-    "width": 750,
-    "height": 430,
-    "abX": 0,
-    "abY": 0,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "fca6516f7b08e56f8700bea0c3d39ffd.png"
-  },
-  {
-    "id": "92C53D48-BDAD-40F7-87F2-061DB603EC5D---B4159A83-0ADE-47B6-B0B0-38C01A4006C1",
-    "name": "Combined Shape",
-    "width": 34,
-    "height": 34,
-    "abX": 128,
-    "abY": 367,
-    "zIndex": 4,
-    "styles": {},
-    "type": "QImage",
-    "symbolRoot": ["92C53D48-BDAD-40F7-87F2-061DB603EC5D"],
-    "path": "8ac1fa6c678cd72cc83189a808f66cfe.png"
-  },
-  {
-    "id": "5534DE50-39CA-4157-AEA0-EB7F5AE7DADD---403E2739-8F40-4720-A754-0AED66BDDA64",
-    "name": "tab_icon_face",
-    "width": 35,
-    "height": 35,
-    "abX": 357,
-    "abY": 367,
-    "zIndex": 4,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": ["5534DE50-39CA-4157-AEA0-EB7F5AE7DADD"],
-    "path": "9759428fb0600bffae2ec485cdc3f701.png"
-  },
-  {
-    "id": "8F0815B4-2BF5-45B3-BE57-26099D35D5BA---AB2415A5-88E4-48F3-8D04-04603E7147E7",
-    "name": "Shape",
-    "width": 36,
-    "height": 36,
-    "abX": 589,
-    "abY": 365,
-    "zIndex": 4,
-    "styles": {},
-    "type": "QImage",
-    "symbolRoot": ["8F0815B4-2BF5-45B3-BE57-26099D35D5BA"],
-    "path": "51c11e82edc931d85f318392922a1ded.png"
+    "text": "最新最全轻游戏，尽在开心玩"
   }
 ]
