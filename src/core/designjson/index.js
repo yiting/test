@@ -37,12 +37,12 @@ class DesignJson {
    */
   static parse(artBoardId, option = {}, fileType = 'sketch') {
     const designDom = ParserModule[fileType].parse(artBoardId, option);
+    const rate = designDom ? designDom.width / 750 : null;
+    option.rate = rate;
     Optimize(designDom, option);
     Processor[fileType].process(designDom);
     const nodes = designDom.toList();
     const images = designDom.getImages();
-    const rate =
-      Array.isArray(nodes) && nodes.length ? nodes[0].width / 750 : null;
     return {
       nodes,
       images,
