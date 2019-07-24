@@ -140,45 +140,29 @@ const utils = {
    * 随机排列节点的算法函数
    * @param {Array} nodes 需要组合的节点
    * @param {Int} textNum 组合里的QText元素数量
-   * @param {Int} iconNum 组合里的QIcon元素数量
    * @param {Int} imageNum 组合里的QImage元素数量
-   * @param {Int} shapeNum 组合里的QShape元素数量
    */
-  getGroupFromNodes(
-    nodes: any,
-    textNum: number,
-    iconNum: number,
-    imageNum: number,
-    shapeNum: number,
-  ) {
+  getGroupFromNodes(nodes: any, textNum: number, imageNum: number) {
     if (!nodes || !nodes.length || nodes.length === 0) {
       return null;
     }
     // 为了减少计算量, 这里不需做完全随机, 这里分两步优化, 输进来的nodes节点已根据尺寸分步输入, 减少节点两
-    // 通过textNum, iconNum, imageNum, shapeNum的数量来做随机
+    // 通过textNum, imageNum的数量来做随机
     const typeNum = 4;
     let result: any = [];
     const resultTemp: any = [];
 
     // 筛选出用于匹配的各类型节点
     const textNodes: any = [];
-    const iconNodes: any = [];
     const imageNodes: any = [];
-    const shapeNodes: any = [];
 
     nodes.forEach((item: any) => {
       switch (item.type) {
         case Common.QText:
           textNodes.push(item);
           break;
-        case Common.QIcon:
-          iconNodes.push(item);
-          break;
         case Common.QImage:
           imageNodes.push(item);
-          break;
-        case Common.QShape:
-          shapeNodes.push(item);
           break;
         default:
           break;
@@ -188,9 +172,7 @@ const utils = {
     // 根据每类元素需要的个数获取所有可以排列的组合,然后再对这四类进行排列
     const typeRandom = [];
     typeRandom[0] = this.getRandomGroup(textNodes, textNum);
-    typeRandom[1] = this.getRandomGroup(iconNodes, iconNum);
-    typeRandom[2] = this.getRandomGroup(imageNodes, imageNum);
-    typeRandom[3] = this.getRandomGroup(shapeNodes, shapeNum);
+    typeRandom[1] = this.getRandomGroup(imageNodes, imageNum);
 
     const allGroups = [];
     for (let i = 0; i < typeNum; i++) {
@@ -203,14 +185,8 @@ const utils = {
     this.joinGroup(allGroups, 0, resultTemp, result);
     // 转为一维数组组合
     result = this.transformToLinearArray(result);
-    // 将组合里面不符合textNum,iconNum,imageNum,shapeNum的组合去掉
-    result = this.removeErrorGroup(
-      result,
-      textNum,
-      iconNum,
-      imageNum,
-      shapeNum,
-    );
+    // 将组合里面不符合textNum，imageNum的组合去掉
+    result = this.removeErrorGroup(result, textNum, imageNum);
 
     return result;
   },
@@ -480,14 +456,8 @@ const utils = {
     return res;
   },
 
-  // 将数组中, 删除不符合textNum + iconNum + imageNum + shapeNum 的组合
-  removeErrorGroup(
-    arr: [],
-    textNum: number,
-    iconNum: number,
-    imageNum: number,
-    shapeNum: number,
-  ) {
+  // 将数组中, 删除不符合textNum + imageNum 的组合
+  removeErrorGroup(arr: [], textNum: number, imageNum: number) {
     const res: any = [];
     if (!arr || arr.length === 0) {
       return res;
@@ -495,34 +465,21 @@ const utils = {
 
     arr.forEach((item: []) => {
       let txt = 0;
-      let icon = 0;
       let image = 0;
-      let shape = 0;
 
       item.forEach((obj: any) => {
         switch (obj.type) {
           case Common.QText:
             txt += 1;
             break;
-          case Common.QIcon:
-            icon += 1;
-            break;
           case Common.QImage:
             image += 1;
-            break;
-          case Common.QShape:
-            shape += 1;
             break;
           default:
         }
       });
 
-      if (
-        txt === textNum &&
-        icon === iconNum &&
-        image === imageNum &&
-        shape === shapeNum
-      ) {
+      if (txt === textNum && image === imageNum) {
         res.push(item);
       }
     });

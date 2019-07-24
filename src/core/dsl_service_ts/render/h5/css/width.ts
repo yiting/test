@@ -5,7 +5,7 @@ export default {
     // let constraints: any = this.constraints;
     const _hasWidth = this._hasWidth();
     if (_hasWidth) {
-      return Math.abs(this._abXops - this._abX);
+      return Math.abs(this.abXops - this.abX);
     }
     return null;
   },

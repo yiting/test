@@ -64,60 +64,6 @@ const propertyNodeAreQImage = function(nodes: any) {
   return nodes.every((item: any) => propertyNodeIsQImage(item));
 };
 
-/**
- * 节点是否为QIcon节点
- * @param {Node} 元素
- * @returns {Boolean}
- */
-const propertyNodeIsQIcon = function(node: any) {
-  if (!node || !node.type || node.type !== 'QIcon') {
-    return false;
-  }
-  return true;
-};
-
-/**
- * 节点组是否全为QIcon
- * @param {Array} nodes 元素数组
- * @returns {Boolean}
- */
-const propertyNodeAreQIcon = function(nodes: any) {
-  const result = false;
-
-  if (!nodes || !nodes.length) {
-    return result;
-  }
-
-  // nodes.forEach((item: any) => {
-  return nodes.every((item: any) => propertyNodeIsQIcon(item));
-};
-
-/**
- * 节点是否为QShape节点
- * @param {Node} 元素
- * @returns {Boolean}
- */
-const propertyNodeIsQShape = function(node: any) {
-  if (!node || !node.type || node.type !== 'QShape') {
-    return false;
-  }
-  return true;
-};
-
-/**
- * 节点组是否全为QIcon
- * @param {Array} nodes 元素数组
- * @returns {Boolean}
- */
-const propertyNodeAreQShape = function(nodes: any) {
-  const result = false;
-
-  if (!nodes || !nodes.length) {
-    return result;
-  }
-  return nodes.every((item: any) => propertyNodeIsQShape(item));
-};
-
 // 特征: 元素组成关系
 
 /**
@@ -141,26 +87,6 @@ const composeWithQText = function(nodes: any, num: number) {
 };
 
 /**
- * 传进的节点数组是否由若干QIcon组成
- * @param {Array} nodes 元素数组
- * @param {Int} num 数量
- * @returns {Boolean}
- */
-const composeWithQIcon = function(nodes: any, num: number) {
-  if (!nodes || !nodes.length) {
-    return false;
-  }
-
-  let matchNode = 0;
-  nodes.forEach((item: any) => {
-    if (propertyNodeIsQIcon(item)) {
-      matchNode += 1;
-    }
-  });
-  return matchNode === num;
-};
-
-/**
  * 传进的节点数组是否由若干QImage组成
  * @param {Array} nodes 元素数组
  * @param {Int} num 数量
@@ -174,26 +100,6 @@ const composeWithQImage = function(nodes: any, num: number) {
   let matchNode = 0;
   nodes.forEach((item: any) => {
     if (propertyNodeIsQImage(item)) {
-      matchNode += 1;
-    }
-  });
-  return matchNode === num;
-};
-
-/**
- * 传进的节点数组是否由若干QShape组成
- * @param {Array} nodes 元素数组
- * @param {Int} num 数量
- * @returns {Boolean}
- */
-const composeWithQShape = function(nodes: any, num: number) {
-  if (!nodes || !nodes.length) {
-    return false;
-  }
-
-  let matchNode = 0;
-  nodes.forEach((item: any) => {
-    if (propertyNodeIsQShape(item)) {
       matchNode += 1;
     }
   });
@@ -859,20 +765,14 @@ export default {
   // 元素属性判断
   propertyNodeIsQText,
   propertyNodeAreQText,
-  propertyNodeIsQIcon,
-  propertyNodeAreQIcon,
   propertyNodeIsQImage,
   propertyNodeAreQImage,
-  propertyNodeIsQShape,
-  propertyNodeAreQShape,
   // 字符值判断
   fontLineLimit,
   fontSizeLimit,
   // 元素组成关系
   composeWithQText,
-  composeWithQIcon,
   composeWithQImage,
-  composeWithQShape,
   // 元素方向关系
   directionAleftToB,
   directionGroupAleftToGroupB,

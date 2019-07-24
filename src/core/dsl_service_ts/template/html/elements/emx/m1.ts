@@ -5,7 +5,7 @@ class EMXM1 extends HtmlTemplate {
     super(...args);
     this._template = `
         <div class="inline" :constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
-            <span $each $useTag></span>
+            <tag $each $useTag></tag>
         </div>`;
   }
 }

@@ -81,7 +81,7 @@ function calAcross(layer: any[]) {
 class EMXM1 extends Model.ElementXModel {
   constructor() {
     // 无限节点
-    super('emx-m1', 0, 0, 0, 0, Common.LvA, Common.QText);
+    super('emx-m1', 0, 0, Common.LvA, Common.QText);
   }
 
   // 改写是否匹配函数

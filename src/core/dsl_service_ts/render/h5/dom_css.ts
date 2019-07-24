@@ -1,8 +1,8 @@
 // 样式的计算处理
 import QLog from '../../log/qlog';
 
-import CssBoundary from './css_boundary';
-import CssConstraints from './css_constraints';
+import CssBoundary from '../helper/boundary';
+import CssConstraints from '../helper/constraints';
 // import css_combo_extend_tree from './css_combo_extend_tree';
 
 import CssDom from './model/css_dom_tree';
@@ -66,7 +66,7 @@ function getCssMap(_cssDom: any, _map: any = {}) {
 const _buildTree = function(parent: any, data: any) {
   let cssNode: any;
   try {
-    cssNode = new CssDom(parent, data);
+    cssNode = new CssDom(data, parent);
     // 构建树
     if (!parent) {
       cssDomTree = cssNode;
@@ -90,17 +90,17 @@ const _buildTree = function(parent: any, data: any) {
 // 主流程
 const process = function(data: any) {
   // 构建cssTree并返回
-  Loger.debug('css_dom.js [process]');
+  Loger.debug('dom_css.js [process]');
 
   // 构建树
-  Loger.debug('css_dom.js [_buildTree]');
+  Loger.debug('dom_css.js [_buildTree]');
   cssDomTree = _buildTree(null, data);
   // 计算约束
-  Loger.debug('css_dom.js [_parseConstraints]');
+  Loger.debug('dom_css.js [_parseConstraints]');
   CssConstraints(cssDomTree);
 
   // 调整边距
-  Loger.debug('css_dom.js [_parseBoundary]');
+  Loger.debug('dom_css.js [_parseBoundary]');
   CssBoundary(cssDomTree);
   return cssDomTree;
 };

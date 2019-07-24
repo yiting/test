@@ -17,7 +17,7 @@ import Utils from '../../utils';
 class WG4M1 extends Model.WidgetModel {
   constructor() {
     // 元素构成规则
-    super('wg4-m1', 3, 0, 1, 0, Common.LvA, Common.QWidget);
+    super('wg4-m1', 3, 1, Common.LvA, Common.QWidget);
     this.canLeftFlex = false;
     this.canRightFlex = true;
   }
@@ -36,7 +36,6 @@ class WG4M1 extends Model.WidgetModel {
     // if (this._matchNodes['2'].id == '36D662A5-00E9-4275-ABD9-5B4E0C1334D5-c'
     //     && this._matchNodes['0'].id == '9715718D-CC7A-4BD5-9B43-815BD796C06D-c'
     //     && this._matchNodes['1'].id == '7C99E424-3F08-4741-947E-A9D31E707B89-c') {
-      
 
     //   let bool: boolean = this.regular4();
     //   console.log('regular6: ' + bool);
@@ -45,23 +44,38 @@ class WG4M1 extends Model.WidgetModel {
 
   // 1.
   regular1() {
-    let bool: boolean = Feature.directionAleftToB(this._matchNodes['3'], this._matchNodes['0'])
-                        && Feature.directionAleftToB(this._matchNodes['3'], this._matchNodes['1'])
-                        && Feature.directionAleftToB(this._matchNodes['3'], this._matchNodes['2']);
+    let bool: boolean =
+      Feature.directionAleftToB(this._matchNodes['3'], this._matchNodes['0']) &&
+      Feature.directionAleftToB(this._matchNodes['3'], this._matchNodes['1']) &&
+      Feature.directionAleftToB(this._matchNodes['3'], this._matchNodes['2']);
     return bool;
   }
 
   // 2.
   regular2() {
-    let bool: boolean = Feature.baselineABInHorizontal(this._matchNodes['3'], this._matchNodes['0'])
-                        && Feature.baselineABInHorizontal(this._matchNodes['3'], this._matchNodes['1'])
-                        && Feature.baselineABInHorizontal(this._matchNodes['3'], this._matchNodes['2']);
+    let bool: boolean =
+      Feature.baselineABInHorizontal(
+        this._matchNodes['3'],
+        this._matchNodes['0'],
+      ) &&
+      Feature.baselineABInHorizontal(
+        this._matchNodes['3'],
+        this._matchNodes['1'],
+      ) &&
+      Feature.baselineABInHorizontal(
+        this._matchNodes['3'],
+        this._matchNodes['2'],
+      );
     return bool;
   }
 
   // 3.
   regular3() {
-    let gA: any = [this._matchNodes['0'], this._matchNodes['1'], this._matchNodes['2']];
+    let gA: any = [
+      this._matchNodes['0'],
+      this._matchNodes['1'],
+      this._matchNodes['2'],
+    ];
     let bool: boolean = Feature.baselineGroupAInVertical(gA);
     return bool;
   }
@@ -69,10 +83,15 @@ class WG4M1 extends Model.WidgetModel {
   // 4.
   regular4() {
     let gA: any = [this._matchNodes['3']];
-    let gB: any = [this._matchNodes['0'], this._matchNodes['1'], this._matchNodes['2']];
+    let gB: any = [
+      this._matchNodes['0'],
+      this._matchNodes['1'],
+      this._matchNodes['2'],
+    ];
 
-    let bool: boolean = Feature.distanceGreatGroupABInHorizontal(gA, gB, 0)
-                        && Feature.distanceLessGroupABInHorizontal(gA, gB, 44);
+    let bool: boolean =
+      Feature.distanceGreatGroupABInHorizontal(gA, gB, 0) &&
+      Feature.distanceLessGroupABInHorizontal(gA, gB, 44);
     return bool;
   }
 
@@ -80,23 +99,45 @@ class WG4M1 extends Model.WidgetModel {
   regular5() {
     let t1Height: number = this._matchNodes['0'].height * 1.05;
     let t2Height: number = this._matchNodes['1'].height * 1.05;
-    
-    let b1: boolean = Feature.distanceGreatAbottomToBtop(this._matchNodes['0'], this._matchNodes['1'], 0)
-                      && Feature.distanceLessAbottomToBtop(this._matchNodes['0'], this._matchNodes['1'], t1Height);
 
-    let b2: boolean = Feature.distanceGreatAbottomToBtop(this._matchNodes['1'], this._matchNodes['2'], 0)
-                      && Feature.distanceLessAbottomToBtop(this._matchNodes['1'], this._matchNodes['2'], t2Height);
-      
-    return (b1 && b2);
+    let b1: boolean =
+      Feature.distanceGreatAbottomToBtop(
+        this._matchNodes['0'],
+        this._matchNodes['1'],
+        0,
+      ) &&
+      Feature.distanceLessAbottomToBtop(
+        this._matchNodes['0'],
+        this._matchNodes['1'],
+        t1Height,
+      );
+
+    let b2: boolean =
+      Feature.distanceGreatAbottomToBtop(
+        this._matchNodes['1'],
+        this._matchNodes['2'],
+        0,
+      ) &&
+      Feature.distanceLessAbottomToBtop(
+        this._matchNodes['1'],
+        this._matchNodes['2'],
+        t2Height,
+      );
+
+    return b1 && b2;
   }
 
   // 6.
   regular6() {
-    let txtAreaHeight: number = Math.abs(this._matchNodes['0'].abY - this._matchNodes['2'].abYops);
+    let txtAreaHeight: number = Math.abs(
+      this._matchNodes['0'].abY - this._matchNodes['2'].abYops,
+    );
 
-    let b1: boolean = this._matchNodes['3'].height * 1.05 - txtAreaHeight >= 0? true : false;
-    let b2: boolean = this._matchNodes['3'].height * 0.7 - txtAreaHeight <= 0? true : false;
-    return (b1 && b2);
+    let b1: boolean =
+      this._matchNodes['3'].height * 1.05 - txtAreaHeight >= 0 ? true : false;
+    let b2: boolean =
+      this._matchNodes['3'].height * 0.7 - txtAreaHeight <= 0 ? true : false;
+    return b1 && b2;
   }
 }
 

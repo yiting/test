@@ -1,5 +1,5 @@
 // (1节点元素)水平分割线
-// (QShape)
+// (QImage)
 //
 // 判断标准
 // 1, 长度大于设计稿宽的80%;
@@ -13,15 +13,15 @@ let designWidth: number = 0;
 class WG1M1 extends Model.WidgetModel {
   constructor() {
     // 元素构成规则
-    super('wg1-m1', 0, 0, 0, 1, Common.LvS, Common.QWidget);
+    super('wg1-m1', 0, 1, Common.LvS, Common.QWidget);
     this.canLeftFlex = false;
     this.canRightFlex = false;
-    designWidth = Store.get('designWidth');
   }
 
   _initNode() {
-    let shapes: any = this.getShapeNodes();
-    this._matchNodes['0'] = shapes[0];
+    let images: any = this.getImageNodes();
+    this._matchNodes['0'] = images[0];
+    designWidth = Store.get('designWidth');
   }
 
   // 元素大小

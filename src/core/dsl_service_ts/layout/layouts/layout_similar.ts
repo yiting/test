@@ -130,8 +130,8 @@ class LayoutSimilar {
     // 如果为布局类型，判断所有子节点是否相似
     if (
       a.type === Common.QLayer ||
-      // 部分shape是一个包含子节点的layer，故增加以下一条判断条件
-      ((a.type === Common.QShape || a.type === Common.QImage) &&
+      // 部分图片是一个包含子节点的layer，故增加以下一条判断条件
+      (a.type === Common.QImage &&
         (a.compareChildren.length > 0 || b.compareChildren.length > 0))
     ) {
       return (

@@ -1,11 +1,16 @@
+const flexValue: any = {
+  Start: 'flex-start',
+  End: 'flex-end',
+  Center: 'center',
+};
+
 export default {
   key: 'justifyContent',
   value() {
-    const m: any = {
-      Start: 'flex-start',
-      End: 'flex-end',
-      Center: 'center',
-    };
-    return m[this.constraints.LayoutJustifyContent] || null;
+    if (this.display === 'flex') {
+      return flexValue[this.constraints.LayoutJustifyContent] || null;
+    } else {
+      return null;
+    }
   },
 };

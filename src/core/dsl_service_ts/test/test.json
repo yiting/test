@@ -1,9 +1,9 @@
 [
   {
-    "id": "C607BC94-79A4-43A0-86DE-58897D92E680",
-    "name": "设置提醒",
+    "id": "FD9C640B-5F09-4516-87F1-5C0E2BE2C6D9",
+    "name": "预约ark",
     "width": 750,
-    "height": 1334,
+    "height": 1624,
     "abX": 0,
     "abY": 0,
     "zIndex": 0,
@@ -18,97 +18,24 @@
     "type": "QLayer"
   },
   {
-    "id": "DC472D78-EE1B-4481-BB5E-FE99E05123FC",
-    "name": "top copy 3",
-    "width": 750,
-    "height": 128,
-    "abX": 0,
-    "abY": 0,
+    "id": "_2F412C87-3540-4855-9E5A-975F61ED6579_96258BAA-52FD-4808-BAC0-986DF942AF89_8869198F-3CD9-452D-90AD-464C1C6C1464",
+    "name": "_位图_位图_Group 7",
+    "width": 500,
+    "height": 518,
+    "abX": 132,
+    "abY": 361,
     "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
+    "styles": {},
     "type": "QImage",
-    "path": "48a1a9868730248557f41037679f8803.png"
+    "path": "6baa793de74aeb81ff9a3a1f31cc81d8.png"
   },
   {
-    "id": "14E1163F-8080-4ABD-A7DE-BE78D00A91D3",
-    "name": "矩形",
-    "width": 750,
-    "height": 550,
-    "abX": 0,
-    "abY": 127,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "1E27D646-E724-4705-9126-B77D6C9B9007",
-    "name": "Rectangle",
-    "width": 750,
-    "height": 112,
-    "abX": 0,
-    "abY": 401,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "1B88B0B0-CE64-4345-97F2-84CB07145C9C",
-    "name": "Rectangle 2备份",
-    "width": 743,
-    "height": 1,
-    "abX": 0,
-    "abY": 399,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 235, "g": 237, "b": 245, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "DCA60B6E-C19B-46F3-9A15-68B0E237D45B",
-    "name": "取消",
-    "width": 64,
-    "height": 45,
-    "abX": 662,
-    "abY": 63,
+    "id": "2DFEADD7-58C2-4B69-88C4-175E5C6F6E35",
+    "name": "我和234万人已预约",
+    "width": 404,
+    "height": 50,
+    "abX": 180,
+    "abY": 555,
     "zIndex": 2,
     "styles": {
       "borderRadius": null,
@@ -119,10 +46,10 @@
       "background": null,
       "texts": [
         {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "取消",
-          "font": "PingFangSC-Regular",
-          "size": 32
+          "color": { "r": 34, "g": 34, "b": 34, "a": 1 },
+          "string": "我和234万人已预约",
+          "font": "PingFangSC-Semibold",
+          "size": 36
         }
       ],
       "verticalAlign": 0,
@@ -130,133 +57,74 @@
       "lineHeight": null
     },
     "type": "QText",
-    "text": "取消"
+    "text": "我和234万人已预约"
   },
   {
-    "id": "FCC8464F-6449-446B-95DF-3ADB85ED980B",
-    "name": "遮罩",
-    "width": 750,
-    "height": 1334,
-    "abX": 0,
-    "abY": 0,
-    "zIndex": 3,
+    "id": "C2855FF0-40EB-4DD6-ACF5-85C7A35C9101",
+    "name": "游戏介绍游戏介绍游戏介绍游戏介绍游戏介绍",
+    "width": 360,
+    "height": 66,
+    "abX": 202,
+    "abY": 637,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 0, "g": 0, "b": 0, "a": 0.5 },
-        "hasOpacity": true
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "BF2E6F37-639A-4CEE-9CD4-60F984C23D1E",
-    "name": "Rectangle 19",
-    "width": 750,
-    "height": 915,
-    "abX": 0,
-    "abY": 419,
-    "zIndex": 4,
-    "styles": {
-      "borderRadius": [12, 12, 0, 0],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "73682331-DF25-443B-9C94-98B87493BF0C---AA1CC777-5005-4723-B68C-A5D74C8DAC99",
-    "name": "Group 2",
-    "width": 20,
-    "height": 19,
-    "abX": 692,
-    "abY": 453,
-    "zIndex": 5,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": ["73682331-DF25-443B-9C94-98B87493BF0C"],
-    "path": "b30ffd22023564ea20be9edf9eac88c6.png"
-  },
-  {
-    "id": "9769AACE-D2CC-4074-87EE-2E3E9BC40666",
-    "name": "事项开始时将通过QQ消息进行提醒",
-    "width": 373,
-    "height": 33,
-    "abX": 189,
-    "abY": 760,
-    "zIndex": 5,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
+      "opacity": 0.5,
       "rotation": 0,
       "shadows": null,
       "background": null,
       "texts": [
         {
-          "color": { "r": 135, "g": 139, "b": 153, "a": 1 },
-          "string": "事项开始时将通过QQ消息进行提醒",
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "游戏介绍游戏介绍游戏介绍游戏介绍游戏介绍游戏介绍游戏介绍",
           "font": "PingFangSC-Regular",
           "size": 24
         }
       ],
       "verticalAlign": 0,
-      "textAlign": 0,
+      "textAlign": 2,
       "lineHeight": null
     },
     "type": "QText",
-    "text": "事项开始时将通过QQ消息进行提醒"
+    "text": "游戏介绍游戏介绍游戏介绍游戏介绍游戏介绍游戏介绍游戏介绍"
   },
   {
-    "id": "6DFDA318-5F5E-4C15-9974-3F3BF23C8DBB---21DC79F2-B683-4766-8A02-5CDABA1C3D60",
-    "name": "Rectangle 18",
-    "width": 686,
-    "height": 88,
-    "abX": 32,
-    "abY": 1135,
-    "zIndex": 5,
+    "id": "4D2975A0-200D-4554-99C7-381DCFFC4A0C",
+    "name": "Rectangle",
+    "width": 310,
+    "height": 70,
+    "abX": 227,
+    "abY": 751,
+    "zIndex": 2,
     "styles": {
-      "borderRadius": [12, 12, 12, 12],
+      "borderRadius": [4, 4, 4, 4],
       "border": null,
       "opacity": 1,
       "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 0, "g": 202, "b": 252, "a": 1 },
-        "hasOpacity": false
-      }
+      "shadows": [
+        {
+          "type": "inset",
+          "x": 0,
+          "y": 3,
+          "color": { "r": 11, "g": 117, "b": 163, "a": 0.2024147727272727 },
+          "spread": 0,
+          "blur": 8
+        }
+      ],
+      "background": null
     },
-    "type": "QShape",
-    "symbolRoot": ["6DFDA318-5F5E-4C15-9974-3F3BF23C8DBB"]
+    "type": "QImage",
+    "path": "996a455cddd32b05e2adc99975d19f0b.png"
   },
   {
-    "id": "6DFDA318-5F5E-4C15-9974-3F3BF23C8DBB---EA0C5D83-601F-40D2-B086-9F2FEBA6089B",
-    "name": "确认设置",
-    "width": 136,
-    "height": 34,
-    "abX": 307,
-    "abY": 1162,
-    "zIndex": 6,
+    "id": "22CC331B-C7D8-46A6-A040-DCF1A16D1F17",
+    "name": "前往预约",
+    "width": 120,
+    "height": 42,
+    "abX": 322,
+    "abY": 765,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -267,320 +135,26 @@
       "texts": [
         {
           "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-          "string": "确认设置",
-          "font": "PingFangSC-Medium",
-          "size": 34
+          "string": "前往预约",
+          "font": "PingFangSC-Semibold",
+          "size": 30
         }
       ],
       "verticalAlign": 0,
       "textAlign": 2,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "确认设置",
-    "symbolRoot": ["6DFDA318-5F5E-4C15-9974-3F3BF23C8DBB"]
-  },
-  {
-    "id": "75EBA094-1693-44AD-8FB9-B10FEA129E47",
-    "name": "腾讯云为你的提醒保证安全隐私",
-    "width": 336,
-    "height": 33,
-    "abX": 207,
-    "abY": 1263,
-    "zIndex": 5,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
+      "lineHeight": null,
+      "textShadows": [
         {
-          "color": { "r": 176, "g": 179, "b": 191, "a": 1 },
-          "string": "腾讯云为你的提醒保证安全隐私",
-          "font": "PingFangSC-Regular",
-          "size": 24
+          "type": "inset",
+          "x": 0,
+          "y": 1,
+          "color": { "r": 0, "g": 0, "b": 0, "a": 0.1004425262237762 },
+          "spread": 0,
+          "blur": 2
         }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
+      ]
     },
     "type": "QText",
-    "text": "腾讯云为你的提醒保证安全隐私"
-  },
-  {
-    "id": "9E3E219D-DB39-486A-83FB-4149EE30A174",
-    "name": "设置QQ提醒",
-    "width": 189,
-    "height": 34,
-    "abX": 280,
-    "abY": 459,
-    "zIndex": 5,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 3, "g": 8, "b": 26, "a": 1 },
-          "string": "设置QQ提醒",
-          "font": "PingFangSC-Medium",
-          "size": 34
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "设置QQ提醒"
-  },
-  {
-    "id": "E0412222-B6EE-41B5-A79F-DC9737C67685",
-    "name": "Mask",
-    "width": 192,
-    "height": 192,
-    "abX": 279,
-    "abY": 536,
-    "zIndex": 5,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 18, "g": 183, "b": 245, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "11C094F0-FE0E-45B1-81D9-91763FE7A419",
-    "name": "椭圆形",
-    "width": 116,
-    "height": 116,
-    "abX": 317,
-    "abY": 574,
-    "zIndex": 6,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-        "width": 8,
-        "position": 0
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "_D27847F8-E5C9-464B-8948-F540A25665EC_4D923359-7380-412D-A0B7-E90391112D2E",
-    "name": "_矩形_矩形",
-    "width": 37,
-    "height": 37,
-    "abX": 369,
-    "abY": 604,
-    "zIndex": 7,
-    "styles": {},
-    "type": "QImage",
-    "path": "c6730ebc3c29c1a0df2c443bf72f2227.png"
-  },
-  {
-    "id": "D4C6BDCD-CB24-4709-89FF-3D5E6212066E",
-    "name": "NOW游戏主播你的爱就是加多宝 系列开播",
-    "width": 491,
-    "height": 84,
-    "abX": 216,
-    "abY": 874,
-    "zIndex": 5,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 3, "g": 8, "b": 26, "a": 1 },
-          "string": "NOW游戏主播你的爱就是加多宝\n系列开播提醒",
-          "font": "PingFangSC-Regular",
-          "size": 34
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "NOW游戏主播你的爱就是加多宝\n系列开播提醒"
-  },
-  {
-    "id": "4F82313F-9F9B-4D5F-A82F-941E6AF1241B",
-    "name": "事项开始时",
-    "width": 170,
-    "height": 34,
-    "abX": 216,
-    "abY": 1037,
-    "zIndex": 5,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 3, "g": 8, "b": 26, "a": 1 },
-          "string": "事项开始时",
-          "font": "PingFangSC-Regular",
-          "size": 34
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "事项开始时"
-  },
-  {
-    "id": "46DEDEFD-8E7D-4201-8BB7-B8E0D2AB65F7",
-    "name": "提醒事项",
-    "width": 136,
-    "height": 34,
-    "abX": 32,
-    "abY": 874,
-    "zIndex": 5,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 3, "g": 8, "b": 26, "a": 1 },
-          "string": "提醒事项",
-          "font": "PingFangSC-Regular",
-          "size": 34
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "提醒事项"
-  },
-  {
-    "id": "176DCFCE-F4DB-413E-B063-6BBE9C384EF6",
-    "name": "提醒时间",
-    "width": 136,
-    "height": 34,
-    "abX": 32,
-    "abY": 1037,
-    "zIndex": 5,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 3, "g": 8, "b": 26, "a": 1 },
-          "string": "提醒时间",
-          "font": "PingFangSC-Regular",
-          "size": 34
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 34
-    },
-    "type": "QText",
-    "text": "提醒时间"
-  },
-  {
-    "id": "92D6802C-B5AB-4981-A083-3C567F2B7DB3",
-    "name": "Rectangle 2",
-    "width": 718,
-    "height": 1,
-    "abX": 32,
-    "abY": 997,
-    "zIndex": 5,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 235, "g": 237, "b": 245, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "5FBE42DD-2052-485B-8961-7EE210D33D61",
-    "name": "Rectangle 2备份",
-    "width": 743,
-    "height": 1,
-    "abX": 0,
-    "abY": 833,
-    "zIndex": 5,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 235, "g": 237, "b": 245, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "F0BB577C-29F9-421F-B52B-982DD993C2DB",
-    "name": "Rectangle 2备份 2",
-    "width": 750,
-    "height": 1,
-    "abX": 0,
-    "abY": 1110,
-    "zIndex": 5,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": { "r": 235, "g": 237, "b": 245, "a": 1 },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
+    "text": "前往预约"
   }
 ]

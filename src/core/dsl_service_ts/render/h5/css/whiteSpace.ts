@@ -8,8 +8,11 @@ export default {
     }
     const lineHeight =
       this.lineHeight ||
-      Math.max(...this.children.map((nd: any) => nd.lineHeight || nd._height));
-    if (this._height / lineHeight > 1.2) {
+      Math.max(
+        ...this.children.map((nd: any) => nd.lineHeight || nd.abYops - nd.abY),
+      );
+    const _height = this.abYops - this.abY;
+    if (_height / lineHeight > 1.2) {
       // 多行
       return null;
     }

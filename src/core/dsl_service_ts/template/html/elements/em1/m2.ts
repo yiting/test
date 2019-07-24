@@ -3,7 +3,12 @@ import HtmlTemplate from '../../htmlTemplate';
 class EM1M2 extends HtmlTemplate {
   constructor(...args: any[]) {
     super(...args);
-    this._template = '<i class="icon"></i>';
+    if (this._renderData.path) {
+      this._template =
+        '<img class="img" :src="this.requireImgPath(path)"></img>';
+    } else {
+      this._template = '<div class="img"></div>';
+    }
   }
 }
 

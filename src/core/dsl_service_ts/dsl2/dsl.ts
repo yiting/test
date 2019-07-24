@@ -64,7 +64,6 @@ let pipe = function(nodes: any): any {
   let matchedSymbols: any[] = []; // 匹配完毕的自定义组件
   const optimizeWidth = Store.get('optimizeWidth') * 2; // 这里*2是增加获取数据的范围, 防止超出设计稿外的元素没被匹配
   const optimizeHeight = Store.get('optimizeHeight');
-  const layoutType = Store.get('layoutType');
 
   // 节点匹配前的分类
   nodes.forEach((item: any, index: number) => {
@@ -73,15 +72,11 @@ let pipe = function(nodes: any): any {
     item.zIndex = item.zIndex > 0 ? item.zIndex : index; // 默认zIndex的值, 越大显示层级越高
     switch (item.type) {
       case 'QShape':
-        item.type = Common.QShape;
+        item.type = Common.QImage;
         matchingNodes.push(item);
         break;
       case 'QImage':
-        if (item.width <= Common.IconSize && item.height <= Common.IconSize) {
-          item.type = Common.QIcon;
-        } else {
-          item.type = Common.QImage;
-        }
+        item.type = Common.QImage;
         matchingNodes.push(item);
         break;
       case 'QText':

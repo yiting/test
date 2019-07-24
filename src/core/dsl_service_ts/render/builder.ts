@@ -11,6 +11,8 @@ class Builder {
     const that: any = this;
   }
 
+  getResult() {}
+
   _data: any;
 
   _tagString: string;
@@ -22,27 +24,12 @@ class Builder {
   constructor(data: any, options: any) {
     try {
       this._data = data; // 原始json数据
-      this._tagString = ''; // 标签语言字符串
-      this._styleString = ''; // 样式字符串
       this._options = options; // 布局样式
       // 解析json数据
       this._parseData();
     } catch (e) {
-      Loger.error(`builder.js [constructor]:${e}`);
+      Loger.error(`render/builder.js [constructor]:${e}`);
     }
-  }
-
-  // 解析数据
-  // _parseData() {}
-
-  //
-  getTagString() {
-    return this._tagString;
-  }
-
-  //
-  getStyleString() {
-    return this._styleString;
   }
 }
 

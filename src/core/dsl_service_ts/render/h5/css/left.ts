@@ -5,7 +5,7 @@ export default {
   value(): any {
     if (false) {
       // 这里是预留给fixed定位约束
-      return this._abX;
+      return this.abX;
     } else if (
       this._isAbsolute() &&
       this.constrains !== Constraints.LayoutSelfHorizontal.Right
