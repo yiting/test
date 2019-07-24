@@ -12,5 +12,5 @@
     { "type": "AiSimilar", "value": 0, "requireScore": 0 },
     { "type": "SliceSimilar", "value": 0, "requireScore": 0 }
   ],
-  "Threshold": "65"
+  "Threshold": "65.2"
 }

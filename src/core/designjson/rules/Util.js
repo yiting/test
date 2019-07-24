@@ -98,7 +98,8 @@ function isOnlyBorder(node) {
   return result;
 }
 
-function isIntersect(inputNodeA, inputNodeB) {
+//阈值添加：处理关怀ark中按钮突出了背景图的情况
+function isIntersect(inputNodeA, inputNodeB, threshold = 0) {
   let nodeA = Object.assign(inputNodeA);
   let nodeB = Object.assign(inputNodeB);
   let nodeAabX = nodeA.abX;
@@ -130,6 +131,14 @@ function isIntersect(inputNodeA, inputNodeB) {
     nodeAabYOpsOri >= nodeBabYOpsOri
   ) {
     //A包含B的情况
+    type = INTERSECT_TYPE.INCLUDE;
+  } else if (
+    nodeA.abX <= nodeB.abX &&
+    nodeAabXOpsOri + threshold >= nodeBabXOpsOri &&
+    nodeA.abY <= nodeB.abY &&
+    nodeAabYOpsOri + threshold >= nodeBabYOpsOri
+  ) {
+    //A包含B的情况(加阈值)
     type = INTERSECT_TYPE.INCLUDE;
   } else if (
     nodeAabXOps < nodeBabX ||
@@ -203,10 +212,10 @@ function findNodeByCond(node, brother, type, id1, id2) {
   return result;
 }
 
-function isLine(node) {
+function isLine(node, ratio = 1) {
   //如果形状是矩形、圆形、直线以外的就不能css实现
   var result = false;
-  if (node.width > 50 && node.height <= 4) {
+  if (node.width > 50 * ratio && node.height <= 4) {
     result = true;
   }
   if (node.width <= 2 && node.height >= 35) {
@@ -270,7 +279,7 @@ function isSymbolInstance(node) {
 }
 
 //如果节点由大的矩形和小的三角形/小的旋转了45度的尖角组成，则认为是气泡
-function isBubble(node) {
+function isBubble(node, ratio = 1) {
   let hasTriangle = false;
   let hasRectangle = false;
   let result = false;
@@ -279,13 +288,13 @@ function isBubble(node) {
       if (
         item.frame &&
         item._class == 'rectangle' &&
-        getSize(item.frame) > 150 * 20
+        getSize(item.frame) > 150 * ratio * 20
       ) {
         hasRectangle = true;
       }
       if (
         item.frame &&
-        getSize(item.frame) < 30 * 20 &&
+        getSize(item.frame) < 30 * ratio * 20 &&
         (item._class == 'triangle' || (item.points && item.points.length == 3))
       ) {
         hasTriangle = true;
@@ -293,7 +302,7 @@ function isBubble(node) {
       if (
         item.frame &&
         item._class == 'rectangle' &&
-        getSize(item.frame) < 30 * 20 &&
+        getSize(item.frame) < 30 * ratio * 20 &&
         (item.rotation == 45 || item.rotation == 315)
       ) {
         hasTriangle = true;

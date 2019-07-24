@@ -260,16 +260,16 @@ const ImageCombine = function() {
     return tmpJson;
   };
 
-  this.updateScaleProp = function(node, scale) {
-    let that = this;
-    node.frame.width = node.frame.width * scale;
-    node.frame.height = node.frame.height * scale;
-    if (node._class != 'shapeGroup' && node.layers && node.layers.length > 0) {
-      node.layers.forEach(item => {
-        that.updateScaleProp(item, scale);
-      });
-    }
-  };
+  // this.updateScaleProp = function(node, scale) {
+  //   let that = this;
+  //   node.frame.width = node.frame.width * scale;
+  //   node.frame.height = node.frame.height * scale;
+  //   if (node._class != 'shapeGroup' && node.layers && node.layers.length > 0) {
+  //     node.layers.forEach(item => {
+  //       that.updateScaleProp(item, scale);
+  //     });
+  //   }
+  // };
 
   // 将最小父层级对应的json
   this.getMinParentJson = function(param) {
@@ -494,28 +494,28 @@ const ImageCombine = function() {
     return this.readDirSync(outputDir, newFileName);
   };
 
-  this.changeJsonIds = function(tmpJson, preStr) {
-    let that = this;
-    tmpJson.do_objectID = preStr + tmpJson.do_objectID;
-    if (tmpJson.layers && tmpJson.layers.length > 0) {
-      tmpJson.layers.forEach(item => {
-        item.do_objectID = preStr + item.do_objectID;
-        if (item.layers && item.layers.length > 0) {
-          that.changeJsonIds(item, preStr);
-        }
-      });
-    }
-  };
+  // this.changeJsonIds = function(tmpJson, preStr) {
+  //   let that = this;
+  //   tmpJson.do_objectID = preStr + tmpJson.do_objectID;
+  //   if (tmpJson.layers && tmpJson.layers.length > 0) {
+  //     tmpJson.layers.forEach(item => {
+  //       item.do_objectID = preStr + item.do_objectID;
+  //       if (item.layers && item.layers.length > 0) {
+  //         that.changeJsonIds(item, preStr);
+  //       }
+  //     });
+  //   }
+  // };
 
-  this.updateLevelArr = function(imageItem) {
-    var levelArr = [];
-    that.pageJson.layers.forEach((item, index) => {
-      if (item.do_objectID == imageItem.id) {
-        levelArr.push(index);
-      }
-    });
-    imageItem.levelArr = levelArr;
-  };
+  // this.updateLevelArr = function(imageItem) {
+  //   var levelArr = [];
+  //   that.pageJson.layers.forEach((item, index) => {
+  //     if (item.do_objectID == imageItem.id) {
+  //       levelArr.push(index);
+  //     }
+  //   });
+  //   imageItem.levelArr = levelArr;
+  // };
 
   this.cloneJson = function(json) {
     return JSON.parse(JSON.stringify(json));
@@ -781,7 +781,7 @@ const ImageCombine = function() {
     // imgList.filter
     var that = this;
     // imgList = imgList.filter(function(item) {
-    //   return item.path.indexOf('82699732af10c8cf159511c08d828cd1')>-1;
+    //   return item.path.indexOf('57da51f5565ce468366c1d9deadb91fa')>-1;
     // });
     // imgList = imgList.slice(0,1);
     // imgList = [imgList[18]];
@@ -837,15 +837,15 @@ const ImageCombine = function() {
         break;
       }
     }
-    if (typeof artboardIndex == 'undefined') {
-      //缩略图情况下没levelArr，需自己找
-      for (var i = 0, ilen = that.pageJson.layers.length; i < ilen; i++) {
-        if (that.pageJson.layers[i].do_objectID == imgList[0].id) {
-          imgList[0]['levelArr'] = [i];
-          artboardIndex = i;
-        }
-      }
-    }
+    // if (typeof artboardIndex == 'undefined') {
+    //   //缩略图情况下没levelArr，需自己找
+    //   for (var i = 0, ilen = that.pageJson.layers.length; i < ilen; i++) {
+    //     if (that.pageJson.layers[i].do_objectID == imgList[0].id) {
+    //       imgList[0]['levelArr'] = [i];
+    //       artboardIndex = i;
+    //     }
+    //   }
+    // }
     let pageJsonOriginLength;
 
     //将多余的artboard去掉
@@ -859,7 +859,7 @@ const ImageCombine = function() {
       }
     }
 
-    artboardIndex = 0;
+    // artboardIndex = 0;
 
     let tmpPageJson = that.pageJson;
 
