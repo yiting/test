@@ -83,8 +83,8 @@ class H5Builder extends Builder {
 
   getResult() {
     return {
-      html: this.getTagString(),
-      css: this.getStyleString(),
+      uiString: this.getTagString(),
+      styleString: this.getStyleString(),
     };
   }
 
