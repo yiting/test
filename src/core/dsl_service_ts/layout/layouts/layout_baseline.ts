@@ -11,7 +11,7 @@ import Store from '../../helper/store';
 // 竖排: 竖排的处理逻辑是子节点在y轴并不相交
 // 横排: 非竖排的情况
 //
-// 横排的时候对QWidget, QImage, QText, QIcon, QShape的处理逻辑为:
+// 横排的时候对QWidget, QImage, QText的处理逻辑为:
 // （可继续优化, 基于对模型分析）
 // 1: 如果
 // s2: 其余的以绝对定位
@@ -28,7 +28,6 @@ class LayoutBaseLine {
    * @param {TreeNode} parent 树节点
    * @param {Array} nodes 树节点数组
    * @param {Array} models 对应的模型数组
-   * @param {Int} layoutType 布局的类型
    */
   handle(parent: any, nodes: any) {
     const that: any = this;

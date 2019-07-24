@@ -26,29 +26,15 @@ class H5Builder extends Builder {
 
   similarCssArr: any;
 
-  /* constructor(data: any, _options: any) {
-        super(data, _options);
-        // try {
-        //     // html
-        //     const tplHtmlPath = path.join(__dirname, 'tpl.html');
-        //     this._htmlFile = fs.readFileSync(tplHtmlPath, 'utf-8');
-        //     // test html
-        //     const tplTestPath = path.join(__dirname, 'test_tpl.html');
-        //     this._testFile = fs.readFileSync(tplTestPath, 'utf-8');
-        // } catch (e) {
-        //     Loger.error(`h5/builder.js [constructor]:${e}`);
-        // }
-    } */
-
   // 解析逻辑
   _parseData() {
-    Loger.debug('h5_builder.js [_parseClassName]');
+    Loger.debug('render/h5/builder.js [_parseClassName]');
     this._parseClassName();
 
-    Loger.debug('h5_builder.js [_parseCss]');
+    Loger.debug('render/h5/builder.js [_parseCss]');
     this._parseCss();
 
-    Loger.debug('h5_builder.js [_parseHtml]');
+    Loger.debug('render/h5/builder.js [_parseHtml]');
     this._parseHtml();
   }
 
@@ -93,6 +79,13 @@ class H5Builder extends Builder {
     this._styleString += SimilarCssDom.getCssString(this.similarCssArr);
     this._styleString += CssDom.getCssString(this.cssDom, this.similarCssArr);
     return this._styleString;
+  }
+
+  getResult() {
+    return {
+      uiString: this.getTagString(),
+      styleString: this.getStyleString(),
+    };
   }
 
   // 获取h5模板

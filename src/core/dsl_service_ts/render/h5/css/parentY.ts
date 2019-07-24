@@ -2,6 +2,6 @@
 export default {
   key: 'parentY',
   value() {
-    return this._abY - this.parent._abY;
+    return this.abY - this.parent.abY;
   },
 };

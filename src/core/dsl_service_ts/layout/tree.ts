@@ -3,9 +3,8 @@ import Utils from './utils';
 import Model from '../dsl2/model';
 import Constraints from '../helper/constraints';
 import Store from '../helper/store';
-import { debug } from 'util';
 
-/* function calColumn(layer: any[]) {
+function calColumn(layer: any[]) {
   layer.sort((a: any, b: any) => a.abY + a.abYops - b.abYops - b.abY);
   const rowNodes: any[] = [];
   const outer: any[] = [];
@@ -49,7 +48,7 @@ import { debug } from 'util';
     colNodes,
     rowNodes,
   };
-} */
+}
 
 const DSLOptions: any = {};
 /**
@@ -62,8 +61,6 @@ class Tree {
 
   _layoutData: {};
 
-  _layoutType: any;
-
   static LayerId: number;
 
   constructor(bodyModel: any) {
@@ -74,7 +71,14 @@ class Tree {
     this._treeData.set('parent', null);
     this._treeData.set('type', Common.QBody);
     this._treeData.set('abX', 0);
-    this._treeData.set('abXops', DSLOptions.designWidth);
+    this._treeData.set(
+      'abXops',
+      bodyModel.width > DSLOptions.designWidth
+        ? DSLOptions.designWidth
+        : bodyModel.width,
+    );
+    this._treeData.set('abY', 0);
+    this._treeData.set('abYops', bodyModel.height);
     this._treeData.set('isCalculate', true);
     this._treeData.set('styles', bodyModel.styles);
 
@@ -82,8 +86,6 @@ class Tree {
     this._modelData = {};
     // 布局模型信息储存
     this._layoutData = {};
-    // 布局形式
-    this._layoutType = null;
   }
 
   _row(parent: any) {
@@ -305,7 +307,6 @@ class Tree {
     const compareArr = [body];
     const leftArr = [];
     // 按面积排序
-
     arr
       .sort((a: any, b: any) => a.zIndex - b.zIndex)
       .sort((a: any, b: any) => b.width * b.height - a.width * a.height);
@@ -321,33 +322,25 @@ class Tree {
           if (
             // 父节点必须不是文本类型
             parent.type !== Common.QText &&
+            // 子节点不能分割线
+            child.modelName !== 'wg1-m1' &&
             // 层级关系
             child.zIndex >= parent.zIndex &&
-            /**
-             * 分割线逻辑
-             */
-            (((child.modelName === 'wg1-m1' || child.modelName === 'wg1-m2') &&
-              _utils.isYWrap(parent, child, -2) &&
-              _utils.isXWrap(parent, child)) || // 包含关系
-              /**
-               *  其他通用逻辑
-               */
-              (child.modelName !== 'wg1-m1' &&
-                child.modelName !== 'wg1-m2' &&
-                (_utils.isWrap(parent, child) ||
-                  // 水平相连、垂直包含关系
-                  (_utils.isXConnect(parent, child, -1) &&
-                    _utils.isYWrap(parent, child)) ||
-                  // 水平包含、垂直相连
-                  (parent.abY > child.abY &&
-                    _utils.isYConnect(parent, child, -1) &&
-                    _utils.isXWrap(parent, child)) ||
-                  // 相连不包含关系（占只4个角），两个面积差值较大
-                  (_utils.isConnect(parent, child, -1) &&
-                    !_utils.isXWrap(parent, child) &&
-                    !_utils.isYWrap(parent, child) &&
-                    parent.width / child.width > 2 &&
-                    parent.height / child.height > 2))))
+            // 包含关系
+            (_utils.isWrap(parent, child) ||
+              // 水平相连、垂直包含关系
+              (_utils.isXConnect(parent, child, -1) &&
+                _utils.isYWrap(parent, child)) ||
+              // 水平包含、垂直相连
+              (parent.abY > child.abY &&
+                _utils.isYConnect(parent, child, -1) &&
+                _utils.isXWrap(parent, child)) ||
+              // 相连不包含关系（占只4个角），两个面积差值较大
+              (_utils.isConnect(parent, child, -1) &&
+                !_utils.isXWrap(parent, child) &&
+                !_utils.isYWrap(parent, child) &&
+                parent.width / child.width > 2 &&
+                parent.height / child.height > 2))
           ) {
             const node = Tree._add(child, parent);
             compareArr.unshift(node);
@@ -407,10 +400,10 @@ class Tree {
     node.set('parent', parent);
     parent.set('children', parent.children.concat(node));
     /**
-     * 如果父节点为QShape或QImage时，添加子节点后，父节点模型类型改为layer，
-     * 让父节点取代使用QShape或QImage模板
+     * 如果父节点为QImage时，添加子节点后，父节点模型类型改为layer，
+     * 让父节点取代使用QImage模板
      * */
-    if (parent.type === Common.QShape || parent.type === Common.QImage) {
+    if (parent.type === Common.QImage) {
       parent.set('modelName', 'layer');
     }
     // 如果父节点为widget，则当前节点绝对定位

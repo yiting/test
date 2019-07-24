@@ -15,6 +15,7 @@ import paddingLeft from './css/paddingLeft';
 import paddingRight from './css/paddingRight';
 import paddingTop from './css/paddingTop';
 import paddingBottom from './css/paddingBottom';
+import padding from './css/padding';
 import top from './css/top';
 import right from './css/right';
 import bottom from './css/bottom';
@@ -56,10 +57,11 @@ export default {
     // marginRight,
     // marginBottom,
     // marginLeft,
-    paddingTop,
-    paddingBottom,
-    paddingLeft,
-    paddingRight,
+    // paddingTop,
+    // paddingBottom,
+    // paddingLeft,
+    // paddingRight,
+    padding,
     margin,
     // 高宽
     width,

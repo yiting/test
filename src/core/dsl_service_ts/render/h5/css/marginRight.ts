@@ -7,6 +7,10 @@ export default {
       return null;
     }
 
+    // 如果为文本节点子节点
+    if (this.parent && this.parent.modelName == 'em1-m1') {
+      return null;
+    }
     if (this._isParentHorizontal()) {
       // 横排计算与上一节点距离
       const nextNode = this._nextNode();
@@ -26,9 +30,9 @@ export default {
       }
 
       if (nextNode) {
-        return nextNode._abX - this._abXops;
+        return nextNode.abX - this.abXops;
       }
-      return this.parent._abXops - this._abXops;
+      return this.parent.abXops - this.abXops;
     }
     // 竖排计算与父节点距离
     // 如果水平居中、或水平右对齐
@@ -51,7 +55,7 @@ export default {
       this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.End
     ) {
-      return this.parent._abXops - this._abXops;
+      return this.parent.abXops - this.abXops;
     }
     return null;
   },

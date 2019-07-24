@@ -9,17 +9,13 @@ import { debug } from 'util';
 class BaseModel {
   // 基础属性
   _textNum: number; // 构成模型的文字节点数
-  _iconNum: number; // 构成模型的图标节点数
   _imageNum: number; // 构成模型的图片节点数
-  _shapeNum: number; // 构成模型的图形节点数
   _elementNum: number; // 构成模型的总节点数
 
   // 用于节点匹配时的记录
   _nodes: any[]; // 需要进行匹配的元素
   _nodeTexts: any[]; // 匹配的元素中文字元素
-  _nodeIcons: any[]; // 匹配的元素中图标元素
   _nodeImages: any[]; // 匹配的元素中图片元素
-  _nodeShapes: any[]; // 酦醅的元素中图形元素
   _matchNodes: any; // 用于记录模板中对应的节点, 通过key-value形式返回匹配的节点数据
 
   // 匹配后属性记录
@@ -44,35 +40,26 @@ class BaseModel {
   /**
    * @param {String} name 组件模型的名称
    * @param {Int} textNum 组成模型的文本节点的数量
-   * @param {Int} iconNum 组成模型的icon节点的数量
    * @param {Int} imageNum 组成模型的图片节点的数量
-   * @param {Int} shapeNum 组成模型的图形节点的数量
    * @param {Int} priority 模型的优先级
    * @param {String} modelType 模型的类别
    */
   constructor(
     name: string,
     textNum: number,
-    iconNum: number,
     imageNum: number,
-    shapeNum: number,
     priority: number,
     modelType: string,
   ) {
     // 元素模型的基础属性
     this._textNum = textNum || 0;
-    this._iconNum = iconNum || 0;
     this._imageNum = imageNum || 0;
-    this._shapeNum = shapeNum || 0;
-    this._elementNum =
-      this._textNum + this._iconNum + this._imageNum + this._shapeNum;
+    this._elementNum = this._textNum + this._imageNum;
 
     // 当传进节点进行匹配时节点属性的记录
     this._nodes = [];
     this._nodeTexts = [];
-    this._nodeIcons = [];
     this._nodeImages = [];
-    this._nodeShapes = [];
     this._matchNodes = {};
 
     // 元素模型的基础属性
@@ -103,9 +90,7 @@ class BaseModel {
   _initMatchNode(nodes: any[]): void {
     this._nodes = nodes || [];
     this._nodeTexts = [];
-    this._nodeIcons = [];
     this._nodeImages = [];
-    this._nodeShapes = [];
     this._matchNodes = {};
 
     nodes.forEach(nd => {
@@ -113,14 +98,8 @@ class BaseModel {
         case Common.QText:
           this._nodeTexts.push(nd);
           break;
-        case Common.QIcon:
-          this._nodeIcons.push(nd);
-          break;
         case Common.QImage:
           this._nodeImages.push(nd);
-          break;
-        case Common.QShape:
-          this._nodeShapes.push(nd);
           break;
         default:
       }
@@ -254,27 +233,11 @@ class BaseModel {
   }
 
   /**
-   * 获取这个组件的Icon元素数量
-   * @returns {Int}
-   */
-  getIconNumber(): number {
-    return this._iconNum;
-  }
-
-  /**
    * 获取这个组件的图片元素数量
    * @returns {Int}
    */
   getImageNumber(): number {
     return this._imageNum;
-  }
-
-  /**
-   * 获取这个组件的图形元素数量
-   * @returns {Int}
-   */
-  getShapeNumber(): number {
-    return this._shapeNum;
   }
 
   /**
@@ -292,29 +255,12 @@ class BaseModel {
   getTextNodes(): any[] {
     return this._nodeTexts;
   }
-
-  /**
-   * 从匹配的节点中刷选出QIcon元素
-   * @returns {Array}
-   */
-  getIconNodes(): any[] {
-    return this._nodeIcons;
-  }
-
   /**
    * 从匹配的节点中刷选出QImage元素
    * @returns {Array}
    */
   getImageNodes(): any[] {
     return this._nodeImages;
-  }
-
-  /**
-   * 从匹配的节点中刷选出QShape元素
-   * @returns {Array}
-   */
-  getShapeNodes(): any[] {
-    return this._nodeShapes;
   }
 
   /**
@@ -353,18 +299,8 @@ class ElementModel extends BaseModel {
           // nd.canLeftFlex = false;
           // nd.canRightFlex = true;
           break;
-        case Common.QIcon:
-          nd.modelName = 'em1-m2';
-          nd.canLeftFlex = false;
-          nd.canRightFlex = false;
-          break;
         case Common.QImage:
-          nd.modelName = 'em1-m3';
-          nd.canLeftFlex = false;
-          nd.canRightFlex = false;
-          break;
-        case Common.QShape:
-          nd.modelName = 'em1-m4';
+          nd.modelName = 'em1-m2';
           nd.canLeftFlex = false;
           nd.canRightFlex = false;
           break;
@@ -384,23 +320,19 @@ class ElementXModel extends BaseModel {
   /**
    * @param {String} name 组件模型的名称
    * @param {Int} textNum 组成模型的文本节点的数量
-   * @param {Int} iconNum 组成模型的icon节点的数量
    * @param {Int} imageNum 组成模型的图片节点的数量
-   * @param {Int} shapeNum 组成模型的图形节点的数量
    * @param {Int} priority 模型的优先级
    * @param {String} modelType 模型的类别
    */
   constructor(
     name: string,
     textNum: number,
-    iconNum: number,
     imageNum: number,
-    shapeNum: number,
     priority: number,
     modelType: string,
   ) {
     // 定义一个元素模型的基础属性
-    super(name, textNum, iconNum, imageNum, shapeNum, priority, modelType);
+    super(name, textNum, imageNum, priority, modelType);
 
     this._matchDatas = []; // 可变节点模型用于储存匹配了的MatchData数据
   }

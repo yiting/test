@@ -1,29 +1,29 @@
-// (1节点基础元素)图标Icon
-// (QIcon)
-// 
+// (1节点基础元素)图片Image
+// (QImage)
+//
 // 判断标准
-// 1, 只包含一个QIcon
+// 1, 只包含一个QImage
 import Common from '../../common';
 import Model from '../../model';
 import Feature from '../../feature';
 
 class EM1M2 extends Model.ElementModel {
   constructor() {
-    super('em1-m2', 0, 1, 0, 0, Common.LvD, Common.QIcon);
+    super('em1-m2', 0, 1, Common.LvD, Common.QImage);
 
     this.canLeftFlex = false;
     this.canRightFlex = false;
   }
 
   _initNode() {
-    let icons = this.getIconNodes();
-    this._matchNodes['0'] = icons[0];
+    let images = this.getImageNodes();
+    this._matchNodes['0'] = images[0];
   }
 
-  // 节点必须是QIcon节点
+  // 节点必须是QImage节点
   regular1() {
     const nodes = this.getNodes();
-    return Feature.propertyNodeAreQIcon(nodes);
+    return Feature.propertyNodeAreQImage(nodes);
   }
 }
 

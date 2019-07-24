@@ -10,7 +10,6 @@ class LayoutSort {
    * @param {TreeNode} parent 树节点
    * @param {Array} nodes 树节点数组
    * @param {Array} models 对应的模型数组
-   * @param {Int} layoutType 布局的类型
    */
   static handle(parent: any, nodes: any, models: any) {
     // if (this._isVerticalLayout(nodes)) {

@@ -16,9 +16,7 @@ export default {
 
   // 模型的类型
   QText: 'QText',
-  QIcon: 'QIcon',
   QImage: 'QImage',
-  QShape: 'QShape',
   QWidget: 'QWidget',
   QLayer: 'QLayer', // 包含层
   QBody: 'QBody', // 跟节点

@@ -1,6 +1,6 @@
-// (1节点基础元素)图片Image
+// (1节点基础元素)图片Icon
 // (QImage)
-// 
+//
 // 判断标准
 // 1, 只包含一个QImage
 import Common from '../../common';
@@ -9,7 +9,7 @@ import Feature from '../../feature';
 
 class EM1M3 extends Model.ElementModel {
   constructor() {
-    super('em1-m3', 0, 0, 1, 0, Common.LvD, Common.QImage);
+    super('em1-m3', 0, 1, Common.LvC, Common.QImage);
 
     this.canLeftFlex = false;
     this.canRightFlex = false;
@@ -24,6 +24,13 @@ class EM1M3 extends Model.ElementModel {
   regular1() {
     const nodes = this.getNodes();
     return Feature.propertyNodeAreQImage(nodes);
+  }
+  regular2() {
+    const icon = this.getNodes()[0];
+    return (
+      Feature.sizeHeightLess(icon, Common.IconSize) &&
+      Feature.sizeWidthLess(icon, Common.IconSize)
+    );
   }
 }
 

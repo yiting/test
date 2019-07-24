@@ -15,11 +15,11 @@ export default {
   },
   // 在Y轴上是包含关系
   isYWrap(a: any, b: any, dir = 0) {
-    return Utils.isYWrap(a._abY, a._abYops, b._abY, b._abYops, dir);
+    return Utils.isYWrap(a.abY, a.abYops, b.abY, b.abYops, dir);
   },
   // 在X轴上是包含关系
   isXWrap(a: any, b: any, dir = 0) {
-    return Utils.isXWrap(a._abX, a._abXops, b._abX, b._abXops, dir);
+    return Utils.isXWrap(a.abX, a.abXops, b.abX, b.abXops, dir);
   },
   // 相连关系
   isConnect(a: any, b: any, dir = 0) {
@@ -27,11 +27,11 @@ export default {
   },
   // 水平方向相连
   isXConnect(a: any, b: any, dir = 0) {
-    return Utils.isXConnect(a._abX, a._abXops, b._abX, b._abXops, dir);
+    return Utils.isXConnect(a.abX, a.abXops, b.abX, b.abXops, dir);
   },
   // 垂直方向相连
   isYConnect(a: any, b: any, dir = 0) {
-    return Utils.isYConnect(a._abY, a._abYops, b._abY, b._abYops, dir);
+    return Utils.isYConnect(a.abY, a.abYops, b.abY, b.abYops, dir);
   },
   /**
    * 是否垂直
@@ -111,21 +111,17 @@ export default {
       abY: Number.POSITIVE_INFINITY,
       abYops: Number.NEGATIVE_INFINITY,
       abXops: Number.NEGATIVE_INFINITY,
-      _abX: 0,
-      _abY: 0,
-      _abYops: 0,
-      _abXops: 0,
       width: 0,
       height: 0,
     };
     nodes.forEach((d: any, i: any) => {
-      o._abX = d._abX < o._abX ? d._abX : o._abX;
-      o._abY = d._abY < o._abY ? d._abY : o._abY;
-      o._abYops = o._abYops < d._abYops ? d._abYops : o._abYops;
-      o._abXops = o._abXops < d._abXops ? d._abXops : o._abXops;
+      o.abX = d.abX < o.abX ? d.abX : o.abX;
+      o.abY = d.abY < o.abY ? d.abY : o.abY;
+      o.abYops = o.abYops < d.abYops ? d.abYops : o.abYops;
+      o.abXops = o.abXops < d.abXops ? d.abXops : o.abXops;
     });
-    o.height = o._abYops - o._abY;
-    o.width = o._abXops - o._abX;
+    o.height = o.abYops - o.abY;
+    o.width = o.abXops - o.abX;
     return o;
   },
   calculateBaseLine(vdom: any) {
@@ -135,8 +131,8 @@ export default {
     let Yops = 0;
     let Xctr = 0;
     let Yctr = 0;
-    const pXctr = (vdom._abX + vdom._abXops) / 2;
-    const pYctr = (vdom._abY + vdom._abYops) / 2;
+    const pXctr = (vdom.abX + vdom.abXops) / 2;
+    const pYctr = (vdom.abY + vdom.abYops) / 2;
     let nodeCount = 0;
     const errorCoefficient = 2; // 误差系数
     vdom.children.forEach((node: any) => {
@@ -148,12 +144,12 @@ export default {
         return;
       }
       nodeCount += 1;
-      X += Math.abs(node._abX - vdom._abX);
-      Y += Math.abs(node._abY - vdom._abY);
-      Xops += Math.abs(vdom._abXops - node._abXops);
-      Yops += Math.abs(vdom._abYops - node._abYops);
-      Xctr += Math.abs(pXctr - (node._abX + node._abXops) / 2);
-      Yctr += Math.abs(pYctr - (node._abY + node._abYops) / 2);
+      X += Math.abs(node.abX - vdom.abX);
+      Y += Math.abs(node.abY - vdom.abY);
+      Xops += Math.abs(vdom.abXops - node.abXops);
+      Yops += Math.abs(vdom.abYops - node.abYops);
+      Xctr += Math.abs(pXctr - (node.abX + node.abXops) / 2);
+      Yctr += Math.abs(pYctr - (node.abY + node.abYops) / 2);
     });
     const hStart = Math.abs(X / nodeCount) < errorCoefficient;
     const hCenter = Math.abs(Xctr / nodeCount) < errorCoefficient;
