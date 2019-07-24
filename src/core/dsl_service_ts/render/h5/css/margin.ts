@@ -35,7 +35,6 @@ export default {
             Math.abs(this.parent.abXops - this.abXops),
         ) < 10)
     ) {
-      console.log(this.id);
       css[1] = css[3] = 'auto';
     }
     css.forEach((item: any, key: number) => {

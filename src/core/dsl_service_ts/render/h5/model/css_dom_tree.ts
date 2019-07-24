@@ -83,24 +83,41 @@ class CssDom extends VDom {
   _hasWidth() {
     // 约束-固定宽度
     if (
-      this.constraints.LayoutFixedWidth === Constraints.LayoutFixedWidth.Fixed
+      this.constraints.LayoutFixedWidth === Constraints.LayoutFixedWidth.Default
     ) {
-      return true;
+      return false;
     }
-    // 图片
-    if (this.type === Common.QImage || !!this.path) {
-      return true;
-    }
-    // 多行
-    if (this.isMultiline) {
+    // 单行
+    if (
+      this.type == Common.QText &&
+      (!this.isMultiline || this._isParentVertical())
+    ) {
       // 如果高度高于行高，则为多行，固定宽度
-      return true;
+      return false;
     }
-    // 垂直排列
-    if (this._isParentVertical()) {
-      return true;
-    }
-    return false;
+    return true;
+
+    /*   if (
+        this.constraints.LayoutFixedWidth === Constraints.LayoutFixedWidth.Fixed
+      ) {
+        return true;
+      }
+      // 图片
+      if (this.type === Common.QImage || !!this.path) {
+        return true;
+      }
+      // 多行
+      if (this.isMultiline) {
+        // 如果高度高于行高，则为多行，固定宽度
+        return true;
+      }
+      // 垂直排列
+      if (this._isParentVertical()) {
+        return true;
+      }
+  
+  
+      return false; */
   }
 
   _isTextCenter() {
@@ -142,52 +159,14 @@ class CssDom extends VDom {
   }
 
   /**
-   * 父节点是否属于相对定位
-   */
-  _isRelative() {
-    if (
-      this.parent &&
-      this.parent.constraints.LayoutPosition ===
-        Constraints.LayoutPosition.Absolute
-    ) {
-      return true;
-    }
-    return false;
-  }
-
-  /**
-   * 节点是否为固定宽度节点
-   * @param {CssDom} node CssDom节点
-   */
-  _isFixedHeight(node: any) {
-    let result = false;
-
-    if (!this.modelName) {
-      // 不是模板元素, 默认做最大扩展
-      return false;
-    }
-
-    if (
-      this.constraints.LayoutFixedHeight &&
-      this.constraints.LayoutFixedHeight === Constraints.LayoutFixedHeight.Fixed
-    ) {
-      result = true;
-    } else if (node.modelName) {
-      // 有node.modelName 则为非模板生成的元素,可以认为是固定高
-      result = true;
-    }
-    return result;
-  }
-
-  /**
    * 判断是否使用paddingTop，如果是垂直布局，则用paddingTop，则返回第一个非绝对定位节点
    */
   _usePaddingTop() {
-    if (this._isAbsolute()) {
-      return false;
-    }
     if (
-      this.constraints.LayoutDirection === Constraints.LayoutDirection.Vertical
+      this.constraints.LayoutDirection ===
+        Constraints.LayoutDirection.Vertical &&
+      this.constraints.LayoutJustifyContent ===
+        Constraints.LayoutJustifyContent.Start
     ) {
       // parent.children.find(nd => !nd._isAbsolute());
       return this._getFirstChild();
@@ -196,6 +175,8 @@ class CssDom extends VDom {
     if (
       this.constraints.LayoutDirection ===
         Constraints.LayoutDirection.Horizontal &&
+      this.constraints.LayoutAlignItems ===
+        Constraints.LayoutAlignItems.Start &&
       this.children.length === 1 &&
       this.children[0].constraints.LayoutSelfPosition !==
         Constraints.LayoutSelfPosition.Absolute
