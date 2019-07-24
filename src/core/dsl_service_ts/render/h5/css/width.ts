@@ -5,7 +5,10 @@ export default {
     // let constraints: any = this.constraints;
     const _hasWidth = this._hasWidth();
     if (_hasWidth) {
-      return Math.abs(this.abXops - this.abX);
+      const width = Math.abs(this.abXops - this.abX);
+      const parentWidth =
+        this.parent && Math.abs(this.parent.abXops - this.parent.abX);
+      return parentWidth === width ? '100%' : width;
     }
     return null;
   },

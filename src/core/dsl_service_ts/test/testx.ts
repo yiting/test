@@ -25,9 +25,9 @@ const value: any = dslServer.process(
 // // 输出文件
 Render.outputFileWithPath(
   Path.join(__dirname, './output/index.html'),
-  value.html,
+  value.uiString,
 );
 Render.outputFileWithPath(
   Path.join(__dirname, './output/index.css'),
-  value.css,
+  value.styleString,
 );
