@@ -44,18 +44,30 @@ class LayoutEquality {
       _isAllSameModel && LayoutEquality._isEqualityCenter(flexNodes, parent);
     // 计算两端对齐结果
     const aroundArr = LayoutEquality._isAround(flexNodes);
-    // 计算前节点内容是否中对齐等分
+    /**
+     * 其他衡量依据
+     */
+    // 判断前节点内容是否中对齐等分
     const prevLineIsJustifyCenter =
-      centerSpace && LayoutEquality._prevLineIsJustifyCenter(flexNodes, parent);
+      centerSpace &&
+      LayoutEquality._calLineIsJustify(flexNodes, parent, -1, 'center');
+    const prevLineIsJustifyLeft =
+      centerSpace &&
+      LayoutEquality._calLineIsJustify(flexNodes, parent, -1, 'left');
     const nextLineIsJustifyCenter =
-      centerSpace && LayoutEquality._nextLineIsJustifyCenter(flexNodes, parent);
-    // 当前节点是否居中等分
+      centerSpace &&
+      LayoutEquality._calLineIsJustify(flexNodes, parent, 1, 'center');
+    const nextLineIsJustifyLeft =
+      centerSpace &&
+      LayoutEquality._calLineIsJustify(flexNodes, parent, 1, 'left');
+    // 判断当前节点是否居中等分
     const isJustifyAround =
       centerSpace && LayoutEquality._isJustifyAround(flexNodes, parent);
 
     if (
       // 如果有中心间距，并且居中|与上一行对齐|与下一行对齐
       centerSpace &&
+      (!nextLineIsJustifyLeft && !prevLineIsJustifyLeft) &&
       (isJustifyAround || prevLineIsJustifyCenter || nextLineIsJustifyCenter)
     ) {
       LayoutEquality._adjustCenterPos(
@@ -135,67 +147,36 @@ class LayoutEquality {
         Constraints.LayoutSelfHorizontal.Right;
     }
   }
-  static _nextLineIsJustifyCenter(nodes: any, node: any) {
+  static _calLineIsJustify(
+    nodes: any,
+    node: any,
+    distance: number,
+    align: string,
+  ) {
     if (!node.parent) {
       return false;
     }
     const nodeIndex = node.parent.children.indexOf(node);
-    const next = node.parent.children[nodeIndex + 1];
-    const nextChildren = next && LayoutEquality.filterFlexNodes(next.children);
+    const line = node.parent.children[nodeIndex + distance];
+    const lineChildren = line && LayoutEquality.filterFlexNodes(line.children);
     const result: any[] = [];
     return (
-      nextChildren &&
-      nextChildren.length == nodes.length &&
+      lineChildren &&
+      lineChildren.length == nodes.length &&
       nodes.every((nd: any, i: number) => {
-        const pd = nextChildren[i];
+        const pd = lineChildren[i];
         result.push({
           abX: pd.abX,
           abXops: pd.abXops,
         });
-        return (
-          Math.abs((nd.abX + nd.abXops - (pd.abX + pd.abXops)) / 2) <
-          ErrorCoefficient
-        );
-      }) &&
-      result
-    );
-  }
-  static _prevLineIsJustifyCenter(nodes: any, node: any) {
-    if (!node.parent) {
-      return false;
-    }
-    const nodeIndex = node.parent.children.indexOf(node);
-    const prev = node.parent.children[nodeIndex - 1];
-    const prevChildren = prev && LayoutEquality.filterFlexNodes(prev.children);
-    const result: any[] = [];
-    return (
-      prevChildren &&
-      prevChildren.length == nodes.length &&
-      nodes.every((nd: any, i: number) => {
-        const pd = prevChildren[i];
-        result.push({
-          abX: pd.abX,
-          abXops: pd.abXops,
-        });
-        return (
-          Math.abs((nd.abX + nd.abXops - (pd.abX + pd.abXops)) / 2) <
-          ErrorCoefficient
-        );
-        /* 
-        // 计算是否对齐函数
-        const range = .1
-        const ndC = (nd.abX + nd.abXops) / 2
-        const ndCX = ndC - (nd.abXops - nd.abX) * range
-        const ndCXops = ndC + (nd.abXops - nd.abX) * range
-        const pdC = (pd.abX + pd.abXops) / 2
-        const pdCX = pdC - (pd.abXops - pd.abX) * range
-        const pdCXops = pdC + (pd.abXops - pd.abX) * range
-        if (
-          (ndCX > pdCX && ndCXops < pdCXops) ||
-          (ndCX < pdCX && ndCXops > pdCXops)
-        ) {
-          return true;
-        } */
+        if (align === 'center') {
+          return (
+            Math.abs((nd.abX + nd.abXops - (pd.abX + pd.abXops)) / 2) <
+            ErrorCoefficient
+          );
+        } else if (align === 'left') {
+          return Math.abs((nd.abX - pd.abX) / 2) < ErrorCoefficient;
+        }
       }) &&
       result
     );
@@ -281,7 +262,6 @@ class LayoutEquality {
   static _isEqualityLeft(nodes: any, parent: any) {
     // 左右间距判断
     const firstNode = nodes[0];
-    const secondNode = nodes[1];
     const lastNode = nodes[nodes.length - 1];
     const leftSide = firstNode.abX - parent.abX;
     const rightSide = leftSide;
@@ -314,14 +294,14 @@ class LayoutEquality {
 
     //  如果末节点的右边界在父节点的padding-right内，则裁剪“假设宽度”maybeDir
     if (lastNodeAbXops <= parent.abXops && lastNodeAbXops > paddingRightAbX) {
-      maybeDir = maybeDir - (lastNodeAbXops - paddingRightAbX);
-    }
-    // 验证新节点都包含原节点范围
-    const isContain = nodes.every((nd: any) => {
-      return maybeDir > nd.abXops - nd.abX;
-    });
-    if (!isContain) {
-      return false;
+      const shrinkDir = maybeDir - (lastNodeAbXops - paddingRightAbX);
+      // 验证新节点都包含原节点范围
+      const isContain = nodes.every((nd: any) => {
+        return shrinkDir >= nd.abXops - nd.abX;
+      });
+      if (isContain) {
+        maybeDir = shrinkDir;
+      }
     }
     return maybeDir;
   }
