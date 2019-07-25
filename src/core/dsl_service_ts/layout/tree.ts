@@ -266,8 +266,9 @@ class Tree {
 
       if (
         arr.length === 1 &&
-        (firstNode.type === Common.QWidget ||
-          firstNode.type === Common.QLayer ||
+        (firstNode.type !== Common.QText ||
+          // firstNode.type === Common.QWidget ||
+          // firstNode.type === Common.QLayer ||
           firstNode.constraints['LayoutSelfPosition'] ===
             Constraints.LayoutSelfPosition.Absolute)
       ) {
