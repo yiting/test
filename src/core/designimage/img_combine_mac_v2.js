@@ -859,7 +859,8 @@ const ImageCombine = function() {
       }
     }
 
-    // artboardIndex = 0;
+    //去掉多余的artboard后，artboard只有1个了，artboardIndex改为0
+    artboardIndex = 0;
 
     let tmpPageJson = that.pageJson;
 
