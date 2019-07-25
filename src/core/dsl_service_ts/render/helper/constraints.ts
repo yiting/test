@@ -19,7 +19,8 @@ function _parseConstraints(vdom: any) {
     _supplementConstraints(vdom);
   } catch (e) {
     Loger.error(
-      `css_dom.js [_parseConstraints] ${e},params[vdom.id:${vdom && vdom.id}]`,
+      `render/helper/constraints [_parseConstraints] ${e},params[vdom.id:${vdom &&
+        vdom.id}]`,
     );
   }
 }

@@ -3,6 +3,7 @@ import QLog from '../../log/qlog';
 
 import CssBoundary from '../helper/boundary';
 import CssConstraints from '../helper/constraints';
+import TextRevise from '../helper/textRevise';
 // import css_combo_extend_tree from './css_combo_extend_tree';
 
 import CssDom from './model/css_dom_tree';
@@ -89,19 +90,19 @@ const _buildTree = function(parent: any, data: any) {
 };
 // 主流程
 const process = function(data: any) {
-  // 构建cssTree并返回
-  Loger.debug('dom_css.js [process]');
-
   // 构建树
-  Loger.debug('dom_css.js [_buildTree]');
+  Loger.debug('render/h5/dom_css [_buildTree]');
   cssDomTree = _buildTree(null, data);
   // 计算约束
-  Loger.debug('dom_css.js [_parseConstraints]');
+  Loger.debug('render/h5/dom_css [CssConstraints]');
   CssConstraints(cssDomTree);
 
   // 调整边距
-  Loger.debug('dom_css.js [_parseBoundary]');
+  Loger.debug('render/h5/dom_css [CssBoundary]');
   CssBoundary(cssDomTree);
+
+  Loger.debug('render/h5/dom_css [TextRevise]');
+  TextRevise(cssDomTree);
   return cssDomTree;
 };
 export default {

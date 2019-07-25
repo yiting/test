@@ -14,7 +14,6 @@ import Store from '../../helper/store';
 import tpl from './tpl';
 import testTpl from './test_tpl';
 import * as renderConfig from '../config.json';
-
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 class H5Builder extends Builder {

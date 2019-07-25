@@ -4,6 +4,7 @@ import Dom from './dom';
 import QLog from '../../log/qlog';
 import CssConstraints from '../helper/constraints';
 import CssBoundary from '../helper/boundary';
+import TextRevise from '../helper/textRevise';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
@@ -13,16 +14,19 @@ class ArkBuilder extends Builder {
   dom: any;
   // 解析逻辑
   _parseData() {
-    Loger.debug('h5_builder.js [_parseXml]');
+    Loger.debug('render/ark/builder [_parseXml]');
     this._parseXml();
 
     // 计算约束
-    Loger.debug('css_dom.js [_parseConstraints]');
+    Loger.debug('render/ark/builder [CssConstraints]');
     CssConstraints(this.dom);
 
     // 调整边距
-    Loger.debug('css_dom.js [_parseBoundary]');
+    Loger.debug('render/ark/builder [CssBoundary]');
     CssBoundary(this.dom);
+
+    Loger.debug('render/ark/builder [TextRevise]');
+    TextRevise(this.dom);
   }
 
   // 解析html
