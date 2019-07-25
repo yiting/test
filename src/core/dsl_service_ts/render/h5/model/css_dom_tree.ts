@@ -180,13 +180,11 @@ class CssDom extends VDom {
     if (
       this.constraints.LayoutDirection ===
         Constraints.LayoutDirection.Horizontal &&
-      this.constraints.LayoutAlignItems ===
-        Constraints.LayoutAlignItems.Start &&
+      (this.constraints.LayoutAlignItems ===
+        Constraints.LayoutAlignItems.Start ||
+        this._getFirstChild()) &&
       flexChild.length === 1
     ) {
-      return this._getFirstChild();
-    }
-    if (!this._hasHeight()) {
       return this._getFirstChild();
     }
   }
