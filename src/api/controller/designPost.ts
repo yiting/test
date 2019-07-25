@@ -14,24 +14,35 @@ export async function init(context: Context) {
   let initData: any = {};
   if (fileType === 'sketch') {
     const fileName = Date.now().toString();
-    await downloadFile(data.pagesPath, fileName, TEMP_DIRECTORY);
-    const pages = await unzipFile(fileName, TEMP_DIRECTORY);
-    deleteZipFile(fileName, TEMP_DIRECTORY);
-    data.pages = pages;
-    initData = DesignJson.init(fileType, data);
-    writeData(initData.data, fileName, TEMP_DIRECTORY);
-    initData.data = {
-      dataToken: fileName,
-    };
+    try {
+      await downloadFile(data.pagesPath, fileName, TEMP_DIRECTORY);
+      const pages = await unzipFile(fileName, TEMP_DIRECTORY);
+      deleteZipFile(fileName, TEMP_DIRECTORY);
+      data.pages = pages;
+      initData = DesignJson.init(fileType, data);
+      writeData(initData.data, fileName, TEMP_DIRECTORY);
+      initData.data = {
+        dataToken: fileName,
+      };
+    } catch (error) {
+      console.error(error);
+    }
   }
   res.body = initData;
 }
 export async function parse(context: Context) {
   const { response: res, request: req } = context;
   let { artboardId, data, fileType } = req.body;
-  // sketch特殊处理
-  data = require(`${TEMP_DIRECTORY}/${data.dataToken}/${data.dataToken}.json`);
-  const parseData = DesignJson.parse(artboardId, data);
+  let parseData: any = {};
+  try {
+    // sketch特殊处理
+    data = require(`${TEMP_DIRECTORY}/${data.dataToken}/${
+      data.dataToken
+    }.json`);
+    parseData = DesignJson.parse(artboardId, data);
+  } catch (error) {
+    console.error(error);
+  }
   res.body = parseData;
 }
 function writeData(data: any, filename: string, directory: string) {

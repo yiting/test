@@ -59,13 +59,13 @@ let allScoreData = [];
  * 优化树的结构
  * @param {QObject} node
  */
-let process = function(node, aiData, ruleMap) {
+let process = function(node, option) {
   try {
     let ruleConfig;
-    if (ruleMap) {
-      ruleConfig = getRuleConfig(ruleMap, aiData);
+    if (option.ruleMap) {
+      ruleConfig = getRuleConfig(option.ruleMap, option);
     } else {
-      ruleConfig = getRuleConfig(RuleMap, aiData);
+      ruleConfig = getRuleConfig(RuleMap, option);
     }
     // ruleConfig.aiArr = sliceArr;
     ImageMergeProcessor.init(ruleConfig);
@@ -283,17 +283,19 @@ function mergeJudge(nodelist, ruleConfig, root) {
   // 对每条边进行评分
   let groups = [];
   let relations = [];
+  const { ratio = 1 } = ruleConfig;
   for (let i = 0; i < nodelist.length; i++) {
     let node = nodelist[i];
     for (let j = i + 1; j < nodelist.length; j++) {
       let brother = nodelist[j];
-      var isMergeData = nodesMergeJudgeode.isMerge(
+      var isMergeData = nodesMergeJudgeode.isMerge({
         node,
         brother,
         ruleConfig,
         root,
-      );
-      if (isMergeData.isCombine == true) {
+        ratio,
+      });
+      if (isMergeData.isCombine) {
         allScoreData.push({
           nodes: [
             {
@@ -328,7 +330,8 @@ function mergeJudge(nodelist, ruleConfig, root) {
   });
   return groups;
 }
-function getRuleConfig(ruleMap, aiData) {
+function getRuleConfig(ruleMap, option) {
+  const { aiData, rate } = option;
   let ruleConfig = {};
   ruleMap.data.forEach(item => {
     ruleConfig[item.type] = {
@@ -338,6 +341,7 @@ function getRuleConfig(ruleMap, aiData) {
   });
   ruleConfig.score = ruleMap.Threshold || 90;
   let aiArr = aiData && Array.isArray(aiData.AIImgData) ? aiData.AIImgData : [];
+  ruleConfig.ratio = rate;
   ruleConfig.aiArr = aiArr
     .filter(item => item.det === 'icon')
     .map(item => {

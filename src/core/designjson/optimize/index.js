@@ -6,12 +6,10 @@ const structure = require('./structure');
  * 优化器
  * @param {*} node 优化节点
  * @param {Object} option 优化配置
- * @param {Object} option.aiData ai数据
- * @param {Object} option.ruleMap 合图规则
  */
-let optimize = (node, { aiData, ruleMap }) => {
+let optimize = (node, option) => {
   structure(node);
-  merge(node, aiData, ruleMap);
+  merge(node, option);
   // calculator(node);
   // transfer(node);
 };
