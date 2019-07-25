@@ -171,16 +171,22 @@ class CssDom extends VDom {
       // parent.children.find(nd => !nd._isAbsolute());
       return this._getFirstChild();
     }
+    const flexChild = this.children.filter(
+      (nd: any) =>
+        nd.constraints.LayoutSelfPosition !==
+        Constraints.LayoutSelfPosition.Absolute,
+    );
     // 水平布局、唯一子节点、节点非绝对定位
     if (
       this.constraints.LayoutDirection ===
         Constraints.LayoutDirection.Horizontal &&
       this.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.Start &&
-      this.children.length === 1 &&
-      this.children[0].constraints.LayoutSelfPosition !==
-        Constraints.LayoutSelfPosition.Absolute
+      flexChild.length === 1
     ) {
+      return this._getFirstChild();
+    }
+    if (!this._hasHeight()) {
       return this._getFirstChild();
     }
   }
