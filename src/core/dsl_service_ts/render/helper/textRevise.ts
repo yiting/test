@@ -22,7 +22,6 @@ function textRevise(vdom: any) {
       Constraints.LayoutDirection.Horizontal
         ? vdom.constraints.LayoutJustifyContent
         : vdom.constraints.LayoutAlignItems;
-    console.log(flexChild[0].id, align);
     vdom.styles.textAlign = alginMap[align];
   }
 }

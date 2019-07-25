@@ -86,9 +86,11 @@ let pipe = function(nodes: any): any {
       case 'QLayer':
         item.type = Common.QBody;
         bodyModel = item;
+        break;
       default:
-        console.log('nodes分类遇到没有对应类型的节');
-      //console.log(item.id);
+        Loger.warn(
+          `dsl/dsl [pipe] nodes分类遇到没有对应类型的节,id:${item.id}`,
+        );
     }
   });
   const info1 = '分类后的节点总数:' + matchingNodes.length + '; ';

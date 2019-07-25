@@ -36,12 +36,13 @@ class LayoutEquality {
     const _isAllCanFlex = LayoutEquality._isAllCanFlex(flexNodes);
     // 如果子节点类型不一样，则返回
     const _isAllSameModel = LayoutEquality._isAllSameModel(flexNodes);
+    if (!_isAllCanFlex || !_isAllSameModel) {
+      return;
+    }
     // 计算左对齐等分结果
-    const leftSpace =
-      _isAllCanFlex && LayoutEquality._isEqualityLeft(flexNodes, parent);
+    const leftSpace = LayoutEquality._isEqualityLeft(flexNodes, parent);
     // 计算中对齐等分结果
-    const centerSpace =
-      _isAllSameModel && LayoutEquality._isEqualityCenter(flexNodes, parent);
+    const centerSpace = LayoutEquality._isEqualityCenter(flexNodes, parent);
     // 计算两端对齐结果
     const aroundArr = LayoutEquality._isAround(flexNodes);
     /**
@@ -51,18 +52,19 @@ class LayoutEquality {
     const prevLineIsJustifyCenter =
       centerSpace &&
       LayoutEquality._calLineIsJustify(flexNodes, parent, -1, 'center');
-    const prevLineIsJustifyLeft =
-      centerSpace &&
-      LayoutEquality._calLineIsJustify(flexNodes, parent, -1, 'left');
     const nextLineIsJustifyCenter =
       centerSpace &&
       LayoutEquality._calLineIsJustify(flexNodes, parent, 1, 'center');
-    const nextLineIsJustifyLeft =
-      centerSpace &&
-      LayoutEquality._calLineIsJustify(flexNodes, parent, 1, 'left');
     // 判断当前节点是否居中等分
     const isJustifyAround =
       centerSpace && LayoutEquality._isJustifyAround(flexNodes, parent);
+    // 判断前节点内容是否左对齐等分
+    const prevLineIsJustifyLeft =
+      leftSpace &&
+      LayoutEquality._calLineIsJustify(flexNodes, parent, -1, 'left');
+    const nextLineIsJustifyLeft =
+      leftSpace &&
+      LayoutEquality._calLineIsJustify(flexNodes, parent, 1, 'left');
 
     if (
       // 如果有中心间距，并且居中|与上一行对齐|与下一行对齐
