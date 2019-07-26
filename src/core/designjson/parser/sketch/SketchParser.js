@@ -70,7 +70,9 @@ class SketchParser {
       levelArr: [],
       childIndex: artboardLayer.childIndex,
     });
-    SketchProcessor.process(rootNode);
+    const sliceData = [];
+    SketchProcessor.process(rootNode, { sliceData });
+    rootNode.sliceData = sliceData;
     return rootNode;
   }
 

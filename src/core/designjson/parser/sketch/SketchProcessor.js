@@ -13,10 +13,11 @@ const DesignTree = require('../../nodes/DesignTree');
  * @class 针对Sketch图元预处理，包括位置设置、mask合并等
  */
 class SketchProcessor {
-  static process(node) {
+  static process(node, data = { sliceData: [] }) {
     walkin(node, n => {
       this.setPropertyByParent(n);
       this.setPosition(n);
+      this.deleteSliceNode(n, data.sliceData);
       this.setSymbolInstanceId(n);
       if (!n.children.length) return;
       this.setMaskRelation(n); // 设置mask关系
@@ -43,6 +44,18 @@ class SketchProcessor {
         node.abY = node.parent.abY + Math.round(y);
       }
     }
+  }
+
+  static deleteSliceNode(node, list) {
+    if (node.type !== 'slice') return;
+    list.push({
+      width: node.width,
+      height: node.height,
+      abX: node.abX,
+      abY: node.abY,
+      levelArr: node.levelArr,
+    });
+    if (node.parent) node.parent.remove(node);
   }
 
   static setMaskRelation(parent) {
