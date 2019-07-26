@@ -23,8 +23,13 @@ class SketchLayerParser {
     if (SKETCH_LAYER_QNODE[layerType]) {
       node = DesignTree.createNode(SKETCH_LAYER_QNODE[layerType]);
     } else {
-      console.log('遇到没有处理的类型: ', layerType);
-      return null;
+      if (layerType === 'slice') {
+        node = DesignTree.createNode(null);
+        node.type = 'slice';
+      } else {
+        console.log('遇到没有处理的类型: ', layerType);
+        return null;
+      }
     }
     this.setAttrByLayer(node, layer);
     return node;
