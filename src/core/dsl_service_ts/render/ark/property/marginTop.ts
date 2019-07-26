@@ -21,34 +21,9 @@ export default {
       ) {
         return 0;
       }
-      if (this._prevLine().length) {
-        const prevLineAbYops = this._prevLine().map((n: any) => n.abYops);
-        const maxTop = Math.max(...prevLineAbYops) || this.parent.abY;
-        // LayoutAlignItems.Start
-        return this.abY - maxTop;
-      } else {
-        return this.abY - this.parent.abY;
-      }
     } else {
       // 竖排计算与上一节点距离
-      const preNode = this._prevNode();
-      /**
-       * 由于垂直方向使用block，所以统一默认约束为Constraints.LayoutJustifyContent.Start
-       */
-      /* if (!preNode &&
-          this.parent.constraints.LayoutJustifyContent===
-          Constraints.LayoutJustifyContent.Center) {
-          return null;
-      }
-      if (this.parent.constraints.LayoutJustifyContent===
-        Constraints.LayoutJustifyContent.End) {
-          return null;
-      } */
-
-      // LayoutJustifyContent.Start
-      if (preNode) {
-        return this.abY - preNode.abYops;
-      } else if (this.parent) {
+      if (this.parent) {
         return this.abY - this.parent.abY;
       } else {
         return this.abY;

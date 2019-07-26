@@ -9,7 +9,6 @@ export default {
 
     if (this._isParentHorizontal()) {
       // 横排计算与上一节点距离
-      const nextNode = this._nextNode();
       // 如果水平左对齐
       if (
         this.parent.constraints.LayoutJustifyContent ===
@@ -25,9 +24,6 @@ export default {
         return 0;
       }
 
-      if (nextNode) {
-        return nextNode.abX - this.abXops;
-      }
       return this.parent.abXops - this.abXops;
     }
     // 竖排计算与父节点距离
@@ -37,7 +33,7 @@ export default {
       this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.Center
     ) {
-      return 'auto';
+      return 0;
     }
     if (
       this.parent &&
@@ -53,6 +49,6 @@ export default {
     ) {
       return this.parent.abXops - this.abXops;
     }
-    return null;
+    return 0;
   },
 };

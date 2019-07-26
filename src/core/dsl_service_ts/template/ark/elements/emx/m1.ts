@@ -6,7 +6,7 @@ class EMXM1 extends ArkTemplate {
     this._template = `
         <View size="${this.width},${
       this.height
-    }" :constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
+    }" @constraints='{"LayoutDirection":"Horizontal","LayoutJustifyContent":"Start"}'>
             <tag $each $useTag></tag>
         </View>`;
   }

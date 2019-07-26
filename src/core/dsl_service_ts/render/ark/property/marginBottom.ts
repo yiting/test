@@ -25,6 +25,6 @@ export default {
       // LayoutAlignItems.Start
       return this.parent.abYops - this.abYops;
     }
-    return null;
+    return 0;
   },
 };

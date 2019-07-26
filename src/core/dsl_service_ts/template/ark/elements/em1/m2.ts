@@ -3,15 +3,15 @@ import ArkTemplate from '../../arkTemplate';
 class EM1M2 extends ArkTemplate {
   constructor(...args: any[]) {
     super(...args);
-    let tpl = `<Texture size="${this.width},${this.height}"`;
     if (this.path) {
-      tpl += ` value="${this.path}"`;
+      this._template = `<Image size="${this.width},${this.height}" value="${
+        this.path
+      }"  margin anchors/>`;
+    } else {
+      this._template = `<Texture size="${this.width},${this.height}" color="${
+        this.bgColor
+      }"  margin anchors/>`;
     }
-    if (this.bgColor) {
-      tpl += ` color="${this.bgColor}"`;
-    }
-    tpl += '></Texture>';
-    this._template = tpl;
   }
 }
 export default EM1M2;

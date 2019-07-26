@@ -26,9 +26,6 @@ export default {
         return 0;
       }
       // LayoutJustifyContent.Start
-      if (preNode) {
-        return this.abX - preNode.abXops;
-      }
       return this.abX - this.parent.abX;
     }
     // 竖排计算与父节点距离
