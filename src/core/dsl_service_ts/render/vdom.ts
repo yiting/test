@@ -1,7 +1,7 @@
 import Constraints from '../helper/constraints';
 import Utils from './utils';
 import Common from '../dsl2/common';
-import FontLineHeight from '../helper/fontLineHeight.json';
+import FontLineHeight from '../helper/fontLineHeight';
 
 class VDom {
   children: any[];
@@ -53,14 +53,10 @@ class VDom {
     this.styles = node.styles || {};
     this.constraints = node.constraints || {};
     this.isMultiline = false;
-    const _FontLineHeight: any = FontLineHeight;
     if (this.text) {
       const arr = this.styles.texts.map((word: any) => {
-        const lhName = Object.keys(_FontLineHeight).find(
-          (name: string) => word.font.indexOf(name) > -1,
-        );
-        const rate = _FontLineHeight[lhName];
-        return rate * word.size;
+        const rate = FontLineHeight(word.font, word.size);
+        return rate;
       });
       const _lineHeight = this.styles.lineHeight || Math.max(arr);
       const _height = this.abYops - this.abY;

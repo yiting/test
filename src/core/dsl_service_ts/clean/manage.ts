@@ -9,12 +9,12 @@ export default (_nodes: any[]) => {
   let nodes: any = _nodes;
   let debugText = '';
   try {
+    // debugText = 'lineWrapClean';
+    // nodes = lineWrapClean(nodes);
     debugText = 'fontWidthClean';
     nodes = fontWidthClean(nodes);
     debugText = 'fontWidthClean';
     nodes = wordWrapClean(nodes);
-    // debugText = 'lineWrapClean';
-    // nodes = lineWrapClean(nodes);
   } catch (e) {
     Loger.error(`dsl/clean/managets ${debugText}()
         error:${e}`);

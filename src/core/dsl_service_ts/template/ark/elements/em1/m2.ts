@@ -14,5 +14,4 @@ class EM1M2 extends ArkTemplate {
     this._template = tpl;
   }
 }
-
 export default EM1M2;

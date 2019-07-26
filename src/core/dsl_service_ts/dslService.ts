@@ -21,8 +21,8 @@ function _process(_input: any, _options: any): object {
   // 初始化进程参数
   _initOptions(_options);
   // 数据清洗
-  const nodes = input.nodes;
-  Clean(nodes);
+  let nodes = input.nodes;
+  nodes = Clean(nodes);
 
   // 模型识别模块
   const dslModel = Dsl.pipe(nodes);
