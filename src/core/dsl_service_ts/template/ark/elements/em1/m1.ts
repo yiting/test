@@ -6,7 +6,7 @@ class EM1M1 extends ArkTemplate {
     super(...args);
     let tpl = `<Text size="${this.width},${this.height}" value="${
       this.text
-    }" size margin anchors multiline align`;
+    }" margin anchors multiline align`;
     if (this.textColor) {
       tpl += ` textcolor="${this.textColor}"`;
     }

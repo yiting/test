@@ -264,9 +264,9 @@ class Template {
         if (_val !== null) {
           Template.setAttr(refData, _key, _val);
         }
-      } else if (key.indexOf(_SYMBOL.each)) {
-      } else if (key.indexOf(_SYMBOL.useTag)) {
-      } else if (key.indexOf(_SYMBOL.ref)) {
+      } else if (~key.indexOf(_SYMBOL.each)) {
+      } else if (~key.indexOf(_SYMBOL.useTag)) {
+      } else if (~key.indexOf(_SYMBOL.ref)) {
       } else {
         // 普通属性
         Template.setAttr(refData, key, value);
