@@ -100,7 +100,7 @@ class Template {
       // 如果为false，则预处理提出中止当前节点编译
       if (res !== false) {
         // 构建数据对象
-        const tplData = this._parseObj(nd, parentTpl, isRoot);
+        let { tplData, renderData } = this._parseObj(nd, parentTpl, isRoot);
         // 赋值
         this._parseProp(tplData, nd);
         // 遍历子节点
@@ -109,6 +109,20 @@ class Template {
         if (!tplData.type) {
           tplData.resize();
           tplData.modelName = null;
+        }
+        if (!isRoot && renderData && renderData.modelName) {
+          // 如果该节点有模型名称，则进入下一层模板
+          const tplDataSub = Template.parse(
+            renderData,
+            null,
+            this._templateList,
+          );
+          tplData = Template._assignObj(tplData, tplDataSub, nd);
+        } else if (renderData && renderData.children) {
+          // 遍历结构树
+          renderData.children.forEach((childRenderData: any) => {
+            Template.parse(childRenderData, tplData, this._templateList);
+          });
         }
         arr.push(tplData);
       }
@@ -167,6 +181,7 @@ class Template {
     } else {
       // 没有引用，且不是跟节点
     }
+    // if (renderData && renderData.id == "AB1F2F1B-94E0-4236-B376-CB4C910504E8-c") debugger
     // 构建模板节点
     let tplData = new TemplateData(renderData, parentTpl, this._renderData);
 
@@ -180,7 +195,7 @@ class Template {
       );
     }
 
-    if (!isRoot && renderData && renderData.modelName) {
+    /* if (!isRoot && renderData && renderData.modelName) {
       // 如果该节点有模型名称，则进入下一层模板
 
       const tplDataSub = Template.parse(renderData, null, this._templateList);
@@ -190,8 +205,8 @@ class Template {
       renderData.children.forEach((childRenderData: any) => {
         Template.parse(childRenderData, tplData, this._templateList);
       });
-    }
-    return tplData;
+    } */
+    return { tplData, renderData };
   }
 
   /**
@@ -208,6 +223,7 @@ class Template {
     const nd = _nd;
     if (Object.keys(nd.attrs).includes(_SYMBOL.useTag)) {
       nd.tagName = subNode.tagName;
+      target.tagName = subNode.tagName;
       // 删除标记
       delete nd.attrs[_SYMBOL.useTag];
     }
@@ -248,6 +264,9 @@ class Template {
         if (_val !== null) {
           Template.setAttr(refData, _key, _val);
         }
+      } else if (key.indexOf(_SYMBOL.each)) {
+      } else if (key.indexOf(_SYMBOL.useTag)) {
+      } else if (key.indexOf(_SYMBOL.ref)) {
       } else {
         // 普通属性
         Template.setAttr(refData, key, value);

@@ -50,6 +50,7 @@ class TemplateData {
   tplAttr: any; // 模板属性
 
   children: any[];
+  isMultiline: boolean;
 
   constructor(o: any = {}, parent: any | null, modelData: any) {
     this.tagName = o.tagName || '';

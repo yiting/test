@@ -24,11 +24,31 @@ export default {
       this.parent.constraints.LayoutDirection ===
       Constraints.LayoutDirection.Horizontal
     ) {
-      anchors += HorMap[this.parent.constraints.LayoutJustifyContent];
-      anchors += VerMap[this.parent.constraints.LayoutAlignItems];
+      if (
+        this.parent.constraints.LayoutJustifyContent !==
+        Constraints.LayoutJustifyContent.Center
+      ) {
+        anchors += HorMap[this.parent.constraints.LayoutJustifyContent];
+      }
+      if (
+        this.parent.constraints.LayoutAlignItems !==
+        Constraints.LayoutAlignItems.Center
+      ) {
+        anchors += VerMap[this.parent.constraints.LayoutAlignItems];
+      }
     } else {
-      anchors += HorMap[this.parent.constraints.LayoutAlignItems];
-      anchors += VerMap[this.parent.constraints.LayoutJustifyContent];
+      if (
+        this.parent.constraints.LayoutAlignItems !==
+        Constraints.LayoutAlignItems.Center
+      ) {
+        anchors += HorMap[this.parent.constraints.LayoutAlignItems];
+      }
+      if (
+        this.parent.constraints.LayoutJustifyContent !==
+        Constraints.LayoutJustifyContent.Center
+      ) {
+        anchors += VerMap[this.parent.constraints.LayoutJustifyContent];
+      }
     }
     return anchors;
   },

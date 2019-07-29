@@ -69,7 +69,8 @@ let pipe = function(nodes: any): any {
   nodes.forEach((item: any, index: number) => {
     maxNodeX = maxNodeX > item.abX ? maxNodeX : item.abX;
     maxNodeY = maxNodeY > item.abY ? maxNodeY : item.abY;
-    item.zIndex = item.zIndex > 0 ? item.zIndex : index; // 默认zIndex的值, 越大显示层级越高
+    // item.zIndex = item.zIndex > 0 ? item.zIndex : index; // 默认zIndex的值, 越大显示层级越高
+
     switch (item.type) {
       case 'QShape':
         item.type = Common.QImage;

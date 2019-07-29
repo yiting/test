@@ -6,28 +6,19 @@ export default {
     if (this._isAbsolute()) {
       return null;
     }
-    if (this._isParentHorizontal()) {
-      // 横排计算与父节点距离
-      // 如果垂直居中、底对齐则无margin-Top
-      if (
-        this.parent.constraints.LayoutAlignItems ===
-        Constraints.LayoutAlignItems.Center
-      ) {
+    const isHorizontal = this._isParentHorizontal();
+    const prop = isHorizontal ? 'LayoutAlignItems' : 'LayoutJustifyContent';
+    if (this.parent) {
+      if (this.parent.constraints[prop] === Constraints[prop].Center) {
         return 0;
       }
-      if (
-        this.parent.constraints.LayoutAlignItems ===
-        Constraints.LayoutAlignItems.End
-      ) {
+      if (this.parent.constraints[prop] === Constraints[prop].End) {
         return 0;
       }
-    } else {
       // 竖排计算与上一节点距离
-      if (this.parent) {
-        return this.abY - this.parent.abY;
-      } else {
-        return this.abY;
-      }
+      return this.abY - this.parent.abY;
+    } else {
+      return this.abY;
     }
   },
 };

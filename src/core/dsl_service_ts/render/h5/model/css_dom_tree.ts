@@ -176,14 +176,12 @@ class CssDom extends VDom {
         nd.constraints.LayoutSelfPosition !==
         Constraints.LayoutSelfPosition.Absolute,
     );
-    // 水平布局、唯一子节点、节点非绝对定位
+    // 水平布局、唯一子节点、无高度
     if (
       this.constraints.LayoutDirection ===
         Constraints.LayoutDirection.Horizontal &&
-      (this.constraints.LayoutAlignItems ===
-        Constraints.LayoutAlignItems.Start ||
-        this._getFirstChild()) &&
-      flexChild.length === 1
+      flexChild.length === 1 &&
+      !this._hasHeight()
     ) {
       return this._getFirstChild();
     }
