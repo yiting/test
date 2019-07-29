@@ -264,9 +264,6 @@ class Tree {
       //   firstNode.constraints['LayoutSelfPosition'] ===
       //     Constraints.LayoutSelfPosition.Absolute
       // ) {
-      if (firstNode.type === Common.QImage && everyArrHasOne) {
-        console.log(firstNode.id);
-      }
       if (
         arr.length === 1 &&
         // (firstNode.type !== Common.QText &&
