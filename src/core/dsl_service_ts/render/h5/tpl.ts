@@ -49,6 +49,7 @@ export default (
   </script>
   <script>
   if(parent==self){[].map.call(document.getElementsByTagName("*"),(item)=>{item.removeAttribute("nid");item.removeAttribute("sim");item.removeAttribute("md")});}
+  document.domain = 'uitocode.oa.com';
   </script>
 </body>
 

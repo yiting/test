@@ -9,7 +9,7 @@ class XmlEngine {
     try {
       let curTpl: any = rootTpl;
       const pen: any = [rootTpl];
-      temp.match(/<.*?>/gim).forEach((nd: any) => {
+      temp.match(/<[\s\S]*?>/gim).forEach((nd: any) => {
         // 结束节点
         if (~nd.indexOf('</')) {
           const obj = pen.shift();
@@ -32,7 +32,7 @@ class XmlEngine {
             children,
           };
           curTpl.push(obj);
-          if (!~nd.indexOf('/>')) {
+          if (!isClosedTag) {
             // 如果非闭合节点
             pen.unshift(obj);
             curTpl = pen[0].children;
@@ -63,7 +63,9 @@ class XmlEngine {
 
   static _xmlAttr(str: string) {
     const obj: any = {};
-    const matchedAttrs = str.match(/[^\s]+=((".*?")|('.*?'))|[^\s]+/gim);
+    const matchedAttrs = str.match(
+      /[^\s]+=(("[\s\S]*?")|('[\s\S]*?'))|[^\s]+/gim,
+    );
 
     if (matchedAttrs) {
       matchedAttrs.forEach((val: any) => {

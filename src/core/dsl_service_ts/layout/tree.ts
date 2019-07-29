@@ -243,6 +243,7 @@ class Tree {
     // 自左向右排序
     layers.sort((a: any, b: any) => a.abX - b.abX);
     const newChildren: any = [];
+    const everyArrHasOne = layers.every((arr: any) => arr.length === 1);
     layers.forEach((arr: any) => {
       const firstNode = arr[0];
       /**
@@ -263,12 +264,13 @@ class Tree {
       //   firstNode.constraints['LayoutSelfPosition'] ===
       //     Constraints.LayoutSelfPosition.Absolute
       // ) {
-
       if (
         arr.length === 1 &&
-        (firstNode.type !== Common.QText ||
-          // firstNode.type === Common.QWidget ||
-          // firstNode.type === Common.QLayer ||
+        // (firstNode.type !== Common.QText &&
+        //   firstNode.type !== Common.QImage) ||
+        (firstNode.type === Common.QWidget ||
+          firstNode.type === Common.QLayer ||
+          (firstNode.type === Common.QImage && everyArrHasOne) ||
           firstNode.constraints['LayoutSelfPosition'] ===
             Constraints.LayoutSelfPosition.Absolute)
       ) {

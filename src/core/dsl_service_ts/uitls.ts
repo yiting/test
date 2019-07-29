@@ -87,4 +87,11 @@ export default {
       Math.abs(aCy - bCy) <= (a_abYops - a_abY + b_abYops - b_abY) / 2 + dir
     );
   },
+  RGB2HEX(color: { r: number; g: number; b: number; a: number }) {
+    const red = ('0' + color.r.toString(16)).slice(-2);
+    const green = ('0' + color.g.toString(16)).slice(-2);
+    const blue = ('0' + color.b.toString(16)).slice(-2);
+    const alpha = Number(color.a * 255).toString(16);
+    return `0x${alpha}${red}${green}${blue}`;
+  },
 };

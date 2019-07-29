@@ -13,29 +13,10 @@ export default {
       return null;
     }
     //横排
-    const preNode = this._prevNode();
-    const nextNode = this._nextNode();
-    css[0] = marginTop.value.call(this);
-    css[1] = marginRight.value.call(this);
-    css[2] = marginBottom.value.call(this);
-    css[3] = marginLeft.value.call(this);
-    //最终回溯，水平方向如果只有一个节点，并且左右偏差不是很大，就直接水平居中
-    if (
-      !nextNode &&
-      !preNode &&
-      (Math.abs(Math.abs(css[1]) - Math.abs(css[3])) < 10 ||
-        Math.abs(
-          Math.abs(this.abX - this.parent.abX) -
-            Math.abs(this.parent.abXops - this.abXops),
-        ) < 10)
-    ) {
-      css[1] = css[3] = 0;
-    }
-    css.forEach((item: any, key: number) => {
-      if (typeof item === 'number') {
-        css[key] = item;
-      }
-    });
+    css[0] = marginLeft.value.call(this);
+    css[1] = marginTop.value.call(this);
+    css[2] = marginRight.value.call(this);
+    css[3] = marginBottom.value.call(this);
     return css.join(',');
   },
 };

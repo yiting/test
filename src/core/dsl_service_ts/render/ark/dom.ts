@@ -4,6 +4,7 @@ import Constraints from '../../helper/constraints';
 import PropertyMap from './propertyMap';
 import VDom from '../vdom';
 
+const _PropertyMap: any = PropertyMap;
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 /**
@@ -34,56 +35,29 @@ function _buildTree(data: any, parent: any) {
 class ArkDom extends VDom {
   constructor(node: any, parent: any) {
     super(node, parent);
-
-    // 根据映射定义属性
-    PropertyMap.forEach((s: any) => {
-      Object.defineProperty(this, s.key, {
-        get: s.value,
-      });
-    });
   }
 
   getTag() {
-    return this.tagName || 'div';
-  }
-
-  getContent() {
-    return (
-      (this.styles.texts &&
-        this.styles.texts[0] &&
-        this.styles.texts[0].string) ||
-      ''
-    );
+    return this.tagName;
   }
 
   getAttrs() {
     const result = [];
+    const that = this;
     if (this.tplAttr) {
       result.push(
         ...Object.keys(this.tplAttr).map((key: string) => {
-          if (key !== 'data-model' && key !== 'class') {
-            return `${key}="${this.tplAttr[key]}"`;
+          let val = this.tplAttr[key];
+          if (val === undefined && _PropertyMap[key]) {
+            val = _PropertyMap[key].value.call(that);
           }
-          return undefined;
+          if (val !== null) {
+            return `${key}="${val}"`;
+          }
         }),
       );
     }
     return result.join(' ');
-  }
-
-  getPropertys() {
-    const that: any = this;
-    const props: any = [];
-    PropertyMap.forEach((prop: any) => {
-      const key = prop.key;
-      const value = that[key];
-      if (value !== null || value !== undefined) {
-        const o: any = {};
-        o[key] = value;
-        props.push(`${key}="${value}"`);
-      }
-    });
-    return props.join(' ');
   }
 
   // 开始节点
@@ -91,13 +65,12 @@ class ArkDom extends VDom {
     const tag = this.getTag();
     const id = this.id ? `nid="${this.id}"` : '';
     const attrs = this.getAttrs();
-    const props = this.getPropertys();
-    // const content = this.getContent();
     const showTagAttrInfo = Store.get('showTagAttrInfo');
+    const endTag = this.isClosedTag ? '/>' : '>';
     if (showTagAttrInfo) {
-      return `<${tag} ${id} ${attrs} ${props}>`;
+      return `<${tag} ${id} ${attrs} ${endTag}`;
     }
-    return `<${tag} ${attrs} ${props}>`;
+    return `<${tag} ${attrs} ${endTag}`;
   }
 
   // 闭合节点

@@ -21,9 +21,8 @@ const _SYMBOL = {
   ref: '$ref',
   each: '$each',
   useTag: '$useTag',
-  method: '@',
-  var: ':',
-  attr: '',
+  objVar: '@',
+  objAttr: ':',
 };
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
@@ -101,16 +100,29 @@ class Template {
       // 如果为false，则预处理提出中止当前节点编译
       if (res !== false) {
         // 构建数据对象
-        const tplData = this._parseObj(nd, parentTpl, isRoot);
+        let { tplData, renderData } = this._parseObj(nd, parentTpl, isRoot);
         // 赋值
         this._parseProp(tplData, nd);
         // 遍历子节点
-
         this._traversal(nd.children, tplData, false);
         // 如果为模板虚拟节点，则自动构建坐标
         if (!tplData.type) {
           tplData.resize();
           tplData.modelName = null;
+        }
+        if (!isRoot && renderData && renderData.modelName) {
+          // 如果该节点有模型名称，则进入下一层模板
+          const tplDataSub = Template.parse(
+            renderData,
+            null,
+            this._templateList,
+          );
+          tplData = Template._assignObj(tplData, tplDataSub, nd);
+        } else if (renderData && renderData.children) {
+          // 遍历结构树
+          renderData.children.forEach((childRenderData: any) => {
+            Template.parse(childRenderData, tplData, this._templateList);
+          });
         }
         arr.push(tplData);
       }
@@ -169,6 +181,7 @@ class Template {
     } else {
       // 没有引用，且不是跟节点
     }
+    // if (renderData && renderData.id == "AB1F2F1B-94E0-4236-B376-CB4C910504E8-c") debugger
     // 构建模板节点
     let tplData = new TemplateData(renderData, parentTpl, this._renderData);
 
@@ -182,7 +195,7 @@ class Template {
       );
     }
 
-    if (!isRoot && renderData && renderData.modelName) {
+    /* if (!isRoot && renderData && renderData.modelName) {
       // 如果该节点有模型名称，则进入下一层模板
 
       const tplDataSub = Template.parse(renderData, null, this._templateList);
@@ -192,8 +205,8 @@ class Template {
       renderData.children.forEach((childRenderData: any) => {
         Template.parse(childRenderData, tplData, this._templateList);
       });
-    }
-    return tplData;
+    } */
+    return { tplData, renderData };
   }
 
   /**
@@ -210,6 +223,7 @@ class Template {
     const nd = _nd;
     if (Object.keys(nd.attrs).includes(_SYMBOL.useTag)) {
       nd.tagName = subNode.tagName;
+      target.tagName = subNode.tagName;
       // 删除标记
       delete nd.attrs[_SYMBOL.useTag];
     }
@@ -236,29 +250,28 @@ class Template {
     refData.isClosedTag = nd.isClosedTag;
     Object.keys(nd.attrs).forEach(key => {
       const value = nd.attrs[key];
-      if (~key.indexOf(_SYMBOL.method)) {
-        // 方法
-        this._parseMethod(refData, key.slice(1), value);
-      } else if (~key.indexOf(_SYMBOL.var)) {
+      if (~key.indexOf(_SYMBOL.objVar)) {
         // 变量
-        this._parseVar(refData, key.slice(1), value);
+        const _key = key.slice(1);
+        const _val = this._parseVar(refData, _key, value);
+        if (_val !== null) {
+          Template.setVar(refData, _key, _val);
+        }
+      } else if (~key.indexOf(_SYMBOL.objAttr)) {
+        // 变量
+        const _key = key.slice(1);
+        const _val = this._parseVar(refData, _key, value);
+        if (_val !== null) {
+          Template.setAttr(refData, _key, _val);
+        }
+      } else if (key.indexOf(_SYMBOL.each)) {
+      } else if (key.indexOf(_SYMBOL.useTag)) {
+      } else if (key.indexOf(_SYMBOL.ref)) {
       } else {
         // 普通属性
         Template.setAttr(refData, key, value);
       }
     });
-  }
-
-  // 编译命令
-  _parseMethod(refData: any, funcName: any, value: any) {
-    // Type of `func` is `Function`
-    const that: any = this;
-    const func = that._methods[funcName];
-    if (func) {
-      func.call(this, refData);
-    } else {
-      Loger.error(`template function [${funcName}] doesn't exist!`);
-    }
   }
 
   // 编译变量属性
@@ -274,9 +287,9 @@ class Template {
           newValue = that[funcName].call(this, refData);
         } catch (e) {
           Loger.error(
-            `Template.js [id:${refData.id}]'s template [${
+            `Template/template.js [id:${refData.id}] template [${
               this._name
-            }] function [${funcName}] error: ${e}`,
+            }]'s method [${funcName}] run error: ${e}`,
           );
           return;
         }
@@ -293,23 +306,30 @@ class Template {
         Loger.error(`template function [${value}] error: ${e}`);
       }
     }
-    Template.setAttr(refData, varName, newValue);
+    return newValue;
   }
 
   // 设置普通属性
 
   static setAttr(refData: any, prop: any, value: any): void {
-    const target = Object.keys(refData).includes(prop)
-      ? refData
-      : refData.tplAttr;
-
-    if (typeof target[prop] === 'object') {
+    if (typeof refData.tplAttr[prop] === 'object') {
       if (typeof value !== 'object') {
         return;
       }
-      Object.assign(target[prop], value);
+      Object.assign(refData.tplAttr[prop], value);
     } else {
-      target[prop] = value;
+      refData.tplAttr[prop] = value;
+    }
+  }
+
+  static setVar(refData: any, prop: any, value: any): void {
+    if (typeof refData[prop] === 'object') {
+      if (typeof value !== 'object') {
+        return;
+      }
+      Object.assign(refData[prop], value);
+    } else {
+      refData[prop] = value;
     }
   }
 
