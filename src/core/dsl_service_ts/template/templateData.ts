@@ -89,7 +89,21 @@ class TemplateData {
   get height() {
     return this.abYops - this.abY;
   }
-
+  relay() {
+    if (this.parent) {
+      this.abX = this.abX || this.parent.abX;
+      this.abY = this.abY || this.parent.abY;
+      this.abXops = this.abXops || this.parent.abXops;
+      this.abYops = this.abYops || this.parent.abYops;
+      this.canLeftFlex = this.canLeftFlex || this.parent.canLeftFlex;
+      this.canRightFlex = this.canRightFlex || this.parent.canRightFlex;
+      this.constraints = this.constraints || this.parent.constraints;
+      this.zIndex = this.zIndex || this.parent.zIndex;
+      this.text = this.text || this.parent.text;
+      this.path = this.path || this.parent.path;
+      this.styles = this.styles || this.parent.styles;
+    }
+  }
   resize() {
     const nodes = this.children;
     if (!nodes.length) {

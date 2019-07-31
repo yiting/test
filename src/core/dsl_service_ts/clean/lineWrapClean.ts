@@ -1,4 +1,5 @@
-const regWrap = /.*\n{2,}/m;
+// const regWrap = /.*\n{2,}/m;
+const regWrap = /.*\n+/m;
 const regRes = /\n+|[^\n]+/gim;
 
 import FontLineHeight from '../helper/fontLineHeight';
