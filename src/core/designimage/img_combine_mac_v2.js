@@ -168,7 +168,15 @@ const ImageCombine = function() {
           if (instanceItem.overrideType == 'stringValue') {
             masterItem.attributedString.string = instanceItem.value;
           } else if (instanceItem.overrideType == 'image') {
-            masterItem.image._ref = instanceItem.value._ref;
+            if (masterItem.image) {
+              masterItem.image._ref = instanceItem.value._ref;
+            } else if (
+              masterItem.style.fills &&
+              masterItem.style.fills[0] &&
+              masterItem.style.fills[0].image
+            ) {
+              masterItem.style.fills[0].image._ref = instanceItem.value._ref;
+            }
           }
         }
       });
