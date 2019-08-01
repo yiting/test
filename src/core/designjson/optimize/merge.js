@@ -62,6 +62,10 @@ let allScoreData = [];
 let process = function(node, option) {
   try {
     let ruleConfig;
+    if (Array.isArray(node.sliceData) && node.sliceData.length) {
+      option.sliceData = node.sliceData;
+      delete node.sliceData;
+    }
     if (option.ruleMap) {
       ruleConfig = getRuleConfig(option.ruleMap, option);
     } else {
@@ -331,7 +335,7 @@ function mergeJudge(nodelist, ruleConfig, root) {
   return groups;
 }
 function getRuleConfig(ruleMap, option) {
-  const { aiData, rate } = option;
+  const { aiData, sliceData, rate } = option;
   let ruleConfig = {};
   ruleMap.data.forEach(item => {
     ruleConfig[item.type] = {
@@ -353,6 +357,7 @@ function getRuleConfig(ruleMap, option) {
       obj.rate = Math.round(+item.rate);
       return obj;
     });
+  ruleConfig.sliceArr = sliceData;
   return ruleConfig;
 }
 module.exports = process;

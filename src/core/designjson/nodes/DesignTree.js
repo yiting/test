@@ -2,6 +2,7 @@
  * 用于构建的虚拟树
  * 树的节点储存信息为QObject类型
  */
+const QObject = require('./QObject');
 const QNODES = require('./');
 const {
   generateGroupAttr,
@@ -19,6 +20,7 @@ class DesignTree {
    * @param {string} type 节点类型
    */
   static createNode(type) {
+    if (type == null) return new QObject();
     return new QNODES[type]();
   }
 
@@ -84,13 +86,16 @@ class DesignTree {
       default:
         break;
     }
+    nodes.sort((a, b) => a.index - b.index);
     const { parent } = nodes[0];
-    const lastIndex = nodes.reduce((i, n) => {
-      const index = parent.children.indexOf(n);
-      return index > i ? index : i;
-    }, -1);
-    if (!~lastIndex) return null;
-    parent.add(newNode, lastIndex);
+    let newIndex = nodes[0].index;
+    nodes.forEach(n => {
+      if (~parent.children.indexOf(n._behindNode)) {
+        newIndex = n.index;
+      }
+    });
+    if (!~newIndex) return null;
+    parent.add(newNode, newIndex);
     try {
       nodes.forEach(n => {
         parent.remove(n);
@@ -187,9 +192,7 @@ class DesignTree {
       node.zIndex = 0;
       const list = nodeList.slice(0, index).reverse();
       const bNode = list.find(
-        n =>
-          isCollide(node, n) &&
-          !(n.type === QNODES.QText.name && node.type === QNODES.QText.name),
+        n => isCollide(node, n) && !(n.type === QNODES.QLayer.name),
       );
       if (bNode) node._behindNode = bNode;
     }

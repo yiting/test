@@ -53,29 +53,57 @@ export async function makeImg(context: Context) {
 
 //预览图查看
 export async function preview(context: Context) {
-  util.storeLoginData(context);
-  logger = qlog.getInstance(store.getAll());
-  // context.body = '1231234';
-  const { request } = context;
-  const param = request.body;
-  const imgCombineMac = new ImgCombineMac();
-  imgCombineMac.init({});
+  try {
+    util.storeLoginData(context);
+    logger = qlog.getInstance(store.getAll());
+    // context.body = '1231234';
+    const { request } = context;
+    const param = request.body;
+    const imgCombineMac = new ImgCombineMac();
+    imgCombineMac.init({});
 
-  let projectName = param.sketchPath.substring(
-    param.sketchPath.lastIndexOf('/') + 1,
-    param.sketchPath.lastIndexOf('.sketch'),
-  );
-  param.projectName = projectName;
+    let projectName = param.sketchPath.substring(
+      param.sketchPath.lastIndexOf('/') + 1,
+      param.sketchPath.lastIndexOf('.sketch'),
+    );
+    param.projectName = projectName;
 
-  let startTime = new Date().getTime();
-  logger.debug('[edit.js-combineImages]开始生成1张预览图');
+    let startTime = new Date().getTime();
+    logger.debug('[edit.js-combineImages]开始生成1张预览图');
 
-  const result = await imgCombineMac.preview(param);
-  var costTime = (new Date().getTime() - startTime) / 1000;
-  logger.debug('[edit.js-combineImages]生成预览图完毕，用时' + costTime + '秒');
-  result.path = getHost(context) + '/imgData?path=' + result.path;
-  const res = context.response;
+    const result = await imgCombineMac.preview(param);
+    var costTime = (new Date().getTime() - startTime) / 1000;
+    logger.debug(
+      '[edit.js-combineImages]生成预览图完毕，用时' + costTime + '秒',
+    );
+    result.path = getHost(context) + '/imgData?path=' + result.path;
+    // throw 'error2';
+    const res = context.response;
+    res.body = result;
+  } catch (e) {
+    const res = context.response;
+    res.body = e;
+  }
+}
+
+function makeResult(context: Context) {
+  var res = context.response;
+  var result = {
+    status: 1,
+    msg: '',
+    data: res.body,
+  };
+  if (typeof res.body == 'string') {
+    result.status = 0;
+    result.msg = res.body;
+    result.data = [];
+  }
   res.body = result;
+}
+
+export async function previewV2(context: Context) {
+  await preview(context);
+  makeResult(context);
 }
 
 export async function makeImgsByUpdateSketch(context: Context) {

@@ -8,8 +8,8 @@ class Sketch50 extends Sketch {
    */
   _parseBaseStyle(layerObj) {
     let canUserAttr = this._getCanUseAttr(layerObj);
+    if (!canUserAttr.style) return {};
     let canUserStyle = this._getCanUseStyle(canUserAttr.style);
-
     let background = null,
       shadows,
       border,

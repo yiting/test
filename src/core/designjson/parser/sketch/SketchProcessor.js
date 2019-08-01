@@ -13,10 +13,11 @@ const DesignTree = require('../../nodes/DesignTree');
  * @class 针对Sketch图元预处理，包括位置设置、mask合并等
  */
 class SketchProcessor {
-  static process(node) {
+  static process(node, data = { sliceData: [] }) {
     walkin(node, n => {
       this.setPropertyByParent(n);
       this.setPosition(n);
+      this.deleteSliceNode(n, data.sliceData);
       this.setSymbolInstanceId(n);
       if (!n.children.length) return;
       this.setMaskRelation(n); // 设置mask关系
@@ -24,6 +25,7 @@ class SketchProcessor {
     walkout(node, n => {
       this.shapeToImage(n);
       this.borderProcess(n);
+      this.opacityProcess(n);
       this.rotationProcess(n);
       if (!n.children.length) return;
       this.maskToImage(n);
@@ -43,6 +45,18 @@ class SketchProcessor {
         node.abY = node.parent.abY + Math.round(y);
       }
     }
+  }
+
+  static deleteSliceNode(node, list) {
+    if (node.type !== 'slice') return;
+    list.push({
+      width: node.width,
+      height: node.height,
+      abX: node.abX,
+      abY: node.abY,
+      levelArr: node.levelArr,
+    });
+    if (node.parent) node.parent.remove(node);
   }
 
   static setMaskRelation(parent) {
@@ -115,6 +129,23 @@ class SketchProcessor {
     // 剔除边框与背景色
     if (background && isSameColor(border.color, background.color)) {
       node.styles.border = null;
+    }
+  }
+
+  // 合并透明度到背景色
+  static opacityProcess(node) {
+    if (node.type !== 'QShape') return;
+    const { opacity, border, shadows, background } = node.styles;
+    if (
+      background &&
+      background.type === 'color' &&
+      opacity &&
+      opacity < 1 &&
+      !border &&
+      !shadows
+    ) {
+      background.color.a *= opacity;
+      node.styles.opacity = 1;
     }
   }
 
@@ -244,6 +275,7 @@ class SketchProcessor {
       // TODO
     }
   }
+
   // 遮罩处理
   static mergeMasktoImg(rootNode) {
     function isArtboardMask(n) {
@@ -256,7 +288,7 @@ class SketchProcessor {
         n.abYops >= rootNode.abYops;
       const isMaskStyle =
         background &&
-        background.type == 'color' &&
+        background.type === 'color' &&
         background.color.a &&
         background.color.a < 1;
       return isMaskShape && isMaskStyle;
@@ -267,7 +299,7 @@ class SketchProcessor {
     // const artboardMask = nodes[index]
     const restNodes = nodes.slice(1, index);
     restNodes
-      .filter(n => n.type == 'QLayer')
+      .filter(n => n.type === 'QLayer')
       .forEach(n => {
         if (!n.parent) {
           if (n.children.length) n.removeAll();

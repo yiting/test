@@ -88,11 +88,31 @@ export async function generate(context: Context) {
     // let imageCombine = new ImgCombine();
     // let nodes = imageCombine.getDirectNodes();
     // logger.debug("directNodes:"+nodes.join(","));
-
+    // throw 'error';
     const res = context.response;
     res.body = result;
   } catch (e) {
     const res = context.response;
     res.body = e;
   }
+}
+
+function makeResult(context: Context) {
+  var res = context.response;
+  var result = {
+    status: 1,
+    msg: '',
+    data: res.body,
+  };
+  if (typeof res.body == 'string') {
+    result.status = 0;
+    result.msg = res.body;
+    result.data = [];
+  }
+  res.body = result;
+}
+
+export async function generateV2(context: Context) {
+  await generate(context);
+  makeResult(context);
 }

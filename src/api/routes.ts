@@ -97,9 +97,19 @@ export default [
     action: imgApiV2.generate,
   },
   {
+    path: '/img_generate_v2',
+    method: 'post',
+    action: imgApiV2.generateV2,
+  },
+  {
     path: '/img_preview',
     method: 'post',
     action: imageMacApiV2.preview,
+  },
+  {
+    path: '/img_preview_v2',
+    method: 'post',
+    action: imageMacApiV2.previewV2,
   },
   {
     path: '/imgData',
