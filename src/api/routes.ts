@@ -12,6 +12,7 @@ import * as imageMacApiV2 from './controller/imageMacApiV2';
 
 //3.dsl、render
 import dslApi from './controller/dslApi';
+import arkApi from './controller/arkApi';
 
 import * as version from './controller/version';
 
@@ -120,6 +121,11 @@ export default [
     path: '/dsl_process',
     method: 'post',
     action: dslApi,
+  },
+  {
+    path: '/ark_process',
+    method: 'post',
+    action: arkApi,
   },
   {
     path: '/getVersion',

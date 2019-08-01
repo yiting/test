@@ -8,5 +8,5 @@ export default {
   base: [new EM1M1(), new EM1M2()],
   elements: [],
   widgets: [],
-  emx: [new EMXM1()],
+  emx: [],
 };

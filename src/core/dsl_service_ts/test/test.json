@@ -37,8 +37,8 @@
     "path": "b158361f63a45f928dbf8d764e4443f5.png"
   },
   {
-    "id": "8AB5BF80-A86B-4522-B8C4-5633534FC32C",
-    "name": "组 81",
+    "id": "A62917AE-3C19-4C5B-A6AE-3F14399096C0",
+    "name": "位图",
     "width": 219,
     "height": 70,
     "abX": 259,
@@ -53,41 +53,11 @@
       "background": null
     },
     "type": "QImage",
-    "path": "533e03a0584ac5486e4c16e693b169b3.png"
+    "path": "de268723c5f7d3bfd11358fb679e00dc.png"
   },
   {
-    "id": "DBD08666-A2E4-49B3-A0ED-E1F85259C906",
-    "name": "测测我的账号",
-    "width": 169,
-    "height": 31,
-    "abX": 284,
-    "abY": 358,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 152, "g": 77, "b": 51, "a": 1 },
-          "string": "测测我的账号",
-          "font": "FZSHENGSKS_DAJW--GB1-0",
-          "size": 28.0000005163719
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "测测我的账号"
-  },
-  {
-    "id": "00644E1D-AC73-48F5-8316-1900322F9FFB",
-    "name": "组 80",
+    "id": "700C011B-E41C-45A8-9507-405AC7E227F6",
+    "name": "位图",
     "width": 219,
     "height": 70,
     "abX": 23,
@@ -102,37 +72,7 @@
       "background": null
     },
     "type": "QImage",
-    "path": "731bcc91e4f59337af83718623cc14f3.png"
-  },
-  {
-    "id": "840BDF6D-B646-4C5D-AA01-D3145C5691EB",
-    "name": "查看好友成绩",
-    "width": 169,
-    "height": 31,
-    "abX": 47,
-    "abY": 356,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 220, "g": 226, "b": 236, "a": 1 },
-          "string": "查看好友成绩",
-          "font": "FZSHENGSKS_DAJW--GB1-0",
-          "size": 28.0000005163719
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "查看好友成绩"
+    "path": "2715ee3848133a78060255bcbc32df54.png"
   },
   {
     "id": "6855BF35-DCB4-47E5-8AB9-D41A1272A12F",
@@ -214,12 +154,12 @@
     "path": "ef2053d832cf1e6a592cacabe1234770.png"
   },
   {
-    "id": "6616DEB9-3207-4B5C-AB11-7A795BE242DF",
-    "name": "超越了",
-    "width": 72,
-    "height": 27,
+    "id": "096E9295-B04A-40C3-9E83-6310CFC88FA6",
+    "name": "超越了 的用户",
+    "width": 228,
+    "height": 31,
     "abX": 162,
-    "abY": 85,
+    "abY": 83,
     "zIndex": 1,
     "styles": {
       "borderRadius": null,
@@ -234,6 +174,18 @@
           "string": "超越了",
           "font": "FZSHENGSKS_CUJW--GB1-0",
           "size": 24
+        },
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "      ",
+          "font": "FZSHENGSKS_CUJW--GB1-0",
+          "size": 28
+        },
+        {
+          "color": { "r": 254, "g": 215, "b": 225, "a": 1 },
+          "string": "的用户",
+          "font": "FZSHENGSKS_CUJW--GB1-0",
+          "size": 24
         }
       ],
       "verticalAlign": 0,
@@ -241,7 +193,7 @@
       "lineHeight": null
     },
     "type": "QText",
-    "text": "超越了"
+    "text": "超越了      的用户"
   },
   {
     "id": "22358E22-B928-474C-9091-DD2E589361CA",
@@ -250,7 +202,7 @@
     "height": 31,
     "abX": 240,
     "abY": 82,
-    "zIndex": 1,
+    "zIndex": 2,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -272,36 +224,6 @@
     },
     "type": "QText",
     "text": "56.6%"
-  },
-  {
-    "id": "7B918533-D2E5-4E48-9CBA-E6B8810A4CFD",
-    "name": "的用户",
-    "width": 72,
-    "height": 27,
-    "abX": 318,
-    "abY": 86,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 254, "g": 215, "b": 225, "a": 1 },
-          "string": "的用户",
-          "font": "FZSHENGSKS_CUJW--GB1-0",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 1,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "的用户"
   },
   {
     "id": "EE004C9A-DB36-4CAD-8D84-02542E01F6A8",
