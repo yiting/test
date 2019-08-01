@@ -11,10 +11,10 @@ export default class HtmlTemplate extends Template {
     // };
   }
   get width() {
-    return this._renderData.abXops - this._renderData.abX;
+    return (this._renderData.abXops - this._renderData.abX) / 2;
   }
   get height() {
-    return this._renderData.abYops - this._renderData.abY;
+    return (this._renderData.abYops - this._renderData.abY) / 2;
   }
   get path() {
     if (this._renderData.path) {
@@ -24,7 +24,7 @@ export default class HtmlTemplate extends Template {
     }
   }
   get text() {
-    return this._renderData.text;
+    return this._renderData.text.replace(/\n/gim, '');
   }
   get multiline() {
     return this._renderData.multiline;
@@ -50,7 +50,7 @@ export default class HtmlTemplate extends Template {
       this._renderData.styles.texts &&
       this._renderData.styles.texts[0].size
     ) {
-      return this._renderData.styles.texts[0].size;
+      return this._renderData.styles.texts[0].size / 2;
     }
   }
   get bgColor() {

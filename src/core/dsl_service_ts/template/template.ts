@@ -105,11 +105,6 @@ class Template {
         this._parseProp(tplData, nd);
         // 遍历子节点
         this._traversal(nd.children, tplData, false);
-        // 如果为模板虚拟节点，则自动构建坐标
-        if (!tplData.type) {
-          tplData.resize();
-          tplData.modelName = null;
-        }
         if (!isRoot && renderData && renderData.modelName) {
           // 如果该节点有模型名称，则进入下一层模板
           const tplDataSub = Template.parse(
@@ -123,6 +118,17 @@ class Template {
           renderData.children.forEach((childRenderData: any) => {
             Template.parse(childRenderData, tplData, this._templateList);
           });
+        }
+        // 如果为模板虚拟节点，则自动构建坐标
+        if (!tplData.type) {
+          if (tplData.children.length) {
+            // 如果有子节点，按子节点范围处理
+            tplData.resize();
+          } else {
+            // 如果没有子节点，按父节点属性处理
+            tplData.relay();
+          }
+          tplData.modelName = null;
         }
         arr.push(tplData);
       }
@@ -264,9 +270,9 @@ class Template {
         if (_val !== null) {
           Template.setAttr(refData, _key, _val);
         }
-      } else if (key.indexOf(_SYMBOL.each)) {
-      } else if (key.indexOf(_SYMBOL.useTag)) {
-      } else if (key.indexOf(_SYMBOL.ref)) {
+      } else if (~key.indexOf(_SYMBOL.each)) {
+      } else if (~key.indexOf(_SYMBOL.useTag)) {
+      } else if (~key.indexOf(_SYMBOL.ref)) {
       } else {
         // 普通属性
         Template.setAttr(refData, key, value);

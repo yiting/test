@@ -34,6 +34,7 @@ function _buildTree(data: any, parent: any) {
 
 class ArkDom extends VDom {
   constructor(node: any, parent: any) {
+    // console.log(node.id,node.abX)
     super(node, parent);
   }
 
