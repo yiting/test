@@ -14,7 +14,25 @@ class SliceSimilar extends Rule {
   getRuleType() {
     return this.constructor.name;
   }
-  getIntersectType(nodeA, nodeB) {
+  getNodeLevel(node) {
+    var levelArr = [];
+    if (typeof node.levelArr != 'undefined') {
+      levelArr = node.levelArr;
+    } else {
+      for (var i = 0, ilen = node._imageChildren.length; i < ilen; i++) {
+        if (typeof node._imageChildren[i].levelArr != 'undefined') {
+          levelArr = node._imageChildren[i].levelArr;
+          break;
+        } else {
+          levelArr = this.getNodeLevel(node._imageChildren[i]);
+        }
+      }
+    }
+    return levelArr;
+  }
+  getIntersectType(t_nodeA, t_nodeB) {
+    let nodeA = t_nodeA,
+      nodeB = t_nodeB;
     let nodeAabX = nodeA.abX;
     let nodeBabX = nodeB.abX;
     let percentSize;
@@ -22,9 +40,8 @@ class SliceSimilar extends Rule {
     let type = -1; // 0 包含 ， 1 相交 ，2相离
     //保证A在左，B在右
     if (nodeAabX > nodeBabX) {
-      var tmpNode = nodeB;
-      nodeB = nodeA;
-      nodeA = tmpNode;
+      nodeB = t_nodeA;
+      nodeA = t_nodeB;
       nodeAabX = nodeA.abX;
       nodeBabX = nodeB.abX;
     }
@@ -101,7 +118,20 @@ class SliceSimilar extends Rule {
       type = 2;
     }
     if (type == 0 || (type == 2 && percentSize > 0.8)) {
-      result = true;
+      //如果slice包含，则再看levelArr是否在同一目录下
+      var isSameLevelArr = true;
+      var levelArrA = this.getNodeLevel(t_nodeA);
+      var levelArrB = this.getNodeLevel(t_nodeB);
+      for (var i = 0, ilen = levelArrA.length; i < ilen - 1; i++) {
+        if (levelArrA[i] != levelArrB[i]) {
+          isSameLevelArr = false;
+          break;
+        }
+      }
+
+      if (isSameLevelArr) {
+        result = true;
+      }
     }
     return result;
   }
@@ -118,13 +148,13 @@ class SliceSimilar extends Rule {
     ) {
       // debugger;
     }
+    nodeASliceIndex = -1;
+    nodeBSliceIndex = -1;
     for (var i = 0, ilen = sliceArr.length; i < ilen; i++) {
-      nodeASliceIndex = -1;
-      nodeBSliceIndex = -1;
-      if (this.getIntersectType(nodeA, sliceArr[i])) {
+      if (this.getIntersectType(sliceArr[i], nodeA)) {
         nodeASliceIndex = i;
       }
-      if (this.getIntersectType(nodeB, sliceArr[i])) {
+      if (this.getIntersectType(sliceArr[i], nodeB)) {
         nodeBSliceIndex = i;
       }
       if (nodeASliceIndex != -1 && nodeBSliceIndex != -1) {
@@ -139,7 +169,13 @@ class SliceSimilar extends Rule {
     ) {
       value = 1;
     } else {
-      value = 0;
+      //如果一个在slice里，一个不在slice里，或者在不同的slice里，则铁定不合并，以0做区分
+      if (nodeASliceIndex != -1 || nodeBSliceIndex != -1) {
+        value = 0;
+      } else {
+        //两个都不在slice里，还要做后续都判断
+        value = 0.01;
+      }
     }
     // console.log(this.getRuleType()+" value:"+value);
     return value;

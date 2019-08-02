@@ -30,6 +30,16 @@ function getVersion(type: string) {
   return result;
 }
 
+function getVersionV2(type: string) {
+  var result = this.getVersion(type);
+  return {
+    state: 1,
+    data: result,
+    msg: '',
+  };
+}
+
 export default {
   getVersion: getVersion,
+  getVersionV2: getVersionV2,
 };

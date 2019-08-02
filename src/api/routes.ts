@@ -155,4 +155,9 @@ export default [
     method: 'post',
     action: version.getVersion,
   },
+  {
+    path: '/getVersionV2',
+    method: 'post',
+    action: version.getVersionV2,
+  },
 ];

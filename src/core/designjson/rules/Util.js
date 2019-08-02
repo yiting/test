@@ -203,10 +203,10 @@ function getSize(node) {
 
 function findNodeByCond(node, brother, type, id1, id2) {
   let result = false;
-  if (node[type].indexOf(id1) > -1 && brother[type].indexOf(id2) > -1) {
+  if (node[type] == id1 && brother[type] == id2) {
     result = true;
   }
-  if (node[type].indexOf(id2) > -1 && brother[type].indexOf(id1) > -1) {
+  if (node[type] == id2 && brother[type] == id1) {
     result = true;
   }
   return result;
