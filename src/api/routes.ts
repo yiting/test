@@ -1,5 +1,6 @@
 //1.designjson
 import { init, parse } from './controller/designPost';
+import designPostV2 from './controller/designPostV2';
 
 //2.designimage
 import * as imgApiV2 from './controller/imageApiV2';
@@ -25,6 +26,16 @@ export default [
     path: '/designparse',
     method: 'post',
     action: parse,
+  },
+  {
+    path: '/designinit/v2',
+    method: 'post',
+    action: designPostV2.init,
+  },
+  {
+    path: '/designparse/v2',
+    method: 'post',
+    action: designPostV2.parse,
   },
   // {
   //   path: '/test_img_downloadSketch',
