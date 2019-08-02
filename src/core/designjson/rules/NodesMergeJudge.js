@@ -57,55 +57,102 @@ class NodesMergeJudge {
       // console.log(1);
     }
 
-    if (
-      ImgConbineUtils.findNodeByCond(
-        node,
-        brother,
-        'id',
-        '99E17DDF-6814-49C3-A338-925767D8313B',
-        '6122A814-0CB2-4841-9178-83C41BF2D306',
-      )
-    ) {
-      // console.log(1);
+    // if (
+    //   ImgConbineUtils.findNodeByCond(
+    //     node,
+    //     brother,
+    //     'id',
+    //     "4D2975A0-200D-4554-99C7-381DCFFC4A0C",
+    //     "4DA4C44B-158A-434F-95C7-D0E077255954"
+    //   )
+    // ) {
+    //   console.log(1);
+    // }
+
+    // if(brother.id.indexOf("4D2975A0-200D-4554-99C7-381DCFFC4A0C")>-1){
+    //   console.log(1);
+    // }
+
+    // if(node.id.indexOf("4D2975A0-200D-4554-99C7-381DCFFC4A0C")>-1){
+    //   console.log(1);
+    // }
+
+    if (isFinally == false) {
+      //slice合图逻辑组合
+      if (isCombine == false) {
+        let ruleConfig2 = this.getRuleConfig({
+          data: [{ type: 'SliceSimilar', value: 50, requireScore: 100 }],
+        });
+        //需切换为yone给的数据
+        ruleConfig2.sliceArr = ruleConfig.sliceArr;
+        var scoreResult = this.score(node, brother, ruleConfig2);
+        if (scoreResult.score >= ruleConfig2.score) {
+          isCombine = true;
+          isFinally = true;
+          scoreResult = this.score(node, brother, ruleConfig2);
+        } else if (scoreResult.score == 0) {
+          //在不同的slice里面的情况
+          isCombine = false;
+          isFinally = true;
+        }
+        if (
+          (node.id.indexOf('4D2975A0-200D-4554-99C7-381DCFFC4A0C') > -1 ||
+            brother.id.indexOf('4D2975A0-200D-4554-99C7-381DCFFC4A0C') > -1) &&
+          isCombine == true
+        ) {
+          console.log(1);
+        }
+      }
     }
 
     //如果有一个节点是长直线，则不合并
-    if (ImgConbineUtils.isLine(node) || ImgConbineUtils.isLine(brother)) {
-      isCombine = false;
-      isFinally = true;
+    if (isFinally == false) {
+      if (ImgConbineUtils.isLine(node) || ImgConbineUtils.isLine(brother)) {
+        isCombine = false;
+        isFinally = true;
+      }
     }
 
     //如果有一个是气泡图片，则不合并
-    if (ImgConbineUtils.isBubble(node) || ImgConbineUtils.isBubble(brother)) {
-      isCombine = false;
-      isFinally = true;
+    if (isFinally == false) {
+      if (ImgConbineUtils.isBubble(node) || ImgConbineUtils.isBubble(brother)) {
+        isCombine = false;
+        isFinally = true;
+      }
     }
 
     //如果有一个节点是红点，则不合并
-    if (
-      ImgConbineUtils.isRedPoint(node) ||
-      ImgConbineUtils.isRedPoint(brother)
-    ) {
-      isCombine = false;
-      isFinally = true;
+    if (isFinally == false) {
+      if (
+        ImgConbineUtils.isRedPoint(node) ||
+        ImgConbineUtils.isRedPoint(brother)
+      ) {
+        isCombine = false;
+        isFinally = true;
+      }
     }
 
     //如果有一个节点是头像，则不合并
-    if (ImgConbineUtils.isAvatar(node) || ImgConbineUtils.isAvatar(brother)) {
-      isCombine = false;
-      isFinally = true;
+    if (isFinally == false) {
+      if (ImgConbineUtils.isAvatar(node) || ImgConbineUtils.isAvatar(brother)) {
+        isCombine = false;
+        isFinally = true;
+      }
     }
 
     //avatar合图逻辑组合，如果得分低则不合
-    let ruleConfig0 = this.getRuleConfig({
-      data: [
-        { type: 'AvatarSimilar', value: 100, requireScore: 90, root: root },
-      ],
-    });
-    let scoreResult = this.score(node, brother, ruleConfig0);
-    if (scoreResult.score < ruleConfig0.score) {
-      isCombine = false;
-      isFinally = true;
+    let ruleConfig0;
+    if (isFinally == false) {
+      ruleConfig0 = this.getRuleConfig({
+        data: [
+          { type: 'AvatarSimilar', value: 100, requireScore: 90, root: root },
+        ],
+      });
+      let scoreResult = this.score(node, brother, ruleConfig0);
+      if (scoreResult.score < ruleConfig0.score) {
+        isCombine = false;
+        isFinally = true;
+      }
     }
     //symbol合图逻辑组合，如果是在同一个symbol里，则认为该合在一起。
     // if (isFinally == false) {
@@ -282,21 +329,7 @@ class NodesMergeJudge {
         isFinally = true;
       }
     }
-    // if (isFinally == false) {
-    //   //slice合图逻辑组合
-    //   if (isCombine == false) {
-    //     let ruleConfig2 = this.getRuleConfig({
-    //       data: [{ type: 'SliceSimilar', value: 50, requireScore: 100 }],
-    //     });
-    //     //需切换为yone给的数据
-    //     // ruleConfig2.sliceArr = sliceArr;
-    //     scoreResult = this.score(node, brother, ruleConfig2);
-    //     if (scoreResult.score >= ruleConfig2.score) {
-    //       isCombine = true;
-    //       scoreResult = this.score(node, brother, ruleConfig2);
-    //     }
-    //   }
-    // }
+
     // if (isFinally == false) {
     //   //ai合图逻辑组合
     //   if (isCombine == false) {
