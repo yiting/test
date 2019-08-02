@@ -4,9 +4,7 @@ import Resource from '../../../../render/ark/resource';
 class EM1M1 extends ArkTemplate {
   constructor(...args: any[]) {
     super(...args);
-    let tpl = `<Text size="${this.width},${this.height}" value="${
-      this.text
-    }" size margin anchors multiline align`;
+    let tpl = `<Text value="${this.text}" size margin anchors multiline align`;
     if (this.textColor) {
       tpl += ` textcolor="${this.textColor}"`;
     }

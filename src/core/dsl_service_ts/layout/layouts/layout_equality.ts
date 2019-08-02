@@ -257,6 +257,24 @@ class LayoutEquality {
     );
   }
 
+  static _inRange(nodes: any, width: number, align: number = 0) {
+    return nodes.every((node: any, i: number) => {
+      if (!nodes[i + 1]) {
+        return true;
+      }
+      if (align === 0) {
+        // 左对齐
+        return node.abX + width <= nodes[i + 1].abX;
+      } else if (align === 1) {
+        // 居中
+        return (node.abX + node.abXops + width) / 2 <= nodes[i + 1].abX;
+      }
+    });
+  }
+  static _isContain(nodes: any, width: number) {
+    return nodes.every((node: any) => node.abXops - node.abX <= width);
+  }
+
   /**
    * 左对齐等分要求
    * 节点间距相等
@@ -280,32 +298,36 @@ class LayoutEquality {
 
     dirArr.sort((a: number, b: number) => a - b);
     // 假设最大宽度为元素左边距的距离
-    let maybeDir = dirArr[0];
-    const firstDir = dirArr[0];
-    const lastDir = dirArr[dirArr.length - 1];
+    const minDir = dirArr[0];
+    const maxDir = dirArr[dirArr.length - 1];
     // 如果最大和最小间距差大于系数，则不符合
-    if (Math.abs(lastDir - firstDir) > ErrorCoefficient) {
+    if (Math.abs(maxDir - minDir) > ErrorCoefficient) {
       return false;
     }
-    const lastNodeAbXops = lastNode.abX + maybeDir;
+    let targetWidth = minDir;
+    const _isContain = LayoutEquality._isContain(nodes, targetWidth);
+    // 如果目标宽度小于部分节点宽度
+    if (!_isContain) {
+      return false;
+    }
+
+    const lastNodeAbXops = lastNode.abX + targetWidth;
     const paddingRightAbX = parent.abXops - rightSide;
     // 如果末节点原右边界未超出父节点范围，末节点新右边界超出父节点范围，不符合左等分
     if (lastNode.abXops < parent.abXops && lastNodeAbXops > parent.abXops) {
       return false;
     }
 
-    //  如果末节点的右边界在父节点的padding-right内，则裁剪“假设宽度”maybeDir
+    //  如果末节点的右边界在父节点的padding-right内，则裁剪“假设宽度”targetWidth
     if (lastNodeAbXops <= parent.abXops && lastNodeAbXops > paddingRightAbX) {
-      const shrinkDir = maybeDir - (lastNodeAbXops - paddingRightAbX);
+      const shrinkWidth = targetWidth - (lastNodeAbXops - paddingRightAbX);
       // 验证新节点都包含原节点范围
-      const isContain = nodes.every((nd: any) => {
-        return shrinkDir >= nd.abXops - nd.abX;
-      });
+      const isContain = LayoutEquality._isContain(nodes, shrinkWidth);
       if (isContain) {
-        maybeDir = shrinkDir;
+        targetWidth = shrinkWidth;
       }
     }
-    return maybeDir;
+    return targetWidth;
   }
 
   /**

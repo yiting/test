@@ -88,6 +88,10 @@ let pipe = function(nodes: any): any {
         item.type = Common.QBody;
         bodyModel = item;
         break;
+      case 'QBody':
+        item.type = Common.QBody;
+        bodyModel = item;
+        break;
       default:
         Loger.warn(
           `dsl/dsl [pipe] nodes分类遇到没有对应类型的节,id:${item.id}`,
@@ -95,7 +99,6 @@ let pipe = function(nodes: any): any {
     }
   });
   const info1 = '分类后的节点总数:' + matchingNodes.length + '; ';
-
   // 匹配元素模型
   try {
     _matchModels(
