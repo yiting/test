@@ -28,12 +28,12 @@ export default [
     action: parse,
   },
   {
-    path: '/designinit/v2',
+    path: '/v2/designinit',
     method: 'post',
     action: designPostV2.init,
   },
   {
-    path: '/designparse/v2',
+    path: '/v2/designparse',
     method: 'post',
     action: designPostV2.parse,
   },
