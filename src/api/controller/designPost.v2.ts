@@ -28,7 +28,7 @@ async function init(context: Context) {
       responseData.data = initData;
     } catch (error) {
       console.error(error);
-      responseData.status = 0;
+      responseData.state = 0;
       responseData.msg = error.toString();
     }
   }
@@ -48,7 +48,7 @@ async function parse(context: Context) {
     responseData.data = parseData;
   } catch (error) {
     console.error(error);
-    responseData.status = 0;
+    responseData.state = 0;
     responseData.msg = error.toString();
   }
   res.body = responseData;
@@ -138,7 +138,7 @@ function deleteZipFile(fileName: string, directory: string) {
   fs.unlink(fullName, () => {});
 }
 class ResponseData {
-  status: number = 1;
+  state: number = 1;
   data: any = null;
   msg: string = '';
 }
