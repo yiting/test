@@ -89,12 +89,12 @@ export async function preview(context: Context) {
 function makeResult(context: Context) {
   var res = context.response;
   var result = {
-    status: 1,
+    state: 1,
     msg: '',
     data: res.body,
   };
   if (typeof res.body == 'string') {
-    result.status = 0;
+    result.state = 0;
     result.msg = res.body;
     result.data = [];
   }
