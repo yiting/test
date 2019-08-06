@@ -1,5 +1,6 @@
 //1.designjson
 import { init, parse } from './controller/designPost';
+import designPost_v2 from './controller/designPost.v2';
 
 //2.designimage
 import * as imgApiV2 from './controller/imageApiV2';
@@ -28,6 +29,16 @@ export default [
     path: '/designparse',
     method: 'post',
     action: parse,
+  },
+  {
+    path: '/v2/designinit',
+    method: 'post',
+    action: designPost_v2.init,
+  },
+  {
+    path: '/v2/designparse',
+    method: 'post',
+    action: designPost_v2.parse,
   },
   // {
   //   path: '/test_img_downloadSketch',
@@ -75,7 +86,7 @@ export default [
   //   action: imageMacApi.makeImgByUpdateSketch,
   // },
   {
-    path: '/img_makeImgsByUpdateSketch_v2',
+    path: '/v2/img_makeImgsByUpdateSketch',
     method: 'post',
     action: imageMacApiV2.makeImgsByUpdateSketch,
   },
@@ -100,7 +111,7 @@ export default [
     action: imgApiV2.generate,
   },
   {
-    path: '/img_generate_v2',
+    path: '/v2/img_generate',
     method: 'post',
     action: imgApiV2.generateV2,
   },
@@ -110,7 +121,7 @@ export default [
     action: imageMacApiV2.preview,
   },
   {
-    path: '/img_preview_v2',
+    path: '/v2/img_preview',
     method: 'post',
     action: imageMacApiV2.previewV2,
   },
@@ -130,12 +141,12 @@ export default [
     action: arkApi,
   },
   {
-    path: '/dsl_process_v2',
+    path: '/v2/dsl_process',
     method: 'post',
     action: dslApi_v2,
   },
   {
-    path: '/ark_process_v2',
+    path: '/v2/ark_process',
     method: 'post',
     action: arkApi_v2,
   },
@@ -143,5 +154,10 @@ export default [
     path: '/getVersion',
     method: 'post',
     action: version.getVersion,
+  },
+  {
+    path: '/v2/getVersion',
+    method: 'post',
+    action: version.getVersionV2,
   },
 ];

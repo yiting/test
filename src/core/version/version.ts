@@ -1,6 +1,6 @@
 const version = {
   img: '2.0.20',
-  dsl: '1.0.51',
+  dsl: '1.0.52',
   json: '1.0.1',
 };
 //test
@@ -30,6 +30,16 @@ function getVersion(type: string) {
   return result;
 }
 
+function getVersionV2(type: string) {
+  var result = this.getVersion(type);
+  return {
+    state: 1,
+    data: result,
+    msg: '',
+  };
+}
+
 export default {
   getVersion: getVersion,
+  getVersionV2: getVersionV2,
 };

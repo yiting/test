@@ -140,7 +140,7 @@ const ImageCombine = function() {
     //   });
     // });
     return new Promise(function(resolve, reject) {
-      const url = `${interfacePre}img_makeImgsByUpdateSketch_v2`;
+      const url = `${interfacePre}v2/img_makeImgsByUpdateSketch`;
       request.post(
         {
           url,
