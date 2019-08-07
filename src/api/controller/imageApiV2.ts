@@ -77,7 +77,7 @@ export async function generate(context: Context) {
 
     logger = qlog.getInstance(store.getAll());
 
-    if (!existsSync('./data/upload_file/' + projectName + '.sketch')) {
+    if (!existsSync('./data/upload_file/' + projectName)) {
       //下载sketch
       await imageMacApi.downloadSketch(context);
     }
