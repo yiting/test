@@ -40,11 +40,11 @@ export default [
     method: 'post',
     action: designPost_v2.parse,
   },
-  // {
-  //   path: '/test_img_downloadSketch',
-  //   method: 'get',
-  //   action: testImgMacApi.testDownload,
-  // },
+  {
+    path: '/v2/img_downloadSketch',
+    method: 'get',
+    action: imageMacApiV2.downloadSketch,
+  },
   // {
   //   path: '/test_makeImg',
   //   method: 'get',

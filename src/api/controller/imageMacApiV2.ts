@@ -36,6 +36,7 @@ export async function downloadSketch(context: Context) {
   result = await imgCombineMac.unzipSketch(projectName);
   const res = context.response;
   res.body = result;
+  makeResult(context);
 }
 
 export async function makeImg(context: Context) {
