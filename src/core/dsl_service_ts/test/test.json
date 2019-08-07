@@ -1,9 +1,9 @@
 [
   {
-    "id": "37B10166-426C-4871-A12B-5FBB45AC86B3",
-    "name": "画板",
-    "width": 500,
-    "height": 430,
+    "id": "BEE384ED-AD72-4960-882E-B2DE6165D2C3",
+    "name": "Ark面板-关注",
+    "width": 502,
+    "height": 394,
     "abX": 0,
     "abY": 0,
     "zIndex": 0,
@@ -18,30 +18,65 @@
     "type": "QLayer"
   },
   {
-    "id": "EC0F2C1F-7C38-498C-8A21-95FF6E43099E",
-    "name": "位图",
-    "width": 500,
-    "height": 430,
+    "id": "94E33788-1746-4086-BBC0-6C1F0ADF779C",
+    "name": "矩形",
+    "width": 502,
+    "height": 80,
     "abX": 0,
-    "abY": 0,
+    "abY": 314,
     "zIndex": 0,
     "styles": {
+      "borderRadius": [0, 0, 28, 28],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "79E3BCB0-0179-4B77-80F8-3D9CD9A9A8DC",
+    "name": "矩形",
+    "width": 1,
+    "height": 80,
+    "abX": 251,
+    "abY": 314,
+    "zIndex": 1,
+    "styles": {
       "borderRadius": null,
       "border": null,
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
-      "background": null
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 222,
+          "g": 223,
+          "b": 224,
+          "a": 1
+        },
+        "hasOpacity": false
+      }
     },
-    "type": "QImage",
-    "path": "b158361f63a45f928dbf8d764e4443f5.png"
+    "type": "QShape"
   },
   {
-    "id": "A62917AE-3C19-4C5B-A6AE-3F14399096C0",
-    "name": "位图",
-    "width": 219,
-    "height": 70,
-    "abX": 259,
+    "id": "D23A570E-6FB1-4545-981F-723142DFAFC0",
+    "name": "关注",
+    "width": 64,
+    "height": 32,
+    "abX": 94,
     "abY": 338,
     "zIndex": 1,
     "styles": {
@@ -50,203 +85,79 @@
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "de268723c5f7d3bfd11358fb679e00dc.png"
-  },
-  {
-    "id": "700C011B-E41C-45A8-9507-405AC7E227F6",
-    "name": "位图",
-    "width": 219,
-    "height": 70,
-    "abX": 23,
-    "abY": 338,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "2715ee3848133a78060255bcbc32df54.png"
-  },
-  {
-    "id": "6855BF35-DCB4-47E5-8AB9-D41A1272A12F",
-    "name": "67分",
-    "width": 128,
-    "height": 72,
-    "abX": 203,
-    "abY": 212,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
       "background": null,
       "texts": [
         {
-          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-          "string": "67分",
-          "font": "FZSHENGSKS_ZHONGJW--GB1-0",
-          "size": 64
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "67分"
-  },
-  {
-    "id": "89DABFE2-459C-49B0-887B-380CB8CB1D78",
-    "name": "鱼塘霸主 佛系上分",
-    "width": 205,
-    "height": 27,
-    "abX": 155,
-    "abY": 287,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-          "string": "鱼塘霸主 佛系上分",
-          "font": "FZSHENGSKS_ZHONGJW--GB1-0",
-          "size": 24.00001472667762
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "鱼塘霸主 佛系上分"
-  },
-  {
-    "id": "CDC1371D-D5CC-47EE-B8E2-5C1D57356C4C",
-    "name": "位图",
-    "width": 281,
-    "height": 38,
-    "abX": 160,
-    "abY": 38,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "ef2053d832cf1e6a592cacabe1234770.png"
-  },
-  {
-    "id": "096E9295-B04A-40C3-9E83-6310CFC88FA6",
-    "name": "超越了 的用户",
-    "width": 228,
-    "height": 31,
-    "abX": 162,
-    "abY": 83,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 254, "g": 215, "b": 225, "a": 1 },
-          "string": "超越了",
-          "font": "FZSHENGSKS_CUJW--GB1-0",
-          "size": 24
-        },
-        {
-          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-          "string": "      ",
-          "font": "FZSHENGSKS_CUJW--GB1-0",
-          "size": 28
-        },
-        {
-          "color": { "r": 254, "g": 215, "b": 225, "a": 1 },
-          "string": "的用户",
-          "font": "FZSHENGSKS_CUJW--GB1-0",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "超越了      的用户"
-  },
-  {
-    "id": "22358E22-B928-474C-9091-DD2E589361CA",
-    "name": "56.6%",
-    "width": 70,
-    "height": 31,
-    "abX": 240,
-    "abY": 82,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-          "string": "56.6%",
-          "font": "FZSHENGSKS_CUJW--GB1-0",
-          "size": 28
+          "color": {
+            "r": 85,
+            "g": 65,
+            "b": 230,
+            "a": 1
+          },
+          "string": "关注",
+          "font": "PingFangSC-Regular",
+          "size": 32
         }
       ],
       "verticalAlign": 0,
       "textAlign": 2,
-      "lineHeight": null
+      "lineHeight": 32
     },
     "type": "QText",
-    "text": "56.6%"
+    "text": "关注"
   },
   {
-    "id": "EE004C9A-DB36-4CAD-8D84-02542E01F6A8",
-    "name": "椭圆 848",
-    "width": 91,
-    "height": 91,
-    "abX": 52,
-    "abY": 28,
+    "id": "3071B8B2-BEE4-42D2-8825-95B69B9303B6",
+    "name": "进入小窝",
+    "width": 128,
+    "height": 32,
+    "abX": 307,
+    "abY": 338,
     "zIndex": 1,
     "styles": {
       "borderRadius": null,
-      "border": {
-        "type": "solid",
-        "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-        "width": 2,
-        "position": 2
-      },
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 85,
+            "g": 65,
+            "b": 230,
+            "a": 1
+          },
+          "string": "进入小窝",
+          "font": "PingFangSC-Regular",
+          "size": 32
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": 32
+    },
+    "type": "QText",
+    "text": "进入小窝"
+  },
+  {
+    "id": "22562E21-209D-4131-B602-5C4A52B66D59",
+    "name": "pic",
+    "width": 502,
+    "height": 314,
+    "abX": 0,
+    "abY": 0,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": [28, 28, 0, 0],
+      "border": null,
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
       "background": null
     },
     "type": "QImage",
-    "path": "02e1c1b552a6d874bc00a071c2c8e8ed.png"
+    "path": "460c7ea988aa947206a0d1db3797b037.png"
   }
 ]
