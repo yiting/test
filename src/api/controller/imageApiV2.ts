@@ -5,6 +5,7 @@ import ImgCombineMac from '../../core/designimage/img_combine_mac_v2';
 import qlog from '../../core/log/qlog';
 import util from '../../core/designimage/helper/util';
 import store from '../../core/designimage/helper/store';
+import { existsSync } from 'fs';
 let logger: any = undefined;
 let startTime = 0;
 
@@ -76,8 +77,10 @@ export async function generate(context: Context) {
 
     logger = qlog.getInstance(store.getAll());
 
-    //下载sketch
-    await imageMacApi.downloadSketch(context);
+    if (!existsSync('./data/upload_file/' + projectName)) {
+      //下载sketch
+      await imageMacApi.downloadSketch(context);
+    }
 
     //绘图
     let result = await combineNodes(context);
@@ -100,12 +103,12 @@ export async function generate(context: Context) {
 function makeResult(context: Context) {
   var res = context.response;
   var result = {
-    status: 1,
+    state: 1,
     msg: '',
     data: res.body,
   };
   if (typeof res.body == 'string') {
-    result.status = 0;
+    result.state = 0;
     result.msg = res.body;
     result.data = [];
   }
