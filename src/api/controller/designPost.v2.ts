@@ -43,11 +43,17 @@ async function parse(context: Context) {
   let responseData: ResponseData = new ResponseData();
   try {
     // sketch特殊处理
-    data = require(`${TEMP_DIRECTORY}/${data.dataToken}/${
+    const dataPath = `${TEMP_DIRECTORY}/${data.dataToken}/${
       data.dataToken
-    }.json`);
-    parseData = DesignJson.parse(artboardId, data);
-    responseData.data = parseData;
+    }.json`;
+    if (!fs.existsSync(dataPath)) {
+      responseData.state = 2;
+      responseData.msg = '找不到文件';
+    } else {
+      data = require(dataPath);
+      parseData = DesignJson.parse(artboardId, data);
+      responseData.data = parseData;
+    }
   } catch (error) {
     console.error(error);
     responseData.state = 0;
