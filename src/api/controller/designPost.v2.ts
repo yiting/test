@@ -6,6 +6,7 @@ const archiver = require('archiver');
 const download = require('download-file');
 const unzip = require('unzip');
 const JSON_FILE_NAME = 'handPagesData.json';
+const rimraf = require('rimraf');
 // const ip = require('ip');
 const TEMP_DIRECTORY = path.resolve(__dirname, '../../../.temp/');
 async function init(context: Context) {
@@ -16,6 +17,7 @@ async function init(context: Context) {
   if (fileType === 'sketch') {
     const fileName = Date.now().toString();
     try {
+      cleanTemptDir(+fileName);
       await downloadFile(data.pagesPath, fileName, TEMP_DIRECTORY);
       const pages = await unzipFile(fileName, TEMP_DIRECTORY);
       deleteZipFile(fileName, TEMP_DIRECTORY);
@@ -63,28 +65,23 @@ function writeData(data: any, filename: string, directory: string) {
   }
 }
 
-async function zipData(data: any, destZip: string) {
-  return new Promise((resolve, reject) => {
-    let str: string = '';
-    try {
-      str = JSON.stringify(data);
-    } catch (error) {
-      reject(error);
+function cleanTemptDir(
+  currentTime: number,
+  expired: number = 24 * 3600 * 1000,
+) {
+  fs.readdir(TEMP_DIRECTORY, (err, files) => {
+    if (err) {
+      console.error(err);
+      return;
     }
-    const output = fs.createWriteStream(destZip);
-    const archive = archiver('zip', {
-      zlib: { level: 9 },
+    files.forEach(filepath => {
+      const fileTime = +filepath;
+      if (fileTime && currentTime - fileTime > expired) {
+        rimraf(filepath, function() {
+          console.log('删除过期目录：', filepath);
+        });
+      }
     });
-    output.on('close', function() {
-      resolve();
-    });
-    archive.on('error', function(error: Error) {
-      reject(error);
-    });
-    // zip
-    archive.pipe(output);
-    archive.append(str, { name: JSON_FILE_NAME });
-    archive.finalize();
   });
 }
 
