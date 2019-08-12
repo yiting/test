@@ -18,7 +18,7 @@ master:
         - name: deploy
           type: orange-ci:transfer
           options:
-            dist: dist/
+            dist: /
             verbose: true
             to: /data/core_service
             ips: 
