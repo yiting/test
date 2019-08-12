@@ -7,7 +7,7 @@ const download = require('download-file');
 const unzip = require('unzip');
 const JSON_FILE_NAME = 'handPagesData.json';
 const rimraf = require('rimraf');
-// const ip = require('ip');
+
 const TEMP_DIRECTORY = path.resolve(__dirname, '../../../.temp/');
 async function init(context: Context) {
   const { response: res, request: req } = context;
