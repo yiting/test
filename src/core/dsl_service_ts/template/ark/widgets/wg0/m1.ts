@@ -7,12 +7,8 @@ class LAYER extends ArkTemplate {
       tpl += `<Image size value="${
         this.path
       }" margin anchors @constraints='{"LayoutSelfPosition":"Absolute"}' />`;
-    } else {
-      this._template = `<Texture color="${
-        this.bgColor
-      }"  margin anchors  @constraints='{
-        "LayoutSelfPosition":"Absolute"
-      }/>`;
+    } else if (this.bgColor) {
+      tpl += `<Texture color="${this.bgColor}"  margin anchors/>`;
     }
     tpl += `</View>`;
 
