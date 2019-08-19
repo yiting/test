@@ -41,3 +41,7 @@ Render.outputFileWithPath(
   Path.join(__dirname, './output/index.json'),
   JSON.stringify(value.json),
 );
+Render.outputFileWithPath(
+  Path.join(__dirname, './output/index.lua'),
+  value.view_lua,
+);

@@ -11,6 +11,7 @@ import FileConfig from './files/config.json';
 import FileComProj from './files/com_proj';
 import FileFontXML from './files/font_xml';
 import FileViewXML from './files/view_xml';
+import FileViewLua from './files/view_lua';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
@@ -52,6 +53,7 @@ class ArkBuilder extends Builder {
       com_proj: FileComProj(resouceList),
       font_xml: FileFontXML(fontMap),
       view_xml: FileViewXML(view_xml),
+      view_lua: FileViewLua(this.view.width, this.view.height),
       json: this.view.toJSON(),
     };
   }

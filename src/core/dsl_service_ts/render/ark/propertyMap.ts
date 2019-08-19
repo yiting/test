@@ -4,6 +4,7 @@ import orientation from './property/orientation';
 import size from './property/size';
 import multiline from './property/multiline';
 import align from './property/align';
+import radius from './property/radius';
 
 export default {
   margin,
@@ -12,4 +13,5 @@ export default {
   size,
   multiline,
   align,
+  radius,
 };

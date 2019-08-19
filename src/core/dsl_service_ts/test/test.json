@@ -1,9 +1,9 @@
 [
   {
-    "id": "0C0B7EB4-B1D7-4612-B79F-A5C6896DBEA6",
-    "name": "画板",
-    "width": 502,
-    "height": 70,
+    "id": "4E925234-728B-46CE-8DAF-121950002299",
+    "name": "ark",
+    "width": 500,
+    "height": 764,
     "abX": 0,
     "abY": 0,
     "zIndex": 0,
@@ -18,15 +18,110 @@
     "type": "QLayer"
   },
   {
-    "id": "01D71FA9-BB69-4AA0-93EB-11BC96564F1B",
-    "name": "矩形",
-    "width": 502,
-    "height": 70,
+    "id": "83F3053E-E72D-437A-A3A1-154E628325F5",
+    "name": "凯",
+    "width": 500,
+    "height": 207,
     "abX": 0,
     "abY": 0,
     "zIndex": 0,
     "styles": {
-      "borderRadius": [8, 8, 8, 8],
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "57c15cab72c7a81df30a6ca39821e3c7.png"
+  },
+  {
+    "id": "9039B82F-3DEF-4F8A-8F4F-9EAD6B00B057",
+    "name": "位图",
+    "width": 500,
+    "height": 520,
+    "abX": 0,
+    "abY": 191,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "8ea0c4104fbf1a95eb9311b44711257f.png"
+  },
+  {
+    "id": "4418F538-7A8B-49B2-95BA-F86CBD6EF65F",
+    "name": "位图",
+    "width": 208,
+    "height": 55,
+    "abX": 146,
+    "abY": 225,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "df4d79e0d058bdfee3a592532f634331.png"
+  },
+  {
+    "id": "8E363F16-976A-468B-BB7B-BB523EFB97A5",
+    "name": "位图",
+    "width": 88,
+    "height": 88,
+    "abX": 109,
+    "abY": 429,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "1c05b1e4677b4f360c5232bf17c7eeaa.png"
+  },
+  {
+    "id": "4004565A-210B-4D2F-9C2D-304A126933BC",
+    "name": "Group 12",
+    "width": 28,
+    "height": 32,
+    "abX": 169,
+    "abY": 485,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "d786104ab36ae5bf7fc7ab8aa9783eec.png"
+  },
+  {
+    "id": "B447AEC5-62E0-4BA7-A542-7B7A8E3ACB51",
+    "name": "矩形",
+    "width": 84,
+    "height": 28,
+    "abX": 111,
+    "abY": 525,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": [4, 4, 4, 4],
       "border": null,
       "opacity": 1,
       "rotation": 0,
@@ -34,10 +129,10 @@
       "background": {
         "type": "color",
         "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.2
         },
         "hasOpacity": false
       }
@@ -45,17 +140,17 @@
     "type": "QShape"
   },
   {
-    "id": "7342BA43-F6D1-4D3F-81C7-58BADE7294D8",
-    "name": "18 个礼包未领取",
-    "width": 177,
-    "height": 33,
-    "abX": 275,
-    "abY": 19,
-    "zIndex": 1,
+    "id": "A084FC30-2E53-466A-B99D-530A341BDD9D",
+    "name": "钻石I",
+    "width": 45,
+    "height": 28,
+    "abX": 144,
+    "abY": 525,
+    "zIndex": 3,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 1,
+      "opacity": 0.5,
       "rotation": 0,
       "shadows": null,
       "background": null,
@@ -63,64 +158,353 @@
         {
           "color": {
             "r": 255,
-            "g": 129,
-            "b": 4,
+            "g": 255,
+            "b": 255,
             "a": 1
           },
-          "string": "18 ",
-          "font": "PingFangSC-Regular",
-          "size": 24
+          "string": "钻石I",
+          "font": "PingFang-SC-Medium",
+          "size": 20
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "钻石I"
+  },
+  {
+    "id": "472F96C5-CAD5-4100-96B5-4B9AFAE34E31",
+    "name": "Bitmap",
+    "width": 25,
+    "height": 24,
+    "abX": 115,
+    "abY": 527,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "c62fc9788ce7ab0c24a2db851fb849b4.png"
+  },
+  {
+    "id": "FDA474F2-1720-4507-9FD3-97A66C8CB38C",
+    "name": "位图",
+    "width": 88,
+    "height": 88,
+    "abX": 206,
+    "abY": 429,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "0c66af8c3f0679b1d0045a6f8ea0ef7e.png"
+  },
+  {
+    "id": "96299968-4CD0-4089-AF86-29952EF106C0",
+    "name": "位图",
+    "width": 88,
+    "height": 88,
+    "abX": 303,
+    "abY": 429,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "aef49767b38808e9972008052010dfc9.png"
+  },
+  {
+    "id": "4B5D64C6-8953-4CBE-AD0E-87669171EB36",
+    "name": "矩形",
+    "width": 84,
+    "height": 28,
+    "abX": 208,
+    "abY": 525,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": [4, 4, 4, 4],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.2
         },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "EDA35D5B-89CE-4928-BF27-200D728F5752",
+    "name": "铂金I",
+    "width": 45,
+    "height": 28,
+    "abX": 241,
+    "abY": 525,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 0.5,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
         {
           "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
+            "r": 255,
+            "g": 255,
+            "b": 255,
             "a": 1
           },
-          "string": "个礼包未领取",
+          "string": "铂金I",
+          "font": "PingFang-SC-Medium",
+          "size": 20
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "铂金I"
+  },
+  {
+    "id": "FF961804-9DDF-4957-8244-4AEBCEC33B8E",
+    "name": "Bitmap",
+    "width": 25,
+    "height": 24,
+    "abX": 212,
+    "abY": 527,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "8ee0fa400d22e66e1f23e8c1daea76d8.png"
+  },
+  {
+    "id": "AB48BA3B-B167-4160-9D3D-E59385551F69",
+    "name": "矩形",
+    "width": 84,
+    "height": 28,
+    "abX": 305,
+    "abY": 525,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": [4, 4, 4, 4],
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.2
+        },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "F081DB7D-4DBF-48CF-9ECA-99397022FF96",
+    "name": "铂金I",
+    "width": 45,
+    "height": 28,
+    "abX": 338,
+    "abY": 525,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 0.5,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "string": "铂金I",
+          "font": "PingFang-SC-Medium",
+          "size": 20
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "铂金I"
+  },
+  {
+    "id": "B7B80571-87E3-4ACD-AC9A-A9694F5E094F",
+    "name": "Bitmap",
+    "width": 25,
+    "height": 24,
+    "abX": 309,
+    "abY": 527,
+    "zIndex": 3,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "FF961804-9DDF-4957-8244-4AEBCEC33B8E.png"
+  },
+  {
+    "id": "10C9846F-55DD-41FC-B34C-F7E347CD4958",
+    "name": "5V5王者峡谷 段位 不限",
+    "width": 304,
+    "height": 40,
+    "abX": 98,
+    "abY": 308,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 0.8,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "string": "5V5王者峡谷  段位 不限",
+          "font": "PingFangSC-Regular",
+          "size": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "5V5王者峡谷  段位 不限"
+  },
+  {
+    "id": "4060C335-FC39-48CD-9C29-8380B6254D8C",
+    "name": "上分狂魔开车拉，快来杀",
+    "width": 264,
+    "height": 33,
+    "abX": 118,
+    "abY": 606,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 0.5,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "string": "上分狂魔开车拉，快来杀",
           "font": "PingFangSC-Regular",
           "size": 24
         }
       ],
       "verticalAlign": 0,
-      "textAlign": 1,
+      "textAlign": 2,
       "lineHeight": null
     },
     "type": "QText",
-    "text": "18 个礼包未领取"
+    "text": "上分狂魔开车拉，快来杀"
   },
   {
-    "id": "7215F814-96D4-4AF4-A524-51DCBCA58913",
-    "name": "Combined Shape",
-    "width": 15,
-    "height": 26,
-    "abX": 466,
-    "abY": 22,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "de0ed6d16c189af31c9321b7a24cc91c.png"
+    "id": "CDB7908F-C177-4A01-93BF-96E4064D8594",
+    "name": "人数 3/5",
+    "width": 97,
+    "height": 33,
+    "abX": 202,
+    "abY": 360,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 0.5,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "string": "人数 3/5",
+          "font": "PingFangSC-Regular",
+          "size": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 2,
+      "lineHeight": null
+    },
+    "type": "QText",
+    "text": "人数 3/5"
   },
   {
-    "id": "_2D6FC452-0C50-49B5-9D26-F23C2AF8E10D_12C500BD-652A-4D51-8E4F-7FE25ED94AE8_D92E543B-2E68-4FA8-8AE7-6063A95693B6",
-    "name": "_Rectangle_Combined Shape_Combined Shape",
-    "width": 45,
-    "height": 44,
-    "abX": 20,
-    "abY": 13,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "ba912e42eff28906fdd9fa120be9f1bf.png"
-  },
-  {
-    "id": "D273AE76-8A46-47DE-897B-026B1002DC91",
-    "name": "Bitmap",
-    "width": 33,
-    "height": 35,
-    "abX": 26,
-    "abY": 17,
+    "id": "355B0CB9-4EF8-4E9B-A3CA-BC7280C0467C",
+    "name": "位图",
+    "width": 378,
+    "height": 100,
+    "abX": 61,
+    "abY": 664,
     "zIndex": 2,
     "styles": {
       "borderRadius": null,
@@ -131,68 +515,6 @@
       "background": null
     },
     "type": "QImage",
-    "path": "4641f771f438557588485afd2d4fe027.png"
-  },
-  {
-    "id": "_DAA0995A-6EEC-48DD-A6B8-3ED2F7AEC1F4_A91F1B89-4CCF-4939-BB06-66415CDF045D_EA17A369-DE56-4EA6-AADF-4F09B13CB938",
-    "name": "_Rectangle_Combined Shape_Combined Shape",
-    "width": 45,
-    "height": 44,
-    "abX": 75,
-    "abY": 13,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "1e7983a8216ab44d56d51ad73a533c40.png"
-  },
-  {
-    "id": "138CC878-E79A-4C4A-AD9A-CA617CA5D9F4",
-    "name": "Bitmap",
-    "width": 35,
-    "height": 34,
-    "abX": 80,
-    "abY": 17,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "23dde42cfcdd2fc1f8de5daee6210845.png"
-  },
-  {
-    "id": "_722FA6AD-9DCE-4DA2-A0F6-13A2E9BCC51F_1FF4D6FB-4C81-4CA1-B6EF-E0C7FF1D127D_26986200-512D-4181-9A28-044769257530",
-    "name": "_Rectangle_Combined Shape_Combined Shape",
-    "width": 45,
-    "height": 44,
-    "abX": 131,
-    "abY": 13,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "_DAA0995A-6EEC-48DD-A6B8-3ED2F7AEC1F4_A91F1B89-4CCF-4939-BB06-66415CDF045D_EA17A369-DE56-4EA6-AADF-4F09B13CB938.png"
-  },
-  {
-    "id": "6EDFE6A2-FD4E-43FA-9C90-407B3437C2F3",
-    "name": "Bitmap",
-    "width": 35,
-    "height": 34,
-    "abX": 136,
-    "abY": 17,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "138CC878-E79A-4C4A-AD9A-CA617CA5D9F4.png"
+    "path": "c586db9990381408afc07efd47ad2cd8.png"
   }
 ]
