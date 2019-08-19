@@ -18,11 +18,11 @@ master:
         - name: deploy
           type: orange-ci:transfer
           options:
-            dist: dist/
-            verbose: true
-            to: /home/tosee/core_server/dist
+            dist: /
+            verbose: false
+            to: /data/core_service
             ips: 
-              - 10.125.52.55
+              - 9.134.54.30
             after: pm2 restart core_server
   merge_request:
     - cacheFrom: .orange-ci.cache

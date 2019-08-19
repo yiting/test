@@ -36,6 +36,7 @@ export async function downloadSketch(context: Context) {
   result = await imgCombineMac.unzipSketch(projectName);
   const res = context.response;
   res.body = result;
+  makeResult(context);
 }
 
 export async function makeImg(context: Context) {
@@ -136,7 +137,8 @@ export async function getImgData(context: Context) {
       // 创建可读流
       let data: any = [];
       return new Promise((res, rej) => {
-        if (fs.existsSync(`./data/complie/${path}`)) {
+        var stat = fs.statSync(`./data/complie/${path}`);
+        if (!stat.isDirectory()) {
           const readerStream = fs.createReadStream(`./data/complie/${path}`);
           readerStream.on('data', function(chunk: any) {
             data.push(chunk);
@@ -151,6 +153,9 @@ export async function getImgData(context: Context) {
       });
     } catch (e) {
       logger.warn(e);
+      return new Promise((res, rej) => {
+        res(null);
+      });
     }
   }
 }
