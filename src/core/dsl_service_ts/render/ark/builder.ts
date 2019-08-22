@@ -7,11 +7,11 @@ import DomConstraints from '../helper/constraints';
 import DomBoundary from '../helper/boundary';
 import TextRevise from '../helper/textRevise';
 
-import FileConfig from './files/config.json';
 import FileComProj from './files/com_proj';
 import FileFontXML from './files/font_xml';
 import FileViewXML from './files/view_xml';
 import FileViewLua from './files/view_lua';
+import FileConfig from './files/config.json';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
@@ -43,10 +43,7 @@ class ArkBuilder extends Builder {
   }
 
   getResult() {
-    // const font = FileFontXML.
-    const fileList = Resource.formatPath(FileConfig);
-    const imageList = this.resource.imageList;
-    const resouceList = fileList.concat(imageList);
+    const resouceList = this.resource.imageList;
     const fontMap = this.resource.fontMap;
     const view_xml = View.getXmlString(this.view);
     return {
@@ -54,7 +51,7 @@ class ArkBuilder extends Builder {
       font_xml: FileFontXML(fontMap),
       view_xml: FileViewXML(view_xml),
       view_lua: FileViewLua(this.view.width, this.view.height),
-      json: this.view.toJSON(),
+      // json: this.view.toJSON(),
     };
   }
 }

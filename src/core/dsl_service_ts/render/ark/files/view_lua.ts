@@ -38,7 +38,7 @@ function ViewModel:AdjustSize()
 
     p_util.Transform(self.view, self.ratio, {"size", "margin", "font"}, {}, true)
     util.Clog('self.ratio', self.ratio)
-    self.view:SetSize(width, viewWidth * self.ratio)
+    self.view:SetSize(width, height)
     --self.view:Update()
 end
 
