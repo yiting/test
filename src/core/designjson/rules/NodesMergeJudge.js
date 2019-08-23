@@ -105,6 +105,27 @@ class NodesMergeJudge {
       }
     }
 
+    //ai合图逻辑组合
+    if (isFinally == false) {
+      if (
+        isCombine == false &&
+        ruleConfig.aiArr &&
+        ruleConfig.aiArr.length > 0
+      ) {
+        let ruleConfig2 = this.getRuleConfig({
+          data: [{ type: 'AiSimilar', value: 50, requireScore: 80 }],
+        });
+        //需切换为yone给的数据
+        ruleConfig2.aiArr = ruleConfig.aiArr;
+        var scoreResult = this.score(node, brother, ruleConfig2);
+        if (scoreResult.score >= ruleConfig2.score) {
+          isCombine = true;
+          isFinally = true;
+          scoreResult = this.score(node, brother, ruleConfig2);
+        }
+      }
+    }
+
     //如果有一个节点是长直线，则不合并
     if (isFinally == false) {
       if (ImgConbineUtils.isLine(node) || ImgConbineUtils.isLine(brother)) {

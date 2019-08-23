@@ -344,7 +344,7 @@ function getRuleConfig(ruleMap, option) {
     };
   });
   ruleConfig.score = ruleMap.Threshold || 90;
-  let aiArr = aiData && Array.isArray(aiData.AIImgData) ? aiData.AIImgData : [];
+  let aiArr = aiData && Array.isArray(aiData) ? aiData : [];
   ruleConfig.ratio = rate;
   ruleConfig.aiArr = aiArr
     .filter(item => item.det === 'icon')
@@ -354,7 +354,7 @@ function getRuleConfig(ruleMap, option) {
       obj.abY = Math.round(+item.y);
       obj.width = Math.round(+item.width);
       obj.height = Math.round(+item.height);
-      obj.rate = Math.round(+item.rate);
+      obj.rate = parseFloat(item.probability.toFixed(2));
       return obj;
     });
   ruleConfig.sliceArr = sliceData;

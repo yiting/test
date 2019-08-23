@@ -38,12 +38,14 @@ class SliceSimilar extends Rule {
     let percentSize;
     let result = false;
     let type = -1; // 0 包含 ， 1 相交 ，2相离
+    let hasChange = false;
     //保证A在左，B在右
     if (nodeAabX > nodeBabX) {
       nodeB = t_nodeA;
       nodeA = t_nodeB;
       nodeAabX = nodeA.abX;
       nodeBabX = nodeB.abX;
+      hasChange = true;
     }
     let nodeAabXOpsOri = Util.getAbXOps(nodeA);
     let nodeAabXOps = Util.getAbXOps(nodeA);
@@ -66,7 +68,9 @@ class SliceSimilar extends Rule {
       nodeAabYOps >= nodeBabYOps
     ) {
       //A包含B的情况
-      type = 0;
+      if (!hasChange) {
+        type = 0;
+      }
     } else if (
       nodeAabXOps < nodeBabX ||
       (nodeAabYOps < nodeBabY && nodeAabY < nodeBabY) ||
