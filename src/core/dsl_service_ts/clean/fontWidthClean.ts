@@ -28,6 +28,6 @@ function pipe(node: any) {
         // 左对齐
       }
       node.width = textWidth;
-    } */
-  }
+    } 
+  }*/
 }
