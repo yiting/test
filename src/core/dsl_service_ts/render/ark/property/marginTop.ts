@@ -3,9 +3,6 @@ import Constraints from '../../../helper/constraints';
 export default {
   key: 'marginTop',
   value() {
-    if (this._isAbsolute()) {
-      return null;
-    }
     const isHorizontal = this._isParentHorizontal();
     const prop = isHorizontal ? 'LayoutAlignItems' : 'LayoutJustifyContent';
     if (this.parent) {

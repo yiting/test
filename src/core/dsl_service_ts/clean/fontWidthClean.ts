@@ -1,5 +1,5 @@
-import Canvas from 'canvas';
-const Context = Canvas.createCanvas(200, 200).getContext('2d');
+/* import Canvas from 'canvas';
+const Context = Canvas.createCanvas(200, 200).getContext('2d'); */
 
 export default (nodes: any) => {
   // 计算文本宽度
@@ -8,7 +8,7 @@ export default (nodes: any) => {
 };
 
 function pipe(node: any) {
-  if (node.styles.texts) {
+  /* if (node.styles.texts) {
     let textWidth = 0;
     Context.clearRect(0, 0, 200, 200);
     node.styles.texts.forEach((text: any) => {
@@ -28,6 +28,6 @@ function pipe(node: any) {
         // 左对齐
       }
       node.width = textWidth;
-    }
-  }
+    } 
+  }*/
 }

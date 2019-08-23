@@ -24,10 +24,24 @@ const value: any = dslServer.process(
 
 // // 输出文件
 Render.outputFileWithPath(
-  Path.join(__dirname, './output/index.xml'),
-  value.xml,
+  Path.join(__dirname, './output/font.xml'),
+  value.font_xml,
+);
+// // 输出文件
+Render.outputFileWithPath(
+  Path.join(__dirname, './output/com.proj'),
+  value.com_proj,
+);
+// // 输出文件
+Render.outputFileWithPath(
+  Path.join(__dirname, './output/view.xml'),
+  value.view_xml,
 );
 Render.outputFileWithPath(
   Path.join(__dirname, './output/index.json'),
   JSON.stringify(value.json),
+);
+Render.outputFileWithPath(
+  Path.join(__dirname, './output/index.lua'),
+  value.view_lua,
 );

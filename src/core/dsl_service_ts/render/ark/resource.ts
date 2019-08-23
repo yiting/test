@@ -1,8 +1,5 @@
 class Resource {
-  nodes: any[];
-  constructor(node: any) {
-    this.nodes = Resource.serializate(node);
-  }
+  constructor() {}
   static serializate(node: any, arr: any[] = []) {
     arr.push(node);
     node.children.forEach((nd: any) => Resource.serializate(nd, arr));
@@ -11,14 +8,15 @@ class Resource {
   static fontName(text: any) {
     return 'app.' + text.font + text.size;
   }
-  getFontString() {
+  static getFontMap(nodes: any[]) {
     const fontMap: any = {};
-    this.nodes.forEach((nd: any) => {
+    nodes.forEach((nd: any) => {
       if (nd.styles.texts) {
         nd.styles.texts.forEach((text: any) => {
           const name = Resource.fontName(text);
           if (!fontMap[name]) {
             fontMap[name] = {
+              name,
               family: text.font,
               size: text.size,
             };
@@ -26,11 +24,35 @@ class Resource {
         });
       }
     });
-    const list = Object.keys(fontMap).map((id: any) => {
-      const obj = fontMap[id];
-      return `<Font id="${id}" size="${obj.size}" family="${obj.family}" />`;
+    return fontMap;
+  }
+  static getImageList(nodes: any[]) {
+    const resList: any = [];
+    nodes.forEach((nd: any) => {
+      if (nd.path && !resList.includes(nd.path)) {
+        resList.push('res/' + nd.path);
+      }
     });
-    return '<Resource>' + list.join('') + '</Resource>';
+    return resList;
+  }
+  static formatPath(config: string[]) {
+    const paths: string[] = [];
+    config.forEach((path: string) => {
+      if (path.indexOf('/src/') > -1) {
+        paths.push(path.replace(/^\/src\//i, ''));
+      }
+    });
+    return paths;
+  }
+  static process(node: any) {
+    const nodes = Resource.serializate(node);
+    const fontMap = Resource.getFontMap(nodes);
+    const imageList = Resource.getImageList(nodes);
+    return {
+      nodes,
+      fontMap,
+      imageList,
+    };
   }
 }
 
