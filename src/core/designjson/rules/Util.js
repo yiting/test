@@ -256,9 +256,12 @@ function isAvatar(node) {
   } else if (
     node.styles &&
     node.styles.borderRadius &&
-    node.styles.borderRadius.filter(k => k == '50%').length ==
-      node.styles.borderRadius.length &&
-    node.type == 'QImage'
+    (node.styles.borderRadius.filter(k => k == '50%').length ==
+      node.styles.borderRadius.length ||
+      node.styles.borderRadius.filter(k => k > 0).length > 0) &&
+    node.type == 'QImage' &&
+    node.width == node.height &&
+    node.width > 40 //找到最小的头像，游戏城里的头像宽度42
   ) {
     result = true;
   }
