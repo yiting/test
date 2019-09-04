@@ -62,6 +62,9 @@ const Funcs = {
       number = Math.ceil(number / dpr);
       unit = 'px';
     }
+    if (number === 0) {
+      return 0;
+    }
     if (unit === 'rem') {
       return `${number / 100}rem`;
     }
