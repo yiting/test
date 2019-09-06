@@ -20,7 +20,8 @@ export default {
     }
     if (this.path) {
       // const path = this.path.replace(/.*?(?=[^/]+$)/gi, '');
-      const path = this.path.replace(/^.*\//gi, '');
+      const path = this.path.split('/').pop();
+      // const path = this.path.replace(/^.*\//gi, '');
       // const relativePath = Path.relative(
       //   Config.HTML.output.cssPath,
       //   Config.HTML.output.imgPath,
