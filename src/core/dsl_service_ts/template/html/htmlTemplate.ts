@@ -24,7 +24,8 @@ export default class HtmlTemplate extends Template {
       // Path.relative(Config.HTML.output.htmlPath, Config.HTML.output.imgPath),
       // path,
       // );
-      const p = path.replace(/^.*\//gi, '');
+      // const p = path.replace(/^.*\//gi, '');
+      const p = path.split('/').pop();
       return `../images/${p}`;
     };
 
