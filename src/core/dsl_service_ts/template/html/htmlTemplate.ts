@@ -24,7 +24,7 @@ export default class HtmlTemplate extends Template {
       // Path.relative(Config.HTML.output.htmlPath, Config.HTML.output.imgPath),
       // path,
       // );
-      return path.replace(/.*?(?=[^/]+$)/gi, '');
+      return '../images/' + path.replace(/.*?(?=[^/]+$)/gi, '');
     };
 
     this.textClassName = function(node: any): string {

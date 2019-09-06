@@ -11,7 +11,6 @@ export default {
     if (this._isBgTag()) {
       return null;
     }
-    const path = this.path.replace(/.*?(?=[^/]+$)/gi, '');
     if (this.styles.background && this.styles.background.type === 'linear') {
       return Funcs.getLinearGradient(
         this.styles.background,
@@ -19,12 +18,14 @@ export default {
         this.abYops - this.abY,
       );
     }
-    if (path) {
+    if (this.path) {
+      const path = this.path.replace(/.*?(?=[^/]+$)/gi, '');
+
       // const relativePath = Path.relative(
       //   Config.HTML.output.cssPath,
       //   Config.HTML.output.imgPath,
       // );
-      return `url(./../images/${path})`;
+      return `url(../images/${path})`;
     }
     return null;
   },
