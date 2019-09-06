@@ -8,6 +8,9 @@ export default {
     if (this._isImgTag()) {
       return null;
     }
+    if (this._isBgTag()) {
+      return null;
+    }
     if (this.styles.background && this.styles.background.type === 'linear') {
       return Funcs.getLinearGradient(
         this.styles.background,

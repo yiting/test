@@ -140,7 +140,10 @@ class CssDom extends VDom {
   }
 
   _isImgTag() {
-    return this.tagName === 'img' || this.tagName === 'i';
+    return this.tagName === 'img';
+  }
+  _isBgTag() {
+    return this.tagName === 'i';
   }
 
   /**
