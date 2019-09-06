@@ -1,6 +1,6 @@
 const version = {
   img: '2.0.21',
-  dsl: '1.0.59',
+  dsl: '1.0.60',
   json: '1.0.1',
 };
 //test
