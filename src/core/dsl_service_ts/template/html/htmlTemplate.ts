@@ -20,10 +20,11 @@ export default class HtmlTemplate extends Template {
       if (!path) {
         return '';
       }
-      return Path.join(
-        Path.relative(Config.HTML.output.htmlPath, Config.HTML.output.imgPath),
-        path,
-      );
+      // return Path.join(
+      // Path.relative(Config.HTML.output.htmlPath, Config.HTML.output.imgPath),
+      // path,
+      // );
+      return path.replace(/.*?(?=[^/]+$)/gi, '');
     };
 
     this.textClassName = function(node: any): string {
