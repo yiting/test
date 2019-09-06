@@ -132,8 +132,8 @@ function hashPath(imageList, outputPath = '') {
 function process(designDom, outputPath) {
   let nodes = serialize(designDom);
   let imageList = nodes.filter(node => node.type === 'QImage');
-  replacePath(imageList);
   hashPath(imageList, outputPath);
+  replacePath(imageList);
 }
 module.exports = {
   process,
