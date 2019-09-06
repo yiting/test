@@ -124,9 +124,9 @@ function replacePath(imageList) {
   }
 }
 function hashPath(imageList, outputPath = '') {
-  imageList.forEach(n => {
-    const id = md5(n.id);
-    n.path = `${outputPath}${id}.png`;
+  imageList.forEach((n, index) => {
+    // const id = md5(n.id);
+    n.path = `${outputPath}${index}.png`;
   });
 }
 function process(designDom, outputPath) {

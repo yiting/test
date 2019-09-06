@@ -142,6 +142,9 @@ class CssDom extends VDom {
   _isImgTag() {
     return this.tagName === 'img';
   }
+  _isBgTag() {
+    return this.tagName === 'i';
+  }
 
   /**
    * 节点是否属于绝对定位

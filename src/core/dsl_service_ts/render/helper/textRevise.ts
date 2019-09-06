@@ -1,5 +1,5 @@
 /**
- * 约束计算
+ * 计算节点对齐逻辑
  */
 import Constraints from '../../helper/constraints';
 import QLog from '../../log/qlog';

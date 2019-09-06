@@ -3,9 +3,6 @@ import Constraints from '../../../helper/constraints';
 export default {
   key: 'marginRight',
   value() {
-    if (this._isAbsolute()) {
-      return null;
-    }
     const isHorizontal = this._isParentHorizontal();
     const prop = isHorizontal ? 'LayoutJustifyContent' : 'LayoutAlignItems';
     // 横排计算与上一节点距离

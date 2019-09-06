@@ -19,7 +19,7 @@ master:
           type: orange-ci:transfer
           options:
             dist: /
-            verbose: true
+            verbose: false
             to: /data/core_service
             ips: 
               - 9.134.54.30

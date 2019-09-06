@@ -931,13 +931,12 @@ const ImageCombine = function() {
     const result = await this.makeImg(param);
 
     // 8、删除修改版sketch
-    // serverModulesUtils.deleteFolder(updateFilePath);
-    // serverModulesUtils.deleteFolder(
-    //   `${that.sketchDir +
-    //     projectNameWithoutAfterFix +
-    //     updateFileAfterFix
-    //     }.sketch`,
-    // );
+    serverModulesUtils.deleteFolder(updateFilePath);
+    serverModulesUtils.deleteFolder(
+      `${that.sketchDir +
+        projectNameWithoutAfterFix +
+        updateFileAfterFix}.sketch`,
+    );
 
     // 返回
     // return new Promise(function(resolve, reject) {
