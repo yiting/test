@@ -244,6 +244,7 @@ class Template {
     target.id = subNode.id;
     target.constraints = Object.assign(subNode.constraints, target.constraints);
     target.styles = Object.assign(subNode.styles, target.styles);
+    Object.assign(target.tplAttr, subNode.tplAttr);
     return target;
   }
 
