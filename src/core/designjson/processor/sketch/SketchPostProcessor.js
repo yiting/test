@@ -124,16 +124,16 @@ function replacePath(imageList) {
   }
 }
 function hashPath(imageList, outputPath = '') {
-  imageList.forEach((n, index) => {
-    // const id = md5(n.id);
-    n.path = `${outputPath}${index}.png`;
+  imageList.forEach(n => {
+    const id = md5(n.id);
+    n.path = `${outputPath}${id.slice(0, 8)}.png`;
   });
 }
 function process(designDom, outputPath) {
   let nodes = serialize(designDom);
   let imageList = nodes.filter(node => node.type === 'QImage');
-  hashPath(imageList, outputPath);
   replacePath(imageList);
+  hashPath(imageList, outputPath);
 }
 module.exports = {
   process,
