@@ -180,7 +180,9 @@ class SketchProcessor {
       );
       m.forEach(m => (m._origin.maskedNodes = [])); // 如果遮罩里套了子遮罩，则删除子遮罩数据
       if (!maskNode._origin.maskedNodes.length) return;
-      const maskedCollection = [...maskNode._origin.maskedNodes];
+      const maskedCollection = [...maskNode._origin.maskedNodes].filter(
+        n => !!n.parent,
+      ); // 去除无效节点
       if (isUnavailableMask(maskNode, maskedCollection)) return;
       maskedCollection.unshift(maskNode);
       console.log('Mask合并：', parent.name);
