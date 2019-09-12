@@ -1,5 +1,7 @@
 const download = require('download-file');
 const unzip = require('unzip');
+const imagemin = require('imagemin');
+const imageminPngquant = require('imagemin-pngquant');
 
 // 图片生成目录
 const outputDir = './data/complie/';
@@ -777,6 +779,21 @@ const ImageCombine = function() {
     return str;
   };
 
+  this.compressImgs = async (outputDir, projectName) => {
+    const files = await imagemin(
+      [`${outputDir + projectName}/images/*.{jpg,png}`],
+      {
+        destination: `${outputDir + projectName}/images`,
+        plugins: [
+          imageminPngquant({
+            quality: [0.8, 1],
+          }),
+        ],
+      },
+    );
+    return files;
+  };
+
   this.makeImgsByUpdateSketch = async param => {
     // try {
     let { projectName, imgList } = param;
@@ -929,6 +946,9 @@ const ImageCombine = function() {
     param.itemIds = itemIds;
     param.sketchName = projectNameWithoutAfterFix + updateFileAfterFix;
     const result = await this.makeImg(param);
+
+    // 8.压缩图片
+    await that.compressImgs(that.outputDir, projectName);
 
     // 8、删除修改版sketch
     serverModulesUtils.deleteFolder(updateFilePath);
