@@ -15,8 +15,7 @@ export default {
       return null;
     }
     //横排
-    const preNode = this._prevNode();
-    const nextNode = this._nextNode();
+    // if (this.id == '566A86F3-DD2D-4484-87D0-8189C5D6C1F7-c') debugger
     css[0] = marginTop.value.call(this);
     css[1] = marginRight.value.call(this);
     css[2] = marginBottom.value.call(this);
@@ -24,19 +23,21 @@ export default {
     if (Number(css.join('')) === 0) {
       return '0';
     }
+    const preNode = this._prevNode();
+    const nextNode = this._nextNode();
+    const ml = Math.abs(this.abX - this.parent.abX);
+    const mr = Math.abs(this.parent.abXops - this.abXops);
+    const range = 10;
     //最终回溯，水平方向如果只有一个节点，并且左右偏差不是很大，就直接水平居中
     if (
       !nextNode &&
       !preNode &&
       this._hasWidth() &&
-      (Math.abs(Math.abs(css[1]) - Math.abs(css[3])) < 10 ||
-        Math.abs(
-          Math.abs(this.abX - this.parent.abX) -
-            Math.abs(this.parent.abXops - this.abXops),
-        ) < 10)
+      (ml > range && mr > range && Math.abs(ml - mr) < range)
     ) {
       css[1] = css[3] = 'auto';
     }
+
     css.forEach((item: any, key: number) => {
       if (typeof item === 'number') {
         css[key] = Func.transUnit(item);
