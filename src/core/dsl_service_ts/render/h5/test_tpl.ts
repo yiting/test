@@ -29,6 +29,8 @@ export default (
 <body ontouchstart>
   ${htmlStr}
   <div class="test-bar">
+    <label><input type="checkbox" value="image" onchange="change_css(event)">Image</label>
+    <label><input type="checkbox" value="text" onchange="change_css(event)">Text</label>
     <label><input type="checkbox" value="default" onchange="change_css(event)">Default</label>
     <label><input type="checkbox" value="element" onchange="change_css(event)">Element</label>
     <label><input type="checkbox" value="widget" onchange="change_css(event)">Widget</label>
