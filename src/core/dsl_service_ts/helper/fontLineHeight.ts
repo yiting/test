@@ -3,7 +3,7 @@ const FamilyMap: any = {
   YaHei: 1.32,
   PingFangSC: 1.4,
 };
-function FontLineHeight(family: string, size: number) {
+function FontLineHeight(family: string, size: number): number {
   let rate = 1.4;
   Object.keys(FamilyMap).some((key: string) => {
     if (family.indexOf(key) > -1) {

@@ -1,4 +1,9 @@
-// const regWrap = /.*\n{2,}/m;
+/**
+ * 换行清洗 */
+
+import Canvas from 'canvas';
+const Context = Canvas.createCanvas(200, 200).getContext('2d');
+
 const regWrap = /.*\n+/m;
 const regRes = /\n+|[^\n]+/gim;
 
@@ -55,8 +60,8 @@ function pipe(node: any) {
       });
     });
     let increaseTop = 0;
-    let curNode: any = null;
     rowList.forEach((row: any, i: number) => {
+      let curNode: any = null;
       let lineHeight = node.styles.lineHeight;
       if (!lineHeight) {
         const sizes = row.texts.map((text: any) =>
@@ -77,14 +82,32 @@ function pipe(node: any) {
         curNode.styles.lineHeight = lineHeight;
         curNode.styles.texts = [];
         curNode.abY += increaseTop;
-        curNode.height = 0;
         paragraphList.push(curNode);
         curNode.styles.texts.push(...row.texts.filter((n: any) => !!n.string));
-        curNode.height += lineHeight;
+        const rows = calRows(curNode.styles.texts, node.width);
+        curNode.height = lineHeight * rows;
       }
-      increaseTop += lineHeight;
+      increaseTop += curNode.height;
     });
     return paragraphList;
   }
   return [node];
+}
+
+function calRows(texts: any, maxWidth: number) {
+  let lineWidth = 0;
+  let rows = 1;
+  texts.forEach((charObj: any) => {
+    const string = charObj.string;
+    const font = `${charObj.size}px ${charObj.font}`;
+    Context.font = font;
+    string.split('').forEach((char: string, i: number) => {
+      lineWidth += Context.measureText(char).width;
+      if (lineWidth > maxWidth) {
+        rows += 1;
+        lineWidth = 0;
+      }
+    });
+  });
+  return rows;
 }
