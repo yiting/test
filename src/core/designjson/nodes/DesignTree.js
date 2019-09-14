@@ -89,8 +89,9 @@ class DesignTree {
     nodes.sort((a, b) => a.index - b.index);
     const { parent } = nodes[0];
     let newIndex = nodes[0].index;
+    const brothers = parent.children.filter(n => !~nodes.indexOf(n));
     nodes.forEach(n => {
-      if (~parent.children.indexOf(n._behindNode)) {
+      if (~brothers.indexOf(n._behindNode)) {
         newIndex = n.index;
       }
     });
