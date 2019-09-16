@@ -79,7 +79,7 @@ class NodesMergeJudge {
 
     if (isFinally == false) {
       //slice合图逻辑组合
-      if (isCombine == false) {
+      if (isCombine == false && typeof ruleConfig.sliceArr != 'undefined') {
         let ruleConfig2 = this.getRuleConfig({
           data: [{ type: 'SliceSimilar', value: 50, requireScore: 100 }],
         });

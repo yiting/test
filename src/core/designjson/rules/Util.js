@@ -337,14 +337,84 @@ function isImage(_origin) {
   return result;
 }
 
+//如果任意三个点在同一直线上，则中间的点是没用的，把他去掉
+function updatePoints(node) {
+  if (node._origin && node._origin.points) {
+    var points = node._origin.points;
+    if (points.length > 3) {
+      var popIndexArr = [];
+      for (var i = 0, ilen = points.length; i < ilen; i++) {
+        for (var j = i + 1, jlen = points.length; j < jlen; j++) {
+          for (var k = j + 1, klen = points.length; k < klen; k++) {
+            var p = [];
+            p[0] = JSON.parse(
+              points[i].point.replace('{', '[').replace('}', ']'),
+            );
+            p[1] = JSON.parse(
+              points[j].point.replace('{', '[').replace('}', ']'),
+            );
+            p[2] = JSON.parse(
+              points[k].point.replace('{', '[').replace('}', ']'),
+            );
+            var p1X = p[0][0];
+            var p1Y = p[0][1];
+            var p2X = p[1][0];
+            var p2Y = p[1][1];
+            var p3X = p[2][0];
+            var p3Y = p[2][1];
+            var calP3Y = ((p3X - p2X) / (p1X - p2X)) * (p1Y - p2Y) + p2Y;
+            if (Math.abs(p1X - p2X) < 0.001) {
+              //垂直的直线
+              if (Math.abs(p3X - p2X) < 0.001) {
+                //三点在同一垂直线上
+                calP3Y = p3Y;
+              }
+            }
+            if (Math.abs(p3Y - calP3Y) < 0.001) {
+              //三点在同一直线上
+              for (var t = 0; t < 3; t++) {
+                if (
+                  (p[t][0] > 0.01 && p[t][0] < 0.99) ||
+                  (p[t][1] > 0.01 && p[t][1] < 0.99)
+                ) {
+                  if (t == 0) {
+                    popIndexArr.push(i);
+                  } else if (t == 1) {
+                    popIndexArr.push(j);
+                  } else if (t == 2) {
+                    popIndexArr.push(k);
+                  }
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+      if (popIndexArr.length > 0) {
+        var newArr = [];
+        for (var k = 0, klen = popIndexArr.length; k < klen; k++) {
+          if (k == 0) {
+            newArr.push(...points.slice(0, popIndexArr[k]));
+          } else {
+            newArr.push(
+              ...points.slice(popIndexArr[k - 1] + 1, popIndexArr[k]),
+            );
+          }
+        }
+        // newArr = newArr.concat(points.slice(popIndexArr[popIndexArr.length-1]+1))
+        newArr.push(...points.slice(popIndexArr[popIndexArr.length - 1] + 1));
+        node._origin.points = newArr;
+      }
+    }
+  }
+}
+
 function isSimpleBackground(node) {
+  let that = this;
   let result = true;
-  if (node.name.indexOf('Base') > -1) {
-    // console.log(1);
-  }
-  if (node.name.indexOf('椭圆形') > -1) {
-    // console.log(1);
-  }
+  //删减多余的point节点，即三个点在同一直线上，中间不起作用的点
+  that.updatePoints(node);
   //如果形状是矩形、圆形、直线以外的就不能css实现
   if (
     !(
@@ -484,4 +554,5 @@ module.exports = {
   isImage,
   isOnlyBorder,
   isSymbolInstance,
+  updatePoints,
 };
