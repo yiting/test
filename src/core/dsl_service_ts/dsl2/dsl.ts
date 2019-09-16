@@ -10,6 +10,7 @@ import Utils from './utils';
 
 import Store from '../helper/store';
 import QLog from '../log/qlog';
+import { debug } from 'util';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
@@ -98,6 +99,7 @@ let pipe = function(nodes: any): any {
         );
     }
   });
+
   const info1 = '分类后的节点总数:' + matchingNodes.length + '; ';
   // 匹配元素模型
   try {
@@ -171,7 +173,6 @@ let pipe = function(nodes: any): any {
   result.widgets = matchedWidgets;
   result.bodyModel = bodyModel;
   result.info = info1 + info2 + info3;
-
   return result;
 };
 

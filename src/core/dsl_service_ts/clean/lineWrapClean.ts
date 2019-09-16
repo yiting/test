@@ -87,7 +87,7 @@ function pipe(node: any) {
         const rows = calRows(curNode.styles.texts, node.width);
         curNode.height = lineHeight * rows;
       }
-      increaseTop += curNode.height;
+      increaseTop += curNode ? curNode.height : lineHeight;
     });
     return paragraphList;
   }

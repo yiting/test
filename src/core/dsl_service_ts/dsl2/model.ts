@@ -120,6 +120,7 @@ class BaseModel {
         this.abY = nodes[i].abY;
         this.abXops = nodes[i].abX + nodes[i].width;
         this.abYops = nodes[i].abY + nodes[i].height;
+
         this.zIndex = nodes[i].zIndex; // 层级的设定
       } else {
         // 比较大小得出这个组件的大小
@@ -133,8 +134,8 @@ class BaseModel {
           this.abYops < nodes[i].abY + nodes[i].height
             ? nodes[i].abY + nodes[i].height
             : this.abYops;
-
         // zIndex取最低那个
+
         this.zIndex =
           this.zIndex > nodes[i].zIndex ? nodes[i].zIndex : this.zIndex;
       }
@@ -382,6 +383,7 @@ class MatchData {
   ): any {
     const renderData = new RenderData();
     renderData.set('id', id);
+
     // renderData.set('parentId', parentId);
     renderData.set('type', modelType);
     renderData.set('modelName', modelName);
@@ -493,6 +495,7 @@ class MatchData {
       this.abY = this.abY < node.abY ? this.abY : node.abY;
       this.abXops = this.abXops < node.abXops ? node.abXops : this.abXops;
       this.abYops = this.abYops < node.abYops ? node.abYops : this.abYops;
+
       // zIndex取最低那个
       this.zIndex = this.zIndex > node.zIndex ? node.zIndex : this.zIndex;
     }
@@ -502,7 +505,6 @@ class MatchData {
     this.canLeftFlex = model.canLeftFlex;
     this.canRightFlex = model.canRightFlex;
     // this.zIndex = model.zIndex || 0;
-
     // 相似性标识
     this.similarParentId = null;
     this.similarId = null;
@@ -847,8 +849,9 @@ class RenderData {
     if (prop === 'children') {
       this.children = value;
       this._zIndex =
-        this._zIndex ||
-        Math.max(...this.children.map((child: any) => child._zIndex));
+        typeof this._zIndex == 'number'
+          ? this._zIndex
+          : Math.max(...this.children.map((child: any) => child._zIndex));
       return;
     }
     const that: any = this;
