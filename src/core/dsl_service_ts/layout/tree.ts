@@ -3,6 +3,7 @@ import Utils from './utils';
 import Model from '../dsl2/model';
 import Constraints from '../helper/constraints';
 import Store from '../helper/store';
+import { debug } from 'util';
 
 function calColumn(layer: any[]) {
   layer.sort((a: any, b: any) => a.abY + a.abYops - b.abYops - b.abY);
@@ -308,7 +309,6 @@ class Tree {
     const arr: any = _arr;
     const body = this._treeData;
     const compareArr = [body];
-    const leftArr = [];
     // 按面积排序
     arr
       .sort((a: any, b: any) => a.zIndex - b.zIndex)
@@ -317,11 +317,29 @@ class Tree {
     arr.forEach((child: any, i: any) => {
       if (child && child.type !== Common.QBody) {
         const done = compareArr.some(parent => {
+          const _utils = Utils;
+          // 如果自节点在父节点下
+          // if (parent.id == "132DDED4-85FD-41E9-8555-8D141E0660CD-c" && child.id == "453A792E-7243-444B-A7D2-255CA565B59D_row1-c") {
+          // debugger
+          // }
+          if (
+            // 层级关系
+            child.zIndex < parent.zIndex &&
+            // 包含关系
+            _utils.isWrap(parent, child)
+          ) {
+            // child.constraints["LayoutSelfPosition"] = Constraints.LayoutSelfPosition.Absolute;
+            console.log(parent, child);
+
+            Tree._add(child, parent.parent || parent, true);
+            arr[i] = null;
+            return false;
+          }
           /**
            * 在父节点上,
            * 描述：parent面积必 大于等于 child面积，通过判断是否存在包含关系得出，child是否为parent子节点
            */
-          const _utils = Utils;
+
           if (
             // 父节点必须不是文本类型
             parent.type !== Common.QText &&
@@ -345,7 +363,7 @@ class Tree {
                 parent.width / child.width > 2 &&
                 parent.height / child.height > 2))
           ) {
-            const node = Tree._add(child, parent);
+            const node = Tree._add(child, parent, false);
             compareArr.unshift(node);
             arr[i] = null;
             return true;
@@ -353,9 +371,8 @@ class Tree {
           return false;
         });
         if (!done) {
-          const node = Tree._add(child, body);
+          const node = Tree._add(child, body, false);
           compareArr.unshift(node);
-          leftArr.unshift(node);
           arr[i] = null;
         }
       }
@@ -388,14 +405,19 @@ class Tree {
    * @param {MatchData} child 子节点
    * @param {MatchData} parent 父节点
    */
-  static _add(_child: any, _parent: any) {
+  static _add(_child: any, _parent: any, _isAbsolute: Boolean) {
     // node为RenderData
     let parent: any = _parent;
     let child: any = _child;
     const node = Tree.createNodeData(child);
-    if (Tree._isAbsoluteRelation(node, parent)) {
+    if (!_isAbsolute && Tree._isAbsoluteRelation(node, parent)) {
       parent = parent.parent || parent;
       parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
+      node.constraints.LayoutSelfPosition =
+        Constraints.LayoutSelfPosition.Absolute;
+    }
+
+    if (_isAbsolute) {
       node.constraints.LayoutSelfPosition =
         Constraints.LayoutSelfPosition.Absolute;
     }
