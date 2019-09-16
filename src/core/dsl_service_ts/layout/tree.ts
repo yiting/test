@@ -91,17 +91,8 @@ class Tree {
 
   _row(parent: any) {
     const { children } = parent;
-    /* 
-        // 从里面到外进行组合分析
-        for (let i = 0; i < children.length; i++) {
-          const child = children[i];
-          if (child.children !== 0) {
-            // 继续进入下一层
-            this._row(child);
-          }
-        } */
     // 如果只有一个子节点，则不生成新组
-    if (children.length === 1) {
+    if (children.length <= 1) {
       // 当只包含一个元素时就不用创建QLayer
       return;
     }
@@ -216,7 +207,7 @@ class Tree {
       }
     } */
     // 如果只有一个子节点，则不生成新组
-    if (children.length === 1) {
+    if (children.length <= 1) {
       // 当只包含一个元素时就不用创建QLayer
       return;
     }
@@ -319,21 +310,15 @@ class Tree {
         const done = compareArr.some(parent => {
           const _utils = Utils;
           // 如果自节点在父节点下
-          // if (parent.id == "132DDED4-85FD-41E9-8555-8D141E0660CD-c" && child.id == "453A792E-7243-444B-A7D2-255CA565B59D_row1-c") {
-          // debugger
-          // }
           if (
             // 层级关系
             child.zIndex < parent.zIndex &&
             // 包含关系
             _utils.isWrap(parent, child)
           ) {
-            // child.constraints["LayoutSelfPosition"] = Constraints.LayoutSelfPosition.Absolute;
-            console.log(parent, child);
-
             Tree._add(child, parent.parent || parent, true);
             arr[i] = null;
-            return false;
+            return true;
           }
           /**
            * 在父节点上,
