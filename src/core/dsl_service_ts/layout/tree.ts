@@ -186,7 +186,7 @@ class Tree {
           child.set('parent', node);
           node.set('children', node.children.concat(child));
           // 新增节点，重置层级关系
-          // node.resetZIndex();
+          node.resetZIndex();
         });
         newChildren.push(node);
       }
@@ -198,14 +198,6 @@ class Tree {
 
   _column(parent: any) {
     const { children } = parent;
-    // 从里面到外进行组合分析
-    /* for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-      if (child.children !== 0) {
-        // 继续进入下一层
-        this._column(child);
-      }
-    } */
     // 如果只有一个子节点，则不生成新组
     if (children.length <= 1) {
       // 当只包含一个元素时就不用创建QLayer
@@ -283,6 +275,7 @@ class Tree {
         arr.forEach((child: any) => {
           child.set('parent', node);
           node.set('children', node.children.concat(child));
+          node.resetZIndex();
         });
         newChildren.push(node);
       }
@@ -308,6 +301,7 @@ class Tree {
     arr.forEach((child: any, i: any) => {
       if (child && child.type !== Common.QBody) {
         const done = compareArr.some(parent => {
+          // if (child.id == '99E7D055-45F1-4F84-B471-DB8095799FEA-c' && parent.id == '9E422C3C-60C1-417E-B3A4-53F45D52095D') debugger
           const _utils = Utils;
           // 如果自节点在父节点下
           if (
@@ -324,7 +318,6 @@ class Tree {
            * 在父节点上,
            * 描述：parent面积必 大于等于 child面积，通过判断是否存在包含关系得出，child是否为parent子节点
            */
-
           if (
             // 父节点必须不是文本类型
             parent.type !== Common.QText &&
