@@ -848,19 +848,18 @@ class RenderData {
   set(prop: any, value: any) {
     if (prop === 'children') {
       this.children = value;
-      this._zIndex =
-        typeof this._zIndex == 'number'
-          ? this._zIndex
-          : Math.max(...this.children.map((child: any) => child._zIndex));
+      // this._zIndex = Math.min(...this.children.map((child: any) => child._zIndex));
       return;
     }
     const that: any = this;
     that[`_${prop}`] = value;
   }
 
-  // resetZIndex() {
-  // this._zIndex = this.children.length ? Math.min(...this.children.map(nd => nd.zIndex)) : null;
-  // }
+  resetZIndex() {
+    this._zIndex = this.children.length
+      ? Math.min(...this.children.map(nd => nd.zIndex))
+      : null;
+  }
   get parent() {
     return this._parent;
   }

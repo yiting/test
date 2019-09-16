@@ -212,6 +212,7 @@ class LayoutCircle {
           });
           newParent.set('parent', _parent);
           newParent.set('children', _group);
+          newParent.resetZIndex();
           newParent.set('similarId', itemSimilarIndex);
           newParent.constraints['LayoutFixedWidth'] =
             Constraints.LayoutFixedWidth.Fixed;
@@ -223,6 +224,7 @@ class LayoutCircle {
         const newCycleData = Tree.createCycleData(newCycleParent, newChild);
 
         newCycleParent.set('children', [newCycleData]);
+        newCycleParent.resetZIndex();
         if (rowSimilarIndex) {
           newCycleParent.set('similarId', rowSimilarIndex);
         }
@@ -308,6 +310,7 @@ class LayoutCircle {
     newCycleData.constraints['LayoutFixedWidth'] =
       Constraints.LayoutFixedWidth.Fixed;
     newCycleParent.set('children', [newCycleData]);
+    newCycleParent.resetZIndex();
     newCycleParent.resize();
     const gap = Math.max(
       ...inWrap.map((n: any, i: number) => {
@@ -335,6 +338,7 @@ class LayoutCircle {
     _target.forEach((group: any) => {
       const newWrapData = Tree.createNodeData(null);
       newWrapData.set('children', group);
+      newWrapData.resetZIndex();
       newWrapData.set('parent', _parent);
       newWrapData.set('similarId', similarId);
       newWrapData.resize(false);
