@@ -121,8 +121,11 @@ class CssDom extends VDom {
   }
 
   _isTextCenter() {
-    const hasText = this.text;
-    if (!hasText) {
+    // const hasText = this.text;
+    // if (!hasText) {
+    //   return null;
+    // }
+    if (this.type !== Common.QText) {
       return null;
     }
     if (
