@@ -295,8 +295,8 @@ class Tree {
     const compareArr = [body];
     // 按面积排序
     arr
-      .sort((a: any, b: any) => a.zIndex - b.zIndex)
-      .sort((a: any, b: any) => b.width * b.height - a.width * a.height);
+      .sort((a: any, b: any) => b.width * b.height - a.width * a.height)
+      .sort((a: any, b: any) => a.zIndex - b.zIndex);
     // let segmentings = []
     arr.forEach((child: any, i: any) => {
       if (child && child.type !== Common.QBody) {
