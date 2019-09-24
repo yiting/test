@@ -15,7 +15,7 @@ function pipe(node: any) {
     Context.clearRect(0, 0, 200, 200);
     node.styles.texts.forEach((text: any) => {
       Context.save();
-      Context.font = `${text.size}px Arial`;
+      Context.font = `${text.size}px ${text.font}`;
       textWidth += Context.measureText(text.string).width;
     });
     textWidth = Math.ceil(textWidth);
