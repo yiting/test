@@ -20,7 +20,7 @@ function pipe(node: any) {
     const lineHeights: any = [];
     const fontSizes: any = [];
     node.styles.texts.forEach((text: any) => {
-      const h = FontLineHeight(text.font, text.size);
+      const h = FontLineHeight(text.font || '', text.size);
       lineHeights.push(h);
       fontSizes.push(text.size);
     });

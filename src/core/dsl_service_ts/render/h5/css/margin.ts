@@ -25,15 +25,17 @@ export default {
     }
     const preNode = this._prevNode();
     const nextNode = this._nextNode();
-    const ml = Math.abs(this.abX - this.parent.abX);
-    const mr = Math.abs(this.parent.abXops - this.abXops);
+    const marginL = this.abX - this.parent.abX;
+    const marginR = this.parent.abXops - this.abXops;
     const range = 10;
     //最终回溯，水平方向如果只有一个节点，并且左右偏差不是很大，就直接水平居中
     if (
       !nextNode &&
       !preNode &&
       this._hasWidth() &&
-      (ml > range && mr > range && Math.abs(ml - mr) < range)
+      (marginL > range &&
+        marginR > range &&
+        Math.abs(marginL - marginR) < range)
     ) {
       css[1] = css[3] = 'auto';
     }

@@ -294,64 +294,60 @@ class Tree {
     const body = this._treeData;
     const compareArr = [body];
     // 按面积排序
-    arr
-      .sort((a: any, b: any) => b.width * b.height - a.width * a.height)
-      .sort((a: any, b: any) => a.zIndex - b.zIndex);
-    // let segmentings = []
-    arr.forEach((child: any, i: any) => {
+    arr.sort((a: any, b: any) => b.width * b.height - a.width * a.height);
+    const group: any = [];
+    arr.forEach((node: any) => {
+      if (!group[node.zIndex]) {
+        group[node.zIndex] = [];
+      }
+      group[node.zIndex].push(node);
+    });
+    const segmentings: any = [];
+    group.forEach((list: any) => {
+      segmentings.push(...list);
+    });
+    segmentings.forEach((child: any, i: any) => {
       if (child && child.type !== Common.QBody) {
         const done = compareArr.some(parent => {
-          // if (child.id == '99E7D055-45F1-4F84-B471-DB8095799FEA-c' && parent.id == '9E422C3C-60C1-417E-B3A4-53F45D52095D') debugger
           const _utils = Utils;
-          // 如果自节点在父节点下
-          if (
-            // 层级关系
-            child.zIndex < parent.zIndex &&
-            // 包含关系
-            _utils.isWrap(parent, child)
-          ) {
-            Tree._add(child, parent.parent || parent, true);
-            arr[i] = null;
-            return true;
-          }
-          /**
-           * 在父节点上,
-           * 描述：parent面积必 大于等于 child面积，通过判断是否存在包含关系得出，child是否为parent子节点
-           */
+
           if (
             // 父节点必须不是文本类型
-            parent.type !== Common.QText &&
+            parent.type === Common.QText ||
             // 子节点不能分割线
-            child.modelName !== 'wg1-m1' &&
-            // 层级关系
+            child.modelName == 'wg1-m1' ||
+            // 子节点必须关联
+            !_utils.isConnect(child, parent) ||
+            // 子节点比父节点更靠下
+            (child.zIndex > parent.zIndex &&
+              child.abY > parent.abY &&
+              child.abYops > parent.abYops)
+          ) {
+            return false;
+          }
+          if (
             child.zIndex >= parent.zIndex &&
             // 包含关系
             (_utils.isWrap(parent, child) ||
               // 水平相连、垂直包含关系
-              (_utils.isXConnect(parent, child, -1) &&
-                _utils.isYWrap(parent, child)) ||
-              // 水平包含、垂直相连
-              (parent.abY > child.abY &&
-                _utils.isYConnect(parent, child, -1) &&
-                _utils.isXWrap(parent, child)) ||
-              // 相连不包含关系（占只4个角），两个面积差值较大
-              (_utils.isConnect(parent, child, -1) &&
-                !_utils.isXWrap(parent, child) &&
-                !_utils.isYWrap(parent, child) &&
-                parent.width / child.width > 2 &&
-                parent.height / child.height > 2))
+              (parent.abYops >= child.abYops && parent.abY <= child.abYops))
           ) {
             const node = Tree._add(child, parent, false);
             compareArr.unshift(node);
-            arr[i] = null;
+            segmentings[i] = null;
             return true;
           }
-          return false;
+
+          // 其他情况都为绝对定位
+          const node = Tree._add(child, parent.parent || parent, true);
+          compareArr.unshift(node);
+          segmentings[i] = null;
+          return true;
         });
         if (!done) {
           const node = Tree._add(child, body, false);
           compareArr.unshift(node);
-          arr[i] = null;
+          segmentings[i] = null;
         }
       }
     });
