@@ -780,6 +780,7 @@ const ImageCombine = function() {
   };
 
   this.compressImgs = async (outputDir, projectName) => {
+    let startTime = new Date().getTime();
     const files = await imagemin(
       [`${outputDir + projectName}/images/*.{jpg,png}`],
       {
@@ -791,6 +792,8 @@ const ImageCombine = function() {
         ],
       },
     );
+    var costTime = (new Date().getTime() - startTime) / 1000;
+    logger.debug('[edit.js-combineImages]压缩图片完毕，用时' + costTime + '秒');
     return files;
   };
 

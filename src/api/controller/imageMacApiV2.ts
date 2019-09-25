@@ -13,6 +13,7 @@ function getHost(context: Context) {
 }
 
 export async function downloadSketch(context: Context) {
+  let startTime = new Date().getTime();
   const { request } = context;
   const { sketchPath: url } = request.body;
   util.storeLoginData(context);
@@ -37,6 +38,10 @@ export async function downloadSketch(context: Context) {
   const res = context.response;
   res.body = result;
   makeResult(context);
+  var costTime = (new Date().getTime() - startTime) / 1000;
+  logger.debug(
+    '[edit.js-combineImages]下载和解压缩图片完毕，用时' + costTime + '秒',
+  );
 }
 
 export async function makeImg(context: Context) {
