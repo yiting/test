@@ -133,6 +133,8 @@ export async function getImgData(context: Context) {
       context.body = res;
     }
   } catch (e) {
+    context.type = 'png';
+    context.body = '';
     logger.warn(e);
   }
 
