@@ -779,19 +779,27 @@ const ImageCombine = function() {
     return str;
   };
 
-  this.compressImgs = async (outputDir, projectName) => {
+  this.compressImgs = async (outputDir, projectName, imgList) => {
     let startTime = new Date().getTime();
-    const files = await imagemin(
-      [`${outputDir + projectName}/images/*.{jpg,png}`],
-      {
-        destination: `${outputDir + projectName}/images`,
-        plugins: [
-          imageminPngquant({
-            quality: [0.8, 1],
-          }),
-        ],
-      },
-    );
+    let fileList = [];
+    imgList.forEach(item => {
+      var filePath = `${outputDir + projectName}/images/${item.path}`;
+      if (fs.existsSync(filePath)) {
+        var statInfo = fs.statSync(filePath);
+        var size = statInfo.size;
+        if (size < 10 * 1024) {
+          fileList.push(filePath);
+        }
+      }
+    });
+    const files = await imagemin(fileList, {
+      destination: `${outputDir + projectName}/images`,
+      plugins: [
+        imageminPngquant({
+          quality: [0.8, 1],
+        }),
+      ],
+    });
     var costTime = (new Date().getTime() - startTime) / 1000;
     logger.debug('[edit.js-combineImages]压缩图片完毕，用时' + costTime + '秒');
     return files;
@@ -951,7 +959,7 @@ const ImageCombine = function() {
     const result = await this.makeImg(param);
 
     // 8.压缩图片
-    await that.compressImgs(that.outputDir, projectName);
+    await that.compressImgs(that.outputDir, projectName, imgList);
 
     // 8、删除修改版sketch
     serverModulesUtils.deleteFolder(updateFilePath);
