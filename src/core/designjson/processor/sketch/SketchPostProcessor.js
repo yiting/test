@@ -105,8 +105,9 @@ let getDuplicateImage = images => {
   return imgs;
 };
 
-function replacePath(imageList) {
+function replacePath(images) {
   try {
+    const imageList = [...images];
     let list = getDuplicateImage(imageList);
     list.forEach(({ id, replaceId }) => {
       let [index, masterIndex] = [
