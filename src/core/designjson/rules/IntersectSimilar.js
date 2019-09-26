@@ -2,7 +2,7 @@ const Rule = require('./Rule');
 const Util = require('./Util');
 var maxVal = Math.sqrt(Math.pow(255, 2) * 3);
 let weight = 0.1;
-var threshold = 15;
+let threshold = 15;
 /**
  * 节点相交相似度的规则
  * 计算两节点的相交面积，面积越大得分越高；若两节点相离，则计算最接近的两个端点形成的面积，面积越大得分越低。
@@ -13,7 +13,7 @@ class IntersectSimilar extends Rule {
     super(param);
     this.maxValue = param && param.maxValue ? param.maxValue : maxVal;
     this.ratio = option && option.ratio ? option.ratio : 1;
-    threshold = threshold * this.ratio;
+    this.threshold = threshold * this.ratio;
   }
   getRuleType() {
     return this.constructor.name;
@@ -47,10 +47,10 @@ class IntersectSimilar extends Rule {
       nodeBabX = nodeB.abX;
     }
     //按旧逻辑，当一个块添加一个阈值后，如果相交则合图
-    // nodeA.width = nodeA.width + threshold;
-    // nodeA.height = nodeA.height + threshold;
+    // nodeA.width = nodeA.width + this.threshold;
+    // nodeA.height = nodeA.height + this.threshold;
     let nodeAabXOpsOri = Util.getAbXOps(nodeA);
-    let nodeAabXOps = Util.getAbXOps(nodeA) + threshold;
+    let nodeAabXOps = Util.getAbXOps(nodeA) + this.threshold;
     let nodeBabXOpsOri = Util.getAbXOps(nodeB);
     let nodeBabXOps = Util.getAbXOps(nodeB);
     let nodeAabYOpsOri = Util.getAbYOps(nodeA);
@@ -65,17 +65,17 @@ class IntersectSimilar extends Rule {
     //添加的阀值块需要往相交的方向添加
     if (nodeAabYOps <= nodeBabYOps) {
       if (Util.getHeight(nodeA) < 2) {
-        nodeAabY = Util.getAbY(nodeA) - threshold / 2;
-        nodeAabYOps = Util.getAbYOps(nodeA) + threshold / 2;
+        nodeAabY = Util.getAbY(nodeA) - this.threshold / 2;
+        nodeAabYOps = Util.getAbYOps(nodeA) + this.threshold / 2;
       } else {
-        nodeAabYOps = Util.getAbYOps(nodeA) + threshold;
+        nodeAabYOps = Util.getAbYOps(nodeA) + this.threshold;
       }
     } else {
       if (Util.getHeight(nodeB) < 2) {
-        nodeBabY = Util.getAbY(nodeB) - threshold / 2;
-        nodeBabYOps = Util.getAbYOps(nodeB) + threshold / 2;
+        nodeBabY = Util.getAbY(nodeB) - this.threshold / 2;
+        nodeBabYOps = Util.getAbYOps(nodeB) + this.threshold / 2;
       } else {
-        nodeBabYOps = Util.getAbYOps(nodeB) + threshold;
+        nodeBabYOps = Util.getAbYOps(nodeB) + this.threshold;
       }
     }
 

@@ -611,10 +611,12 @@ const ImageCombine = function() {
     let innerJson = generateJson.layers[0];
     //如果目标超过artboard范围，则外层坐标设为距离artboard的相对位置
     if (
-      (innerJson.frame.x <= 0 &&
+      innerJson &&
+      innerJson.frame &&
+      ((innerJson.frame.x <= 0 &&
         innerJson.frame.x + innerJson.frame.width > that.artboardWidth) ||
-      (innerJson.frame.y <= 0 &&
-        innerJson.frame.y + innerJson.frame.height > that.artboardHeight)
+        (innerJson.frame.y <= 0 &&
+          innerJson.frame.y + innerJson.frame.height > that.artboardHeight))
     ) {
       let { abX, abY } = that.getAbsoultePosition(param);
       generateJson.frame.x = abX;
@@ -793,6 +795,8 @@ const ImageCombine = function() {
       }
     });
     const files = await imagemin(fileList, {
+      // const files = await imagemin( [`${outputDir + projectName}/images/*.{jpg,png}`],{
+
       destination: `${outputDir + projectName}/images`,
       plugins: [
         imageminPngquant({
