@@ -1,5 +1,5 @@
 master:
-  push: 
+  push:
     - cacheFrom: .orange-ci.cache
       stages:
         - name: install
@@ -21,7 +21,7 @@ master:
             dist: /
             verbose: false
             to: /data/core_service
-            ips: 
+            ips:
               - 9.134.54.30
             after: pm2 restart core_server
   merge_request:
@@ -49,8 +49,9 @@ master:
           options:
             filename: CHANGELOG.md
             target: master
+## 测试环境
 dev:
-  push: 
+  push:
     - cacheFrom: .orange-ci.cache
       stages:
         - name: install
@@ -64,25 +65,26 @@ dev:
             deleted: deleted.txt
         # - name: eslint changed
         #   script: cat changed.txt | grep -e '\.(j|t)s$' | xargs -I {file} tnpm run eslint -- {file}
-        - name: test
-          script: tnpm test
+        # - name: test
+        #   script: tnpm test
         - name: deploy
           type: orange-ci:transfer
           options:
-            dist: dist/
-            to: /home/tosee/core_server_dev/dist
-            ips: 
-              - 10.125.52.55
+            dist: /
+            verbose: false
+            to: /data/core_service
+            ips:
+              - 9.134.32.201
             after: pm2 restart core_server
   merge_request:
     - cacheFrom: .orange-ci.cache
       stages:
         - name: install
           script: tnpm install
-        - name: commit lint
-          type: git:commitLint
-          options:
-            cli: tnpm run commitlint
+        # - name: commit lint
+        #   type: git:commitLint
+        #   options:
+        #     cli: tnpm run commitlint
         - name: list changed
           type: git:changeList
           options:
@@ -90,5 +92,12 @@ dev:
             deleted: deleted.txt
         # - name: eslint changed
         #   script: cat changed.txt | grep -e '\.(j|t)s$' | xargs -I {file} tnpm run eslint -- {file}
-        - name: test
-          script: tnpm test
+        # - name: test
+        #   script: tnpm test
+  tag_push:
+    - stages:
+        - name: changelog
+          type: git:changeLog
+          options:
+            filename: CHANGELOG.md
+            target: master
