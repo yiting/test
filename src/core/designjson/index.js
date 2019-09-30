@@ -30,6 +30,7 @@ class DesignJson {
    * @param {Object} options.symbolMap
    * @param {Object} options.artboardMap
    * @param {string} options.version
+   * @param {Object} options.fontData
    * @param {Object} options.frameMap
    * @param {Object} option.aiData ai数据
    * @param {Object} option.ruleMap 合图规则
