@@ -1,11 +1,11 @@
 // dsl模块服务通过输入设计稿抽象过后的数据，然后输出对应的字符串
 import Common from './dsl2/common';
-import Dsl from './dsl2/dsl';
+import ModelProcess from './model/index';
 // 暂时起名为Layout模块
 import Layout from './layout/layout';
-import Group from './layout/group';
-import Render from './render/render';
-import Clean from './clean/manage';
+import GroupProcess from './group/index';
+import RenderProcess from './render/render';
+import CleanProcess from './clean/manage';
 import Store from './helper/store';
 
 /**
@@ -16,40 +16,33 @@ import Store from './helper/store';
  */
 function _process(_input: any, _options: any): object {
   const input: any = _input || {};
-  // 参数的初始化处理
-  _initInput(input);
-  // 初始化进程参数
-  _initOptions(_options);
-  // 数据清洗
-  let nodes = input.nodes;
-  nodes = Clean(nodes);
-
-  // 模型识别模块
-  const dslModel = Dsl.pipe(nodes);
-
-  // layout模块
-  let dslTree: any;
+  let processDesc;
   try {
+    // 参数的初始化处理
+    _initInput(input);
+    // 初始化进程参数
+    _initOptions(_options);
+    // 数据清洗
+    let nodes = input.nodes;
+    nodes = CleanProcess(nodes);
+
+    // 模型识别模块
+    const models = ModelProcess(nodes);
+
+    // layout模块
+    let dslTree: any;
     // 生成dsl树, 传入match的组件模型和元素模型
-    const arr = [];
-    arr.push(...dslModel.widgets);
-    arr.push(...dslModel.elements);
-    dslTree = Group.handle(arr, dslModel.bodyModel);
-  } catch (e) {
-    console.log('生成dsl树出错');
-  }
-
-  try {
+    dslTree = GroupProcess(models);
+    processDesc = '生成dsl树出错';
     // 进行布局及循环处理
     Layout.handle(dslTree);
+
+    // render模块
+    const Builder = RenderProcess.handle(dslTree);
+    return Builder.getResult();
   } catch (e) {
-    console.log('布局处理出错');
+    console.error(`dslService.ts  ${processDesc}`);
   }
-
-  // render模块
-  const Builder = Render.handle(dslTree);
-
-  return Builder.getResult();
 }
 
 /**

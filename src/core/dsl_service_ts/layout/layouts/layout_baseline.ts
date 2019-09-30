@@ -38,7 +38,6 @@ class LayoutBaseLine {
     // 遍历所有绝对布局
     nodes.forEach((nd: any) => {
       if (LayoutBaseLine._isAbsolute(parent, nd)) {
-        nd.set('isCalculate', true);
         absNodes.push(nd);
       } else {
         calNodes.push(nd);
@@ -188,7 +187,6 @@ class LayoutBaseLine {
     calNodes.forEach((nd: any) => {
       if (!maxArr.includes(nd)) {
         absNodes.push(nd);
-        nd.set('isCalculate', true); // 约束计算完成
       }
     });
   }
