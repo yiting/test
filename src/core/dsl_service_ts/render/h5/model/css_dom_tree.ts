@@ -129,9 +129,14 @@ class CssDom extends VDom {
       return null;
     }
     if (
-      this.constraints.LayoutJustifyContent ===
-        Constraints.LayoutJustifyContent.Center ||
-      this.constraints.LayoutAlignItems === Constraints.LayoutAlignItems.Center
+      (this.constraints.LayoutDirection ===
+        Constraints.LayoutDirection.Horizontal &&
+        this.constraints.LayoutJustifyContent ===
+          Constraints.LayoutJustifyContent.Center) ||
+      (this.constraints.LayoutDirection ===
+        Constraints.LayoutDirection.Vertical &&
+        this.constraints.LayoutAlignItems ===
+          Constraints.LayoutAlignItems.Center)
     ) {
       return true;
     }

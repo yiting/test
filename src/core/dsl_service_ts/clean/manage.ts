@@ -20,12 +20,12 @@ export default (_nodes: any[]) => {
     // 行高计算
     debugText = 'lineHeightClean';
     nodes = lineHeightClean(nodes);
-    // 字宽计算
-    debugText = 'fontWidthClean';
-    nodes = fontWidthClean(nodes);
     // 干掉最后一个换行字符
     debugText = 'wordWrapClean';
     nodes = wordWrapClean(nodes);
+    // 字宽计算
+    debugText = 'fontWidthClean';
+    nodes = fontWidthClean(nodes);
   } catch (e) {
     Loger.error(`dsl/clean/managets ${debugText}()
         error:${e}`);

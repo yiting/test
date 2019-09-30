@@ -1,3 +1,4 @@
+// 末尾字段换行清洗
 export default function(nodes: any) {
   nodes.forEach(pipe);
   return nodes;

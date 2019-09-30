@@ -7,8 +7,6 @@ const Context = Canvas.createCanvas(200, 200).getContext('2d');
 const regWrap = /.*\n+/m;
 const regRes = /\n+|[^\n]+/gim;
 
-import FontLineHeight from '../helper/fontLineHeight';
-
 function copy(obj: any) {
   return JSON.parse(JSON.stringify(obj));
 }
@@ -22,17 +20,18 @@ export default function(nodes: any) {
   return arr;
 }
 function pipe(node: any) {
-  // 如果包含连续换行符
+  // 如果包含换行符，拆分节点
   if (node.text && regWrap.test(node.text)) {
     const paragraphList: any = [];
-    let rowIndex = 0,
-      // 当前行
-      curRow: any = {
-        rowIndex,
-        texts: [],
-      },
-      // 行列表
-      rowList = [curRow];
+    let rowIndex = 0;
+    // 当前行
+    let curRow: any = {
+      rowIndex,
+      texts: [],
+    };
+    // 行列表
+    let rowList = [curRow];
+    // 遍历文本节点，找到换行节点
     node.styles.texts.forEach((txt: any) => {
       const res = txt.string.match(regRes);
       let curText = Object.assign({}, txt, {
@@ -59,16 +58,12 @@ function pipe(node: any) {
         curText.string += str;
       });
     });
+    // 高度计算
     let increaseTop = 0;
     rowList.forEach((row: any, i: number) => {
       let curNode: any = null;
-      let lineHeight = node.styles.lineHeight;
-      if (!lineHeight) {
-        const sizes = row.texts.map((text: any) =>
-          FontLineHeight(text.font, text.size),
-        );
-        lineHeight = Math.max(...sizes);
-      }
+      const sizes = row.texts.map((text: any) => text.lineHeight);
+      const rowLineHeight = Math.max(...sizes);
       if (row.texts.length == 1 && !row.texts[0].string) {
         // 空行
         /* curNode = copy(node);
@@ -79,15 +74,15 @@ function pipe(node: any) {
         // if (!paragraphList.includes(curNode)) {
         curNode = copy(node);
         curNode.id = curNode.id + '_row' + i;
-        curNode.styles.lineHeight = lineHeight;
+        curNode.styles.lineHeight = rowLineHeight;
         curNode.styles.texts = [];
         curNode.abY += increaseTop;
         paragraphList.push(curNode);
         curNode.styles.texts.push(...row.texts.filter((n: any) => !!n.string));
         const rows = calRows(curNode.styles.texts, node.width);
-        curNode.height = lineHeight * rows;
+        curNode.height = rowLineHeight * rows;
       }
-      increaseTop += curNode ? curNode.height : lineHeight;
+      increaseTop += curNode ? curNode.height : rowLineHeight;
     });
     return paragraphList;
   }

@@ -15,7 +15,6 @@ export default {
       return null;
     }
     //横排
-    // if (this.id == '566A86F3-DD2D-4484-87D0-8189C5D6C1F7-c') debugger
     css[0] = marginTop.value.call(this);
     css[1] = marginRight.value.call(this);
     css[2] = marginBottom.value.call(this);

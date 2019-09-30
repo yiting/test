@@ -1,6 +1,7 @@
 /**字宽清洗 */
 
 import Canvas from 'canvas';
+// import measureText from 'measure-text';
 const Context = Canvas.createCanvas(200, 200).getContext('2d');
 
 export default (nodes: any) => {
@@ -15,15 +16,20 @@ function pipe(node: any) {
     Context.clearRect(0, 0, 200, 200);
     node.styles.texts.forEach((text: any) => {
       Context.save();
-      Context.font = `${text.size}px Arial`;
-      textWidth += Context.measureText(text.string).width;
+      Context.font = `${text.size}px ${text.font}`;
+      textWidth += Math.round(Context.measureText(text.string).width);
+      // for (let i = 0; i < text.string.length; i++) {
+      //   console.log(Context.measureText(text.string[i]).width)
+      //   textWidth += Math.round(Context.measureText(text.string[i]).width);
+      // }
+      Context.restore();
     });
-    textWidth = Math.ceil(textWidth);
     if (textWidth && textWidth < node.width) {
+      // 0 左 1 右 2 中 3 两端
       if (node.styles.textAlign == 2) {
         // 中对齐
         node.abX = Math.ceil(node.abX + node.width / 2 - textWidth / 2);
-      } else if (node.styles.textAlign == 3) {
+      } else if (node.styles.textAlign == 1) {
         // 右对齐
         node.abX = Math.ceil(node.abX + node.width - textWidth);
       } else {

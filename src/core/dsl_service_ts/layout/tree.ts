@@ -317,11 +317,15 @@ class Tree {
             // 子节点不能分割线
             child.modelName == 'wg1-m1' ||
             // 子节点必须关联
-            !_utils.isConnect(child, parent) ||
+            !_utils.isConnect(
+              child,
+              parent,
+              -1,
+            ) /* ||
             // 子节点比父节点更靠下
             (child.zIndex > parent.zIndex &&
               child.abY > parent.abY &&
-              child.abYops > parent.abYops)
+              child.abYops > parent.abYops) */
           ) {
             return false;
           }
@@ -339,7 +343,7 @@ class Tree {
           }
 
           // 其他情况都为绝对定位
-          const node = Tree._add(child, parent.parent || parent, true);
+          const node = Tree._add(child, parent, true);
           compareArr.unshift(node);
           segmentings[i] = null;
           return true;

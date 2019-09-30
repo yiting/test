@@ -187,7 +187,6 @@ class Template {
     } else {
       // 没有引用，且不是跟节点
     }
-    // if (renderData && renderData.id == "AB1F2F1B-94E0-4236-B376-CB4C910504E8-c") debugger
     // 构建模板节点
     let tplData = new TemplateData(renderData, parentTpl, this._renderData);
 
