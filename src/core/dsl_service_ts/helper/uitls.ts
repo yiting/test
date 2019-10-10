@@ -87,6 +87,32 @@ export default {
       Math.abs(aCy - bCy) <= (a_abYops - a_abY + b_abYops - b_abY) / 2 + dir
     );
   },
+  getRange(nodes: any[]): any {
+    if (!nodes) {
+      return {};
+    }
+    const o = {
+      x: Number.POSITIVE_INFINITY,
+      y: Number.POSITIVE_INFINITY,
+      abX: Number.POSITIVE_INFINITY,
+      abY: Number.POSITIVE_INFINITY,
+      width: 0,
+      height: 0,
+    };
+    let right = 0;
+    let bottom = 0;
+    nodes.forEach((d: any, i: number) => {
+      o.x = d.x < o.x ? d.x : o.x;
+      o.y = d.y < o.y ? d.y : o.y;
+      o.abX = d.abX < o.abX ? d.abX : o.abX;
+      o.abY = d.abY < o.abY ? d.abY : o.abY;
+      right = right < d.abX + d.width ? d.abX + d.width : right;
+      bottom = bottom < d.abY + d.height ? d.abY + d.height : bottom;
+    });
+    o.height = bottom - o.abY;
+    o.width = right - o.abX;
+    return o;
+  },
   RGB2HEX(color: { r: number; g: number; b: number; a: number }) {
     const red = ('0' + color.r.toString(16)).slice(-2);
     const green = ('0' + color.g.toString(16)).slice(-2);

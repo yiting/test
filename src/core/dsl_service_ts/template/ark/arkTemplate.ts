@@ -1,6 +1,6 @@
 import Template from '../template';
 import XmlEngine from '../XmlEngine';
-import Utils from '../../uitls';
+import Utils from '../../helper/uitls';
 
 export default class HtmlTemplate extends Template {
   constructor(...args: any[]) {

@@ -1,11 +1,11 @@
 // 循环结构的逻辑处理模块
 import Common from '../../dsl2/common';
 import Utils from '../utils';
-import Group from '../group';
 import Constraints from '../../helper/constraints';
 import Similar from './layout_similar';
 import Store from '../../helper/store';
-import Tree from '../tree';
+import Tree from '../../group/tree';
+import LayerModel from '../../model/model';
 
 const CYCLE_MODEL_NAME = 'cycle-01';
 let ErrorCoefficient: number = 0;
@@ -206,33 +206,35 @@ class LayoutCircle {
         // 对新组合构建包含结构
         const newChild = Object.keys(target).map((key: string) => {
           const _group = target[key];
-          const newParent = Tree.createNodeData(null);
-          _group.forEach((child: any) => {
-            child.set('parent', newParent);
+          const newParent = new LayerModel({
+            parent: _parent,
+            children: _group,
+            similarId: itemSimilarIndex,
+            constraints: {
+              LayoutFixedWidth: Constraints.LayoutFixedWidth.Fixed,
+            },
           });
-          newParent.set('parent', _parent);
-          newParent.set('children', _group);
           newParent.resetZIndex();
-          newParent.set('similarId', itemSimilarIndex);
-          newParent.constraints['LayoutFixedWidth'] =
-            Constraints.LayoutFixedWidth.Fixed;
           newParent.resize();
+          _group.forEach((child: any) => {
+            child.parent = newParent;
+          });
           return [newParent];
         });
         // 构建新循环
-        const newCycleParent = Tree.createNodeData(null);
+        const newCycleParent = new LayerModel();
         const newCycleData = Tree.createCycleData(newCycleParent, newChild);
 
-        newCycleParent.set('children', [newCycleData]);
+        newCycleParent.children = [newCycleData];
         newCycleParent.resetZIndex();
         if (rowSimilarIndex) {
-          newCycleParent.set('similarId', rowSimilarIndex);
+          newCycleParent.similarId = rowSimilarIndex;
         }
         newCycleParent.resize();
         // 如果父节点为跟节点，则不能宽于父节点
         if (_parent.type === Common.QBody) {
-          newCycleParent.set('abX', _parent.abX);
-          newCycleParent.set('abXops', _parent.abXops);
+          newCycleParent.abX = _parent.abX;
+          newCycleParent.abXops = _parent.abXops;
         }
         // 加入新节点到父级元素
         children.push(newCycleParent);
@@ -304,12 +306,12 @@ class LayoutCircle {
       inRemove.push(...node);
     });
     // 合并循环节点为新节点
-    const newCycleParent = Tree.createNodeData(null);
+    const newCycleParent = new LayerModel();
     const newCycleData = Tree.createCycleData(newCycleParent, inWrap);
     newCycleData.constraints['LayoutWrap'] = Constraints.LayoutWrap.Wrap;
     newCycleData.constraints['LayoutFixedWidth'] =
       Constraints.LayoutFixedWidth.Fixed;
-    newCycleParent.set('children', [newCycleData]);
+    newCycleParent.children = [newCycleData];
     newCycleParent.resetZIndex();
     newCycleParent.resize();
     const gap = Math.max(

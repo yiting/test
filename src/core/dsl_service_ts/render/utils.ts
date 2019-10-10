@@ -1,6 +1,6 @@
 // 此模块用于定义一些在render模块包中用到的工具函数
 import Constraints from '../helper/constraints';
-import Utils from '../uitls';
+import Utils from '../helper/uitls';
 
 export default {
   /**

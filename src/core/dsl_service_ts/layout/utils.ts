@@ -1,7 +1,7 @@
 // 此模块用于定义一些在dsl模块包中用到的工具函数
 //
 import Common from '../dsl2/common';
-import Utils from '../uitls';
+import Utils from '../helper/uitls';
 
 const utils = {
   /**
@@ -430,7 +430,7 @@ const utils = {
     return str.replace(/([A-Z])/gm, '-$1').toLowerCase();
   },
 
-  getRangeByNodes(nodes: []) {
+  getRangeByNodes(nodes: any[]) {
     if (!nodes) {
       return {};
     }

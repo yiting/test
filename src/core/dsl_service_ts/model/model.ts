@@ -1,3 +1,5 @@
+import utils from '../helper/uitls';
+
 let serialId = 0;
 class Model {
   children: any[];
@@ -69,6 +71,18 @@ class Model {
     this.zIndex = this.children.length
       ? Math.min(...this.children.map(nd => nd.zIndex))
       : null;
+  }
+  resize() {
+    const { abX, abY, height, width } = utils.getRange(this.children);
+    const abXops = abX + width;
+    const abYops = abY + height;
+    Object.assign(this, {
+      abX,
+      abY,
+      abXops,
+      abYops,
+    });
+    return this;
   }
   get x() {
     return this.parent ? this.abX - this.parent.abX : this.abX;
