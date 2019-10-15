@@ -56,6 +56,8 @@ dev:
       stages:
         - name: install
           script: tnpm install
+        - name: install canvas
+          script: tnpm install canvas
         - name: dist
           script: tnpm run dist
         - name: list changed
