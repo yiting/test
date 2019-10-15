@@ -906,23 +906,25 @@ const ImageCombine = function() {
 
     let itemIds = [];
     imgList.forEach((imageItem, index) => {
-      //对每个节点，获取json，同时json改id，将name改为path，
-      //返回修改后的json，及要导出的id
-      if (index == 22) {
-        // console.log(1);
-      }
-      var { generateJson, generateId } = that.getUpdateJson({
-        imageItem,
-        index,
-      });
-      //将json追加到最后getUpdateJson
-      // if (!isGenerateArtboard) {
-      that.pageJson.layers[artboardIndex].layers.push(generateJson);
-      // } else {
-      //   that.pageJson.layers[artboardIndex] = generateJson;
-      // }
+      try {
+        //对每个节点，获取json，同时json改id，将name改为path，
+        //返回修改后的json，及要导出的id
+        // if(index ==1) throw "测试报错";
+        var { generateJson, generateId } = that.getUpdateJson({
+          imageItem,
+          index,
+        });
+        //将json追加到最后getUpdateJson
+        // if (!isGenerateArtboard) {
+        that.pageJson.layers[artboardIndex].layers.push(generateJson);
+        // } else {
+        //   that.pageJson.layers[artboardIndex] = generateJson;
+        // }
 
-      itemIds.push(generateId);
+        itemIds.push(generateId);
+      } catch (e) {
+        logger.warn(e);
+      }
     });
 
     // 6、合成修改版sketch
@@ -1032,11 +1034,11 @@ const ImageCombine = function() {
       const { sketchDir } = that;
       const outputDir = `${that.outputDir + projectName}/images/`;
       let scales = 1;
-      if (that.artboardWidth < 750) {
+      if (that.artboardWidth < 376) {
         scales = 750 / that.artboardWidth;
       }
       return new Promise(function(resolve, reject) {
-        const command = `${BIN} export layers --output=${outputDir} --formats=png ${`${sketchDir +
+        const command = `${BIN} export layers --output=${outputDir} --group-contents-only --formats=png ${`${sketchDir +
           sketchName}.sketch`} --items=${itemIds} --scales=${scales}`;
         logData.num._combineShapeGroupNodeWithNative++;
         // console.log(command);
