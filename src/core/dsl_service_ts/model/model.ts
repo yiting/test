@@ -6,8 +6,8 @@ class Model {
   parent: any;
   id: any;
   type: any;
-  serialId: any;
-  similarId: any;
+  serialId: number;
+  similarId: number | null;
   text: string | null;
   abX: number;
   abY: number;
@@ -16,8 +16,9 @@ class Model {
   styles: any;
   path: string | null;
   constraints: any;
-  zIndex: any;
+  zIndex: number;
   name: string;
+  modelId: string;
 
   static resetSerialId() {
     serialId = 0;
@@ -26,15 +27,17 @@ class Model {
   constructor(node: any = {}) {
     this.children = [];
     this.parent = null;
-    this.id = node.id;
+    this.id = node.id || serialId.toString();
     this.type = node.type;
     this.serialId = serialId++;
-    this.similarId = node.similarId;
+    this.similarId = node.similarId || null;
+    // 模型Id，默认为节点Id
+    this.modelId = node.id; //
     this.text = node.text;
     this.abX = node.abX || 0;
     this.abY = node.abY || 0;
-    this.abXops = node.abXops;
-    this.abYops = node.abYops;
+    this.abXops = node.abXops || node.abX + node.width;
+    this.abYops = node.abYops || node.abY + node.height;
     this.path = node.path || null;
     this.zIndex = node.zIndex;
     this.styles = node.styles || {};

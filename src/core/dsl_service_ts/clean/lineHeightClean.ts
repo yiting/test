@@ -9,6 +9,7 @@ export default function(nodes: any) {
   return arr;
 }
 function pipe(node: any) {
+  // if (node.id == '87112A6C-35BF-4F03-8CB9-B8A144621673') debugger
   let maxLineHeight;
   let maxFontSize;
   if (!node.styles.texts) {
@@ -17,7 +18,7 @@ function pipe(node: any) {
   const lineHeights: any = [];
   const fontSizes: any = [];
   node.styles.texts.forEach((text: any) => {
-    lineHeights.push(text.lineHeight);
+    lineHeights.push(text.lineHeight || text.size * 1.2);
     fontSizes.push(text.size);
   });
   maxLineHeight = Math.max(...lineHeights);
@@ -29,7 +30,6 @@ function pipe(node: any) {
     node.abY -= dur;
     node.abYops += dur;
     node.styles.lineHeight = maxLineHeight;
-    node.height = maxLineHeight;
   }
   return node;
 }

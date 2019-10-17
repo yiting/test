@@ -4,7 +4,7 @@
 import Constraints from '../../helper/constraints';
 import QLog from '../../log/qlog';
 import Utils from '../utils';
-import Common from '../../dsl2/common';
+import Dictionary from '../../helper/dictionary';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 /**
@@ -91,7 +91,7 @@ function _supplementConstraints(vdom: any) {
     vdom.constraints.LayoutWrap === Constraints.LayoutWrap.Wrap;
   // 是否垂直布局
   const isVertical =
-    vdom.type == Common.QBody ||
+    vdom.type == Dictionary.type.QBody ||
     (!canNewLine && children.length > 0 && Utils.isVertical(children));
   // 计算基线
   const baseLine: any = calculateBaseLine(vdom);

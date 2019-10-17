@@ -1,7 +1,7 @@
 /**
  * 边界重定义
  */
-import Common from '../../dsl2/common';
+import Dictionary from '../../helper/dictionary';
 import Constraints from '../../helper/constraints';
 import QLog from '../../log/qlog';
 import Store from '../../helper/store';
@@ -33,7 +33,7 @@ function _parseBoundary(vdom: any) {
  */
 function _calculateBoundary(vdom: any) {
   // 跟节点不调整
-  if (vdom.type === Common.QBody) {
+  if (vdom.type === Dictionary.type.QBody) {
     return;
   }
   if (vdom._isAbsolute()) {

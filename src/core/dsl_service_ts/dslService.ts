@@ -1,11 +1,12 @@
 // dsl模块服务通过输入设计稿抽象过后的数据，然后输出对应的字符串
-import Common from './dsl2/common';
 import ModelProcess from './model/index';
+import ModelMatchProcess from './model/match';
 // 暂时起名为Layout模块
-import Layout from './layout/layout';
+import LayoutProcess from './layout';
 import GroupProcess from './group/index';
-import RenderProcess from './render/render';
-import CleanProcess from './clean/manage';
+import GridProcess from './grid/index';
+import RenderProcess from './render';
+import CleanProcess from './clean/index';
 import Store from './helper/store';
 
 /**
@@ -24,19 +25,23 @@ function _process(_input: any, _options: any): object {
     _initOptions(_options);
     // 数据清洗
     let nodes = input.nodes;
-    nodes = CleanProcess(nodes);
+    processDesc = '构建节点';
+    const layoutNodes = ModelProcess(nodes);
 
+    processDesc = '数据清洗';
+    CleanProcess(layoutNodes);
+    // 生成树
+    processDesc = '节点分组';
+    const dslTree = GroupProcess(layoutNodes);
     // 模型识别模块
-    const models = ModelProcess(nodes);
-
-    // layout模块
-    let dslTree: any;
-    // 生成dsl树, 传入match的组件模型和元素模型
-    dslTree = GroupProcess(models);
-    processDesc = '生成dsl树出错';
+    processDesc = '模型识别';
+    ModelMatchProcess();
+    // 栅格化
+    processDesc = '栅格化';
+    GridProcess(dslTree);
     // 进行布局及循环处理
-    Layout.handle(dslTree);
-
+    processDesc = '布局分析';
+    LayoutProcess(dslTree);
     // render模块
     const Builder = RenderProcess.handle(dslTree);
     return Builder.getResult();

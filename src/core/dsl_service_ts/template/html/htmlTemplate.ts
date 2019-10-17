@@ -2,7 +2,7 @@ import Path from 'path';
 
 import Template from '../template';
 import XmlEngine from '../XmlEngine';
-import Config from '../../render/config.json';
+import Layer from '../../template/html/base/layer';
 
 export default class HtmlTemplate extends Template {
   requireImgPath: (path: string) => string;
@@ -70,7 +70,7 @@ export default class HtmlTemplate extends Template {
     if (!node.parent) {
       return null;
     }
-    if (node.parent.modelName === 'layer') {
+    if (node.parent.modelName === Layer.name) {
       indexObj.layerLevel += 1;
     }
     indexObj.level += 1;

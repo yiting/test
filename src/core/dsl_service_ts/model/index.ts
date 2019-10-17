@@ -5,9 +5,10 @@ import ModelList from './modellist';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 export default function(nodes: any[]) {
   const newNodes: Model[] = [];
+  let ModelType;
+  Model.resetSerialId();
   nodes.forEach((node: any) => {
-    node = judgeType(node);
-    let ModelType = Model;
+    ModelType = Model;
     ModelList.some((model: any) => {
       if (model.regular(node)) {
         ModelType = model;
@@ -19,7 +20,7 @@ export default function(nodes: any[]) {
   });
   return newNodes;
 }
-
+/*
 function judgeType(node: any) {
   switch (node.type) {
     case 'QShape':
@@ -32,10 +33,10 @@ function judgeType(node: any) {
       node.type = Dictionary.type.QText;
       break;
     case 'QLayer':
-      node.type = Dictionary.type.QBody;
+      node.type = Dictionary.type.QLayer;
       break;
     case 'QBody':
-      node.type = Dictionary.type.QBody;
+      node.type = Dictionary.type.QLayer;
       break;
     default:
       Loger.warn(
@@ -44,3 +45,4 @@ function judgeType(node: any) {
   }
   return node;
 }
+ */

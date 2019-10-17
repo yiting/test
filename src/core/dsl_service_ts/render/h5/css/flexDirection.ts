@@ -1,10 +1,10 @@
 import Constraints from '../../../helper/constraints';
-import Common from '../../../dsl2/common';
+import Dictionary from '../../../helper/dictionary';
 
 export default {
   key: 'flexDirection',
   value() {
-    if (this.type == Common.QText) {
+    if (this.type == Dictionary.type.QText) {
       return null;
     }
     if (this.display === 'block') {

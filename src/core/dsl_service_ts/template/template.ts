@@ -48,15 +48,12 @@ class Template {
   _name: string;
 
   constructor(args: any) {
-    const _renderDataIndex = 0;
-    const _parentTplIndex = 1;
-    const _templateListIndex = 2;
-    this._renderData = args[_renderDataIndex];
-    this._parentTpl = args[_parentTplIndex];
-    this._templateList = args[_templateListIndex];
+    this._renderData = args[0];
+    this._parentTpl = args[1];
+    this._templateList = args[2];
     this._name = 'layer';
     // 节点引用
-    this.$ref = this._renderData.nodes || {};
+    this.$ref = this._renderData || {};
     // 解析引擎
     this._engine = XmlEngine;
   }
@@ -94,26 +91,31 @@ class Template {
   _traversal(structure: any, parentTpl: any, isRoot: any) {
     const arr = [];
     for (let index = 0; index < structure.length; index++) {
-      const nd = structure[index];
+      const nodeInfo = structure[index];
       // 预处理
-      const res = this._preProp(nd, structure);
+      const res = this._preProp(nodeInfo, structure);
       // 如果为false，则预处理提出中止当前节点编译
       if (res !== false) {
         // 构建数据对象
-        let { tplData, renderData } = this._parseObj(nd, parentTpl, isRoot);
+        let { tplData, renderData } = this._parseObj(
+          nodeInfo,
+          parentTpl,
+          isRoot,
+        );
         // 赋值
-        this._parseProp(tplData, nd);
+        this._parseProp(tplData, nodeInfo);
         // 遍历子节点
-        this._traversal(nd.children, tplData, false);
-        if (!isRoot && renderData && renderData.modelName) {
+        this._traversal(nodeInfo.children, tplData, false);
+        /* if (!isRoot && renderData && renderData.modelName) {
           // 如果该节点有模型名称，则进入下一层模板
           const tplDataSub = Template.parse(
             renderData,
             null,
             this._templateList,
           );
-          tplData = Template._assignObj(tplData, tplDataSub, nd);
-        } else if (renderData && renderData.children) {
+          tplData = Template._assignObj(tplData, tplDataSub, nodeInfo);
+        } else  */
+        if (renderData && renderData.children) {
           // 遍历结构树
           renderData.children.forEach((childRenderData: any) => {
             Template.parse(childRenderData, tplData, this._templateList);
@@ -128,7 +130,7 @@ class Template {
             // 如果没有子节点，按父节点属性处理
             tplData.relay();
           }
-          tplData.modelName = null;
+          // tplData.modelName = null;
         }
         arr.push(tplData);
       }
@@ -141,22 +143,22 @@ class Template {
 
   // 属性预处理
   _preProp(_nd: any, structure: any): any {
-    const nd = _nd;
+    const nodeInfo = _nd;
 
-    if (Object.keys(nd.attrs).includes(_SYMBOL.each)) {
+    /* if (Object.keys(nodeInfo.attrs).includes(_SYMBOL.each)) {
       // 删除模板节点上的循环标记，避免无限循环
-      delete nd.attrs[_SYMBOL.each];
+      delete nodeInfo.attrs[_SYMBOL.each];
       // 根据循环节点数，构建对应模板节点
 
       Object.keys(this._renderData.nodes || {}).forEach((index: any) => {
-        const newAttr = Object.assign({}, nd.attrs);
-        const newNd = Object.assign({}, nd);
+        const newAttr = Object.assign({}, nodeInfo.attrs);
+        const newNd = Object.assign({}, nodeInfo);
         newNd.attrs = newAttr;
         newNd.attrs.$ref = index;
         structure.push(newNd);
       });
       return false;
-    }
+    } */
     return true;
   }
 
@@ -168,11 +170,11 @@ class Template {
    * @param isRoot 是否跟节点
    */
   _parseObj(_nd: any, parentTpl: any, isRoot: any) {
-    const nd = _nd;
-    const refIndex = nd.attrs[_SYMBOL.ref];
+    const nodeInfo = _nd;
+    const refIndex = nodeInfo.attrs[_SYMBOL.ref];
     let renderData;
     // 删除「引用」字段
-    delete nd.attrs[_SYMBOL.ref];
+    delete nodeInfo.attrs[_SYMBOL.ref];
     // 如果模型根节点为引用，则把引用节点信息覆盖根节点
     if (isRoot && this.$ref[refIndex]) {
       this._renderData.id = this.$ref[refIndex].id;
@@ -204,7 +206,7 @@ class Template {
       // 如果该节点有模型名称，则进入下一层模板
 
       const tplDataSub = Template.parse(renderData, null, this._templateList);
-      tplData = Template._assignObj(tplData, tplDataSub, nd);
+      tplData = Template._assignObj(tplData, tplDataSub, nodeInfo);
     } else if (renderData && renderData.children) {
       // 遍历结构树
       renderData.children.forEach((childRenderData: any) => {
@@ -225,12 +227,12 @@ class Template {
   static _assignObj(_target: any = {}, _subNode: any = {}, _nd: any) {
     const target = _target;
     const subNode = _subNode;
-    const nd = _nd;
-    if (Object.keys(nd.attrs).includes(_SYMBOL.useTag)) {
-      nd.tagName = subNode.tagName;
+    const nodeInfo = _nd;
+    if (Object.keys(nodeInfo.attrs).includes(_SYMBOL.useTag)) {
+      nodeInfo.tagName = subNode.tagName;
       target.tagName = subNode.tagName;
       // 删除标记
-      delete nd.attrs[_SYMBOL.useTag];
+      delete nodeInfo.attrs[_SYMBOL.useTag];
     }
     // 重新复制元素数据关系
     target.children.push(...subNode.children);
@@ -250,12 +252,12 @@ class Template {
   // 构建对象属性
   _parseProp(_refData: any, _nd: any) {
     const refData = _refData;
-    const nd = _nd;
+    const nodeInfo = _nd;
 
-    refData.tagName = nd.tagName;
-    refData.isClosedTag = nd.isClosedTag;
-    Object.keys(nd.attrs).forEach(key => {
-      const value = nd.attrs[key];
+    refData.tagName = nodeInfo.tagName;
+    refData.isClosedTag = nodeInfo.isClosedTag;
+    Object.keys(nodeInfo.attrs).forEach(key => {
+      const value = nodeInfo.attrs[key];
       if (~key.indexOf(_SYMBOL.objVar)) {
         // 变量
         const _key = key.slice(1);
@@ -339,22 +341,18 @@ class Template {
     }
   }
 
-  static getModelTemplate(TemplateList: any, modelName: any) {
+  static getModelTemplate(TemplateList: any, Model: any) {
     const o: any = TemplateList.find(
-      (n: any) =>
-        n.name.toLowerCase() ===
-        `${modelName}`.toLowerCase().replace(/-/gim, ''),
+      (temp: any) => temp.name === Model.constructor.name,
     );
     return o;
   }
 
   static parse(renderData: any, parentTpl: any, TemplateList: any) {
     let tplData: any;
-
     try {
       const ModelTpl =
-        Template.getModelTemplate(TemplateList, renderData.modelName) ||
-        Template;
+        Template.getModelTemplate(TemplateList, renderData) || Template;
       const tpl = new ModelTpl(renderData, parentTpl, TemplateList);
       tplData = tpl.parse().getData();
     } catch (e) {

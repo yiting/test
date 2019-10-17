@@ -1,4 +1,5 @@
 import Constraints from '../../../helper/constraints';
+import Text from '../../../template/html/base/text';
 
 export default {
   key: 'marginTop',
@@ -8,7 +9,7 @@ export default {
       return css;
     }
     // 如果为文本节点子节点
-    if (this.parent && this.parent.modelName == 'em1-m1') {
+    if (this.parent && this.parent.modelName == Text.name) {
       return null;
     }
     const firstChild = this.parent && this.parent._usePaddingTop();

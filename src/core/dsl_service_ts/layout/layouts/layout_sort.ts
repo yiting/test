@@ -12,11 +12,15 @@ class LayoutSort {
    * @param {Array} models 对应的模型数组
    */
   static handle(parent: any, nodes: any, models: any) {
-    // if (this._isVerticalLayout(nodes)) {
-    if (Utils.isHorizontal(nodes)) {
-      LayoutSort._sort(nodes, 'abX');
-    } else {
-      LayoutSort._sort(nodes, 'abY');
+    try {
+      // if (this._isVerticalLayout(nodes)) {
+      if (Utils.isHorizontal(nodes)) {
+        LayoutSort._sort(nodes, 'abX');
+      } else {
+        LayoutSort._sort(nodes, 'abY');
+      }
+    } catch (e) {
+      debugger;
     }
   }
 

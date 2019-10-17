@@ -3,7 +3,7 @@ import designjson from './test.json';
 
 // 引入的模块包
 // import Dsl from '../dsl/dsl';
-import Render from '../render/render';
+import Render from '../render/index';
 import dslServer from '../dslService';
 const value: any = dslServer.process(
   {
@@ -11,7 +11,7 @@ const value: any = dslServer.process(
   },
   {
     outputType: 'h5',
-    designWidth: 375,
+    designWidth: 750,
     optimizeWidth: 750,
     optimizeHeight: 750,
     showTagAttrInfo: true,

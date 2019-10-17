@@ -5,5 +5,6 @@ export default {
     QText: 'QText',
     QBody: 'QBody',
     QLayer: 'QLayer',
+    QWidget: 'QWidget',
   },
 };

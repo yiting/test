@@ -59,6 +59,7 @@ class ClassName {
    */
   static threeSegmentsClass(_data: any) {
     const data: any = _data;
+    // console.log(data.modelId)
     const modelNode: any = ClassName.domCache[data.modelId];
     const parentNode: any = ClassName.domCache[data.parentId];
     const similarParentNode: any = ClassName.domCache[data.similarParentId];
@@ -66,7 +67,6 @@ class ClassName {
      * 缓存节点
      * */
     ClassName.domCache[data.id] = data;
-
     /**
      * 特性命名
      */
@@ -101,7 +101,6 @@ class ClassName {
         prevClassName,
         selfClassName,
       ].filter((s: string) => !!s);
-
       // 如果该样式名存在冲突，给当前节点样式加后缀
       if (ClassName.classIsConflict(_selfCssArr, _classPath)) {
         selfClassName += `_${ClassName.classIndex}`;
@@ -143,7 +142,6 @@ class ClassName {
         const _classPath: string =
           ClassName.getDomClassPath(data) +
           [data.selfClassName, _selfSimClassName].join(':');
-
         // 判断是否存在重复的样式命名，冲突则加后缀
         if (ClassName.classIsConflict(_selfSimCssArr, _classPath)) {
           _selfSimClassName += `_s${data.similarId}`;

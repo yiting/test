@@ -206,36 +206,37 @@ class LayoutEquality {
       const abXops = prevLineCenterPos
         ? prevLineCenterPos[i].abXops
         : nd.abXops + dir;
-      nd.set('abX', abX);
-      nd.set('abXops', abXops);
+      nd.abX = abX;
+      nd.abXops = abXops;
       // 设置居中
       nd.constraints.LayoutJustifyContent =
         Constraints.LayoutJustifyContent.Center;
       nd.constraints.LayoutFixedWidth = Constraints.LayoutFixedWidth.Fixed;
-      nd.set('constraints', nd.constraints);
+      nd.constraints = nd.constraints;
     });
   }
   //  调整居中模型位置
   static _adjustLeftPos(nodes: any, width: any) {
     nodes.forEach((_nd: any) => {
       const nd: any = _nd;
-      nd.set('abXops', nd.abX + width);
+      nd.abXops = nd.abX + width;
       // 设置居中
       nd.constraints.LayoutJustifyContent =
         Constraints.LayoutJustifyContent.Start;
       nd.constraints.LayoutFixedWidth = Constraints.LayoutFixedWidth.Fixed;
-      nd.set('constraints', nd.constraints);
+      nd.constraints = nd.constraints;
     });
   }
 
   static _isAllSameModel(nodes: any) {
-    let modelName: any;
+    let modelType: any;
 
     return (
       nodes.length > 1 &&
       nodes.every((nd: any) => {
-        const isSameModel = !modelName || nd.modelName === modelName;
-        ({ modelName } = nd);
+        // const isSameModel = !modelName || nd.modelName === modelName;
+        const isSameModel = nd.constructor == modelType;
+        modelType = nd.constructor;
         return isSameModel;
       })
     );

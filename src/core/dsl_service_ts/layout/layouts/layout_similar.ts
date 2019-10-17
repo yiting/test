@@ -1,5 +1,5 @@
 // 循环结构的逻辑处理模块
-import Common from '../../dsl2/common';
+import Dictionary from '../../helper/dictionary';
 import Utils from '../utils';
 import Constraints from '../../helper/constraints';
 import Store from '../../helper/store';
@@ -54,7 +54,7 @@ class LayoutSimilar {
       const similarId = that.similarIndex;
       that.similarIndex += 1;
       item.forEach((obj: any) => {
-        obj.node.set('similarId', similarId);
+        obj.node.similarId = similarId;
       });
     });
   }
@@ -74,15 +74,15 @@ class LayoutSimilar {
       return;
     }
     const that: any = this;
-    if (!that._compareNodes[node.modelName]) {
-      that._compareNodes[node.modelName] = [];
+    if (!that._compareNodes[node.constructor.name]) {
+      that._compareNodes[node.constructor.name] = [];
     }
     const compareChildren = node.children.filter(
       (child: any) =>
         child.constraints.LayoutSelfPosition !==
         Constraints.LayoutSelfPosition.Absolute,
     );
-    that._compareNodes[node.modelName].push({
+    that._compareNodes[node.constructor.name].push({
       node,
       abX: node.abX,
       abXops: node.abXops,
@@ -93,7 +93,6 @@ class LayoutSimilar {
       height: node.abYops - node.abY,
       width: node.abXops - node.abX,
       parentId: node.parentId,
-      modelName: node.modelName,
       type: node.type,
       isHorizontal: Utils.isHorizontal(compareChildren),
       compareChildren: compareChildren,
@@ -117,7 +116,7 @@ class LayoutSimilar {
      * 3. 如果非layer，三基线对齐
      * 4. 如果没有子节点，则相似
      */
-    if (a.type !== b.type || a.modelName !== b.modelName) {
+    if (a.type !== b.type || a.constructor !== b.constructor) {
       return false;
     }
     const isConnect = Utils.isConnect(a.node, b.node, -1);
@@ -128,9 +127,9 @@ class LayoutSimilar {
 
     // 如果为布局类型，判断所有子节点是否相似
     if (
-      a.type === Common.QLayer ||
+      a.type === Dictionary.type.QLayer ||
       // 部分图片是一个包含子节点的layer，故增加以下一条判断条件
-      (a.type === Common.QImage &&
+      (a.type === Dictionary.type.QImage &&
         (a.compareChildren.length > 0 || b.compareChildren.length > 0))
     ) {
       return (
@@ -139,7 +138,7 @@ class LayoutSimilar {
         a.compareChildren.every((aChild: any, i: any) => {
           const bChild = b.compareChildren[i];
           return (
-            aChild.modelName === bChild.modelName &&
+            aChild.constructor === bChild.constructor &&
             (aChild.abX - a.abX - (bChild.abX - b.abX) < ErrorCoefficient ||
               aChild.abXops - a.abXops - (bChild.abXops - b.abXops) <
                 ErrorCoefficient) &&
@@ -163,7 +162,7 @@ class LayoutSimilar {
         ) */
       );
       // 如果为组件类型，判断位置是否相似
-    } else if (a.type === Common.QWidget) {
+    } else if (a.type === Dictionary.type.QWidget) {
       // 如果为Widget，三线对齐相同
       return (
         Math.abs(a.abY - b.abY) < ErrorCoefficient ||
@@ -175,7 +174,7 @@ class LayoutSimilar {
         (Math.abs(a.width - b.width) < ErrorCoefficient &&
           Math.abs(a.height - b.height) < ErrorCoefficient)
       );
-    } else if (a.type !== Common.QText) {
+    } else if (a.type !== Dictionary.type.QText) {
       // 如果为其他元素（非文本），则同父节点，子节点数相同，三线对齐相同
       const nodeA = a.node;
       const nodeB = b.node;

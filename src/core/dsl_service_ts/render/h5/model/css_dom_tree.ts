@@ -1,6 +1,6 @@
 // 样式的计算处理
 import { debug } from 'util';
-import Common from '../../../dsl2/common';
+import Dictionary from '../../../helper/dictionary';
 import Constraints from '../../../helper/constraints';
 import Utils from '../../utils';
 import Func from '../css_func';
@@ -74,7 +74,7 @@ class CssDom extends VDom {
     ) {
       return true;
     }
-    if (this.type === Common.QImage || !!this.path) {
+    if (this.type === Dictionary.type.QImage || !!this.path) {
       return true;
     }
     return false;
@@ -89,7 +89,7 @@ class CssDom extends VDom {
     }
 
     if (
-      this.type == Common.QText && // 是文本
+      this.type == Dictionary.type.QText && // 是文本
       !this.isMultiline && // 单行
       this._isParentHorizontal() //水平布局
     ) {
@@ -103,7 +103,7 @@ class CssDom extends VDom {
         return true;
       }
       // 图片
-      if (this.type === Common.QImage || !!this.path) {
+      if (this.type === Dictionary.type.QImage || !!this.path) {
         return true;
       }
       // 多行
@@ -125,7 +125,7 @@ class CssDom extends VDom {
     // if (!hasText) {
     //   return null;
     // }
-    if (this.type !== Common.QText) {
+    if (this.type !== Dictionary.type.QText) {
       return null;
     }
     if (

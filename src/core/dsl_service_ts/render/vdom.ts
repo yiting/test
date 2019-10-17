@@ -1,6 +1,6 @@
 import Constraints from '../helper/constraints';
 import Utils from './utils';
-import Common from '../dsl2/common';
+import Dictionary from '../helper/dictionary';
 import FontLineHeight from '../helper/fontLineHeight';
 class VDom {
   children: any[];
@@ -46,6 +46,7 @@ class VDom {
     this.abY = node.abY || 0;
     this.abXops = node.abXops;
     this.abYops = node.abYops;
+
     this.path = node.path || null;
     this.zindex = node.zIndex;
     this.tplAttr = node.tplAttr || {};
@@ -54,10 +55,9 @@ class VDom {
     this.isMultiline = null;
     if (this.text) {
       const arr = this.styles.texts.map((word: any) => {
-        const rate = FontLineHeight(word.font, word.size);
-        return rate;
+        return word.lineHeight;
       });
-      const _lineHeight = this.styles.lineHeight || Math.max(arr);
+      const _lineHeight = Math.max(arr);
       const _height = this.abYops - this.abY;
       // 如果高度高于行高，则为多行，固定宽度
       this.isMultiline = _height / _lineHeight > 1.6;
@@ -181,7 +181,7 @@ class VDom {
     // 如果文本为垂直布局，则继续判断
     // if (this.text && !this._textCanFlex()) {
     if (
-      this.type === Common.QText &&
+      this.type === Dictionary.type.QText &&
       (!this.parent ||
         this.parent.constraints.LayoutDirection !==
           Constraints.LayoutDirection.Vertical)
@@ -242,7 +242,7 @@ class VDom {
    * 获取当前节点的前一个兄弟节点,若没有则返回null
    */
   _prevNode() {
-    if (this.type === Common.QBody || !this.parent) {
+    if (this.type === Dictionary.type.QBody || !this.parent) {
       // 根节点
       return null;
     }
@@ -282,7 +282,7 @@ class VDom {
   _prevLine() {
     const that: any = this;
     const _prevNodes: any = [];
-    if (that.type === Common.QBody || !that.parent) {
+    if (that.type === Dictionary.type.QBody || !that.parent) {
       // 根节点
       return _prevNodes;
     }
@@ -316,7 +316,7 @@ class VDom {
   _nextLine() {
     const that: any = this;
     const _nextNodes: any = [];
-    if (that.type === Common.QBody || !that.parent) {
+    if (that.type === Dictionary.type.QBody || !that.parent) {
       // 根节点
       return _nextNodes;
     }
@@ -345,7 +345,7 @@ class VDom {
    * 获取当前节点的下一个兄弟节点,若没有则返回null
    */
   _nextNode() {
-    if (this.type === Common.QBody || !this.parent) {
+    if (this.type === Dictionary.type.QBody || !this.parent) {
       // 根节点
       return null;
     }
