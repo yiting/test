@@ -58,20 +58,27 @@ class SketchParser {
    * @param {Object} options.symbolMap
    * @param {Object} options.artboardMap
    * @param {string=} options.version
+   * @param {Object} options.fontData
    * @param {Object} options.frameMap
    */
   static parse(
     artboardId,
-    { symbolMap = {}, artboardMap, version = '', frameMap },
+    { symbolMap = {}, artboardMap, version = '', fontData = {}, frameMap },
   ) {
-    SketchLayerParser.init({ symbolMap, artboardMap, version, frameMap }); // 将Symbol字典注入layer解析器
+    SketchLayerParser.init({
+      symbolMap,
+      artboardMap,
+      version,
+      fontData,
+      frameMap,
+    }); // 将Symbol字典注入layer解析器
     const artboardLayer = artboardMap[artboardId];
     const rootNode = this._parseLayer(artboardLayer, {
       levelArr: [],
       childIndex: artboardLayer.childIndex,
     });
     const sliceData = [];
-    SketchProcessor.process(rootNode, { sliceData });
+    SketchProcessor.process(rootNode, { sliceData, fontData });
     rootNode.sliceData = sliceData;
     return rootNode;
   }
