@@ -13,7 +13,7 @@ const DesignTree = require('../../nodes/DesignTree');
  * @class 针对Sketch图元预处理，包括位置设置、mask合并等
  */
 class SketchProcessor {
-  static process(node, data = { sliceData: [] }) {
+  static process(node, data = { sliceData: [], fontData: {} }) {
     walkin(node, n => {
       this.setPropertyByParent(n);
       this.setPosition(n);
@@ -23,13 +23,14 @@ class SketchProcessor {
       this.setMaskRelation(n); // 设置mask关系
     });
     walkout(node, n => {
-      this.shapeToImage(n);
-      this.borderProcess(n);
-      this.opacityProcess(n);
-      this.rotationProcess(n);
+      this.shapeToImage(n); // 不规则形状转图片类型
+      this.fontProcess(n, data.fontData); // 字体修正
+      this.borderProcess(n); // 边框属性修正
+      this.opacityProcess(n); // 透明度属性修正
+      this.rotationProcess(n); // 旋转属性修正
       if (!n.children.length) return;
-      this.maskToImage(n);
-      this.modifySize(n);
+      this.maskToImage(n); // 特殊遮罩转图片类型
+      this.modifySize(n); // 位置修正
     });
     this.mergeMasktoImg(node);
   }
@@ -129,6 +130,28 @@ class SketchProcessor {
     // 剔除边框与背景色
     if (background && isSameColor(border.color, background.color)) {
       node.styles.border = null;
+    }
+  }
+
+  // 字体修正
+  static fontProcess(node, fontData) {
+    if (node.type === 'QText') {
+      node.styles.texts.forEach(textStyle => {
+        if (!textStyle.lineHeight) {
+          const lineHeight = _getFontDefaultLineHeight(
+            textStyle.font,
+            fontData,
+          );
+          textStyle.lineHeight = lineHeight
+            ? lineHeight * textStyle.size
+            : null;
+        }
+      });
+    }
+    function _getFontDefaultLineHeight(fontName, fontData) {
+      const name = fontName.replace(/[-\s]/g, '').toLowerCase();
+      if (!name || !fontData[name]) return null;
+      return fontData[name].lineHeight;
     }
   }
 

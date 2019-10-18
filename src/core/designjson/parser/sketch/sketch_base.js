@@ -322,7 +322,7 @@ class Sketch {
     };
   }
   /**
-   *
+   * 获取字体样式
    * @param {*} textStyle
    * @param {*} attributedString
    */
@@ -334,33 +334,46 @@ class Sketch {
         string = '',
         font,
         size = 18,
+        lineHeight,
       } = ops;
       this.color = color;
       this.string = string;
       this.font = font;
       this.size = size;
+      this.lineHeight = lineHeight;
     };
+    const sketchLineHeight = this._getLineHeight(textStyle);
     const texts = attributedString.attributes.map(text => {
       const {
-        name: fontName,
+        name,
         size,
       } = text.attributes.MSAttributedStringFontAttribute.attributes;
+      const fontName = name || '';
       return new fontStyle({
-        color: this._getColor(text.attributes.MSAttributedStringColorAttribute),
+        color: this._getColor(
+          getDataByKeychain(
+            text,
+            'attributes',
+            'MSAttributedStringColorAttribute',
+          ),
+        ),
         string: textValue.slice(text.location, text.location + text.length),
         // fontWeight: name.slice(0,2), // TODO
+        lineHeight: sketchLineHeight,
         font: fontName,
         size,
       });
     });
-    if (!textStyle) return { texts };
-    const { verticalAlignment: verticalAlign, encodedAttributes } = textStyle;
-    if (!encodedAttributes.paragraphStyle) return { texts, verticalAlign };
     return {
       texts,
-      verticalAlign,
-      textAlign: encodedAttributes.paragraphStyle.alignment || 0,
-      lineHeight: encodedAttributes.paragraphStyle.maximumLineHeight || null,
+      verticalAlign: getDataByKeychain(textStyle, 'verticalAlignment'),
+      textAlign:
+        getDataByKeychain(
+          textStyle,
+          'encodedAttributes',
+          'paragraphStyle',
+          'alignment',
+        ) || 0,
     };
   }
   _mergeTextStyle(styles = {}, fontStyle) {
@@ -377,7 +390,26 @@ class Sketch {
     myLog('INFO', '[Sketch-fontParse][Result]', JSON.stringify(fontStyle));
     Object.assign(styles, fontStyle);
   }
+  /**
+   * 获取字体默认行高
+   * @param {*} textStyle
+   */
+  _getLineHeight(textStyle) {
+    return getDataByKeychain(
+      textStyle,
+      'encodedAttributes',
+      'paragraphStyle',
+      'maximumLineHeight',
+    );
+  }
 }
 
+function getDataByKeychain(data, ...keys) {
+  try {
+    return keys.reduce((p, c) => p[c], data);
+  } catch (error) {
+    return undefined;
+  }
+}
 // 对外接口
 module.exports = Sketch;

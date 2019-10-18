@@ -10,6 +10,7 @@ class QText extends QObject {
     try {
       // 获取文字纯色 阴影TODO
       const { texts } = this.styles;
+      if (!texts) return null;
       let isSameColor = (a, b) =>
         Object.values(a).join(',') === Object.values(b).join(',');
       for (let i = 0; i < texts.length; i++) {

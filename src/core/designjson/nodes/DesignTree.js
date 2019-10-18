@@ -9,7 +9,7 @@ const {
   getBiggestNode,
   mergeStyle,
   serialize,
-  isCollide,
+  isIntersect,
 } = require('../utils');
 /**
  * @class 设计树控制类
@@ -160,6 +160,13 @@ class DesignTree {
         break;
       case QNODES.QLayer.name:
         break;
+      case QNODES.QText.name:
+        delete QText.text;
+        delete QText.styles.texts;
+        delete QText.styles.verticalAlign;
+        delete QText.styles.textAlign;
+        delete QText.styles.lineHeight;
+        break;
       default:
         break;
     }
@@ -179,6 +186,7 @@ class DesignTree {
     }
   }
 
+  // z-index空间关系计算
   static zIndexCompute(rootNode) {
     function _setNodeZIndex(node) {
       let n = node;
@@ -193,7 +201,7 @@ class DesignTree {
       node.zIndex = 0;
       const list = nodeList.slice(0, index).reverse();
       const bNode = list.find(
-        n => isCollide(node, n) && !(n.type === QNODES.QLayer.name),
+        n => isIntersect(node, n) && !(n.type === QNODES.QLayer.name),
       );
       if (bNode) node._behindNode = bNode;
     }

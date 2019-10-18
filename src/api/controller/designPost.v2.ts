@@ -40,7 +40,7 @@ async function parse(context: Context) {
   const { response: res, request: req } = context;
   let { artboardId, data, fileType } = req.body;
   let parseData: any = {};
-  let aiData = data.aiData;
+  let { aiData, font: fontData } = data;
   let responseData: ResponseData = new ResponseData();
   try {
     // sketch特殊处理
@@ -53,6 +53,7 @@ async function parse(context: Context) {
     } else {
       data = require(dataPath);
       data.aiData = aiData;
+      data.fontData = fontData;
       parseData = DesignJson.parse(artboardId, data);
       responseData.data = parseData;
     }
