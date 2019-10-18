@@ -9,6 +9,7 @@ const outputDir = './data/complie/';
 const inputDir = './data/unzip_file/';
 // sketch目录
 const sketchDir = './data/upload_file/';
+const fontsDir = './data/fonts/';
 
 const fs = require('fs');
 const { exec } = require('child_process');
@@ -133,6 +134,26 @@ const ImageCombine = function() {
         const result = {
           message: 'ok',
         };
+        resolve(result);
+      });
+    });
+  };
+
+  this.installFonts = async () => {
+    return new Promise(function(resolve, reject) {
+      const command = `mv ${fontsDir}*.* /Library/Fonts/`;
+      let result;
+      exec(command, function(a, b, c) {
+        if (a) {
+          logger.error(a);
+          result = {
+            message: 'fonts install  fail',
+          };
+        } else {
+          result = {
+            message: 'fonts install  success',
+          };
+        }
         resolve(result);
       });
     });

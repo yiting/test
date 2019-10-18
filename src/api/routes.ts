@@ -45,6 +45,11 @@ export default [
     method: 'get',
     action: imageMacApiV2.downloadSketch,
   },
+  {
+    path: '/v2/img_installFonts',
+    method: 'post',
+    action: imageMacApiV2.installFonts,
+  },
   // {
   //   path: '/test_makeImg',
   //   method: 'get',

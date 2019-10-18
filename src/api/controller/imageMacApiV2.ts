@@ -45,6 +45,17 @@ export async function downloadSketch(context: Context) {
   );
 }
 
+//获取要使用的字体及安装字体
+export async function installFonts(context: Context) {
+  const { request } = context;
+  const imgCombineMac = new ImgCombineMac();
+  imgCombineMac.init({});
+  let result = await imgCombineMac.installFonts();
+  const res = context.response;
+  res.body = result;
+  makeResult(context);
+}
+
 export async function makeImg(context: Context) {
   // context.body = '123123';
   const { request } = context;
