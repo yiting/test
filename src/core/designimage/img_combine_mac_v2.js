@@ -314,6 +314,12 @@ const ImageCombine = function() {
   this.showNodes = function(param) {
     const { generateJson, tmpJson, imageChildrenFlatArr, level } = param;
     const that = this;
+
+    //防止不被遮罩的图层变成被遮罩了。算法：查找打断遮罩层的图层，如果该图层不显示，则设置下一个显示的图层要打断
+    //遮罩：hasClippingMask = true
+    //打断遮罩：shouldBreakMaskChain = true
+    var shouldBreakMaskChain = false;
+
     // try {
     if (tmpJson.layers) {
       tmpJson.layers.forEach((item, index) => {
@@ -342,6 +348,10 @@ const ImageCombine = function() {
           ) {
             // item.isVisible = true;
             isShow = true;
+            if (shouldBreakMaskChain && item.shouldBreakMaskChain == false) {
+              item.shouldBreakMaskChain = true;
+              shouldBreakMaskChain = false;
+            }
             generateJson.layers.push(item);
           }
           if (
@@ -356,11 +366,20 @@ const ImageCombine = function() {
               item['layers'] = [];
               var pushItem = this.cloneJson(item);
               item['layers'] = layers;
+
+              if (shouldBreakMaskChain) {
+                pushItem.shouldBreakMaskChain = true;
+                shouldBreakMaskChain = false;
+              }
               generateJson.layers.push(pushItem);
             }
             targetImageChildrenFlatArr.push(imageItem);
           }
         });
+
+        if (!isShow && item.shouldBreakMaskChain == true) {
+          shouldBreakMaskChain = true;
+        }
 
         if (!isShow && isParent && item.layers && item.layers.length > 0) {
           that.showNodes({
