@@ -143,7 +143,7 @@ export function _column(parent: any) {
   // 自左向右排序
   layers.sort((a: any, b: any) => a.abX - b.abX);
   const newChildren: any = [];
-  const everyArrHasOne = layers.every((arr: any) => arr.length === 1);
+  const everyArrOnlyOneChild = layers.every((arr: any) => arr.length === 1);
   layers.forEach((arr: any) => {
     const firstNode = arr[0];
     /**
@@ -159,17 +159,12 @@ export function _column(parent: any) {
      * 且该节点不是文本：文本外须包布局节点
      * 且该节点是绝对定位的
      */
-    // if (
-    //   (arr.length === 1 && firstNode.type !== Common.QText) ||
-    //   firstNode.constraints['LayoutSelfPosition'] ===
-    //     Constraints.LayoutSelfPosition.Absolute
-    // ) {
     if (
       arr.length === 1 &&
-      // (firstNode.type !== Common.QText &&
-      //   firstNode.type !== Common.QImage) ||
       (firstNode.type === Dictionary.type.QLayer ||
-        (firstNode.type === Dictionary.type.QImage && everyArrHasOne) ||
+        /* 
+        // 移除原因：如果图形大小不一致，但布局等分，影响计算逻辑
+        (firstNode.type === Dictionary.type.QImage && everyArrOnlyOneChild) || */
         firstNode.constraints['LayoutSelfPosition'] ===
           Constraints.LayoutSelfPosition.Absolute)
     ) {

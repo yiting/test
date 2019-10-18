@@ -82,6 +82,7 @@ class NodesMergeJudge {
       if (isCombine == false && typeof ruleConfig.sliceArr != 'undefined') {
         let ruleConfig2 = this.getRuleConfig({
           data: [{ type: 'SliceSimilar', value: 50, requireScore: 100 }],
+          ratio: ratio,
         });
         //需切换为yone给的数据
         ruleConfig2.sliceArr = ruleConfig.sliceArr;
@@ -114,6 +115,7 @@ class NodesMergeJudge {
       ) {
         let ruleConfig2 = this.getRuleConfig({
           data: [{ type: 'AiSimilar', value: 50, requireScore: 80 }],
+          ratio: ratio,
         });
         //需切换为yone给的数据
         ruleConfig2.aiArr = ruleConfig.aiArr;
@@ -168,6 +170,7 @@ class NodesMergeJudge {
         data: [
           { type: 'AvatarSimilar', value: 100, requireScore: 90, root: root },
         ],
+        ratio: ratio,
       });
       let scoreResult = this.score(node, brother, ruleConfig0);
       if (scoreResult.score < ruleConfig0.score) {
@@ -320,6 +323,7 @@ class NodesMergeJudge {
     if (isFinally == false) {
       ruleConfig0 = this.getRuleConfig({
         data: [{ type: 'SizeSimilar', value: 100, requireScore: 76 }],
+        ratio: ratio,
       });
       let scoreResult = this.score(node, brother, ruleConfig0);
       let nodeASize = ImgConbineUtils.getSize(node);

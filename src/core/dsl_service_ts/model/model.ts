@@ -19,6 +19,8 @@ class Model {
   zIndex: number;
   name: string;
   modelId: string;
+  canLeftFlex: boolean;
+  canRightFlex: boolean;
 
   static resetSerialId() {
     serialId = 0;
@@ -26,7 +28,7 @@ class Model {
 
   constructor(node: any = {}) {
     this.children = [];
-    this.parent = null;
+    this.parent = node.parent || null;
     this.id = node.id || serialId.toString();
     this.type = node.type;
     this.serialId = serialId++;
@@ -42,6 +44,8 @@ class Model {
     this.zIndex = node.zIndex;
     this.styles = node.styles || {};
     this.constraints = node.constraints || {};
+    this.canLeftFlex = node.canLeftFlex || false;
+    this.canRightFlex = node.canRightFlex || false;
   }
   static regular(node: any) {
     return true;
@@ -116,13 +120,17 @@ class Model {
     }
     return null;
   }
-
-  get canLeftFlex() {
-    return false;
-  }
-
-  get canRightFlex() {
-    return false;
+  static exchange(ModelClass: any, data: any) {
+    var newData = new ModelClass(data);
+    newData.children = data.children;
+    newData.children.forEach((child: any) => {
+      child.parent = newData;
+    });
+    if (data.parent) {
+      const index = data.parent.children.indexOf(data);
+      data.parent.children.splice(index, 1, newData);
+    }
+    return newData;
   }
 }
 export default Model;

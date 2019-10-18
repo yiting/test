@@ -1,6 +1,6 @@
 // 模块用于对模型进行布局及结构分析, 生成可用于渲染的数据
 import LayoutSimilar from './layouts/layout_similar';
-// import LayoutCircle from './layouts/layout_circle';
+import LayoutCircle from './layouts/layout_circle';
 import LayoutSort from './layouts/layout_sort';
 import LayoutBaseLine from './layouts/layout_baseline';
 import QLog from '../log/qlog';
@@ -46,8 +46,8 @@ export default function(dslTree: any) {
     _logStep = '相似';
     LayoutSimilar.handle(dslTree);
     // 循环
-    // _logStep = '循环';
-    // walkOut(LayoutCircle, dslTree);
+    _logStep = '循环';
+    walkOut(LayoutCircle, dslTree);
     // 排序
     _logStep = '排序';
     walkIn(LayoutSort, dslTree);

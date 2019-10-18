@@ -65,7 +65,6 @@ class LayoutEquality {
     const nextLineIsJustifyLeft =
       leftSpace &&
       LayoutEquality._calLineIsJustify(flexNodes, parent, 1, 'left');
-
     if (
       // 如果有中心间距，并且居中|与上一行对齐|与下一行对齐
       centerSpace &&
@@ -234,8 +233,7 @@ class LayoutEquality {
     return (
       nodes.length > 1 &&
       nodes.every((nd: any) => {
-        // const isSameModel = !modelName || nd.modelName === modelName;
-        const isSameModel = nd.constructor == modelType;
+        const isSameModel = !modelType || nd.constructor == modelType;
         modelType = nd.constructor;
         return isSameModel;
       })

@@ -17,6 +17,7 @@ export async function combineNodes(context: Context) {
     sketchPath.lastIndexOf('/') + 1,
     sketchPath.lastIndexOf('.sketch'),
   );
+  startTime = new Date().getTime();
   // for (let i = 0, ilen = imgList.length; i < ilen; i++) {
   // if (i != 0) {
   //   // continue;
@@ -32,7 +33,7 @@ export async function combineNodes(context: Context) {
   // }
 
   //2018-10-29
-  startTime = new Date().getTime();
+
   logger.debug('[edit.js-combineImages]开始生成' + imgList.length + '张图片');
 
   if (context.originalUrl.indexOf('imgs_combine') > -1) {
@@ -77,7 +78,7 @@ export async function generate(context: Context) {
 
     logger = qlog.getInstance(store.getAll());
 
-    if (!existsSync('./data/upload_file/' + projectName)) {
+    if (!existsSync('./data/upload_file/' + projectName + '.sketch')) {
       //下载sketch
       await imageMacApi.downloadSketch(context);
     }
@@ -86,7 +87,13 @@ export async function generate(context: Context) {
     let result = await combineNodes(context);
 
     var costTime = (new Date().getTime() - startTime) / 1000;
-    logger.debug('[edit.js-combineImages]生成图片完毕，用时' + costTime + '秒');
+    logger.debug(
+      '[edit.js-combineImages]生成' +
+        imgList.length +
+        '张图片完毕，用时' +
+        costTime +
+        '秒',
+    );
 
     // let imageCombine = new ImgCombine();
     // let nodes = imageCombine.getDirectNodes();

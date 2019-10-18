@@ -314,6 +314,12 @@ const ImageCombine = function() {
   this.showNodes = function(param) {
     const { generateJson, tmpJson, imageChildrenFlatArr, level } = param;
     const that = this;
+
+    //防止不被遮罩的图层变成被遮罩了。算法：查找打断遮罩层的图层，如果该图层不显示，则设置下一个显示的图层要打断
+    //遮罩：hasClippingMask = true
+    //打断遮罩：shouldBreakMaskChain = true
+    var shouldBreakMaskChain = false;
+
     // try {
     if (tmpJson.layers) {
       tmpJson.layers.forEach((item, index) => {
@@ -342,6 +348,10 @@ const ImageCombine = function() {
           ) {
             // item.isVisible = true;
             isShow = true;
+            if (shouldBreakMaskChain && item.shouldBreakMaskChain == false) {
+              item.shouldBreakMaskChain = true;
+              shouldBreakMaskChain = false;
+            }
             generateJson.layers.push(item);
           }
           if (
@@ -356,11 +366,20 @@ const ImageCombine = function() {
               item['layers'] = [];
               var pushItem = this.cloneJson(item);
               item['layers'] = layers;
+
+              if (shouldBreakMaskChain) {
+                pushItem.shouldBreakMaskChain = true;
+                shouldBreakMaskChain = false;
+              }
               generateJson.layers.push(pushItem);
             }
             targetImageChildrenFlatArr.push(imageItem);
           }
         });
+
+        if (!isShow && item.shouldBreakMaskChain == true) {
+          shouldBreakMaskChain = true;
+        }
 
         if (!isShow && isParent && item.layers && item.layers.length > 0) {
           that.showNodes({
@@ -611,10 +630,12 @@ const ImageCombine = function() {
     let innerJson = generateJson.layers[0];
     //如果目标超过artboard范围，则外层坐标设为距离artboard的相对位置
     if (
-      (innerJson.frame.x <= 0 &&
+      innerJson &&
+      innerJson.frame &&
+      ((innerJson.frame.x <= 0 &&
         innerJson.frame.x + innerJson.frame.width > that.artboardWidth) ||
-      (innerJson.frame.y <= 0 &&
-        innerJson.frame.y + innerJson.frame.height > that.artboardHeight)
+        (innerJson.frame.y <= 0 &&
+          innerJson.frame.y + innerJson.frame.height > that.artboardHeight))
     ) {
       let { abX, abY } = that.getAbsoultePosition(param);
       generateJson.frame.x = abX;
@@ -779,18 +800,31 @@ const ImageCombine = function() {
     return str;
   };
 
-  this.compressImgs = async (outputDir, projectName) => {
-    const files = await imagemin(
-      [`${outputDir + projectName}/images/*.{jpg,png}`],
-      {
-        destination: `${outputDir + projectName}/images`,
-        plugins: [
-          imageminPngquant({
-            quality: [0.8, 1],
-          }),
-        ],
-      },
-    );
+  this.compressImgs = async (outputDir, projectName, imgList) => {
+    let startTime = new Date().getTime();
+    let fileList = [];
+    imgList.forEach(item => {
+      var filePath = `${outputDir + projectName}/images/${item.path}`;
+      if (fs.existsSync(filePath)) {
+        var statInfo = fs.statSync(filePath);
+        var size = statInfo.size;
+        if (size < 10 * 1024) {
+          fileList.push(filePath);
+        }
+      }
+    });
+    const files = await imagemin(fileList, {
+      // const files = await imagemin( [`${outputDir + projectName}/images/*.{jpg,png}`],{
+
+      destination: `${outputDir + projectName}/images`,
+      plugins: [
+        imageminPngquant({
+          quality: [0.8, 1],
+        }),
+      ],
+    });
+    var costTime = (new Date().getTime() - startTime) / 1000;
+    logger.debug('[edit.js-combineImages]压缩图片完毕，用时' + costTime + '秒');
     return files;
   };
 
@@ -891,23 +925,25 @@ const ImageCombine = function() {
 
     let itemIds = [];
     imgList.forEach((imageItem, index) => {
-      //对每个节点，获取json，同时json改id，将name改为path，
-      //返回修改后的json，及要导出的id
-      if (index == 22) {
-        // console.log(1);
-      }
-      var { generateJson, generateId } = that.getUpdateJson({
-        imageItem,
-        index,
-      });
-      //将json追加到最后getUpdateJson
-      // if (!isGenerateArtboard) {
-      that.pageJson.layers[artboardIndex].layers.push(generateJson);
-      // } else {
-      //   that.pageJson.layers[artboardIndex] = generateJson;
-      // }
+      try {
+        //对每个节点，获取json，同时json改id，将name改为path，
+        //返回修改后的json，及要导出的id
+        // if(index ==1) throw "测试报错";
+        var { generateJson, generateId } = that.getUpdateJson({
+          imageItem,
+          index,
+        });
+        //将json追加到最后getUpdateJson
+        // if (!isGenerateArtboard) {
+        that.pageJson.layers[artboardIndex].layers.push(generateJson);
+        // } else {
+        //   that.pageJson.layers[artboardIndex] = generateJson;
+        // }
 
-      itemIds.push(generateId);
+        itemIds.push(generateId);
+      } catch (e) {
+        logger.warn(e);
+      }
     });
 
     // 6、合成修改版sketch
@@ -948,7 +984,7 @@ const ImageCombine = function() {
     const result = await this.makeImg(param);
 
     // 8.压缩图片
-    await that.compressImgs(that.outputDir, projectName);
+    await that.compressImgs(that.outputDir, projectName, imgList);
 
     // 8、删除修改版sketch
     serverModulesUtils.deleteFolder(updateFilePath);
@@ -1017,11 +1053,11 @@ const ImageCombine = function() {
       const { sketchDir } = that;
       const outputDir = `${that.outputDir + projectName}/images/`;
       let scales = 1;
-      if (that.artboardWidth < 750) {
+      if (that.artboardWidth < 376) {
         scales = 750 / that.artboardWidth;
       }
       return new Promise(function(resolve, reject) {
-        const command = `${BIN} export layers --output=${outputDir} --formats=png ${`${sketchDir +
+        const command = `${BIN} export layers --output=${outputDir} --group-contents-only --formats=png ${`${sketchDir +
           sketchName}.sketch`} --items=${itemIds} --scales=${scales}`;
         logData.num._combineShapeGroupNodeWithNative++;
         // console.log(command);

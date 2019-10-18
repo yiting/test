@@ -5,6 +5,7 @@ import Model from '../model/model';
 import Dividing from '../model/modelList/dividing';
 import Store from '../helper/store';
 import { debug } from 'util';
+import Layer from '../model/modelList/layer';
 
 // 创建layer时的自增id
 let LayerId = 0;
@@ -16,7 +17,7 @@ const DSLOptions: any = {};
  */
 function handle(arr: any) {
   // 找到跟节点
-  const body = arr.find((node: any) => node.type == Dictionary.type.QLayer);
+  const body = arr.find((node: any) => node.type == Dictionary.type.QBody);
   // 排序分组
   const segmentings = sortSegmentings(arr);
   // 组合
@@ -43,14 +44,11 @@ function organize(segmentings: any[], body: Model) {
   const compareArr = [body];
   // 递进
   segmentings.forEach((child: any, i: any) => {
-    if (child && child.type !== Dictionary.type.QLayer) {
-      const done = compareArr.some(parent => {
-        if (
-          parent.id ==
-            '_E62AB5A9-3A26-44A4-B944-F245E28D371A_26751E80-C058-4798-80B6-464440A92C7B_8B8F53C4-CE77-4D4A-AEC1-9F21FFDF5923' &&
-          child.id == '9084FF6D-1D9E-4E0D-AD9D-47C885DF2A45'
-        )
-          debugger;
+    if (child && child.type !== Dictionary.type.QBody) {
+      const done = compareArr.some((parent: any, index: number) => {
+        if (!parent) {
+          return false;
+        }
         const _utils = Utils;
         if (
           // 父节点必须不是文本类型
@@ -70,6 +68,7 @@ function organize(segmentings: any[], body: Model) {
         ) {
           return false;
         }
+        let node;
         if (
           child.zIndex >= parent.zIndex &&
           // 包含关系
@@ -77,13 +76,11 @@ function organize(segmentings: any[], body: Model) {
             // 水平相连、垂直包含关系
             (parent.abYops >= child.abYops && parent.abY <= child.abYops))
         ) {
-          const node = _add(child, parent, false);
-          compareArr.unshift(node);
-          segmentings[i] = null;
-          return true;
+          node = _add(child, parent, false);
+        } else {
+          // 其他情况都为绝对定位
+          node = _add(child, parent, true);
         }
-        // 其他情况都为绝对定位
-        const node = _add(child, parent, true);
         compareArr.unshift(node);
         segmentings[i] = null;
         return true;
@@ -138,7 +135,7 @@ function _add(_child: any, _parent: any, _isAbsolute: Boolean) {
       Constraints.LayoutSelfPosition.Absolute;
   }
   child.parent = parent;
-  parent.children = parent.children.concat(child);
+  parent.children.push(child);
   /**
    * 如果父节点为QImage时，添加子节点后，父节点模型类型改为layer，
    * 让父节点取代使用QImage模板
@@ -148,5 +145,7 @@ function _add(_child: any, _parent: any, _isAbsolute: Boolean) {
   }
   return child;
 }
+
+function imageParentTodo(parent: any, compareArr: any[]) {}
 
 export default handle;

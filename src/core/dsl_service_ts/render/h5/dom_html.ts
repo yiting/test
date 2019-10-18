@@ -183,7 +183,6 @@ class HtmlDom {
   static getHtmlString(htmlDom: any) {
     // 遍历循环
     let html = htmlDom.getHtmlStart();
-    if (htmlDom.id == '11A586EF-96AE-4555-BA05-19E2D43C4FB2') debugger;
     try {
       if (htmlDom.children) {
         htmlDom.children.forEach((child: any) => {

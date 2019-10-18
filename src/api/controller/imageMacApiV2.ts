@@ -4,6 +4,7 @@ import ImgCombineMac from '../../core/designimage/img_combine_mac_v2';
 import qlog from '../../core/log/qlog';
 import store from '../../core/designimage/helper/store';
 import util from '../../core/designimage/helper/util';
+import { existsSync } from 'fs';
 let logger: any = undefined;
 var Url = require('url');
 var fs = require('fs');
@@ -13,6 +14,7 @@ function getHost(context: Context) {
 }
 
 export async function downloadSketch(context: Context) {
+  let startTime = new Date().getTime();
   const { request } = context;
   const { sketchPath: url } = request.body;
   util.storeLoginData(context);
@@ -37,6 +39,10 @@ export async function downloadSketch(context: Context) {
   const res = context.response;
   res.body = result;
   makeResult(context);
+  var costTime = (new Date().getTime() - startTime) / 1000;
+  logger.debug(
+    '[edit.js-combineImages]下载和解压缩图片完毕，用时' + costTime + '秒',
+  );
 }
 
 export async function makeImg(context: Context) {
@@ -109,17 +115,26 @@ export async function previewV2(context: Context) {
 
 export async function makeImgsByUpdateSketch(context: Context) {
   const { request } = context;
-  const { param } = request.body;
+  const param = request.body;
+  let sketchPath = param.sketchPath;
+  param.projectName = sketchPath.substring(
+    sketchPath.lastIndexOf('/') + 1,
+    sketchPath.lastIndexOf('.sketch'),
+  );
   const imgCombineMac = new ImgCombineMac();
   imgCombineMac.init(param);
   const result = await imgCombineMac.makeImgsByUpdateSketch(param);
   result.path = getHost(context) + '/imgData?path=' + result.path;
-  const res = context.response;
-  res.body = result;
+  // const res = context.response;
+  // res.body = result;
+  return result;
 }
 
 export async function getImgData(context: Context) {
   try {
+    if (typeof logger == 'undefined') {
+      logger = qlog.getInstance(store.getAll());
+    }
     let { path } = context.request.query; // 提取参数
     const res = await readImg(path);
     // res 为 Buffer流
@@ -128,6 +143,8 @@ export async function getImgData(context: Context) {
       context.body = res;
     }
   } catch (e) {
+    context.type = 'png';
+    context.body = '';
     logger.warn(e);
   }
 
@@ -158,4 +175,56 @@ export async function getImgData(context: Context) {
       });
     }
   }
+}
+
+export async function generate(context: Context) {
+  const { request } = context;
+  let { sketchPath, imgList, options } = request.body;
+  let {
+    applyInfo_user: userName,
+    applyInfo_url: url,
+    applyInfo_proName: projectName,
+  } = options;
+  try {
+    let startTime = new Date().getTime();
+    logger.debug('[edit.js-combineImages]开始生成' + imgList.length + '张图片');
+    util.storeLoginData(context);
+
+    logger = qlog.getInstance(store.getAll());
+
+    if (!existsSync('./data/upload_file/' + projectName + '.sketch')) {
+      //下载sketch
+      await downloadSketch(context);
+    }
+
+    //绘图
+    let result = await makeImgsByUpdateSketch(context);
+
+    var costTime = (new Date().getTime() - startTime) / 1000;
+    logger.debug(
+      '[edit.js-combineImages]生成' +
+        imgList.length +
+        '张图片完毕，用时' +
+        costTime +
+        '秒',
+    );
+
+    // let imageCombine = new ImgCombine();
+    // let nodes = imageCombine.getDirectNodes();
+    // logger.debug("directNodes:"+nodes.join(","));
+    // throw 'error';
+    const res = context.response;
+    res.body = result;
+  } catch (e) {
+    const res = context.response;
+    res.body = e;
+  }
+}
+
+export async function generateV2(context: Context) {
+  if (typeof logger == 'undefined') {
+    logger = qlog.getInstance(store.getAll());
+  }
+  await generate(context);
+  makeResult(context);
 }
