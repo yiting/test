@@ -15,12 +15,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -42,12 +37,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 247,
-          "g": 247,
-          "b": 247,
-          "a": 1
-        },
+        "color": { "r": 247, "g": 247, "b": 247, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -69,12 +59,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 247,
-          "g": 247,
-          "b": 247,
-          "a": 1
-        },
+        "color": { "r": 247, "g": 247, "b": 247, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -115,12 +100,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 216,
-          "g": 216,
-          "b": 216,
-          "a": 1
-        },
+        "color": { "r": 216, "g": 216, "b": 216, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -142,12 +122,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 216,
-          "g": 216,
-          "b": 216,
-          "a": 1
-        },
+        "color": { "r": 216, "g": 216, "b": 216, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -169,12 +144,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 216,
-          "g": 216,
-          "b": 216,
-          "a": 1
-        },
+        "color": { "r": 216, "g": 216, "b": 216, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -196,12 +166,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 216,
-          "g": 216,
-          "b": 216,
-          "a": 1
-        },
+        "color": { "r": 216, "g": 216, "b": 216, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -223,12 +188,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 247,
-          "g": 247,
-          "b": 247,
-          "a": 1
-        },
+        "color": { "r": 247, "g": 247, "b": 247, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -250,12 +210,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 247,
-          "g": 247,
-          "b": 247,
-          "a": 1
-        },
+        "color": { "r": 247, "g": 247, "b": 247, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -277,12 +232,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 247,
-          "g": 247,
-          "b": 247,
-          "a": 1
-        },
+        "color": { "r": 247, "g": 247, "b": 247, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -304,12 +254,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 247,
-          "g": 247,
-          "b": 247,
-          "a": 1
-        },
+        "color": { "r": 247, "g": 247, "b": 247, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -331,12 +276,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 247,
-          "g": 247,
-          "b": 247,
-          "a": 1
-        },
+        "color": { "r": 247, "g": 247, "b": 247, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -358,12 +298,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -385,12 +320,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 247,
-          "g": 247,
-          "b": 247,
-          "a": 1
-        },
+        "color": { "r": 247, "g": 247, "b": 247, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -432,12 +362,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "维京奇迹",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -467,12 +392,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "闯关",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -502,12 +422,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "654人预约",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -537,12 +452,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "冒险",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -571,12 +481,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -598,12 +503,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -626,12 +526,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "预约",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -680,12 +575,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "魔幻桥牌",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -715,12 +605,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "棋牌",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -750,12 +635,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "4553人预约",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -785,12 +665,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "策略",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -819,12 +694,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -846,12 +716,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -874,12 +739,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "预约",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -928,12 +788,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "小鸡厨房",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -963,12 +818,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "休闲",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -998,12 +848,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "1.5W人预约",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -1033,12 +878,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "养成",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -1067,12 +907,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1094,12 +929,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1122,12 +952,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "预约",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -1157,12 +982,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "看看即将上线的新游戏",
           "font": "PingFangSC-Medium",
           "size": 36
@@ -1192,12 +1012,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "普通的马赛克我们普通的摇",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -1227,12 +1042,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "马赛克王国",
           "font": "PingFangSC-Medium",
           "size": 36
@@ -1261,12 +1071,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 39,
-          "g": 183,
-          "b": 243,
-          "a": 1
-        },
+        "color": { "r": 39, "g": 183, "b": 243, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1289,12 +1094,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "活动",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -1315,11 +1115,7 @@
     "abX": 24,
     "abY": 5380,
     "zIndex": 0,
-    "styles": {
-      "borderRadius": [8, 0, 0, 8],
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": [8, 0, 0, 8], "border": null, "shadows": null },
     "type": "QImage",
     "path": "6b06b24a.png"
   },
@@ -1331,11 +1127,7 @@
     "abX": 262,
     "abY": 5380,
     "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": null, "border": null, "shadows": null },
     "type": "QImage",
     "path": "b6645200.png"
   },
@@ -1347,11 +1139,7 @@
     "abX": 500,
     "abY": 5380,
     "zIndex": 0,
-    "styles": {
-      "borderRadius": [0, 8, 8, 0],
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": [0, 8, 8, 0], "border": null, "shadows": null },
     "type": "QImage",
     "path": "10a58390.png"
   },
@@ -1391,12 +1179,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "澳尔托的奥德赛",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -1426,12 +1209,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "冒险",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -1461,12 +1239,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "7723413人在玩",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -1496,12 +1269,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "策略",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -1530,12 +1298,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1557,12 +1320,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1585,12 +1343,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "玩一玩",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -1639,12 +1392,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "最爱三连消",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -1674,12 +1422,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "休闲",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -1709,12 +1452,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "98345人在玩",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -1744,12 +1482,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "策略",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -1778,12 +1511,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1805,12 +1533,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -1833,12 +1556,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "玩一玩",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -1887,12 +1605,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "ludo派对村",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -1922,12 +1635,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "故事",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -1957,12 +1665,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "44567人在玩",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -1992,12 +1695,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "通关",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -2026,12 +1724,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -2053,12 +1746,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -2081,12 +1769,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "玩一玩",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -2116,12 +1799,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "冒险之旅就差你！",
           "font": "PingFangSC-Medium",
           "size": 36
@@ -2151,12 +1829,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "动手做月饼啦，我的月饼有金币，你嘞",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -2186,12 +1859,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "中秋大轰趴",
           "font": "PingFangSC-Medium",
           "size": 36
@@ -2220,12 +1888,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 39,
-          "g": 183,
-          "b": 243,
-          "a": 1
-        },
+        "color": { "r": 39, "g": 183, "b": 243, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -2248,12 +1911,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "专题",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -2274,11 +1932,7 @@
     "abX": 24,
     "abY": 4522,
     "zIndex": 0,
-    "styles": {
-      "borderRadius": [8, 0, 0, 8],
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": [8, 0, 0, 8], "border": null, "shadows": null },
     "type": "QImage",
     "path": "2cc33a9e.png"
   },
@@ -2290,11 +1944,7 @@
     "abX": 262,
     "abY": 4522,
     "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": null, "border": null, "shadows": null },
     "type": "QImage",
     "path": "44e8810a.png"
   },
@@ -2306,11 +1956,7 @@
     "abX": 500,
     "abY": 4522,
     "zIndex": 0,
-    "styles": {
-      "borderRadius": [0, 8, 8, 0],
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": [0, 8, 8, 0], "border": null, "shadows": null },
     "type": "QImage",
     "path": "ef74a8e2.png"
   },
@@ -2331,12 +1977,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "更多红包游戏",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -2397,12 +2038,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "幻影猫",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -2451,12 +2087,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "休闲",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -2486,12 +2117,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "竞速",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -2520,12 +2146,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -2548,34 +2169,19 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "剩 ",
           "font": "PingFangSC-Regular",
           "size": 24
         },
         {
-          "color": {
-            "r": 242,
-            "g": 98,
-            "b": 98,
-            "a": 1
-          },
+          "color": { "r": 242, "g": 98, "b": 98, "a": 1 },
           "string": "888239",
           "font": "PingFangSC-Semibold",
           "size": 24
         },
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": " 元",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -2604,12 +2210,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -2632,12 +2233,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "抢红包",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -2686,12 +2282,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "最爱三连消",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -2740,12 +2331,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "休闲",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -2775,12 +2361,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "策略",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -2809,12 +2390,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -2837,34 +2413,19 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "剩 ",
           "font": "PingFangSC-Regular",
           "size": 24
         },
         {
-          "color": {
-            "r": 242,
-            "g": 98,
-            "b": 98,
-            "a": 1
-          },
+          "color": { "r": 242, "g": 98, "b": 98, "a": 1 },
           "string": "29734",
           "font": "PingFangSC-Semibold",
           "size": 24
         },
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": " 元",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -2893,12 +2454,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -2921,12 +2477,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "抢红包",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -2975,12 +2526,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "WALLY",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -3029,12 +2575,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "冒险",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -3064,12 +2605,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "治愈",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -3098,12 +2634,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -3126,34 +2657,19 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "剩 ",
           "font": "PingFangSC-Regular",
           "size": 24
         },
         {
-          "color": {
-            "r": 242,
-            "g": 98,
-            "b": 98,
-            "a": 1
-          },
+          "color": { "r": 242, "g": 98, "b": 98, "a": 1 },
           "string": "558232",
           "font": "PingFangSC-Semibold",
           "size": 24
         },
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": " 元",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -3182,12 +2698,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -3210,12 +2721,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "抢红包",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -3245,12 +2751,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "躺着把钱赚了你敢信",
           "font": "PingFangSC-Medium",
           "size": 36
@@ -3299,12 +2800,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "纸箱王",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -3353,12 +2849,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "vivikatt",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -3407,12 +2898,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "钱班尼",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -3441,12 +2927,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -3469,12 +2950,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "看看我的基友玩什么",
           "font": "PingFangSC-Medium",
           "size": 36
@@ -3523,12 +2999,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "决战艾伯特",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -3558,12 +3029,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "格斗",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -3593,12 +3059,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "TA刚刚达到了1250分！",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -3628,12 +3089,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "策略",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -3662,12 +3118,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -3689,12 +3140,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -3717,12 +3163,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "玩一玩",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -3771,12 +3212,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "阿洛哈",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -3806,12 +3242,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "竞速",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -3841,12 +3272,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "TA突破6-1关啦！",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -3876,12 +3302,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "动作",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -3910,12 +3331,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -3937,12 +3353,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -3965,12 +3376,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "玩一玩",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -4019,12 +3425,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "CRYPTO ",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -4054,12 +3455,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "休闲",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -4089,12 +3485,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "TA刚刚排位第一位！",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -4124,12 +3515,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "冒险",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -4158,12 +3544,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -4185,12 +3566,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -4213,12 +3589,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "玩一玩",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -4239,11 +3610,7 @@
     "abX": 24,
     "abY": 2476,
     "zIndex": 0,
-    "styles": {
-      "borderRadius": [8, 0, 0, 8],
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": [8, 0, 0, 8], "border": null, "shadows": null },
     "type": "QImage",
     "path": "48245ceb.png"
   },
@@ -4255,11 +3622,7 @@
     "abX": 531,
     "abY": 2476,
     "zIndex": 1,
-    "styles": {
-      "borderRadius": [0, 8, 8, 0],
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": [0, 8, 8, 0], "border": null, "shadows": null },
     "type": "QImage",
     "path": "1922689d.png"
   },
@@ -4280,12 +3643,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "查看全部排名>",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -4315,12 +3673,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "vivikatt",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -4350,12 +3703,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "1200分",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -4380,12 +3728,7 @@
       "borderRadius": ["50%", "50%", "50%", "50%"],
       "border": {
         "type": "solid",
-        "color": {
-          "r": 243,
-          "g": 163,
-          "b": 134,
-          "a": 1
-        },
+        "color": { "r": 243, "g": 163, "b": 134, "a": 1 },
         "width": 4,
         "position": 2
       },
@@ -4411,12 +3754,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "埃及狒狒",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -4446,12 +3784,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "1200分",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -4476,12 +3809,7 @@
       "borderRadius": ["50%", "50%", "50%", "50%"],
       "border": {
         "type": "solid",
-        "color": {
-          "r": 225,
-          "g": 228,
-          "b": 242,
-          "a": 1
-        },
+        "color": { "r": 225, "g": 228, "b": 242, "a": 1 },
         "width": 4,
         "position": 2
       },
@@ -4519,12 +3847,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "庞建国",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -4554,12 +3877,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "1200分",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -4588,12 +3906,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -4616,12 +3929,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "玩一玩",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -4651,12 +3959,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "无敌幻影猫",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -4686,12 +3989,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "休闲",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -4721,12 +4019,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "3453人在玩",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -4756,12 +4049,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "策略",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -4790,12 +4078,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -4834,12 +4117,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "好友热玩",
           "font": "PingFangSC-Medium",
           "size": 36
@@ -4869,12 +4147,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "更多好玩的游戏",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -4934,12 +4207,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 183,
-          "g": 185,
-          "b": 197,
-          "a": 1
-        },
+        "color": { "r": 183, "g": 185, "b": 197, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -4962,12 +4230,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "NO.2",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -4997,12 +4260,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "WALLY",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -5032,12 +4290,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "冒险",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -5067,12 +4320,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "等43个好友在玩",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -5118,12 +4366,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "治愈",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -5152,12 +4395,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -5179,12 +4417,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -5207,12 +4440,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "玩一玩",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -5261,12 +4489,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "阿尔托的冒险",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -5296,12 +4519,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "独立",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -5331,12 +4549,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "等5个好友在玩",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -5382,12 +4595,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "竞速",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -5416,12 +4624,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -5443,12 +4646,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 209,
-          "g": 137,
-          "b": 111,
-          "a": 1
-        },
+        "color": { "r": 209, "g": 137, "b": 111, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -5471,12 +4669,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "NO.3",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -5505,12 +4698,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -5533,12 +4721,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "玩一玩",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -5587,12 +4770,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "最爱三连消",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -5622,12 +4800,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "休闲",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -5657,12 +4830,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "等15个好友在玩",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -5711,12 +4879,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "策略",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -5745,12 +4908,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -5772,12 +4930,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 191,
-          "b": 81,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 191, "b": 81, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -5800,12 +4953,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "NO.1",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -5834,12 +4982,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -5862,12 +5005,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "玩一玩",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -5897,12 +5035,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "好友榜",
           "font": "PingFangSC-Semibold",
           "size": 36
@@ -5931,12 +5064,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 106,
-          "g": 85,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 106, "g": 85, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -5959,12 +5087,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "新游榜",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -5994,12 +5117,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "精选榜",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -6020,11 +5138,7 @@
     "abX": 738,
     "abY": 994,
     "zIndex": 1,
-    "styles": {
-      "borderRadius": [8, 8, 0, 0],
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": [8, 8, 0, 0], "border": null, "shadows": null },
     "type": "QImage",
     "path": "a4f70e65.png"
   },
@@ -6044,12 +5158,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -6063,11 +5172,7 @@
     "abX": 24,
     "abY": 994,
     "zIndex": 1,
-    "styles": {
-      "borderRadius": [8, 8, 0, 0],
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": [8, 8, 0, 0], "border": null, "shadows": null },
     "type": "QImage",
     "path": "fa46d3a9.png"
   },
@@ -6087,12 +5192,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -6114,12 +5214,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 97,
-          "g": 75,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 97, "g": 75, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -6142,12 +5237,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "玩一玩",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -6177,12 +5267,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "奥尔托的奥德赛",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -6212,12 +5297,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "冒险",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -6247,12 +5327,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "2345人在玩",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -6282,12 +5357,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 153,
-            "g": 153,
-            "b": 153,
-            "a": 1
-          },
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
           "string": "策略",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -6316,12 +5386,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 201,
-          "g": 201,
-          "b": 201,
-          "a": 1
-        },
+        "color": { "r": 201, "g": 201, "b": 201, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -6360,12 +5425,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "主打推荐",
           "font": "PingFangSC-Medium",
           "size": 36
@@ -6394,12 +5454,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 216,
-          "g": 216,
-          "b": 216,
-          "a": 1
-        },
+        "color": { "r": 216, "g": 216, "b": 216, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -6421,12 +5476,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 216,
-          "g": 216,
-          "b": 216,
-          "a": 1
-        },
+        "color": { "r": 216, "g": 216, "b": 216, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -6448,12 +5498,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 216,
-          "g": 216,
-          "b": 216,
-          "a": 1
-        },
+        "color": { "r": 216, "g": 216, "b": 216, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -6475,12 +5520,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 216,
-          "g": 216,
-          "b": 216,
-          "a": 1
-        },
+        "color": { "r": 216, "g": 216, "b": 216, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -6503,12 +5543,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "任务",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -6550,12 +5585,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "活动",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -6597,12 +5627,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "手游",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -6644,12 +5669,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "预约",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -6691,12 +5711,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "红包",
           "font": "PingFangSC-Regular",
           "size": 24
@@ -6737,12 +5752,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -6756,11 +5766,7 @@
     "abX": 738,
     "abY": 234,
     "zIndex": 2,
-    "styles": {
-      "borderRadius": [8, 8, 0, 0],
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": [8, 8, 0, 0], "border": null, "shadows": null },
     "type": "QImage",
     "path": "09054978.png"
   },
@@ -6780,12 +5786,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -6808,12 +5809,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "无敌幻影猫",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -6834,11 +5830,7 @@
     "abX": 500,
     "abY": 234,
     "zIndex": 2,
-    "styles": {
-      "borderRadius": [8, 8, 0, 0],
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": [8, 8, 0, 0], "border": null, "shadows": null },
     "type": "QImage",
     "path": "ca0a12b6.png"
   },
@@ -6858,12 +5850,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -6886,12 +5873,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "消除者联盟",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -6912,11 +5894,7 @@
     "abX": 262,
     "abY": 234,
     "zIndex": 2,
-    "styles": {
-      "borderRadius": [8, 8, 0, 0],
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": [8, 8, 0, 0], "border": null, "shadows": null },
     "type": "QImage",
     "path": "a4c0c6a8.png"
   },
@@ -6936,12 +5914,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -6964,12 +5937,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "幻影猫",
           "font": "PingFangSC-Regular",
           "size": 28
@@ -6990,11 +5958,7 @@
     "abX": 24,
     "abY": 234,
     "zIndex": 2,
-    "styles": {
-      "borderRadius": [8, 8, 0, 0],
-      "border": null,
-      "shadows": null
-    },
+    "styles": { "borderRadius": [8, 8, 0, 0], "border": null, "shadows": null },
     "type": "QImage",
     "path": "708ac475.png"
   },
@@ -7027,12 +5991,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "红包\n",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -7062,12 +6021,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "最近在玩",
           "font": "PingFangSC-Medium",
           "size": 36
@@ -7109,12 +6063,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
           "string": "软脚虾即将赶超",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -7162,12 +6111,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -7189,12 +6133,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 222,
-          "g": 221,
-          "b": 233,
-          "a": 1
-        },
+        "color": { "r": 222, "g": 221, "b": 233, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -7216,12 +6155,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 222,
-          "g": 221,
-          "b": 233,
-          "a": 1
-        },
+        "color": { "r": 222, "g": 221, "b": 233, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -7243,12 +6177,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 222,
-          "g": 221,
-          "b": 233,
-          "a": 1
-        },
+        "color": { "r": 222, "g": 221, "b": 233, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -7266,12 +6195,7 @@
       "borderRadius": [8, 8, 8, 8],
       "border": {
         "type": "solid",
-        "color": {
-          "r": 222,
-          "g": 221,
-          "b": 233,
-          "a": 1
-        },
+        "color": { "r": 222, "g": 221, "b": 233, "a": 1 },
         "width": 3,
         "position": 1
       },
@@ -7280,12 +6204,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -7308,12 +6227,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "分类",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -7343,12 +6257,7 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
           "string": "推荐",
           "font": "PingFangSC-Regular",
           "size": 20
@@ -7396,12 +6305,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 247,
-          "g": 247,
-          "b": 247,
-          "a": 1
-        },
+        "color": { "r": 247, "g": 247, "b": 247, "a": 1 },
         "hasOpacity": false
       }
     },
@@ -7423,12 +6327,7 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 247,
-          "g": 247,
-          "b": 247,
-          "a": 1
-        },
+        "color": { "r": 247, "g": 247, "b": 247, "a": 1 },
         "hasOpacity": false
       }
     },

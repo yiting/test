@@ -1,14 +1,10 @@
-import Utils from '../layout/utils';
+import Utils from '../helper/methods';
 import Constraints from '../helper/constraints';
 import Dictionary from '../helper/dictionary';
 import Model from '../model/model';
 import Dividing from '../model/modelList/dividing';
 import Store from '../helper/store';
 import { debug } from 'util';
-import Layer from '../model/modelList/layer';
-
-// 创建layer时的自增id
-let LayerId = 0;
 
 const DSLOptions: any = {};
 

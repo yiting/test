@@ -1,5 +1,5 @@
 // 绝对定位布局模型处理
-import Utils from '../utils';
+import Utils from '../../helper/methods';
 // import Model from '../model';
 import Constrains from '../../helper/constraints';
 import Store from '../../helper/store';

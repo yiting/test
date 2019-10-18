@@ -1,4 +1,4 @@
-import Utils from '../layout/utils';
+import Utils from '../helper/methods';
 import Constraints from '../helper/constraints';
 import Dictionary from '../helper/dictionary';
 import Dividing from '../model/modelList/dividing';

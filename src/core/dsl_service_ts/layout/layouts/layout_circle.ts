@@ -1,5 +1,5 @@
 // 循环结构的逻辑处理模块
-import Utils from '../utils';
+import Utils from '../../helper/methods';
 import Constraints from '../../helper/constraints';
 import Similar from './layout_similar';
 import Store from '../../helper/store';

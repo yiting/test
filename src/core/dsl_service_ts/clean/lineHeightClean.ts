@@ -9,7 +9,6 @@ export default function(nodes: any) {
   return arr;
 }
 function pipe(node: any) {
-  if (node.id == '9084FF6D-1D9E-4E0D-AD9D-47C885DF2A45') debugger;
   let maxLineHeight;
   let maxFontSize;
   if (!node.styles.texts) {
@@ -21,8 +20,8 @@ function pipe(node: any) {
     lineHeights.push(text.lineHeight || text.size * 1.2);
     fontSizes.push(text.size);
   });
-  maxLineHeight = Math.max(...lineHeights);
-  maxFontSize = Math.max(...fontSizes);
+  maxLineHeight = Math.round(Math.max(...lineHeights));
+  maxFontSize = Math.round(Math.max(...fontSizes));
   // 如果文本高度矮过字体大小，高度恢复为行高高度
   if (node.height <= maxFontSize) {
     //

@@ -1,4 +1,4 @@
-import Utils from '../utils';
+import Utils from '../../helper/methods';
 
 class LayoutSort {
   /* constructor(modelType: any) {

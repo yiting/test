@@ -1,6 +1,6 @@
 // LayoutFlex下等分布局修正
 
-import Utils from '../utils';
+import Utils from '../../helper/methods';
 import Store from '../../helper/store';
 import Constraints from '../../helper/constraints';
 import { debug } from 'util';
