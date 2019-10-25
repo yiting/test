@@ -2,24 +2,9 @@ import Utils from '../helper/methods';
 import Constraints from '../helper/constraints';
 import Dictionary from '../helper/dictionary';
 import Model from '../model/model';
-import Dividing from '../model/modelList/dividing';
-import Store from '../helper/store';
-import { debug } from 'util';
 
 const DSLOptions: any = {};
 
-/**
- * 添加元素节点
- */
-function handle(arr: any) {
-  // 找到跟节点
-  const body = arr.find((node: any) => node.type == Dictionary.type.QBody);
-  // 排序分组
-  const segmentings = sortSegmentings(arr);
-  // 组合
-  organize(segmentings, body);
-  return body;
-}
 function sortSegmentings(arr: any) {
   // 按面积排序
   arr.sort((a: any, b: any) => b.width * b.height - a.width * a.height);
@@ -142,6 +127,12 @@ function _add(_child: any, _parent: any, _isAbsolute: Boolean) {
   return child;
 }
 
-function imageParentTodo(parent: any, compareArr: any[]) {}
-
-export default handle;
+export default function(arr: any) {
+  // 找到跟节点
+  const body = arr.find((node: any) => node.type == Dictionary.type.QBody);
+  // 排序分组
+  const segmentings = sortSegmentings(arr);
+  // 组合
+  organize(segmentings, body);
+  return body;
+}

@@ -1,6 +1,6 @@
-import Model from '../model';
-import Dictionary from '../../helper/dictionary';
-import Store from '../../helper/store';
+import Model from '../../../dsl_service_ts/model/model';
+import Dictionary from '../../../dsl_service_ts/helper/dictionary';
+import Store from '../../../dsl_service_ts/helper/store';
 class Layer extends Model {
   constructor(node: any) {
     super(node);

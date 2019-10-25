@@ -1,4 +1,4 @@
-import HtmlTemplate from '../htmlTemplate';
+import HtmlTemplate from '../../../../dsl_service_ts/template/html/htmlTemplate';
 
 export default class Dividing extends HtmlTemplate {
   constructor(...args: any[]) {

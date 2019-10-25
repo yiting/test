@@ -48,7 +48,14 @@ class Model {
     this.canRightFlex = node.canRightFlex || false;
   }
   static regular(node: any) {
-    return true;
+    return false;
+  }
+
+  appendChild(...childs: any) {
+    childs.forEach((child: any) => {
+      child.parent = this;
+    });
+    this.children.push(...childs);
   }
 
   toJSON() {
@@ -91,6 +98,20 @@ class Model {
     });
     return this;
   }
+
+  get maxFontSize() {
+    if (this.styles.texts) {
+      return Math.max(...this.styles.texts.map((word: any) => word.size));
+    }
+    return null;
+  }
+
+  get minFontSize() {
+    if (this.styles.texts) {
+      return Math.min(...this.styles.texts.map((word: any) => word.size));
+    }
+    return null;
+  }
   get x() {
     return this.parent ? this.abX - this.parent.abX : this.abX;
   }
@@ -120,15 +141,17 @@ class Model {
     }
     return null;
   }
-  static exchange(ModelClass: any, data: any) {
-    var newData = new ModelClass(data);
-    newData.children = data.children;
+  exchangeModel(ModelClass: any) {
+    var newData = new ModelClass(this);
+    newData.children = this.children;
     newData.children.forEach((child: any) => {
       child.parent = newData;
     });
-    if (data.parent) {
-      const index = data.parent.children.indexOf(data);
-      data.parent.children.splice(index, 1, newData);
+    if (this.parent) {
+      const index = this.parent.children.indexOf(this);
+      if (index > -1) {
+        this.parent.children.splice(index, 1, newData);
+      }
     }
     return newData;
   }

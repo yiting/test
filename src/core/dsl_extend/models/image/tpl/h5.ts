@@ -1,6 +1,6 @@
-import HtmlTemplate from '../htmltemplate';
+import HtmlTemplate from '../../../../dsl_service_ts/template/html/htmlTemplate';
 
-class Image extends HtmlTemplate {
+export default class Image extends HtmlTemplate {
   constructor(...args: any[]) {
     super(...args);
     if (this._renderData.children.length) {
@@ -11,5 +11,3 @@ class Image extends HtmlTemplate {
     }
   }
 }
-
-export default Image;

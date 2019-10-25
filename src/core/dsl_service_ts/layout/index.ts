@@ -1,10 +1,10 @@
 // 模块用于对模型进行布局及结构分析, 生成可用于渲染的数据
-import LayoutSimilar from './layouts/layout_similar';
-import LayoutCircle from './layouts/layout_circle';
-import LayoutSort from './layouts/layout_sort';
-import LayoutBaseLine from './layouts/layout_baseline';
+import LayoutSimilar from './layouts/similar';
+import LayoutCircle from './layouts/circle';
+import LayoutSort from './layouts/sort';
+import LayoutBaseLine from './layouts/baseline';
 import QLog from '../log/qlog';
-import LayoutEquality from './layouts/layout_equality';
+import LayoutEquality from './layouts/equality';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
@@ -49,10 +49,10 @@ export default function(dslTree: any) {
     _logStep = '循环';
     walkOut(LayoutCircle, dslTree);
     // 排序
-    _logStep = '排序';
-    walkIn(LayoutSort, dslTree);
+    // _logStep = '排序';
+    // walkIn(LayoutSort, dslTree);
   } catch (e) {
-    Loger.error(`dsl/layout.ts layout()
+    Loger.error(`dsl/layout/index.ts layout()
       desc: ${_logStep}
       error:${e}`);
   }

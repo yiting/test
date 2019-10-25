@@ -1,6 +1,6 @@
 // dsl模块服务通过输入设计稿抽象过后的数据，然后输出对应的字符串
 import ModelProcess from './model/index';
-import ModelMatchProcess from './model/match';
+import WidgetProcess from './widget/index';
 // 暂时起名为Layout模块
 import LayoutProcess from './layout';
 import GroupProcess from './group/index';
@@ -34,8 +34,8 @@ function _process(_input: any, _options: any): object {
     processDesc = '节点分组';
     const dslTree = GroupProcess(layoutNodes);
     // 模型识别模块
-    processDesc = '模型识别';
-    ModelMatchProcess();
+    processDesc = '模型初始化';
+    WidgetProcess(dslTree);
     // 栅格化
     processDesc = '栅格化';
     GridProcess(dslTree);
@@ -70,8 +70,7 @@ function _initOptions(options: any) {
     // 布局类型
     outputType: options.outputType || 'h5',
     // options.optimizeWidth, options.optimizeHeight 匹配范围的优化
-    optimizeWidth: 750,
-    optimizeHeight: 750,
+    coordinateWidth: 750, // 平台坐标宽度
     designWidth: 750,
     designHeight: 750,
     // 调试模式

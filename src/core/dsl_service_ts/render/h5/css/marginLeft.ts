@@ -1,5 +1,5 @@
 import Constraints from '../../../helper/constraints';
-import Text from '../../../template/html/base/text';
+import Text from '../../../../dsl_extend/models/text/tpl/h5';
 
 export default {
   key: 'marginLeft ',

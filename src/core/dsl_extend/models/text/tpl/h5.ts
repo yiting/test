@@ -1,6 +1,6 @@
-import HtmlTemplate from '../htmlTemplate';
-import Constraints from '../../../helper/constraints';
-import Dictionary from '../../../helper/dictionary';
+import HtmlTemplate from '../../../../dsl_service_ts/template/html/htmlTemplate';
+import Constraints from '../../../../dsl_service_ts/helper/constraints';
+import Dictionary from '../../../../dsl_service_ts/helper/dictionary';
 
 class Text extends HtmlTemplate {
   constructor(...args: any[]) {

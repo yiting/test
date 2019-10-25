@@ -1,13 +1,13 @@
 import Utils from '../helper/methods';
 import Constraints from '../helper/constraints';
 import Dictionary from '../helper/dictionary';
-import Dividing from '../model/modelList/dividing';
-import LayerModel from '../model/modelList/layer';
+import Dividing from '../../dsl_extend/models/dividing/model';
+import LayerModel from '../../dsl_extend/models/layer/model';
 /**
  * DSL树的构建类,用于生成和输出标准数据
  */
 
-export function _row(parent: any) {
+function _row(parent: any) {
   const { children } = parent;
   // 如果只有一个子节点，则不生成新组
   if (children.length <= 1) {
@@ -19,10 +19,10 @@ export function _row(parent: any) {
   const layers = Utils.gatherByLogic(children, (a: any, b: any) => {
     // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
     /* if (a._abY < b._abY && a._zIndex > b._zIndex) {
-                // 使用-1是因为避免相连元素为一组
-                return Utils.isYConnect(a, b, -1);
-              }
-              return Utils.isYWrap(a, b); */
+                    // 使用-1是因为避免相连元素为一组
+                    return Utils.isYConnect(a, b, -1);
+                  }
+                  return Utils.isYWrap(a, b); */
     if (Utils.isYConnect(a, b, -1)) {
       if (
         // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
@@ -112,7 +112,7 @@ export function _row(parent: any) {
   parent.children = newChildren;
 }
 
-export function _column(parent: any) {
+function _column(parent: any) {
   const { children } = parent;
   // 如果只有一个子节点，则不生成新组
   if (children.length <= 1) {
@@ -163,8 +163,8 @@ export function _column(parent: any) {
       arr.length === 1 &&
       (firstNode.type === Dictionary.type.QLayer ||
         /* 
-        // 移除原因：如果图形大小不一致，但布局等分，影响计算逻辑
-        (firstNode.type === Dictionary.type.QImage && everyArrOnlyOneChild) || */
+                // 移除原因：如果图形大小不一致，但布局等分，影响计算逻辑
+                (firstNode.type === Dictionary.type.QImage && everyArrOnlyOneChild) || */
         firstNode.constraints['LayoutSelfPosition'] ===
           Constraints.LayoutSelfPosition.Absolute)
     ) {
@@ -199,15 +199,17 @@ export function _column(parent: any) {
  * 对节点进行成组排版
  */
 function grid(_treeData: any) {
-  _row(_treeData);
-  _column(_treeData);
-  // 从里面到外进行组合分析
-  const { children } = _treeData;
-  for (let i = 0; i < children.length; i++) {
-    const child = children[i];
-    if (child.children !== 0) {
-      // 继续进入下一层
-      grid(child);
+  if (_treeData.type !== Dictionary.type.QText) {
+    _row(_treeData);
+    _column(_treeData);
+    // 从里面到外进行组合分析
+    const { children } = _treeData;
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      if (child.children !== 0) {
+        // 继续进入下一层
+        grid(child);
+      }
     }
   }
   return _treeData;
