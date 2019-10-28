@@ -1,11 +1,9 @@
 // 循环结构的逻辑处理模块
 import Constraints from '../../helper/constraints';
 import Similar from './similar';
-import LayerModel from '../../model/model';
-import Store from '../../helper/store';
+import LayerModel from '../../../dsl_extend/models/layer/model';
 import ListModel from '../../../dsl_extend/models/list/model';
 import ListItemModel from '../../../dsl_extend/models/listItem/model';
-import { debug } from 'util';
 // 相似节点逻辑
 export function repeatRule(a: any, b: any) {
   return a.similarId && b.similarId && a.similarId === b.similarId;
@@ -42,31 +40,30 @@ export function setRepeatCircle(_parent: any, _circleArr: any) {
       /**
        * 如果循环片段是多个特征的
        */
-      // _setWrapBlock(_parent, frame.target);
+      _setWrapBlock(_parent, frame.target);
     }
   });
 }
 
 // 设置包含结构
-function _setWrapBlock(_parent: any, _target: any) {
-  const { children } = _parent;
+function _setWrapBlock(_parent: any, groups: any) {
   const inRemove: any = [];
-  Similar.similarIndex += 1;
-  const similarId: any = Similar.similarIndex;
-
-  _target.forEach((group: any) => {
-    // const newWrapData = Tree.createNodeData(null);
-    // newWrapData.set('children', group);
-    // newWrapData.resetZIndex();
-    // newWrapData.set('parent', _parent);
-    // newWrapData.set('similarId', similarId);
-    // newWrapData.resize(false);
-    // inRemove.push(...group);
-    // children.push(newWrapData);
+  const similarId: any = ++Similar.similarIndex;
+  groups.forEach((group: any) => {
+    const newWrapData = new LayerModel({
+      parent: _parent,
+      similarId,
+    });
+    newWrapData.appendChild(...group);
+    newWrapData.resize();
+    newWrapData.resetZIndex();
+    inRemove.push(...group);
+    _parent.appendChild(newWrapData);
   });
   // 从节点中剔除被循环的节点
-  const newChildren = children.filter((nd: any) => !inRemove.includes(nd));
-  _parent.set('children', newChildren);
+  _parent.children = _parent.children.filter(
+    (nd: any) => !inRemove.includes(nd),
+  );
 }
 // 设置循环结构
 function _setULCircle(parent: any, target: any) {

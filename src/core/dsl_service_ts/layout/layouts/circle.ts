@@ -42,7 +42,6 @@ class LayoutCircle {
       CircleBreak.breakFeature,
       CircleBreak.breakFilter,
     );
-    if (parent.id == 'D12ADFC8-86DF-469C-8F59-92BA914E5E91') debugger;
     CircleBreak.setBreakCircle(parent, circleBreakArr);
     if (isHorizontal) {
       LayoutCircle._sort(parent, 'abX');

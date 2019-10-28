@@ -6,13 +6,13 @@ class Dividing extends Model {
   static designWidth: number;
   constructor(node: any) {
     super(node);
-    Dividing.designWidth = Store.get('designWidth');
   }
   static regular(node: any) {
+    Dividing.designWidth = Store.get('designWidth');
     return (
       node.type == Dictionary.type.QImage &&
       node.width > Dividing.designWidth * 0.7 &&
-      node.height < 4
+      node.height < Dividing.designWidth * 0.04266
     );
   }
 }

@@ -8,6 +8,7 @@ export default function(nodes: any[]) {
   let ModelType;
   Model.resetSerialId();
   nodes.forEach((node: any) => {
+    judgeType(node);
     ModelType = Model;
     ModelList.some((model: any) => {
       if (model.regular(node)) {
@@ -20,7 +21,7 @@ export default function(nodes: any[]) {
   });
   return newNodes;
 }
-/*
+
 function judgeType(node: any) {
   switch (node.type) {
     case 'QShape':
@@ -36,7 +37,7 @@ function judgeType(node: any) {
       node.type = Dictionary.type.QLayer;
       break;
     case 'QBody':
-      node.type = Dictionary.type.QLayer;
+      node.type = Dictionary.type.QBody;
       break;
     default:
       Loger.warn(
@@ -45,4 +46,3 @@ function judgeType(node: any) {
   }
   return node;
 }
- */

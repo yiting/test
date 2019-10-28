@@ -2,6 +2,7 @@ import Utils from '../helper/methods';
 import Constraints from '../helper/constraints';
 import Dictionary from '../helper/dictionary';
 import Model from '../model/model';
+import Dividing from '../../dsl_extend/models/dividing/model';
 
 const DSLOptions: any = {};
 
@@ -34,6 +35,7 @@ function organize(segmentings: any[], body: Model) {
         if (
           // 父节点必须不是文本类型
           parent.type === Dictionary.type.QText ||
+          parent instanceof Dividing ||
           // 子节点不能分割线
           // child instanceof Dividing ||
           // 子节点必须关联
