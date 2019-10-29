@@ -5,12 +5,13 @@ import LayoutSort from './layouts/sort';
 import LayoutBaseLine from './layouts/baseline';
 import QLog from '../log/qlog';
 import LayoutEquality from './layouts/equality';
+import Dictionary from '../helper/dictionary';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 const walkIn = function(layoutObject: any, dslTree: any) {
   const { children } = dslTree;
-  if (children.length <= 0) {
+  if (children.length <= 0 || dslTree.type === Dictionary.type.QText) {
     return;
   }
   layoutObject.handle(dslTree, children);
@@ -21,7 +22,7 @@ const walkIn = function(layoutObject: any, dslTree: any) {
 
 const walkOut = function(layoutObject: any, dslTree: any) {
   const { children } = dslTree;
-  if (children.length <= 0) {
+  if (children.length <= 0 || dslTree.type === Dictionary.type.QText) {
     return;
   }
   children.forEach((child: any) => {

@@ -33,11 +33,21 @@ function organize(segmentings: any[], body: Model) {
         }
         const _utils = Utils;
         if (
+          parent.id == '4E0EC85E-AFB2-455C-9C17-FF91CE02A5EF' &&
+          child.id == '312DDCF7-B2D4-4248-B173-2D6F73986309'
+        )
+          debugger;
+        if (
           // 父节点必须不是文本类型
           parent.type === Dictionary.type.QText ||
           parent instanceof Dividing ||
           // 子节点不能分割线
           // child instanceof Dividing ||
+          // 分层次
+          // (child.zIndex > parent.zIndex &&
+          //   child.abY > parent.abY &&
+          //   child.abYops > parent.abYops
+          // )||
           // 子节点必须关联
           !_utils.isConnect(
             child,

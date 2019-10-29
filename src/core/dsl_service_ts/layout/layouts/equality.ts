@@ -56,8 +56,8 @@ class LayoutEquality {
       centerSpace &&
       LayoutEquality._calLineIsJustify(flexNodes, parent, 1, 'center');
     // 判断当前节点是否居中等分
-    const isJustifyAround =
-      centerSpace && LayoutEquality._isJustifyAround(flexNodes, parent);
+    // const isJustifyAround =
+    // centerSpace && LayoutEquality._isJustifyAround(flexNodes, parent);
     // 判断前节点内容是否左对齐等分
     const prevLineIsJustifyLeft =
       leftSpace &&
@@ -65,11 +65,16 @@ class LayoutEquality {
     const nextLineIsJustifyLeft =
       leftSpace &&
       LayoutEquality._calLineIsJustify(flexNodes, parent, 1, 'left');
-    if (
+    /* if (
       // 如果有中心间距，并且居中|与上一行对齐|与下一行对齐
       centerSpace &&
       (!nextLineIsJustifyLeft && !prevLineIsJustifyLeft) &&
       (isJustifyAround || prevLineIsJustifyCenter || nextLineIsJustifyCenter)
+    ) { */
+    if (
+      // 如果有中心间距，并且居中|与上一行对齐|与下一行对齐
+      centerSpace &&
+      (prevLineIsJustifyCenter || nextLineIsJustifyCenter)
     ) {
       LayoutEquality._adjustCenterPos(
         flexNodes,
@@ -335,69 +340,49 @@ class LayoutEquality {
    */
   static _isEqualityCenter(nodes: any, parent: any) {
     // 左右间距判断
-    const firstNode = nodes[0];
-    const lastNode = nodes[nodes.length - 1];
+    let firstNode = nodes[0];
+    let lastNode = nodes[nodes.length - 1];
     let leftSide = (firstNode.abX + firstNode.abXops) / 2 - parent.abX;
     let rightSide = parent.abXops - (lastNode.abX + lastNode.abXops) / 2;
 
     // 中心点数组
-    const dirArr: any = [];
+    let dirArr: any = [];
     // 得出间距数组
     nodes.some((nd: any, i: any) => {
-      const prev = nodes[i - 1];
+      let prev = nodes[i - 1];
       if (prev) {
-        const ctr = (nd.abX + nd.abXops) / 2;
-        const prevCtr = (prev.abX + prev.abXops) / 2;
-        const dir = ctr - prevCtr;
+        let ctr = (nd.abX + nd.abXops) / 2;
+        let prevCtr = (prev.abX + prev.abXops) / 2;
+        let dir = ctr - prevCtr;
         dirArr.push(dir);
       }
     });
     dirArr.sort((a: number, b: number) => a - b);
-    const firstDir = dirArr[0];
-    const lastDir = dirArr[dirArr.length - 1];
+    let minDir = dirArr[0];
+    let maxDir = dirArr[dirArr.length - 1];
     // 如果最大和最小间距差大于系数，则不符合
-    if (Math.abs(lastDir - firstDir) > ErrorCoefficient) {
+    if (Math.abs(minDir - maxDir) > ErrorCoefficient) {
       return false;
     }
-    // 获取目标宽度
-    const maybeDir = Math.min(...[leftSide * 2, rightSide * 2, ...dirArr]);
-    // 验证新节点都包含原节点范围
-    const newDir: any[] = [];
-    const isContain = nodes.every((n: any) => {
-      newDir.push({
-        abX: (n.abX + n.abXops) / 2 - maybeDir / 2,
-        abXops: (n.abX + n.abXops) / 2 + maybeDir / 2,
-      });
-      return n.abXops - n.abX <= maybeDir;
-    });
-    if (!isContain) {
-      return false;
-    }
-    // 验证新节点间相邻却不相交
-    const isNotIntersect = newDir.every((dir: any, i: number) => {
-      const prevDir: any = newDir[i - 1];
-      return (
-        prevDir === undefined ||
-        (dir.abX - prevDir.abXops >= 0 &&
-          dir.abX - prevDir.abXops <= ErrorCoefficient)
-      );
-    });
-    if (!isNotIntersect) {
-      return false;
-    }
-    // 验证不超过左测边界
-    if ((firstNode.abX + firstNode.abXops) / 2 - maybeDir / 2 < parent.abX) {
-      return false;
-    }
-    // 验证不超过右侧边界
-    if (
-      lastNode.abXops < parent.abXops &&
-      (lastNode.abXops + lastNode.abX) / 2 + maybeDir / 2 > parent.abXops
-    ) {
-      return false;
-    }
+    return minDir;
+    /**
+     * 如果符合间距等宽要求，计算合适间距  */
 
-    return maybeDir;
+    // 获取目标宽度
+    // let maybeDir = Math.min(...[leftSide * 2, rightSide * 2, ...dirArr]);
+    // // 验证新节点都包含原节点范围
+    // let newDir: any[] = [];
+    // let isContain = nodes.every((n: any) => {
+    //   newDir.push({
+    //     abX: (n.abX + n.abXops) / 2 - maybeDir / 2,
+    //     abXops: (n.abX + n.abXops) / 2 + maybeDir / 2,
+    //   });
+    //   return n.abXops - n.abX <= maybeDir;
+    // });
+    // if (!isContain) {
+    //   return false;
+    // }
+    // return maybeDir;
   }
 }
 

@@ -3,6 +3,7 @@ import Constraints from '../helper/constraints';
 import Dictionary from '../helper/dictionary';
 import Dividing from '../../dsl_extend/models/dividing/model';
 import LayerModel from '../../dsl_extend/models/layer/model';
+import Inline from '../../dsl_extend/widgets/inline/widget';
 /**
  * DSL树的构建类,用于生成和输出标准数据
  */
@@ -73,6 +74,7 @@ function _row(parent: any) {
       arr.length === 1 &&
       (firstNode.constraints['LayoutSelfPosition'] ===
         Constraints.LayoutSelfPosition.Absolute ||
+        firstNode instanceof Dividing ||
         (firstNode.type !== Dictionary.type.QText &&
           firstNode.abX === parent.abX &&
           firstNode.abXops === parent.abXops))
@@ -161,10 +163,8 @@ function _column(parent: any) {
      */
     if (
       arr.length === 1 &&
-      (firstNode.type === Dictionary.type.QLayer ||
-        /* 
-                // 移除原因：如果图形大小不一致，但布局等分，影响计算逻辑
-                (firstNode.type === Dictionary.type.QImage && everyArrOnlyOneChild) || */
+      (firstNode instanceof Dividing ||
+        firstNode.type === Dictionary.type.QLayer ||
         firstNode.constraints['LayoutSelfPosition'] ===
           Constraints.LayoutSelfPosition.Absolute)
     ) {

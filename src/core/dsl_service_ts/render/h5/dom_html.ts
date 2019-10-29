@@ -165,9 +165,6 @@ class HtmlDom {
     const attrs = this.getAttrs();
     const content = this.getContent();
     const showTagAttrInfo = Store.get('showTagAttrInfo');
-    if (!this.id) {
-      debugger;
-    }
     const isSource = !~this.id.indexOf('layer') ? 'isSource' : '';
     if (showTagAttrInfo) {
       return `<${tag} ${id} ${similarId} ${isSource} ${modelName} ${attrClass} ${attrs}>${content}`;
@@ -183,16 +180,12 @@ class HtmlDom {
   static getHtmlString(htmlDom: any) {
     // 遍历循环
     let html = htmlDom.getHtmlStart();
-    try {
-      if (htmlDom.children) {
-        htmlDom.children.forEach((child: any) => {
-          html += HtmlDom.getHtmlString(child);
-        });
-      }
-      html += htmlDom.getHtmlEnd();
-    } catch (e) {
-      debugger;
+    if (htmlDom.children) {
+      htmlDom.children.forEach((child: any) => {
+        html += HtmlDom.getHtmlString(child);
+      });
     }
+    html += htmlDom.getHtmlEnd();
     return html;
   }
 

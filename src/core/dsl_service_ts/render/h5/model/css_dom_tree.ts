@@ -70,11 +70,20 @@ class CssDom extends VDom {
   }
   _hasHeight() {
     if (
+      // 约束高度固定
       this.constraints.LayoutFixedHeight === Constraints.LayoutFixedHeight.Fixed
     ) {
       return true;
     }
+    // 有图片
     if (this.type === Dictionary.type.QImage || !!this.path) {
+      return true;
+    }
+    // 水平布局
+    if (
+      this.constraints.LayoutDirection ===
+      Constraints.LayoutDirection.Horizontal
+    ) {
       return true;
     }
     return false;
@@ -96,28 +105,6 @@ class CssDom extends VDom {
       return false;
     }
     return true;
-
-    /*   if (
-        this.constraints.LayoutFixedWidth === Constraints.LayoutFixedWidth.Fixed
-      ) {
-        return true;
-      }
-      // 图片
-      if (this.type === Dictionary.type.QImage || !!this.path) {
-        return true;
-      }
-      // 多行
-      if (this.isMultiline) {
-        // 如果高度高于行高，则为多行，固定宽度
-        return true;
-      }
-      // 垂直排列
-      if (this._isParentVertical()) {
-        return true;
-      }
-  
-  
-      return false; */
   }
 
   _isTextCenter() {
@@ -167,35 +154,6 @@ class CssDom extends VDom {
     }
 
     return false;
-  }
-
-  /**
-   * 判断是否使用paddingTop，如果是垂直布局，则用paddingTop，则返回第一个非绝对定位节点
-   */
-  _usePaddingTop() {
-    if (
-      this.constraints.LayoutDirection ===
-        Constraints.LayoutDirection.Vertical &&
-      this.constraints.LayoutJustifyContent ===
-        Constraints.LayoutJustifyContent.Start
-    ) {
-      // parent.children.find(nd => !nd._isAbsolute());
-      return this._getFirstChild();
-    }
-    const flexChild = this.children.filter(
-      (nd: any) =>
-        nd.constraints.LayoutSelfPosition !==
-        Constraints.LayoutSelfPosition.Absolute,
-    );
-    // 水平布局、唯一子节点、无高度
-    if (
-      this.constraints.LayoutDirection ===
-        Constraints.LayoutDirection.Horizontal &&
-      flexChild.length === 1 &&
-      !this._hasHeight()
-    ) {
-      return this._getFirstChild();
-    }
   }
 
   _getFirstChild() {

@@ -1,9 +1,12 @@
 import Utils from '../../utils';
 import Store from '../../../helper/store';
+import Dictionary from '../../../helper/dictionary';
 export default {
   key: 'overflow',
   value() {
-    // if(this.children)
+    if (this.type == Dictionary.type.QBody) {
+      return null;
+    }
     const range: any = Utils.calRange(this.children);
 
     const designWidth = Store.get('designWidth') || 0;
