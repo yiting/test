@@ -5,30 +5,29 @@ import LayoutSort from './layouts/sort';
 import LayoutBaseLine from './layouts/baseline';
 import QLog from '../log/qlog';
 import LayoutEquality from './layouts/equality';
-import Dictionary from '../helper/dictionary';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
-const walkIn = function(layoutObject: any, dslTree: any) {
+const walkIn = function(layoutHandle: any, dslTree: any) {
   const { children } = dslTree;
-  if (children.length <= 0 || dslTree.type === Dictionary.type.QText) {
+  if (children.length <= 0) {
     return;
   }
-  layoutObject.handle(dslTree, children);
+  layoutHandle(dslTree, children);
   dslTree.children.forEach((child: any) => {
-    walkIn(layoutObject, child);
+    walkIn(layoutHandle, child);
   });
 };
 
-const walkOut = function(layoutObject: any, dslTree: any) {
+const walkOut = function(layoutHandle: any, dslTree: any) {
   const { children } = dslTree;
-  if (children.length <= 0 || dslTree.type === Dictionary.type.QText) {
+  if (children.length <= 0) {
     return;
   }
   children.forEach((child: any) => {
-    walkOut(layoutObject, child);
+    walkOut(layoutHandle, child);
   });
-  layoutObject.handle(dslTree, children);
+  layoutHandle(dslTree, children);
 };
 
 export default function(dslTree: any) {
@@ -50,8 +49,8 @@ export default function(dslTree: any) {
     _logStep = '循环';
     walkOut(LayoutCircle, dslTree);
     // 排序
-    // _logStep = '排序';
-    // walkIn(LayoutSort, dslTree);
+    _logStep = '排序';
+    walkIn(LayoutSort, dslTree);
   } catch (e) {
     Loger.error(`dsl/layout/index.ts layout()
       desc: ${_logStep}

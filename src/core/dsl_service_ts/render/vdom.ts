@@ -53,12 +53,13 @@ class VDom {
     this.styles = node.styles || {};
     this.constraints = node.constraints || {};
     this.isMultiline = null;
+
     if (this.text) {
       const arr = this.styles.texts.map((word: any) => {
         return word.lineHeight;
       });
-      const _lineHeight = Math.max(arr);
       const _height = this.abYops - this.abY;
+      const _lineHeight = Math.max(arr) || _height;
       // 如果高度高于行高，则为多行，固定宽度
       this.isMultiline = _height / _lineHeight > 1.6;
     }

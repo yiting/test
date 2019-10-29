@@ -28,8 +28,8 @@ function _row(parent: any) {
       if (
         // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
         (Utils.isXConnect(a, b, -1) &&
-          (a._abY < b._abY && a._zIndex < b._zIndex)) ||
-        (a._abY > b._abY && a._zIndex > b._zIndex)
+          (a.abY < b.abY && a.zIndex < b.zIndex)) ||
+        (a.abY > b.abY && a.zIndex > b.zIndex)
       ) {
         return false;
       }
