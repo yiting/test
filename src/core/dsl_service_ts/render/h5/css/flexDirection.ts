@@ -4,10 +4,7 @@ import Dictionary from '../../../helper/dictionary';
 export default {
   key: 'flexDirection',
   value() {
-    if (this.type == Dictionary.type.QText) {
-      return null;
-    }
-    if (this.display === 'block') {
+    if (this.display !== 'flex') {
       return null;
     }
     if (!this.parent) {

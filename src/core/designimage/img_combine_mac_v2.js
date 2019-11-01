@@ -9,6 +9,7 @@ const outputDir = './data/complie/';
 const inputDir = './data/unzip_file/';
 // sketch目录
 const sketchDir = './data/upload_file/';
+const fontsDir = './data/fonts/';
 
 const fs = require('fs');
 const { exec } = require('child_process');
@@ -134,6 +135,37 @@ const ImageCombine = function() {
           message: 'ok',
         };
         resolve(result);
+      });
+    });
+  };
+
+  this.getFonts = async url => {
+    return new Promise(function(resolve, reject) {
+      var that = this;
+      var filename = url.substring(url.lastIndexOf('/') + 1);
+      const options = {
+        directory: fontsDir,
+        filename: filename,
+      };
+      //下载字体
+      download(url, options, function(err, path) {
+        if (err) throw err;
+        //安装字体
+        const command = `mv ${fontsDir}${filename} /Library/Fonts/`;
+        let result;
+        exec(command, function(a, b, c) {
+          if (a) {
+            logger.error(a);
+            result = {
+              message: 'fonts install  fail',
+            };
+          } else {
+            result = {
+              message: 'fonts install  success',
+            };
+          }
+          resolve(result);
+        });
       });
     });
   };

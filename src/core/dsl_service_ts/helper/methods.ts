@@ -1,5 +1,5 @@
 // 此模块用于定义一些在dsl模块包中用到的工具函数
-import Utils from '../helper/uitls';
+import Utils from './utils';
 
 const utils = {
   /**
@@ -7,34 +7,6 @@ const utils = {
    */
   nameLower(str: string) {
     return str.replace(/([A-Z])/gm, '-$1').toLowerCase();
-  },
-
-  getRangeByNodes(nodes: any[]) {
-    if (!nodes) {
-      return {};
-    }
-    const o = {
-      x: Number.POSITIVE_INFINITY,
-      y: Number.POSITIVE_INFINITY,
-      abX: Number.POSITIVE_INFINITY,
-      abY: Number.POSITIVE_INFINITY,
-      width: 0,
-      height: 0,
-    };
-    let right = 0;
-    let bottom = 0;
-    nodes.forEach((d: any, i: number) => {
-      const { height } = d;
-      o.x = d.x < o.x ? d.x : o.x;
-      o.y = d.y < o.y ? d.y : o.y;
-      o.abX = d.abX < o.abX ? d.abX : o.abX;
-      o.abY = d.abY < o.abY ? d.abY : o.abY;
-      right = right < d.abX + d.width ? d.abX + d.width : right;
-      bottom = bottom < d.abY + d.height ? d.abY + d.height : bottom;
-    });
-    o.height = bottom - o.abY;
-    o.width = right - o.abX;
-    return o;
   },
   gatherByLogic(domArr: any[], logic: Function) {
     const newArr: any = [];
@@ -62,7 +34,7 @@ const utils = {
     });
     return newArr;
   },
-  calRange(nodes: any[]) {
+  calRange(nodes: any[]): any {
     if (!nodes) {
       return {};
     }
@@ -73,12 +45,14 @@ const utils = {
       abXops: Number.NEGATIVE_INFINITY,
       width: 0,
       height: 0,
+      zIndex: Number.POSITIVE_INFINITY,
     };
     nodes.forEach((d: any, i) => {
       o.abX = d.abX < o.abX ? d.abX : o.abX;
       o.abY = d.abY < o.abY ? d.abY : o.abY;
       o.abYops = o.abYops < d.abYops ? d.abYops : o.abYops;
       o.abXops = o.abXops < d.abXops ? d.abXops : o.abXops;
+      o.zIndex = o.zIndex > d.zIndex ? d.zIndex : o.zIndex;
     });
     o.height = o.abYops - o.abY;
     o.width = o.abXops - o.abX;
@@ -160,6 +134,13 @@ const utils = {
       });
       return isFix;
     });
+  },
+  RGB2HEX(color: { r: number; g: number; b: number; a: number }) {
+    const red = ('0' + color.r.toString(16)).slice(-2);
+    const green = ('0' + color.g.toString(16)).slice(-2);
+    const blue = ('0' + color.b.toString(16)).slice(-2);
+    const alpha = Number(color.a * 255).toString(16);
+    return `0x${alpha}${red}${green}${blue}`;
   },
 };
 

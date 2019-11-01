@@ -27,7 +27,14 @@ class Inline extends Model {
 }
 function calInline(nodes: any) {
   return Methods.gatherByLogic(nodes, (meta: any, target: any) => {
-    let rate = meta.height / target.height;
+    if (
+      meta.id == '80290016-D209-4BDF-9D0C-E21F93FD485F' &&
+      target.id == 'FAE4F664-29A2-4E6F-883B-FFB8C97558F0'
+    )
+      debugger;
+    let max =
+      Math.max(meta.maxFontSize, target.maxFontSize) * 2 ||
+      Math.min(meta.height, target.height) * 2;
     let gapAllowed = Math.min(
       meta.minFontSize || V_HEIGHT,
       target.minFontSize || V_HEIGHT,
@@ -39,7 +46,8 @@ function calInline(nodes: any) {
         ErrorCoefficient ||
         // 底对齐
         Math.abs(meta.abYops - target.abYops) < ErrorCoefficient) &&
-      (rate < 2 && rate > 0.5) &&
+      meta.height < max &&
+      target.height < max &&
       Methods.isXConnect(meta, target, gapAllowed)
     );
   });

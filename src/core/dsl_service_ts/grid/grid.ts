@@ -15,15 +15,8 @@ function _row(parent: any) {
     // 当只包含一个元素时就不用创建QLayer
     return;
   }
-
   // 分解行
   const layers = Utils.gatherByLogic(children, (a: any, b: any) => {
-    // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
-    /* if (a._abY < b._abY && a._zIndex > b._zIndex) {
-                    // 使用-1是因为避免相连元素为一组
-                    return Utils.isYConnect(a, b, -1);
-                  }
-                  return Utils.isYWrap(a, b); */
     if (Utils.isYConnect(a, b, -1)) {
       if (
         // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
@@ -58,17 +51,11 @@ function _row(parent: any) {
   layers.forEach((arr: any) => {
     const firstNode = arr[0];
     /**
-     * 删除：如果是单个文本，则须在文本外包布局节点
-     */
-    // if (arr.length === 1 && arr[0].type !== Common.QText) {
-    /**
-     * 删除：当横向节点只有一个时
-     */
-    // if (arr.length === 1) {
-    /**
-     * 当横向节点只有一个，
-     * 且该节点不是绝对定位元素，
-     * 且该节点不是不与父节点等宽
+     * 当横向节点只有一个，且
+     * 该节点是绝对定位元素，
+     * 或节点非文本
+     * 或节点与父节点等宽，
+     * 则不包一层
      */
     if (
       arr.length === 1 &&
@@ -82,12 +69,6 @@ function _row(parent: any) {
     ) {
       newChildren.push(firstNode);
     } else {
-      // // 判断是否横跨两行结构
-      // const { absNodes, rowNodes, colNodes } = calColumn(arr);
-      // absNodes.forEach((nd: any) => {
-      //   nd.constraints.LayoutSelfPosition = Constraints.LayoutSelfPosition.Absolute;
-      // });
-
       // 多个节点情况
       // 自左而右排序
       arr.sort((a: any, b: any) => a.abX - b.abX);
@@ -123,9 +104,9 @@ function _column(parent: any) {
   }
 
   // 分解列
-  const layers = Utils.gatherByLogic(children, (a: any, b: any) =>
-    Utils.isXConnect(a, b),
-  );
+  const layers = Utils.gatherByLogic(children, (a: any, b: any) => {
+    return Utils.isXConnect(a, b);
+  });
   // 如果只有一列，则不生成新组
   if (layers.length === 1) {
     return;
@@ -145,17 +126,8 @@ function _column(parent: any) {
   // 自左向右排序
   layers.sort((a: any, b: any) => a.abX - b.abX);
   const newChildren: any = [];
-  const everyArrOnlyOneChild = layers.every((arr: any) => arr.length === 1);
   layers.forEach((arr: any) => {
     const firstNode = arr[0];
-    /**
-     *
-     */
-    // if (arr.length === 1 && arr[0].type !== Common.QText) {
-    /**
-     * 删除：当横向节点只有一个时
-     */
-    // if (arr.length === 1) {
     /**
      * 当列拆分只有一个节点，
      * 且该节点不是文本：文本外须包布局节点

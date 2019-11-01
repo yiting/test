@@ -3,6 +3,7 @@ import ModelProcess from './model/index';
 import WidgetProcess from './widget/index';
 // 暂时起名为Layout模块
 import LayoutProcess from './layout';
+import InterfereModelProcess from './interfereModel/index';
 import GroupProcess from './group/index';
 import GridProcess from './grid/index';
 import RenderProcess from './render';
@@ -26,13 +27,16 @@ function _process(_input: any, _options: any): object {
     // 数据清洗
     let nodes = input.nodes;
     processDesc = '构建节点';
-    const layoutNodes = ModelProcess(nodes);
+    let layoutNodes = ModelProcess(nodes);
+    // 干预处理
+    processDesc = '干预处理';
+    layoutNodes = InterfereModelProcess(layoutNodes);
 
     processDesc = '数据清洗';
     CleanProcess(layoutNodes);
     // 生成树
     processDesc = '节点分组';
-    const dslTree = GroupProcess(layoutNodes);
+    let dslTree = GroupProcess(layoutNodes);
     // 模型识别模块
     processDesc = '模型初始化';
     WidgetProcess(dslTree);
@@ -43,10 +47,10 @@ function _process(_input: any, _options: any): object {
     processDesc = '布局分析';
     LayoutProcess(dslTree);
     // render模块
-    const Builder = RenderProcess.handle(dslTree);
+    let Builder = RenderProcess.handle(dslTree);
     return Builder.getResult();
   } catch (e) {
-    console.error(`dslService.ts  ${processDesc}`);
+    console.error(`dslService.ts  ${processDesc}:${e}`);
   }
 }
 
@@ -83,10 +87,13 @@ function _initOptions(options: any) {
     applyInfo_user: options.applyInfo_user || '',
     applyInfo_url: options.applyInfo_url || '',
     applyInfo_proName: options.applyInfo_proName || '',
+    // group组合信息
+    groups: [],
   };
   Object.assign(processOption, options);
   // 设置全局变量
   Store.assign(processOption);
+  return processOption;
 }
 
 process.on('message', msg => {

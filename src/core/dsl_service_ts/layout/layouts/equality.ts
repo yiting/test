@@ -26,12 +26,12 @@ function isAround(flexNodes: any) {
     return;
   }
 
-  const centerNode: any = flexNodes.find((nd: any) => {
+  let centerNode: any = flexNodes.find((nd: any) => {
     return Math.abs(nd.abX + nd.abXops - designWidth) < ErrorCoefficient;
   });
-  const centerIndex = flexNodes.indexOf(centerNode);
-  const prev: any = flexNodes[centerIndex - 1];
-  const next: any = flexNodes[centerIndex + 1];
+  let centerIndex = flexNodes.indexOf(centerNode);
+  let prev: any = flexNodes[centerIndex - 1];
+  let next: any = flexNodes[centerIndex + 1];
   let fixed = false;
   if (centerNode && prev && next) {
     fixed =
@@ -49,7 +49,7 @@ function isAround(flexNodes: any) {
   return fixed && [prev, centerNode, next];
 }
 function adjustAround(nodes: any) {
-  const [prev, cur, next] = nodes;
+  let [prev, cur, next] = nodes;
   if (prev) {
     // prev
     prev.constraints.LayoutSelfPosition =
@@ -74,15 +74,15 @@ function calLineIsJustify(
   if (!node.parent) {
     return false;
   }
-  const nodeIndex = node.parent.children.indexOf(node);
-  const line = node.parent.children[nodeIndex + distance];
-  const lineChildren = line && filterFlexNodes(line.children);
-  const result: any[] = [];
+  let nodeIndex = node.parent.children.indexOf(node);
+  let line = node.parent.children[nodeIndex + distance];
+  let lineChildren = line && filterFlexNodes(line.children);
+  let result: any[] = [];
   return (
     lineChildren &&
     lineChildren.length == nodes.length &&
     nodes.every((nd: any, i: number) => {
-      const pd = lineChildren[i];
+      let pd = lineChildren[i];
       result.push({
         abX: pd.abX,
         abXops: pd.abXops,
@@ -101,8 +101,8 @@ function calLineIsJustify(
 }
 function isJustifyAround(nodes: any, parent: any) {
   // 左右间距判断
-  const firstNode = nodes[0];
-  const lastNode = nodes[nodes.length - 1];
+  let firstNode = nodes[0];
+  let lastNode = nodes[nodes.length - 1];
   let leftSide = (firstNode.abX + firstNode.abXops) / 2 - parent.abX;
   let rightSide = parent.abXops - (lastNode.abX + lastNode.abXops) / 2;
   return Math.abs(leftSide - rightSide) < ErrorCoefficient;
@@ -115,11 +115,11 @@ function isAllCanFlex(nodes: any) {
 //  调整居中模型位置
 function adjustCenterPos(nodes: any, width: any, prevLineCenterPos: any) {
   nodes.forEach((_nd: any, i: number) => {
-    const nd: any = _nd;
-    const ndWidth = nd.abXops - nd.abX;
-    const dir = Math.floor((width - ndWidth) / 2);
-    const abX = prevLineCenterPos ? prevLineCenterPos[i].abX : nd.abX - dir;
-    const abXops = prevLineCenterPos
+    let nd: any = _nd;
+    let ndWidth = nd.abXops - nd.abX;
+    let dir = Math.floor((width - ndWidth) / 2);
+    let abX = prevLineCenterPos ? prevLineCenterPos[i].abX : nd.abX - dir;
+    let abXops = prevLineCenterPos
       ? prevLineCenterPos[i].abXops
       : nd.abXops + dir;
     nd.abX = abX;
@@ -134,7 +134,7 @@ function adjustCenterPos(nodes: any, width: any, prevLineCenterPos: any) {
 //  调整居中模型位置
 function adjustLeftPos(nodes: any, width: any) {
   nodes.forEach((_nd: any) => {
-    const nd: any = _nd;
+    let nd: any = _nd;
     nd.abXops = nd.abX + width;
     // 设置居中
     nd.constraints.LayoutJustifyContent =
@@ -150,7 +150,7 @@ function isAllSameModel(nodes: any) {
   return (
     nodes.length > 1 &&
     nodes.every((nd: any) => {
-      const isSameModel = !modelType || nd.constructor == modelType;
+      let isSameModel = !modelType || nd.constructor == modelType;
       modelType = nd.constructor;
       return isSameModel;
     })
@@ -158,11 +158,11 @@ function isAllSameModel(nodes: any) {
 }
 
 function isEqualitySide(nodes: any, parent: any) {
-  const firstNode = nodes[0];
-  const lastNode = nodes[nodes.length - 1];
-  const left = firstNode.abX - parent.abX;
-  const right = parent.abXops - lastNode.abXops;
-  const isEq = Math.abs(left - right) < 4;
+  let firstNode = nodes[0];
+  let lastNode = nodes[nodes.length - 1];
+  let left = firstNode.abX - parent.abX;
+  let right = parent.abXops - lastNode.abXops;
+  let isEq = Math.abs(left - right) < 4;
 
   return (
     isEq &&
@@ -197,25 +197,25 @@ function isContain(nodes: any, width: number) {
  */
 function isEqualityLeft(nodes: any, parent: any) {
   // 左右间距判断
-  const firstNode = nodes[0];
-  const lastNode = nodes[nodes.length - 1];
-  const leftSide = firstNode.abX - parent.abX;
-  const rightSide = leftSide;
+  let firstNode = nodes[0];
+  let lastNode = nodes[nodes.length - 1];
+  let leftSide = firstNode.abX - parent.abX;
+  let rightSide = leftSide;
   // 左边界数组
-  const dirArr: any = [];
+  let dirArr: any = [];
   // 计算左间距
   nodes.forEach((node: any, i: any) => {
-    const prev = nodes[i - 1];
+    let prev = nodes[i - 1];
     if (prev) {
-      const dir = node.abX - prev.abX;
+      let dir = node.abX - prev.abX;
       dirArr.push(dir);
     }
   });
 
   dirArr.sort((a: number, b: number) => a - b);
   // 假设最大宽度为元素左边距的距离
-  const minDir = dirArr[0];
-  const maxDir = dirArr[dirArr.length - 1];
+  let minDir = dirArr[0];
+  let maxDir = dirArr[dirArr.length - 1];
   // 如果最大和最小间距差大于系数，则不符合
   if (Math.abs(maxDir - minDir) > ErrorCoefficient) {
     return false;
@@ -227,8 +227,8 @@ function isEqualityLeft(nodes: any, parent: any) {
     return false;
   }
 
-  const lastNodeAbXops = lastNode.abX + targetWidth;
-  const paddingRightAbX = parent.abXops - rightSide;
+  let lastNodeAbXops = lastNode.abX + targetWidth;
+  let paddingRightAbX = parent.abXops - rightSide;
   // 如果末节点原右边界未超出父节点范围，末节点新右边界超出父节点范围，不符合左等分
   if (lastNode.abXops < parent.abXops && lastNodeAbXops > parent.abXops) {
     return false;
@@ -236,7 +236,7 @@ function isEqualityLeft(nodes: any, parent: any) {
 
   //  如果末节点的右边界在父节点的padding-right内，则裁剪“假设宽度”targetWidth
   if (lastNodeAbXops <= parent.abXops && lastNodeAbXops > paddingRightAbX) {
-    const shrinkWidth = targetWidth - (lastNodeAbXops - paddingRightAbX);
+    let shrinkWidth = targetWidth - (lastNodeAbXops - paddingRightAbX);
     // 验证新节点都包含原节点范围
     let _isContain2 = isContain(nodes, shrinkWidth);
     if (_isContain2) {
@@ -272,8 +272,11 @@ function isEqualityCenter(nodes: any, parent: any) {
   dirArr.sort((a: number, b: number) => a - b);
   let minDir = dirArr[0];
   let maxDir = dirArr[dirArr.length - 1];
-  // 如果最大和最小间距差大于系数，则不符合
-  if (Math.abs(minDir - maxDir) > ErrorCoefficient) {
+  if (
+    // 如果最大和最小间距差大于系数，则不符合
+    Math.abs(minDir - maxDir) > ErrorCoefficient ||
+    nodes.some((n: any) => n.width > minDir)
+  ) {
     return false;
   }
   return minDir;
@@ -307,7 +310,7 @@ export default function(parent: any, nodes: any) {
     return;
   }
   // 剔除绝对定位元素
-  const flexNodes = filterFlexNodes(nodes);
+  let flexNodes = filterFlexNodes(nodes);
   ErrorCoefficient = Store.get('errorCoefficient') || 0;
   designWidth = Store.get('designWidth') || 0;
   // 如果子节点不水平，则返回
@@ -321,33 +324,33 @@ export default function(parent: any, nodes: any) {
   }
   // 从左到右排列
   flexNodes.sort((a: any, b: any) => a.abX - b.abX);
-  const _isAllCanFlex = isAllCanFlex(flexNodes);
+  let _isAllCanFlex = isAllCanFlex(flexNodes);
   // 如果子节点类型不一样，则返回
-  const _isAllSameModel = isAllSameModel(flexNodes);
+  let _isAllSameModel = isAllSameModel(flexNodes);
   if (!_isAllCanFlex || !_isAllSameModel) {
     return;
   }
   // 计算左对齐等分结果
-  const leftSpace = isEqualityLeft(flexNodes, parent);
+  let leftSpace = isEqualityLeft(flexNodes, parent);
   // 计算中对齐等分结果
-  const centerSpace = isEqualityCenter(flexNodes, parent);
+  let centerSpace = isEqualityCenter(flexNodes, parent);
   // 计算两端对齐结果
-  const aroundArr = isAround(flexNodes);
+  let aroundArr = isAround(flexNodes);
   /**
    * 其他衡量依据
    */
   // 判断前节点内容是否中对齐等分
-  const prevLineIsJustifyCenter =
+  let prevLineIsJustifyCenter =
     centerSpace && calLineIsJustify(flexNodes, parent, -1, 'center');
-  const nextLineIsJustifyCenter =
+  let nextLineIsJustifyCenter =
     centerSpace && calLineIsJustify(flexNodes, parent, 1, 'center');
   // 判断当前节点是否居中等分
-  // const isJustifyAround =
+  // let isJustifyAround =
   // centerSpace && isJustifyAround(flexNodes, parent);
   // 判断前节点内容是否左对齐等分
-  const prevLineIsJustifyLeft =
+  let prevLineIsJustifyLeft =
     leftSpace && calLineIsJustify(flexNodes, parent, -1, 'left');
-  const nextLineIsJustifyLeft =
+  let nextLineIsJustifyLeft =
     leftSpace && calLineIsJustify(flexNodes, parent, 1, 'left');
   /* if (
     // 如果有中心间距，并且居中|与上一行对齐|与下一行对齐

@@ -1,4 +1,4 @@
-import utils from '../helper/uitls';
+import Utils from '../helper/methods';
 
 let serialId = 0;
 class Model {
@@ -21,6 +21,7 @@ class Model {
   modelId: string;
   canLeftFlex: boolean;
   canRightFlex: boolean;
+  __allowed_descendantIds: any;
 
   static resetSerialId() {
     serialId = 0;
@@ -46,6 +47,7 @@ class Model {
     this.constraints = node.constraints || {};
     this.canLeftFlex = node.canLeftFlex || false;
     this.canRightFlex = node.canRightFlex || false;
+    this.__allowed_descendantIds = node._allowed_descendantIds || null;
   }
   static regular(node: any) {
     return false;
@@ -87,9 +89,7 @@ class Model {
       : null;
   }
   resize() {
-    const { abX, abY, height, width } = utils.getRange(this.children);
-    const abXops = abX + width;
-    const abYops = abY + height;
+    let { abX, abY, abXops, abYops } = Utils.calRange(this.children);
     Object.assign(this, {
       abX,
       abY,
@@ -98,7 +98,13 @@ class Model {
     });
     return this;
   }
-
+  get _allowed_descendantIds() {
+    return (
+      this.__allowed_descendantIds ||
+      (this.parent && this.parent._allowed_descendantIds) ||
+      null
+    );
+  }
   get maxFontSize() {
     if (this.styles.texts) {
       return Math.max(...this.styles.texts.map((word: any) => word.size));

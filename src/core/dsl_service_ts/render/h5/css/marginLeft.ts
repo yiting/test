@@ -4,6 +4,7 @@ import Text from '../../../../dsl_extend/models/text/tpl/h5';
 export default {
   key: 'marginLeft ',
   value() {
+    // if(this.id=='B86DFBE1-D04C-4279-88D3-39473E90E570')debugger
     if (this._isAbsolute()) {
       return 0;
     }

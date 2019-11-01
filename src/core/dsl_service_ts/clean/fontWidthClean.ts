@@ -24,12 +24,13 @@ function pipe(node: any) {
         // 中对齐
         node.abX = Math.ceil(node.abX + node.width / 2 - textWidth / 2);
         node.abXops = node.abX + textWidth;
-      } else if (node.styles.textAlign == 3) {
+      } else if (node.styles.textAlign == 1) {
         // 右对齐
         node.abX = Math.ceil(node.abX + node.width - textWidth);
-        node.abXops = node.abX + textWidth;
       } else {
         // 左对齐
+        // 右对齐
+        node.abXops = node.abX + textWidth;
       }
     }
   }

@@ -4,10 +4,10 @@ export default {
   value() {
     const hasText = this.text;
     if (
+      hasText &&
       this.parent &&
       this.parent.type === Dictionary.type.QText &&
-      this.type === Dictionary.type.QText &&
-      hasText
+      this.type === Dictionary.type.QText
     ) {
       return 'inline';
     }

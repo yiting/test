@@ -1,6 +1,6 @@
 // 此模块用于定义一些在render模块包中用到的工具函数
 import Constraints from '../helper/constraints';
-import Utils from '../helper/uitls';
+import Utils from '../helper/utils';
 
 export default {
   /**
@@ -101,28 +101,6 @@ export default {
       });
     });
     return newArr;
-  },
-  calRange(nodes: any[]) {
-    if (!nodes) {
-      return {};
-    }
-    const o = {
-      abX: Number.POSITIVE_INFINITY,
-      abY: Number.POSITIVE_INFINITY,
-      abYops: Number.NEGATIVE_INFINITY,
-      abXops: Number.NEGATIVE_INFINITY,
-      width: 0,
-      height: 0,
-    };
-    nodes.forEach((d: any, i: any) => {
-      o.abX = d.abX < o.abX ? d.abX : o.abX;
-      o.abY = d.abY < o.abY ? d.abY : o.abY;
-      o.abYops = o.abYops < d.abYops ? d.abYops : o.abYops;
-      o.abXops = o.abXops < d.abXops ? d.abXops : o.abXops;
-    });
-    o.height = o.abYops - o.abY;
-    o.width = o.abXops - o.abX;
-    return o;
   },
   calculateBaseLine(vdom: any) {
     let X = 0;

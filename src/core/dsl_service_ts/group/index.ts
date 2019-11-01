@@ -26,40 +26,45 @@ function organize(segmentings: any[], body: Model) {
   const compareArr = [body];
   // 递进
   segmentings.forEach((child: any, i: any) => {
-    if (child && child.type !== Dictionary.type.QBody) {
-      const done = compareArr.some((parent: any, index: number) => {
-        if (!parent) {
-          return false;
-        }
-        const _utils = Utils;
-        if (
-          // 父节点必须不是文本类型
-          parent.type === Dictionary.type.QText ||
-          parent instanceof Dividing ||
-          // 子节点不能分割线
-          // child instanceof Dividing ||
-          // 分层次
-          (child.zIndex > parent.zIndex &&
-            child.abY > parent.abY &&
-            child.abYops > parent.abYops) ||
-          // 子节点必须关联
-          !_utils.isConnect(
-            child,
-            parent,
-            -1,
-          ) /* ||
+    if (!child || child.type === Dictionary.type.QBody) {
+      return;
+    }
+    let done = compareArr.some((parent: any, index: number) => {
+      if (!parent) {
+        return false;
+      }
+      let node;
+      // 如果父节点包含干涉元素，则只有干涉元素能作为子节点
+      if (
+        (parent._allowed_descendantIds &&
+          !parent._allowed_descendantIds.includes(child.id)) ||
+        // 父节点必须不是文本类型
+        parent.type === Dictionary.type.QText ||
+        // 父节点不能是分割线
+        parent instanceof Dividing ||
+        // 子节点不能分割线
+        // child instanceof Dividing ||
+        // 分层次
+        (child.zIndex > parent.zIndex &&
+          child.abY > parent.abY &&
+          child.abYops > parent.abYops) ||
+        // 子节点必须关联
+        !Utils.isConnect(
+          child,
+          parent,
+          -1,
+        ) /* ||
                         // 子节点比父节点更靠下
                         (child.zIndex > parent.zIndex &&
                         child.abY > parent.abY &&
                         child.abYops > parent.abYops) */
-        ) {
-          return false;
-        }
-        let node;
+      ) {
+        return false;
+      } else {
         if (
           child.zIndex >= parent.zIndex &&
           // 包含关系
-          (_utils.isWrap(parent, child) ||
+          (Utils.isWrap(parent, child) ||
             // 水平相连、垂直包含关系
             (parent.abYops >= child.abYops && parent.abY <= child.abYops))
         ) {
@@ -68,15 +73,15 @@ function organize(segmentings: any[], body: Model) {
           // 其他情况都为绝对定位
           node = _add(child, parent, true);
         }
-        compareArr.unshift(node);
-        segmentings[i] = null;
-        return true;
-      });
-      if (!done) {
-        const node = _add(child, body, false);
-        compareArr.unshift(node);
-        segmentings[i] = null;
       }
+      compareArr.unshift(node);
+      segmentings[i] = null;
+      return true;
+    });
+    if (!done) {
+      const node = _add(child, body, false);
+      compareArr.unshift(node);
+      segmentings[i] = null;
     }
   });
 }
@@ -110,12 +115,12 @@ function _add(_child: any, _parent: any, _isAbsolute: Boolean) {
   // node为RenderData
   let parent: any = _parent;
   let child: any = _child;
-  if (!_isAbsolute && _isAbsoluteRelation(child, parent)) {
-    parent = parent.parent || parent;
-    parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
-    child.constraints.LayoutSelfPosition =
-      Constraints.LayoutSelfPosition.Absolute;
-  }
+  /*  if (!_isAbsolute && _isAbsoluteRelation(child, parent)) {
+       parent = parent.parent || parent;
+       parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
+       child.constraints.LayoutSelfPosition =
+         Constraints.LayoutSelfPosition.Absolute;
+     } */
 
   if (_isAbsolute) {
     child.constraints.LayoutSelfPosition =
@@ -135,7 +140,8 @@ function _add(_child: any, _parent: any, _isAbsolute: Boolean) {
 
 export default function(arr: any) {
   // 找到跟节点
-  const body = arr.find((node: any) => node.type == Dictionary.type.QBody);
+  let body = arr.find((node: any) => node.type == Dictionary.type.QBody);
+
   // 排序分组
   const segmentings = sortSegmentings(arr);
   // 组合

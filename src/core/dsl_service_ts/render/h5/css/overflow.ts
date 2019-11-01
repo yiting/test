@@ -1,4 +1,4 @@
-import Utils from '../../utils';
+import Utils from '../../../helper/methods';
 import Store from '../../../helper/store';
 import Dictionary from '../../../helper/dictionary';
 export default {
