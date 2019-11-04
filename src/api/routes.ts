@@ -3,7 +3,7 @@ import { init, parse } from './controller/designPost';
 import designPost_v2 from './controller/designPost.v2';
 
 //2.designimage
-import * as imgApiV2 from './controller/imageApiV2';
+// import * as imgApiV2 from './controller/imageApiV2';
 // import * as imgApi from './controller/imageApi';
 // import * as imageMacApi from './controller/imageMacApi';
 import * as imageMacApiV2 from './controller/imageMacApiV2';
@@ -44,6 +44,11 @@ export default [
     path: '/v2/img_downloadSketch',
     method: 'get',
     action: imageMacApiV2.downloadSketch,
+  },
+  {
+    path: '/v2/img_getFonts',
+    method: 'post',
+    action: imageMacApiV2.getFonts,
   },
   // {
   //   path: '/test_makeImg',
@@ -108,12 +113,12 @@ export default [
   {
     path: '/img_generate',
     method: 'post',
-    action: imgApiV2.generate,
+    action: imageMacApiV2.generate,
   },
   {
     path: '/v2/img_generate',
     method: 'post',
-    action: imgApiV2.generateV2,
+    action: imageMacApiV2.generateV2,
   },
   {
     path: '/img_preview',
