@@ -9,6 +9,7 @@ const outputDir = './data/complie/';
 const inputDir = './data/unzip_file/';
 // sketch目录
 const sketchDir = './data/upload_file/';
+const fontsDir = './data/fonts/';
 
 const fs = require('fs');
 const { exec } = require('child_process');
@@ -134,6 +135,37 @@ const ImageCombine = function() {
           message: 'ok',
         };
         resolve(result);
+      });
+    });
+  };
+
+  this.getFonts = async url => {
+    return new Promise(function(resolve, reject) {
+      var that = this;
+      var filename = url.substring(url.lastIndexOf('/') + 1);
+      const options = {
+        directory: fontsDir,
+        filename: filename,
+      };
+      //下载字体
+      download(url, options, function(err, path) {
+        if (err) throw err;
+        //安装字体
+        let command = `mv ${fontsDir}${filename} /Library/Fonts/`;
+        let result;
+        exec(command, function(a, b, c) {
+          if (a) {
+            logger.error(a);
+            result = {
+              message: 'fonts install  fail',
+            };
+          } else {
+            result = {
+              message: 'fonts install  success',
+            };
+          }
+          resolve(result);
+        });
       });
     });
   };
@@ -314,6 +346,12 @@ const ImageCombine = function() {
   this.showNodes = function(param) {
     const { generateJson, tmpJson, imageChildrenFlatArr, level } = param;
     const that = this;
+
+    //防止不被遮罩的图层变成被遮罩了。算法：查找打断遮罩层的图层，如果该图层不显示，则设置下一个显示的图层要打断
+    //遮罩：hasClippingMask = true
+    //打断遮罩：shouldBreakMaskChain = true
+    var shouldBreakMaskChain = false;
+
     // try {
     if (tmpJson.layers) {
       tmpJson.layers.forEach((item, index) => {
@@ -342,6 +380,10 @@ const ImageCombine = function() {
           ) {
             // item.isVisible = true;
             isShow = true;
+            if (shouldBreakMaskChain && item.shouldBreakMaskChain == false) {
+              item.shouldBreakMaskChain = true;
+              shouldBreakMaskChain = false;
+            }
             generateJson.layers.push(item);
           }
           if (
@@ -356,11 +398,20 @@ const ImageCombine = function() {
               item['layers'] = [];
               var pushItem = this.cloneJson(item);
               item['layers'] = layers;
+
+              if (shouldBreakMaskChain) {
+                pushItem.shouldBreakMaskChain = true;
+                shouldBreakMaskChain = false;
+              }
               generateJson.layers.push(pushItem);
             }
             targetImageChildrenFlatArr.push(imageItem);
           }
         });
+
+        if (!isShow && item.shouldBreakMaskChain == true) {
+          shouldBreakMaskChain = true;
+        }
 
         if (!isShow && isParent && item.layers && item.layers.length > 0) {
           that.showNodes({
@@ -906,23 +957,25 @@ const ImageCombine = function() {
 
     let itemIds = [];
     imgList.forEach((imageItem, index) => {
-      //对每个节点，获取json，同时json改id，将name改为path，
-      //返回修改后的json，及要导出的id
-      if (index == 22) {
-        // console.log(1);
-      }
-      var { generateJson, generateId } = that.getUpdateJson({
-        imageItem,
-        index,
-      });
-      //将json追加到最后getUpdateJson
-      // if (!isGenerateArtboard) {
-      that.pageJson.layers[artboardIndex].layers.push(generateJson);
-      // } else {
-      //   that.pageJson.layers[artboardIndex] = generateJson;
-      // }
+      try {
+        //对每个节点，获取json，同时json改id，将name改为path，
+        //返回修改后的json，及要导出的id
+        // if(index ==1) throw "测试报错";
+        var { generateJson, generateId } = that.getUpdateJson({
+          imageItem,
+          index,
+        });
+        //将json追加到最后getUpdateJson
+        // if (!isGenerateArtboard) {
+        that.pageJson.layers[artboardIndex].layers.push(generateJson);
+        // } else {
+        //   that.pageJson.layers[artboardIndex] = generateJson;
+        // }
 
-      itemIds.push(generateId);
+        itemIds.push(generateId);
+      } catch (e) {
+        logger.warn(e);
+      }
     });
 
     // 6、合成修改版sketch
@@ -1032,11 +1085,11 @@ const ImageCombine = function() {
       const { sketchDir } = that;
       const outputDir = `${that.outputDir + projectName}/images/`;
       let scales = 1;
-      if (that.artboardWidth < 750) {
+      if (that.artboardWidth < 376) {
         scales = 750 / that.artboardWidth;
       }
       return new Promise(function(resolve, reject) {
-        const command = `${BIN} export layers --output=${outputDir} --formats=png ${`${sketchDir +
+        const command = `${BIN} export layers --output=${outputDir} --group-contents-only --formats=png ${`${sketchDir +
           sketchName}.sketch`} --items=${itemIds} --scales=${scales}`;
         logData.num._combineShapeGroupNodeWithNative++;
         // console.log(command);
