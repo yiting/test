@@ -27,11 +27,6 @@ class Inline extends Model {
 }
 function calInline(nodes: any) {
   return Methods.gatherByLogic(nodes, (meta: any, target: any) => {
-    if (
-      meta.id == '80290016-D209-4BDF-9D0C-E21F93FD485F' &&
-      target.id == 'FAE4F664-29A2-4E6F-883B-FFB8C97558F0'
-    )
-      debugger;
     let max =
       Math.max(meta.maxFontSize, target.maxFontSize) * 2 ||
       Math.min(meta.height, target.height) * 2;

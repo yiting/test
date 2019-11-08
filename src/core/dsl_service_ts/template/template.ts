@@ -310,7 +310,6 @@ class Template {
   static parse(renderData: any, parentTpl: any, TemplateList: any) {
     let tplData: any;
     try {
-      if (renderData.id == '3D6DE57E-88DE-45B5-AE38-E1C8B6CB9000_0') debugger;
       let ModelTpl =
         Template.getModelTemplate(TemplateList, renderData) || Template;
       if (ModelTpl) {

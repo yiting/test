@@ -12,7 +12,15 @@ export default function(nodes: any) {
   });
   groups.forEach((interfareInfo: any) => {
     let { ids: _allowed_descendantIds, type } = interfareInfo;
-    let ns = _allowed_descendantIds.map((n: any) => map[n]);
+    let ns: any = [];
+    _allowed_descendantIds.forEach((n: any) => {
+      if (map[n]) {
+        ns.push(map[n]);
+      }
+    });
+    if (ns.length == 0) {
+      return;
+    }
     let { abX, abXops, abY, abYops, zIndex } = Util.calRange(ns);
     let layer = new Layer({
       abX,

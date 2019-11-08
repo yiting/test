@@ -31,7 +31,6 @@ function _process(_input: any, _options: any): object {
     // 干预处理
     processDesc = '干预处理';
     layoutNodes = InterfereModelProcess(layoutNodes);
-
     processDesc = '数据清洗';
     CleanProcess(layoutNodes);
     // 生成树

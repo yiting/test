@@ -1,5 +1,6 @@
 import Constraints from '../../../helper/constraints';
 import Text from '../../../../dsl_extend/models/text/tpl/h5';
+import paddingTop from './paddingTop';
 
 export default {
   key: 'marginTop',
@@ -12,7 +13,8 @@ export default {
     if (this.parent && this.parent.modelName == Text.name) {
       return null;
     }
-    let parentPaddingTop = (this.parent && this.parent.paddingTop) || 0;
+    let parentPaddingTop =
+      (this.parent && paddingTop.value.call(this.parent)) || 0;
 
     if (this._isParentHorizontal()) {
       // 横排计算与父节点距离

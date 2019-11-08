@@ -7,8 +7,6 @@ class Text extends HtmlTemplate {
   constructor(...args: any[]) {
     super(...args);
     const that = this;
-    // if(this._renderData.id=='3D6DE57E-88DE-45B5-AE38-E1C8B6CB9000')debugger
-    // if(this._renderData.id=='3D6DE57E-88DE-45B5-AE38-E1C8B6CB9000')debugger
     const texts = this._renderData.styles && this._renderData.styles.texts;
     if (texts && texts.length > 1) {
       const children: any[] = [];
