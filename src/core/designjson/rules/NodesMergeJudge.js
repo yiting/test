@@ -49,12 +49,17 @@ class NodesMergeJudge {
    */
   isMerge(param) {
     let { node, brother, ruleConfig, root, ratio = 1 } = param;
+    let combineLayers = ruleConfig.combineLayers;
     //合图逻辑组合，如果满足其中一种组合，则认为两图层该合并
     let isCombine = false;
     let isFinally = false;
 
     if (node.id.indexOf('5BF4D936-80A2-4C83-9A19-EDBD8E5B2C49') > -1) {
       // console.log(1);
+    }
+
+    if (typeof combineLayers != 'undefined') {
+      return this.isMergeByPreedit(param);
     }
 
     // if (
@@ -391,6 +396,39 @@ class NodesMergeJudge {
     return {
       isCombine: isCombine,
       scoreResult: scoreResult,
+    };
+  }
+
+  /**
+   * 预处理环节判断两节点是否应该合并
+   * 根据平台传来的组合id来判断是否该合并
+   * @param {QObject} node
+   * @param {QObject} brother
+   * @returns {Object} resultData 是否合并
+   */
+  isMergeByPreedit(param) {
+    let { node, brother, ruleConfig } = param;
+    let combineLayers = ruleConfig.combineLayers;
+    var isCombine = false;
+    for (var i = 0, ilen = combineLayers.length; i < ilen; i++) {
+      var isFindNode = false;
+      var isFindBrother = false;
+      var itemArr = combineLayers[i];
+      for (var j = 0, jlen = itemArr.length; j < jlen; j++) {
+        if (itemArr[j] == node.id) {
+          isFindNode = true;
+        } else if (itemArr[j] == brother.id) {
+          isFindBrother = true;
+        }
+      }
+      if (isFindNode && isFindBrother) {
+        isCombine = true;
+        break;
+      }
+    }
+    return {
+      isCombine: isCombine,
+      scoreResult: 0,
     };
   }
 

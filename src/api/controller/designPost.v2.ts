@@ -41,6 +41,7 @@ async function parse(context: Context) {
   let { artboardId, data, fileType } = req.body;
   let parseData: any = {};
   let aiData = data.aiData;
+  let combineLayers = data.combineLayers;
   let responseData: ResponseData = new ResponseData();
   try {
     // sketch特殊处理
@@ -53,6 +54,7 @@ async function parse(context: Context) {
     } else {
       data = require(dataPath);
       data.aiData = aiData;
+      data.combineLayers = combineLayers;
       parseData = DesignJson.parse(artboardId, data);
       responseData.data = parseData;
     }
