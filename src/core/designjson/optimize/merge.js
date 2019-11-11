@@ -110,50 +110,45 @@ class ImageMergeProcessor {
     }
   }
   static _mergeGroupToParent(nodes, parent) {
-    // if (parent.getNodeByName('星形')) debugger
-    var that = this;
     if (!nodes || !nodes.length) return;
     const targetNodes = nodes.filter(
       node => node.type === QShape.name || node.type === QImage.name,
     ); // 过滤掉文字节点、组节点
     if (targetNodes.length < 2) return;
     const groupArr = mergeJudge(targetNodes, this.RuleConfig, parent); // 根据规则输出 成组列表 [[node1,node2],[node3,node4],node5]
-    if (
-      groupArr.length === 1 &&
-      groupArr[0].size === parent.children.length &&
-      !parent.isModified &&
-      !parent.isRoot
-    ) {
-      DesignTree.convert(parent, QImage.name);
-      parent.scoreData = that.getScoreData(parent._imageChildren);
-      parent.scoreMax = 0;
-      parent.scoreMin = 99;
-      parent.scoreData.forEach(function(value, key, arr) {
-        if (value.scoreDetail.score > parent.scoreMax) {
-          parent.scoreMax = value.scoreDetail.score;
-        }
-        if (value.scoreDetail.score < parent.scoreMin) {
-          parent.scoreMin = value.scoreDetail.score;
-        }
-      });
-      return;
-    }
+    // if (
+    //   groupArr.length === 1 &&
+    //   groupArr[0].size === parent.children.length &&
+    //   !parent.isModified &&
+    //   !parent.isRoot
+    // ) {
+    //   DesignTree.convert(parent, QImage.name, {
+    //     saveChild: true
+    //   });
+    //   this.score(parent)
+    //   return;
+    // }
     groupArr.map(item => {
       if (item.size > 1) {
         var newnode = DesignTree.union([...item]);
-        newnode.scoreData = that.getScoreData(newnode._imageChildren, [
-          ...item,
-        ]);
-        newnode.scoreMax = 0;
-        newnode.scoreMin = 99;
-        newnode.scoreData.forEach(function(value, key, arr) {
-          if (value.scoreDetail.score > newnode.scoreMax) {
-            newnode.scoreMax = value.scoreDetail.score;
-          }
-          if (value.scoreDetail.score < newnode.scoreMin) {
-            newnode.scoreMin = value.scoreDetail.score;
-          }
-        });
+        this.score(newnode, [...item]);
+      }
+    });
+  }
+  // 抽成公共方法
+  static score(parent, childrenScoreData = null) {
+    parent.scoreData = this.getScoreData(
+      parent._imageChildren,
+      childrenScoreData,
+    );
+    parent.scoreMax = 0;
+    parent.scoreMin = 99;
+    parent.scoreData.forEach((value, key, arr) => {
+      if (value.scoreDetail.score > parent.scoreMax) {
+        parent.scoreMax = value.scoreDetail.score;
+      }
+      if (value.scoreDetail.score < parent.scoreMin) {
+        parent.scoreMin = value.scoreDetail.score;
       }
     });
   }
