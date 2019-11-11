@@ -1016,7 +1016,7 @@ const ImageCombine = function() {
     const result = await this.makeImg(param);
 
     // 8.压缩图片
-    await that.compressImgs(that.outputDir, projectName, imgList);
+    // await that.compressImgs(that.outputDir, projectName, imgList);
 
     // 8、删除修改版sketch
     serverModulesUtils.deleteFolder(updateFilePath);
