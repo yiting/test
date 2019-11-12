@@ -5,7 +5,7 @@ const {
   walkin,
   walkout,
   isBelong,
-  isCollide,
+  isIntersect,
   isSameColor,
 } = require('../utils');
 function process(node) {
@@ -59,11 +59,11 @@ class StructureProcessor {
       if (!parent.children || !parent.children.length) return;
       [...parent.children].forEach(child => {
         const res =
-          this.isEmtyGroup(child) ||
-          this.isTransparentStyle(child) ||
-          this.isOutside(child, nodelist[0]) ||
-          this.isCovered(child, nodelist) ||
-          this.isCamouflage(child, nodelist);
+          this.isEmtyGroup(child) || // 清洗空组节点
+          this.isTransparentStyle(child) || // 清洗样式透明节点
+          this.isOutside(child, nodelist[0]) || // 清洗超出边界节点
+          this.isCovered(child, nodelist) || // 清洗z-index被覆盖节点
+          this.isCamouflage(child, nodelist); // 清洗颜色相同节点
         if (res) {
           parent.isModified = true;
           parent.remove(child);
@@ -173,12 +173,12 @@ class StructureProcessor {
     if (bgNode_index + 1 < node_index)
       return !nodelist
         .slice(bgNode_index + 1, node_index)
-        .some(n => isCollide(node, n) && n.type !== QLayer.name);
+        .some(n => isIntersect(node, n) && n.type !== QLayer.name);
     return false;
   }
 
   static isOutside(node, rootNode) {
-    return !isCollide(node, rootNode);
+    return !isIntersect(node, rootNode);
   }
 
   static isEmtyGroup(node) {
@@ -196,7 +196,7 @@ function hasBarrier(a, b, nodelist) {
     if (n.type === QLayer.name) return false;
     const parentList = n.getParentList();
     return (
-      !~parentList.indexOf(a) && !~parentList.indexOf(b) && isCollide(a, n)
+      !~parentList.indexOf(a) && !~parentList.indexOf(b) && isIntersect(a, n)
     );
   });
   return res;
