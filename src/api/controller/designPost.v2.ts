@@ -40,7 +40,7 @@ async function parse(context: Context) {
   const { response: res, request: req } = context;
   let { artboardId, data, fileType } = req.body;
   let parseData: any = {};
-  let { aiData, font: fontData, isPreedit } = data;
+  let { aiData, font: fontData, isPreedit, combineLayers } = data;
   let responseData: ResponseData = new ResponseData();
   try {
     // sketch特殊处理
@@ -55,6 +55,7 @@ async function parse(context: Context) {
         aiData,
         fontData,
         isPreedit,
+        combineLayers,
       });
       parseData = DesignJson.parse(artboardId, jsonData);
       responseData.data = parseData;
