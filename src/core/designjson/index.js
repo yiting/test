@@ -30,9 +30,11 @@ class DesignJson {
    * @param {Object} options.symbolMap
    * @param {Object} options.artboardMap
    * @param {string} options.version
+   * @param {Object} options.fontData
    * @param {Object} options.frameMap
    * @param {Object} option.aiData ai数据
    * @param {Object} option.ruleMap 合图规则
+   * @param {boolean} option.isPreedit 是否人工合图步骤
    * @return {Object} 返回节点与图片节点
    */
   static parse(artBoardId, option = {}, fileType = 'sketch') {
@@ -40,7 +42,7 @@ class DesignJson {
     const rate = designDom ? designDom.width / 750 : null;
     option.rate = rate;
     Optimize(designDom, option);
-    Processor[fileType].process(designDom);
+    Processor[fileType].process(designDom, option);
     const nodes = designDom.toList();
     const images = designDom.getImages();
     return {
