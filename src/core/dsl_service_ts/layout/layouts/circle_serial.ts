@@ -6,14 +6,16 @@ export function repeatLogic(a: any, b: any) {
   return false;
 }
 export function featureLogic(feature: any) {
-  let similarId: any = null;
+  let childSimilarId: any = null;
   return (
     feature.length > 1 &&
     feature.every((n: any, i: number) => {
       let isSame =
         n.constructor === ListModel &&
-        (similarId === null || similarId === n.similarId);
-      similarId = n.similarId;
+        n.children.length > 0 &&
+        n.children[0].similarId &&
+        (childSimilarId === null || childSimilarId === n.children[0].similarId);
+      childSimilarId = n.children[0] ? n.children[0].similarId : null;
       return isSame;
     })
   );

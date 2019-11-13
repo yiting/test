@@ -1,9 +1,9 @@
 [
   {
-    "id": "7CBF230D-3A09-4ED6-B002-971F8A5A23EC",
-    "name": "神豪充值页",
-    "width": 375,
-    "height": 708,
+    "id": "E2641289-8666-47FE-B932-CACD51FBF30A",
+    "name": "B方案",
+    "width": 750,
+    "height": 1334,
     "abX": 0,
     "abY": 0,
     "zIndex": 0,
@@ -22,10 +22,10 @@
     "type": "QLayer"
   },
   {
-    "id": "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA---6442FC18-23DE-425B-9AB3-FA74144ED461",
-    "name": "矩形",
-    "width": 375,
-    "height": 64,
+    "id": "44606428-8513-45E6-BC98-54045CB0194C",
+    "name": "Rectangle 46",
+    "width": 750,
+    "height": 128,
     "abX": 0,
     "abY": 0,
     "zIndex": 0,
@@ -37,1666 +37,31 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": { "r": 243, "g": 243, "b": 243, "a": 1 },
+        "color": { "r": 18, "g": 183, "b": 245, "a": 1 },
         "hasOpacity": false
       }
     },
-    "type": "QShape",
-    "symbolRoot": [
-      "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA",
-      "3FD428ED-AC85-4321-8E17-5680AF4310FF"
-    ]
+    "type": "QShape"
   },
   {
-    "id": "_2D64EDFE-B36E-44B0-A5FB-A187117E5DCA---3FD428ED-AC85-4321-8E17-5680AF4310FF---00CACC41-FCE8-48B1-A796-8D73E74DE35A_2D64EDFE-B36E-44B0-A5FB-A187117E5DCA---3FD428ED-AC85-4321-8E17-5680AF4310FF---11C0AF11-45A2-46CA-A57E-AE0A53EB4898",
-    "name": "_Mobile Signal_Wi-Fi",
-    "width": 51,
-    "height": 9,
-    "abX": 7,
-    "abY": 6,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "202e7c76.png"
-  },
-  {
-    "id": "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA---3FD428ED-AC85-4321-8E17-5680AF4310FF---90870194-5C3C-4EE0-9576-3D53D5430721",
-    "name": "9:41 AM",
-    "width": 46,
-    "height": 14,
-    "abX": 164,
-    "abY": 4,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 51, "g": 51, "b": 51, "a": 1 },
-          "string": "9:41 AM",
-          "font": "HelveticaNeue",
-          "size": 12,
-          "lineHeight": null
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "9:41 AM",
-    "symbolRoot": [
-      "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA",
-      "3FD428ED-AC85-4321-8E17-5680AF4310FF"
-    ]
-  },
-  {
-    "id": "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA---3FD428ED-AC85-4321-8E17-5680AF4310FF---8EDFE6C9-B12E-4542-943A-802B12CFF897",
-    "name": "100%",
-    "width": 33,
-    "height": 14,
-    "abX": 309,
-    "abY": 4,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 51, "g": 51, "b": 51, "a": 1 },
-          "string": "100%",
-          "font": "HelveticaNeue",
-          "size": 12,
-          "lineHeight": null
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 1
-    },
-    "type": "QText",
-    "text": "100%",
-    "symbolRoot": [
-      "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA",
-      "3FD428ED-AC85-4321-8E17-5680AF4310FF"
-    ]
-  },
-  {
-    "id": "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA---3FD428ED-AC85-4321-8E17-5680AF4310FF---EA2D4FD5-086E-44EE-9E64-D8A459715814",
-    "name": "Battery",
-    "width": 25,
-    "height": 10,
-    "abX": 345,
-    "abY": 6,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "symbolRoot": [
-      "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA",
-      "3FD428ED-AC85-4321-8E17-5680AF4310FF"
-    ],
-    "path": "2dad5ca7.png"
-  },
-  {
-    "id": "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA---3FD428ED-AC85-4321-8E17-5680AF4310FF---16D5FB03-2D96-4A60-9EB0-D6F4E99C4CCF",
-    "name": "NOW直播充值页面",
-    "width": 154,
-    "height": 18,
-    "abX": 111,
-    "abY": 33,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "NOW直播充值页面",
-          "font": "PingFangSC-Regular",
-          "size": 18,
-          "lineHeight": 18
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "NOW直播充值页面",
-    "symbolRoot": [
-      "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA",
-      "3FD428ED-AC85-4321-8E17-5680AF4310FF"
-    ]
-  },
-  {
-    "id": "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA---3FD428ED-AC85-4321-8E17-5680AF4310FF---A27758DC-307B-46EE-88E0-3167AD99DAFA",
-    "name": "编组",
-    "width": 20,
-    "height": 4,
-    "abX": 339,
-    "abY": 40,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": [
-      "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA",
-      "3FD428ED-AC85-4321-8E17-5680AF4310FF"
-    ],
-    "path": "1ca74872.png"
-  },
-  {
-    "id": "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA---3FD428ED-AC85-4321-8E17-5680AF4310FF---5A3B805C-41A6-423B-ACA2-61D1B52B677E",
-    "name": "关闭",
-    "width": 15,
-    "height": 16,
-    "abX": 21,
-    "abY": 34,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": [
-      "2D64EDFE-B36E-44B0-A5FB-A187117E5DCA",
-      "3FD428ED-AC85-4321-8E17-5680AF4310FF"
-    ],
-    "path": "604fefb8.png"
-  },
-  {
-    "id": "B546AA6F-EE3B-407C-8DCF-B70C45130886---EA7F4C26-4F12-4E50-AD51-1A60B88AB9D3",
-    "name": "1",
-    "width": 174,
-    "height": 104,
-    "abX": 10,
-    "abY": 171,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": [3, 3, 3, 3],
-      "border": {
-        "type": "solid",
-        "color": { "r": 187, "g": 187, "b": 187, "a": 1 },
-        "width": 0.5,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QShape",
-    "symbolRoot": [
-      "B546AA6F-EE3B-407C-8DCF-B70C45130886",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "B546AA6F-EE3B-407C-8DCF-B70C45130886---C37C2A2D-5863-4CF1-8353-36CCE34C6511",
-    "name": "(使用充值满送券15张)",
-    "width": 107,
-    "height": 16,
-    "abX": 42,
-    "abY": 224,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 187, "g": 187, "b": 187, "a": 1 },
-          "string": "(使用充值满送券15张)",
-          "font": "PingFangSC-Regular",
-          "size": 11,
-          "lineHeight": 15.399999999999999
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "(使用充值满送券15张)",
-    "symbolRoot": [
-      "B546AA6F-EE3B-407C-8DCF-B70C45130886",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "B546AA6F-EE3B-407C-8DCF-B70C45130886---FA16C29B-785A-4989-9A76-9C8723EA6B49",
-    "name": "20万",
-    "width": 44,
-    "height": 16,
-    "abX": 84,
-    "abY": 186,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 192, "g": 140, "b": 62, "a": 1 },
-          "string": "20",
-          "font": "DINAlternate-Bold",
-          "size": 22,
-          "lineHeight": 16
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "20万",
-    "symbolRoot": [
-      "B546AA6F-EE3B-407C-8DCF-B70C45130886",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "B546AA6F-EE3B-407C-8DCF-B70C45130886---52D082A1-DF54-4081-AF7B-55B6F5B73405---F536A844-FD2F-4F41-9C03-0CA4A228383F",
-    "name": "充值金币",
-    "width": 18,
-    "height": 18,
-    "abX": 60,
-    "abY": 185,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": [
-      "B546AA6F-EE3B-407C-8DCF-B70C45130886",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ],
-    "path": "af161006.png"
-  },
-  {
-    "id": "B546AA6F-EE3B-407C-8DCF-B70C45130886---52D082A1-DF54-4081-AF7B-55B6F5B73405---645C809F-7BEB-45AC-9845-EFDD29ECC258",
-    "name": "送 150",
-    "width": 48,
-    "height": 16,
-    "abX": 72,
-    "abY": 209,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "送",
-          "font": "PingFangSC-Medium",
-          "size": 11,
-          "lineHeight": 16
-        },
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": " ",
-          "font": "PingFangSC-Medium",
-          "size": 11,
-          "lineHeight": 16
-        },
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "     ",
-          "font": "PingFangSC-Semibold",
-          "size": 11,
-          "lineHeight": 16
-        },
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "150",
-          "font": "DINAlternate-Bold",
-          "size": 11,
-          "lineHeight": 16
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "送      150",
-    "symbolRoot": [
-      "B546AA6F-EE3B-407C-8DCF-B70C45130886",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "B546AA6F-EE3B-407C-8DCF-B70C45130886---52D082A1-DF54-4081-AF7B-55B6F5B73405---D7CF10FC-1FDE-4FF6-9934-814439C4E631---65A2DE6B-2D04-4002-876F-E8D82593F9E5",
-    "name": "金币  copy 13",
-    "width": 12,
-    "height": 12,
-    "abX": 88,
-    "abY": 211,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": [
-      "B546AA6F-EE3B-407C-8DCF-B70C45130886",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ],
-    "path": "39f3f68a.png"
-  },
-  {
-    "id": "B546AA6F-EE3B-407C-8DCF-B70C45130886---52D082A1-DF54-4081-AF7B-55B6F5B73405---D7CF10FC-1FDE-4FF6-9934-814439C4E631---86C83C2F-953A-498F-A97E-64CD1820D572",
-    "name": "¥ 2万",
-    "width": 64,
-    "height": 16,
-    "abX": 64,
-    "abY": 249,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "¥ 2",
-          "font": "DINAlternate-Bold",
-          "size": 18,
-          "lineHeight": 16
-        },
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "万",
-          "font": "PingFangSC-Semibold",
-          "size": 18,
-          "lineHeight": 16
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "¥ 2万",
-    "symbolRoot": [
-      "B546AA6F-EE3B-407C-8DCF-B70C45130886",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "5B7E33A8-34CA-4277-98C5-E10E93258496---EA7F4C26-4F12-4E50-AD51-1A60B88AB9D3",
-    "name": "1",
-    "width": 174,
-    "height": 104,
-    "abX": 10,
-    "abY": 280,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": [3, 3, 3, 3],
-      "border": {
-        "type": "solid",
-        "color": { "r": 187, "g": 187, "b": 187, "a": 1 },
-        "width": 0.5,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QShape",
-    "symbolRoot": [
-      "5B7E33A8-34CA-4277-98C5-E10E93258496",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "5B7E33A8-34CA-4277-98C5-E10E93258496---C37C2A2D-5863-4CF1-8353-36CCE34C6511",
-    "name": "(使用充值满送券15张)",
-    "width": 107,
-    "height": 16,
-    "abX": 42,
-    "abY": 333,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 187, "g": 187, "b": 187, "a": 1 },
-          "string": "(使用充值满送券30张)",
-          "font": "PingFangSC-Regular",
-          "size": 11,
-          "lineHeight": 15.399999999999999
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "(使用充值满送券30张)",
-    "symbolRoot": [
-      "5B7E33A8-34CA-4277-98C5-E10E93258496",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "5B7E33A8-34CA-4277-98C5-E10E93258496---FA16C29B-785A-4989-9A76-9C8723EA6B49",
-    "name": "20万",
-    "width": 44,
-    "height": 16,
-    "abX": 84,
-    "abY": 295,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 192, "g": 140, "b": 62, "a": 1 },
-          "string": "80",
-          "font": "DINAlternate-Bold",
-          "size": 22,
-          "lineHeight": 16
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "80万",
-    "symbolRoot": [
-      "5B7E33A8-34CA-4277-98C5-E10E93258496",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "5B7E33A8-34CA-4277-98C5-E10E93258496---52D082A1-DF54-4081-AF7B-55B6F5B73405---F536A844-FD2F-4F41-9C03-0CA4A228383F",
-    "name": "充值金币",
-    "width": 18,
-    "height": 18,
-    "abX": 60,
-    "abY": 294,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": [
-      "5B7E33A8-34CA-4277-98C5-E10E93258496",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ],
-    "path": "3d9b9be7.png"
-  },
-  {
-    "id": "5B7E33A8-34CA-4277-98C5-E10E93258496---52D082A1-DF54-4081-AF7B-55B6F5B73405---645C809F-7BEB-45AC-9845-EFDD29ECC258",
-    "name": "送 150",
-    "width": 48,
-    "height": 16,
-    "abX": 72,
-    "abY": 318,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "送",
-          "font": "PingFangSC-Medium",
-          "size": 11,
-          "lineHeight": 16
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "送      300",
-    "symbolRoot": [
-      "5B7E33A8-34CA-4277-98C5-E10E93258496",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "5B7E33A8-34CA-4277-98C5-E10E93258496---52D082A1-DF54-4081-AF7B-55B6F5B73405---D7CF10FC-1FDE-4FF6-9934-814439C4E631---65A2DE6B-2D04-4002-876F-E8D82593F9E5",
-    "name": "金币  copy 13",
-    "width": 12,
-    "height": 12,
-    "abX": 88,
-    "abY": 320,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": [
-      "5B7E33A8-34CA-4277-98C5-E10E93258496",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ],
-    "path": "6b0b04b3.png"
-  },
-  {
-    "id": "5B7E33A8-34CA-4277-98C5-E10E93258496---52D082A1-DF54-4081-AF7B-55B6F5B73405---D7CF10FC-1FDE-4FF6-9934-814439C4E631---86C83C2F-953A-498F-A97E-64CD1820D572",
-    "name": "¥ 2万",
-    "width": 64,
-    "height": 16,
-    "abX": 64,
-    "abY": 358,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "¥ 8",
-          "font": "DINAlternate-Bold",
-          "size": 18,
-          "lineHeight": 16
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "¥ 8万",
-    "symbolRoot": [
-      "5B7E33A8-34CA-4277-98C5-E10E93258496",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "80C8B540-708A-4241-AFE5-03F22BC1E369---EA7F4C26-4F12-4E50-AD51-1A60B88AB9D3",
-    "name": "1",
-    "width": 174,
-    "height": 104,
-    "abX": 191,
-    "abY": 171,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": [3, 3, 3, 3],
-      "border": {
-        "type": "solid",
-        "color": { "r": 187, "g": 187, "b": 187, "a": 1 },
-        "width": 0.5,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QShape",
-    "symbolRoot": [
-      "80C8B540-708A-4241-AFE5-03F22BC1E369",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "80C8B540-708A-4241-AFE5-03F22BC1E369---C37C2A2D-5863-4CF1-8353-36CCE34C6511",
-    "name": "(使用充值满送券15张)",
-    "width": 107,
-    "height": 16,
-    "abX": 223,
-    "abY": 224,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 187, "g": 187, "b": 187, "a": 1 },
-          "string": "(使用充值满送券15张)",
-          "font": "PingFangSC-Regular",
-          "size": 11,
-          "lineHeight": 15.399999999999999
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "(使用充值满送券15张)",
-    "symbolRoot": [
-      "80C8B540-708A-4241-AFE5-03F22BC1E369",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "80C8B540-708A-4241-AFE5-03F22BC1E369---FA16C29B-785A-4989-9A76-9C8723EA6B49",
-    "name": "20万",
-    "width": 44,
-    "height": 16,
-    "abX": 265,
-    "abY": 186,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 192, "g": 140, "b": 62, "a": 1 },
-          "string": "50",
-          "font": "DINAlternate-Bold",
-          "size": 22,
-          "lineHeight": 16
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "50万",
-    "symbolRoot": [
-      "80C8B540-708A-4241-AFE5-03F22BC1E369",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "80C8B540-708A-4241-AFE5-03F22BC1E369---52D082A1-DF54-4081-AF7B-55B6F5B73405---F536A844-FD2F-4F41-9C03-0CA4A228383F",
-    "name": "充值金币",
-    "width": 18,
-    "height": 18,
-    "abX": 241,
-    "abY": 185,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": [
-      "80C8B540-708A-4241-AFE5-03F22BC1E369",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ],
-    "path": "111ed2b8.png"
-  },
-  {
-    "id": "80C8B540-708A-4241-AFE5-03F22BC1E369---52D082A1-DF54-4081-AF7B-55B6F5B73405---645C809F-7BEB-45AC-9845-EFDD29ECC258",
-    "name": "送 150",
-    "width": 48,
-    "height": 16,
-    "abX": 253,
-    "abY": 209,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "送",
-          "font": "PingFangSC-Medium",
-          "size": 11,
-          "lineHeight": 16
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "送      200",
-    "symbolRoot": [
-      "80C8B540-708A-4241-AFE5-03F22BC1E369",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "80C8B540-708A-4241-AFE5-03F22BC1E369---52D082A1-DF54-4081-AF7B-55B6F5B73405---D7CF10FC-1FDE-4FF6-9934-814439C4E631---65A2DE6B-2D04-4002-876F-E8D82593F9E5",
-    "name": "金币  copy 13",
-    "width": 12,
-    "height": 12,
-    "abX": 269,
-    "abY": 211,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": [
-      "80C8B540-708A-4241-AFE5-03F22BC1E369",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ],
-    "path": "b85c9ba2.png"
-  },
-  {
-    "id": "80C8B540-708A-4241-AFE5-03F22BC1E369---52D082A1-DF54-4081-AF7B-55B6F5B73405---D7CF10FC-1FDE-4FF6-9934-814439C4E631---86C83C2F-953A-498F-A97E-64CD1820D572",
-    "name": "¥ 2万",
-    "width": 64,
-    "height": 16,
-    "abX": 245,
-    "abY": 249,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "¥ 5",
-          "font": "DINAlternate-Bold",
-          "size": 18,
-          "lineHeight": 16
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "¥ 5万",
-    "symbolRoot": [
-      "80C8B540-708A-4241-AFE5-03F22BC1E369",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77---EA7F4C26-4F12-4E50-AD51-1A60B88AB9D3",
-    "name": "1",
-    "width": 174,
-    "height": 104,
-    "abX": 191,
-    "abY": 280,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": [3, 3, 3, 3],
-      "border": {
-        "type": "solid",
-        "color": { "r": 187, "g": 187, "b": 187, "a": 1 },
-        "width": 0.5,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QShape",
-    "symbolRoot": [
-      "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77---C37C2A2D-5863-4CF1-8353-36CCE34C6511",
-    "name": "(使用充值满送券15张)",
-    "width": 107,
-    "height": 16,
-    "abX": 223,
-    "abY": 333,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 187, "g": 187, "b": 187, "a": 1 },
-          "string": "(使用充值满送券50张)",
-          "font": "PingFangSC-Regular",
-          "size": 11,
-          "lineHeight": 15.399999999999999
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "(使用充值满送券50张)",
-    "symbolRoot": [
-      "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77---FA16C29B-785A-4989-9A76-9C8723EA6B49",
-    "name": "20万",
-    "width": 44,
-    "height": 16,
-    "abX": 265,
-    "abY": 295,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 192, "g": 140, "b": 62, "a": 1 },
-          "string": "10",
-          "font": "DINAlternate-Bold",
-          "size": 22,
-          "lineHeight": 16
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "100万",
-    "symbolRoot": [
-      "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77---52D082A1-DF54-4081-AF7B-55B6F5B73405---F536A844-FD2F-4F41-9C03-0CA4A228383F",
-    "name": "充值金币",
-    "width": 18,
-    "height": 18,
-    "abX": 241,
-    "abY": 294,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": [
-      "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ],
-    "path": "4480e0ed.png"
-  },
-  {
-    "id": "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77---52D082A1-DF54-4081-AF7B-55B6F5B73405---645C809F-7BEB-45AC-9845-EFDD29ECC258",
-    "name": "送 150",
-    "width": 48,
-    "height": 16,
-    "abX": 253,
-    "abY": 318,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "送",
-          "font": "PingFangSC-Medium",
-          "size": 11,
-          "lineHeight": 16
-        },
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": " ",
-          "font": "PingFangSC-Medium",
-          "size": 11,
-          "lineHeight": 16
-        },
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "     ",
-          "font": "PingFangSC-Semibold",
-          "size": 11,
-          "lineHeight": 16
-        },
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "150",
-          "font": "DINAlternate-Bold",
-          "size": 11,
-          "lineHeight": 16
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "送      150",
-    "symbolRoot": [
-      "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77---52D082A1-DF54-4081-AF7B-55B6F5B73405---D7CF10FC-1FDE-4FF6-9934-814439C4E631---65A2DE6B-2D04-4002-876F-E8D82593F9E5",
-    "name": "金币  copy 13",
-    "width": 12,
-    "height": 12,
-    "abX": 269,
-    "abY": 320,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": [
-      "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ],
-    "path": "962df406.png"
-  },
-  {
-    "id": "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77---52D082A1-DF54-4081-AF7B-55B6F5B73405---D7CF10FC-1FDE-4FF6-9934-814439C4E631---86C83C2F-953A-498F-A97E-64CD1820D572",
-    "name": "¥ 2万",
-    "width": 64,
-    "height": 16,
-    "abX": 245,
-    "abY": 358,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 129, "g": 129, "b": 129, "a": 1 },
-          "string": "¥ 1",
-          "font": "DINAlternate-Bold",
-          "size": 18,
-          "lineHeight": 16
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "¥ 10万",
-    "symbolRoot": [
-      "FACBDE81-FA5E-4ED0-A3F1-3F59CEE8FA77",
-      "52D082A1-DF54-4081-AF7B-55B6F5B73405",
-      "D7CF10FC-1FDE-4FF6-9934-814439C4E631"
-    ]
-  },
-  {
-    "id": "E030C149-6682-4ACA-8EC0-6711C4523FB7",
-    "name": "Path Copy 5",
-    "width": 355,
-    "height": 1,
-    "abX": 9,
-    "abY": 617,
-    "zIndex": 0,
-    "styles": {},
-    "type": "QImage",
-    "path": "dae8c337.png"
-  },
-  {
-    "id": "6DE6EBC8-DC24-4638-85FF-DD5D16C40647",
-    "name": "90,180",
-    "width": 43,
-    "height": 19,
-    "abX": 323,
-    "abY": 583,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "90,180",
-          "font": "DINAlternate-Bold",
-          "size": 16,
-          "lineHeight": 18.625
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 1
-    },
-    "type": "QText",
-    "text": "90,180"
-  },
-  {
-    "id": "364148A6-C9DF-45BB-BA3C-95BF754E7505",
-    "name": "总计金币：",
-    "width": 80,
-    "height": 22,
-    "abX": 11,
-    "abY": 581,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "总计金币：",
-          "font": "PingFangSC-Regular",
-          "size": 16,
-          "lineHeight": 22.4
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "总计金币："
-  },
-  {
-    "id": "8A89A835-9900-4498-9D56-4637BC273D52",
-    "name": "Path Copy备份 2",
-    "width": 356,
-    "height": 1,
-    "abX": 10,
-    "abY": 567,
-    "zIndex": 0,
-    "styles": {},
-    "type": "QImage",
-    "path": "1991a77f.png"
-  },
-  {
-    "id": "748DD1A2-3BC9-4A60-8607-EF2D181D2D3B",
-    "name": "Path 2",
-    "width": 6,
+    "id": "4B1F0975-1901-4AF0-AAC2-28AEF67CB763",
+    "name": "Oval 1",
+    "width": 67,
     "height": 11,
-    "abX": 358,
-    "abY": 537,
-    "zIndex": 0,
-    "styles": {},
-    "type": "QImage",
-    "path": "92f2114d.png"
-  },
-  {
-    "id": "A1FAE877-7C90-48D7-B632-E0614A866D9E",
-    "name": "充值优惠券",
-    "width": 80,
-    "height": 22,
-    "abX": 11,
-    "abY": 531,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "充值优惠券",
-          "font": "PingFangSC-Regular",
-          "size": 16,
-          "lineHeight": 22.4
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "充值优惠券"
-  },
-  {
-    "id": "530B6B2B-FCD2-4F9F-8A91-63DB531A4147",
-    "name": "Path Copy备份",
-    "width": 356,
-    "height": 1,
-    "abX": 10,
-    "abY": 517,
-    "zIndex": 0,
-    "styles": {},
-    "type": "QImage",
-    "path": "3f727c80.png"
-  },
-  {
-    "id": "9F51D98D-BA75-462C-A87C-F86A75A237C8",
-    "name": "0",
-    "width": 9,
-    "height": 20,
-    "abX": 356,
-    "abY": 483,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "0",
-          "font": "DIN-Regular",
-          "size": 16,
-          "lineHeight": null
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 1
-    },
-    "type": "QText",
-    "text": "0"
-  },
-  {
-    "id": "7BE6A98B-5FCE-40B2-98A7-1D6B6AAA2B62",
-    "name": "金币数量",
-    "width": 64,
-    "height": 22,
-    "abX": 11,
-    "abY": 481,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "金币数量",
-          "font": "PingFangSC-Regular",
-          "size": 16,
-          "lineHeight": 22.4
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "金币数量"
-  },
-  {
-    "id": "D3952F0B-EC1A-4254-986A-8B2A4F0AEE01",
-    "name": "Path Copy",
-    "width": 356,
-    "height": 1,
-    "abX": 9,
-    "abY": 466,
-    "zIndex": 0,
-    "styles": {},
-    "type": "QImage",
-    "path": "291bcedd.png"
-  },
-  {
-    "id": "714715E0-5863-4460-B890-9731ABBA1352",
-    "name": "请输入充值金额(1元=10金币)",
-    "width": 204,
-    "height": 20,
-    "abX": 162,
-    "abY": 431,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 169, "g": 169, "b": 169, "a": 1 },
-          "string": "请输入充值金额(",
-          "font": "PingFangSC-Regular",
-          "size": 14,
-          "lineHeight": 19.599999999999998
-        },
-        {
-          "color": { "r": 169, "g": 169, "b": 169, "a": 1 },
-          "string": "1",
-          "font": "PingFangSC-Medium",
-          "size": 14,
-          "lineHeight": 19.599999999999998
-        },
-        {
-          "color": { "r": 169, "g": 169, "b": 169, "a": 1 },
-          "string": "元=",
-          "font": "PingFangSC-Regular",
-          "size": 14,
-          "lineHeight": 19.599999999999998
-        },
-        {
-          "color": { "r": 169, "g": 169, "b": 169, "a": 1 },
-          "string": "10",
-          "font": "PingFangSC-Medium",
-          "size": 14,
-          "lineHeight": 19.599999999999998
-        },
-        {
-          "color": { "r": 169, "g": 169, "b": 169, "a": 1 },
-          "string": "金币)",
-          "font": "PingFangSC-Regular",
-          "size": 14,
-          "lineHeight": 19.599999999999998
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 1
-    },
-    "type": "QText",
-    "text": "请输入充值金额(1元=10金币)"
-  },
-  {
-    "id": "222791FE-8405-47E6-BFB3-72C298BAF298",
-    "name": "充值金额",
-    "width": 64,
-    "height": 22,
-    "abX": 11,
-    "abY": 429,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "充值金额",
-          "font": "PingFangSC-Regular",
-          "size": 16,
-          "lineHeight": 22.4
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "充值金额"
-  },
-  {
-    "id": "477BBDFC-1CA3-4FCD-9AB6-181DB618AEA5",
-    "name": "其他金额",
-    "width": 48,
-    "height": 17,
-    "abX": 10,
-    "abY": 403,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 155, "g": 155, "b": 155, "a": 1 },
-          "string": "其他金额",
-          "font": "PingFangSC-Regular",
-          "size": 12,
-          "lineHeight": 16.799999999999997
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "其他金额"
-  },
-  {
-    "id": "65FC67F4-92E0-41E3-A365-DCD567E37AD7",
-    "name": "Rectangle 307",
-    "width": 315,
-    "height": 40,
-    "abX": 30,
-    "abY": 642,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": [100, 100, 100, 100],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": [
-        {
-          "type": "inset",
-          "x": 0,
-          "y": 1,
-          "color": { "r": 192, "g": 159, "b": 106, "a": 0.3438592657342657 },
-          "spread": 0,
-          "blur": 4
-        }
-      ],
-      "background": {
-        "type": "linear",
-        "color": null,
-        "hasOpacity": false,
-        "x": "1",
-        "y": " 0.5",
-        "x1": "0.0031408361486486847",
-        "y1": " 0.5",
-        "colorStops": [
-          { "color": { "r": 236, "g": 206, "b": 155, "a": 1 }, "offset": 0 },
-          {
-            "color": { "r": 244, "g": 219, "b": 168, "a": 1 },
-            "offset": 0.5594911317567568
-          },
-          { "color": { "r": 249, "g": 224, "b": 172, "a": 1 }, "offset": 1 }
-        ]
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "8C3241ED-D195-4D0B-80C1-6BF576D5F877",
-    "name": "充值",
-    "width": 64,
-    "height": 14,
-    "abX": 156,
-    "abY": 654,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 189, "g": 114, "b": 37, "a": 1 },
-          "string": "充值",
-          "font": "PingFangSC-Regular",
-          "size": 18,
-          "lineHeight": 14
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "充值"
-  },
-  {
-    "id": "D56D9C2C-96E1-428E-9022-568A4EE60E6F",
-    "name": "20",
-    "width": 29,
-    "height": 35,
-    "abX": 78,
-    "abY": 105,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 62, "g": 62, "b": 62, "a": 1 },
-          "string": "20",
-          "font": "DINAlternate-Bold",
-          "size": 30,
-          "lineHeight": 34.921875
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "20"
-  },
-  {
-    "id": "A4D87AD3-7832-4376-BDBD-21C6ED4A9F73",
-    "name": "我的优惠券",
-    "width": 70,
-    "height": 20,
-    "abX": 281,
-    "abY": 113,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 169, "g": 169, "b": 169, "a": 1 },
-          "string": "我的优惠券",
-          "font": "PingFangSC-Regular",
-          "size": 14,
-          "lineHeight": 19.599999999999998
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 1
-    },
-    "type": "QText",
-    "text": "我的优惠券"
-  },
-  {
-    "id": "E8D3FC55-991D-4B0C-A733-DD43834CC47B",
-    "name": "Path 2",
-    "width": 4,
-    "height": 7,
-    "abX": 359,
-    "abY": 119,
-    "zIndex": 0,
-    "styles": {},
-    "type": "QImage",
-    "path": "c1e54bff.png"
-  },
-  {
-    "id": "0E46908B-E3B3-441D-94F2-DE02DDE46310",
-    "name": "金币余额",
-    "width": 56,
-    "height": 20,
-    "abX": 11,
-    "abY": 113,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 62, "g": 62, "b": 62, "a": 1 },
-          "string": "金币余额",
-          "font": "PingFangSC-Regular",
-          "size": 14,
-          "lineHeight": 19.599999999999998
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "金币余额"
-  },
-  {
-    "id": "8E1C6F97-AB85-4FB9-9C1E-CA7FD8862E0A",
-    "name": "Path Copy 4",
-    "width": 375,
-    "height": 1,
-    "abX": 0,
-    "abY": 151,
-    "zIndex": 0,
-    "styles": {},
-    "type": "QImage",
-    "path": "41092868.png"
-  },
-  {
-    "id": "9EE1DEB0-DA23-404D-B730-2E17838176E3",
-    "name": "Rectangle",
-    "width": 375,
-    "height": 30,
-    "abX": 0,
-    "abY": 64,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": [
-        {
-          "type": "inset",
-          "x": 0,
-          "y": 1,
-          "color": { "r": 192, "g": 159, "b": 106, "a": 0.3438592657342657 },
-          "spread": 0,
-          "blur": 4
-        }
-      ],
-      "background": {
-        "type": "linear",
-        "color": null,
-        "hasOpacity": false,
-        "x": "1",
-        "y": " 0.5",
-        "x1": "0.0031408361486486847",
-        "y1": " 0.5",
-        "colorStops": [
-          { "color": { "r": 244, "g": 219, "b": 168, "a": 1 }, "offset": 0 },
-          { "color": { "r": 249, "g": 224, "b": 172, "a": 1 }, "offset": 1 }
-        ]
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "963AE42D-945E-485C-B63C-82C390F45F5F",
-    "name": "已获得专享优惠券批量消耗特权",
-    "width": 154,
-    "height": 16,
     "abX": 13,
-    "abY": 71,
+    "abY": 16,
+    "zIndex": 1,
+    "styles": {},
+    "type": "QImage",
+    "path": "6a721f62.png"
+  },
+  {
+    "id": "758389A4-7661-4D10-84BF-8920E239A75C",
+    "name": "isux ",
+    "width": 49,
+    "height": 29,
+    "abX": 88,
+    "abY": 5,
     "zIndex": 1,
     "styles": {
       "borderRadius": null,
@@ -1707,50 +72,39 @@
       "background": null,
       "texts": [
         {
-          "color": { "r": 189, "g": 114, "b": 37, "a": 1 },
-          "string": "已获得专享优惠券批量消耗特权",
-          "font": "PingFangSC-Regular",
-          "size": 11,
-          "lineHeight": 15.399999999999999
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "isux ",
+          "font": ".HelveticaNeueDeskInterface-Regular",
+          "size": 25,
+          "lineHeight": null
         }
       ],
       "verticalAlign": 0,
       "textAlign": 0
     },
     "type": "QText",
-    "text": "已获得专享优惠券批量消耗特权"
+    "text": "isux "
   },
   {
-    "id": "BCB73923-A134-4AE4-AEA3-8C766D1A1929",
-    "name": "Oval",
-    "width": 11.5,
-    "height": 11.5,
-    "abX": 172.75,
-    "abY": 73.75,
+    "id": "469A12F4-F792-4F8E-86D1-9B5DC14D64DF",
+    "name": "Oval 6",
+    "width": 26,
+    "height": 19,
+    "abX": 137,
+    "abY": 12,
     "zIndex": 1,
-    "styles": {
-      "borderRadius": ["50%", "50%", "50%", "50%"],
-      "border": {
-        "type": "solid",
-        "color": { "r": 189, "g": 114, "b": 37, "a": 1 },
-        "width": 0.5,
-        "position": 0
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QShape"
+    "styles": {},
+    "type": "QImage",
+    "path": "18dad886.png"
   },
   {
-    "id": "1437B482-E1DF-41BC-9E60-2C51538C6E99",
-    "name": "？",
-    "width": 5,
-    "height": 11,
-    "abX": 176,
-    "abY": 74,
-    "zIndex": 2,
+    "id": "23B949E4-C5D8-40B8-AC91-D1CCE8232C3D",
+    "name": "上午9:41",
+    "width": 128,
+    "height": 29,
+    "abX": 326,
+    "abY": 6,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -1760,17 +114,1162 @@
       "background": null,
       "texts": [
         {
-          "color": { "r": 189, "g": 114, "b": 37, "a": 1 },
-          "string": "？",
-          "font": "PingFangSC-Regular",
-          "size": 8,
-          "lineHeight": 11.2
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "上午",
+          "font": "STHeitiSC-Light",
+          "size": 25,
+          "lineHeight": null
+        },
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "9:41",
+          "font": ".HelveticaNeueDeskInterface-Regular",
+          "size": 25,
+          "lineHeight": null
         }
       ],
       "verticalAlign": 0,
-      "textAlign": 2
+      "textAlign": 0
     },
     "type": "QText",
-    "text": "？"
+    "text": "上午9:41"
+  },
+  {
+    "id": "20C4104A-7520-4E8C-86F0-E48F45A6AE0C",
+    "name": "100%",
+    "width": 75,
+    "height": 29,
+    "abX": 612,
+    "abY": 6,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "100%",
+          "font": ".HelveticaNeueDeskInterface-Regular",
+          "size": 25,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "100%"
+  },
+  {
+    "id": "_28F54271-BEDB-46D0-B44F-B4243AD84AFF_6F8DA8A4-0817-4FE3-A50B-4E57FC9E22E8_804988B5-16C0-4BBC-878D-8BA9EB92A147",
+    "name": "_Rectangle 4_Rectangle 5_Rectangle 6",
+    "width": 49,
+    "height": 19,
+    "abX": 690,
+    "abY": 11,
+    "zIndex": 1,
+    "styles": {},
+    "type": "QImage",
+    "path": "98427bd2.png"
+  },
+  {
+    "id": "2A73F22D-33B7-4EAB-98BB-2C270B380361",
+    "name": "返回",
+    "width": 68,
+    "height": 48,
+    "abX": 46,
+    "abY": 60,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
+          "string": "返回",
+          "font": "PingFangSC-Regular",
+          "size": 34,
+          "lineHeight": 47.599999999999994
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "返回"
+  },
+  {
+    "id": "32D94D52-2F63-4E9F-A730-715361A9404D",
+    "name": "Line",
+    "width": 24,
+    "height": 42,
+    "abX": 16,
+    "abY": 62,
+    "zIndex": 1,
+    "styles": {},
+    "type": "QImage",
+    "path": "1b433069.png"
+  },
+  {
+    "id": "ED5099B7-9107-4717-8036-EA20692AA15C",
+    "name": "Bitmap",
+    "width": 391,
+    "height": 257,
+    "abX": 163,
+    "abY": 169,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "f4100fea.png"
+  },
+  {
+    "id": "CC8D4693-D249-4A9B-B80E-802390CCFD78",
+    "name": "矩形",
+    "width": 630,
+    "height": 2,
+    "abX": 60,
+    "abY": 426,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 216, "g": 216, "b": 216, "a": 0.4904 },
+        "hasOpacity": false
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "F4B2B662-B079-409F-8DC9-6A3279618980",
+    "name": "奥尔托",
+    "width": 72,
+    "height": 28,
+    "abX": 60,
+    "abY": 678,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "奥尔托",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "奥尔托"
+  },
+  {
+    "id": "FB2ACF05-98D4-40F9-A378-86BF52124E89",
+    "name": "2345人在玩",
+    "width": 119,
+    "height": 24,
+    "abX": 60,
+    "abY": 718,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "2345人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22,
+          "lineHeight": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "2345人在玩"
+  },
+  {
+    "id": "_A7BCF1B0-92D6-444C-8CA0-9311BBB5ED5C_F69FCE2F-1F65-44C2-A563-77058B2C233D",
+    "name": "_Rectangle 9_图层 4",
+    "width": 132,
+    "height": 132,
+    "abX": 60,
+    "abY": 526,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": [16, 16, 16, 16],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "6fc1bbbf.png"
+  },
+  {
+    "id": "E850756F-6ACC-47F9-A3BE-F276FB543290",
+    "name": "香肠派对",
+    "width": 96,
+    "height": 28,
+    "abX": 60,
+    "abY": 914,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "香肠派对",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "香肠派对"
+  },
+  {
+    "id": "455E8600-9941-4D37-A40E-D401E52777F2",
+    "name": "2345人在玩",
+    "width": 119,
+    "height": 24,
+    "abX": 60,
+    "abY": 954,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "2345人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22,
+          "lineHeight": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "2345人在玩"
+  },
+  {
+    "id": "_C0185320-FB12-43B0-A5B8-1E8317FFB035_AA725BD4-A716-4FD1-A9C3-BDBEE560FAE6",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 132,
+    "height": 132,
+    "abX": 60,
+    "abY": 762,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": [16, 16, 16, 16],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "4a700dc9.png"
+  },
+  {
+    "id": "9A5EE43C-8C11-42B2-A594-233DD869597F",
+    "name": "皮皮猫",
+    "width": 72,
+    "height": 28,
+    "abX": 60,
+    "abY": 1150,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "皮皮猫",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "皮皮猫"
+  },
+  {
+    "id": "7335D4C1-8258-4539-830C-4539F5427F02",
+    "name": "2345人在玩",
+    "width": 119,
+    "height": 24,
+    "abX": 60,
+    "abY": 1190,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "2345人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22,
+          "lineHeight": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "2345人在玩"
+  },
+  {
+    "id": "_B4944520-50CF-439F-B271-F40C1196891F_4B85E529-A2DC-473F-939B-692D469BAB23",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 132,
+    "height": 132,
+    "abX": 60,
+    "abY": 998,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": [16, 16, 16, 16],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "f7bd0f28.png"
+  },
+  {
+    "id": "871C8278-6A49-4E77-81CA-FBD400754E78",
+    "name": "仙境传说",
+    "width": 96,
+    "height": 28,
+    "abX": 226,
+    "abY": 678,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "仙境传说",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "仙境传说"
+  },
+  {
+    "id": "B67F1039-083E-4678-9099-D4A067EFE66E",
+    "name": "2.5W人在玩",
+    "width": 119,
+    "height": 24,
+    "abX": 226,
+    "abY": 718,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "2.5W人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22,
+          "lineHeight": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "2.5W人在玩"
+  },
+  {
+    "id": "_8F7A051C-FC30-4E31-8749-549387626ED1_B2E09CC4-40F5-466A-9127-7654928E9BE3_AC08A3BB-4B5B-4CFE-93D4-8AA994251688",
+    "name": "_Rectangle 9_图层 4_Bitmap",
+    "width": 132,
+    "height": 132,
+    "abX": 226,
+    "abY": 526,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": [16, 16, 16, 16],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "241a7e21.png"
+  },
+  {
+    "id": "F37D119A-16AF-4051-8BBD-431B7BE35C75",
+    "name": "仙境传说",
+    "width": 96,
+    "height": 28,
+    "abX": 226,
+    "abY": 914,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "仙境传说",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "仙境传说"
+  },
+  {
+    "id": "8E01A022-420F-4745-B21D-5C9E9F711CA6",
+    "name": "2.5W人在玩",
+    "width": 119,
+    "height": 24,
+    "abX": 226,
+    "abY": 954,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "2.5W人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22,
+          "lineHeight": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "2.5W人在玩"
+  },
+  {
+    "id": "_398EB325-29A4-4DB8-B1D2-57AF9BD57069_74D195E9-5B23-48D3-A90A-516AA25D5077",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 132,
+    "height": 132,
+    "abX": 226,
+    "abY": 762,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": [16, 16, 16, 16],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "f4b7fbc5.png"
+  },
+  {
+    "id": "A33C3BD6-203C-4A91-AD33-9303FB17945A",
+    "name": "仙境传说",
+    "width": 96,
+    "height": 28,
+    "abX": 226,
+    "abY": 1150,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "仙境传说",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "仙境传说"
+  },
+  {
+    "id": "69A10775-413F-4B6A-B5F1-78C1BBD2F990",
+    "name": "2.5W人在玩",
+    "width": 119,
+    "height": 24,
+    "abX": 226,
+    "abY": 1190,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "2.5W人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22,
+          "lineHeight": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "2.5W人在玩"
+  },
+  {
+    "id": "_C22E0A7C-59FB-47BF-AB18-12C461F9BED5_4AEAA05E-22B5-4809-AB73-90DFF4F1443E",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 132,
+    "height": 132,
+    "abX": 226,
+    "abY": 998,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": [16, 16, 16, 16],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "f23bf88b.png"
+  },
+  {
+    "id": "0E375A48-14BC-4DBA-83B8-8F4B21C0A752",
+    "name": "Food Tru…",
+    "width": 126,
+    "height": 28,
+    "abX": 392,
+    "abY": 678,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "Food Tru…",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "Food Tru…"
+  },
+  {
+    "id": "9B740FD8-65EA-4FC6-8D2D-828DBA97AE4E",
+    "name": "5667人在玩",
+    "width": 118,
+    "height": 24,
+    "abX": 392,
+    "abY": 718,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "5667人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22,
+          "lineHeight": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "5667人在玩"
+  },
+  {
+    "id": "_EFD2F50F-3D93-4104-A4FE-C3BDE4ABAEE5_E6373A3E-9B0B-4865-9E46-EA997A35785A",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 132,
+    "height": 132,
+    "abX": 392,
+    "abY": 526,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": [16, 16, 16, 16],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "46c5ba4d.png"
+  },
+  {
+    "id": "0A068049-CF9D-47F9-8133-9416AC6F376F",
+    "name": "奥尔托",
+    "width": 72,
+    "height": 28,
+    "abX": 392,
+    "abY": 914,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "奥尔托",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "奥尔托"
+  },
+  {
+    "id": "543B927E-7E96-4837-860C-AA0A2649AB0D",
+    "name": "3223人在玩",
+    "width": 119,
+    "height": 24,
+    "abX": 392,
+    "abY": 954,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "3223人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22,
+          "lineHeight": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "3223人在玩"
+  },
+  {
+    "id": "_B6571A73-5DAE-4549-9285-1F3CEFB0F0EC_71CC36CC-BD9F-4CE8-BADB-13096EAA8D15",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 132,
+    "height": 132,
+    "abX": 392,
+    "abY": 762,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": [16, 16, 16, 16],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "8a46bbfe.png"
+  },
+  {
+    "id": "31917616-C8C1-4423-8A85-CC48B758BC3B",
+    "name": "深海水族馆",
+    "width": 120,
+    "height": 28,
+    "abX": 392,
+    "abY": 1150,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "深海水族馆",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "深海水族馆"
+  },
+  {
+    "id": "292CAA7F-9F94-4E36-8D41-3D555408D210",
+    "name": "8721人在玩",
+    "width": 114,
+    "height": 24,
+    "abX": 392,
+    "abY": 1190,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "8721人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22,
+          "lineHeight": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "8721人在玩"
+  },
+  {
+    "id": "_51308484-D062-4E3F-B71C-9E98D7EC1489_97A51A4D-5E4E-42D0-ABBB-B64502184CB1",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 132,
+    "height": 132,
+    "abX": 392,
+    "abY": 998,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": [16, 16, 16, 16],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "b4dc4575.png"
+  },
+  {
+    "id": "DA3B4719-253F-4C1F-BE34-AA5BA42C80B5",
+    "name": "权力的游戏",
+    "width": 120,
+    "height": 28,
+    "abX": 558,
+    "abY": 678,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "权力的游戏",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "权力的游戏"
+  },
+  {
+    "id": "18889AEC-574C-46BD-802D-52097F8324CB",
+    "name": "1.3W人在玩",
+    "width": 115,
+    "height": 24,
+    "abX": 558,
+    "abY": 718,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "1.3W人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22,
+          "lineHeight": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "1.3W人在玩"
+  },
+  {
+    "id": "_94E00B98-3106-4640-8364-CD8CA01E55E7_C97E3BFC-4AD6-407B-827C-C6FF4BE0DC3E",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 132,
+    "height": 132,
+    "abX": 558,
+    "abY": 526,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": [16, 16, 16, 16],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "c4c070c5.png"
+  },
+  {
+    "id": "248DE429-1F71-406A-BB8D-A7273B6AE3B2",
+    "name": "魔女兵器",
+    "width": 96,
+    "height": 28,
+    "abX": 558,
+    "abY": 914,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "魔女兵器",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "魔女兵器"
+  },
+  {
+    "id": "0479C7E9-03F5-4A8E-AF9F-DF6BB288728C",
+    "name": "2345人在玩",
+    "width": 119,
+    "height": 24,
+    "abX": 558,
+    "abY": 954,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "2345人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22,
+          "lineHeight": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "2345人在玩"
+  },
+  {
+    "id": "_F7AD9A5D-085F-4C43-9EDE-F480C178F368_E7FB3B75-12B4-4E10-BFCD-982C763F7383",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 132,
+    "height": 132,
+    "abX": 558,
+    "abY": 762,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": [16, 16, 16, 16],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "7ba62473.png"
+  },
+  {
+    "id": "0C3389A4-C716-490F-B22F-2DA5387A53C1",
+    "name": "kreator",
+    "width": 80,
+    "height": 28,
+    "abX": 558,
+    "abY": 1150,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "kreator",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "kreator"
+  },
+  {
+    "id": "483495CD-87F7-421A-8B5E-524270055024",
+    "name": "3.2W人在玩",
+    "width": 119,
+    "height": 24,
+    "abX": 558,
+    "abY": 1190,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 153, "g": 153, "b": 153, "a": 1 },
+          "string": "3.2W人在玩",
+          "font": "PingFangSC-Regular",
+          "size": 22,
+          "lineHeight": 24
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "3.2W人在玩"
+  },
+  {
+    "id": "_467C20CD-E2A4-40F4-A95D-138188BC3847_17EA75B4-D63B-4635-AD01-4DA515918690",
+    "name": "_Rectangle 9_Bitmap",
+    "width": 132,
+    "height": 132,
+    "abX": 558,
+    "abY": 998,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": [16, 16, 16, 16],
+      "border": null,
+      "shadows": null
+    },
+    "type": "QImage",
+    "path": "f3fa6e81.png"
+  },
+  {
+    "id": "31260910-2416-40CF-8509-170D08232CF8",
+    "name": "超火爆免下载游戏，点开即玩！",
+    "width": 392,
+    "height": 28,
+    "abX": 179,
+    "abY": 468,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "超火爆免下载游戏，点开即玩！",
+          "font": "PingFangSC-Medium",
+          "size": 28,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "超火爆免下载游戏，点开即玩！"
+  },
+  {
+    "id": "5E00706E-3FA3-410D-A2D7-C15DF3894CEB",
+    "name": "矩形",
+    "width": 750,
+    "height": 80,
+    "abX": 0,
+    "abY": 1254,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": {
+        "type": "color",
+        "color": { "r": 236, "g": 212, "b": 79, "a": 0.2401211503623188 },
+        "hasOpacity": true
+      }
+    },
+    "type": "QShape"
+  },
+  {
+    "id": "4E6632FE-C5E8-4542-9730-30E1B3DC3188",
+    "name": "路径",
+    "width": 10,
+    "height": 16,
+    "abX": 679,
+    "abY": 1286,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "b1a61acb.png"
+  },
+  {
+    "id": "A116049D-40DA-4961-9585-D6E363E1176F",
+    "name": "最新最全轻游戏，尽在开心玩",
+    "width": 312,
+    "height": 28,
+    "abX": 60,
+    "abY": 1280,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
+          "string": "最新最全轻游戏，尽在开心玩",
+          "font": "PingFangSC-Regular",
+          "size": 24,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "最新最全轻游戏，尽在开心玩"
   }
 ]

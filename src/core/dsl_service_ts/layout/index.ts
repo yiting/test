@@ -49,8 +49,8 @@ export default function(dslTree: any) {
     _logStep = '循环';
     walkOut(LayoutCircle, dslTree);
     // 排序
-    _logStep = '排序';
-    walkIn(LayoutSort, dslTree);
+    // _logStep = '排序';
+    // walkIn(LayoutSort, dslTree);
   } catch (e) {
     Loger.error(`dsl/layout/index.ts layout()
       desc: ${_logStep}
