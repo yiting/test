@@ -33,6 +33,7 @@ function organize(segmentings: any[], body: Model) {
       if (!parent) {
         return false;
       }
+
       let node;
       // 如果父节点包含干涉元素，则只有干涉元素能作为子节点
       if (
