@@ -40,7 +40,7 @@ async function parse(context: Context) {
   const { response: res, request: req } = context;
   let { artboardId, data, fileType } = req.body;
   let parseData: any = {};
-  let { aiData, font: fontData } = data;
+  let { aiData, font: fontData, isPreedit, combineLayers } = data;
   let responseData: ResponseData = new ResponseData();
   try {
     // sketch特殊处理
@@ -51,10 +51,13 @@ async function parse(context: Context) {
       responseData.state = 2;
       responseData.msg = '找不到文件';
     } else {
-      data = require(dataPath);
-      data.aiData = aiData;
-      data.fontData = fontData;
-      parseData = DesignJson.parse(artboardId, data);
+      const jsonData = Object.assign(require(dataPath), {
+        aiData,
+        fontData,
+        isPreedit,
+        combineLayers,
+      });
+      parseData = DesignJson.parse(artboardId, jsonData);
       responseData.data = parseData;
     }
   } catch (error) {

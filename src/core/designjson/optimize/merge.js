@@ -330,7 +330,7 @@ function mergeJudge(nodelist, ruleConfig, root) {
   return groups;
 }
 function getRuleConfig(ruleMap, option) {
-  const { aiData, sliceData, rate } = option;
+  const { aiData, sliceData, rate, combineLayers } = option;
   let ruleConfig = {};
   ruleMap.data.forEach(item => {
     ruleConfig[item.type] = {
@@ -353,6 +353,7 @@ function getRuleConfig(ruleMap, option) {
       return obj;
     });
   ruleConfig.sliceArr = sliceData;
+  ruleConfig.combineLayers = combineLayers;
   return ruleConfig;
 }
 module.exports = process;
