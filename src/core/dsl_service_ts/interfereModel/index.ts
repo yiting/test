@@ -6,7 +6,6 @@ import Constraints from '../helper/constraints';
 export default function(nodes: any) {
   let groups = Store.get('groups') || [];
   let map: any = {};
-  let interfereNodes: any = [];
   nodes.forEach((n: any) => {
     map[n.id] = n;
   });

@@ -1,5 +1,5 @@
 import Constraints from '../helper/constraints';
-import Utils from './utils';
+import Utils from '../helper/methods';
 import Dictionary from '../helper/dictionary';
 import FontLineHeight from '../helper/fontLineHeight';
 class VDom {

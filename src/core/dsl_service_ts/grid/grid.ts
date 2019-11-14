@@ -9,15 +9,21 @@ import Inline from '../../dsl_extend/widgets/inline/widget';
  */
 
 function _row(parent: any) {
-  const { children } = parent;
+  let { children } = parent;
   // 如果只有一个子节点，则不生成新组
   if (children.length <= 1) {
     // 当只包含一个元素时就不用创建QLayer
     return;
   }
   // 分解行
-  const layers = Utils.gatherByLogic(children, (a: any, b: any) => {
-    if (Utils.isYConnect(a, b, -1)) {
+  let layers = Utils.gatherByLogic(children, (a: any, b: any) => {
+    if (
+      a.constraints.LayoutSelfPosition !==
+        Constraints.LayoutSelfPosition.Absolute &&
+      b.constraints.LayoutSelfPosition !==
+        Constraints.LayoutSelfPosition.Absolute &&
+      Utils.isYConnect(a, b, -1)
+    ) {
       if (
         // 如果a节点层级高于b，且a节点位置高于b，且水平相连，则为一组（a为绝对定位，如红点）
         (Utils.isXConnect(a, b, -1) &&
@@ -36,7 +42,7 @@ function _row(parent: any) {
   }
   // 计算边界
   layers.forEach((l: any) => {
-    const range = Utils.calRange(
+    let range = Utils.calRange(
       l.filter(
         (n: any) =>
           n.constraints &&
@@ -49,7 +55,7 @@ function _row(parent: any) {
 
   const newChildren: any = [];
   layers.forEach((arr: any) => {
-    const firstNode = arr[0];
+    let firstNode = arr[0];
     /**
      * 当横向节点只有一个，且
      * 该节点是绝对定位元素，
@@ -105,7 +111,13 @@ function _column(parent: any) {
 
   // 分解列
   const layers = Utils.gatherByLogic(children, (a: any, b: any) => {
-    return Utils.isXConnect(a, b);
+    return (
+      a.constraints.LayoutSelfPosition !==
+        Constraints.LayoutSelfPosition.Absolute &&
+      b.constraints.LayoutSelfPosition !==
+        Constraints.LayoutSelfPosition.Absolute &&
+      Utils.isXConnect(a, b)
+    );
   });
   // 如果只有一列，则不生成新组
   if (layers.length === 1) {

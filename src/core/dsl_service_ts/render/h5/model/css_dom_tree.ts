@@ -2,7 +2,7 @@
 import { debug } from 'util';
 import Dictionary from '../../../helper/dictionary';
 import Constraints from '../../../helper/constraints';
-import Utils from '../../utils';
+import Utils from '../../../helper/methods';
 import Func from '../css_func';
 import QLog from '../../../log/qlog';
 import VDom from '../../vdom';

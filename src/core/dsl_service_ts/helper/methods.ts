@@ -1,5 +1,5 @@
 // 此模块用于定义一些在dsl模块包中用到的工具函数
-import Utils from './utils';
+import Constraints from './constraints';
 
 const utils = {
   /**
@@ -64,7 +64,10 @@ const utils = {
   },
   // 在Y轴上是包含关系
   isYWrap(a: any, b: any, dir: number = 0) {
-    return Utils.isYWrap(a.abY, a.abYops, b.abY, b.abYops, dir);
+    return (
+      Math.abs((a.abY + a.abYops) / 2 - (b.abY + b.abYops) / 2) <=
+      Math.abs(a.abYops - a.abY - b.abYops + b.abY) / 2 + dir
+    );
   },
   // 在X轴上是包含关系
   isXWrap(
@@ -72,7 +75,10 @@ const utils = {
     b: { abX: number; abXops: number },
     dir = 0,
   ) {
-    return Utils.isXWrap(a.abX, a.abXops, b.abX, b.abXops, dir);
+    return (
+      Math.abs((a.abX + a.abXops) / 2 - (b.abX + b.abXops) / 2) <=
+      Math.abs(a.abXops - a.abX - b.abXops + b.abX) / 2 + dir
+    );
   },
   // 相连关系
   isConnect(
@@ -88,7 +94,11 @@ const utils = {
     b: { abX: number; abXops: number },
     dir = 0,
   ) {
-    return Utils.isXConnect(a.abX, a.abXops, b.abX, b.abXops, dir);
+    const aCx = (a.abX + a.abXops) / 2;
+    const bCx = (b.abX + b.abXops) / 2;
+    return (
+      Math.abs(aCx - bCx) <= (a.abXops - a.abX + b.abXops - b.abX) / 2 + dir
+    );
   },
   // 垂直方向相连
   isYConnect(
@@ -96,7 +106,11 @@ const utils = {
     b: { abY: number; abYops: number },
     dir = 0,
   ) {
-    return Utils.isYConnect(a.abY, a.abYops, b.abY, b.abYops, dir);
+    const aCy = (a.abY + a.abYops) / 2;
+    const bCy = (b.abY + b.abYops) / 2;
+    return (
+      Math.abs(aCy - bCy) <= (a.abYops - a.abY + b.abYops - b.abY) / 2 + dir
+    );
   },
   /**
    * 是否垂直
@@ -118,6 +132,17 @@ const utils = {
     // (b_abY < a_abY + a_height + errorCoefficient);
     return this.isYConnect(a, b, errorCoefficient);
   },
+  filterAbsNode(nodes: any) {
+    return nodes.filter((n: any) => {
+      return !this.isAbsolute(n);
+    });
+  },
+  isAbsolute(node: any) {
+    return (
+      node.constraints.LayoutSelfPosition ===
+      Constraints.LayoutSelfPosition.Absolute
+    );
+  },
   /**
    * 是否水平
    * logic：若垂直方向不相交，则水平方向相交为水平
@@ -127,13 +152,17 @@ const utils = {
   isHorizontal(doms: any[], _errorCoefficient: any = 0) {
     const errorCoefficient = parseFloat(_errorCoefficient) || 0;
     const _ = this;
-    return doms.every((a, i) => {
-      const isFix = doms.every((b, j) => {
-        const isFix2 = j <= i || _.horizontalLogic(a, b, errorCoefficient);
-        return isFix2;
+    return doms
+      .filter((n: any) => {
+        return !this.isAbsolute(n);
+      })
+      .every((a, i) => {
+        const isFix = doms.every((b, j) => {
+          const isFix2 = j <= i || _.horizontalLogic(a, b, errorCoefficient);
+          return isFix2;
+        });
+        return isFix;
       });
-      return isFix;
-    });
   },
   RGB2HEX(color: { r: number; g: number; b: number; a: number }) {
     const red = ('0' + color.r.toString(16)).slice(-2);

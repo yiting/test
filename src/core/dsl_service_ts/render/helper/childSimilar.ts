@@ -1,4 +1,4 @@
-import Utils from '../utils';
+import Utils from '../../helper/methods';
 import Constraints from '../../helper/constraints';
 // template engine
 import QLog from '../../log/qlog';
@@ -126,7 +126,7 @@ class ChildSimilar {
         return;
       }
       // 根据特征分组，同组即应为相同similarId
-      const groups = Utils.gatherByLogic(compareNodes, (a, b) => {
+      const groups = Utils.gatherByLogic(compareNodes, (a: any, b: any) => {
         const isSimilar = _similarLogic(a, b, this._nodeCache);
         return isSimilar;
       });
