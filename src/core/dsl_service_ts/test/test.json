@@ -1,9 +1,9 @@
 [
   {
-    "id": "DB6B5CC3-8F74-4B41-BDE0-9B5B8AD1698E",
-    "name": "游戏榜单-默认效果复制 7",
-    "width": 750,
-    "height": 1624,
+    "id": "F9594CC3-1981-496A-A6F3-7CBE96CE80BE",
+    "name": "Purchase History",
+    "width": 375,
+    "height": 667,
     "abX": 0,
     "abY": 0,
     "zIndex": 0,
@@ -15,132 +15,32 @@
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 247,
-          "g": 247,
-          "b": 247,
-          "a": 1
-        },
+        "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
         "hasOpacity": false
       }
     },
     "type": "QLayer"
   },
   {
-    "id": "FACF492B-D279-4E22-9B09-AC4252425EC5",
-    "name": "Rectangle",
-    "width": 718,
-    "height": 1501,
-    "abX": 16,
-    "abY": 442,
+    "id": "_7996FC40-A45E-494E-876C-AE0A496FED05_E80F59A7-54B9-43C8-B16E-66979CD32C49_3F9CA474-EE62-4379-B013-0799B84E608C",
+    "name": "_Border_Nub_Charge",
+    "width": 27,
+    "height": 12,
+    "abX": 343,
+    "abY": 5,
     "zIndex": 0,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": [
-        {
-          "type": "inset",
-          "x": 0,
-          "y": 4,
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0.03
-          },
-          "spread": 0,
-          "blur": 20
-        }
-      ],
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "42AFAE0A-7210-4DC3-B3D4-0E615743C2AF",
-    "name": "矩形",
-    "width": 140,
-    "height": 1506,
-    "abX": 16,
-    "abY": 442,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 248,
-          "g": 250,
-          "b": 251,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "65803A91-EF4B-4BF1-8E1F-2AC7A14FA8BB",
-    "name": "矩形",
-    "width": 140,
-    "height": 100,
-    "abX": 16,
-    "abY": 442,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 0.9
-        },
-        "hasOpacity": true
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "_F6636B38-28B3-4231-848B-2EBB5B8154C3_FAD3C145-6A39-4332-9D0F-1422F57F6D2E_89C6D683-06F1-49A9-AB39-050750FD0A7D_ACD5F5D0-6F67-4255-9C1D-15B5ACBF3987_01F6670B-0DF8-43BE-B123-56C54C434547",
-    "name": "_形状结合_形状结合_形状结合复制 2_形状结合复制 3_形状结合复制 4",
-    "width": 57,
-    "height": 51,
-    "abX": 17,
-    "abY": 422,
-    "zIndex": 3,
     "styles": {},
     "type": "QImage",
-    "path": "ee714351.png"
+    "path": "fe0fd641.png"
   },
   {
-    "id": "2D4DD149-9047-4692-874F-934FC56131E1",
-    "name": "热游",
-    "width": 56,
-    "height": 40,
-    "abX": 58,
-    "abY": 472,
-    "zIndex": 4,
+    "id": "464E7542-27A9-46BD-AC2A-BC7F61E19FC4",
+    "name": "100%",
+    "width": 33,
+    "height": 14,
+    "abX": 307,
+    "abY": 4,
+    "zIndex": 0,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -150,32 +50,39 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 43,
-            "g": 184,
-            "b": 247,
-            "a": 1
-          },
-          "string": "热游",
-          "font": "PingFangSC-Medium",
-          "size": 28,
-          "lineHeight": 39.199999999999996
+          "color": { "r": 3, "g": 3, "b": 3, "a": 1 },
+          "string": "100%",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
         }
       ],
       "verticalAlign": 0,
-      "textAlign": 2
+      "textAlign": 1
     },
     "type": "QText",
-    "text": "热游"
+    "text": "100%"
   },
   {
-    "id": "AB58E5A2-0850-468D-9D32-0B01C1B6A4E3",
-    "name": "新游",
-    "width": 56,
-    "height": 40,
-    "abX": 58,
-    "abY": 572,
-    "zIndex": 2,
+    "id": "7B83B6E2-9FED-42AC-B4E6-2408607031E9",
+    "name": "Bluetooth",
+    "width": 6,
+    "height": 10,
+    "abX": 299,
+    "abY": 5,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "956dd4d4.png"
+  },
+  {
+    "id": "37A94AFB-3712-4EB3-875D-7C57D20091D6",
+    "name": "Time",
+    "width": 49,
+    "height": 14,
+    "abX": 163,
+    "abY": 4,
+    "zIndex": 0,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -185,32 +92,27 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 0.5
-          },
-          "string": "新游",
-          "font": "PingFang-SC-Medium",
-          "size": 28,
-          "lineHeight": 39.199999999999996
+          "color": { "r": 3, "g": 3, "b": 3, "a": 1 },
+          "string": "9:41 AM",
+          "font": "SFProText-Semibold",
+          "size": 12,
+          "lineHeight": null
         }
       ],
       "verticalAlign": 0,
       "textAlign": 2
     },
     "type": "QText",
-    "text": "新游"
+    "text": "9:41 AM"
   },
   {
-    "id": "3F76E72A-9542-47F7-849B-B56FCCEDB558",
-    "name": "好友",
-    "width": 56,
-    "height": 40,
-    "abX": 58,
-    "abY": 672,
-    "zIndex": 2,
+    "id": "8B3A2E2A-40E4-41EB-97D9-110283667C23---0AA6E386-D5A3-4889-8221-2D6C72CE0F14",
+    "name": "Carrier",
+    "width": 40,
+    "height": 14,
+    "abX": 26,
+    "abY": 4,
+    "zIndex": 0,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -220,32 +122,54 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 0.5
-          },
-          "string": "好友",
-          "font": "PingFang-SC-Medium",
-          "size": 28,
-          "lineHeight": 39.199999999999996
+          "color": { "r": 3, "g": 3, "b": 3, "a": 1 },
+          "string": "Sketch",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
         }
       ],
       "verticalAlign": 0,
-      "textAlign": 2
+      "textAlign": 0
     },
     "type": "QText",
-    "text": "好友"
+    "text": "Sketch",
+    "symbolRoot": ["8B3A2E2A-40E4-41EB-97D9-110283667C23"]
   },
   {
-    "id": "370FD86E-B57B-4E4C-967A-380F002EFD01",
-    "name": "竞技",
-    "width": 56,
-    "height": 40,
-    "abX": 58,
-    "abY": 772,
-    "zIndex": 2,
+    "id": "8B3A2E2A-40E4-41EB-97D9-110283667C23---1523C6D2-0407-4950-A849-F3F7CB82C01F",
+    "name": "Mobile Signal",
+    "width": 17,
+    "height": 10,
+    "abX": 6,
+    "abY": 5,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "symbolRoot": ["8B3A2E2A-40E4-41EB-97D9-110283667C23"],
+    "path": "810992ad.png"
+  },
+  {
+    "id": "8B3A2E2A-40E4-41EB-97D9-110283667C23---2AD65EA2-8909-4487-AA86-F7BA2C45A140",
+    "name": "Wifi",
+    "width": 14,
+    "height": 10,
+    "abX": 71,
+    "abY": 5,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "symbolRoot": ["8B3A2E2A-40E4-41EB-97D9-110283667C23"],
+    "path": "4649bf79.png"
+  },
+  {
+    "id": "BEC34FE1-D2B5-4CE7-B557-B9D19F741974",
+    "name": "Purchase History",
+    "width": 130,
+    "height": 19,
+    "abX": 123,
+    "abY": 43,
+    "zIndex": 0,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -255,1801 +179,88 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 0.5
-          },
-          "string": "竞技",
-          "font": "PingFang-SC-Medium",
-          "size": 28,
-          "lineHeight": 39.199999999999996
+          "color": { "r": 51, "g": 51, "b": 61, "a": 1 },
+          "string": "Purchase History",
+          "font": "SFProText-Regular",
+          "size": 16,
+          "lineHeight": null
         }
       ],
       "verticalAlign": 0,
       "textAlign": 2
     },
     "type": "QText",
-    "text": "竞技"
+    "text": "Purchase History"
   },
   {
-    "id": "E8052627-9625-4151-A6BD-B29E05CB71BA",
-    "name": "休闲",
-    "width": 56,
-    "height": 40,
-    "abX": 58,
-    "abY": 872,
-    "zIndex": 2,
+    "id": "9919EAA8-3D57-4CA4-AD0D-36AC8B299BCE",
+    "name": "Rectangle 44",
+    "width": 375,
+    "height": 49,
+    "abX": 0,
+    "abY": 618,
+    "zIndex": 0,
     "styles": {
       "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 0.5
-          },
-          "string": "休闲",
-          "font": "PingFang-SC-Medium",
-          "size": 28,
-          "lineHeight": 39.199999999999996
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "休闲"
-  },
-  {
-    "id": "AA3BB6B7-6338-403D-95FD-949BF793ED78",
-    "name": "角色",
-    "width": 56,
-    "height": 40,
-    "abX": 58,
-    "abY": 972,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 0.5
-          },
-          "string": "角色",
-          "font": "PingFang-SC-Medium",
-          "size": 28,
-          "lineHeight": 39.199999999999996
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "角色"
-  },
-  {
-    "id": "41103163-E3D0-4212-BE1A-A9E0C61D891A",
-    "name": "卡牌",
-    "width": 56,
-    "height": 40,
-    "abX": 58,
-    "abY": 1072,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 0.5
-          },
-          "string": "卡牌",
-          "font": "PingFang-SC-Medium",
-          "size": 28,
-          "lineHeight": 39.199999999999996
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "卡牌"
-  },
-  {
-    "id": "DA506673-BA09-4D3F-B5E5-85D4875FF5B8",
-    "name": "棋牌",
-    "width": 56,
-    "height": 40,
-    "abX": 58,
-    "abY": 1172,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 0.5
-          },
-          "string": "棋牌",
-          "font": "PingFang-SC-Medium",
-          "size": 28,
-          "lineHeight": 39.199999999999996
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "棋牌"
-  },
-  {
-    "id": "481E07F3-B91F-48A5-8137-1C8801D1CBDE",
-    "name": "极光",
-    "width": 56,
-    "height": 40,
-    "abX": 58,
-    "abY": 1272,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 0.5
-          },
-          "string": "极光",
-          "font": "PingFang-SC-Medium",
-          "size": 28,
-          "lineHeight": 39.199999999999996
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "极光"
-  },
-  {
-    "id": "14E6B685-4CC2-4120-A08E-3D4ED6898951",
-    "name": "二次元",
-    "width": 84,
-    "height": 40,
-    "abX": 44,
-    "abY": 1372,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 0.5
-          },
-          "string": "二次元",
-          "font": "PingFang-SC-Medium",
-          "size": 28,
-          "lineHeight": 39.199999999999996
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "二次元"
-  },
-  {
-    "id": "2DCC4489-82D4-404E-9826-EBE47309CFC9---ADA24C89-1561-4477-940F-58794AD555DE",
-    "name": "Mask",
-    "width": 128,
-    "height": 64,
-    "abX": 582,
-    "abY": 484,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
       "border": null,
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
       "background": {
         "type": "color",
-        "color": {
-          "r": 43,
-          "g": 184,
-          "b": 247,
-          "a": 0.1
-        },
-        "hasOpacity": true
+        "color": { "r": 232, "g": 237, "b": 241, "a": 0.4151 },
+        "hasOpacity": false
       }
     },
-    "type": "QShape",
-    "symbolRoot": ["2DCC4489-82D4-404E-9826-EBE47309CFC9"]
-  },
-  {
-    "id": "2DCC4489-82D4-404E-9826-EBE47309CFC9---97F7A4F3-D330-49D5-9C7E-5A870015EDBC",
-    "name": "下载",
-    "width": 70,
-    "height": 42,
-    "abX": 611,
-    "abY": 495,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 43,
-            "g": 184,
-            "b": 247,
-            "a": 1
-          },
-          "string": "下载 ",
-          "font": "PingFangSC-Medium",
-          "size": 30,
-          "lineHeight": 42
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "下载 ",
-    "symbolRoot": ["2DCC4489-82D4-404E-9826-EBE47309CFC9"]
-  },
-  {
-    "id": "E386ECA9-C7BA-4D2E-9945-9D32C0D5D8E8",
-    "name": "图标",
-    "width": 100,
-    "height": 100,
-    "abX": 240,
-    "abY": 466,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [24, 24, 24, 24],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "7c127232.png"
-  },
-  {
-    "id": "DB3B00F9-6880-4BB4-9187-454FC376610D",
-    "name": "和平精英",
-    "width": 128,
-    "height": 45,
-    "abX": 356,
-    "abY": 473,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "和平精英",
-          "font": "PingFangSC-Regular",
-          "size": 32,
-          "lineHeight": 44.8
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "和平精英"
-  },
-  {
-    "id": "84186B1B-6260-4C9D-A756-4353CF5A2F5A",
-    "name": "Rectangle",
-    "width": 96,
-    "height": 34,
-    "abX": 356,
-    "abY": 526,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": {
-        "type": "solid",
-        "color": {
-          "r": 43,
-          "g": 184,
-          "b": 247,
-          "a": 1
-        },
-        "width": 1,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
     "type": "QShape"
   },
   {
-    "id": "0500D919-9063-43FD-A39C-DB46E40C4A8E",
-    "name": "Rectangle复制 2",
-    "width": 56,
-    "height": 34,
-    "abX": 460,
-    "abY": 526,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": {
-        "type": "solid",
-        "color": {
-          "r": 255,
-          "g": 75,
-          "b": 125,
-          "a": 1
-        },
-        "width": 1,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "1012DA6B-C45A-425C-B422-34CC338C9B52",
-    "name": "最热",
-    "width": 40,
-    "height": 28,
-    "abX": 468,
-    "abY": 529,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 75,
-            "b": 125,
-            "a": 1
-          },
-          "string": "最热",
-          "font": "PingFangSC-Regular",
-          "size": 20,
-          "lineHeight": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "最热"
-  },
-  {
-    "id": "BCF4D863-2AF2-472D-968C-797C99A2187B",
-    "name": "本月上线",
-    "width": 80,
-    "height": 28,
-    "abX": 364,
-    "abY": 529,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 43,
-            "g": 184,
-            "b": 247,
-            "a": 1
-          },
-          "string": "本月上线",
-          "font": "PingFangSC-Regular",
-          "size": 20,
-          "lineHeight": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "本月上线"
-  },
-  {
-    "id": "24BC3B72-A61E-412B-A81D-3D3E22400AAB---ADA24C89-1561-4477-940F-58794AD555DE",
-    "name": "Mask",
-    "width": 128,
-    "height": 64,
-    "abX": 582,
+    "id": "_5C221B1A-023D-4CBB-8607-1CAAD5F86C16_8817F58F-82DF-4265-8140-0189ADB7C387_E63EA7D1-3501-4C9F-A26A-A8E5F2452B3E_DB08773A-C26E-47EC-9042-C34E30864763_1192AAB8-7FB7-4F3D-A0BA-9B23F5ED963F",
+    "name": "_Shape_Rectangle-path_Rectangle-path_Rectangle-path_Oval",
+    "width": 21,
+    "height": 21,
+    "abX": 301,
     "abY": 632,
     "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 43,
-          "g": 184,
-          "b": 247,
-          "a": 0.1
-        },
-        "hasOpacity": true
-      }
-    },
-    "type": "QShape",
-    "symbolRoot": ["24BC3B72-A61E-412B-A81D-3D3E22400AAB"]
-  },
-  {
-    "id": "24BC3B72-A61E-412B-A81D-3D3E22400AAB---97F7A4F3-D330-49D5-9C7E-5A870015EDBC",
-    "name": "下载",
-    "width": 70,
-    "height": 42,
-    "abX": 611,
-    "abY": 643,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 43,
-            "g": 184,
-            "b": 247,
-            "a": 1
-          },
-          "string": "下载 ",
-          "font": "PingFangSC-Medium",
-          "size": 30,
-          "lineHeight": 42
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "下载 ",
-    "symbolRoot": ["24BC3B72-A61E-412B-A81D-3D3E22400AAB"]
-  },
-  {
-    "id": "B04A199E-A868-4B6B-A89A-CE168A403453",
-    "name": "头像",
-    "width": 100,
-    "height": 100,
-    "abX": 240,
-    "abY": 614,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [
-        24.00000000000001,
-        24.00000000000001,
-        24.00000000000001,
-        24.00000000000001
-      ],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
+    "styles": {},
     "type": "QImage",
-    "path": "62386800.png"
+    "path": "8b90696a.png"
   },
   {
-    "id": "9EEE6E0C-C3A8-4945-A90E-F7AAE038F0C7",
-    "name": "全民突击2",
-    "width": 148,
-    "height": 45,
-    "abX": 356,
-    "abY": 621,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "全民突击2",
-          "font": "PingFangSC-Regular",
-          "size": 32,
-          "lineHeight": 44.8
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "全民突击2"
-  },
-  {
-    "id": "D9B90A4A-38B2-47BF-93B0-7CC812770F78",
-    "name": "Rectangle",
-    "width": 96,
-    "height": 34,
-    "abX": 356,
-    "abY": 674,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": {
-        "type": "solid",
-        "color": {
-          "r": 43,
-          "g": 184,
-          "b": 247,
-          "a": 1
-        },
-        "width": 1,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "218F1D8F-3F79-4C45-82A0-4EF5C0E1DEDF",
-    "name": "Rectangle复制 2",
-    "width": 56,
-    "height": 34,
-    "abX": 460,
-    "abY": 674,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": {
-        "type": "solid",
-        "color": {
-          "r": 255,
-          "g": 75,
-          "b": 125,
-          "a": 1
-        },
-        "width": 1,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "182B2141-5904-4479-974F-74CFF80BAB0E",
-    "name": "最热",
-    "width": 40,
-    "height": 28,
-    "abX": 468,
-    "abY": 677,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 75,
-            "b": 125,
-            "a": 1
-          },
-          "string": "最热",
-          "font": "PingFangSC-Regular",
-          "size": 20,
-          "lineHeight": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "最热"
-  },
-  {
-    "id": "FCCF0EBA-9610-4EAE-B3F3-45BD18E80C72",
-    "name": "本月上线",
-    "width": 80,
-    "height": 28,
-    "abX": 364,
-    "abY": 677,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 43,
-            "g": 184,
-            "b": 247,
-            "a": 1
-          },
-          "string": "本月上线",
-          "font": "PingFangSC-Regular",
-          "size": 20,
-          "lineHeight": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "本月上线"
-  },
-  {
-    "id": "88E8E6E1-F73C-4415-9115-B73181C17580---ADA24C89-1561-4477-940F-58794AD555DE",
-    "name": "Mask",
-    "width": 128,
-    "height": 64,
-    "abX": 582,
-    "abY": 780,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 43,
-          "g": 184,
-          "b": 247,
-          "a": 0.1
-        },
-        "hasOpacity": true
-      }
-    },
-    "type": "QShape",
-    "symbolRoot": ["88E8E6E1-F73C-4415-9115-B73181C17580"]
-  },
-  {
-    "id": "88E8E6E1-F73C-4415-9115-B73181C17580---97F7A4F3-D330-49D5-9C7E-5A870015EDBC",
-    "name": "下载",
-    "width": 70,
-    "height": 42,
-    "abX": 611,
-    "abY": 791,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 43,
-            "g": 184,
-            "b": 247,
-            "a": 1
-          },
-          "string": "下载 ",
-          "font": "PingFangSC-Medium",
-          "size": 30,
-          "lineHeight": 42
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "下载 ",
-    "symbolRoot": ["88E8E6E1-F73C-4415-9115-B73181C17580"]
-  },
-  {
-    "id": "15005F16-BFAF-472A-81C6-2DA84064171B",
-    "name": "头像",
-    "width": 100,
-    "height": 100,
-    "abX": 240,
-    "abY": 762,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [
-        24.00000000000001,
-        24.00000000000001,
-        24.00000000000001,
-        24.00000000000001
-      ],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "39f3e73c.png"
-  },
-  {
-    "id": "14B3CEFB-E7AA-469A-B9C3-05D4DECB86E9",
-    "name": "梦幻诛仙",
-    "width": 128,
-    "height": 45,
-    "abX": 356,
-    "abY": 769,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "梦幻诛仙",
-          "font": "PingFangSC-Regular",
-          "size": 32,
-          "lineHeight": 44.8
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "梦幻诛仙"
-  },
-  {
-    "id": "13FDF3E6-5D09-4E14-B85A-774634B46379",
-    "name": "Rectangle Copy 5",
-    "width": 56,
-    "height": 34,
-    "abX": 356,
-    "abY": 822,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 190,
-          "g": 207,
-          "b": 224,
-          "a": 0.1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "98486898-A535-457C-999B-A37191F669B3",
-    "name": "Rectangle Copy 5复制",
-    "width": 56,
-    "height": 34,
-    "abX": 420,
-    "abY": 822,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 190,
-          "g": 207,
-          "b": 224,
-          "a": 0.1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "9FD44E12-F699-4DA7-BB72-7A5C31088753",
-    "name": "仙侠",
-    "width": 40,
-    "height": 28,
-    "abX": 364,
-    "abY": 825,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 155,
-            "g": 155,
-            "b": 155,
-            "a": 1
-          },
-          "string": "仙侠",
-          "font": "PingFangSC-Regular",
-          "size": 20,
-          "lineHeight": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "仙侠"
-  },
-  {
-    "id": "A1E31770-F812-4BAD-854D-AB3F1C229107",
-    "name": "梦幻",
-    "width": 40,
-    "height": 28,
-    "abX": 428,
-    "abY": 825,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 155,
-            "g": 155,
-            "b": 155,
-            "a": 1
-          },
-          "string": "梦幻",
-          "font": "PingFangSC-Regular",
-          "size": 20,
-          "lineHeight": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "梦幻"
-  },
-  {
-    "id": "8D45EBA8-B6AE-4846-9EC3-962BD3222D31---ADA24C89-1561-4477-940F-58794AD555DE",
-    "name": "Mask",
-    "width": 128,
-    "height": 64,
-    "abX": 582,
-    "abY": 928,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 43,
-          "g": 184,
-          "b": 247,
-          "a": 0.1
-        },
-        "hasOpacity": true
-      }
-    },
-    "type": "QShape",
-    "symbolRoot": ["8D45EBA8-B6AE-4846-9EC3-962BD3222D31"]
-  },
-  {
-    "id": "8D45EBA8-B6AE-4846-9EC3-962BD3222D31---97F7A4F3-D330-49D5-9C7E-5A870015EDBC",
-    "name": "下载",
-    "width": 70,
-    "height": 42,
-    "abX": 611,
-    "abY": 939,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 43,
-            "g": 184,
-            "b": 247,
-            "a": 1
-          },
-          "string": "下载 ",
-          "font": "PingFangSC-Medium",
-          "size": 30,
-          "lineHeight": 42
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "下载 ",
-    "symbolRoot": ["8D45EBA8-B6AE-4846-9EC3-962BD3222D31"]
-  },
-  {
-    "id": "C4C98F67-FB89-4792-95D6-CE5AD97B0FB7",
-    "name": "头像",
-    "width": 100,
-    "height": 100,
-    "abX": 240,
-    "abY": 910,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [
-        24.00000000000001,
-        24.00000000000001,
-        24.00000000000001,
-        24.00000000000001
-      ],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "d9ca15d4.png"
-  },
-  {
-    "id": "A5F5FA7C-5D5A-4F14-8A24-9E5C77F17604",
-    "name": "完美世界",
-    "width": 128,
-    "height": 45,
-    "abX": 356,
-    "abY": 917,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "完美世界",
-          "font": "PingFangSC-Regular",
-          "size": 32,
-          "lineHeight": 44.8
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "完美世界"
-  },
-  {
-    "id": "4C04F82A-BD07-4978-B7BF-424AAC319A51",
-    "name": "15位好友在玩",
-    "width": 149,
-    "height": 33,
-    "abX": 356,
-    "abY": 970,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.5,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "15位好友在玩",
-          "font": "PingFang-SC-Medium",
-          "size": 24,
-          "lineHeight": 33.599999999999994
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "15位好友在玩"
-  },
-  {
-    "id": "3A28BD80-6E08-4ED0-BCE9-BCDA3FBB1FC4---ADA24C89-1561-4477-940F-58794AD555DE",
-    "name": "Mask",
-    "width": 128,
-    "height": 64,
-    "abX": 582,
-    "abY": 1076,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 43,
-          "g": 184,
-          "b": 247,
-          "a": 0.1
-        },
-        "hasOpacity": true
-      }
-    },
-    "type": "QShape",
-    "symbolRoot": ["3A28BD80-6E08-4ED0-BCE9-BCDA3FBB1FC4"]
-  },
-  {
-    "id": "3A28BD80-6E08-4ED0-BCE9-BCDA3FBB1FC4---97F7A4F3-D330-49D5-9C7E-5A870015EDBC",
-    "name": "下载",
-    "width": 70,
-    "height": 42,
-    "abX": 611,
-    "abY": 1087,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 43,
-            "g": 184,
-            "b": 247,
-            "a": 1
-          },
-          "string": "下载 ",
-          "font": "PingFangSC-Medium",
-          "size": 30,
-          "lineHeight": 42
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "下载 ",
-    "symbolRoot": ["3A28BD80-6E08-4ED0-BCE9-BCDA3FBB1FC4"]
-  },
-  {
-    "id": "1AA0BA42-F33D-49BE-85E1-63A9F1AC01CA",
-    "name": "头像",
-    "width": 100,
-    "height": 100,
-    "abX": 240,
-    "abY": 1058,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [
-        24.00000000000001,
-        24.00000000000001,
-        24.00000000000001,
-        24.00000000000001
-      ],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "0995fda3.png"
-  },
-  {
-    "id": "12D585E8-308C-4DCF-9E84-417745910313",
-    "name": "完美世界",
-    "width": 128,
-    "height": 45,
-    "abX": 356,
-    "abY": 1065,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "完美世界",
-          "font": "PingFangSC-Regular",
-          "size": 32,
-          "lineHeight": 44.8
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "完美世界"
-  },
-  {
-    "id": "856DF1C1-5E26-44CF-9CBA-7F0D535BC56A",
-    "name": "24个礼包待领取",
-    "width": 173,
-    "height": 33,
-    "abX": 356,
-    "abY": 1118,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 255,
-            "g": 128,
-            "b": 0,
-            "a": 1
-          },
-          "string": "24",
-          "font": "PingFang-SC-Medium",
-          "size": 24,
-          "lineHeight": 33.599999999999994
-        },
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 0.5
-          },
-          "string": "个礼包待领取",
-          "font": "PingFang-SC-Medium",
-          "size": 24,
-          "lineHeight": 33.599999999999994
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "24个礼包待领取"
-  },
-  {
-    "id": "50293A78-4C96-4DAB-A214-9EA7F5B2BDC0---ADA24C89-1561-4477-940F-58794AD555DE",
-    "name": "Mask",
-    "width": 128,
-    "height": 64,
-    "abX": 582,
-    "abY": 1224,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 43,
-          "g": 184,
-          "b": 247,
-          "a": 0.1
-        },
-        "hasOpacity": true
-      }
-    },
-    "type": "QShape",
-    "symbolRoot": ["50293A78-4C96-4DAB-A214-9EA7F5B2BDC0"]
-  },
-  {
-    "id": "50293A78-4C96-4DAB-A214-9EA7F5B2BDC0---97F7A4F3-D330-49D5-9C7E-5A870015EDBC",
-    "name": "下载",
-    "width": 70,
-    "height": 42,
-    "abX": 611,
-    "abY": 1235,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 43,
-            "g": 184,
-            "b": 247,
-            "a": 1
-          },
-          "string": "下载 ",
-          "font": "PingFangSC-Medium",
-          "size": 30,
-          "lineHeight": 42
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "下载 ",
-    "symbolRoot": ["50293A78-4C96-4DAB-A214-9EA7F5B2BDC0"]
-  },
-  {
-    "id": "83EF485F-21C9-47AB-B32F-BF9A067A47A3",
-    "name": "Group 7",
-    "width": 100,
-    "height": 100,
-    "abX": 240,
-    "abY": 1206,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [
-        23.93333333333333,
-        23.93333333333333,
-        23.93333333333333,
-        23.93333333333333
-      ],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "3383e560.png"
-  },
-  {
-    "id": "28466C59-9617-41E7-A791-F97F6DBE6938",
-    "name": "完美世界",
-    "width": 128,
-    "height": 45,
-    "abX": 356,
-    "abY": 1213,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "完美世界",
-          "font": "PingFangSC-Regular",
-          "size": 32,
-          "lineHeight": 44.8
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "完美世界"
-  },
-  {
-    "id": "3F207EE9-2CD6-48DA-A99D-FDD1EDFC8B8A",
-    "name": "15位好友在玩",
-    "width": 149,
-    "height": 33,
-    "abX": 356,
-    "abY": 1266,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.5,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "15位好友在玩",
-          "font": "PingFang-SC-Medium",
-          "size": 24,
-          "lineHeight": 33.599999999999994
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "15位好友在玩"
-  },
-  {
-    "id": "CAEFFE05-FBE1-463D-B12B-A2C314698540---ADA24C89-1561-4477-940F-58794AD555DE",
-    "name": "Mask",
-    "width": 128,
-    "height": 64,
-    "abX": 582,
-    "abY": 1372,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 43,
-          "g": 184,
-          "b": 247,
-          "a": 0.1
-        },
-        "hasOpacity": true
-      }
-    },
-    "type": "QShape",
-    "symbolRoot": ["CAEFFE05-FBE1-463D-B12B-A2C314698540"]
-  },
-  {
-    "id": "CAEFFE05-FBE1-463D-B12B-A2C314698540---97F7A4F3-D330-49D5-9C7E-5A870015EDBC",
-    "name": "下载",
-    "width": 70,
-    "height": 42,
-    "abX": 611,
-    "abY": 1383,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 43,
-            "g": 184,
-            "b": 247,
-            "a": 1
-          },
-          "string": "下载 ",
-          "font": "PingFangSC-Medium",
-          "size": 30,
-          "lineHeight": 42
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "下载 ",
-    "symbolRoot": ["CAEFFE05-FBE1-463D-B12B-A2C314698540"]
-  },
-  {
-    "id": "BC665C06-7940-4579-A02C-DEFAD347EC0C",
-    "name": "头像",
-    "width": 100,
-    "height": 100,
-    "abX": 240,
-    "abY": 1354,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [
-        24.00000000000001,
-        24.00000000000001,
-        24.00000000000001,
-        24.00000000000001
-      ],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "path": "3483cb8b.png"
-  },
-  {
-    "id": "A04AAF38-FB6F-452E-87D4-A9008E8965D9",
-    "name": "火影忍者",
-    "width": 128,
-    "height": 45,
-    "abX": 356,
-    "abY": 1361,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "火影忍者",
-          "font": "PingFangSC-Regular",
-          "size": 32,
-          "lineHeight": 44.8
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "火影忍者"
-  },
-  {
-    "id": "292C6F71-6431-4138-A2CD-18E4375833B2",
-    "name": "15位好友在玩",
-    "width": 149,
-    "height": 33,
-    "abX": 356,
-    "abY": 1414,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.5,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "15位好友在玩",
-          "font": "PingFang-SC-Medium",
-          "size": 24,
-          "lineHeight": 33.599999999999994
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "15位好友在玩"
-  },
-  {
-    "id": "_7B84BE62-3A8C-4F75-BAE2-41BA8584E8A0_5B32D161-1976-4802-A8A0-6D92C7C765F8_15E5EB6C-80CF-4265-A1E0-67CA91E3CD08_65EF9C49-EAF6-4AF3-B493-B4E44C0C1502",
-    "name": "_矩形_多边形复制_形状结合_形状结合",
-    "width": 40,
-    "height": 51,
-    "abX": 178,
-    "abY": 491,
+    "id": "4E8C9FE5-1D61-4623-9482-C53184CE29E6",
+    "name": "Shape",
+    "width": 19,
+    "height": 17,
+    "abX": 53,
+    "abY": 634,
     "zIndex": 1,
     "styles": {},
     "type": "QImage",
-    "path": "a9f40f85.png"
+    "path": "93fc0dfe.png"
   },
   {
-    "id": "_DB8A0942-8086-4CC4-868A-CF4AF78E6A08_671964E4-05F7-44DD-96E4-7DD685C57061_D7514613-068B-45C6-B998-65EFBEFAFFA3_68C1662A-1335-47E3-92E2-1547E91597BA",
-    "name": "_矩形_多边形复制_形状结合_Combined Shape",
-    "width": 40,
-    "height": 51,
-    "abX": 178,
-    "abY": 639,
+    "id": "_2BE563AA-9B2A-451E-8DEE-17790E2B1C2E_B3E045B5-C2F3-467C-81D7-B367F79FBB07",
+    "name": "_Rectangle-path_Combined Shape",
+    "width": 49,
+    "height": 49,
+    "abX": 162,
+    "abY": 610,
     "zIndex": 1,
-    "styles": {},
+    "styles": {
+      "borderRadius": [100, 100, 100, 100],
+      "border": null,
+      "shadows": null
+    },
     "type": "QImage",
-    "path": "9d7dabc3.png"
+    "path": "fab06c0c.png"
   },
   {
-    "id": "_DE7B7293-8443-4433-A2B1-BEE7EF547369_CEA3BC29-558C-46D3-B47D-EE2B864EF7C0_8DE740D9-069D-4460-AB4D-6EAFD2DBA2B9_4B674FDC-6A4A-4C3F-8885-B5CE8EEE4D7C",
-    "name": "_矩形_多边形复制_形状结合_Combined Shape",
-    "width": 40,
-    "height": 51,
-    "abX": 178,
-    "abY": 787,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "31e24aa4.png"
-  },
-  {
-    "id": "374B9D84-E0B4-4A93-AC71-6BBC84B1CFE5",
-    "name": "4",
-    "width": 20,
-    "height": 45,
-    "abX": 188,
-    "abY": 938,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.3,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "4",
-          "font": "PingFangSC-Medium",
-          "size": 32,
-          "lineHeight": 44.8
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "4"
-  },
-  {
-    "id": "F9955077-403F-4BBF-8889-8E31737BAF5D",
-    "name": "5",
-    "width": 20,
-    "height": 45,
-    "abX": 188,
-    "abY": 1086,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.3,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "5",
-          "font": "PingFangSC-Medium",
-          "size": 32,
-          "lineHeight": 44.8
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "5"
-  },
-  {
-    "id": "B80AC551-E544-4E91-85A6-D986513F4730",
-    "name": "6",
-    "width": 20,
-    "height": 45,
-    "abX": 188,
-    "abY": 1234,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.3,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "6",
-          "font": "PingFangSC-Medium",
-          "size": 32,
-          "lineHeight": 44.8
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "6"
-  },
-  {
-    "id": "F7C1248C-E93B-4B59-9E58-6863F717DB24",
-    "name": "7",
-    "width": 18,
-    "height": 45,
-    "abX": 189,
-    "abY": 1382,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.3,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "7",
-          "font": "PingFangSC-Medium",
-          "size": 32,
-          "lineHeight": 44.8
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2
-    },
-    "type": "QText",
-    "text": "7"
-  },
-  {
-    "id": "122E9052-C406-4A20-AE85-F7CF348D06FD",
-    "name": "Rectangle",
-    "width": 750,
-    "height": 176,
-    "abX": 0,
-    "abY": 0,
+    "id": "27D2EBF1-B535-4E88-BAEA-EA9331C208FC",
+    "name": "$21.40",
+    "width": 70,
+    "height": 25,
+    "abX": 262,
+    "abY": 118,
     "zIndex": 0,
     "styles": {
       "borderRadius": null,
@@ -2057,63 +268,30 @@
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 126, "g": 211, "b": 33, "a": 1 },
+          "string": "$21.40",
+          "font": "SFProText-Regular",
+          "size": 21,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
     },
-    "type": "QShape"
+    "type": "QText",
+    "text": "$21.40"
   },
   {
-    "id": "02BB6F68-8566-417B-B6CA-F37A70B020B5",
-    "name": "Path",
-    "width": 24,
-    "height": 42,
-    "abX": 24,
-    "abY": 111,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "4db59641.png"
-  },
-  {
-    "id": "BF97413B-0F5E-46BB-A51F-DC81133A2FA4",
-    "name": "Combined Shape",
-    "width": 135,
-    "height": 23,
-    "abX": 591,
-    "abY": 29,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "2b8f7570.png"
-  },
-  {
-    "id": "99EFE1F6-FE4A-4FED-9F50-EE009D809C08",
-    "name": "Combined Shape",
-    "width": 64,
-    "height": 20,
-    "abX": 48,
-    "abY": 28,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "fe276af5.png"
-  },
-  {
-    "id": "FBCA0209-2155-4BBE-8400-56DDDF35AF4A",
-    "name": "游戏榜单",
-    "width": 144,
-    "height": 50,
-    "abX": 303,
-    "abY": 107,
-    "zIndex": 1,
+    "id": "7020D91E-7024-495F-AF15-EED0873964B3",
+    "name": "21 Street Restaurant",
+    "width": 155,
+    "height": 19,
+    "abX": 21,
+    "abY": 125,
+    "zIndex": 0,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2123,151 +301,27 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "游戏榜单",
-          "font": "PingFang-SC-Medium",
-          "size": 36,
-          "lineHeight": 50.4
+          "color": { "r": 51, "g": 51, "b": 61, "a": 1 },
+          "string": "21 Street Restaurant",
+          "font": "SFProText-Regular",
+          "size": 16,
+          "lineHeight": null
         }
       ],
       "verticalAlign": 0,
       "textAlign": 0
     },
     "type": "QText",
-    "text": "游戏榜单"
+    "text": "21 Street Restaurant"
   },
   {
-    "id": "99137CFA-5CDF-439C-BA88-C68AD2E49CA8",
-    "name": "Mask",
-    "width": 750,
-    "height": 168,
-    "abX": 0,
-    "abY": 1456,
-    "zIndex": 2,
-    "styles": {},
-    "type": "QImage",
-    "path": "d9af70e8.png"
-  },
-  {
-    "id": "_71254032-08B9-49C5-8CF9-DC765570E6DF_73978E3E-8B0A-4352-A713-0C0AB87FACA4_7178E390-1CF7-494B-8AC9-076F544F84E5",
-    "name": "_Rectangle_Rectangle Copy 11_Rectangle Copy 13",
-    "width": 36,
-    "height": 8,
-    "abX": 624,
-    "abY": 1456,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "681e3abf.png"
-  },
-  {
-    "id": "_FE1F364F-60C3-4595-A459-46AE51EA9F49_ED9E166C-6034-4C35-B958-6BC532F9F875_FC2F96C7-460C-43A4-8993-C4395DB50A44",
-    "name": "_Rectangle_Rectangle Copy 11_Rectangle Copy 13",
-    "width": 36,
-    "height": 8,
-    "abX": 90,
-    "abY": 1456,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "05d074f0.png"
-  },
-  {
-    "id": "_BA5BF5E6-F62C-4A6D-BC89-BF470DBD9AC2_143F9AD9-94A5-48BD-9D0E-E0BDB0E0016B_4BB246D6-0A39-450A-A93C-8D3703B54FAA",
-    "name": "_矩形_多边形复制_Combined Shape",
-    "width": 40,
-    "height": 51,
-    "abX": 261,
-    "abY": 1483,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "e95a45fe.png"
-  },
-  {
-    "id": "_F6732FE4-5C87-492C-BAFB-631F20236B0B_8727E760-3C01-481A-BC50-0B4B17256B89",
-    "name": "_形状结合_Rectangle",
-    "width": 44,
-    "height": 48,
-    "abX": 634,
-    "abY": 1484,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "08c9d247.png"
-  },
-  {
-    "id": "_7B4A111D-9103-4AEA-A952-B1D2693907CA_84891A30-93B2-41E1-B2DE-63A65F6E279B",
-    "name": "_蒙版_Rectangle",
-    "width": 44,
-    "height": 49,
-    "abX": 72,
-    "abY": 1485,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "035c3ed9.png"
-  },
-  {
-    "id": "_5CB77D66-C867-4572-A6A0-8A159A838FD1_BAFEF74C-D910-4A25-9860-CBA575661B1C",
-    "name": "_形状结合_矩形",
-    "width": 58,
-    "height": 40,
-    "abX": 440,
-    "abY": 1488,
-    "zIndex": 3,
-    "styles": {},
-    "type": "QImage",
-    "path": "a9784953.png"
-  },
-  {
-    "id": "4F958743-1E6E-41F4-B323-8A94D6F01BC6",
-    "name": "首页",
-    "width": 40,
-    "height": 28,
-    "abX": 74,
-    "abY": 1544,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.5,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "首页",
-          "font": "PingFang-SC-Medium",
-          "size": 20,
-          "lineHeight": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "首页"
-  },
-  {
-    "id": "2603A7A2-795F-4ECE-A492-BBAC5DA70C5C",
-    "name": "榜单",
-    "width": 40,
-    "height": 28,
-    "abX": 261,
-    "abY": 1544,
-    "zIndex": 3,
+    "id": "E0582365-ED81-4475-8013-F855704AE3D7",
+    "name": "Apple Pay",
+    "width": 57,
+    "height": 14,
+    "abX": 274,
+    "abY": 101,
+    "zIndex": 0,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2277,100 +331,151 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 43,
-            "g": 184,
-            "b": 247,
-            "a": 1
-          },
-          "string": "榜单",
-          "font": "PingFang-SC-Medium",
-          "size": 20,
-          "lineHeight": 28
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Apple Pay",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
         }
       ],
       "verticalAlign": 0,
-      "textAlign": 0
+      "textAlign": 1
     },
     "type": "QText",
-    "text": "榜单"
+    "text": "Apple Pay"
   },
   {
-    "id": "C090F58F-BFD8-4477-AF41-A42C79933AF4",
-    "name": "视频",
-    "width": 40,
-    "height": 28,
-    "abX": 449,
-    "abY": 1544,
-    "zIndex": 3,
+    "id": "7C481700-7BF5-471F-8880-A3FAE5673ADE",
+    "name": "Jan 6, 2018",
+    "width": 67,
+    "height": 14,
+    "abX": 20,
+    "abY": 103,
+    "zIndex": 0,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 0.5,
+      "opacity": 1,
       "rotation": 0,
       "shadows": null,
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "视频",
-          "font": "PingFang-SC-Medium",
-          "size": 20,
-          "lineHeight": 28
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Jan 6, 2018",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
         }
       ],
       "verticalAlign": 0,
-      "textAlign": 0
+      "textAlign": 1
     },
     "type": "QText",
-    "text": "视频"
+    "text": "Jan 6, 2018"
   },
   {
-    "id": "612DC509-48A9-4229-AABB-D8F102FBDAD3",
-    "name": "我的",
-    "width": 40,
-    "height": 28,
-    "abX": 636,
-    "abY": 1544,
-    "zIndex": 3,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.5,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "我的",
-          "font": "PingFang-SC-Medium",
-          "size": 20,
-          "lineHeight": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "我的"
-  },
-  {
-    "id": "A2CE9C0C-C63F-46C9-895B-FD012ED7E0E1",
-    "name": "矩形",
-    "width": 750,
-    "height": 92,
+    "id": "11454A00-9618-4DF5-ACBF-5710922FC180",
+    "name": "Line  Copy 2",
+    "width": 375,
+    "height": 3,
     "abX": 0,
+    "abY": 160,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "908694f4.png"
+  },
+  {
+    "id": "6742460B-8099-4524-BE37-AF49CD423241",
+    "name": "Line  Copy 3",
+    "width": 375,
+    "height": 3,
+    "abX": 0,
+    "abY": 85,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "d0eb1f40.png"
+  },
+  {
+    "id": "61BE3B9A-B48D-4581-97AF-514057CE28D1",
+    "name": "Shape Copy 4",
+    "width": 4,
+    "height": 7,
+    "abX": 345,
+    "abY": 116,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "040a1b0e.png"
+  },
+  {
+    "id": "D79ABEC6-0B4A-4CEB-B6B0-359D2B7D4A83",
+    "name": "$40.00",
+    "width": 74,
+    "height": 25,
+    "abX": 258,
+    "abY": 193,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 126, "g": 211, "b": 33, "a": 1 },
+          "string": "$40.00",
+          "font": "SFProText-Regular",
+          "size": 21,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "$40.00"
+  },
+  {
+    "id": "32F074BB-9417-4CBF-AAD9-3AB32DC31CDF",
+    "name": "Jacks Inn",
+    "width": 71,
+    "height": 19,
+    "abX": 21,
+    "abY": 200,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 51, "g": 51, "b": 61, "a": 1 },
+          "string": "Jacks Inn",
+          "font": "SFProText-Regular",
+          "size": 16,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "Jacks Inn"
+  },
+  {
+    "id": "EB6DCE98-37BA-4476-814A-B11E57CCEEAC",
+    "name": "Apple Pay",
+    "width": 57,
+    "height": 14,
+    "abX": 274,
     "abY": 176,
     "zIndex": 0,
     "styles": {
@@ -2379,148 +484,30 @@
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
-        "hasOpacity": false
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "_2CE810C1-0790-4928-8CFE-DB2E56FF3786_6FC9209D-0689-4B4C-993F-7AB95D6FB184",
-    "name": "_矩形_形状结合",
-    "width": 718,
-    "height": 60,
-    "abX": 16,
-    "abY": 192,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": [8, 8, 8, 8],
-      "border": null,
-      "shadows": null
-    },
-    "type": "QImage",
-    "path": "efe0433f.png"
-  },
-  {
-    "id": "801DA523-EE58-4FA9-86C1-F8CB70B0B5CF",
-    "name": "龙珠最强之战",
-    "width": 144,
-    "height": 33,
-    "abX": 318,
-    "abY": 206,
-    "zIndex": 2,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.3,
-      "rotation": 0,
-      "shadows": null,
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "龙珠最强之战",
-          "font": "PingFang-SC-Medium",
-          "size": 24,
-          "lineHeight": 33.599999999999994
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Apple Pay",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
         }
       ],
       "verticalAlign": 0,
-      "textAlign": 0
+      "textAlign": 1
     },
     "type": "QText",
-    "text": "龙珠最强之战"
+    "text": "Apple Pay"
   },
   {
-    "id": "E98AAE38-8582-4F41-8667-D1284504CF2B",
-    "name": "Mask",
-    "width": 234,
-    "height": 110,
-    "abX": 16,
-    "abY": 300,
+    "id": "41EB7EC5-F4C2-41A1-8141-57D4FA7724E6",
+    "name": "Jan 6, 2018",
+    "width": 67,
+    "height": 14,
+    "abX": 20,
+    "abY": 178,
     "zIndex": 0,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": {
-        "type": "solid",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
-        "width": 1,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": [
-        {
-          "type": "inset",
-          "x": 0,
-          "y": 2,
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0.05
-          },
-          "spread": 0,
-          "blur": 8
-        }
-      ],
-      "background": {
-        "type": "linear",
-        "color": null,
-        "hasOpacity": true,
-        "x": "0.41867234653189411",
-        "y": " 1",
-        "x1": "0.41867234653189411",
-        "y1": " 0",
-        "colorStops": [
-          {
-            "color": {
-              "r": 249,
-              "g": 254,
-              "b": 255,
-              "a": 0.9
-            },
-            "offset": 0
-          },
-          {
-            "color": {
-              "r": 255,
-              "g": 255,
-              "b": 255,
-              "a": 0.9
-            },
-            "offset": 1
-          }
-        ]
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "54395DE6-D572-47B0-A795-00733B96EE0A",
-    "name": "新游",
-    "width": 56,
-    "height": 40,
-    "abX": 137,
-    "abY": 335,
-    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2530,15 +517,94 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "新游",
-          "font": "PingFangSC-Semibold",
-          "size": 28,
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Jan 6, 2018",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "Jan 6, 2018"
+  },
+  {
+    "id": "C08B9F1B-CD33-4941-BDDE-8FFD41D684C5",
+    "name": "Line  Copy 2",
+    "width": 375,
+    "height": 3,
+    "abX": 0,
+    "abY": 235,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "7f6aa4d3.png"
+  },
+  {
+    "id": "4EACA083-4661-4F96-8E2A-FF3BD80CB113",
+    "name": "Shape Copy 4",
+    "width": 4,
+    "height": 7,
+    "abX": 345,
+    "abY": 191,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "c1daeadf.png"
+  },
+  {
+    "id": "78F3AED5-5019-460D-915A-2259DCEF43B8",
+    "name": "$1.50",
+    "width": 56,
+    "height": 25,
+    "abX": 276,
+    "abY": 268,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 126, "g": 211, "b": 33, "a": 1 },
+          "string": "$1.50",
+          "font": "SFProText-Regular",
+          "size": 21,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "$1.50"
+  },
+  {
+    "id": "4462CFDF-102F-47EA-A877-A1C43725D118",
+    "name": "Hamlet & Chan Resort",
+    "width": 167,
+    "height": 19,
+    "abX": 21,
+    "abY": 275,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 51, "g": 51, "b": 61, "a": 1 },
+          "string": "Hamlet & Chan Resort",
+          "font": "SFProText-Regular",
+          "size": 16,
           "lineHeight": null
         }
       ],
@@ -2546,98 +612,16 @@
       "textAlign": 0
     },
     "type": "QText",
-    "text": "新游"
+    "text": "Hamlet & Chan Resort"
   },
   {
-    "id": "_2DDB693C-30A0-4676-ACD6-C2F923543A5C_E2480571-2ED2-4198-9172-11C92D0E9FDD_59235839-FCE8-4BDD-B164-45E4D6BAC3AF_694D3354-0506-494A-B2D4-D6C99D9E2AEB",
-    "name": "_形状结合_形状结合_矩形复制 4_矩形复制 12",
-    "width": 40,
-    "height": 28,
-    "abX": 78,
-    "abY": 341,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "efe884b3.png"
-  },
-  {
-    "id": "84ED9562-94C7-4710-93FD-C5065D4FCFC8",
-    "name": "Mask",
-    "width": 234,
-    "height": 110,
-    "abX": 258,
-    "abY": 300,
+    "id": "CB841809-F7C8-49CF-9433-386397950B31",
+    "name": "Apple Pay",
+    "width": 57,
+    "height": 14,
+    "abX": 274,
+    "abY": 251,
     "zIndex": 0,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": {
-        "type": "solid",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
-        "width": 1,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": [
-        {
-          "type": "inset",
-          "x": 0,
-          "y": 2,
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0.05
-          },
-          "spread": 0,
-          "blur": 8
-        }
-      ],
-      "background": {
-        "type": "linear",
-        "color": null,
-        "hasOpacity": true,
-        "x": "0.41867234653189411",
-        "y": " 1",
-        "x1": "0.41867234653189411",
-        "y1": " 0",
-        "colorStops": [
-          {
-            "color": {
-              "r": 249,
-              "g": 254,
-              "b": 255,
-              "a": 0.9
-            },
-            "offset": 0
-          },
-          {
-            "color": {
-              "r": 255,
-              "g": 255,
-              "b": 255,
-              "a": 0.9
-            },
-            "offset": 1
-          }
-        ]
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "06B901C5-AC53-44C8-87E6-2949F1D682A6",
-    "name": "排行",
-    "width": 56,
-    "height": 40,
-    "abX": 379,
-    "abY": 335,
-    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2647,114 +631,27 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "排行",
-          "font": "PingFangSC-Semibold",
-          "size": 28,
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Apple Pay",
+          "font": "SFProText-Regular",
+          "size": 12,
           "lineHeight": null
         }
       ],
       "verticalAlign": 0,
-      "textAlign": 0
+      "textAlign": 1
     },
     "type": "QText",
-    "text": "排行"
+    "text": "Apple Pay"
   },
   {
-    "id": "_979029CE-DE2D-4275-A936-86284F8944CC_ECD49A3C-7DF0-44D9-9592-D107C9C8A08B_82778932-5597-4E50-851A-4B0680E23D8A_9E294EAE-DCEB-4260-8804-C62A30F449B8",
-    "name": "_矩形_星形_矩形复制_矩形复制 6",
-    "width": 42,
-    "height": 36,
-    "abX": 318,
-    "abY": 337,
-    "zIndex": 1,
-    "styles": {},
-    "type": "QImage",
-    "path": "b04c1406.png"
-  },
-  {
-    "id": "EE90B4C3-9E1D-4A29-8553-B0AC15078211",
-    "name": "Mask",
-    "width": 234,
-    "height": 110,
-    "abX": 500,
-    "abY": 300,
+    "id": "BC56798A-590C-4596-B733-79A869A491D2",
+    "name": "Jan 6, 2018",
+    "width": 67,
+    "height": 14,
+    "abX": 20,
+    "abY": 253,
     "zIndex": 0,
-    "styles": {
-      "borderRadius": [4, 4, 4, 4],
-      "border": {
-        "type": "solid",
-        "color": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        },
-        "width": 1,
-        "position": 1
-      },
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": [
-        {
-          "type": "inset",
-          "x": 0,
-          "y": 2,
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0.05
-          },
-          "spread": 0,
-          "blur": 8
-        }
-      ],
-      "background": {
-        "type": "linear",
-        "color": null,
-        "hasOpacity": true,
-        "x": "0.41867234653189411",
-        "y": " 1",
-        "x1": "0.41867234653189411",
-        "y1": " 0",
-        "colorStops": [
-          {
-            "color": {
-              "r": 249,
-              "g": 254,
-              "b": 255,
-              "a": 0.9
-            },
-            "offset": 0
-          },
-          {
-            "color": {
-              "r": 255,
-              "g": 255,
-              "b": 255,
-              "a": 0.9
-            },
-            "offset": 1
-          }
-        ]
-      }
-    },
-    "type": "QShape"
-  },
-  {
-    "id": "3B8118D6-7963-4471-A5EE-F3B4BD53B476",
-    "name": "新服",
-    "width": 56,
-    "height": 40,
-    "abX": 621,
-    "abY": 335,
-    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
@@ -2764,15 +661,94 @@
       "background": null,
       "texts": [
         {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "新服",
-          "font": "PingFangSC-Semibold",
-          "size": 28,
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Jan 6, 2018",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "Jan 6, 2018"
+  },
+  {
+    "id": "8F75108A-15B7-4653-96D1-E105CB11B052",
+    "name": "Line  Copy 2",
+    "width": 375,
+    "height": 3,
+    "abX": 0,
+    "abY": 310,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "afc925be.png"
+  },
+  {
+    "id": "3AB400E2-D470-4269-9290-E5480EBE4CD0",
+    "name": "Shape Copy 4",
+    "width": 4,
+    "height": 7,
+    "abX": 345,
+    "abY": 266,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "e72df4fc.png"
+  },
+  {
+    "id": "493F3F7C-CF52-4F76-B6A2-EBE8A6D20EEF",
+    "name": "$33.00",
+    "width": 73,
+    "height": 25,
+    "abX": 259,
+    "abY": 345,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 126, "g": 211, "b": 33, "a": 1 },
+          "string": "$33.00",
+          "font": "SFProText-Regular",
+          "size": 21,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "$33.00"
+  },
+  {
+    "id": "8C480969-185B-4A99-A4A3-F42E1E48FD3D",
+    "name": "Amo Cousine",
+    "width": 100,
+    "height": 19,
+    "abX": 21,
+    "abY": 352,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 51, "g": 51, "b": 61, "a": 1 },
+          "string": "Amo Cousine",
+          "font": "SFProText-Regular",
+          "size": 16,
           "lineHeight": null
         }
       ],
@@ -2780,18 +756,510 @@
       "textAlign": 0
     },
     "type": "QText",
-    "text": "新服"
+    "text": "Amo Cousine"
   },
   {
-    "id": "_B30FF848-BA2B-4FE1-9053-95CC3D6EDD1C_D6D0CEFB-869E-4E82-B839-9F1F059185B7_F4E40E49-CCE9-4CA7-A5D6-A620A4495C7B",
-    "name": "_Rectangle Copy 7_Path_Rectangle",
-    "width": 34,
-    "height": 38,
-    "abX": 564,
-    "abY": 337,
-    "zIndex": 1,
+    "id": "FB69BDF6-9C81-4398-9D9F-5EB611106096",
+    "name": "Apple Pay",
+    "width": 57,
+    "height": 14,
+    "abX": 274,
+    "abY": 328,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Apple Pay",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "Apple Pay"
+  },
+  {
+    "id": "47DD0BDF-6ED4-44EE-91D6-EB241B661F96",
+    "name": "Jan 6, 2018",
+    "width": 67,
+    "height": 14,
+    "abX": 20,
+    "abY": 330,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Jan 6, 2018",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "Jan 6, 2018"
+  },
+  {
+    "id": "10F972EA-516B-4373-B364-D13E5A83032B",
+    "name": "Line  Copy 2",
+    "width": 375,
+    "height": 3,
+    "abX": 0,
+    "abY": 387,
+    "zIndex": 0,
     "styles": {},
     "type": "QImage",
-    "path": "2032e11e.png"
+    "path": "1121f1d3.png"
+  },
+  {
+    "id": "3CC6F983-DD74-43A8-BA1A-2666E1FE25D8",
+    "name": "Shape Copy 4",
+    "width": 4,
+    "height": 7,
+    "abX": 345,
+    "abY": 343,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "ceaeba65.png"
+  },
+  {
+    "id": "1C32474D-B922-4C9B-BD53-4D8DA210DD51",
+    "name": "$5.20",
+    "width": 59,
+    "height": 25,
+    "abX": 273,
+    "abY": 422,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 126, "g": 211, "b": 33, "a": 1 },
+          "string": "$5.20",
+          "font": "SFProText-Regular",
+          "size": 21,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "$5.20"
+  },
+  {
+    "id": "F7D676EF-DB0B-49A7-B66E-0682C71C35B6",
+    "name": "Action Cafe",
+    "width": 88,
+    "height": 19,
+    "abX": 21,
+    "abY": 429,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 51, "g": 51, "b": 61, "a": 1 },
+          "string": "Action Cafe",
+          "font": "SFProText-Regular",
+          "size": 16,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "Action Cafe"
+  },
+  {
+    "id": "2C618D4C-2234-49E4-B7DD-328C3DE27712",
+    "name": "Apple Pay",
+    "width": 57,
+    "height": 14,
+    "abX": 274,
+    "abY": 405,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Apple Pay",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "Apple Pay"
+  },
+  {
+    "id": "03AEE349-23A4-4D10-BDF6-D84F96FEBD2D",
+    "name": "Jan 6, 2018",
+    "width": 67,
+    "height": 14,
+    "abX": 20,
+    "abY": 407,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Jan 6, 2018",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "Jan 6, 2018"
+  },
+  {
+    "id": "EA0F2161-F114-4B2B-9E22-E5D7E2510258",
+    "name": "Line  Copy 2",
+    "width": 375,
+    "height": 3,
+    "abX": 0,
+    "abY": 464,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "ba334c2e.png"
+  },
+  {
+    "id": "FB7DB1D0-16BB-44B0-B7BA-17E9738B34D5",
+    "name": "Shape Copy 4",
+    "width": 4,
+    "height": 7,
+    "abX": 345,
+    "abY": 420,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "e8bd801b.png"
+  },
+  {
+    "id": "D96BC1BF-53C0-4061-AE39-A6588A552F03",
+    "name": "$11.40",
+    "width": 67,
+    "height": 25,
+    "abX": 265,
+    "abY": 499,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 126, "g": 211, "b": 33, "a": 1 },
+          "string": "$11.40",
+          "font": "SFProText-Regular",
+          "size": 21,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "$11.40"
+  },
+  {
+    "id": "3A52D71C-1F60-41C9-A2F9-4C47F6B72FD5",
+    "name": "Pont Au Rouge",
+    "width": 113,
+    "height": 19,
+    "abX": 21,
+    "abY": 506,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 51, "g": 51, "b": 61, "a": 1 },
+          "string": "Pont Au Rouge",
+          "font": "SFProText-Regular",
+          "size": 16,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "Pont Au Rouge"
+  },
+  {
+    "id": "65602868-01EA-444C-9B51-7990FBFD3C0B",
+    "name": "Apple Pay",
+    "width": 57,
+    "height": 14,
+    "abX": 274,
+    "abY": 482,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Apple Pay",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "Apple Pay"
+  },
+  {
+    "id": "605DE165-2687-4D59-B3B2-3D69652BF789",
+    "name": "Jan 6, 2018",
+    "width": 67,
+    "height": 14,
+    "abX": 20,
+    "abY": 484,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Jan 6, 2018",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "Jan 6, 2018"
+  },
+  {
+    "id": "B4D7239B-6258-423C-8CCC-85AFF141B31B",
+    "name": "Line  Copy 2",
+    "width": 375,
+    "height": 3,
+    "abX": 0,
+    "abY": 541,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "5d7847b2.png"
+  },
+  {
+    "id": "CA057BAA-F9DD-4CC1-8008-3B7C42F8BC39",
+    "name": "Shape Copy 4",
+    "width": 4,
+    "height": 7,
+    "abX": 345,
+    "abY": 497,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "e86588bc.png"
+  },
+  {
+    "id": "048E1569-47AB-4755-84E7-52BDCDF586F5",
+    "name": "$4.00",
+    "width": 60,
+    "height": 25,
+    "abX": 272,
+    "abY": 576,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 126, "g": 211, "b": 33, "a": 1 },
+          "string": "$4.00",
+          "font": "SFProText-Regular",
+          "size": 21,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "$4.00"
+  },
+  {
+    "id": "58C603BC-0A98-43DE-A1A4-B693EDF417A1",
+    "name": "Stoller D Apartments",
+    "width": 158,
+    "height": 19,
+    "abX": 21,
+    "abY": 583,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 51, "g": 51, "b": 61, "a": 1 },
+          "string": "Stoller D Apartments",
+          "font": "SFProText-Regular",
+          "size": 16,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "Stoller D Apartments"
+  },
+  {
+    "id": "04F1BDCF-03CF-486A-BA04-67E88A2BF369",
+    "name": "Apple Pay",
+    "width": 57,
+    "height": 14,
+    "abX": 274,
+    "abY": 559,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Apple Pay",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "Apple Pay"
+  },
+  {
+    "id": "2D4B9C79-90B7-4E43-9835-D88118A83D07",
+    "name": "Jan 6, 2018",
+    "width": 67,
+    "height": 14,
+    "abX": 20,
+    "abY": 561,
+    "zIndex": 0,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": { "r": 166, "g": 176, "b": 189, "a": 1 },
+          "string": "Jan 6, 2018",
+          "font": "SFProText-Regular",
+          "size": 12,
+          "lineHeight": null
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 1
+    },
+    "type": "QText",
+    "text": "Jan 6, 2018"
+  },
+  {
+    "id": "A572CF9A-9CA8-4EAA-A6D5-CCCD4860769D",
+    "name": "Shape Copy 4",
+    "width": 4,
+    "height": 7,
+    "abX": 345,
+    "abY": 574,
+    "zIndex": 0,
+    "styles": {},
+    "type": "QImage",
+    "path": "4a2b4693.png"
   }
 ]

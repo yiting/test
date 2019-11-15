@@ -3,7 +3,7 @@ import Builder from '../builder';
 import View from './view';
 import Resource from './resource';
 import QLog from '../../log/qlog';
-import DomConstraints from '../helper/constraints';
+import DomSupplementConstraints from '../helper/supplementConstraints';
 import DomBoundary from '../helper/boundary';
 import TextRevise from '../helper/textRevise';
 
@@ -25,7 +25,7 @@ class ArkBuilder extends Builder {
 
     // 计算约束
     Loger.debug('render/ark/builder [DomConstraints]');
-    DomConstraints(this.view);
+    DomSupplementConstraints(this.view);
 
     // 调整边距
     Loger.debug('render/ark/builder [DomBoundary]');

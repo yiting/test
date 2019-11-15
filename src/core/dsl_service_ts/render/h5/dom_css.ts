@@ -2,7 +2,7 @@
 import QLog from '../../log/qlog';
 
 import CssBoundary from '../helper/boundary';
-import CssConstraints from '../helper/constraints';
+import CssConstraints from '../helper/supplementConstraints';
 import TextRevise from '../helper/textRevise';
 // import css_combo_extend_tree from './css_combo_extend_tree';
 
