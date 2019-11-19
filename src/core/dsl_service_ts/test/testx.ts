@@ -17,7 +17,6 @@ const value: any = dslServer.process(
     applyInfo_user: 'testuser',
     applyInfo_url: 'testurl',
     applyInfo_proName: 'testproName',
-    groups: [],
   },
 );
 

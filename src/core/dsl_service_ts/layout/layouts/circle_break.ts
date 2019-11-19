@@ -93,6 +93,7 @@ export function setBreakCircle(_parent: any, _circleArr: any) {
         list.children.forEach((child: any) => {
           if (child.constructor !== ListItemModel) {
             otherChildren.push(child);
+            return;
           }
           // 转化循环节点为布局子节点
           let layerChild = child.exchangeModel(LayerModel);

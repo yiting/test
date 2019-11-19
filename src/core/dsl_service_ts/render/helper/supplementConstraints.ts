@@ -3,7 +3,7 @@
  */
 import Constraints from '../../helper/constraints';
 import QLog from '../../log/qlog';
-import Utils from '../utils';
+import Utils from '../../helper/methods';
 import Dictionary from '../../helper/dictionary';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
@@ -159,4 +159,4 @@ function _supplementConstraints(vdom: any) {
   }
 }
 
-export default _parseConstraints;
+export default _supplementConstraints;

@@ -1,5 +1,5 @@
 import Constraints from '../../../helper/constraints';
-import Func from '../css_func';
+import Func from '../model/css_func';
 import marginTop from './marginTop';
 import marginBottom from './marginBottom';
 import marginLeft from './marginLeft';
@@ -15,10 +15,10 @@ export default {
       return null;
     }
     //横排
-    css[0] = marginTop.value.call(this);
-    css[1] = marginRight.value.call(this);
-    css[2] = marginBottom.value.call(this);
-    css[3] = marginLeft.value.call(this);
+    css[0] = marginTop.value.call(this) || 0;
+    css[1] = marginRight.value.call(this) || 0;
+    css[2] = marginBottom.value.call(this) || 0;
+    css[3] = marginLeft.value.call(this) || 0;
     if (Number(css.join('')) === 0) {
       return '0';
     }

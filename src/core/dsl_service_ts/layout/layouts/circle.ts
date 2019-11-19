@@ -1,6 +1,7 @@
 // 循环结构的逻辑处理模块
 import Utils from '../../helper/methods';
 import Dictionary from '../../helper/dictionary';
+import Constraints from '../../helper/constraints';
 import * as CircleBreak from './circle_break';
 import * as CircleRepeat from './circle_repeat';
 import * as CircleSerial from './circle_serial';
@@ -147,7 +148,7 @@ export default function(parent: any, nodes: any) {
    * 多重循环
    */
   const circleBreakArr = _findCircle(
-    parent.children,
+    Utils.filterAbsNode(parent.children),
     CircleBreak.breakRule,
     CircleBreak.breakFeature,
     CircleBreak.breakFilter,
@@ -162,7 +163,7 @@ export default function(parent: any, nodes: any) {
    * 系列结构
    */
   const serialArr = _findCircle(
-    parent.children,
+    Utils.filterAbsNode(parent.children),
     CircleSerial.repeatLogic,
     CircleSerial.featureLogic,
     CircleSerial.filterLogic,
@@ -177,7 +178,7 @@ export default function(parent: any, nodes: any) {
    * 重复循环
    */
   const circleArr = _findCircle(
-    parent.children,
+    Utils.filterAbsNode(parent.children),
     CircleRepeat.repeatRule,
     null,
     CircleRepeat.repeatFilter,

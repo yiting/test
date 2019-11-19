@@ -7,7 +7,8 @@ import InterfereModelProcess from './interfereModel/index';
 import GroupProcess from './group/index';
 import GridProcess from './grid/index';
 import RenderProcess from './render';
-import CleanProcess from './clean/index';
+import NodeCleanProcess from './clean/index';
+import LayoutCleanProcess from './layout/clean';
 import Store from './helper/store';
 
 /**
@@ -32,7 +33,7 @@ function _process(_input: any, _options: any): object {
     processDesc = '干预处理';
     layoutNodes = InterfereModelProcess(layoutNodes);
     processDesc = '数据清洗';
-    CleanProcess(layoutNodes);
+    NodeCleanProcess(layoutNodes);
     // 生成树
     processDesc = '节点分组';
     let dslTree = GroupProcess(layoutNodes);
@@ -45,6 +46,9 @@ function _process(_input: any, _options: any): object {
     // 进行布局及循环处理
     processDesc = '布局分析';
     LayoutProcess(dslTree);
+    // 结构清理
+    // processDesc = '结构清理';
+    // LayoutCleanProcess(dslTree);
     // render模块
     let Builder = RenderProcess.handle(dslTree);
     return Builder.getResult();

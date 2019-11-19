@@ -1,6 +1,6 @@
 import Path from 'path';
 import Config from '../../config.json';
-import Funcs from '../css_func';
+import Funcs from '../model/css_func';
 
 export default {
   key: 'backgroundImage',

@@ -1,12 +1,12 @@
 // 样式的计算处理
-import cssDom from './dom_css';
+import cssDom from '../dom_css';
 
-import QLog from '../../log/qlog';
+import QLog from '../../../log/qlog';
 
 // 生成的Css记录树
 
 import cssProperty from './css_property';
-import CssDom from './model/css_dom_tree';
+import CssDom from './css_dom_tree';
 import Func from './css_func';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
