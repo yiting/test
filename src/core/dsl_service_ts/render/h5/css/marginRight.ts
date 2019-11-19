@@ -35,6 +35,8 @@ export default {
       }
       return this.parent.abXops - this.abXops;
     }
+    let vRight = this.parent ? this.parent.abXops - this.abXops : this.abXops;
+
     // 竖排计算与父节点距离
     // 如果水平居中、或水平右对齐
     if (
@@ -42,7 +44,7 @@ export default {
       this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.Center
     ) {
-      return 'auto';
+      return vRight >= 0 ? 'auto' : vRight;
     }
     if (
       this.parent &&
@@ -56,7 +58,7 @@ export default {
       this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.End
     ) {
-      return this.parent.abXops - this.abXops;
+      return vRight;
     }
     return null;
   },

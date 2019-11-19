@@ -4,9 +4,9 @@ import path from 'path';
 // 此模块为h5解析模块
 import Builder from '../builder';
 import CssDom from './dom_css';
-import SimilarCssDom from './dom_similar_css';
+import SimilarCssDom from './model/dom_similar_css';
 import HtmlDom from './dom_html';
-import ClassName from './dom_className';
+import ClassName from './model/dom_className';
 import QLog from '../../log/qlog';
 
 import Store from '../../helper/store';

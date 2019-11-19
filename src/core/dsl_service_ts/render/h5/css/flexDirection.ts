@@ -7,9 +7,9 @@ export default {
     if (this.display !== 'flex') {
       return null;
     }
-    if (!this.parent) {
-      return 'column';
-    }
+    // if (!this.parent) {
+    // return 'column';
+    // }
     if (
       this.constraints.LayoutDirection ===
       Constraints.LayoutDirection.Horizontal

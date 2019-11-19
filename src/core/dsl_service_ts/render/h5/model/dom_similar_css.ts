@@ -1,7 +1,7 @@
 // 样式的计算处理
-import cssDom from './dom_css';
+import cssDom from '../dom_css';
 
-import QLog from '../../log/qlog';
+import QLog from '../../../log/qlog';
 
 // 生成的Css记录树
 

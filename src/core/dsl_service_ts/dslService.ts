@@ -47,7 +47,8 @@ function _process(_input: any, _options: any): object {
     processDesc = '布局分析';
     LayoutProcess(dslTree);
     // 结构清理
-    LayoutCleanProcess(dslTree);
+    // processDesc = '结构清理';
+    // LayoutCleanProcess(dslTree);
     // render模块
     let Builder = RenderProcess.handle(dslTree);
     return Builder.getResult();

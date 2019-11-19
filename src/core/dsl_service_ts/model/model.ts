@@ -1,4 +1,5 @@
 import Utils from '../helper/methods';
+import Dictionary from '../helper/dictionary';
 
 let serialId = 0;
 class Model {
@@ -89,7 +90,11 @@ class Model {
       : null;
   }
   resize() {
-    let { abX, abY, abXops, abYops } = Utils.calRange(this.children);
+    if (this.type !== Dictionary.type.QLayer) {
+      return;
+    }
+    let notAbsChildren = Utils.filterAbsNode(this.children);
+    let { abX, abY, abXops, abYops } = Utils.calRange(notAbsChildren);
     Object.assign(this, {
       abX,
       abY,

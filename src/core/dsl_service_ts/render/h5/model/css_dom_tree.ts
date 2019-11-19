@@ -3,10 +3,10 @@ import { debug } from 'util';
 import Dictionary from '../../../helper/dictionary';
 import Constraints from '../../../helper/constraints';
 import Utils from '../../../helper/methods';
-import Func from '../css_func';
+import Func from './css_func';
 import QLog from '../../../log/qlog';
 import VDom from '../../vdom';
-import cssProperty from '../css_property';
+import cssProperty from './css_property';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 // 生成的Css记录树

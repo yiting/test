@@ -8,14 +8,6 @@ import Dictionary from '../../helper/dictionary';
 let ErrorCoefficient: number = 0;
 let designWidth: number = 0;
 
-function filterFlexNodes(nodes: any) {
-  return nodes.filter(
-    (nd: any) =>
-      nd.constraints &&
-      nd.constraints.LayoutSelfPosition !==
-        Constraints.LayoutSelfPosition.Absolute,
-  );
-}
 /**
  * 两端对齐
  * @param parent
@@ -76,7 +68,7 @@ function calLineIsJustify(
   }
   let nodeIndex = node.parent.children.indexOf(node);
   let line = node.parent.children[nodeIndex + distance];
-  let lineChildren = line && filterFlexNodes(line.children);
+  let lineChildren = line && Utils.filterAbsNode(line.children);
   let result: any[] = [];
   return (
     lineChildren &&
@@ -250,22 +242,29 @@ function isEqualityLeft(nodes: any, parent: any) {
  * 中心点等分要求
  * 左右边距相等，节点间距相等
  */
-function isEqualityCenter(nodes: any, parent: any) {
+function isEqualityCenter(nodes: any, parent: any, isCenter: boolean) {
   // 左右间距判断
-  let firstNode = nodes[0];
-  let lastNode = nodes[nodes.length - 1];
-  let leftSide = (firstNode.abX + firstNode.abXops) / 2 - parent.abX;
-  let rightSide = parent.abXops - (lastNode.abX + lastNode.abXops) / 2;
+  let firstNode = nodes[0],
+    lastNode = nodes[nodes.length - 1];
+  // 如果父节点居中，做边界不限制
+  let allowAbX = isCenter ? Number.NEGATIVE_INFINITY : parent.abX,
+    // 逻辑，如果父节点是居中\超界，右边界不限制
+    allowAbXops =
+      isCenter || parent.abXops >= designWidth
+        ? Number.POSITIVE_INFINITY
+        : parent.abXops;
+  let leftSide = firstNode.abX - allowAbX + firstNode.width / 2,
+    rightSize = allowAbXops - lastNode.abXops + lastNode.width / 2;
+  let maxWidth = 0;
 
   // 中心点数组
   let dirArr: any = [];
   // 得出间距数组
   nodes.some((nd: any, i: any) => {
     let prev = nodes[i - 1];
+    maxWidth = nd.width > maxWidth ? nd.width : maxWidth;
     if (prev) {
-      let ctr = (nd.abX + nd.abXops) / 2;
-      let prevCtr = (prev.abX + prev.abXops) / 2;
-      let dir = ctr - prevCtr;
+      let dir = (nd.abX + nd.abXops) / 2 - (prev.abX + prev.abXops) / 2;
       dirArr.push(dir);
     }
   });
@@ -273,31 +272,22 @@ function isEqualityCenter(nodes: any, parent: any) {
   let minDir = dirArr[0];
   let maxDir = dirArr[dirArr.length - 1];
   if (
-    // 如果最大和最小间距差大于系数，则不符合
-    Math.abs(minDir - maxDir) > ErrorCoefficient ||
-    nodes.some((n: any) => n.width > minDir)
+    // 如果最大和最小间距差大于系数，
+    Math.abs(minDir - maxDir) > ErrorCoefficient
   ) {
     return false;
   }
-  return minDir;
+
   /**
    * 如果符合间距等宽要求，计算合适间距  */
 
   // 获取目标宽度
-  // let maybeDir = Math.min(...[leftSide * 2, rightSide * 2, ...dirArr]);
-  // // 验证新节点都包含原节点范围
-  // let newDir: any[] = [];
-  // let isContain = nodes.every((n: any) => {
-  //   newDir.push({
-  //     abX: (n.abX + n.abXops) / 2 - maybeDir / 2,
-  //     abXops: (n.abX + n.abXops) / 2 + maybeDir / 2,
-  //   });
-  //   return n.abXops - n.abX <= maybeDir;
-  // });
-  // if (!isContain) {
-  //   return false;
-  // }
-  // return maybeDir;
+  let maybeDir = Math.min(leftSide * 2, rightSize * 2, minDir);
+  if (maybeDir < maxWidth) {
+    return false;
+  }
+
+  return maybeDir;
 }
 /**
  * 对传进来的模型数组进行处理
@@ -310,7 +300,7 @@ export default function(parent: any, nodes: any) {
     return;
   }
   // 剔除绝对定位元素
-  let flexNodes = filterFlexNodes(nodes);
+  let flexNodes = Utils.filterAbsNode(nodes);
   ErrorCoefficient = Store.get('errorCoefficient') || 0;
   designWidth = Store.get('designWidth') || 0;
   // 如果子节点不水平，则返回
@@ -330,40 +320,40 @@ export default function(parent: any, nodes: any) {
   if (!_isAllCanFlex || !_isAllSameModel) {
     return;
   }
+  // 判断当前行是否居中等分
+  let curLineIsJustifyAround = isJustifyAround(flexNodes, parent);
   // 计算左对齐等分结果
   let leftSpace = isEqualityLeft(flexNodes, parent);
   // 计算中对齐等分结果
-  let centerSpace = isEqualityCenter(flexNodes, parent);
+  let centerSpace = isEqualityCenter(flexNodes, parent, curLineIsJustifyAround);
   // 计算两端对齐结果
   let aroundArr = isAround(flexNodes);
   /**
    * 其他衡量依据
    */
-  // 判断前节点内容是否中对齐等分
+  // 判断上下行内容是否中对齐等分
   let prevLineIsJustifyCenter =
     centerSpace && calLineIsJustify(flexNodes, parent, -1, 'center');
   let nextLineIsJustifyCenter =
     centerSpace && calLineIsJustify(flexNodes, parent, 1, 'center');
-  // 判断当前节点是否居中等分
-  // let isJustifyAround =
-  // centerSpace && isJustifyAround(flexNodes, parent);
-  // 判断前节点内容是否左对齐等分
+  // 判断上下行内容是否左对齐等分
   let prevLineIsJustifyLeft =
     leftSpace && calLineIsJustify(flexNodes, parent, -1, 'left');
   let nextLineIsJustifyLeft =
     leftSpace && calLineIsJustify(flexNodes, parent, 1, 'left');
-  /* if (
-    // 如果有中心间距，并且居中|与上一行对齐|与下一行对齐
+  if (
+    // 如果有中心间距相等，并且内容居中/与上一行对齐/与下一行对齐
     centerSpace &&
     (!nextLineIsJustifyLeft && !prevLineIsJustifyLeft) &&
     (isJustifyAround || prevLineIsJustifyCenter || nextLineIsJustifyCenter)
-  ) { */
-  if (
-    // 如果有中心间距，并且居中|与上一行对齐|与下一行对齐
-    centerSpace &&
-    (prevLineIsJustifyCenter || nextLineIsJustifyCenter)
   ) {
+    // if (
+    //     // 如果有中心间距，并且居中|与上一行对齐|与下一行对齐
+    //     centerSpace &&
+    //     (prevLineIsJustifyCenter || nextLineIsJustifyCenter)
+    // ) {
     adjustCenterPos(flexNodes, centerSpace, prevLineIsJustifyCenter);
+    parent.resize();
     parent.constraints.LayoutJustifyContent =
       Constraints.LayoutJustifyContent.Center;
   } else if (aroundArr) {

@@ -1,5 +1,5 @@
 import { debug } from 'util';
-import QLog from '../../log/qlog';
+import QLog from '../../../log/qlog';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 

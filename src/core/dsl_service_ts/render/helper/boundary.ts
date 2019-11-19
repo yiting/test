@@ -74,7 +74,7 @@ function _calculateLeftBoundary(vdom: any, isVertical: boolean) {
   const { abX } = vdom;
   // 第一个节点
   if (!prevNode || prevLine.includes(prevNode)) {
-    vdom.abX = vdom.parent.abX;
+    vdom.abX = vdom.abX > vdom.parent.abX ? vdom.parent.abX : vdom.abX;
   } else if (prevNode._canRightFlex()) {
     // 前节点可右拓展，取中间线
     vdom.abX = Math.floor((prevNode.abXops + vdom.abX) / 2);
@@ -106,4 +106,4 @@ function _calculateRightBoundary(vdom: any, isVertical: boolean) {
   return Math.abs(abXops - vdom.abXops);
 }
 
-export default _parseBoundary;
+export default _calculateBoundary;

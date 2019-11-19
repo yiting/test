@@ -11,7 +11,7 @@ const value: any = dslServer.process(
   },
   {
     outputType: 'h5',
-    designWidth: 375,
+    designWidth: 750,
     showTagAttrInfo: true,
     isLocalTest: true,
     applyInfo_user: 'testuser',

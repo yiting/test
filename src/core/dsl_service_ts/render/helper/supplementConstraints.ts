@@ -159,4 +159,4 @@ function _supplementConstraints(vdom: any) {
   }
 }
 
-export default _parseConstraints;
+export default _supplementConstraints;

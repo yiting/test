@@ -117,20 +117,7 @@ class VDom {
     return false;
   }
   _isParentVertical() {
-    if (!this.parent) {
-      return true;
-    }
-    if (this.parent.constraints.LayoutDirection) {
-      return (
-        this.parent.constraints.LayoutDirection ==
-        Constraints.LayoutDirection.Vertical
-      );
-    }
-
-    if (Utils.isVertical(this.parent.children)) {
-      return true;
-    }
-    return false;
+    return !this._isParentHorizontal();
   }
 
   /**
@@ -139,6 +126,9 @@ class VDom {
    */
   _isParentHorizontal() {
     if (!this.parent) {
+      return false;
+    }
+    if (this.parent.type === Dictionary.type.QBody) {
       return false;
     }
     // if (this.parent.children.length===1) { // 1个元素默认是横排
