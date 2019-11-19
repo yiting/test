@@ -345,7 +345,9 @@ export default function(parent: any, nodes: any) {
     // 如果有中心间距相等，并且内容居中/与上一行对齐/与下一行对齐
     centerSpace &&
     (!nextLineIsJustifyLeft && !prevLineIsJustifyLeft) &&
-    (isJustifyAround || prevLineIsJustifyCenter || nextLineIsJustifyCenter)
+    (curLineIsJustifyAround ||
+      prevLineIsJustifyCenter ||
+      nextLineIsJustifyCenter)
   ) {
     // if (
     //     // 如果有中心间距，并且居中|与上一行对齐|与下一行对齐
