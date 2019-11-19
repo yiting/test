@@ -33,7 +33,7 @@ function _process(_input: any, _options: any): object {
     processDesc = '干预处理';
     layoutNodes = InterfereModelProcess(layoutNodes);
     processDesc = '数据清洗';
-    NodeCleanProcess(layoutNodes);
+    layoutNodes = NodeCleanProcess(layoutNodes);
     // 生成树
     processDesc = '节点分组';
     let dslTree = GroupProcess(layoutNodes);

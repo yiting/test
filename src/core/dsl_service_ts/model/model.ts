@@ -3,25 +3,25 @@ import Dictionary from '../helper/dictionary';
 
 let serialId = 0;
 class Model {
-  children: any[];
-  parent: any;
-  id: any;
-  type: any;
-  serialId: number;
-  similarId: number | null;
-  text: string | null;
-  abX: number;
-  abY: number;
-  abXops: number;
-  abYops: number;
-  styles: any;
-  path: string | null;
-  constraints: any;
-  zIndex: number;
-  name: string;
-  modelId: string;
-  canLeftFlex: boolean;
-  canRightFlex: boolean;
+  _children: any[];
+  _parent: any;
+  _id: any;
+  _type: any;
+  _serialId: number;
+  _similarId: number | null;
+  _text: string | null;
+  _abX: number;
+  _abY: number;
+  _abXops: number;
+  _abYops: number;
+  _styles: any;
+  _path: string | null;
+  _constraints: any;
+  _zIndex: number;
+  _name: string;
+  _modelId: string;
+  _canLeftFlex: boolean;
+  _canRightFlex: boolean;
   __allowed_descendantIds: any;
 
   static resetSerialId() {
@@ -52,6 +52,120 @@ class Model {
   }
   static regular(node: any) {
     return false;
+  }
+  public get children() {
+    return this._children;
+  }
+  public set children(value: any[]) {
+    this._children = value;
+  }
+  public get parent() {
+    return this._parent;
+  }
+  public set parent(value: any) {
+    this._parent = value;
+  }
+  public get id() {
+    return this._id;
+  }
+  public set id(value: any) {
+    this._id = value;
+  }
+  public get type() {
+    return this._type;
+  }
+  public set type(value: any) {
+    this._type = value;
+  }
+  public get serialId() {
+    return this._serialId;
+  }
+  public set serialId(value: number) {
+    this._serialId = value;
+  }
+  public get similarId() {
+    return this._similarId;
+  }
+  public set similarId(value: number | null) {
+    this._similarId = value;
+  }
+  public get text() {
+    return this._text;
+  }
+  public set text(value: string | null) {
+    this._text = value;
+  }
+  public get abX() {
+    return this._abX;
+  }
+  public set abX(value: number) {
+    this._abX = value;
+  }
+  public get abY() {
+    return this._abY;
+  }
+  public set abY(value: number) {
+    this._abY = value;
+  }
+  public get abXops() {
+    return this._abXops;
+  }
+  public set abXops(value: number) {
+    this._abXops = value;
+  }
+  public get abYops() {
+    return this._abYops;
+  }
+  public set abYops(value: number) {
+    this._abYops = value;
+  }
+  public get styles() {
+    return this._styles;
+  }
+  public set styles(value: any) {
+    this._styles = value;
+  }
+  public get path() {
+    return this._path;
+  }
+  public set path(value: string | null) {
+    this._path = value;
+  }
+  public get constraints() {
+    return this._constraints;
+  }
+  public set constraints(value: any) {
+    this._constraints = value;
+  }
+  public get zIndex() {
+    return this._zIndex;
+  }
+  public set zIndex(value: number) {
+    this._zIndex = value;
+  }
+  public get name() {
+    return this._name;
+  }
+  public set name(value: string) {
+    this._name = value;
+  }
+  public get modelId() {
+    return this._modelId;
+  }
+  public set modelId(value: string) {
+    this._modelId = value;
+  }
+  public get canLeftFlex() {
+    return this._canLeftFlex;
+  }
+  public set canLeftFlex(value: boolean) {
+    this._canLeftFlex = value;
+  }
+  public get canRightFlex() {
+    return this._canRightFlex;
+  }
+  public set canRightFlex(value: boolean) {
+    this._canRightFlex = value;
   }
 
   appendChild(...childs: any) {
@@ -90,9 +204,6 @@ class Model {
       : null;
   }
   resize() {
-    if (this.type !== Dictionary.type.QLayer) {
-      return;
-    }
     let notAbsChildren = Utils.filterAbsNode(this.children);
     let { abX, abY, abXops, abYops } = Utils.calRange(notAbsChildren);
     Object.assign(this, {

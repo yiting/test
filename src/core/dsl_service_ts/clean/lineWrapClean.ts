@@ -2,13 +2,14 @@
  * 换行清洗 */
 
 import Canvas from 'canvas';
+import TextModel from '../../dsl_extend/models/text/model';
 const Context = Canvas.createCanvas(200, 200).getContext('2d');
 
 const regWrap = /.*\n+/m;
 const regRes = /\n+|[^\n]+/gim;
 
-function copy(obj: any) {
-  return JSON.parse(JSON.stringify(obj));
+function newJson(node: any) {
+  return JSON.parse(JSON.stringify(node));
 }
 
 export default function(nodes: any) {
@@ -72,15 +73,16 @@ function pipe(node: any) {
         curNode = null;
       } else {
         // if (!paragraphList.includes(curNode)) {
-        curNode = copy(node);
+        curNode = new TextModel(newJson(node));
         curNode.id = curNode.id + '_row' + i;
         curNode.styles.lineHeight = rowLineHeight;
         curNode.styles.texts = [];
         curNode.abY += increaseTop;
-        paragraphList.push(curNode);
         curNode.styles.texts.push(...row.texts.filter((n: any) => !!n.string));
         const rows = calRows(curNode.styles.texts, node.width);
-        curNode.height = rowLineHeight * rows;
+        curNode.abYops = curNode.abY + rowLineHeight * rows;
+
+        paragraphList.push(curNode);
       }
       increaseTop += curNode ? curNode.height : rowLineHeight;
     });
