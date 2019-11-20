@@ -167,53 +167,6 @@ class Model {
   public set canRightFlex(value: boolean) {
     this._canRightFlex = value;
   }
-
-  appendChild(...childs: any) {
-    childs.forEach((child: any) => {
-      child.parent = this;
-    });
-    this.children.push(...childs);
-  }
-
-  toJSON() {
-    return {
-      children: this.children.map((node: any) => node.toJSON()),
-      parentId: this.parent && this.parent.id,
-      id: this.id,
-      type: this.type,
-      serialId: this.serialId,
-      similarId: this.similarId,
-      canLeftFlex: this.canLeftFlex,
-      canRightFlex: this.canRightFlex,
-      text: this.text,
-      abX: this.abX,
-      abY: this.abY,
-      abXops: this.abXops,
-      abYops: this.abYops,
-      path: this.path,
-      zIndex: this.zIndex,
-      isMultiline: this.isMultiline,
-      styles: this.styles,
-      constraints: this.constraints,
-    };
-  }
-
-  resetZIndex() {
-    this.zIndex = this.children.length
-      ? Math.min(...this.children.map(nd => nd.zIndex))
-      : null;
-  }
-  resize() {
-    let notAbsChildren = Utils.filterAbsNode(this.children);
-    let { abX, abY, abXops, abYops } = Utils.calRange(notAbsChildren);
-    Object.assign(this, {
-      abX,
-      abY,
-      abXops,
-      abYops,
-    });
-    return this;
-  }
   get _allowed_descendantIds() {
     return (
       this.__allowed_descendantIds ||
@@ -263,7 +216,54 @@ class Model {
     }
     return null;
   }
-  exchangeModel(ModelClass: any) {
+
+  public appendChild(...childs: any) {
+    childs.forEach((child: any) => {
+      child.parent = this;
+    });
+    this.children.push(...childs);
+  }
+
+  public toJSON() {
+    return {
+      children: this.children.map((node: any) => node.toJSON()),
+      parentId: this.parent && this.parent.id,
+      id: this.id,
+      type: this.type,
+      serialId: this.serialId,
+      similarId: this.similarId,
+      canLeftFlex: this.canLeftFlex,
+      canRightFlex: this.canRightFlex,
+      text: this.text,
+      abX: this.abX,
+      abY: this.abY,
+      abXops: this.abXops,
+      abYops: this.abYops,
+      path: this.path,
+      zIndex: this.zIndex,
+      isMultiline: this.isMultiline,
+      styles: this.styles,
+      constraints: this.constraints,
+    };
+  }
+
+  public resetZIndex() {
+    this.zIndex = this.children.length
+      ? Math.min(...this.children.map(nd => nd.zIndex))
+      : null;
+  }
+  public resize() {
+    let notAbsChildren = Utils.filterAbsNode(this.children);
+    let { abX, abY, abXops, abYops } = Utils.calRange(notAbsChildren);
+    Object.assign(this, {
+      abX,
+      abY,
+      abXops,
+      abYops,
+    });
+    return this;
+  }
+  public exchangeModel(ModelClass: any) {
     var newData = new ModelClass(this);
     newData.children = this.children;
     newData.children.forEach((child: any) => {
@@ -276,6 +276,9 @@ class Model {
       }
     }
     return newData;
+  }
+  public isSimilarWith(target: any, goIn: boolean = false) {
+    return this.similarId !== undefined && this.similarId === target.similarId;
   }
 }
 export default Model;
