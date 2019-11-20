@@ -12,7 +12,7 @@ class Layer extends Model {
   static regular(node: any) {
     return node.type == 'QLayer';
   }
-  public isSimilarWith(target: any, goIn: boolean = false) {
+  public isSimilarWith(target: any) {
     let ErrorCoefficient = Store.get('errorCoefficient') || 0;
     let a = this,
       b = target;
@@ -23,16 +23,14 @@ class Layer extends Model {
         // 左、中、右对齐
         (Math.abs(a.abX - b.abX) < ErrorCoefficient ||
           Math.abs(a.abXops - b.abXops) < ErrorCoefficient ||
-          Math.abs(a.abXops + a.abX - b.abXops - b.abX) / 2 <
-            ErrorCoefficient)) ||
+          Math.abs(a.centerAbX - b.centerAbX) < ErrorCoefficient)) ||
       // 垂直中线对齐
       (Math.abs(a.abXops - a.abX - b.abXops + b.abX) < ErrorCoefficient &&
         // 上、中、下对齐
         (Math.abs(a.abY - b.abY) < ErrorCoefficient ||
           Math.abs(a.abYops - b.abYops) < ErrorCoefficient ||
-          Math.abs(a.abYops + a.abY - b.abYops - b.abY) / 2 <
-            ErrorCoefficient));
-    if (isSimilar && goIn) {
+          Math.abs(a.centerAbY - b.centerAbY) < ErrorCoefficient));
+    if (isSimilar) {
       let meta = Methods.filterAbsNode(this.children);
       let targ = Methods.filterAbsNode(target.children);
       let leng = meta.length;
@@ -42,10 +40,13 @@ class Layer extends Model {
       for (let i = 0; i < leng; i++) {
         let a = meta[i],
           b = targ[i];
-        return a.isSimilarWith(b, false);
+        if (!a.isSimilarWith(b)) {
+          return false;
+        }
       }
+      return true;
     }
-    return isSimilar;
+    return false;
   }
 }
 

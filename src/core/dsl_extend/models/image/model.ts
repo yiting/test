@@ -16,7 +16,7 @@ class Image extends Model {
    * 颜色相似
    * 圆角相似
    */
-  public isSimilarWith(target: any, goIn: boolean = false) {
+  public isSimilarWith(target: any) {
     let ErrorCoefficient = Store.get('errorCoefficient') || 0;
     let a_bgColor =
       this.styles.background && Methods.RGB2HEX(this.styles.background.color);

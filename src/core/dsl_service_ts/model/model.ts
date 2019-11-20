@@ -195,6 +195,13 @@ class Model {
     return this.parent ? this.abY - this.parent.abY : this.abY;
   }
 
+  get centerAbX() {
+    return (this.abXops + this.abX) / 2;
+  }
+  get centerAbY() {
+    return (this.abYops + this.abY) / 2;
+  }
+
   get width() {
     return this.abXops - this.abX;
   }
@@ -277,7 +284,7 @@ class Model {
     }
     return newData;
   }
-  public isSimilarWith(target: any, goIn: boolean = false) {
+  public isSimilarWith(target: any): boolean {
     return this.similarId !== undefined && this.similarId === target.similarId;
   }
 }

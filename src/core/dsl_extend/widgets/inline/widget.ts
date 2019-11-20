@@ -24,7 +24,7 @@ class Inline extends Model {
     let res = groups.filter((col: any) => col.length > 1);
     return res;
   }
-  public isSimilarWith(target: any, goIn: boolean = false) {
+  public isSimilarWith(target: any) {
     let meta = Methods.filterAbsNode(this.children);
     let targ = Methods.filterAbsNode(target.children);
     let leng = meta.length;
@@ -34,7 +34,7 @@ class Inline extends Model {
     for (let i = 0; i < leng; i++) {
       let a = meta[i],
         b = targ[i];
-      return a.isSimilarWith(b, false);
+      return a.isSimilarWith(b);
     }
   }
 }

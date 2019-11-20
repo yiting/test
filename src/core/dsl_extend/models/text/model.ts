@@ -14,13 +14,16 @@ class Text extends Model {
    * 文本相似原则：
    * 字体相似、字号存在相似、字色存在相似
    */
-  public isSimilarWith(target: any, goIn: boolean = false) {
+  public isSimilarWith(target: any) {
     let a_font: string[] = [],
       a_size: number[] = [],
       a_color: string[] = [];
     let b_font: string[] = [],
       b_size: number[] = [],
       b_color: string[] = [];
+    if (!this.styles.texts || !target.styles.texts) {
+      return false;
+    }
     this.styles.texts.forEach((text: any) => {
       a_font.push(text.font);
       a_size.push(text.size);

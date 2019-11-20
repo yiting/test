@@ -20,7 +20,7 @@ class Dividing extends Model {
    * 图片相似原则：
    * 高宽相似，颜色相似
    */
-  public isSimilarWith(target: any, goIn: boolean = false) {
+  public isSimilarWith(target: any) {
     return this.width == target.width && this.height == target.height;
   }
 }
