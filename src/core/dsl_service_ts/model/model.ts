@@ -23,6 +23,7 @@ class Model {
   _canLeftFlex: boolean;
   _canRightFlex: boolean;
   __allowed_descendantIds: any;
+  isMultiline: boolean;
 
   static resetSerialId() {
     serialId = 0;
@@ -49,6 +50,8 @@ class Model {
     this.canLeftFlex = node.canLeftFlex || false;
     this.canRightFlex = node.canRightFlex || false;
     this.__allowed_descendantIds = node._allowed_descendantIds || null;
+
+    this.isMultiline = this.text ? this.height / this.lineHeight > 1.6 : false;
   }
   static regular(node: any) {
     return false;
@@ -213,13 +216,6 @@ class Model {
   get lineHeight() {
     if (this.styles.texts) {
       return Math.max(...this.styles.texts.map((word: any) => word.lineHeight));
-    }
-    return null;
-  }
-
-  get isMultiline() {
-    if (this.text) {
-      return this.height / this.lineHeight > 1.6;
     }
     return null;
   }

@@ -80,6 +80,8 @@ class TemplateData {
     this.similarId = o.similarId;
     this.similarParentId = o.similarParentId;
     this.children = []; // 子节点储存
+    this.isMultiline = o.isMultiline || null;
+
     TemplateData.index += 1;
   }
 

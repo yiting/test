@@ -1,4 +1,5 @@
 import Dictionary from '../../../helper/dictionary';
+import { debug } from 'util';
 
 export default {
   key: 'whiteSpace',
