@@ -5,7 +5,7 @@ import Constraints from '../../helper/constraints';
 import Store from '../../helper/store';
 
 let ErrorCoefficient: number = 0;
-let _compareNodes: any;
+let _compareNodes: any = {};
 
 /**
  * 主流程：对传进来的模型数组进行循环分析处理
@@ -47,7 +47,7 @@ function _filterRule(node: any) {
   if (!_compareNodes[node.constructor.name]) {
     _compareNodes[node.constructor.name] = [];
   }
-  const compareChildren = node.children.filter(
+  let compareChildren = node.children.filter(
     (child: any) =>
       child.constraints.LayoutSelfPosition !==
       Constraints.LayoutSelfPosition.Absolute,
@@ -67,6 +67,7 @@ function _filterRule(node: any) {
     isHorizontal: Utils.isHorizontal(compareChildren),
     compareChildren: compareChildren,
   });
+  return _compareNodes;
 }
 
 // 遍历所有结构
@@ -117,11 +118,15 @@ function _similarRule(a: any, b: any): boolean {
               ErrorCoefficient)
         );
       }) &&
-      ((Math.abs(a.abYops - a.abY - b.abYops + b.abY) < ErrorCoefficient &&
+      (// 水平中线对齐
+      (Math.abs(a.abYops - a.abY - b.abYops + b.abY) < ErrorCoefficient &&
+        // 左、中、右对齐
         (Math.abs(a.abX - b.abX) < ErrorCoefficient ||
           Math.abs(a.abXops - b.abXops) < ErrorCoefficient ||
           Math.abs(a.ctX - b.ctX) < ErrorCoefficient)) ||
+        // 垂直中线对齐
         (Math.abs(a.abXops - a.abX - b.abXops + b.abX) < ErrorCoefficient &&
+          // 上、中、下对齐
           (Math.abs(a.abY - b.abY) < ErrorCoefficient ||
             Math.abs(a.abYops - b.abYops) < ErrorCoefficient ||
             Math.abs(a.ctY - b.ctY) < ErrorCoefficient)))
@@ -177,12 +182,11 @@ function _similarRule(a: any, b: any): boolean {
   }
 }
 function handle(parent: any) {
-  _compareNodes = {};
   res.similarIndex = 1;
+  ErrorCoefficient = Store.get('errorCoefficient') || 0;
   // 找出所有需要对比的结构
   _filterCompareNodes(parent);
 
-  ErrorCoefficient = Store.get('errorCoefficient') || 0;
   // 找出相似结构组合
   Object.keys(_compareNodes).forEach(key => {
     const compareNodes = _compareNodes[key];

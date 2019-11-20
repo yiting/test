@@ -36,15 +36,15 @@ export default function(dslTree: any) {
     // 排序
     _logStep = '排序';
     walkIn(LayoutSort, dslTree);
+    // 相似
+    _logStep = '相似';
+    LayoutSimilar.handle(dslTree);
     // 等分
     _logStep = '等分';
     walkIn(LayoutEquality, dslTree);
     // 布局
     _logStep = '布局';
     walkIn(LayoutBaseLine, dslTree);
-    // 相似
-    _logStep = '相似';
-    LayoutSimilar.handle(dslTree);
     // 循环
     _logStep = '循环';
     walkOut(LayoutCircle, dslTree);
