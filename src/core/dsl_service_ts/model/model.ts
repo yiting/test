@@ -23,6 +23,7 @@ class Model {
   _canLeftFlex: boolean;
   _canRightFlex: boolean;
   __allowed_descendantIds: any;
+  isMultiline: boolean;
 
   static resetSerialId() {
     serialId = 0;
@@ -49,6 +50,10 @@ class Model {
     this.canLeftFlex = node.canLeftFlex || false;
     this.canRightFlex = node.canRightFlex || false;
     this.__allowed_descendantIds = node._allowed_descendantIds || null;
+
+    this.isMultiline = this.text
+      ? this.height / (this.lineHeight || this.height) > 1.6
+      : false;
   }
   static regular(node: any) {
     return false;
@@ -167,53 +172,6 @@ class Model {
   public set canRightFlex(value: boolean) {
     this._canRightFlex = value;
   }
-
-  appendChild(...childs: any) {
-    childs.forEach((child: any) => {
-      child.parent = this;
-    });
-    this.children.push(...childs);
-  }
-
-  toJSON() {
-    return {
-      children: this.children.map((node: any) => node.toJSON()),
-      parentId: this.parent && this.parent.id,
-      id: this.id,
-      type: this.type,
-      serialId: this.serialId,
-      similarId: this.similarId,
-      canLeftFlex: this.canLeftFlex,
-      canRightFlex: this.canRightFlex,
-      text: this.text,
-      abX: this.abX,
-      abY: this.abY,
-      abXops: this.abXops,
-      abYops: this.abYops,
-      path: this.path,
-      zIndex: this.zIndex,
-      isMultiline: this.isMultiline,
-      styles: this.styles,
-      constraints: this.constraints,
-    };
-  }
-
-  resetZIndex() {
-    this.zIndex = this.children.length
-      ? Math.min(...this.children.map(nd => nd.zIndex))
-      : null;
-  }
-  resize() {
-    let notAbsChildren = Utils.filterAbsNode(this.children);
-    let { abX, abY, abXops, abYops } = Utils.calRange(notAbsChildren);
-    Object.assign(this, {
-      abX,
-      abY,
-      abXops,
-      abYops,
-    });
-    return this;
-  }
   get _allowed_descendantIds() {
     return (
       this.__allowed_descendantIds ||
@@ -242,6 +200,13 @@ class Model {
     return this.parent ? this.abY - this.parent.abY : this.abY;
   }
 
+  get centerAbX() {
+    return (this.abXops + this.abX) / 2;
+  }
+  get centerAbY() {
+    return (this.abYops + this.abY) / 2;
+  }
+
   get width() {
     return this.abXops - this.abX;
   }
@@ -257,13 +222,53 @@ class Model {
     return null;
   }
 
-  get isMultiline() {
-    if (this.text) {
-      return this.height / this.lineHeight > 1.6;
-    }
-    return null;
+  public appendChild(...childs: any) {
+    childs.forEach((child: any) => {
+      child.parent = this;
+    });
+    this.children.push(...childs);
   }
-  exchangeModel(ModelClass: any) {
+
+  public toJSON() {
+    return {
+      children: this.children.map((node: any) => node.toJSON()),
+      parentId: this.parent && this.parent.id,
+      id: this.id,
+      type: this.type,
+      serialId: this.serialId,
+      similarId: this.similarId,
+      canLeftFlex: this.canLeftFlex,
+      canRightFlex: this.canRightFlex,
+      text: this.text,
+      abX: this.abX,
+      abY: this.abY,
+      abXops: this.abXops,
+      abYops: this.abYops,
+      path: this.path,
+      zIndex: this.zIndex,
+      isMultiline: this.isMultiline,
+      styles: this.styles,
+      constraints: this.constraints,
+    };
+  }
+
+  public resetZIndex() {
+    this.zIndex = this.children.length
+      ? Math.min(...this.children.map(nd => nd.zIndex))
+      : null;
+  }
+  public resize() {
+    let notAbsChildren = Utils.filterAbsNode(this.children);
+    let { abX, abY, abXops, abYops } = Utils.calRange(notAbsChildren);
+    Object.assign(this, {
+      abX,
+      abY,
+      abXops,
+      abYops,
+    });
+    return this;
+  }
+  public exchangeModel(ModelClass: any) {
     var newData = new ModelClass(this);
     newData.children = this.children;
     newData.children.forEach((child: any) => {
@@ -276,6 +281,9 @@ class Model {
       }
     }
     return newData;
+  }
+  public isSimilarWith(target: any): boolean {
+    return this.similarId !== undefined && this.similarId === target.similarId;
   }
 }
 export default Model;

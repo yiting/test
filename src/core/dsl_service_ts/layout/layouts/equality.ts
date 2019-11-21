@@ -135,6 +135,18 @@ function adjustLeftPos(nodes: any, width: any) {
     nd.constraints = nd.constraints;
   });
 }
+function isSameSimilarId(nodes: any) {
+  let similarId: number | null;
+
+  return (
+    nodes.length > 1 &&
+    nodes.every((nd: any) => {
+      let isSameModel = similarId == null || nd.similarId == similarId;
+      similarId = nd.similarId;
+      return isSameModel;
+    })
+  );
+}
 
 function isAllSameModel(nodes: any) {
   let modelType: any;
@@ -246,7 +258,7 @@ function isEqualityCenter(nodes: any, parent: any, isCenter: boolean) {
   // 左右间距判断
   let firstNode = nodes[0],
     lastNode = nodes[nodes.length - 1];
-  // 如果父节点居中，做边界不限制
+  // 如果父节点居中，左边界不限制
   let allowAbX = isCenter ? Number.NEGATIVE_INFINITY : parent.abX,
     // 逻辑，如果父节点是居中\超界，右边界不限制
     allowAbXops =
@@ -316,8 +328,8 @@ export default function(parent: any, nodes: any) {
   flexNodes.sort((a: any, b: any) => a.abX - b.abX);
   let _isAllCanFlex = isAllCanFlex(flexNodes);
   // 如果子节点类型不一样，则返回
-  let _isAllSameModel = isAllSameModel(flexNodes);
-  if (!_isAllCanFlex || !_isAllSameModel) {
+  let _isSameSimilarId = isSameSimilarId(flexNodes);
+  if (!_isAllCanFlex || !_isSameSimilarId) {
     return;
   }
   // 判断当前行是否居中等分

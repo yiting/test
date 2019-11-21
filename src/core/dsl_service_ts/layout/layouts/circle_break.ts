@@ -74,7 +74,6 @@ export function breakFeature(feature: any) {
 export function setBreakCircle(_parent: any, _circleArr: any) {
   _circleArr.forEach((fragment: any) => {
     let rowSimilarIndex: number = ++Similar.similarIndex;
-    let itemSimilarIndex: number = ++Similar.similarIndex;
     fragment.target.forEach((group: any) => {
       // 父节点剔除当前循环节点
       _parent.children = _parent.children.filter(
@@ -106,8 +105,11 @@ export function setBreakCircle(_parent: any, _circleArr: any) {
       });
       // 创建新循环子节点
       _catchCols.forEach((children: any) => {
+        let itemSimilarId = children
+          .map((nd: any) => nd.similarId || '@')
+          .join('_');
         let newListItem = new ListItemModel({
-          similarId: itemSimilarIndex,
+          similarId: itemSimilarId,
           constraints: {
             LayoutFixedWidth: Constraints.LayoutFixedWidth.Fixed,
           },
