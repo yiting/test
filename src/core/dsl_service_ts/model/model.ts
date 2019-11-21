@@ -51,7 +51,9 @@ class Model {
     this.canRightFlex = node.canRightFlex || false;
     this.__allowed_descendantIds = node._allowed_descendantIds || null;
 
-    this.isMultiline = this.text ? this.height / this.lineHeight > 1.6 : false;
+    this.isMultiline = this.text
+      ? this.height / (this.lineHeight || this.height) > 1.6
+      : false;
   }
   static regular(node: any) {
     return false;

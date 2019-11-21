@@ -25,18 +25,21 @@ class Text extends Model {
       return false;
     }
     this.styles.texts.forEach((text: any) => {
-      a_font.push(text.font);
+      let fontFamily = text.font.split(/-| /)[0];
+      a_font.push(fontFamily);
       a_size.push(text.size);
       let { r, g, b, a } = text.color;
       a_color.push([r, g, b, a].join());
     });
     target.styles.texts.forEach((text: any) => {
-      b_font.push(text.font);
+      let fontFamily = text.font.split(/-| /)[0];
+      b_font.push(fontFamily);
       b_size.push(text.size);
       let { r, g, b, a } = text.color;
       b_color.push([r, g, b, a].join());
     });
     return (
+      this.isMultiline === target.isMultiline &&
       a_font.join(',').search(RegExp(b_font.join('|'), 'g')) > -1 &&
       a_size.join(',').search(RegExp(b_size.join('|'), 'g')) > -1 &&
       a_color.join(',').search(RegExp(b_color.join('|'), 'g')) > -1
