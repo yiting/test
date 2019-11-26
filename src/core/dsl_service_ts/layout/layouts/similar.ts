@@ -77,7 +77,6 @@ function handle(parent: any) {
   res.similarIndex = 1;
   // 找出所有需要对比的结构
   _filterCompareNodes(parent);
-
   // 找出相似结构组合
   Object.keys(_compareNodes).forEach(key => {
     const compareNodes = _compareNodes[key];
