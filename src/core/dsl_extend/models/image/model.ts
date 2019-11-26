@@ -19,9 +19,12 @@ class Image extends Model {
   public isSimilarWith(target: any) {
     let ErrorCoefficient = Store.get('errorCoefficient') || 0;
     let a_bgColor =
-      this.styles.background && Methods.RGB2HEX(this.styles.background.color);
+      this.styles.background &&
+      this.styles.background.color &&
+      Methods.RGB2HEX(this.styles.background.color);
     let b_bgColor =
       target.styles.background &&
+      target.styles.background.color &&
       Methods.RGB2HEX(target.styles.background.color);
     let a_borderRadius =
       this.styles.borderRadius && this.styles.borderRadius.join();
