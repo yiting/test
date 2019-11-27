@@ -1,4 +1,4 @@
-const { serialize, walkin } = require('../../utils');
+const { serialize } = require('../../utils');
 //获取重复
 let getDuplicateImage = images => {
   let imageList = [...images];
