@@ -1,5 +1,4 @@
 const { serialize, walkin } = require('../../utils');
-const md5 = require('md5');
 //获取重复
 let getDuplicateImage = images => {
   let imageList = [...images];
@@ -124,18 +123,10 @@ function replacePath(images) {
     console.error('图片去重报错！');
   }
 }
-function hashPath(imageList, outputPath = '') {
-  imageList.forEach(n => {
-    const id = md5(n.id);
-    n.path = `${outputPath}${id.slice(0, 8)}.png`;
-    hashPath(n._imageChildren, outputPath);
-  });
-}
-function process(designDom, options) {
+function process(designDom) {
   let nodes = serialize(designDom);
   let imageList = nodes.filter(node => node.type === 'QImage');
-  options.isPreedit && replacePath(imageList);
-  hashPath(imageList, options.outputPath);
+  replacePath(imageList);
 }
 module.exports = {
   process,

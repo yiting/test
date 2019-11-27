@@ -2,6 +2,7 @@
 const ParserModule = require('./parser');
 const Optimize = require('./optimize');
 const Processor = require('./processor');
+const { extractDom } = require('./utils');
 
 const FILE_TYPES = {
   Sketch: 'sketch',
@@ -26,6 +27,7 @@ class DesignJson {
   /**
    * artboard抽象
    * @param {string} artBoardId artboard id
+   * @param {string} fileType 设计稿类型
    * @param {Object} option 优化配置
    * @param {Object} options.symbolMap
    * @param {Object} options.artboardMap
@@ -37,12 +39,65 @@ class DesignJson {
    * @param {boolean} option.isPreedit 是否人工合图步骤
    * @return {Object} 返回节点与图片节点
    */
-  static parse(artBoardId, option = {}, fileType = 'sketch') {
+  static parse(artBoardId, fileType = 'sketch', option = {}) {
     const designDom = ParserModule[fileType].parse(artBoardId, option);
     const rate = designDom ? designDom.width / 750 : null;
     option.rate = rate;
     Optimize(designDom, option);
-    Processor[fileType].process(designDom, option);
+    option.isPreedit && Processor[fileType].process(designDom);
+    Processor.process(designDom);
+    const nodes = designDom.toList();
+    const images = designDom.getImages();
+    return {
+      nodes,
+      images,
+      rate,
+    };
+  }
+
+  /**
+   * artboard抽象
+   * @param {string} artBoardId artboard id
+   * @param {Object} option 优化配置
+   * @param {Object} options.symbolMap
+   * @param {Object} options.artboardMap
+   * @param {string} options.version
+   * @param {Object} options.fontData
+   * @param {Object} options.frameMap
+   * @param {Object} option.aiData ai数据
+   * @param {Object} option.ruleMap 合图规则
+   * @param {boolean} option.isPreedit 是否人工合图步骤
+   * @return {Object} 返回节点
+   */
+  static pureParse(artBoardId, fileType = 'sketch', option = {}) {
+    const designDom = ParserModule[fileType].parse(artBoardId, option);
+    const nodes = designDom.toList();
+    return {
+      nodes,
+    };
+  }
+  /**
+   * artboard抽象
+   * @param {string} artBoardId artboard id
+   * @param {string[]} idList idList id
+   * @param {Object} option 优化配置
+   * @param {Object} options.symbolMap
+   * @param {Object} options.artboardMap
+   * @param {string} options.version
+   * @param {Object} options.fontData
+   * @param {Object} options.frameMap
+   * @param {Object} option.aiData ai数据
+   * @param {Object} option.ruleMap 合图规则
+   * @param {boolean} option.isPreedit 是否人工合图步骤
+   * @return {Object} 返回节点与图片节点
+   */
+  static localParse(artBoardId, idList, option = {}) {
+    const designDom = ParserModule[fileType].parse(artBoardId, option);
+    const rate = designDom ? designDom.width / 750 : null;
+    option.rate = rate;
+    extractDom(designDom, idList);
+    Optimize(designDom, option);
+    Processor.process(designDom, option);
     const nodes = designDom.toList();
     const images = designDom.getImages();
     return {

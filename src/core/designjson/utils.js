@@ -117,6 +117,16 @@ function isSameColor(colorA, colorB) {
   return Object.values(colorA).join(',') === Object.values(colorB).join(',');
 }
 
+function extractDom(rootNode, idList) {
+  rootNode.removeAll();
+  const tagetNodes = serialize(node)
+    .filter(n => ~idList.indexOf(n.id))
+    .sort((a, b) => a.zIndex - b.zIndex);
+  tagetNodes.forEach(n => {
+    rootNode.add(n);
+  });
+}
+
 module.exports = {
   walkout,
   walkin,
@@ -132,5 +142,6 @@ module.exports = {
   getBiggestNode,
   hasText,
   isSameColor,
+  extractDom,
   // isPureColor
 };

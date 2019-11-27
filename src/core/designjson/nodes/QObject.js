@@ -2,6 +2,20 @@ const { serialize } = require('../utils');
 /**
  * 基础节点类
  */
+const DEFAULT_KEYS = [
+  'id',
+  'name',
+  'type',
+  'width',
+  'height',
+  'abX',
+  'abY',
+  'styles',
+  'path',
+  'text',
+  'zIndex',
+  'symbolRoot',
+];
 class QObject {
   constructor() {
     // id
@@ -201,26 +215,12 @@ class QObject {
   /**
    * 平铺树节点
    */
-  toList() {
-    const rules = [
-      'id',
-      'name',
-      'type',
-      'width',
-      'height',
-      'abX',
-      'abY',
-      'styles',
-      'path',
-      'text',
-      'zIndex',
-      'symbolRoot',
-    ];
+  toList(needKeys = DEFAULT_KEYS) {
     return serialize(this).map(node => {
       const res = {};
       for (const key in node) {
         // 除去不需要的
-        if (~rules.indexOf(key) && node[key] !== undefined) {
+        if (~needKeys.indexOf(key) && node[key] !== undefined) {
           res[key] = node[key];
         }
       }
