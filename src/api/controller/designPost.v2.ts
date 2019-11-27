@@ -89,7 +89,7 @@ function parseNode(
     }
     case 2: {
       let { idList } = option;
-      return DesignJson.localParse(artboardId, idList, jsonData);
+      return DesignJson.localParse(artboardId, fileType, idList, jsonData);
     }
   }
 }

@@ -118,10 +118,10 @@ function isSameColor(colorA, colorB) {
 }
 
 function extractDom(rootNode, idList) {
-  rootNode.removeAll();
-  const tagetNodes = serialize(node)
+  const tagetNodes = serialize(rootNode)
     .filter(n => ~idList.indexOf(n.id))
     .sort((a, b) => a.zIndex - b.zIndex);
+  rootNode.removeAll();
   tagetNodes.forEach(n => {
     rootNode.add(n);
   });

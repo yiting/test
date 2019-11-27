@@ -71,7 +71,7 @@ class DesignJson {
    */
   static pureParse(artBoardId, fileType = 'sketch', option = {}) {
     const designDom = ParserModule[fileType].parse(artBoardId, option);
-    const nodes = designDom.toList();
+    const nodes = designDom.toList().filter(n => n.type !== 'QLayer');
     return {
       nodes,
     };
@@ -91,7 +91,8 @@ class DesignJson {
    * @param {boolean} option.isPreedit 是否人工合图步骤
    * @return {Object} 返回节点与图片节点
    */
-  static localParse(artBoardId, idList, option = {}) {
+  static localParse(artBoardId, fileType, idList = [], option = {}) {
+    if (!Array.isArray(idList) || idList.length < 1) throw 'idList参数错误';
     const designDom = ParserModule[fileType].parse(artBoardId, option);
     const rate = designDom ? designDom.width / 750 : null;
     option.rate = rate;
