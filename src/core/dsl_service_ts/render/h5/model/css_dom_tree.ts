@@ -1,12 +1,12 @@
 // 样式的计算处理
 import { debug } from 'util';
-import Common from '../../../dsl2/common';
+import Dictionary from '../../../helper/dictionary';
 import Constraints from '../../../helper/constraints';
-import Utils from '../../utils';
-import Func from '../css_func';
+import Utils from '../../../helper/methods';
+import Func from './css_func';
 import QLog from '../../../log/qlog';
 import VDom from '../../vdom';
-import cssProperty from '../css_property';
+import cssProperty from './css_property';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 // 生成的Css记录树
@@ -70,11 +70,20 @@ class CssDom extends VDom {
   }
   _hasHeight() {
     if (
+      // 约束高度固定
       this.constraints.LayoutFixedHeight === Constraints.LayoutFixedHeight.Fixed
     ) {
       return true;
     }
-    if (this.type === Common.QImage || !!this.path) {
+    // 有图片
+    if (this.type === Dictionary.type.QImage || !!this.path) {
+      return true;
+    }
+    // 水平布局
+    if (
+      this.constraints.LayoutDirection ===
+      Constraints.LayoutDirection.Horizontal
+    ) {
       return true;
     }
     return false;
@@ -89,35 +98,13 @@ class CssDom extends VDom {
     }
 
     if (
-      this.type == Common.QText && // 是文本
+      this.type == Dictionary.type.QText && // 是文本
       !this.isMultiline && // 单行
       this._isParentHorizontal() //水平布局
     ) {
       return false;
     }
     return true;
-
-    /*   if (
-        this.constraints.LayoutFixedWidth === Constraints.LayoutFixedWidth.Fixed
-      ) {
-        return true;
-      }
-      // 图片
-      if (this.type === Common.QImage || !!this.path) {
-        return true;
-      }
-      // 多行
-      if (this.isMultiline) {
-        // 如果高度高于行高，则为多行，固定宽度
-        return true;
-      }
-      // 垂直排列
-      if (this._isParentVertical()) {
-        return true;
-      }
-  
-  
-      return false; */
   }
 
   _isTextCenter() {
@@ -125,13 +112,18 @@ class CssDom extends VDom {
     // if (!hasText) {
     //   return null;
     // }
-    if (this.type !== Common.QText) {
+    if (this.type !== Dictionary.type.QText) {
       return null;
     }
     if (
-      this.constraints.LayoutJustifyContent ===
-        Constraints.LayoutJustifyContent.Center ||
-      this.constraints.LayoutAlignItems === Constraints.LayoutAlignItems.Center
+      (this.constraints.LayoutDirection ===
+        Constraints.LayoutDirection.Horizontal &&
+        this.constraints.LayoutJustifyContent ===
+          Constraints.LayoutJustifyContent.Center) ||
+      (this.constraints.LayoutDirection ===
+        Constraints.LayoutDirection.Vertical &&
+        this.constraints.LayoutAlignItems ===
+          Constraints.LayoutAlignItems.Center)
     ) {
       return true;
     }
@@ -162,35 +154,6 @@ class CssDom extends VDom {
     }
 
     return false;
-  }
-
-  /**
-   * 判断是否使用paddingTop，如果是垂直布局，则用paddingTop，则返回第一个非绝对定位节点
-   */
-  _usePaddingTop() {
-    if (
-      this.constraints.LayoutDirection ===
-        Constraints.LayoutDirection.Vertical &&
-      this.constraints.LayoutJustifyContent ===
-        Constraints.LayoutJustifyContent.Start
-    ) {
-      // parent.children.find(nd => !nd._isAbsolute());
-      return this._getFirstChild();
-    }
-    const flexChild = this.children.filter(
-      (nd: any) =>
-        nd.constraints.LayoutSelfPosition !==
-        Constraints.LayoutSelfPosition.Absolute,
-    );
-    // 水平布局、唯一子节点、无高度
-    if (
-      this.constraints.LayoutDirection ===
-        Constraints.LayoutDirection.Horizontal &&
-      flexChild.length === 1 &&
-      !this._hasHeight()
-    ) {
-      return this._getFirstChild();
-    }
   }
 
   _getFirstChild() {

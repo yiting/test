@@ -1,3 +1,4 @@
+import Text from '../../../../dsl_extend/models/text/tpl/h5';
 export default {
   key: 'paddingRight',
   value() {
@@ -5,7 +6,7 @@ export default {
     // if (this.parent && this.parent.modelName == 'em1-m1') {
     //   return null;
     // }
-    if (this.modelName == 'em1-m1') {
+    if (this.modelName == Text.name) {
       return null;
     }
     const hasWidth = this._hasWidth();

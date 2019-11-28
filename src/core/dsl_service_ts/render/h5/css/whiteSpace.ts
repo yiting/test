@@ -1,9 +1,10 @@
-import Common from '../../../dsl2/common';
+import Dictionary from '../../../helper/dictionary';
+import { debug } from 'util';
 
 export default {
   key: 'whiteSpace',
   value() {
-    if (this.type != Common.QText) {
+    if (this.type != Dictionary.type.QText) {
       return null;
     }
     const lineHeight =
@@ -18,8 +19,8 @@ export default {
     }
     if (
       this.parent &&
-      this.parent.type == Common.QText &&
-      this.type == Common.QText
+      this.parent.type == Dictionary.type.QText &&
+      this.type == Dictionary.type.QText
     ) {
       // emx元素
       return null;

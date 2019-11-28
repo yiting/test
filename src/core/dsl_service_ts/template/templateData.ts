@@ -1,3 +1,5 @@
+import { debug } from 'util';
+
 class TemplateData {
   static index: any;
 
@@ -57,10 +59,10 @@ class TemplateData {
     this.serialId = TemplateData.index.toString();
     this.isClosedTag = o.isClosedTag;
     this.parentId = o.parentId || (parent && parent.id) || null;
-    this.parent = o.parent || parent;
+    this.parent = parent;
     this.id = o.id || this.serialId;
     this.type = o.type;
-    this.modelName = o.modelName;
+    this.modelName = o.constructor.name;
     this.modelRef = o.modelRef;
     this.modelId = o.id === modelData.id ? null : modelData.id;
     this.abX = o.abX;
@@ -78,6 +80,7 @@ class TemplateData {
     this.similarId = o.similarId;
     this.similarParentId = o.similarParentId;
     this.children = []; // 子节点储存
+    this.isMultiline = o.isMultiline || null;
 
     TemplateData.index += 1;
   }

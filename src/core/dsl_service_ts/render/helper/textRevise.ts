@@ -3,7 +3,7 @@
  */
 import Constraints from '../../helper/constraints';
 import QLog from '../../log/qlog';
-import Common from '../../dsl2/common';
+import Dictionary from '../../helper/dictionary';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 const alginMap: any = {
   Start: 'left',
@@ -16,7 +16,7 @@ function textRevise(vdom: any) {
       n.constraints.LayoutSelfPosition !==
       Constraints.LayoutSelfPosition.Absolute,
   );
-  if (flexChild.length === 1 && flexChild[0].type === Common.QText) {
+  if (flexChild.length === 1 && flexChild[0].type === Dictionary.type.QText) {
     const align =
       vdom.constraints.LayoutDirection ===
       Constraints.LayoutDirection.Horizontal

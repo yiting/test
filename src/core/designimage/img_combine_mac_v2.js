@@ -151,7 +151,7 @@ const ImageCombine = function() {
       download(url, options, function(err, path) {
         if (err) throw err;
         //安装字体
-        let command = `mv ${fontsDir}${filename} /Library/Fonts/`;
+        const command = `mv ${fontsDir}${filename} /Library/Fonts/`;
         let result;
         exec(command, function(a, b, c) {
           if (a) {

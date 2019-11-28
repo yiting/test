@@ -1,4 +1,4 @@
-import Func from '../css_func';
+import Func from '../model/css_func';
 
 export default {
   key: 'borderRadius',

@@ -1,4 +1,4 @@
-import Funcs from '../css_func';
+import Funcs from '../model/css_func';
 
 export default {
   key: 'border',

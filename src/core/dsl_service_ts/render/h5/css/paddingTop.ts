@@ -1,15 +1,30 @@
+import Text from '../../../../dsl_extend/models/text/tpl/h5';
+import Constraints from '../../../helper/constraints';
 export default {
   key: 'paddingTop',
   value() {
     // 如果为文本节点
-    if (this.modelName == 'em1-m1') {
+    if (this.modelName == Text.name) {
       return null;
     }
-    // let firstChild = this._getFirstChild(this);
-    const firstChild = this._usePaddingTop();
-    if (firstChild) {
-      return firstChild.abY - this.abY;
+
+    if (this._hasHeight()) {
+      return null;
     }
-    return null;
+    let minPaddingTop: number | null = null;
+    const that = this;
+    this.children.forEach((cssDom: any) => {
+      if (
+        cssDom.constraints.LayoutSelfPosition !==
+        Constraints.LayoutSelfPosition.Absolute
+      ) {
+        const pd = cssDom.abY - that.abY;
+        minPaddingTop =
+          pd >= 0 && (minPaddingTop === null || minPaddingTop > pd)
+            ? pd
+            : minPaddingTop;
+      }
+    });
+    return minPaddingTop;
   },
 };

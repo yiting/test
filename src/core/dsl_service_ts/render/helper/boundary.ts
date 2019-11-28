@@ -1,7 +1,7 @@
 /**
  * 边界重定义
  */
-import Common from '../../dsl2/common';
+import Dictionary from '../../helper/dictionary';
 import Constraints from '../../helper/constraints';
 import QLog from '../../log/qlog';
 import Store from '../../helper/store';
@@ -33,7 +33,7 @@ function _parseBoundary(vdom: any) {
  */
 function _calculateBoundary(vdom: any) {
   // 跟节点不调整
-  if (vdom.type === Common.QBody) {
+  if (vdom.type === Dictionary.type.QBody) {
     return;
   }
   if (vdom._isAbsolute()) {
@@ -42,7 +42,6 @@ function _calculateBoundary(vdom: any) {
   // 如果是多行
   // if (vdom.constraints.LayoutWrap === Constraints.LayoutWrap.Wrap) {
   // }
-
   const isVertical = vdom._isParentVertical();
   const left = _calculateLeftBoundary(vdom, isVertical);
   const right = _calculateRightBoundary(vdom, isVertical);
@@ -75,7 +74,7 @@ function _calculateLeftBoundary(vdom: any, isVertical: boolean) {
   const { abX } = vdom;
   // 第一个节点
   if (!prevNode || prevLine.includes(prevNode)) {
-    vdom.abX = vdom.parent.abX;
+    vdom.abX = vdom.abX > vdom.parent.abX ? vdom.parent.abX : vdom.abX;
   } else if (prevNode._canRightFlex()) {
     // 前节点可右拓展，取中间线
     vdom.abX = Math.floor((prevNode.abXops + vdom.abX) / 2);
@@ -107,4 +106,4 @@ function _calculateRightBoundary(vdom: any, isVertical: boolean) {
   return Math.abs(abXops - vdom.abXops);
 }
 
-export default _parseBoundary;
+export default _calculateBoundary;

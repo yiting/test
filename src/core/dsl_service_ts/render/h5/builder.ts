@@ -4,9 +4,9 @@ import path from 'path';
 // 此模块为h5解析模块
 import Builder from '../builder';
 import CssDom from './dom_css';
-import SimilarCssDom from './dom_similar_css';
+import SimilarCssDom from './model/dom_similar_css';
 import HtmlDom from './dom_html';
-import ClassName from './dom_className';
+import ClassName from './model/dom_className';
 import QLog from '../../log/qlog';
 
 import Store from '../../helper/store';
@@ -59,18 +59,21 @@ class H5Builder extends Builder {
   }
 
   getTagString() {
-    const htmlStr = HtmlDom.getHtmlString(this.htmlDom);
-    const designWidth = Store.get('designWidth');
-    // 添加完整的html结构
-    const tpl = this._getTpl();
-    const cssPath = path.relative(
-      renderConfig.HTML.output.htmlPath,
-      renderConfig.HTML.output.cssPath,
-    );
-    const result = tpl(htmlStr, {
-      designWidth: designWidth,
-    }).replace(/%\{cssFilePath\}/gim, cssPath);
-    return result;
+    let isLocalTest = Store.get('isLocalTest');
+    let htmlStr = HtmlDom.getHtmlString(this.htmlDom);
+    if (isLocalTest) {
+      let designWidth = Store.get('designWidth');
+      // 添加完整的html结构
+      let cssPath = path.relative(
+        renderConfig.HTML.output.htmlPath,
+        renderConfig.HTML.output.cssPath,
+      );
+      let result = testTpl(htmlStr, {
+        designWidth: designWidth,
+      }).replace(/%\{cssFilePath\}/gim, cssPath);
+      return result;
+    }
+    return htmlStr;
   }
 
   getStyleString() {

@@ -1,5 +1,5 @@
 import Constraints from '../../../helper/constraints';
-import Func from '../css_func';
+import Func from '../model/css_func';
 import marginTop from './marginTop';
 import marginBottom from './marginBottom';
 import marginLeft from './marginLeft';
@@ -11,22 +11,24 @@ export default {
     //数组值保持跟magin属性一样的定位方式：上右下左
     const css: any[] = [0, 0, 0, 0];
     //绝对定位就不需要margin了
+    if (!this.parent) {
+      return null;
+    }
     if (this._isAbsolute()) {
       return null;
     }
     //横排
-    // if (this.id == '566A86F3-DD2D-4484-87D0-8189C5D6C1F7-c') debugger
-    css[0] = marginTop.value.call(this);
-    css[1] = marginRight.value.call(this);
-    css[2] = marginBottom.value.call(this);
-    css[3] = marginLeft.value.call(this);
+    css[0] = marginTop.value.call(this) || 0;
+    css[1] = marginRight.value.call(this) || 0;
+    css[2] = marginBottom.value.call(this) || 0;
+    css[3] = marginLeft.value.call(this) || 0;
     if (Number(css.join('')) === 0) {
       return '0';
     }
     const preNode = this._prevNode();
     const nextNode = this._nextNode();
-    const ml = Math.abs(this.abX - this.parent.abX);
-    const mr = Math.abs(this.parent.abXops - this.abXops);
+    const ml = this.abX - this.parent.abX;
+    const mr = this.parent.abXops - this.abXops;
     const range = 10;
     //最终回溯，水平方向如果只有一个节点，并且左右偏差不是很大，就直接水平居中
     if (

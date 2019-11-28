@@ -23,13 +23,15 @@ function pipe(node: any) {
       if (node.styles.textAlign == 2) {
         // 中对齐
         node.abX = Math.ceil(node.abX + node.width / 2 - textWidth / 2);
-      } else if (node.styles.textAlign == 3) {
+        node.abXops = node.abX + textWidth;
+      } else if (node.styles.textAlign == 1) {
         // 右对齐
         node.abX = Math.ceil(node.abX + node.width - textWidth);
       } else {
         // 左对齐
+        // 右对齐
+        node.abXops = node.abX + textWidth;
       }
-      node.width = textWidth;
     }
   }
 }
