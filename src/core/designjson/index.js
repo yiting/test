@@ -71,7 +71,9 @@ class DesignJson {
    */
   static pureParse(artBoardId, fileType = 'sketch', option = {}) {
     const designDom = ParserModule[fileType].parse(artBoardId, option);
-    const nodes = designDom.toList().filter(n => n.type !== 'QLayer');
+    const allNodes = designDom.toList();
+    const nodes = allNodes.filter(n => n.type !== 'QLayer');
+    nodes.unshift(allNodes[0]);
     return {
       nodes,
     };
