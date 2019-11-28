@@ -1,6 +1,7 @@
 // dsl模块服务通过输入设计稿抽象过后的数据，然后输出对应的字符串
 import ModelProcess from './model/index';
 import WidgetProcess from './widget/index';
+import RecognizerProcess from './recognizer/index';
 // 暂时起名为Layout模块
 import LayoutProcess from './layout';
 import InterfereModelProcess from './interfereModel/index';
@@ -58,6 +59,39 @@ function _process(_input: any, _options: any): object {
 }
 
 /**
+ * 选中节点构建结构V2接口
+ * @param {Array} _input 选中的构建节点 
+ * @param {Object} _options 构建的参数
+ */
+function _processSelectionV2(_input: any, _options: any) {
+  // 参数的初始化处理
+  const input: any = _input || {};
+  let processDesc;
+  
+  try {
+    // 参数的初始化处理
+    _initInput(input);
+    // 初始化进程参数
+    _initOptions(_options);
+    // 数据清洗
+    let nodes = input.nodes;
+    processDesc = '构建节点';
+    let layoutNodes = ModelProcess(nodes);
+    // 干预处理
+    processDesc = '干预处理';
+    layoutNodes = InterfereModelProcess(layoutNodes);
+    processDesc = '数据清洗';
+    layoutNodes = NodeCleanProcess(layoutNodes);
+
+    // 设计形态识别
+    layoutNodes = RecognizerProcess(layoutNodes);
+  }
+  catch(e) {
+    console.error(`dslService.ts - selection  ${processDesc}:${e}`);
+  }
+}
+
+/**
  * 对主服务接口的参数初始化处理
  * @param {Object} input 输入的参数
  * @param {Object} options 参数设定
@@ -106,4 +140,5 @@ process.on('message', msg => {
 
 export default {
   process: _process,
+  processSelectionV2: _processSelectionV2,
 };
