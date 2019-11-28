@@ -59,21 +59,29 @@ class H5Builder extends Builder {
   }
 
   getTagString() {
-    let isLocalTest = Store.get('isLocalTest');
+    let tplType = Store.get('tplType') || 0;
     let htmlStr = HtmlDom.getHtmlString(this.htmlDom);
-    if (isLocalTest) {
-      let designWidth = Store.get('designWidth');
-      // 添加完整的html结构
-      let cssPath = path.relative(
-        renderConfig.HTML.output.htmlPath,
-        renderConfig.HTML.output.cssPath,
-      );
-      let result = testTpl(htmlStr, {
+    let designWidth = Store.get('designWidth');
+    // 添加完整的html结构
+    let cssPath = path.relative(
+      renderConfig.HTML.output.htmlPath,
+      renderConfig.HTML.output.cssPath,
+    );
+    console.log(renderConfig, cssPath);
+    if (tplType == -1) {
+      // 测试
+      return testTpl(htmlStr, {
         designWidth: designWidth,
-      }).replace(/%\{cssFilePath\}/gim, cssPath);
-      return result;
+      });
+    } else if (tplType == 0) {
+      // 正式
+      return tpl(htmlStr, {
+        designWidth: designWidth,
+      }).replace(/\{cssFilePath\}/gim, cssPath);
+    } else {
+      // 模块
+      return htmlStr;
     }
-    return htmlStr;
   }
 
   getStyleString() {
