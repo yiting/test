@@ -13,7 +13,7 @@ const value: any = dslServer.process(
     outputType: 'h5',
     designWidth: 750,
     showTagAttrInfo: true,
-    isLocalTest: true,
+    tplType: -1,
     applyInfo_user: 'testuser',
     applyInfo_url: 'testurl',
     applyInfo_proName: 'testproName',
