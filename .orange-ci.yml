@@ -56,8 +56,6 @@ dev:
       stages:
         - name: install
           script: tnpm install
-        - name: install canvas
-          script: tnpm install canvas
         - name: dist
           script: tnpm run dist
         - name: list changed
@@ -77,7 +75,7 @@ dev:
             to: /data/core_service
             ips:
               - 9.134.32.201
-            after: pm2 restart core_server
+            after: rm -r /data/core_service/node_modules/canvas && cp -rf /data/canvas /data/core_service/node_modules/canvas && pm2 restart core_server
   merge_request:
     - cacheFrom: .orange-ci.cache
       stages:
