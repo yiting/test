@@ -1,9 +1,9 @@
 // 样式的计算处理
 import QLog from '../../log/qlog';
 
-import CssBoundary from '../helper/boundary';
-import CssConstraints from '../helper/constraints';
 import TextRevise from '../helper/textRevise';
+
+import ReviseDomTree from '../helper/reviseDomTree';
 // import css_combo_extend_tree from './css_combo_extend_tree';
 
 import CssDom from './model/css_dom_tree';
@@ -93,13 +93,16 @@ const process = function(data: any) {
   // 构建树
   Loger.debug('render/h5/dom_css [_buildTree]');
   cssDomTree = _buildTree(null, data);
+
+  Loger.debug('render/h5/dom_css [ReviseDomTree]');
+  ReviseDomTree(cssDomTree);
   // 计算约束
-  Loger.debug('render/h5/dom_css [CssConstraints]');
-  CssConstraints(cssDomTree);
+  // Loger.debug('render/h5/dom_css [CssConstraints]');
+  // CssConstraints(cssDomTree);
 
   // 调整边距
-  Loger.debug('render/h5/dom_css [CssBoundary]');
-  CssBoundary(cssDomTree);
+  // Loger.debug('render/h5/dom_css [CssBoundary]');
+  // CssBoundary(cssDomTree);
 
   Loger.debug('render/h5/dom_css [TextRevise]');
   TextRevise(cssDomTree);

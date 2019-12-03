@@ -215,7 +215,7 @@ export async function generate(context: Context) {
     var costTime = (new Date().getTime() - startTime) / 1000;
     logger.debug(
       '[edit.js-combineImages]生成' +
-        imgList.length +
+        result.length +
         '张图片完毕，用时' +
         costTime +
         '秒',

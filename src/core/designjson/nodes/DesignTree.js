@@ -9,7 +9,7 @@ const {
   getBiggestNode,
   mergeStyle,
   serialize,
-  isCollide,
+  isIntersect,
 } = require('../utils');
 /**
  * @class 设计树控制类
@@ -63,7 +63,8 @@ class DesignTree {
       case 'QImage':
         {
           newNode.path = `${newNode.id}.png`;
-          const nodesData = nodes.map(n => this._getMergeNode(n, newNode));
+          // const nodesData = nodes.map(n => this._getMergeNode(n, newNode));
+          const nodesData = this._getNodesData(nodes);
           if (nodes.length) newNode._imageChildren = nodesData;
           if (isMergeStyle) {
             const biggestNode = getBiggestNode(nodes);
@@ -119,7 +120,24 @@ class DesignTree {
     });
     return obj;
   }
-
+  static _getNodesData(nodes) {
+    return nodes.map(n =>
+      this._getNodeData(n, [
+        'id',
+        'name',
+        'styles',
+        'path',
+        'abX',
+        'abY',
+        'type',
+        '_origin',
+        'height',
+        'width',
+        '_imageChildren',
+        'levelArr',
+      ]),
+    );
+  }
   /**
    * @private
    * @param {QObject} node
@@ -150,8 +168,10 @@ class DesignTree {
    * @param {QObject} node
    */
   static _toImage(node) {
-    // if (node.children && node.children.length)
-    //     node._imageChildren = [...node.children];
+    // if (option.saveChild && Array.isArray(node.children) && node.children.length) {
+    //   const nodesData = this._getNodesData(node.children);
+    //   node._imageChildren = nodesData;
+    // }
     // console.log('转化为图片',node.name);
     node.path = `${node.id}.png`;
     this._clearImageStyles(node.styles);
@@ -159,6 +179,13 @@ class DesignTree {
       case QNODES.QShape.name:
         break;
       case QNODES.QLayer.name:
+        break;
+      case QNODES.QText.name:
+        delete QText.text;
+        delete QText.styles.texts;
+        delete QText.styles.verticalAlign;
+        delete QText.styles.textAlign;
+        delete QText.styles.lineHeight;
         break;
       default:
         break;
@@ -179,6 +206,7 @@ class DesignTree {
     }
   }
 
+  // z-index空间关系计算
   static zIndexCompute(rootNode) {
     function _setNodeZIndex(node) {
       let n = node;
@@ -193,7 +221,7 @@ class DesignTree {
       node.zIndex = 0;
       const list = nodeList.slice(0, index).reverse();
       const bNode = list.find(
-        n => isCollide(node, n) && !(n.type === QNODES.QLayer.name),
+        n => isIntersect(node, n) && !(n.type === QNODES.QLayer.name),
       );
       if (bNode) node._behindNode = bNode;
     }

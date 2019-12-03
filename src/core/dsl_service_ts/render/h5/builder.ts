@@ -4,9 +4,9 @@ import path from 'path';
 // 此模块为h5解析模块
 import Builder from '../builder';
 import CssDom from './dom_css';
-import SimilarCssDom from './dom_similar_css';
+import SimilarCssDom from './model/dom_similar_css';
 import HtmlDom from './dom_html';
-import ClassName from './dom_className';
+import ClassName from './model/dom_className';
 import QLog from '../../log/qlog';
 
 import Store from '../../helper/store';
@@ -59,18 +59,29 @@ class H5Builder extends Builder {
   }
 
   getTagString() {
-    const htmlStr = HtmlDom.getHtmlString(this.htmlDom);
-    const designWidth = Store.get('designWidth');
+    let tplType = Store.get('tplType') || 0;
+    let htmlStr = HtmlDom.getHtmlString(this.htmlDom);
+    let designWidth = Store.get('designWidth');
     // 添加完整的html结构
-    const tpl = this._getTpl();
-    const cssPath = path.relative(
+    let cssPath = path.relative(
       renderConfig.HTML.output.htmlPath,
       renderConfig.HTML.output.cssPath,
     );
-    const result = tpl(htmlStr, {
-      designWidth: designWidth,
-    }).replace(/%\{cssFilePath\}/gim, cssPath);
-    return result;
+    console.log(renderConfig, cssPath);
+    if (tplType == -1) {
+      // 测试
+      return testTpl(htmlStr, {
+        designWidth: designWidth,
+      });
+    } else if (tplType == 0) {
+      // 正式
+      return tpl(htmlStr, {
+        designWidth: designWidth,
+      }).replace(/\{cssFilePath\}/gim, cssPath);
+    } else {
+      // 模块
+      return htmlStr;
+    }
   }
 
   getStyleString() {

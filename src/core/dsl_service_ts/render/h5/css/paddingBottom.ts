@@ -1,9 +1,10 @@
 import Constraints from '../../../helper/constraints';
+import Text from '../../../../dsl_extend/models/text/tpl/h5';
 export default {
   key: 'paddingBottom',
   value() {
     // 如果为文本节点
-    if (this.modelName == 'em1-m1') {
+    if (this.modelName == Text.name) {
       return null;
     }
     if (this._hasHeight()) {

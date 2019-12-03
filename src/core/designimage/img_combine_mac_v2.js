@@ -151,7 +151,7 @@ const ImageCombine = function() {
       download(url, options, function(err, path) {
         if (err) throw err;
         //安装字体
-        let command = `mv ${fontsDir}${filename} /Library/Fonts/`;
+        const command = `mv ${fontsDir}${filename} /Library/Fonts/`;
         let result;
         exec(command, function(a, b, c) {
           if (a) {
@@ -862,7 +862,7 @@ const ImageCombine = function() {
 
   this.makeImgsByUpdateSketch = async param => {
     // try {
-    let { projectName, imgList } = param;
+    let { projectName, imgList, isPreedit = false } = param;
 
     if (imgList.length == 0) {
       return new Promise(function(resolve, reject) {
@@ -876,6 +876,7 @@ const ImageCombine = function() {
     // });
     // imgList = imgList.slice(0,1);
     // imgList = [imgList[18]];
+
     // 通过隐藏不要图层然后用运行库合图的方式来合图
     const updateFileAfterFix = '_imgForCombine';
     const projectNameWithoutAfterFix = projectName;
@@ -950,6 +951,24 @@ const ImageCombine = function() {
       }
     }
 
+    //如果是在预处理中合图，则需要把每个图层的子图层都合成出来，在这的方式是将子图层都当成目标图片合成出来
+    if (isPreedit) {
+      let imageChildrenFlatArr = [];
+      imgList.forEach((imageItem, index) => {
+        if (
+          typeof imageItem['_imageChildren'] != 'undefined' &&
+          imageItem['_imageChildren'].length > 0
+        ) {
+          //获取所有imageChildren的平铺数据
+          imageChildrenFlatArr = this.getImageChildrenFlatsData(
+            imageItem['_imageChildren'],
+            imageChildrenFlatArr,
+          );
+          imgList = imgList.concat(imageChildrenFlatArr);
+        }
+      });
+    }
+
     //去掉多余的artboard后，artboard只有1个了，artboardIndex改为0
     artboardIndex = 0;
 
@@ -1016,7 +1035,7 @@ const ImageCombine = function() {
     const result = await this.makeImg(param);
 
     // 8.压缩图片
-    // await that.compressImgs(that.outputDir, projectName, imgList);
+    await that.compressImgs(that.outputDir, projectName, imgList);
 
     // 8、删除修改版sketch
     serverModulesUtils.deleteFolder(updateFilePath);

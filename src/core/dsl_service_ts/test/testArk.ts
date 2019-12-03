@@ -3,7 +3,7 @@ import designjson from './test.json';
 
 // 引入的模块包
 // import Dsl from '../dsl/dsl';
-import Render from '../render/render';
+import Render from '../render/index';
 import dslServer from '../dslService';
 const value: any = dslServer.process(
   {

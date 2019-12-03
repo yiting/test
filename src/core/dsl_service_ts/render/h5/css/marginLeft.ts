@@ -1,13 +1,14 @@
 import Constraints from '../../../helper/constraints';
+import Text from '../../../../dsl_extend/models/text/tpl/h5';
 
 export default {
-  key: 'marginLeft ',
+  key: 'marginLeft',
   value() {
     if (this._isAbsolute()) {
       return 0;
     }
     // 如果为文本节点子节点
-    if (this.parent && this.parent.modelName == 'em1-m1') {
+    if (this.parent && this.parent.modelName == Text.name) {
       return null;
     }
 
@@ -35,6 +36,7 @@ export default {
       }
       return this.abX - this.parent.abX;
     }
+    let vLeft = this.parent ? this.abX - this.parent.abX : this.abX;
     // 竖排计算与父节点距离
     // 如果水平居中、或水平右对齐
     if (
@@ -42,7 +44,7 @@ export default {
       this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.Center
     ) {
-      return 'auto';
+      return vLeft > 0 ? 'auto' : vLeft;
     }
     if (
       this.parent &&
@@ -51,9 +53,6 @@ export default {
     ) {
       return 0;
     }
-    if (this.parent) {
-      return this.abX - this.parent.abX;
-    }
-    return this.abX;
+    return vLeft;
   },
 };

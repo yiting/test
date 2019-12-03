@@ -128,13 +128,14 @@ function hashPath(imageList, outputPath = '') {
   imageList.forEach(n => {
     const id = md5(n.id);
     n.path = `${outputPath}${id.slice(0, 8)}.png`;
+    hashPath(n._imageChildren, outputPath);
   });
 }
-function process(designDom, outputPath) {
+function process(designDom, options) {
   let nodes = serialize(designDom);
   let imageList = nodes.filter(node => node.type === 'QImage');
-  replacePath(imageList);
-  hashPath(imageList, outputPath);
+  options.isPreedit && replacePath(imageList);
+  hashPath(imageList, options.outputPath);
 }
 module.exports = {
   process,

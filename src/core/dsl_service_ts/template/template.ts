@@ -1,5 +1,5 @@
 // 假设模板
-/* const __tpl = `./html/templatelist
+/* let __tpl = `./html/templatelist
 <div class="${this.className}">
     <span $ref="0" :style="{backgroundImage:"url("+path+")"}"></span>
     // $ref="绑定引用"
@@ -48,15 +48,12 @@ class Template {
   _name: string;
 
   constructor(args: any) {
-    const _renderDataIndex = 0;
-    const _parentTplIndex = 1;
-    const _templateListIndex = 2;
-    this._renderData = args[_renderDataIndex];
-    this._parentTpl = args[_parentTplIndex];
-    this._templateList = args[_templateListIndex];
+    this._renderData = args[0];
+    this._parentTpl = args[1];
+    this._templateList = args[2];
     this._name = 'layer';
     // 节点引用
-    this.$ref = this._renderData.nodes || {};
+    this.$ref = this._renderData || {};
     // 解析引擎
     this._engine = XmlEngine;
   }
@@ -69,8 +66,8 @@ class Template {
        * 主流程
        * */
       // 遍历模板树
-      const d: any = this._traversal(this._structure, this._parentTpl, true);
-      const rootIndex = 0;
+      let d: any = this._traversal(this._structure, this._parentTpl, true);
+      let rootIndex = 0;
       this._rootData = d[rootIndex];
     } catch (e) {
       Loger.error(`template.js [parse]:${e}`);
@@ -92,72 +89,47 @@ class Template {
 
   // 遍历模板树结构
   _traversal(structure: any, parentTpl: any, isRoot: any) {
-    const arr = [];
+    let arr = [];
     for (let index = 0; index < structure.length; index++) {
-      const nd = structure[index];
-      // 预处理
-      const res = this._preProp(nd, structure);
-      // 如果为false，则预处理提出中止当前节点编译
-      if (res !== false) {
-        // 构建数据对象
-        let { tplData, renderData } = this._parseObj(nd, parentTpl, isRoot);
-        // 赋值
-        this._parseProp(tplData, nd);
-        // 遍历子节点
-        this._traversal(nd.children, tplData, false);
-        if (!isRoot && renderData && renderData.modelName) {
-          // 如果该节点有模型名称，则进入下一层模板
-          const tplDataSub = Template.parse(
-            renderData,
-            null,
-            this._templateList,
-          );
-          tplData = Template._assignObj(tplData, tplDataSub, nd);
-        } else if (renderData && renderData.children) {
-          // 遍历结构树
-          renderData.children.forEach((childRenderData: any) => {
-            Template.parse(childRenderData, tplData, this._templateList);
-          });
-        }
-        // 如果为模板虚拟节点，则自动构建坐标
-        if (!tplData.type) {
-          if (tplData.children.length) {
-            // 如果有子节点，按子节点范围处理
-            tplData.resize();
-          } else {
-            // 如果没有子节点，按父节点属性处理
-            tplData.relay();
-          }
-          tplData.modelName = null;
-        }
-        arr.push(tplData);
+      let nodeInfo: any = structure[index];
+      // 构建数据对象
+      let { tplData, renderData } = this._parseObj(nodeInfo, parentTpl, isRoot);
+      // 赋值
+      this._parseProp(tplData, nodeInfo);
+      // 遍历子节点
+      this._traversal(nodeInfo.children, tplData, false);
+      /* if (!isRoot && renderData && renderData.modelName) {
+              // 如果该节点有模型名称，则进入下一层模板
+              let tplDataSub = Template.parse(
+                renderData,
+                null,
+                this._templateList,
+              );
+              tplData = Template._assignObj(tplData, tplDataSub, nodeInfo);
+            } else  */
+      if (renderData && renderData.children) {
+        // 遍历结构树
+        renderData.children.forEach((childRenderData: any) => {
+          Template.parse(childRenderData, tplData, this._templateList);
+        });
       }
+      // 如果为模板虚拟节点，则自动构建坐标
+      if (!tplData.type) {
+        if (tplData.children.length) {
+          // 如果有子节点，按子节点范围处理
+          tplData.resize();
+        } else {
+          // 如果没有子节点，按父节点属性处理
+          tplData.relay();
+        }
+        // tplData.modelName = null;
+      }
+      arr.push(tplData);
     }
     if (parentTpl) {
       parentTpl.children.push(...arr);
     }
     return arr;
-  }
-
-  // 属性预处理
-  _preProp(_nd: any, structure: any): any {
-    const nd = _nd;
-
-    if (Object.keys(nd.attrs).includes(_SYMBOL.each)) {
-      // 删除模板节点上的循环标记，避免无限循环
-      delete nd.attrs[_SYMBOL.each];
-      // 根据循环节点数，构建对应模板节点
-
-      Object.keys(this._renderData.nodes || {}).forEach((index: any) => {
-        const newAttr = Object.assign({}, nd.attrs);
-        const newNd = Object.assign({}, nd);
-        newNd.attrs = newAttr;
-        newNd.attrs.$ref = index;
-        structure.push(newNd);
-      });
-      return false;
-    }
-    return true;
   }
 
   // 根据模板节点，构建数据节点
@@ -168,11 +140,11 @@ class Template {
    * @param isRoot 是否跟节点
    */
   _parseObj(_nd: any, parentTpl: any, isRoot: any) {
-    const nd = _nd;
-    const refIndex = nd.attrs[_SYMBOL.ref];
+    let nodeInfo = _nd;
+    let refIndex = nodeInfo.attrs[_SYMBOL.ref];
     let renderData;
     // 删除「引用」字段
-    delete nd.attrs[_SYMBOL.ref];
+    delete nodeInfo.attrs[_SYMBOL.ref];
     // 如果模型根节点为引用，则把引用节点信息覆盖根节点
     if (isRoot && this.$ref[refIndex]) {
       this._renderData.id = this.$ref[refIndex].id;
@@ -187,7 +159,6 @@ class Template {
     } else {
       // 没有引用，且不是跟节点
     }
-    // if (renderData && renderData.id == "AB1F2F1B-94E0-4236-B376-CB4C910504E8-c") debugger
     // 构建模板节点
     let tplData = new TemplateData(renderData, parentTpl, this._renderData);
 
@@ -201,17 +172,6 @@ class Template {
       );
     }
 
-    /* if (!isRoot && renderData && renderData.modelName) {
-      // 如果该节点有模型名称，则进入下一层模板
-
-      const tplDataSub = Template.parse(renderData, null, this._templateList);
-      tplData = Template._assignObj(tplData, tplDataSub, nd);
-    } else if (renderData && renderData.children) {
-      // 遍历结构树
-      renderData.children.forEach((childRenderData: any) => {
-        Template.parse(childRenderData, tplData, this._templateList);
-      });
-    } */
     return { tplData, renderData };
   }
 
@@ -224,19 +184,19 @@ class Template {
    * 特殊规则：小节点特殊属性覆盖大节点属性
    */
   static _assignObj(_target: any = {}, _subNode: any = {}, _nd: any) {
-    const target = _target;
-    const subNode = _subNode;
-    const nd = _nd;
-    if (Object.keys(nd.attrs).includes(_SYMBOL.useTag)) {
-      nd.tagName = subNode.tagName;
+    let target = _target;
+    let subNode = _subNode;
+    let nodeInfo = _nd;
+    if (Object.keys(nodeInfo.attrs).includes(_SYMBOL.useTag)) {
+      nodeInfo.tagName = subNode.tagName;
       target.tagName = subNode.tagName;
       // 删除标记
-      delete nd.attrs[_SYMBOL.useTag];
+      delete nodeInfo.attrs[_SYMBOL.useTag];
     }
     // 重新复制元素数据关系
     target.children.push(...subNode.children);
     target.children.forEach((_child: any) => {
-      const child: any = _child;
+      let child: any = _child;
       child.parentId = target.id;
       child.parent = target;
     });
@@ -250,24 +210,24 @@ class Template {
 
   // 构建对象属性
   _parseProp(_refData: any, _nd: any) {
-    const refData = _refData;
-    const nd = _nd;
+    let refData = _refData;
+    let nodeInfo = _nd;
 
-    refData.tagName = nd.tagName;
-    refData.isClosedTag = nd.isClosedTag;
-    Object.keys(nd.attrs).forEach(key => {
-      const value = nd.attrs[key];
+    refData.tagName = nodeInfo.tagName;
+    refData.isClosedTag = nodeInfo.isClosedTag;
+    Object.keys(nodeInfo.attrs).forEach(key => {
+      let value = nodeInfo.attrs[key];
       if (~key.indexOf(_SYMBOL.objVar)) {
         // 变量
-        const _key = key.slice(1);
-        const _val = this._parseVar(refData, _key, value);
+        let _key = key.slice(1);
+        let _val = this._parseVar(refData, _key, value);
         if (_val !== null) {
           Template.setVar(refData, _key, _val);
         }
       } else if (~key.indexOf(_SYMBOL.objAttr)) {
         // 变量
-        const _key = key.slice(1);
-        const _val = this._parseVar(refData, _key, value);
+        let _key = key.slice(1);
+        let _val = this._parseVar(refData, _key, value);
         if (_val !== null) {
           Template.setAttr(refData, _key, _val);
         }
@@ -284,9 +244,9 @@ class Template {
   // 编译变量属性
   _parseVar(refData: any, varName: any, value: any) {
     let newValue = null;
-    const that: any = this;
+    let that: any = this;
     if (~value.indexOf('()')) {
-      const funcName: string = value.slice(0, -2);
+      let funcName: string = value.slice(0, -2);
       // 如果是函数
       if (that[funcName]) {
         // 如果存在函数
@@ -305,8 +265,8 @@ class Template {
         return;
       }
     } else {
-      const keys = Object.keys(refData);
-      const args = Object.keys(refData).map(key => refData[key]);
+      let keys = Object.keys(refData);
+      let args = Object.keys(refData).map(key => refData[key]);
       try {
         newValue = new Function(...keys, `return ${value}`).call(this, ...args);
       } catch (e) {
@@ -340,26 +300,24 @@ class Template {
     }
   }
 
-  static getModelTemplate(TemplateList: any, modelName: any) {
-    const o: any = TemplateList.find(
-      (n: any) =>
-        n.name.toLowerCase() ===
-        `${modelName}`.toLowerCase().replace(/-/gim, ''),
+  static getModelTemplate(TemplateList: any, Model: any) {
+    let o: any = TemplateList.find(
+      (temp: any) => temp.name === Model.constructor.name,
     );
     return o;
   }
 
   static parse(renderData: any, parentTpl: any, TemplateList: any) {
     let tplData: any;
-
     try {
-      const ModelTpl =
-        Template.getModelTemplate(TemplateList, renderData.modelName) ||
-        Template;
-      const tpl = new ModelTpl(renderData, parentTpl, TemplateList);
-      tplData = tpl.parse().getData();
+      let ModelTpl =
+        Template.getModelTemplate(TemplateList, renderData) || Template;
+      if (ModelTpl) {
+        let tpl = new ModelTpl(renderData, parentTpl, TemplateList);
+        tplData = tpl.parse().getData();
+      }
     } catch (e) {
-      const { id } = renderData;
+      let { id } = renderData;
       Loger.error(
         `template.js [parse] params[renderData.id:${id},parentTpl:${parentTpl}].
                 error:${e}`,

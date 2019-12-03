@@ -1,8 +1,9 @@
+import Text from '../../../../dsl_extend/models/text/tpl/h5';
 export default {
   key: 'paddingLeft',
   value() {
     // 如果为文本节点
-    if (this.modelName == 'em1-m1') {
+    if (this.modelName == Text.name) {
       return null;
     }
     const hasWidth = this._hasWidth();

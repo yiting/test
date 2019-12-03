@@ -71,14 +71,25 @@ function isBelong(a, b) {
     a.abYops <= b.abYops
   );
 }
+// 是否碰撞
 function isCollide(a, b) {
   return !(
     a.abX > b.abXops ||
-    a.abY > b.abY + b.height ||
+    a.abY > b.abYops ||
     b.abX > a.abXops ||
     b.abY > a.abYops
   );
 }
+// 是否相交
+function isIntersect(a, b) {
+  return !(
+    a.abX >= b.abXops ||
+    a.abY >= b.abYops ||
+    b.abX >= a.abXops ||
+    b.abY >= a.abYops
+  );
+}
+
 // 元素合并样式属性
 function mergeStyle(targetNode, node, targetKeys) {
   // TODO
@@ -114,6 +125,7 @@ module.exports = {
   mergeStyle,
   isBelong,
   isCollide,
+  isIntersect,
   // hasStyle,
   // hasComplexSytle,
   generateGroupAttr,

@@ -1,5 +1,5 @@
 import Constraints from '../../../helper/constraints';
-
+import Text from '../../../../dsl_extend/models/text/tpl/h5';
 //
 export default {
   key: 'marginBottom',
@@ -8,7 +8,7 @@ export default {
       return 0;
     }
     // 如果为文本节点子节点
-    if (this.parent && this.parent.modelName == 'em1-m1') {
+    if (this.parent && this.parent.modelName == Text.name) {
       return null;
     }
     if (this._isParentHorizontal()) {

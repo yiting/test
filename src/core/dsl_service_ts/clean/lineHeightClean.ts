@@ -1,7 +1,5 @@
 /** 行高清洗  */
 
-import FontLineHeight from '../helper/fontLineHeight';
-
 export default function(nodes: any) {
   const arr: any = [];
   nodes.forEach((node: any) => {
@@ -11,33 +9,26 @@ export default function(nodes: any) {
   return arr;
 }
 function pipe(node: any) {
-  let lineHeight = node.styles.lineHeight;
-  let fontSize;
+  let maxLineHeight;
+  let maxFontSize;
   if (!node.styles.texts) {
     return node;
   }
-  if (node.styles.texts) {
-    const lineHeights: any = [];
-    const fontSizes: any = [];
-    node.styles.texts.forEach((text: any) => {
-      const h = FontLineHeight(text.font, text.size);
-      lineHeights.push(h);
-      fontSizes.push(text.size);
-    });
-    lineHeight = Math.max(...lineHeights);
-    fontSize = Math.max(fontSizes);
-  }
-  if (!node.styles.lineHeight) {
-    // 如果没默认行高，修改默认行高
-    node.styles.lineHeight = lineHeight;
-  }
-  if (node.height <= fontSize) {
+  const lineHeights: any = [];
+  const fontSizes: any = [];
+  node.styles.texts.forEach((text: any) => {
+    lineHeights.push(text.lineHeight || text.size * 1.2);
+    fontSizes.push(text.size);
+  });
+  maxLineHeight = Math.round(Math.max(...lineHeights));
+  maxFontSize = Math.round(Math.max(...fontSizes));
+  // 如果文本高度矮过字体大小，高度恢复为行高高度
+  if (node.height <= maxFontSize) {
     //
-    const dur = Math.floor((lineHeight - node.height) / 2);
+    const dur = Math.floor((maxLineHeight - node.height) / 2);
     node.abY -= dur;
     node.abYops += dur;
-    node.styles.lineHeight = lineHeight;
-    node.height = lineHeight;
+    node.styles.lineHeight = maxLineHeight;
   }
   return node;
 }

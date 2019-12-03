@@ -1,6 +1,6 @@
 import Template from '../template';
 import XmlEngine from '../XmlEngine';
-import Utils from '../../uitls';
+import Utils from '../../helper/methods';
 
 export default class HtmlTemplate extends Template {
   constructor(...args: any[]) {
@@ -56,7 +56,6 @@ export default class HtmlTemplate extends Template {
   get bgColor() {
     if (this._renderData.styles && this._renderData.styles.background) {
       const bg = this._renderData.styles.background;
-      const color = bg.color;
       return Utils.RGB2HEX(bg.color);
     }
   }

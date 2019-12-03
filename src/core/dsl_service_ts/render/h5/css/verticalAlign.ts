@@ -1,12 +1,12 @@
 import Constraints from '../../../helper/constraints';
-import Common from '../../../dsl2/common';
+import Dictionary from '../../../helper/dictionary';
 
 export default {
   key: 'verticalAlign',
   value() {
     if (
       this.parent &&
-      this.parent.type === Common.QText &&
+      this.parent.type === Dictionary.type.QText &&
       this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.Center
     ) {
