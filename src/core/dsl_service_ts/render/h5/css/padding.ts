@@ -7,9 +7,6 @@ import paddingRight from './paddingRight';
 export default {
   key: 'padding',
   value() {
-    if (!this.parent) {
-      return null;
-    }
     const css: any[] = [0, 0, 0, 0];
     //横排
     css[0] = paddingTop.value.call(this) || 0;
