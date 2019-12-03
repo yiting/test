@@ -131,7 +131,7 @@ class ImageMergeProcessor {
     groupArr.map(item => {
       if (item.size > 1) {
         var newnode = DesignTree.union([...item]);
-        this.score(newnode, [...item]);
+        // this.score(newnode, [...item]);
       }
     });
   }
@@ -211,36 +211,6 @@ class ImageMergeProcessor {
     }
     return commonColor;
   }
-  // 将节点转换成QImage
-  _convertToImageNode(node) {
-    console.log('转化为图片', node.name);
-    // const {id,name,}
-    // Object.assign(node,new QImage(),{ path, type: QImage.name, id: node.id, name: node.name });
-    node.type = QImage.name;
-    node.path = `${node.id}.png`;
-    node.shapeType && delete node.shapeType;
-    node.styles = { borderRadius: node.styles.borderRadius || [0, 0, 0, 0] };
-    if (node.children && node.children.length)
-      node._imageChildren = [...node.children];
-    node.pureColor = this.getNodesCommonColor(node.children);
-    node.children = [];
-    (node.isLeaf = true), (node.childnum = 0);
-    // this.tree._images.push(node.id); // 添加组图片信息
-  }
-  _convertToLayerNode(node) {
-    // 将rectangle矩形转为QLayer
-    node.type = QLayer.name;
-  }
-  // 将树的QImage和QShape的id插入列表，等待export.js输出
-  static _updateTreeImages(node) {
-    console.log('-----特殊形状转换-----');
-    walkout(node, n => {
-      if (needConvertToImage(n)) {
-        // QShape -> QImage
-        DesignTree.convert(n, QImage.name);
-      }
-    });
-  }
 }
 // 裁剪越界图片
 function modifySize(rootNode) {
@@ -261,22 +231,6 @@ function modifySize(rootNode) {
       img.height += rootNode.abYops - img.abYops;
     }
   });
-}
-function needConvertToImage(node) {
-  switch (node.type) {
-    case QImage.name:
-      return false;
-    case QText.name:
-      return false; // TODO
-    case QShape.name: {
-      const { shapeType, styles } = node;
-      let isComplexShape = shapeType != Rectangle && !node.isCircle;
-      let isComplexBg = styles.background && styles.background.type === 'image';
-      return isComplexShape || isComplexBg;
-    }
-    default:
-      return false;
-  }
 }
 function mergeJudge(nodelist, ruleConfig, root) {
   // 对每条边进行评分

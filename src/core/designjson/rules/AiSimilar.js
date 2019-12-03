@@ -19,12 +19,12 @@ class AiSimilar extends Rule {
     if (typeof node.levelArr != 'undefined') {
       levelArr = node.levelArr;
     } else {
-      for (var i = 0, ilen = node._imageChildren.length; i < ilen; i++) {
-        if (typeof node._imageChildren[i].levelArr != 'undefined') {
-          levelArr = node._imageChildren[i].levelArr;
+      for (var i = 0, ilen = node.images.length; i < ilen; i++) {
+        if (typeof node.images[i].levelArr != 'undefined') {
+          levelArr = node.images[i].levelArr;
           break;
         } else {
-          levelArr = this.getNodeLevel(node._imageChildren[i]);
+          levelArr = this.getNodeLevel(node.images[i]);
         }
       }
     }
