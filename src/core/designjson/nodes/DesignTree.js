@@ -8,6 +8,7 @@ const {
   generateGroupAttr,
   getBiggestNode,
   mergeStyle,
+  cloneNodeByKeys,
   serialize,
   isIntersect,
 } = require('../utils');
@@ -44,9 +45,9 @@ class DesignTree {
    * @public 合并多个节点
    * @param {Array.<QObject>} nodes 目标节点列表
    * @param {string} type 合并节点类型
-   * @param {boolean} isMergeStyle 是否合并样式
+   * @param {boolean} isMerge 是否合图流程合并
    */
-  static union(nodes, type = 'QImage', isMergeStyle = true) {
+  static union(nodes, type = 'QImage', isMerge = true) {
     if (!Array.isArray(nodes) || !nodes[0]) return null;
     const newNode = this.createNode(type);
     newNode.isModified = newNode.isNew = true;
@@ -65,23 +66,30 @@ class DesignTree {
           newNode.path = `${newNode.id}.png`;
           // const nodesData = nodes.map(n => this._getMergeNode(n, newNode));
           const nodesData = this._getNodesData(nodes);
-          if (nodes.length) newNode._imageChildren = nodesData;
-          if (isMergeStyle) {
-            const biggestNode = getBiggestNode(nodes);
-            if (
-              biggestNode &&
-              ['width', 'height', 'abX', 'abY']
-                .map(key => biggestNode[key] === newNode[key])
-                .every(val => val)
-            ) {
-              console.log('合并样式从', biggestNode.name, '到', newNode.name);
-              mergeStyle(newNode, biggestNode, [
-                'borderRadius',
-                'border',
-                'shadows',
-              ]);
-            }
+          if (nodes.length) {
+            newNode.isMerge = isMerge;
+            const images = nodes.reduce((p, c) => {
+              if (c.isMerge) return p.concat(c.images);
+              else return p;
+            }, []);
+            newNode.images = [...images, ...nodesData];
           }
+          // if (isMerge) {
+          //   const biggestNode = getBiggestNode(nodes);
+          //   if (
+          //     biggestNode &&
+          //     ['width', 'height', 'abX', 'abY']
+          //       .map(key => biggestNode[key] === newNode[key])
+          //       .every(val => val)
+          //   ) {
+          //     console.log('合并样式从', biggestNode.name, '到', newNode.name);
+          //     mergeStyle(newNode, biggestNode, [
+          //       'borderRadius',
+          //       'border',
+          //       'shadows',
+          //     ]);
+          //   }
+          // }
         }
         break;
       default:
@@ -108,24 +116,12 @@ class DesignTree {
     return newNode;
   }
 
-  /**
-   * @private
-   * @param {QObject} node
-   * @param {Array.<string>} keys
-   */
-  static _getNodeData(node, keys = []) {
-    const obj = {};
-    keys.forEach(key => {
-      if (node[key] !== undefined) obj[key] = node[key];
-    });
-    return obj;
-  }
   static _getNodesData(nodes) {
-    return nodes.map(n =>
-      this._getNodeData(n, [
+    return nodes.map(n => {
+      const cloneNode = cloneNodeByKeys(n, [
         'id',
         'name',
-        'styles',
+        // 'styles',
         'path',
         'abX',
         'abY',
@@ -133,10 +129,12 @@ class DesignTree {
         '_origin',
         'height',
         'width',
-        '_imageChildren',
+        'isMerge',
         'levelArr',
-      ]),
-    );
+      ]);
+      cloneNode.images = [];
+      return cloneNode;
+    });
   }
   /**
    * @private
@@ -144,7 +142,7 @@ class DesignTree {
    * @param {QObject} mNode
    */
   static _getMergeNode(node, mNode) {
-    const n = this._getNodeData(node, [
+    const n = cloneNodeByKeys(node, [
       'id',
       'name',
       'styles',

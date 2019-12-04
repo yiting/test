@@ -10,7 +10,7 @@ function hashPath(imageList, outputPath = '') {
   imageList.forEach(n => {
     const id = md5(n.id);
     n.path = `${outputPath}${id.slice(0, 8)}.png`;
-    hashPath(n._imageChildren, outputPath);
+    hashPath(n.images, outputPath);
   });
 }
 module.exports = {

@@ -1,4 +1,4 @@
-const { serialize } = require('../utils');
+const { serialize, cloneNodeByKeys } = require('../utils');
 /**
  * 基础节点类
  */
@@ -37,7 +37,7 @@ class QObject {
     this.isModified = false;
     this.isNew = false;
     this._origin = {};
-    this._imageChildren = [];
+    this.images = [];
   }
 
   convert(type) {
@@ -217,13 +217,14 @@ class QObject {
    */
   toList(needKeys = DEFAULT_KEYS) {
     return serialize(this).map(node => {
-      const res = {};
-      for (const key in node) {
-        // 除去不需要的
-        if (~needKeys.indexOf(key) && node[key] !== undefined) {
-          res[key] = node[key];
-        }
+      const res = cloneNodeByKeys(node, needKeys);
+      function process(images) {
+        const arr = images.map(n => {
+          return cloneNodeByKeys(n, needKeys);
+        });
+        return arr;
       }
+      res.images = node.isMerge ? process(node.images) : [];
       return res;
     });
   }
@@ -235,45 +236,30 @@ class QObject {
     return serialize(this)
       .filter(node => node.type === 'QImage')
       .map(node => {
-        const {
-          id,
-          name,
-          type,
-          width,
-          height,
-          x,
-          y,
-          abX,
-          abY,
-          path,
-          _imageChildren: imgchildren,
-          levelArr,
-          isModified,
-          isNew,
-          styles,
-        } = node;
-        const _imageChildren = getImageChild(imgchildren);
+        const needKeys = [
+          'id',
+          'name',
+          // 'type',
+          'width',
+          'height',
+          'x',
+          'y',
+          'abX',
+          'abY',
+          'path',
+          'levelArr',
+          'isModified',
+          // 'isNew',
+          // 'styles',
+        ];
+        const res = cloneNodeByKeys(node, needKeys);
+        const _imageChildren = getImageList(node.images);
         // if(_origin) _origin = {
         //     ..._origin,
         //     layers: 'shapeGroup' === _origin._class ? _origin.layers : null
         // }
-        return {
-          id,
-          name,
-          type,
-          width,
-          height,
-          x,
-          y,
-          abX,
-          abY,
-          path,
-          _imageChildren,
-          levelArr,
-          styles,
-          isModified,
-          isNew,
-        };
+        res._imageChildren = _imageChildren;
+        return res;
       });
   }
 }
@@ -285,9 +271,9 @@ class QObject {
 function _getNodeByList(key, val, nodes) {
   return nodes.find(n => n[key] === val);
 }
-function getImageChild(_imageChildren) {
+function getImageList(images) {
   const arr = [];
-  const not_include = ['_origin', '_imageChildren'];
+  const not_include = ['_origin', 'images'];
   const process = children => {
     children.forEach(n => {
       const obj = {};
@@ -298,10 +284,10 @@ function getImageChild(_imageChildren) {
         if (!~not_include.indexOf(key)) obj[key] = n[key];
       });
       arr.push(obj);
-      if (Array.isArray(n._imageChildren)) process(n._imageChildren);
+      if (Array.isArray(n.images)) process(n.images);
     });
   };
-  process(_imageChildren);
+  process(images);
   return arr;
 }
 module.exports = QObject;

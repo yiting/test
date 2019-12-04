@@ -101,7 +101,7 @@ class DesignJson {
     extractDom(designDom, idList);
     Optimize(designDom, option);
     Processor.process(designDom, option);
-    const nodes = designDom.toList();
+    const nodes = designDom.toList().slice(1); // 去掉根节点
     const images = designDom.getImages();
     return {
       nodes,
