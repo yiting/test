@@ -131,8 +131,9 @@ class DesignTree {
         'width',
         'isMerge',
         'levelArr',
+        'images',
       ]);
-      cloneNode.images = [];
+      if (n.isMerge) cloneNode.images = [];
       return cloneNode;
     });
   }
