@@ -926,6 +926,7 @@ const ImageCombine = function() {
         typeof artboardIndex == 'undefined' &&
         typeof imgList[i]['_imageChildren'] != 'undefined' &&
         imgList[i]['_imageChildren'].length > 0 &&
+        j < imgList[i]['_imageChildren'].length &&
         typeof imgList[i]['_imageChildren'][j]['levelArr'] == 'undefined'
       ) {
         j++;
