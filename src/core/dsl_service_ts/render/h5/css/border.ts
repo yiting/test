@@ -1,4 +1,5 @@
-import Funcs from '../model/css_func';
+import Funcs from '../function/css_func';
+import CssDefault from '../model/css_default';
 
 export default {
   key: 'border',
@@ -9,6 +10,6 @@ export default {
       const borderColor = Funcs.getRGBA(this.styles.border.color);
       return [borderWidth, borderType, borderColor].join(' ');
     }
-    return null;
+    return CssDefault.border;
   },
 };

@@ -1,5 +1,6 @@
 import Constraints from '../../../helper/constraints';
 import Dictionary from '../../../helper/dictionary';
+import CssDefault from '../model/css_default';
 
 export default {
   key: 'verticalAlign',
@@ -12,6 +13,6 @@ export default {
     ) {
       return 'middle';
     }
-    return null;
+    return CssDefault.verticalAlign;
   },
 };

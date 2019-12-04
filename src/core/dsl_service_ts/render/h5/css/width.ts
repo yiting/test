@@ -1,4 +1,5 @@
 // import Constraints from '../../../helper/constraints';
+import CssDefault from '../model/css_default';
 export default {
   key: 'width',
   value() {
@@ -9,6 +10,6 @@ export default {
         this.parent && Math.abs(this.parent.abXops - this.parent.abX);
       return parentWidth === width ? '100%' : width;
     }
-    return null;
+    return CssDefault.width;
   },
 };

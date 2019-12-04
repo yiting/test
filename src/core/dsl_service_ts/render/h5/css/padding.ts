@@ -1,14 +1,15 @@
 import Constraints from '../../../helper/constraints';
-import Func from '../model/css_func';
+import Func from '../function/css_func';
 import paddingTop from './paddingTop';
 import paddingBottom from './paddingBottom';
 import paddingLeft from './paddingLeft';
 import paddingRight from './paddingRight';
+import CssDefault from '../model/css_default';
 export default {
   key: 'padding',
   value() {
     if (!this.parent) {
-      return null;
+      return CssDefault.padding;
     }
     const css: any[] = [0, 0, 0, 0];
     //横排

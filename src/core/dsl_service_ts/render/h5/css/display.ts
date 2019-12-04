@@ -1,4 +1,5 @@
 import Dictionary from '../../../helper/dictionary';
+import CssDefault from '../model/css_default';
 export default {
   key: 'display',
   value() {
@@ -17,6 +18,6 @@ export default {
     if (this.type !== Dictionary.type.QText && this.children.length) {
       return 'flex';
     }
-    return 'block';
+    return CssDefault.display;
   },
 };

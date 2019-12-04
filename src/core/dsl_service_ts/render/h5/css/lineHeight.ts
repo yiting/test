@@ -1,3 +1,4 @@
+import CssDefault from '../model/css_default';
 export default {
   key: 'lineHeight',
   value() {
@@ -8,6 +9,6 @@ export default {
       const onlyOneLine = _height / maxSize < 1.2;
       return this.styles.lineHeight || (onlyOneLine ? _height : maxSize * 1.4);
     }
-    return null;
+    return CssDefault.lineHeight;
   },
 };

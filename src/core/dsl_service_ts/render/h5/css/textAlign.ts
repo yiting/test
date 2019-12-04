@@ -1,9 +1,10 @@
 import Constraints from '../../../helper/constraints';
+import CssDefault from '../model/css_default';
 export default {
   key: 'textAlign',
   value() {
     if (this.display == 'flex') {
-      return null;
+      return CssDefault.textAlign;
     }
     if (
       this.constraints.LayoutDirection !==

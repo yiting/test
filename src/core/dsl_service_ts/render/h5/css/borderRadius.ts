@@ -1,4 +1,5 @@
-import Func from '../model/css_func';
+import CssDefault from '../model/css_default';
+import Func from '../function/css_func';
 
 export default {
   key: 'borderRadius',
@@ -9,6 +10,6 @@ export default {
         Math.min(this.abYops - this.abY, this.abXops - this.abX),
       );
     }
-    return null;
+    return CssDefault.borderRadius;
   },
 };

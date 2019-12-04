@@ -1,3 +1,4 @@
+import CssDefault from '../model/css_default';
 //
 export default {
   key: 'zIndex',
@@ -5,6 +6,7 @@ export default {
     if (this._isAbsolute()) {
       return this.zindex;
     }
-    return null;
+    // return null;
+    return CssDefault.zIndex;
   },
 };

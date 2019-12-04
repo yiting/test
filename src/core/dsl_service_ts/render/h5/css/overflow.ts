@@ -1,11 +1,12 @@
 import Utils from '../../../helper/methods';
 import Store from '../../../helper/store';
 import Dictionary from '../../../helper/dictionary';
+import CssDefault from '../model/css_default';
 export default {
   key: 'overflow',
   value() {
     if (this.type == Dictionary.type.QBody) {
-      return null;
+      return CssDefault.overflow;
     }
     const range: any = Utils.calRange(this.children);
 
@@ -16,6 +17,6 @@ export default {
     if (this.styles.texts) {
       return 'hidden';
     }
-    return null;
+    return CssDefault.overflow;
   },
 };

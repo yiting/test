@@ -1,5 +1,6 @@
 //
 import Constraints from '../../../helper/constraints';
+import CssDefault from '../model/css_default';
 
 export default {
   key: 'right',
@@ -10,7 +11,7 @@ export default {
     ) {
       return this.parent.abXops - this.abXops;
     } else {
-      return null;
+      return CssDefault.right;
     }
   },
 };

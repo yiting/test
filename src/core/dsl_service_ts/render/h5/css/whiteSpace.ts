@@ -1,5 +1,6 @@
 import Dictionary from '../../../helper/dictionary';
 import { debug } from 'util';
+import CssDefault from '../model/css_default';
 
 export default {
   key: 'whiteSpace',
@@ -25,6 +26,7 @@ export default {
       // emx元素
       return null;
     }
-    return 'nowrap';
+    // return 'nowrap';
+    return CssDefault.whiteSpace;
   },
 };

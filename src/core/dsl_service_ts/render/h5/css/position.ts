@@ -1,4 +1,5 @@
 import Constraints from '../../../helper/constraints';
+import CssDefault from '../model/css_default';
 export default {
   key: 'position',
   value() {
@@ -16,8 +17,7 @@ export default {
       this.constraints['LayoutPosition'] === Constraints.LayoutPosition.Absolute
     ) {
       return 'relative';
-    } else {
-      return 'static';
     }
+    return CssDefault.position;
   },
 };

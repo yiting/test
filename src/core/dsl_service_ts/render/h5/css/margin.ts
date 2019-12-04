@@ -1,9 +1,10 @@
 import Constraints from '../../../helper/constraints';
-import Func from '../model/css_func';
+import Func from '../function/css_func';
 import marginTop from './marginTop';
 import marginBottom from './marginBottom';
 import marginLeft from './marginLeft';
 import marginRight from './marginRight';
+import CssDefault from '../model/css_default';
 
 export default {
   key: 'margin ',
@@ -12,10 +13,10 @@ export default {
     const css: any[] = [0, 0, 0, 0];
     //绝对定位就不需要margin了
     if (!this.parent) {
-      return null;
+      return CssDefault.margin;
     }
     if (this._isAbsolute()) {
-      return null;
+      return CssDefault.margin;
     }
     //横排
     css[0] = marginTop.value.call(this) || 0;

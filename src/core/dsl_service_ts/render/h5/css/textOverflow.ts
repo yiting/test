@@ -1,7 +1,8 @@
+import CssDefault from '../model/css_default';
 export default {
   key: 'textOverflow',
   value() {
-    return null;
+    return CssDefault.textOverflow;
     if (this.styles.texts) {
       return 'ellipsis';
     }

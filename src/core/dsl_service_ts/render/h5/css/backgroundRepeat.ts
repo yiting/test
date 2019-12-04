@@ -1,13 +1,13 @@
+import CssDefault from '../model/css_default';
 export default {
   key: 'backgroundRepeat',
   value() {
     if (this._isImgTag()) {
-      return null;
+      return CssDefault.backgroundRepeat;
     }
-    let css = null;
     if (this.path) {
-      css = 'no-repeat';
+      return 'no-repeat';
     }
-    return css;
+    return CssDefault.backgroundRepeat;
   },
 };

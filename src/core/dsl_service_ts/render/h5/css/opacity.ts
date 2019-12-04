@@ -1,3 +1,4 @@
+import CssDefault from '../model/css_default';
 export default {
   key: 'opacity',
   value() {
@@ -5,6 +6,6 @@ export default {
     if (typeof opacity === 'number' && !isNaN(opacity)) {
       return opacity;
     }
-    return null;
+    return CssDefault.opacity;
   },
 };
