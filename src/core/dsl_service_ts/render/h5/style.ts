@@ -6,14 +6,11 @@ import TextRevise from '../helper/textRevise';
 import ReviseDomTree from '../helper/reviseDomTree';
 // import css_combo_extend_tree from './css_combo_extend_tree';
 
-import CssDom from './model/css_dom_tree';
+import CssDom from './model/css_dom';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 // 生成的Css记录树
 let cssDomTree = null;
-
-// 临时记录最深最后节点
-let _tmpDeepNode = null;
 /**
  * 解析获取css属性
  * @param {Array} arr 字符串收集数组
@@ -84,8 +81,6 @@ const _buildTree = function(parent: any, data: any) {
         data.id:${data && data.id}]`,
     );
   }
-  //抓到广度优先遍历里，最底层的那个节点。。给之后重新回溯一遍回到root节点使用。目的是为了找到具备相同继承样式的节点，然后将样式提高到共同的父类。
-  _tmpDeepNode = cssNode.id;
   return cssNode;
 };
 // 主流程
@@ -96,13 +91,6 @@ const process = function(data: any) {
 
   Loger.debug('render/h5/dom_css [ReviseDomTree]');
   ReviseDomTree(cssDomTree);
-  // 计算约束
-  // Loger.debug('render/h5/dom_css [CssConstraints]');
-  // CssConstraints(cssDomTree);
-
-  // 调整边距
-  // Loger.debug('render/h5/dom_css [CssBoundary]');
-  // CssBoundary(cssDomTree);
 
   Loger.debug('render/h5/dom_css [TextRevise]');
   TextRevise(cssDomTree);

@@ -66,9 +66,9 @@ class HtmlDom {
 
   tplAttr: any;
 
-  selfClassName: any;
+  className: any;
 
-  similarClassName: any;
+  simClassName: any;
 
   parent: any;
 
@@ -94,8 +94,8 @@ class HtmlDom {
     this.contrains = node.contrains || {};
     this.tplAttr = node.tplAttr || {};
     this.styles = node.styles || {};
-    this.selfClassName = node.selfClassName;
-    this.similarClassName = node.similarClassName;
+    this.className = node.className;
+    this.simClassName = node.simClassName;
   }
 
   get x() {
@@ -115,10 +115,10 @@ class HtmlDom {
       // 如果有子节点，为避免自节点样式链断了，保留当前节点样式名
       this.children.length > 0
     ) {
-      result.push(this.selfClassName);
+      result.push(this.className);
     }
-    if (this.similarClassName && this.similarClassName !== this.selfClassName) {
-      result.push(this.similarClassName);
+    if (this.simClassName && this.simClassName !== this.className) {
+      result.push(this.simClassName);
     }
 
     if (result.length) {

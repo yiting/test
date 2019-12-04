@@ -1,7 +1,6 @@
 const Funcs = {
   // 找到获取最接近的model
   getClosestModelById(node: any, id: string): any {
-    // try {
     if (!id || !node) {
       return null;
     }
@@ -9,9 +8,6 @@ const Funcs = {
       return node;
     }
     return Funcs.getClosestModelById(node.parent, id);
-    // } catch (e) {
-    // Loger.error(`css_dom.js [getClosestModelById],params:[id:${id}]`)
-    // }
   },
   getRGBA(color: any) {
     if (color && typeof color === 'object') {

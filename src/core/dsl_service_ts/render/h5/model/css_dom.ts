@@ -3,14 +3,11 @@ import { debug } from 'util';
 import Dictionary from '../../../helper/dictionary';
 import Constraints from '../../../helper/constraints';
 import Utils from '../../../helper/methods';
-import Func from './css_func';
+import Func from '../function/css_func';
 import QLog from '../../../log/qlog';
 import VDom from '../../vdom';
-import cssProperty from './css_property';
+import cssProperty from '../function/css_property';
 const Loger = QLog.getInstance(QLog.moduleData.render);
-
-// 生成的Css记录树
-let cssDomTree = null;
 
 const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align'];
 const CompatibleValue = ['box'];
@@ -19,9 +16,13 @@ const cssPropertyMap = cssProperty.map;
 class CssDom extends VDom {
   _zIndex: any;
 
-  selfCss: any;
+  className: string;
 
-  similarCssName: any;
+  classNameChain: any;
+
+  simClassName: string;
+
+  simClassNameChain: any;
 
   extendStyle: any;
 
@@ -49,8 +50,11 @@ class CssDom extends VDom {
       subtract: [],
     };
 
-    this.selfCss = data.selfCss || [];
-    this.similarCssName = data.similarCssName || [];
+    this.className = data.className;
+    this.simClassName = data.simClassName;
+    this.classNameChain = data.classNameChain;
+    this.simClassNameChain = data.simClassNameChain;
+
     // 根据映射定义属性
     cssPropertyMap.forEach((s: any) => {
       Object.defineProperty(this, s.key, {
@@ -173,7 +177,7 @@ class CssDom extends VDom {
    * 获取className
    */
   getCssSelector() {
-    return this.selfCss.map((n: any) => `.${n}`).join(' ');
+    return this.classNameChain.map((n: any) => `.${n}`).join(' ');
   }
 
   /**
@@ -188,30 +192,10 @@ class CssDom extends VDom {
       cssPropertyMap.forEach((mod: any) => {
         ({ key } = mod);
         const value = that[key];
-        //大家都有样式属性值，这里开始区分哪些用来显示，哪些是继承而来的。。
-        //存在父节点，当前样式具有可继承性，父节点的显示样式或者继承来的样式与当前样式值相等
-        /* if (Func.isExtend(key)) {
-          that.extendStyle[key] = value;
-        } */
         const similarValue = similarCss && similarCss[key];
         if (value !== null && value !== undefined && similarValue !== value) {
-          // // console.log(`${that.id}-${that.type}来到一个${key}，父亲的值${that.parent.extendStyle[key]},当前的值${value}`)
-          // if (!(that.parent && that.parent.extendStyle[key] == value)) {
-          // //查看样式是否已经属于合并过的。。
-          // if (!that.countStyle.subtract[key]) {
           props.push(CssDom.getCssProperty(key, value));
-          // }
-          // } else {
-          // console.log(`&&&&&&&&&&找到一个key，父亲的值${that.parent.extendStyle[key]},当前的值${value}`)
-          // }
         }
-        // else {
-        //   if (that.countStyle.add[key]) {
-        //     props.push(
-        //       CssDom.getCssProperty(key, that.countStyle.add[key]['value']),
-        //     );
-        //   }
-        // }
       });
     } catch (e) {
       Loger.error(
