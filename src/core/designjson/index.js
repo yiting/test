@@ -32,6 +32,7 @@ class DesignJson {
    * @param {Object} options.symbolMap
    * @param {Object} options.artboardMap
    * @param {string} options.version
+   * @param {string} options.outputPath 图片输出目录
    * @param {Object} options.fontData
    * @param {Object} options.frameMap
    * @param {Object} option.aiData ai数据
@@ -62,6 +63,7 @@ class DesignJson {
    * @param {Object} options.symbolMap
    * @param {Object} options.artboardMap
    * @param {string} options.version
+   * @param {string} options.outputPath 图片输出目录
    * @param {Object} options.fontData
    * @param {Object} options.frameMap
    * @param {Object} option.aiData ai数据
@@ -86,6 +88,7 @@ class DesignJson {
    * @param {Object} options.symbolMap
    * @param {Object} options.artboardMap
    * @param {string} options.version
+   * @param {string} options.outputPath 图片输出目录
    * @param {Object} options.fontData
    * @param {Object} options.frameMap
    * @param {Object} option.aiData ai数据
