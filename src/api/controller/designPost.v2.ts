@@ -76,10 +76,10 @@ function parseNode(
         font: fontData,
         isPreedit,
         combineLayers,
-        ouputPath = '',
+        outputPath = '',
       } = option;
       const data = Object.assign(jsonData, {
-        ouputPath,
+        outputPath,
         aiData,
         fontData,
         isPreedit,
@@ -88,17 +88,17 @@ function parseNode(
       return DesignJson.parse(artboardId, fileType, data);
     }
     case 1: {
-      let { font: fontData, ouputPath = '' } = option;
+      let { font: fontData, outputPath = '' } = option;
       const data = Object.assign(jsonData, {
-        ouputPath,
+        outputPath,
         fontData,
       });
       return DesignJson.pureParse(artboardId, fileType, data);
     }
     case 2: {
-      let { idList, ouputPath = '' } = option;
+      let { idList, outputPath = '' } = option;
       const data = Object.assign(jsonData, {
-        ouputPath,
+        outputPath,
       });
       return DesignJson.localParse(artboardId, fileType, idList, data);
     }
