@@ -96,8 +96,10 @@ function parseNode(
       return DesignJson.pureParse(artboardId, fileType, data);
     }
     case 2: {
-      let { idList, outputPath = '' } = option;
+      let { idList, isPreedit, combineLayers, outputPath = '' } = option;
       const data = Object.assign(jsonData, {
+        isPreedit,
+        combineLayers,
         outputPath,
       });
       return DesignJson.localParse(artboardId, fileType, idList, data);
