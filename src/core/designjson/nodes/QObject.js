@@ -283,7 +283,7 @@ function getImageList(images) {
       Object.keys(n).forEach(key => {
         if (!~not_include.indexOf(key)) obj[key] = n[key];
       });
-      arr.push(obj);
+      if (obj.originId) arr.push(obj);
       if (Array.isArray(n.images)) process(n.images);
     });
   };
