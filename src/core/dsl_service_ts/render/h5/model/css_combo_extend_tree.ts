@@ -1,8 +1,8 @@
 // 生成的Css记录树
 
-import cssProperty from '../function/css_property';
+import cssProperty from '../utils/css_property';
 import CssDom from './css_dom';
-import Func from '../function/css_func';
+import Func from '../utils/css_func';
 
 const cssPropertyMap = cssProperty.map;
 

@@ -4,7 +4,7 @@ import cssDom from '../style';
 import QLog from '../../../log/qlog';
 
 // 生成的Css记录树
-import cssProperty from '../function/css_property';
+import cssProperty from '../utils/css_property';
 
 let Loger = QLog.getInstance(QLog.moduleData.render);
 let cssPropertyMap = cssProperty.map;

@@ -1,6 +1,6 @@
 import Path from 'path';
 import Config from '../../config.json';
-import Funcs from '../function/css_func';
+import Funcs from '../utils/css_func';
 import CssDefault from '../model/css_default';
 
 export default {

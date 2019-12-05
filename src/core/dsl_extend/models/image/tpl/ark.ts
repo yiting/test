@@ -1,6 +1,6 @@
-import ArkTemplate from '../../arkTemplate';
+import ArkTemplate from '../../../../dsl_service_ts/template/ark/arkTemplate';
 
-class EM1M2 extends ArkTemplate {
+export default class Image extends ArkTemplate {
   constructor(...args: any[]) {
     super(...args);
     if (this.path) {
@@ -15,4 +15,3 @@ class EM1M2 extends ArkTemplate {
     }
   }
 }
-export default EM1M2;

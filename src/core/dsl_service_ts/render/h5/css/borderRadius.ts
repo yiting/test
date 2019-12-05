@@ -1,5 +1,5 @@
 import CssDefault from '../model/css_default';
-import Func from '../function/css_func';
+import Func from '../utils/css_func';
 
 export default {
   key: 'borderRadius',

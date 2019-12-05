@@ -3,10 +3,10 @@ import { debug } from 'util';
 import Dictionary from '../../../helper/dictionary';
 import Constraints from '../../../helper/constraints';
 import Utils from '../../../helper/methods';
-import Func from '../function/css_func';
+import Func from '../utils/css_func';
 import QLog from '../../../log/qlog';
 import VDom from '../../vdom';
-import cssProperty from '../function/css_property';
+import cssProperty from '../utils/css_property';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align'];

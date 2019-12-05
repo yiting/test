@@ -1,5 +1,5 @@
 import CssDefault from '../model/css_default';
-import Funcs from '../function/css_func';
+import Funcs from '../utils/css_func';
 
 export default {
   key: 'backgroundColor',

@@ -1,7 +1,6 @@
-import ArkTemplate from '../../arkTemplate';
-import Resource from '../../../../render/ark/resource';
-
-class EM1M1 extends ArkTemplate {
+import ArkTemplate from '../../../../dsl_service_ts/template/ark/arkTemplate';
+import Resource from '../../../../dsl_service_ts/render/ark/resource';
+export default class Text extends ArkTemplate {
   constructor(...args: any[]) {
     super(...args);
     let tpl = `<Text value="${this.text}" size margin anchors multiline align`;
@@ -16,5 +15,3 @@ class EM1M1 extends ArkTemplate {
     this._template = tpl;
   }
 }
-
-export default EM1M1;

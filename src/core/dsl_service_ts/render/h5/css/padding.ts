@@ -1,5 +1,5 @@
 import Constraints from '../../../helper/constraints';
-import Func from '../function/css_func';
+import Func from '../utils/css_func';
 import paddingTop from './paddingTop';
 import paddingBottom from './paddingBottom';
 import paddingLeft from './paddingLeft';

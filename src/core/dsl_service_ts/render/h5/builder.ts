@@ -9,7 +9,7 @@ import HtmlDom from './html';
 import {
   process as ClassNameProcess,
   policy_oneName as ClassNamePolicy,
-} from './function/className';
+} from './utils/className';
 import QLog from '../../log/qlog';
 
 import Store from '../../helper/store';
