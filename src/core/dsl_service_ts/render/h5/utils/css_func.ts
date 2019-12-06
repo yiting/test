@@ -1,7 +1,10 @@
+// 样式的计算处理
+import Utils from '../../../helper/methods';
+const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align'];
+const CompatibleValue = ['box'];
 const Funcs = {
   // 找到获取最接近的model
   getClosestModelById(node: any, id: string): any {
-    // try {
     if (!id || !node) {
       return null;
     }
@@ -9,9 +12,6 @@ const Funcs = {
       return node;
     }
     return Funcs.getClosestModelById(node.parent, id);
-    // } catch (e) {
-    // Loger.error(`css_dom.js [getClosestModelById],params:[id:${id}]`)
-    // }
   },
   getRGBA(color: any) {
     if (color && typeof color === 'object') {
@@ -30,6 +30,20 @@ const Funcs = {
       return 'dotted';
     }
     return 'solid';
+  },
+  transCssValue(key: string, _value: any) {
+    let value: any = _value;
+    if (typeof value === 'number' && key !== 'opacity' && key !== 'zIndex') {
+      // 数字的话进行单位转换
+      value = Funcs.transUnit(value);
+    }
+
+    const name = Utils.nameLower(key);
+    if (CompatibleKey.includes(name)) {
+      const webkitName = `-webkit-${name}`;
+      return `${webkitName}: ${value}`;
+    }
+    return `${name}: ${value}`;
   },
   /**
    *

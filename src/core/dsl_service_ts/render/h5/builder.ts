@@ -3,14 +3,12 @@ import path from 'path';
 
 // 此模块为h5解析模块
 import Builder from '../builder';
-import CssDom from './dom_css';
-import SimilarCssDom from './model/dom_similar_css';
-import HtmlDom from './dom_html';
-import ClassName from './model/dom_className';
+import * as Style from './style';
+import * as Html from './html';
+import * as SimilarCssProcess from './model/dom_similar_css';
+import * as ClassName from './utils/className';
 import QLog from '../../log/qlog';
-
 import Store from '../../helper/store';
-
 import tpl from './tpl';
 import testTpl from './test_tpl';
 import * as renderConfig from '../config.json';
@@ -23,7 +21,7 @@ class H5Builder extends Builder {
 
   cssDom: any;
 
-  similarCssArr: any;
+  similarCssMap: any;
 
   // 解析逻辑
   _parseData() {
@@ -42,32 +40,29 @@ class H5Builder extends Builder {
    * @param {TemplateData} data
    */
   _parseClassName() {
-    ClassName.process(this._data, ClassName.threeSegmentsClass);
+    ClassName.process(this._data, ClassName.policy_oneName);
   }
 
   // 解析html
   _parseHtml() {
-    const cssMap = CssDom.getCssMap(this.cssDom);
-    const similarCssMap = this.similarCssArr;
-    this.htmlDom = HtmlDom.process(this._data, cssMap, similarCssMap);
+    this.htmlDom = Html.process(this._data, this.cssDom, this.similarCssMap);
   }
 
   // 解析样式
   _parseCss() {
-    this.cssDom = CssDom.process(this._data);
-    this.similarCssArr = SimilarCssDom.process(this.cssDom);
+    this.cssDom = Style.process(this._data);
+    this.similarCssMap = SimilarCssProcess.process(this.cssDom);
   }
 
   getTagString() {
     let tplType = Store.get('tplType') || 0;
-    let htmlStr = HtmlDom.getHtmlString(this.htmlDom);
+    let htmlStr = Html.getHtmlString(this.htmlDom);
     let designWidth = Store.get('designWidth');
     // 添加完整的html结构
     let cssPath = path.relative(
       renderConfig.HTML.output.htmlPath,
       renderConfig.HTML.output.cssPath,
     );
-    console.log(renderConfig, cssPath);
     if (tplType == -1) {
       // 测试
       return testTpl(htmlStr, {
@@ -85,10 +80,10 @@ class H5Builder extends Builder {
   }
 
   getStyleString() {
-    this._styleString = '';
-    this._styleString += SimilarCssDom.getCssString(this.similarCssArr);
-    this._styleString += CssDom.getCssString(this.cssDom, this.similarCssArr);
-    return this._styleString;
+    // StyleSheets(this.cssDom, this.similarCssMap);
+    let _styleString = SimilarCssProcess.getCssString(this.similarCssMap);
+    _styleString += Style.getCssString(this.cssDom, this.similarCssMap);
+    return _styleString;
   }
 
   getResult() {

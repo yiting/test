@@ -1,17 +1,14 @@
 //
+import CssProperty from '../utils/css_property';
 export default {
   key: 'top',
   value() {
-    let css = null;
-
     if (false) {
       // 这里是预留给fixed定位约束
-      css = this.abY;
+      return this.abY;
     } else if (this._isAbsolute()) {
-      css = this.parentY;
-    } else {
-      return null;
+      return this.parentY;
     }
-    return css;
+    return CssProperty.default.top;
   },
 };

@@ -4,12 +4,13 @@ import H5Builder from './h5/builder';
 import ArkBuilder from './ark/builder';
 // template
 import H5TemplateList from '../template/html/list';
-import ArkTemplateList from '../template/ark/templatelist';
+import ArkTemplateList from '../template/ark/list';
 // template engine
 import Template from '../template/template';
 import TemplateData from '../template/templateData';
 import QLog from '../log/qlog';
 import Store from '../helper/store';
+import { debug } from 'util';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 const builderMap: any = {

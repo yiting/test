@@ -19,7 +19,6 @@ const value: any = dslServer.process(
     applyInfo_proName: 'testproName',
   },
 );
-
 // // 输出文件
 Render.outputFileWithPath(
   Path.join(__dirname, './output/index.html'),

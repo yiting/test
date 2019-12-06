@@ -1,13 +1,13 @@
+import CssProperty from '../utils/css_property';
 export default {
   key: 'backgroundRepeat',
   value() {
     if (this._isImgTag()) {
-      return null;
+      return CssProperty.default.backgroundRepeat;
     }
-    let css = null;
     if (this.path) {
-      css = 'no-repeat';
+      return 'no-repeat';
     }
-    return css;
+    return CssProperty.default.backgroundRepeat;
   },
 };
