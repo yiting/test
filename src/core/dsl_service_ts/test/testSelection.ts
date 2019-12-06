@@ -9,7 +9,7 @@ designjson.forEach((item: any) => {
     let startX = 0;
     let startY = 1750;
     let endX = 750;
-    let endY = 2310;
+    let endY = 1920;        //2310
 
     if (item.abX >= startX
         && item.abX + item.width <= endX
@@ -24,4 +24,5 @@ let input: any = {};
 input.nodes = nodes;
 
 // 测试部分生成接口
-Dsl.processSelectionV2(input, {});
+//Dsl.processSelectionV2(input, {});
+Dsl.process(input, {});

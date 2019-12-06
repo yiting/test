@@ -1,7 +1,7 @@
 // dsl模块服务通过输入设计稿抽象过后的数据，然后输出对应的字符串
 import ModelProcess from './model/index';
 import WidgetProcess from './widget/index';
-import RecognizerProcess from './recognizer/index';
+import ComponentProcess from './component/index';
 // 暂时起名为Layout模块
 import LayoutProcess from './layout';
 import InterfereModelProcess from './interfereModel/index';
@@ -44,6 +44,10 @@ function _process(_input: any, _options: any): object {
     // 栅格化
     processDesc = '栅格化';
     GridProcess(dslTree);
+    // 进行语义化组件识别匹配
+    ComponentProcess(dslTree);
+    //console.log(dslTree);
+    return;
     // 进行布局及循环处理
     processDesc = '布局分析';
     LayoutProcess(dslTree);
@@ -51,43 +55,11 @@ function _process(_input: any, _options: any): object {
     // processDesc = '结构清理';
     // LayoutCleanProcess(dslTree);
     // render模块
+    return;
     let Builder = RenderProcess.handle(dslTree);
     return Builder.getResult();
   } catch (e) {
     console.error(`dslService.ts  ${processDesc}:${e}`);
-  }
-}
-
-/**
- * 选中节点构建结构V2接口
- * @param {Array} _input 选中的构建节点 
- * @param {Object} _options 构建的参数
- */
-function _processSelectionV2(_input: any, _options: any) {
-  // 参数的初始化处理
-  const input: any = _input || {};
-  let processDesc;
-  
-  try {
-    // 参数的初始化处理
-    _initInput(input);
-    // 初始化进程参数
-    _initOptions(_options);
-    // 数据清洗
-    let nodes = input.nodes;
-    processDesc = '构建节点';
-    let layoutNodes = ModelProcess(nodes);
-    // 干预处理
-    processDesc = '干预处理';
-    layoutNodes = InterfereModelProcess(layoutNodes);
-    processDesc = '数据清洗';
-    layoutNodes = NodeCleanProcess(layoutNodes);
-
-    // 设计形态识别
-    layoutNodes = RecognizerProcess(layoutNodes);
-  }
-  catch(e) {
-    console.error(`dslService.ts - selection  ${processDesc}:${e}`);
   }
 }
 
@@ -139,6 +111,5 @@ process.on('message', msg => {
 });
 
 export default {
-  process: _process,
-  processSelectionV2: _processSelectionV2,
+  process: _process
 };
