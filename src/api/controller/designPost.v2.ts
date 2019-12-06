@@ -96,11 +96,18 @@ function parseNode(
       return DesignJson.pureParse(artboardId, fileType, data);
     }
     case 2: {
-      let { idList, isPreedit, combineLayers, outputPath = '' } = option;
+      let {
+        idList,
+        isPreedit,
+        combineLayers,
+        outputPath = '',
+        isManualCombine,
+      } = option;
       const data = Object.assign(jsonData, {
         isPreedit,
         combineLayers,
         outputPath,
+        isManualCombine,
       });
       return DesignJson.localParse(artboardId, fileType, idList, data);
     }
