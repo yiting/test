@@ -1,10 +1,10 @@
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 export default {
   key: 'flex',
   value() {
     if (this._hasWidth()) {
       return 'none';
     }
-    return CssDefault.flex;
+    return CssProperty.default.flex;
   },
 };

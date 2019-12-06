@@ -20,15 +20,19 @@ export function policy_oneName(_data: any) {
   if (_classNameCache[selfClassName]) {
     selfClassName = selfClassName + '_' + _data.serialId;
   }
-  let selfSimClassName: string =
-    (data.tplAttr.class || data.tagName) + '_s' + _data.similarId;
   _classNameCache[selfClassName] = true;
-  _classNameCache[selfSimClassName] = true;
-
   _data.className = selfClassName;
-  _data.simClassName = selfSimClassName;
   _data.classNameChain = [selfClassName];
-  _data.simClassNameChain = [selfSimClassName];
+  /**
+   * 相似
+   */
+  if (_data.similarId) {
+    let selfSimClassName: string =
+      (data.tplAttr.class || data.tagName) + '_s' + _data.similarId;
+    _classNameCache[selfSimClassName] = true;
+    _data.simClassName = selfSimClassName;
+    _data.simClassNameChain = [selfSimClassName];
+  }
 }
 
 export function process(_data: any, _func: any) {

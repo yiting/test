@@ -1,5 +1,5 @@
 //
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 export default {
   key: 'top',
   value() {
@@ -9,6 +9,6 @@ export default {
     } else if (this._isAbsolute()) {
       return this.parentY;
     }
-    return CssDefault.top;
+    return CssProperty.default.top;
   },
 };

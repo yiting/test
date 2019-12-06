@@ -4,12 +4,12 @@ import paddingTop from './paddingTop';
 import paddingBottom from './paddingBottom';
 import paddingLeft from './paddingLeft';
 import paddingRight from './paddingRight';
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 export default {
   key: 'padding',
   value() {
     if (!this.parent) {
-      return CssDefault.padding;
+      return CssProperty.default.padding;
     }
     const css: any[] = [0, 0, 0, 0];
     //横排

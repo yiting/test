@@ -1,12 +1,12 @@
 import Constraints from '../../../helper/constraints';
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 import Dictionary from '../../../helper/dictionary';
 
 export default {
   key: 'flexDirection',
   value() {
     if (this.display !== 'flex') {
-      return CssDefault.flexDirection;
+      return CssProperty.default.flexDirection;
     }
     if (
       this.constraints.LayoutDirection ===

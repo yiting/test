@@ -1,4 +1,4 @@
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 //
 export default {
   key: 'height',
@@ -6,6 +6,6 @@ export default {
     if (this._hasHeight()) {
       return Math.abs(this.abYops - this.abY);
     }
-    return CssDefault.height;
+    return CssProperty.default.height;
   },
 };

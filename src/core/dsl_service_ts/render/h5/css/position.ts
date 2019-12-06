@@ -1,5 +1,5 @@
 import Constraints from '../../../helper/constraints';
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 export default {
   key: 'position',
   value() {
@@ -18,6 +18,6 @@ export default {
     ) {
       return 'relative';
     }
-    return CssDefault.position;
+    return CssProperty.default.position;
   },
 };

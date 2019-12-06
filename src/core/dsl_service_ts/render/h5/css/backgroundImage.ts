@@ -1,16 +1,16 @@
 import Path from 'path';
 import Config from '../../config.json';
 import Funcs from '../utils/css_func';
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 
 export default {
   key: 'backgroundImage',
   value() {
     if (this._isImgTag()) {
-      return CssDefault.backgroundImage;
+      return CssProperty.default.backgroundImage;
     }
     if (this._isBgTag()) {
-      return CssDefault.backgroundImage;
+      return CssProperty.default.backgroundImage;
     }
     if (this.styles.background && this.styles.background.type === 'linear') {
       return Funcs.getLinearGradient(
@@ -29,6 +29,6 @@ export default {
       // );
       return `url(../images/${path})`;
     }
-    return CssDefault.backgroundImage;
+    return CssProperty.default.backgroundImage;
   },
 };

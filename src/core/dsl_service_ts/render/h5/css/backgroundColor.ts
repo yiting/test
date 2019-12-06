@@ -1,11 +1,11 @@
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 import Funcs from '../utils/css_func';
 
 export default {
   key: 'backgroundColor',
   value() {
     if (this._isImgTag()) {
-      return CssDefault.backgroundColor;
+      return CssProperty.default.backgroundColor;
     }
     if (
       this.styles &&
@@ -14,6 +14,6 @@ export default {
     ) {
       return Funcs.getRGBA(this.styles.background.color);
     }
-    return CssDefault.backgroundColor;
+    return CssProperty.default.backgroundColor;
   },
 };

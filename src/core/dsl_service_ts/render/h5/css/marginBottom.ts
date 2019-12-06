@@ -1,16 +1,16 @@
 import Constraints from '../../../helper/constraints';
 import Text from '../../../../dsl_extend/models/text/tpl/h5';
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 //
 export default {
   key: 'marginBottom',
   value() {
     if (this._isAbsolute()) {
-      return CssDefault.marginBottom;
+      return CssProperty.default.marginBottom;
     }
     // 如果为文本节点子节点
     if (this.parent && this.parent.modelName == Text.name) {
-      return CssDefault.marginBottom;
+      return CssProperty.default.marginBottom;
     }
     if (this._isParentHorizontal()) {
       // 横排计算与父节点距离
@@ -19,13 +19,13 @@ export default {
         this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.Center
       ) {
-        return CssDefault.marginBottom;
+        return CssProperty.default.marginBottom;
       }
       if (
         this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.Start
       ) {
-        return CssDefault.marginBottom;
+        return CssProperty.default.marginBottom;
       }
       // LayoutAlignItems.Start
       return this.parent.abYops - this.abYops;
@@ -52,6 +52,6 @@ export default {
         } else {
             css = this.abY - this.parent.abY;
         } */
-    return CssDefault.marginBottom;
+    return CssProperty.default.marginBottom;
   },
 };

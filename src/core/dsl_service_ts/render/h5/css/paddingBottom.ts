@@ -1,15 +1,15 @@
 import Constraints from '../../../helper/constraints';
 import Text from '../../../../dsl_extend/models/text/tpl/h5';
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 export default {
   key: 'paddingBottom',
   value() {
     // 如果为文本节点
     if (this.modelName == Text.name) {
-      return CssDefault.paddingBottom;
+      return CssProperty.default.paddingBottom;
     }
     if (this._hasHeight()) {
-      return CssDefault.paddingBottom;
+      return CssProperty.default.paddingBottom;
     }
     let minPaddingBottom: number | null = null;
     const that = this;

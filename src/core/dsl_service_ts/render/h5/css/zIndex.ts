@@ -1,4 +1,4 @@
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 //
 export default {
   key: 'zIndex',
@@ -7,6 +7,6 @@ export default {
       return this.zindex;
     }
     // return null;
-    return CssDefault.zIndex;
+    return CssProperty.default.zIndex;
   },
 };

@@ -1,5 +1,5 @@
 import Funcs from '../utils/css_func';
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 
 export default {
   key: 'fontSize',
@@ -7,6 +7,6 @@ export default {
     if (this.styles && this.styles.texts && this.styles.texts[0]) {
       return Funcs.transUnit(this.styles.texts[0].size);
     }
-    return CssDefault.fontSize;
+    return CssProperty.default.fontSize;
   },
 };

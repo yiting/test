@@ -1,13 +1,13 @@
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 export default {
   key: 'backgroundSize',
   value() {
     if (this._isImgTag()) {
-      return CssDefault.backgroundSize;
+      return CssProperty.default.backgroundSize;
     }
     if (this.path) {
       return 'contain';
     }
-    return CssDefault.backgroundSize;
+    return CssProperty.default.backgroundSize;
   },
 };

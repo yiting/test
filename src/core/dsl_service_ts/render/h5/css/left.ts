@@ -1,5 +1,5 @@
 import Constraints from '../../../helper/constraints';
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 
 export default {
   key: 'left',
@@ -10,7 +10,7 @@ export default {
     ) {
       return this.parentX;
     } else {
-      return CssDefault.left;
+      return CssProperty.default.left;
     }
   },
 };

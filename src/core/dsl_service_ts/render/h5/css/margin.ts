@@ -4,19 +4,19 @@ import marginTop from './marginTop';
 import marginBottom from './marginBottom';
 import marginLeft from './marginLeft';
 import marginRight from './marginRight';
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 
 export default {
-  key: 'margin ',
+  key: 'margin',
   value() {
     //数组值保持跟magin属性一样的定位方式：上右下左
     const css: any[] = [0, 0, 0, 0];
     //绝对定位就不需要margin了
     if (!this.parent) {
-      return CssDefault.margin;
+      return CssProperty.default.margin;
     }
     if (this._isAbsolute()) {
-      return CssDefault.margin;
+      return CssProperty.default.margin;
     }
     //横排
     css[0] = marginTop.value.call(this) || 0;

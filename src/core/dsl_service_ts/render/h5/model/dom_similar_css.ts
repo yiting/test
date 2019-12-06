@@ -1,13 +1,14 @@
 // 样式的计算处理
-import cssDom from '../style';
-
+import CssDom from './css_dom';
 import QLog from '../../../log/qlog';
+import Func from '../utils/css_func';
 
 // 生成的Css记录树
-import cssProperty from '../utils/css_property';
+import CssProperty from '../utils/css_property';
 
 let Loger = QLog.getInstance(QLog.moduleData.render);
-let cssPropertyMap = cssProperty.map;
+let cssPropertyMap = CssProperty.map;
+let cssPropertyDefault = CssProperty.default;
 let minCss: [] = [];
 
 let _cssDomTree: any = {};
@@ -51,11 +52,13 @@ function _getClass(cssNode: any) {
  * @param {Node} cssNode
  */
 function _getCssProperty(cssNode: any) {
-  const props: any = [];
+  let props: any = [];
   Object.keys(cssNode).forEach(key => {
-    const value = cssNode[key];
-    if (value !== null && value !== undefined) {
-      props.push(cssDom.CssDom.getCssProperty(key, value));
+    let value = cssNode[key];
+    let compValue = value + '';
+    let defVal = cssPropertyDefault[key] + '';
+    if (compValue !== defVal) {
+      props.push(Func.transCssValue(key, value));
     }
   });
   return props.join(';');

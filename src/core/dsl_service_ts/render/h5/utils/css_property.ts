@@ -43,7 +43,7 @@ import lineHeight from '../css/lineHeight';
 import opacity from '../css/opacity';
 import margin from '../css/margin';
 
-export default {
+let __: any = {
   map: [
     // 布局
     display,
@@ -95,4 +95,57 @@ export default {
     overflow,
     opacity,
   ],
+  default: {
+    display: 'block',
+    alignItems: 'normal',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    justifyContent: 'normal',
+    flex: '0 1 auto',
+    width: 'auto',
+    height: 'auto',
+    marginTop: '0',
+    marginRight: '0',
+    marginBottom: '0',
+    marginLeft: '0',
+    margin: '0',
+    paddingLeft: '0',
+    paddingRight: '0',
+    paddingTop: '0',
+    paddingBottom: '0',
+    padding: '0',
+    top: 'auto',
+    right: 'auto',
+    bottom: 'auto',
+    left: 'auto',
+    zIndex: 'auto',
+    backgroundImage: 'none',
+    backgroundColor: 'rgba(0,0,0,0)',
+    backgroundSize: 'auto',
+    backgroundRepeat: 'repeat',
+    color: 'rgba(0,0,0,1)',
+    fontFamily: 'auto',
+    fontSize: 'initial',
+    position: 'static',
+    filter: 'none',
+    border: 'none',
+    boxSizing: 'content-box',
+    borderRadius: '0',
+    overflow: 'visible',
+    textOverflow: 'clip',
+    textAlign: 'left',
+    whiteSpace: 'normal',
+    verticalAlign: 'baseline',
+    lineHeight: 'normal',
+    opacity: '1',
+  },
+  inheritProperties: [
+    'color',
+    'fontFamily',
+    'fontSize',
+    'textAlign',
+    'lineHeight',
+  ],
 };
+
+export default __;

@@ -1,4 +1,4 @@
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 export default {
   key: 'boxSizing',
   value() {

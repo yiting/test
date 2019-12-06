@@ -1,12 +1,12 @@
 import Dictionary from '../../../helper/dictionary';
 import { debug } from 'util';
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 
 export default {
   key: 'whiteSpace',
   value() {
     if (this.type != Dictionary.type.QText) {
-      return null;
+      return CssProperty.default.whiteSpace;
     }
     const lineHeight =
       this.lineHeight ||
@@ -16,7 +16,7 @@ export default {
     const _height = this.abYops - this.abY;
     if (_height / lineHeight > 1.2) {
       // 多行
-      return null;
+      return CssProperty.default.whiteSpace;
     }
     if (
       this.parent &&
@@ -24,9 +24,9 @@ export default {
       this.type == Dictionary.type.QText
     ) {
       // emx元素
-      return null;
+      return CssProperty.default.whiteSpace;
     }
     // return 'nowrap';
-    return CssDefault.whiteSpace;
+    return CssProperty.default.whiteSpace;
   },
 };

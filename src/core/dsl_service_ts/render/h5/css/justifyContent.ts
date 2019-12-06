@@ -3,7 +3,7 @@ const flexValue: any = {
   End: 'flex-end',
   Center: 'center',
 };
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 
 export default {
   key: 'justifyContent',
@@ -11,10 +11,10 @@ export default {
     if (this.display === 'flex') {
       return (
         flexValue[this.constraints.LayoutJustifyContent] ||
-        CssDefault.justifyContent
+        CssProperty.default.justifyContent
       );
     } else {
-      return CssDefault.justifyContent;
+      return CssProperty.default.justifyContent;
     }
   },
 };

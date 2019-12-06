@@ -1,4 +1,4 @@
-import CssDefault from '../model/css_default';
+import CssProperty from '../utils/css_property';
 const flexValue: any = {
   Start: 'flex-start',
   End: 'flex-end',
@@ -11,9 +11,10 @@ export default {
     const that: any = this;
     if (this.display === 'flex') {
       return (
-        flexValue[that.constraints.LayoutAlignItems] || CssDefault.alignItems
+        flexValue[that.constraints.LayoutAlignItems] ||
+        CssProperty.default.alignItems
       );
     }
-    return CssDefault.alignItems;
+    return CssProperty.default.alignItems;
   },
 };
