@@ -50,6 +50,7 @@ class NodesMergeJudge {
   isMerge(param) {
     let { node, brother, ruleConfig, root, ratio = 1 } = param;
     let combineLayers = ruleConfig.combineLayers;
+    let isManualCombine = ruleConfig.isManualCombine;
     //合图逻辑组合，如果满足其中一种组合，则认为两图层该合并
     let isCombine = false;
     let isFinally = false;
@@ -58,7 +59,7 @@ class NodesMergeJudge {
       // console.log(1);
     }
 
-    if (typeof combineLayers != 'undefined') {
+    if (isManualCombine) {
       return this.isMergeByPreedit(param);
     }
 
