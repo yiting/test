@@ -48,7 +48,7 @@ class DesignJson {
     option.isPreedit && Processor[fileType].process(designDom);
     Processor.process(designDom);
     const nodes = designDom.toList();
-    const images = designDom.getImages();
+    const images = designDom.getImages('QImage');
     return {
       nodes,
       images,

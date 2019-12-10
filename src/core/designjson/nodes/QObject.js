@@ -232,9 +232,9 @@ class QObject {
   /**
    * 返回解析中遇到的图片层
    */
-  getImages(dir) {
+  getImages(nodeType) {
     return serialize(this)
-      .filter(node => node.type === 'QImage')
+      .filter(node => (nodeType ? node.type === nodeType : true))
       .map(node => {
         const needKeys = [
           'id',
