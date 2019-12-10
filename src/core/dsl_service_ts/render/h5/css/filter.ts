@@ -1,4 +1,5 @@
-import Funcs from '../model/css_func';
+import Funcs from '../utils/css_func';
+import CssProperty from '../utils/css_property';
 
 export default {
   key: 'filter',
@@ -17,6 +18,6 @@ export default {
       });
       return filter.join(' ');
     }
-    return null;
+    return CssProperty.default.filter;
   },
 };

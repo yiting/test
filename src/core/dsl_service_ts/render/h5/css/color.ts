@@ -1,4 +1,5 @@
-import Funcs from '../model/css_func';
+import Funcs from '../utils/css_func';
+import CssProperty from '../utils/css_property';
 
 //
 export default {
@@ -7,6 +8,6 @@ export default {
     if (this.styles && this.styles.texts && this.styles.texts[0]) {
       return Funcs.getRGBA(this.styles.texts[0].color);
     }
-    return null;
+    return CssProperty.default.color;
   },
 };

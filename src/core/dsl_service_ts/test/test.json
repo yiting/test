@@ -1,43 +1,11 @@
 [
   {
-    "id": "_7ABBBD2B-C948-42B4-9891-223736EA4A4A---176AC27D-D22E-4344-9BEA-3D160CF0BB35_7ABBBD2B-C948-42B4-9891-223736EA4A4A---5EBE80E1-3E00-4FE4-81DF-C26E5737C414_7ABBBD2B-C948-42B4-9891-223736EA4A4A---6885E7E1-9440-4559-B1B6-6036EE3FC73F",
-    "name": "_Rectangle_Line 2_Line 2",
-    "width": 34,
+    "id": "F3D67C5A-033B-4744-8B49-04824EC43C64",
+    "name": "100 PU券",
+    "width": 112,
     "height": 26,
-    "abX": 432,
-    "abY": 856,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": [13, 13, 13, 13],
-      "border": null,
-      "shadows": null
-    },
-    "type": "QImage",
-    "path": "a677edbd.png"
-  },
-  {
-    "id": "_7ABBBD2B-C948-42B4-9891-223736EA4A4A---17705020-0A6D-4A01-9F21-7E6FF1D0FD5E_7ABBBD2B-C948-42B4-9891-223736EA4A4A---5B980760-CA71-4589-89EF-8009BF230514_7ABBBD2B-C948-42B4-9891-223736EA4A4A---41512CE4-B52F-4EB6-BAD0-66485B8A65A8",
-    "name": "_Rectangle_Line 2_Line 2",
-    "width": 34,
-    "height": 26,
-    "abX": 692,
-    "abY": 1226,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": [13, 13, 13, 13],
-      "border": null,
-      "shadows": null
-    },
-    "type": "QImage",
-    "path": "684ae4a7.png"
-  },
-  {
-    "id": "7ABBBD2B-C948-42B4-9891-223736EA4A4A---1822CE64-BF40-4E08-831C-D9290F8D04F3",
-    "name": "苹果系统将升iOS13，这几个型号可能无",
-    "width": 696,
-    "height": 92,
-    "abX": 30,
-    "abY": 950,
+    "abX": 40,
+    "abY": 483,
     "zIndex": 0,
     "styles": {
       "borderRadius": null,
@@ -49,90 +17,49 @@
       "texts": [
         {
           "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
+            "r": 0,
+            "g": 0,
+            "b": 0,
             "a": 1
           },
-          "string": "苹果系统将升iOS13，这几个型号可能无法升级，网友：想你换手机",
+          "string": "100 PU券",
           "font": "PingFangSC-Regular",
-          "size": 34,
-          "lineHeight": 46
+          "size": 26,
+          "lineHeight": 26
         }
       ],
       "verticalAlign": 0,
       "textAlign": 0
     },
     "type": "QText",
-    "text": "苹果系统将升iOS13，这几个型号可能无法升级，网友：想你换手机",
-    "symbolRoot": ["7ABBBD2B-C948-42B4-9891-223736EA4A4A"]
+    "text": "100 PU券"
   },
   {
-    "id": "7ABBBD2B-C948-42B4-9891-223736EA4A4A---E42447EF-7886-42C3-B2AF-A924C9576099",
-    "name": "矩形",
-    "width": 228,
-    "height": 164,
-    "abX": 30,
-    "abY": 1052,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": [10, 10, 10, 10],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": ["7ABBBD2B-C948-42B4-9891-223736EA4A4A"],
-    "path": "27c5a54d.png"
-  },
-  {
-    "id": "7ABBBD2B-C948-42B4-9891-223736EA4A4A---65FE76EB-E356-45DE-853B-CD42BD0D840C",
-    "name": "矩形备份 3",
-    "width": 228,
-    "height": 164,
-    "abX": 264,
-    "abY": 1052,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": [10, 10, 10, 10],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": ["7ABBBD2B-C948-42B4-9891-223736EA4A4A"],
-    "path": "550dc2ba.png"
-  },
-  {
-    "id": "7ABBBD2B-C948-42B4-9891-223736EA4A4A---B25FDD48-0DFB-46AF-A7A3-159B3ED3772F",
-    "name": "数码精英",
-    "width": 120,
+    "id": "C5C2F134-2054-4226-BB7E-DC977D64D530",
+    "name": "限PUPU阅读中使用",
+    "width": 210,
     "height": 22,
-    "abX": 30,
-    "abY": 1228,
+    "abX": 40,
+    "abY": 524,
     "zIndex": 0,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 1,
+      "opacity": 0.4,
       "rotation": 0,
       "shadows": null,
       "background": null,
       "texts": [
         {
           "color": {
-            "r": 176,
-            "g": 176,
-            "b": 176,
+            "r": 0,
+            "g": 0,
+            "b": 0,
             "a": 1
           },
-          "string": "数码精英",
+          "string": "限PUPU阅读中使用",
           "font": "PingFangSC-Regular",
-          "size": 22,
+          "size": 24,
           "lineHeight": 22
         }
       ],
@@ -140,35 +67,34 @@
       "textAlign": 0
     },
     "type": "QText",
-    "text": "数码精英",
-    "symbolRoot": ["7ABBBD2B-C948-42B4-9891-223736EA4A4A"]
+    "text": "限PUPU阅读中使用"
   },
   {
-    "id": "7ABBBD2B-C948-42B4-9891-223736EA4A4A---2D4B9784-711C-4ABE-BAB2-44372D4E8853",
-    "name": "714 评论",
-    "width": 114,
+    "id": "0241A030-087B-4A9F-BC3B-6B2D0C62AA16",
+    "name": "2020.01-26-2020.2.1内",
+    "width": 313,
     "height": 22,
-    "abX": 135,
-    "abY": 1228,
-    "zIndex": 1,
+    "abX": 40,
+    "abY": 556,
+    "zIndex": 0,
     "styles": {
       "borderRadius": null,
       "border": null,
-      "opacity": 1,
+      "opacity": 0.4,
       "rotation": 0,
       "shadows": null,
       "background": null,
       "texts": [
         {
           "color": {
-            "r": 176,
-            "g": 176,
-            "b": 176,
+            "r": 0,
+            "g": 0,
+            "b": 0,
             "a": 1
           },
-          "string": "714 评论",
+          "string": "2020.01-26-2020.2.1内使用",
           "font": "PingFangSC-Regular",
-          "size": 22,
+          "size": 24,
           "lineHeight": 22
         }
       ],
@@ -176,181 +102,33 @@
       "textAlign": 0
     },
     "type": "QText",
-    "text": "714 评论",
-    "symbolRoot": ["7ABBBD2B-C948-42B4-9891-223736EA4A4A"]
+    "text": "2020.01-26-2020.2.1内使用"
   },
   {
-    "id": "7ABBBD2B-C948-42B4-9891-223736EA4A4A---5C14B27A-AA74-494D-A144-A352C5CF4622",
-    "name": "SpaceX猎鹰重型火箭发射成功！将携带",
-    "width": 437,
-    "height": 92,
-    "abX": 30,
-    "abY": 724,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 34,
-            "g": 34,
-            "b": 34,
-            "a": 1
-          },
-          "string": "SpaceX猎鹰重型火箭发射成功！将携带跑车飞向火星",
-          "font": "PingFangSC-Regular",
-          "size": 34,
-          "lineHeight": 46
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "SpaceX猎鹰重型火箭发射成功！将携带跑车飞向火星",
-    "symbolRoot": ["7ABBBD2B-C948-42B4-9891-223736EA4A4A"]
-  },
-  {
-    "id": "7ABBBD2B-C948-42B4-9891-223736EA4A4A---9C67E44D-A89F-4051-9D94-6D0BA240AA52",
-    "name": "腾讯新闻",
-    "width": 104,
-    "height": 22,
-    "abX": 30,
-    "abY": 862,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 176,
-            "g": 176,
-            "b": 176,
-            "a": 1
-          },
-          "string": "腾讯新闻",
-          "font": "PingFangSC-Regular",
-          "size": 22,
-          "lineHeight": 22
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "腾讯新闻",
-    "symbolRoot": ["7ABBBD2B-C948-42B4-9891-223736EA4A4A"]
-  },
-  {
-    "id": "7ABBBD2B-C948-42B4-9891-223736EA4A4A---CDE5B40D-0958-498E-B73F-5ABA5AFA3AED",
-    "name": "268 评论",
-    "width": 119,
-    "height": 22,
-    "abX": 135,
-    "abY": 862,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 176,
-            "g": 176,
-            "b": 176,
-            "a": 1
-          },
-          "string": "268 评论",
-          "font": "PingFangSC-Regular",
-          "size": 22,
-          "lineHeight": 22
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "268 评论",
-    "symbolRoot": ["7ABBBD2B-C948-42B4-9891-223736EA4A4A"]
-  },
-  {
-    "id": "7ABBBD2B-C948-42B4-9891-223736EA4A4A---2F92E43C-D3FB-4571-9DC4-05B29EDA20B3",
-    "name": "路径 9备份",
-    "width": 696,
+    "id": "32F29DA2-6464-431D-AF3B-E9985657D53D",
+    "name": "矩形 copy",
+    "width": 670,
     "height": 1,
-    "abX": 30,
-    "abY": 918,
-    "zIndex": 0,
-    "styles": {},
-    "type": "QImage",
-    "symbolRoot": ["7ABBBD2B-C948-42B4-9891-223736EA4A4A"],
-    "path": "fbdad445.png"
-  },
-  {
-    "id": "7ABBBD2B-C948-42B4-9891-223736EA4A4A---6B804065-F355-44B0-B00F-1706C55DEF87",
-    "name": "矩形备份 4",
-    "width": 228,
-    "height": 164,
-    "abX": 498,
-    "abY": 1052,
+    "abX": 40,
+    "abY": 614,
     "zIndex": 0,
     "styles": {
-      "borderRadius": [10, 10, 10, 10],
+      "borderRadius": null,
       "border": null,
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
-      "background": null
+      "background": {
+        "type": "color",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.1
+        },
+        "hasOpacity": false
+      }
     },
-    "type": "QImage",
-    "symbolRoot": ["7ABBBD2B-C948-42B4-9891-223736EA4A4A"],
-    "path": "a382ee41.png"
-  },
-  {
-    "id": "7ABBBD2B-C948-42B4-9891-223736EA4A4A---B97901D9-F216-4815-87C0-A50F8975BF7A",
-    "name": "矩形备份 4",
-    "width": 232,
-    "height": 164,
-    "abX": 494,
-    "abY": 722,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": [10, 10, 10, 10],
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null
-    },
-    "type": "QImage",
-    "symbolRoot": ["7ABBBD2B-C948-42B4-9891-223736EA4A4A"],
-    "path": "29d666aa.png"
-  },
-  {
-    "id": "7ABBBD2B-C948-42B4-9891-223736EA4A4A---92F6DE72-CC6B-4435-AF0B-83C993C6C2B3",
-    "name": "路径 9备份 2",
-    "width": 696,
-    "height": 1,
-    "abX": 30,
-    "abY": 1282,
-    "zIndex": 0,
-    "styles": {},
-    "type": "QImage",
-    "symbolRoot": ["7ABBBD2B-C948-42B4-9891-223736EA4A4A"],
-    "path": "37582afa.png"
+    "type": "QShape"
   }
 ]

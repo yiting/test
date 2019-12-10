@@ -173,6 +173,10 @@ function handleAbsolute(_parent: any, _calNodes: any, _absNodes: any) {
      * 则符合条件
      * */
     if (
+      dist1.dist &&
+      dist2.dist &&
+      dist1.dist > ErrorCoefficient &&
+      dist2.dist > ErrorCoefficient &&
       dist1.dist / dist2.dist > 1.5 &&
       dist1.index !== 0 &&
       dist1.index !== calNodes.length

@@ -14,6 +14,18 @@ import FileViewLua from './files/view_lua';
 import FileConfig from './files/config.json';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
+import CssBoundary from '../helper/boundary';
+import CssConstraints from '../helper/supplementConstraints';
+
+function reviseDomTree(domTree: any) {
+  CssBoundary(domTree);
+  CssConstraints(domTree);
+  if (domTree.children) {
+    domTree.children.forEach((child: any) => {
+      reviseDomTree(child);
+    });
+  }
+}
 
 class ArkBuilder extends Builder {
   view: any;
@@ -22,14 +34,15 @@ class ArkBuilder extends Builder {
   _parseData() {
     Loger.debug('render/ark/builder [_parse]');
     this._parse();
+    reviseDomTree(this.view);
 
     // 计算约束
-    Loger.debug('render/ark/builder [DomConstraints]');
-    DomSupplementConstraints(this.view);
+    // Loger.debug('render/ark/builder [DomConstraints]');
+    // DomSupplementConstraints(this.view);
 
-    // 调整边距
-    Loger.debug('render/ark/builder [DomBoundary]');
-    DomBoundary(this.view);
+    // // 调整边距
+    // Loger.debug('render/ark/builder [DomBoundary]');
+    // DomBoundary(this.view);
 
     // 计算字体对齐方式
     Loger.debug('render/ark/builder [TextRevise]');
