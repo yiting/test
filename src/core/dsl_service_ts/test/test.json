@@ -1,134 +1,78 @@
 [
   {
-    "id": "F3D67C5A-033B-4744-8B49-04824EC43C64",
-    "name": "100 PU券",
-    "width": 112,
-    "height": 26,
-    "abX": 40,
-    "abY": 483,
-    "zIndex": 0,
+    "id": "312DDCF7-B2D4-4248-B173-2D6F73986309",
+    "name": "Bitmap",
+    "width": 170,
+    "height": 170,
+    "abX": 35,
+    "abY": 667,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "100 PU券",
-          "font": "PingFangSC-Regular",
-          "size": 26,
-          "lineHeight": 26
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
+      "background": null
     },
-    "type": "QText",
-    "text": "100 PU券"
+    "type": "QImage",
+    "path": "ba18e30c.png"
   },
   {
-    "id": "C5C2F134-2054-4226-BB7E-DC977D64D530",
-    "name": "限PUPU阅读中使用",
-    "width": 210,
-    "height": 22,
-    "abX": 40,
-    "abY": 524,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.4,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "限PUPU阅读中使用",
-          "font": "PingFangSC-Regular",
-          "size": 24,
-          "lineHeight": 22
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "限PUPU阅读中使用"
-  },
-  {
-    "id": "0241A030-087B-4A9F-BC3B-6B2D0C62AA16",
-    "name": "2020.01-26-2020.2.1内",
-    "width": 313,
-    "height": 22,
-    "abX": 40,
-    "abY": 556,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.4,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "2020.01-26-2020.2.1内使用",
-          "font": "PingFangSC-Regular",
-          "size": 24,
-          "lineHeight": 22
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "2020.01-26-2020.2.1内使用"
-  },
-  {
-    "id": "32F29DA2-6464-431D-AF3B-E9985657D53D",
-    "name": "矩形 copy",
-    "width": 670,
-    "height": 1,
-    "abX": 40,
-    "abY": 614,
-    "zIndex": 0,
+    "id": "E57A0173-34AE-4CC9-9D87-3D381E8E28D3",
+    "name": "Bitmap",
+    "width": 170,
+    "height": 170,
+    "abX": 205,
+    "abY": 667,
+    "zIndex": 1,
     "styles": {
       "borderRadius": null,
       "border": null,
       "opacity": 1,
       "rotation": 0,
       "shadows": null,
-      "background": {
-        "type": "color",
-        "color": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 0.1
-        },
-        "hasOpacity": false
-      }
+      "background": null
     },
-    "type": "QShape"
+    "type": "QImage",
+    "path": "18f3b449.png"
+  },
+  {
+    "id": "66837FF7-2FBE-4D5A-8841-3B7C149F3F6C",
+    "name": "Bitmap",
+    "width": 170,
+    "height": 170,
+    "abX": 375,
+    "abY": 667,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "e6b2e8fe.png"
+  },
+  {
+    "id": "423DEF4E-801B-4329-87D1-1ECEED9BA4DE",
+    "name": "Bitmap",
+    "width": 170,
+    "height": 170,
+    "abX": 545,
+    "abY": 667,
+    "zIndex": 1,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null
+    },
+    "type": "QImage",
+    "path": "b998c91b.png"
   }
 ]
