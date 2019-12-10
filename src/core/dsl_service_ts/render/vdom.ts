@@ -118,9 +118,6 @@ class VDom {
     if (!this.parent) {
       return false;
     }
-    if (this.parent.type === Dictionary.type.QBody) {
-      return false;
-    }
     // if (this.parent.children.length===1) { // 1个元素默认是横排
     //     return true;
     // }
