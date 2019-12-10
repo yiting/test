@@ -18,7 +18,7 @@ export default function(tree: any) {
     //   return false;   // 不需再递归进行组件适配
     // }
     //console.log(node);
-    console.log('~~~~~~~~ 递归一轮 ~~~~~~~~~~');
+    console.log('~~~~~~~~ 递归二轮 ~~~~~~~~~~');
     
   })
 }

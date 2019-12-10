@@ -13,5 +13,9 @@ export default {
   // 模型的类型
   QElement: 'QElement',
   QWidget: 'QWidget',
+  QImage: 'QImage',
+  QText: 'QText',
+  QLayer: 'QLayer',
+  QBody: 'QBody',
 };
 
