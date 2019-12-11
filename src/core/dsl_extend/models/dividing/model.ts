@@ -10,7 +10,7 @@ class Dividing extends Model {
   static regular(node: any) {
     Dividing.designWidth = Store.get('designWidth');
     return (
-      node.type == Dictionary.type.QImage &&
+      (node.type == 'QImage' || node.type == 'QShape') &&
       node.width > Dividing.designWidth * 0.7 &&
       node.height < Dividing.designWidth * 0.04266
     );
