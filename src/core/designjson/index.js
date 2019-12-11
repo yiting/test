@@ -46,7 +46,11 @@ class DesignJson {
     option.rate = rate;
     Optimize(designDom, option);
     option.isPreedit && Processor[fileType].process(designDom);
-    Processor.process(designDom);
+    // 设置图片输出路径
+    Processor.process(designDom, {
+      outputPath: options.outputPath,
+      nodeType: 'QImage',
+    });
     const nodes = designDom.toList();
     const images = designDom.getImages('QImage');
     return {
@@ -103,7 +107,9 @@ class DesignJson {
     option.rate = rate;
     extractDom(designDom, idList);
     Optimize(designDom, option);
-    Processor.process(designDom, option);
+    Processor.process(designDom, {
+      outputPath: options.outputPath,
+    });
     const nodes = designDom.toList().slice(1); // 去掉根节点
     const images = designDom.getImages();
     return {
