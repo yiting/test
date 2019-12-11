@@ -111,7 +111,7 @@ class DesignJson {
       outputPath: option.outputPath,
     });
     const nodes = designDom.toList().slice(1); // 去掉根节点
-    const images = designDom.getImages();
+    const images = designDom.getImages().slice(1);
     return {
       nodes,
       images,
