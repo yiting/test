@@ -242,6 +242,6 @@
 感谢 CSIG 优图实验室 hongyuzhou 对 AI 目标识别的技术指导！
 感谢 ISUX 碳黑设计组 trevorpang、skymlhuang 交互设计指导！
 感谢 IEG 互动娱乐发行线/设计中心/UI 开发组 PSD 技术支持！
-感谢 浏览平台产品部/平台开发组 Hippy 技术支持！
+感谢 PCG 浏览平台产品部/平台开发组 Hippy 技术支持！
 
 ### 项目相关代码仅对内部交流，请勿外传！谢谢！
