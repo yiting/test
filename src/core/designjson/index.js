@@ -29,12 +29,12 @@ class DesignJson {
    * @param {string} artBoardId artboard id
    * @param {string} fileType 设计稿类型
    * @param {Object} option 优化配置
-   * @param {Object} options.symbolMap
-   * @param {Object} options.artboardMap
-   * @param {string} options.version
-   * @param {string} options.outputPath 图片输出目录
-   * @param {Object} options.fontData
-   * @param {Object} options.frameMap
+   * @param {Object} option.symbolMap
+   * @param {Object} option.artboardMap
+   * @param {string} option.version
+   * @param {string} option.outputPath 图片输出目录
+   * @param {Object} option.fontData
+   * @param {Object} option.frameMap
    * @param {Object} option.aiData ai数据
    * @param {Object} option.ruleMap 合图规则
    * @param {boolean} option.isPreedit 是否人工合图步骤
@@ -48,7 +48,7 @@ class DesignJson {
     option.isPreedit && Processor[fileType].process(designDom);
     // 设置图片输出路径
     Processor.process(designDom, {
-      outputPath: options.outputPath,
+      outputPath: option.outputPath,
       nodeType: 'QImage',
     });
     const nodes = designDom.toList();
@@ -64,12 +64,12 @@ class DesignJson {
    * artboard抽象
    * @param {string} artBoardId artboard id
    * @param {Object} option 优化配置
-   * @param {Object} options.symbolMap
-   * @param {Object} options.artboardMap
-   * @param {string} options.version
-   * @param {string} options.outputPath 图片输出目录
-   * @param {Object} options.fontData
-   * @param {Object} options.frameMap
+   * @param {Object} option.symbolMap
+   * @param {Object} option.artboardMap
+   * @param {string} option.version
+   * @param {string} option.outputPath 图片输出目录
+   * @param {Object} option.fontData
+   * @param {Object} option.frameMap
    * @param {Object} option.aiData ai数据
    * @param {Object} option.ruleMap 合图规则
    * @param {boolean} option.isPreedit 是否人工合图步骤
@@ -89,12 +89,12 @@ class DesignJson {
    * @param {string} artBoardId artboard id
    * @param {string[]} idList idList id
    * @param {Object} option 优化配置
-   * @param {Object} options.symbolMap
-   * @param {Object} options.artboardMap
-   * @param {string} options.version
-   * @param {string} options.outputPath 图片输出目录
-   * @param {Object} options.fontData
-   * @param {Object} options.frameMap
+   * @param {Object} option.symbolMap
+   * @param {Object} option.artboardMap
+   * @param {string} option.version
+   * @param {string} option.outputPath 图片输出目录
+   * @param {Object} option.fontData
+   * @param {Object} option.frameMap
    * @param {Object} option.aiData ai数据
    * @param {Object} option.ruleMap 合图规则
    * @param {boolean} option.isPreedit 是否人工合图步骤
@@ -108,7 +108,7 @@ class DesignJson {
     extractDom(designDom, idList);
     Optimize(designDom, option);
     Processor.process(designDom, {
-      outputPath: options.outputPath,
+      outputPath: option.outputPath,
     });
     const nodes = designDom.toList().slice(1); // 去掉根节点
     const images = designDom.getImages();
