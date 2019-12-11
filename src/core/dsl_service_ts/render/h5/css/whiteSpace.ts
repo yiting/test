@@ -26,7 +26,7 @@ export default {
       // emx元素
       return CssProperty.default.whiteSpace;
     }
-    // return 'nowrap';
+    return 'nowrap';
     return CssProperty.default.whiteSpace;
   },
 };

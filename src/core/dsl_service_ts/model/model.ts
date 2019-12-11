@@ -1,5 +1,4 @@
 import Utils from '../helper/methods';
-import Dictionary from '../helper/dictionary';
 
 let serialId = 0;
 class Model {
@@ -43,7 +42,7 @@ class Model {
     this.abY = node.abY || 0;
     this.abXops = node.abXops || node.abX + node.width;
     this.abYops = node.abYops || node.abY + node.height;
-    this.path = node.path || null;
+    this.path = (node.type == 'QImage' && node.path) || null;
     this.zIndex = node.zIndex;
     this.styles = node.styles || {};
     this.constraints = node.constraints || {};
@@ -227,29 +226,6 @@ class Model {
       child.parent = this;
     });
     this.children.push(...childs);
-  }
-
-  public toJSON() {
-    return {
-      children: this.children.map((node: any) => node.toJSON()),
-      parentId: this.parent && this.parent.id,
-      id: this.id,
-      type: this.type,
-      serialId: this.serialId,
-      similarId: this.similarId,
-      canLeftFlex: this.canLeftFlex,
-      canRightFlex: this.canRightFlex,
-      text: this.text,
-      abX: this.abX,
-      abY: this.abY,
-      abXops: this.abXops,
-      abYops: this.abYops,
-      path: this.path,
-      zIndex: this.zIndex,
-      isMultiline: this.isMultiline,
-      styles: this.styles,
-      constraints: this.constraints,
-    };
   }
 
   public resetZIndex() {
