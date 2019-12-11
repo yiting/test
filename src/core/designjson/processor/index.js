@@ -2,8 +2,11 @@ const md5 = require('md5');
 const { serialize } = require('../utils');
 const SketchPostProcessor = require('./sketch/SketchPostProcessor');
 function process(designDom, options = {}) {
+  const { nodeType } = options;
   let nodes = serialize(designDom);
-  let imageList = nodes.filter(node => node.type === 'QImage');
+  let imageList = nodes.filter(node =>
+    nodeType ? node.type === nodeType : true,
+  );
   hashPath(imageList, options.outputPath);
 }
 function hashPath(imageList, outputPath = '') {
