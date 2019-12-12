@@ -1,7 +1,7 @@
-import Model from '../../../dsl_service_ts/model/model';
 import Dictionary from '../../../dsl_service_ts/helper/dictionary';
 import Store from '../../../dsl_service_ts/helper/store';
 import Methods from '../../../dsl_service_ts/helper/methods';
+import TextModel from '../../models/text/model';
 
 const H_SPACE = 20; // 水平间距
 const V_HEIGHT = 50; // 垂直高度要求
@@ -9,10 +9,9 @@ const LINE_HEIGHT = 1.4; //sketch 默认行高
 let ErrorCoefficient: number;
 let CoordinateWidth: number;
 
-class Inline extends Model {
+class Inline extends TextModel {
   constructor(node: any = {}) {
     super(node);
-    this.type = Dictionary.type.QText;
     this.canLeftFlex = false;
     this.canRightFlex = true;
   }

@@ -42,7 +42,7 @@ class Model {
     this.abY = node.abY || 0;
     this.abXops = node.abXops || node.abX + node.width;
     this.abYops = node.abYops || node.abY + node.height;
-    this.path = (node.type == 'QImage' && node.path) || null;
+    this.path = node.path || null;
     this.zIndex = node.zIndex;
     this.styles = node.styles || {};
     this.constraints = node.constraints || {};
