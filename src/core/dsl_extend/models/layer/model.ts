@@ -1,6 +1,5 @@
 import Model from '../../../dsl_service_ts/model/model';
 import Dictionary from '../../../dsl_service_ts/helper/dictionary';
-import Store from '../../../dsl_service_ts/helper/store';
 import Methods from '../../../dsl_service_ts/helper/methods';
 class Layer extends Model {
   constructor(node: any) {
@@ -8,6 +7,8 @@ class Layer extends Model {
     this.type = Dictionary.type.QLayer;
     this.canLeftFlex = true;
     this.canRightFlex = true;
+    // 移除非模型特征属性
+    this.styles.texts = null;
   }
   static regular(node: any) {
     return node.type == 'QLayer';

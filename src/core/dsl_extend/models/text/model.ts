@@ -6,6 +6,8 @@ class Text extends Model {
     this.type = Dictionary.type.QText;
     this.canLeftFlex = false;
     this.canRightFlex = true;
+    // 移除非模型特征属性
+    this.path = null;
   }
   static regular(node: any) {
     return node.type == 'QText';
