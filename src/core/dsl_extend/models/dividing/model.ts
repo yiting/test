@@ -1,7 +1,7 @@
-import Model from '../../../dsl_service_ts/model/model';
+import ImageModel from '../image/model';
 import Dictionary from '../../../dsl_service_ts/helper/dictionary';
 import Store from '../../../dsl_service_ts/helper/store';
-class Dividing extends Model {
+class Dividing extends ImageModel {
   designWidth: number;
   static designWidth: number;
   constructor(node: any) {
