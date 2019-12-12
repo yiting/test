@@ -94,7 +94,11 @@ class ImageMergeProcessor {
   static _nodeMerge(node) {
     // 规则判断
     if (node.children.length) {
-      this._mergeGroupToParent(node.children, node); // 非mask关联则进行规则判断合并
+      this._mergeGroupToParent(
+        node.children,
+        node,
+        this.RuleConfig.isManualCombine,
+      ); // 合图规则判断合并
       if (node.parent && node.children.length) {
         // 如果合并完有子元素，则提至祖父级
         let { parent, children } = node;
@@ -109,10 +113,12 @@ class ImageMergeProcessor {
       }
     }
   }
-  static _mergeGroupToParent(nodes, parent) {
+  static _mergeGroupToParent(nodes, parent, isManualCombine = false) {
     if (!nodes || !nodes.length) return;
-    const targetNodes = nodes.filter(
-      node => node.type === QShape.name || node.type === QImage.name,
+    const targetNodes = nodes.filter(node =>
+      isManualCombine
+        ? node.type !== QLayer.name
+        : node.type === QShape.name || node.type === QImage.name,
     ); // 过滤掉文字节点、组节点
     if (targetNodes.length < 2) return;
     const groupArr = mergeJudge(targetNodes, this.RuleConfig, parent); // 根据规则输出 成组列表 [[node1,node2],[node3,node4],node5]
