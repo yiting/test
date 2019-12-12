@@ -149,7 +149,7 @@ class SketchProcessor {
       });
     }
     function _getFontDefaultLineHeight(fontName, fontData) {
-      const name = fontName.replace(/[-\s]/g, '').toLowerCase();
+      const name = fontName.replace(/[\.-\s]/g, '').toLowerCase();
       if (!name || !fontData[name]) return null;
       return fontData[name].lineHeight;
     }
