@@ -55,10 +55,7 @@ function _process(_input: any, _options: any): object {
     // LayoutCleanProcess(dslTree);
     // render模块
     let Builder = RenderProcess.handle(dslTree);
-    let htmlString: any = Builder.getResult();
-    debugger;
-    return htmlString;
-    //return Builder.getResult();
+    return Builder.getResult();
   } catch (e) {
     console.error(`dslService.ts  ${processDesc}:${e}`);
   }
