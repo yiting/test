@@ -2,11 +2,12 @@
 //
 import Utils from '../utils';
 import WG4M1 from './wg4_m1';
-
+import WG3M1 from './wg3_m1';
 
 // 模型列表
 const ModelList = [
     new WG4M1(),
+    new WG3M1(),
 ];
 // 优先级排序
 

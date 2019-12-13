@@ -44,12 +44,16 @@ function _process(_input: any, _options: any): object {
     // 栅格化
     processDesc = '栅格化';
     GridProcess(dslTree);
-    try {
-      // 进行语义化组件识别匹配
-      ComponentProcess(dslTree);
-    }
-    catch(e) {
-      console.error(`dslService-语义化.ts  ${processDesc}:${e}`);
+    // 组件匹配测试
+    if (_options.useComponent) {
+      try {
+        ComponentProcess(dslTree);
+      }
+      catch(e) {
+        console.error(`dslService-语义化.ts  ${processDesc}:${e}`);
+      }
+      let htmlString: any = '<div>测试</div>';
+      return htmlString;
     }
     //console.log(dslTree);
     // 进行布局及循环处理
