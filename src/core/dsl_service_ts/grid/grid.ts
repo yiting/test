@@ -67,10 +67,12 @@ function _row(parent: any) {
       arr.length === 1 &&
       (firstNode.constraints['LayoutSelfPosition'] ===
         Constraints.LayoutSelfPosition.Absolute ||
-        firstNode instanceof Dividing ||
-        (firstNode.type !== Dictionary.type.QText &&
-          firstNode.abX === parent.abX &&
-          firstNode.abXops === parent.abXops))
+        firstNode instanceof Dividing 
+        // ||
+        // (firstNode.type !== Dictionary.type.QText &&
+        //   firstNode.abX === parent.abX &&
+        //   firstNode.abXops === parent.abXops)
+        )
       // || firstNode instanceof Dividing
     ) {
       newChildren.push(firstNode);
