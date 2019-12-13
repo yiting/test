@@ -1,6 +1,7 @@
 // dsl模块服务通过输入设计稿抽象过后的数据，然后输出对应的字符串
 import ModelProcess from './model/index';
 import WidgetProcess from './widget/index';
+import ComponentProcess from './component/index';
 // 暂时起名为Layout模块
 import LayoutProcess from './layout';
 import InterfereModelProcess from './interfereModel/index';
@@ -43,6 +44,18 @@ function _process(_input: any, _options: any): object {
     // 栅格化
     processDesc = '栅格化';
     GridProcess(dslTree);
+    // 组件匹配测试
+    if (_options.useComponent) {
+      try {
+        ComponentProcess(dslTree);
+      }
+      catch(e) {
+        console.error(`dslService-语义化.ts  ${processDesc}:${e}`);
+      }
+      let htmlString: any = '<div>测试</div>';
+      return htmlString;
+    }
+    //console.log(dslTree);
     // 进行布局及循环处理
     processDesc = '布局分析';
     LayoutProcess(dslTree);
@@ -105,5 +118,5 @@ process.on('message', msg => {
 });
 
 export default {
-  process: _process,
+  process: _process
 };
