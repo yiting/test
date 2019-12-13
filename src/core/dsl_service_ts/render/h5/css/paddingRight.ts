@@ -1,4 +1,5 @@
 import Text from '../../../../dsl_extend/models/text/tpl/h5';
+import CssProperty from '../utils/css_property';
 export default {
   key: 'paddingRight',
   value() {
@@ -7,13 +8,13 @@ export default {
     //   return null;
     // }
     if (this.modelName == Text.name) {
-      return null;
+      return CssProperty.default.paddingRight;
     }
     const hasWidth = this._hasWidth();
     const lastChild = this._getLastChild();
     if (!hasWidth && lastChild) {
       return this.abXops - lastChild.abXops;
     }
-    return null;
+    return CssProperty.default.paddingRight;
   },
 };

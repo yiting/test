@@ -1,15 +1,9 @@
-// 样式的计算处理
-import cssDom from '../dom_css';
-
-import QLog from '../../../log/qlog';
-
 // 生成的Css记录树
 
-import cssProperty from './css_property';
-import CssDom from './css_dom_tree';
-import Func from './css_func';
+import cssProperty from '../utils/css_property';
+import CssDom from './css_dom';
+import Func from '../utils/css_func';
 
-const Loger = QLog.getInstance(QLog.moduleData.render);
 const cssPropertyMap = cssProperty.map;
 
 const walkout = (node: CssDom, handler: Function) => {

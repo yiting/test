@@ -1,7 +1,8 @@
+import CssProperty from '../utils/css_property';
 export default {
   key: 'textOverflow',
   value() {
-    return null;
+    return CssProperty.default.textOverflow;
     if (this.styles.texts) {
       return 'ellipsis';
     }

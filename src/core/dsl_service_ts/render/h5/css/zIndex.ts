@@ -1,3 +1,4 @@
+import CssProperty from '../utils/css_property';
 //
 export default {
   key: 'zIndex',
@@ -5,6 +6,7 @@ export default {
     if (this._isAbsolute()) {
       return this.zindex;
     }
-    return null;
+    // return null;
+    return CssProperty.default.zIndex;
   },
 };

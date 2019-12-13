@@ -1,5 +1,4 @@
 import Utils from '../helper/methods';
-import Dictionary from '../helper/dictionary';
 
 let serialId = 0;
 class Model {
@@ -227,29 +226,6 @@ class Model {
       child.parent = this;
     });
     this.children.push(...childs);
-  }
-
-  public toJSON() {
-    return {
-      children: this.children.map((node: any) => node.toJSON()),
-      parentId: this.parent && this.parent.id,
-      id: this.id,
-      type: this.type,
-      serialId: this.serialId,
-      similarId: this.similarId,
-      canLeftFlex: this.canLeftFlex,
-      canRightFlex: this.canRightFlex,
-      text: this.text,
-      abX: this.abX,
-      abY: this.abY,
-      abXops: this.abXops,
-      abYops: this.abYops,
-      path: this.path,
-      zIndex: this.zIndex,
-      isMultiline: this.isMultiline,
-      styles: this.styles,
-      constraints: this.constraints,
-    };
   }
 
   public resetZIndex() {

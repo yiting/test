@@ -1,7 +1,8 @@
 import Dictionary from '../../../helper/dictionary';
+import CssProperty from '../utils/css_property';
 export default {
   key: 'display',
-  value() {
+  value(): any {
     const hasText = this.text;
     if (
       hasText &&
@@ -17,6 +18,6 @@ export default {
     if (this.type !== Dictionary.type.QText && this.children.length) {
       return 'flex';
     }
-    return 'block';
+    return CssProperty.default.display;
   },
 };

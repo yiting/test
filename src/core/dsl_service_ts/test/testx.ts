@@ -11,15 +11,14 @@ const value: any = dslServer.process(
   },
   {
     outputType: 'h5',
-    designWidth: 1080,
+    designWidth: 750,
     showTagAttrInfo: true,
-    isLocalTest: true,
+    tplType: -1,
     applyInfo_user: 'testuser',
     applyInfo_url: 'testurl',
     applyInfo_proName: 'testproName',
   },
 );
-
 // // 输出文件
 Render.outputFileWithPath(
   Path.join(__dirname, './output/index.html'),

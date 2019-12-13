@@ -1,5 +1,5 @@
-import ArkTemplate from '../../arkTemplate';
-class LAYER extends ArkTemplate {
+import ArkTemplate from '../../../../dsl_service_ts/template/ark/arkTemplate';
+export default class Body extends ArkTemplate {
   constructor(...args: any[]) {
     super(...args);
     let tpl = `<View size margin anchors radius>`;
@@ -13,5 +13,3 @@ class LAYER extends ArkTemplate {
     this._template = tpl;
   }
 }
-
-export default LAYER;

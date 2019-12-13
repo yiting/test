@@ -3,7 +3,6 @@ import QLog from '../log/qlog';
 import Dictionary from '../helper/dictionary';
 import ModelList from './modellist';
 import BodyMode from '../../dsl_extend/models/body/model';
-const Loger = QLog.getInstance(QLog.moduleData.render);
 export default function(nodes: any[]) {
   const newNodeList: Model[] = [];
   let bodyModel;
@@ -20,11 +19,6 @@ export default function(nodes: any[]) {
   };
   Model.resetSerialId();
   nodes.forEach((node: any) => {
-    // 判断节点类型
-    judgeType(node);
-    if (node.type === Dictionary.type.QBody) {
-      bodyModel = node;
-    }
     ModelType = Model;
     // 匹配节点模型
     ModelList.some((model: any) => {
@@ -35,6 +29,11 @@ export default function(nodes: any[]) {
       return false;
     });
     let newNode = new ModelType(node);
+
+    // 判断节点类型
+    if (newNode.type === Dictionary.type.QBody) {
+      bodyModel = newNode;
+    }
     newNodeList.push(newNode);
     // 更新body边距
     bodyAttr.abX = newNode.abX < bodyAttr.abX ? newNode.abX : bodyAttr.abX;
@@ -52,29 +51,4 @@ export default function(nodes: any[]) {
   }
 
   return newNodeList;
-}
-
-function judgeType(node: any) {
-  switch (node.type) {
-    case 'QShape':
-      node.type = Dictionary.type.QImage;
-      break;
-    case 'QImage':
-      node.type = Dictionary.type.QImage;
-      break;
-    case 'QText':
-      node.type = Dictionary.type.QText;
-      break;
-    case 'QLayer':
-      node.type = Dictionary.type.QLayer;
-      break;
-    case 'QBody':
-      node.type = Dictionary.type.QBody;
-      break;
-    default:
-      Loger.warn(
-        `model/index [judege] nodes分类遇到没有对应类型的节,id:${node.id}`,
-      );
-  }
-  return node;
 }
