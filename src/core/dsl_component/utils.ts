@@ -9,7 +9,7 @@ const utils = {
    * @param {String} param 需要比较的属性值
    * @param {Boolean} reverse 排序相反，默认由小到大
    */
-  sortListByParam(_arr: any, param: string, reverse: boolean) {
+  sortListByParam(_arr: any, param: string, reverse: boolean = false) {
     const arr = _arr;
     if (!arr || arr.length <= 1) {
       return;

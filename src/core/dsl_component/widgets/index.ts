@@ -10,17 +10,31 @@ const ModelList = [
 ];
 // 优先级排序
 
-export default function(node: any) {
+export default function(tree: any) {
     let matchNodes: any = [];   // 找出所有的节点匹配组
-    _findNodes(node, matchNodes);
+    _findNodes(tree, matchNodes);
     
     // matchNodes进行匹配
+    let replaceGroups: any = [];
     if (matchNodes.length > 0) {
         matchNodes.forEach((nodes: any) => {
             let result: any = _matchModel(nodes);
-            //
+            //replaceGroups.push(result);
+            // 进行节点树的替换
+            if (result.length > 0) {
+                result.forEach((res: any) => {
+                    _replaceTreeNode(tree, res);
+                });
+            }
         });
     }
+    
+    // // 进行节点替换
+    // if (replaceGroups.length > 0) {
+    //     replaceGroups.forEach((nodes: any) => {
+    //         _replaceTreeNode(tree, nodes);
+    //     });
+    // }
 }
 
 
@@ -41,6 +55,9 @@ let _findImageNode = function(parentNode: any, node: any, matchNodes: any) {
     // 找到QImage对应的layer, 并将对应的其它兄弟节点传进去做匹配处理
     const children = node.children;
     if (children && children.length == 1 && children[0].type == 'QImage') {
+        // 设置一个替换标识
+        node.id = 'replace' + children[0].id;
+
         let brotherLayer: any = [];
         if (parentNode) {
             brotherLayer = parentNode.children.filter((obj: any) => {
@@ -92,6 +109,9 @@ let _findMatchNode = function(node: any, matchNodes: any) {
 // 节点匹配核心流程
 let _matchModel = function(nodes: any[]): any {
     let result: any[] = [];
+    if (!nodes || nodes.length <= 1) {  // 剩下一个元素就不匹配了
+        return;
+    }
 
     ModelList.forEach((model: any) => {
         let groups: any[] = [];     // 需要匹配的节点
@@ -132,3 +152,44 @@ let _matchModel = function(nodes: any[]): any {
     return result;
 }
 
+
+// 节点替换流程
+let _replaceTreeNode = function(tree: any, replaceNodes: any) {
+    if (!tree || !replaceNodes || !replaceNodes.length) return;
+    // 临时替换逻辑,
+    // 暂时组件都是以图片为基础,找到图片的parent(layer)->parent(root)进行节点的替换
+    Utils.sortListByParam(replaceNodes, 'abX');
+    let theImage: any = null;
+    for (let i = 0; i < replaceNodes.length; i++) {
+        let rnode: any = replaceNodes[i];
+        if (rnode.type == 'QImage') {
+            theImage = rnode;
+            break;
+        }
+    }
+
+    // 指向替换的根节点
+    let replaceRootNode: any = theImage.parent.parent;
+    // 处理节点的替换
+    if (replaceRootNode) {
+        _handleReplace(tree, replaceRootNode, replaceNodes);
+    }
+}
+
+// 节点的替换逻辑
+let _handleReplace = function(tree: any, rRoot: any, rNodes: any) {
+    // 找出对应的替换id
+    if (tree.id == rRoot.id) {
+        // 进行替换工作
+        // 先粗暴测试替换完所有节点
+        tree.children = [];
+        tree.children = rNodes;
+        return;
+    }
+
+    if (tree.children && tree.children.length) {
+        tree.children.forEach((child: any) => {
+            _handleReplace(child, rRoot, rNodes);
+        });
+    }
+}

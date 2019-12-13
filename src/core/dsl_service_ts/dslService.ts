@@ -47,7 +47,6 @@ function _process(_input: any, _options: any): object {
     // 进行语义化组件识别匹配
     ComponentProcess(dslTree);
     //console.log(dslTree);
-    return;
     // 进行布局及循环处理
     processDesc = '布局分析';
     LayoutProcess(dslTree);
@@ -55,9 +54,11 @@ function _process(_input: any, _options: any): object {
     // processDesc = '结构清理';
     // LayoutCleanProcess(dslTree);
     // render模块
-    return;
     let Builder = RenderProcess.handle(dslTree);
-    return Builder.getResult();
+    let htmlString: any = Builder.getResult();
+    debugger;
+    return htmlString;
+    //return Builder.getResult();
   } catch (e) {
     console.error(`dslService.ts  ${processDesc}:${e}`);
   }

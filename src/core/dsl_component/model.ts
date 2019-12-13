@@ -14,6 +14,7 @@ class BaseModel {
   _nodes: any[];
   _nodesTexts: any[];
   _nodesImages: any[];
+  _matchNodes: {};      // 匹配用节点记录
 
   constructor(
     name: string,
@@ -69,6 +70,14 @@ class BaseModel {
     this._modelType = type;
   }
 
+  public set matchNodes(nodeObject: any) {
+    this._matchNodes = nodeObject;
+  }
+
+  public get matchNodes() {
+    return this._matchNodes;
+  }
+
   public getNumber() {
     return this._textNum + this._imageNum;
   }
@@ -97,7 +106,39 @@ class BaseModel {
     return null;
   }
 
-  isMatch(node: any): boolean {
+  // 初始化匹配节点
+  _initMatchNode(nodes: any) {
+    this._nodes = nodes || [];
+    this._nodesTexts = [];
+    this._nodesImages = [];
+    this._matchNodes = {};
+
+    nodes.forEach((nd: any) => {
+      switch(nd.type) {
+        case Common.QText:
+          this._nodesTexts.push(nd);
+          break;
+        case Common.QImage:
+          this._nodesImages.push(nd);
+          break;
+      }
+    });
+  }
+
+  // 设置匹配了的标识
+  _setMatchedNodeSign() {
+    this._nodes.forEach((nd: any) => {
+      nd['isMatched'] = true;
+    });
+  }
+  
+  // 节点是否与模型匹配
+  isMatch(nodes: any): boolean {
+    // 初始化参数
+    this._initMatchNode(nodes);
+    // 执行子类的initNode
+    this._initNode();
+
     let result = false;
     const self: any = this;
     // 匹配的方式是通过自定义多个规则的regular函数来得出是否匹配
@@ -121,6 +162,13 @@ class BaseModel {
       }
     }
     return result;
+  }
+
+  // 重置传进来的匹配节点的匹配标识
+  resetMatchedNodeSign() {
+    this._nodes.forEach((nd: any) => {
+      nd['isMatched'] = false;
+    });
   }
 }
 
