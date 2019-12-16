@@ -10,7 +10,7 @@ const {
 const { SKETCH_LAYER_TYPES } = require('./SketchLayerTypes');
 const DesignTree = require('../../nodes/DesignTree');
 /**
- * @class 针对Sketch图元预处理，包括位置设置/mask合并等，test
+ * @class 针对Sketch图元预处理，包括位置设置/mask合并等，test2
  */
 class SketchProcessor {
   static process(node, data = { sliceData: [], fontData: {} }) {
