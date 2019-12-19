@@ -117,6 +117,28 @@ function isSameColor(colorA, colorB) {
   return Object.values(colorA).join(',') === Object.values(colorB).join(',');
 }
 
+/**
+ * @param {QObject} node
+ * @param {Array.<string>} keys
+ */
+function cloneNodeByKeys(node, keys = []) {
+  const obj = {};
+  keys.forEach(key => {
+    if (node[key] !== undefined) obj[key] = node[key];
+  });
+  return obj;
+}
+
+function extractDom(rootNode, idList) {
+  const tagetNodes = serialize(rootNode)
+    .filter(n => ~idList.indexOf(n.id))
+    .sort((a, b) => a.zIndex - b.zIndex);
+  rootNode.removeAll();
+  tagetNodes.forEach(n => {
+    rootNode.add(n);
+  });
+}
+
 module.exports = {
   walkout,
   walkin,
@@ -132,5 +154,7 @@ module.exports = {
   getBiggestNode,
   hasText,
   isSameColor,
+  cloneNodeByKeys,
+  extractDom,
   // isPureColor
 };
