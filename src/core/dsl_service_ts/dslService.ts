@@ -19,7 +19,7 @@ import Store from './helper/store';
  * @param {boolean} testModel 测试模型
  * @return {Object}
  */
-function _process(_input: any, _options: any, _testModel: boolean): object {
+function _process(_input: any, _options: any, _testModel?: boolean): object {
   const input: any = _input || {};
   let processDesc;
   try {
