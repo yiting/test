@@ -118,6 +118,5 @@ process.on('message', msg => {
 });
 
 export default {
-  process: _process,
-  process2: _process2
+  process: _process
 };
