@@ -25,6 +25,6 @@ input.nodes = nodes;
 
 // 测试部分生成接口
 //Dsl.processSelectionV2(input, {});
-let render: any = Dsl.process2(input, {});
+let render: any = Dsl.process(input, {});
 console.log(render.uiString);
 
