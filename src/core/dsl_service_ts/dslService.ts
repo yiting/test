@@ -48,7 +48,7 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     GridProcess(dslTree);
 
     // 栅格化后测试模型匹配, 测试测试测试----------------
-    if (compileType == 1) {
+    if (true) {
       try {
         ComponentProcess(dslTree);
         // 测试直接返回
