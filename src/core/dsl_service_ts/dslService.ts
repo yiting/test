@@ -50,6 +50,7 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     // 栅格化后测试模型匹配, 测试测试测试----------------
     if (true) {
       try {
+        logger.info('DSL Service 进入模型匹配流程');
         ComponentProcess(dslTree);
         // 测试直接返回
         let Builder = RenderProcess.handle(dslTree);
