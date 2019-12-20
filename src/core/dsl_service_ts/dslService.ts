@@ -16,11 +16,12 @@ import Store from './helper/store';
  * dsl服务的主使用接口
  * @param {Object} input 输入的参数
  * @param {Object} options 参数设定
- * @param {boolean} testModel 测试模型
+ * @param {number} compileType 测试模型
  * @return {Object}
  */
-function _process(_input: any, _options: any, _testModel?: boolean): object {
+function _process(_input: any, _options: any, _compileType?: any): object {
   const input: any = _input || {};
+  const compileType = parseInt(_compileType) || 0;
   let processDesc;
   try {
     // 参数的初始化处理
@@ -47,9 +48,12 @@ function _process(_input: any, _options: any, _testModel?: boolean): object {
     GridProcess(dslTree);
 
     // 栅格化后测试模型匹配, 测试测试测试----------------
-    if (_testModel) {
+    if (compileType == 1) {
       try {
         ComponentProcess(dslTree);
+        // 测试直接返回
+        let Builder = RenderProcess.handle(dslTree);
+        return Builder.getResult();
       } catch (e) {
         console.error(`dslService模型匹配错误  ${processDesc}:${e}`);
       }
