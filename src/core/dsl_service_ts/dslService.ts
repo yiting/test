@@ -11,6 +11,8 @@ import RenderProcess from './render';
 import NodeCleanProcess from './clean/index';
 import LayoutCleanProcess from './layout/clean';
 import Store from './helper/store';
+import qlog from '../log/qlog';
+const logger = qlog.getInstance(qlog.moduleData.all);
 
 /**
  * dsl服务的主使用接口
