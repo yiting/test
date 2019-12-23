@@ -3,7 +3,7 @@ import ModelProcess from './model/index';
 import WidgetProcess from './widget/index';
 // 暂时起名为Layout模块
 import LayoutProcess from './layout';
-import InterfereModelProcess from './interfereModel/index';
+// import InterfereModelProcess from './interfereModel/index';
 import GroupProcess from './group/index';
 import GridProcess from './grid/index';
 import RenderProcess from './render';
@@ -30,8 +30,8 @@ function _process(_input: any, _options: any): object {
     processDesc = '构建节点';
     let layoutNodes = ModelProcess(nodes);
     // 干预处理
-    processDesc = '干预处理';
-    layoutNodes = InterfereModelProcess(layoutNodes);
+    // processDesc = '干预处理';
+    // layoutNodes = InterfereModelProcess(layoutNodes);
     processDesc = '数据清洗';
     layoutNodes = NodeCleanProcess(layoutNodes);
     // 生成树
@@ -47,8 +47,8 @@ function _process(_input: any, _options: any): object {
     processDesc = '布局分析';
     LayoutProcess(dslTree);
     // 结构清理
-    // processDesc = '结构清理';
-    // LayoutCleanProcess(dslTree);
+    processDesc = '结构清理';
+    dslTree = LayoutCleanProcess(dslTree);
     // render模块
     let Builder = RenderProcess.handle(dslTree);
     return Builder.getResult();
