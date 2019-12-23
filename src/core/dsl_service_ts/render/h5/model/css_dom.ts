@@ -209,7 +209,7 @@ class CssDom extends VDom {
         }
 
         if (!overlook) {
-          props.push(Func.transCssValue(key, value));
+          props.push(Func.transCssValue(key, value) + ';');
         }
       });
     } catch (e) {
