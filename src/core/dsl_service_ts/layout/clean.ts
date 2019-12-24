@@ -20,7 +20,6 @@ function merge(node: any) {
       child.abX == node.abX &&
       child.abXops == node.abXops
     ) {
-      console.log(child.id);
       return replace(node, child);
     }
   }
