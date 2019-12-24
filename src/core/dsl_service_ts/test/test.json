@@ -1,119 +1,14 @@
 [
   {
-    "id": "F3D67C5A-033B-4744-8B49-04824EC43C64",
-    "name": "100 PU券",
-    "width": 112,
-    "height": 26,
-    "abX": 40,
-    "abY": 483,
-    "zIndex": 0,
+    "id": "AF147BF8-0B56-496D-9A07-E8457A68141C",
+    "name": "Rectangle 11",
+    "width": 86,
+    "height": 86,
+    "abX": 629,
+    "abY": 561,
+    "zIndex": 1,
     "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "100 PU券",
-          "font": "PingFangSC-Regular",
-          "size": 26,
-          "lineHeight": 26
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "100 PU券"
-  },
-  {
-    "id": "C5C2F134-2054-4226-BB7E-DC977D64D530",
-    "name": "限PUPU阅读中使用",
-    "width": 210,
-    "height": 22,
-    "abX": 40,
-    "abY": 524,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.4,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "限PUPU阅读中使用",
-          "font": "PingFangSC-Regular",
-          "size": 24,
-          "lineHeight": 22
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "限PUPU阅读中使用"
-  },
-  {
-    "id": "0241A030-087B-4A9F-BC3B-6B2D0C62AA16",
-    "name": "2020.01-26-2020.2.1内",
-    "width": 313,
-    "height": 22,
-    "abX": 40,
-    "abY": 556,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 0.4,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "string": "2020.01-26-2020.2.1内使用",
-          "font": "PingFangSC-Regular",
-          "size": 24,
-          "lineHeight": 22
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0
-    },
-    "type": "QText",
-    "text": "2020.01-26-2020.2.1内使用"
-  },
-  {
-    "id": "32F29DA2-6464-431D-AF3B-E9985657D53D",
-    "name": "矩形 copy",
-    "width": 670,
-    "height": 1,
-    "abX": 40,
-    "abY": 614,
-    "zIndex": 0,
-    "styles": {
-      "borderRadius": null,
+      "borderRadius": [2, 2, 2, 2],
       "border": null,
       "opacity": 1,
       "rotation": 0,
@@ -124,11 +19,58 @@
           "r": 0,
           "g": 0,
           "b": 0,
-          "a": 0.1
+          "a": 0.5
         },
-        "hasOpacity": false
+        "hasOpacity": true
       }
     },
     "type": "QShape"
+  },
+  {
+    "id": "237052EF-0331-419C-904B-6231D62C8F55",
+    "name": "Combined Shape Copy 23",
+    "width": 42,
+    "height": 42,
+    "abX": 650,
+    "abY": 572,
+    "zIndex": 2,
+    "styles": {},
+    "type": "QImage",
+    "path": "cf8fccc3.png"
+  },
+  {
+    "id": "1968C9DA-2BCC-4E0D-AB09-FA268AE20B67",
+    "name": "12475",
+    "width": 56,
+    "height": 28,
+    "abX": 644,
+    "abY": 614,
+    "zIndex": 2,
+    "styles": {
+      "borderRadius": null,
+      "border": null,
+      "opacity": 1,
+      "rotation": 0,
+      "shadows": null,
+      "background": null,
+      "texts": [
+        {
+          "color": {
+            "r": 18,
+            "g": 183,
+            "b": 245,
+            "a": 1
+          },
+          "string": "12475",
+          "font": "PingFangSC-Medium",
+          "size": 20,
+          "lineHeight": 28
+        }
+      ],
+      "verticalAlign": 0,
+      "textAlign": 0
+    },
+    "type": "QText",
+    "text": "12475"
   }
 ]

@@ -1,5 +1,6 @@
 let _domCache: any = {};
 let _classNameCache: any = {};
+let _simClassNameCache: any = {};
 
 function goIn(_data: any, _func: any) {
   _func(_data);
@@ -27,8 +28,12 @@ export function policy_oneName(_data: any) {
    * 相似
    */
   if (_data.similarId) {
-    let selfSimClassName: string =
-      (data.tplAttr.class || data.tagName) + '_s' + _data.similarId;
+    let selfSimClassName: string = _simClassNameCache[_data.similarId];
+    if (!selfSimClassName) {
+      selfSimClassName =
+        (data.tplAttr.class || data.tagName) + '_s' + _data.similarId;
+      _simClassNameCache[_data.similarId] = selfSimClassName;
+    }
     _classNameCache[selfSimClassName] = true;
     _data.simClassName = selfSimClassName;
     _data.simClassNameChain = [selfSimClassName];

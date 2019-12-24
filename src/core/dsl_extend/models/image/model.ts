@@ -6,6 +6,8 @@ class Image extends Model {
   constructor(node: any) {
     super(node);
     this.type = Dictionary.type.QImage;
+    // 移除非模型特征属性
+    this.styles.texts = null;
   }
   static regular(node: any) {
     return node.type == 'QImage' || node.type == 'QShape';

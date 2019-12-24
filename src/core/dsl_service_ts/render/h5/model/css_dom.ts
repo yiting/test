@@ -199,15 +199,17 @@ class CssDom extends VDom {
         // 获取默认属性
         let defaultValue = cssProperty.default[key];
         // if (value !== null && value !== undefined && similarValue !== value) {
-        if (
-          (similarValue !== null &&
-            similarValue !== undefined &&
-            compValue === similarValue) ||
-          (isInherit && compValue === parentValue) ||
-          compValue === defaultValue
-        ) {
+        let overlook: boolean = false;
+        if (similarValue) {
+          overlook = compValue === similarValue;
+        } else if (isInherit) {
+          overlook = compValue === parentValue;
         } else {
-          props.push(Func.transCssValue(key, value));
+          overlook = compValue === defaultValue;
+        }
+
+        if (!overlook) {
+          props.push(Func.transCssValue(key, value) + ';');
         }
       });
     } catch (e) {

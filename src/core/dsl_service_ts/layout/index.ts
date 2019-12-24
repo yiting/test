@@ -56,4 +56,5 @@ export default function(dslTree: any) {
       desc: ${_logStep}
       error:${e}`);
   }
+  return dslTree;
 }

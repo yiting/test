@@ -39,7 +39,7 @@ function getCss(cssDom: any, similarCss: any) {
   const cssSelector = cssDom.getCssSelector();
   const cssPropArr = cssDom.getCssProperty(similarCss);
   if (cssPropArr.length) {
-    str = `${cssSelector} {${cssPropArr.join(';')}}`;
+    str = `${cssSelector} {${cssPropArr.join('')}}`;
   }
   return str;
 }
