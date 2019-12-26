@@ -13,7 +13,7 @@ export default {
       return 'inline';
     }
     if (this.parent && this.parent.type === Dictionary.type.QText) {
-      return 'inline-block';
+      return 'inline-flex';
     }
     if (this.type !== Dictionary.type.QText && this.children.length) {
       return 'flex';
