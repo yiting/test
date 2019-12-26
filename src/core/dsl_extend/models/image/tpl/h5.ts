@@ -6,7 +6,7 @@ export default class Image extends HtmlTemplate {
     if (this._renderData.children.length) {
       this._template = '<div class="img"></div>';
     } else {
-      this._template = `<i class="img" :style="'background-image:url('+this.requireImgPath(path)+')'"></i>`;
+      this._template = `<div class="img" :style="'background-image:url('+this.requireImgPath(path)+')'"></div>`;
     }
   }
 }
