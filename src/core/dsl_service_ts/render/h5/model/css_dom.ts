@@ -82,6 +82,9 @@ class CssDom extends VDom {
     if (this.type === Dictionary.type.QImage || !!this.path) {
       return true;
     }
+    if (this.type === Dictionary.type.QText && !this.isMultiline) {
+      return false;
+    }
     // 水平布局
     if (
       this.constraints.LayoutDirection ===
