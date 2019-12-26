@@ -50,17 +50,17 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     GridProcess(dslTree);
 
     // 栅格化后测试模型匹配, 测试测试测试----------------
-    if (true) {
-      try {
-        logger.info('DSL Service 进入模型匹配流程');
-        ComponentProcess(dslTree);
-        // 测试直接返回
-        let Builder = RenderProcess.handle(dslTree);
-        return Builder.getResult();
-      } catch (e) {
-        console.error(`dslService模型匹配错误  ${processDesc}:${e}`);
-      }
-    }
+    // if (true) {
+    //   try {
+    //     logger.info('DSL Service 进入模型匹配流程');
+    //     ComponentProcess(dslTree);
+    //     // 测试直接返回
+    //     let Builder = RenderProcess.handle(dslTree);
+    //     return Builder.getResult();
+    //   } catch (e) {
+    //     console.error(`dslService模型匹配错误  ${processDesc}:${e}`);
+    //   }
+    // }
 
     //console.log(dslTree);
     // 进行布局及循环处理
