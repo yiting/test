@@ -863,7 +863,9 @@ const ImageCombine = function() {
   this.makeImgsByUpdateSketch = async param => {
     // try {
     let { projectName, imgList, isPreedit = false } = param;
-
+    let targetImgList = imgList.filter(function(item) {
+      return item.path;
+    });
     if (imgList.length == 0) {
       return new Promise(function(resolve, reject) {
         resolve([]);
@@ -1042,7 +1044,7 @@ const ImageCombine = function() {
     const result = await this.makeImg(param);
 
     // 8.压缩图片
-    await that.compressImgs(that.outputDir, projectName, imgList);
+    await that.compressImgs(that.outputDir, projectName, targetImgList);
 
     // 8、删除修改版sketch
     serverModulesUtils.deleteFolder(updateFilePath);
