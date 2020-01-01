@@ -261,5 +261,42 @@ class Model {
   public isSimilarWith(target: any): boolean {
     return this.similarId !== undefined && this.similarId === target.similarId;
   }
+  static toJSON(node: any, deep: boolean) {
+    let obj: any = {
+      parentId: (node.parent && node.parent.id) || null,
+      id: node.id,
+      type: node.type,
+      serialId: node.serialId,
+      similarId: node.similarId,
+      text: node.text,
+      x: node.parent ? node.abX - node.parent.abX : node.abX,
+      y: node.parent ? node.abY - node.parent.abY : node.abY,
+      abX: node.abX,
+      abY: node.abY,
+      abXops: node.abXops,
+      abYops: node.abYops,
+      styles: node.styles,
+      path: node.path,
+      constraints: node.constraints,
+      zIndex: node.zIndex,
+      name: node.name,
+      modelId: node.modelId,
+      canLeftFlex: node.canLeftFlex,
+      canRightFlex: node.canRightFlex,
+      allowedDescendantIds: node.allowedDescendantIds,
+      isMultiline: node.isMultiline,
+      width: node.width,
+      height: node.height,
+      lineHeight: node.lineHeight,
+      maxFontSize: node.maxFontSize,
+      minFontSize: node.minFontSize,
+    };
+    if (deep) {
+      obj.children = node.children.map((n: any) => {
+        return Model.toJSON(n, deep);
+      });
+    }
+    return obj;
+  }
 }
 export default Model;

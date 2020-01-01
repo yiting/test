@@ -10,6 +10,7 @@ import GridProcess from './grid/index';
 import RenderProcess from './render';
 import NodeCleanProcess from './clean/index';
 import LayoutCleanProcess from './layout/clean';
+// import Model from './model/model';
 import Store from './helper/store';
 import qlog from '../log/qlog';
 const logger = qlog.getInstance(qlog.moduleData.all);
@@ -29,7 +30,7 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     // 参数的初始化处理
     _initInput(input);
     // 初始化进程参数
-    _initOptions(_options);
+    let option = _initOptions(_options);
     // 数据清洗
     let nodes = input.nodes;
     processDesc = '构建节点';
@@ -62,13 +63,16 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     //   }
     // }
 
-    //console.log(dslTree);
     // 进行布局及循环处理
     processDesc = '布局分析';
     LayoutProcess(dslTree);
     // 结构清理
     processDesc = '结构清理';
     dslTree = LayoutCleanProcess(dslTree);
+    // if (option.outputType == 'json') {
+    //   return Model.toJSON(dslTree, true);
+    // }
+
     // render模块
     let Builder = RenderProcess.handle(dslTree);
     return Builder.getResult();
