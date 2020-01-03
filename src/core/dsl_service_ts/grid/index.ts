@@ -1,4 +1,4 @@
-import QLog from '../log/qlog';
+import QLog from '../helper/qlog';
 import Store from '../helper/store';
 import GridProcess from './grid';
 const Loger = QLog.getInstance(QLog.moduleData.render);

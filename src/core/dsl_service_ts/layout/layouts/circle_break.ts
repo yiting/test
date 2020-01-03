@@ -2,9 +2,9 @@
 import Constraints from '../../helper/constraints';
 import Similar from './similar';
 import Store from '../../helper/store';
-import ListModel from '../../../dsl_extend/models/list/model';
-import ListItemModel from '../../../dsl_extend/models/listItem/model';
-import LayerModel from '../../../dsl_extend/models/layer/model';
+import ListModel from '../../../dsl_model/models/list/model';
+import ListItemModel from '../../../dsl_model/models/listItem/model';
+import LayerModel from '../../../dsl_model/models/layer/model';
 let ErrorCoefficient: number = 0;
 
 export function breakRule(a: any, b: any) {

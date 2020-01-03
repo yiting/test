@@ -1,9 +1,9 @@
 // 循环结构的逻辑处理模块
 import Constraints from '../../helper/constraints';
 import Similar from './similar';
-import LayerModel from '../../../dsl_extend/models/layer/model';
-import ListModel from '../../../dsl_extend/models/list/model';
-import ListItemModel from '../../../dsl_extend/models/listItem/model';
+import LayerModel from '../../../dsl_model/models/layer/model';
+import ListModel from '../../../dsl_model/models/list/model';
+import ListItemModel from '../../../dsl_model/models/listItem/model';
 // 相似节点逻辑
 export function repeatRule(a: any, b: any) {
   return a.similarId && b.similarId && a.similarId === b.similarId;

@@ -1,9 +1,9 @@
 import Utils from '../helper/methods';
 import Constraints from '../helper/constraints';
 import Dictionary from '../helper/dictionary';
-import Dividing from '../../dsl_extend/models/dividing/model';
-import LayerModel from '../../dsl_extend/models/layer/model';
-import Inline from '../../dsl_extend/widgets/inline/widget';
+import Dividing from '../../dsl_model/models/dividing/model';
+import LayerModel from '../../dsl_model/models/layer/model';
+import Inline from '../../dsl_model/widgets/inline/widget';
 /**
  * DSL树的构建类,用于生成和输出标准数据
  */
@@ -67,12 +67,11 @@ function _row(parent: any) {
       arr.length === 1 &&
       (firstNode.constraints['LayoutSelfPosition'] ===
         Constraints.LayoutSelfPosition.Absolute ||
-        firstNode instanceof Dividing 
-        // ||
-        // (firstNode.type !== Dictionary.type.QText &&
-        //   firstNode.abX === parent.abX &&
-        //   firstNode.abXops === parent.abXops)
-        )
+        firstNode instanceof Dividing)
+      // ||
+      // (firstNode.type !== Dictionary.type.QText &&
+      //   firstNode.abX === parent.abX &&
+      //   firstNode.abXops === parent.abXops)
       // || firstNode instanceof Dividing
     ) {
       newChildren.push(firstNode);

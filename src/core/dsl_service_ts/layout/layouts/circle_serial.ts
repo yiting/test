@@ -1,6 +1,6 @@
 // 循环结构的逻辑处理模块
 import Constraints from '../../helper/constraints';
-import ListModel from '../../../dsl_extend/models/list/model';
+import ListModel from '../../../dsl_model/models/list/model';
 
 export function repeatLogic(a: any, b: any) {
   return false;

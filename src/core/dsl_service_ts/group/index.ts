@@ -2,7 +2,7 @@ import Utils from '../helper/methods';
 import Constraints from '../helper/constraints';
 import Dictionary from '../helper/dictionary';
 import Model from '../model/model';
-import Dividing from '../../dsl_extend/models/dividing/model';
+import Dividing from '../../dsl_model/models/dividing/model';
 
 const DSLOptions: any = {};
 

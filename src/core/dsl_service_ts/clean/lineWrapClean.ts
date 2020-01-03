@@ -2,7 +2,7 @@
  * 换行清洗 */
 
 import Canvas from 'canvas';
-import TextModel from '../../dsl_extend/models/text/model';
+import TextModel from '../../dsl_model/models/text/model';
 const Context = Canvas.createCanvas(200, 200).getContext('2d');
 
 const regWrap = /.*\n+/m;

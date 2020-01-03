@@ -3,7 +3,7 @@ import LayoutSimilar from './layouts/similar';
 import LayoutCircle from './layouts/circle';
 import LayoutSort from './layouts/sort';
 import LayoutBaseLine from './layouts/baseline';
-import QLog from '../log/qlog';
+import QLog from '../helper/qlog';
 import LayoutEquality from './layouts/equality';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);

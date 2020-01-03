@@ -1,13 +1,13 @@
 // dsl模块服务通过输入设计稿抽象过后的数据，然后输出对应的字符串
 import ModelProcess from './model/index';
 import WidgetProcess from './widget/index';
-import ComponentProcess from './component/index';
+// import ComponentProcess from './component/index';
 // 暂时起名为Layout模块
 import LayoutProcess from './layout';
 // import InterfereModelProcess from './interfereModel/index';
 import GroupProcess from './group/index';
 import GridProcess from './grid/index';
-import RenderProcess from './render';
+import RenderProcess from '../dsl_render';
 import NodeCleanProcess from './clean/index';
 import LayoutCleanProcess from './layout/clean';
 // import Model from './model/model';
@@ -69,9 +69,6 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     // 结构清理
     processDesc = '结构清理';
     dslTree = LayoutCleanProcess(dslTree);
-    // if (option.outputType == 'json') {
-    //   return Model.toJSON(dslTree, true);
-    // }
 
     // render模块
     let Builder = RenderProcess.handle(dslTree);

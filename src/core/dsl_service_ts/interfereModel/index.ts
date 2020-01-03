@@ -1,6 +1,6 @@
 import Store from '../helper/store';
 import Util from '../helper/methods';
-import Layer from '../../dsl_extend/models/layer/model';
+import Layer from '../../dsl_model/models/layer/model';
 import Constraints from '../helper/constraints';
 
 export default function(nodes: any) {

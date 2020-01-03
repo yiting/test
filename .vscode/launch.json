@@ -44,6 +44,13 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "DSL flutter test",
+      "program": "${workspaceFolder}/dist/core/dsl_service_ts/test/testFlutter",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "DSL ark test",
       "program": "${workspaceFolder}/dist/core/dsl_service_ts/test/testArk",
       "cwd": "${workspaceFolder}"

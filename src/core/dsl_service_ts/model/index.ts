@@ -1,8 +1,8 @@
 import Model from './model';
-import QLog from '../log/qlog';
+import QLog from '../helper/qlog';
 import Dictionary from '../helper/dictionary';
 import ModelList from './modellist';
-import BodyMode from '../../dsl_extend/models/body/model';
+import BodyMode from '../../dsl_model/models/body/model';
 export default function(nodes: any[]) {
   const newNodeList: Model[] = [];
   let bodyModel;

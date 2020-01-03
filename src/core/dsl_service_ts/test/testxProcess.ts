@@ -4,7 +4,7 @@ import designjson from './test.json';
 // 引入的模块包
 // import Dsl from '../dsl/dsl';
 
-import Render from '../render/index';
+import Render from '../../dsl_render/index';
 import dslProcess from '../process';
 
 /* const dslTree = Dsl.pipe(
