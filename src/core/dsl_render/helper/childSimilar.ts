@@ -1,7 +1,7 @@
-import Utils from '../../dsl_service_ts/helper/methods';
-import Constraints from '../../dsl_service_ts/helper/constraints';
+import Utils from '../../dsl_layout/helper/methods';
+import Constraints from '../../dsl_layout/helper/constraints';
 // template engine
-import QLog from '../../dsl_service_ts/helper/qlog';
+import QLog from '../../dsl_layout/helper/qlog';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 

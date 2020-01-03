@@ -1,10 +1,10 @@
 /**
  * 约束计算
  */
-import Constraints from '../../dsl_service_ts/helper/constraints';
-import QLog from '../../dsl_service_ts/helper/qlog';
-import Utils from '../../dsl_service_ts/helper/methods';
-import Dictionary from '../../dsl_service_ts/helper/dictionary';
+import Constraints from '../../dsl_layout/helper/constraints';
+import QLog from '../../dsl_layout/helper/qlog';
+import Utils from '../../dsl_layout/helper/methods';
+import Dictionary from '../../dsl_layout/helper/dictionary';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 /**

@@ -1,5 +1,5 @@
-import Constraints from '../../../dsl_service_ts/helper/constraints';
-import Dictionary from '../../../dsl_service_ts/helper/dictionary';
+import Constraints from '../../../dsl_layout/helper/constraints';
+import Dictionary from '../../../dsl_layout/helper/dictionary';
 import CssProperty from '../propertyMap';
 
 export default {

@@ -1,6 +1,6 @@
-import Constraints from '../../../dsl_service_ts/helper/constraints';
+import Constraints from '../../../dsl_layout/helper/constraints';
 import CssProperty from '../propertyMap';
-import Dictionary from '../../../dsl_service_ts/helper/dictionary';
+import Dictionary from '../../../dsl_layout/helper/dictionary';
 
 export default {
   key: 'flexDirection',

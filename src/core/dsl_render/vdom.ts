@@ -1,6 +1,6 @@
-import Constraints from '../dsl_service_ts/helper/constraints';
-import Utils from '../dsl_service_ts/helper/methods';
-import Dictionary from '../dsl_service_ts/helper/dictionary';
+import Constraints from '../dsl_layout/helper/constraints';
+import Utils from '../dsl_layout/helper/methods';
+import Dictionary from '../dsl_layout/helper/dictionary';
 class VDom {
   children: any[];
   parent: any;

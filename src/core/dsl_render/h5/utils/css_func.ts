@@ -1,5 +1,5 @@
 // 样式的计算处理
-import Utils from '../../../dsl_service_ts/helper/methods';
+import Utils from '../../../dsl_layout/helper/methods';
 const CompatibleKey = ['box-flex', 'box-orient', 'box-pack', 'box-align'];
 const CompatibleValue = ['box'];
 const Funcs = {

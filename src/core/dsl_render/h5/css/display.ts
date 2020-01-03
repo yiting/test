@@ -1,4 +1,4 @@
-import Dictionary from '../../../dsl_service_ts/helper/dictionary';
+import Dictionary from '../../../dsl_layout/helper/dictionary';
 import CssProperty from '../propertyMap';
 export default {
   key: 'display',

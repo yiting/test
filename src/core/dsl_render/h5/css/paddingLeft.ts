@@ -1,4 +1,4 @@
-import Text from '../../../dsl_model/models/text/tpl/h5';
+import Text from '../models/text/tpl';
 import CssProperty from '../propertyMap';
 export default {
   key: 'paddingLeft',

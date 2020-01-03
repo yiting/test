@@ -1,7 +1,7 @@
 // 这里定义数据输出的统一接口
 // h5, ios, android, weex等
 
-import QLog from '../dsl_service_ts/helper/qlog';
+import QLog from '../dsl_layout/helper/qlog';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 

@@ -1,16 +1,16 @@
 // 此模块为h5解析模块
 import Builder from '../builder';
-import QLog from '../../dsl_service_ts/helper/qlog';
+import QLog from '../../dsl_layout/helper/qlog';
 
 // dom
 import TextRevise from '../helper/textRevise';
 import ReviseDomTree from '../helper/reviseDomTree';
-import FlutterDom from './model/dom';
+import FlutterDom from './dom/dom';
 
 import FileConfig from './files/config.json';
 import Template from '../template';
 import TemplateList from './templateList';
-import LayerTemplate from '../../dsl_model/models/layer/tpl/flutter';
+import LayerTemplate from './models/layer/tpl';
 import Main_dart from './files/main.dart';
 import { debug } from 'util';
 

@@ -1,6 +1,6 @@
-import Utils from '../../../dsl_service_ts/helper/methods';
-import Store from '../../../dsl_service_ts/helper/store';
-import Dictionary from '../../../dsl_service_ts/helper/dictionary';
+import Utils from '../../../dsl_layout/helper/methods';
+import Store from '../../../dsl_layout/helper/store';
+import Dictionary from '../../../dsl_layout/helper/dictionary';
 import CssProperty from '../propertyMap';
 export default {
   key: 'overflow',

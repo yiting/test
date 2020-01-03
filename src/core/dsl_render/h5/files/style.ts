@@ -1,8 +1,8 @@
 // 样式的计算处理
-import QLog from '../../../dsl_service_ts/helper/qlog';
+import QLog from '../../../dsl_layout/helper/qlog';
 import TextRevise from '../../helper/textRevise';
 import ReviseDomTree from '../../helper/reviseDomTree';
-import CssDom from '../model/dom';
+import CssDom from '../dom/dom';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 // 生成的Css记录树

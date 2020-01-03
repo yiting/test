@@ -1,5 +1,5 @@
-import Text from '../../../dsl_model/models/text/tpl/h5';
-import Constraints from '../../../dsl_service_ts/helper/constraints';
+import Text from '../models/text/tpl';
+import Constraints from '../../../dsl_layout/helper/constraints';
 import CssProperty from '../propertyMap';
 export default {
   key: 'paddingTop',

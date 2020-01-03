@@ -1,4 +1,4 @@
-import Constraints from '../../../dsl_service_ts/helper/constraints';
+import Constraints from '../../../dsl_layout/helper/constraints';
 import CssProperty from '../propertyMap';
 export default {
   key: 'textAlign',

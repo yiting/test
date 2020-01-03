@@ -1,4 +1,4 @@
-import QLog from '../dsl_service_ts/helper/qlog';
+import QLog from '../dsl_layout/helper/qlog';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 class Template {

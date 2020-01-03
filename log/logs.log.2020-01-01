@@ -1,0 +1,60 @@
+2020-01-01 15:32:07 DEBUG default testproName render模块 render/render.ts [handle] start 上传者：testuser
+
+2020-01-01 15:32:07 DEBUG default testproName render模块 render/render.ts [Template parse] 上传者：testuser
+
+2020-01-01 15:32:07 DEBUG default testproName render模块 render/render.ts [new Builder] 上传者：testuser
+
+2020-01-01 15:32:07 DEBUG default testproName render模块 render/h5/builder.js [_parseClassName] 上传者：testuser
+
+2020-01-01 15:32:07 DEBUG default testproName render模块 render/h5/builder.js [_parseCss] 上传者：testuser
+
+2020-01-01 15:32:07 DEBUG default testproName render模块 render/h5/dom_css [_buildTree] 上传者：testuser
+
+2020-01-01 15:32:07 DEBUG default testproName render模块 render/h5/dom_css [ReviseDomTree] 上传者：testuser
+
+2020-01-01 15:32:07 DEBUG default testproName render模块 render/h5/dom_css [TextRevise] 上传者：testuser
+
+2020-01-01 15:32:07 DEBUG default testproName render模块 similar_css_dom.js [process],enter[cssDomTree:3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00] 上传者：testuser
+
+2020-01-01 15:32:07 DEBUG default testproName render模块 similar_css_dom.js [_buildSimilarData] 上传者：testuser
+
+2020-01-01 15:32:07 DEBUG default testproName render模块 similar_css_dom.js [_buildSimilarCss] 上传者：testuser
+
+2020-01-01 15:32:07 DEBUG default testproName render模块 render/h5/builder.js [_parseHtml] 上传者：testuser
+
+2020-01-01 15:32:07 INFO default testproName render模块 /Users/yangjunbiao/Web/isux/toSeeWeb/dist/core/dsl_service_ts/test/output/index.html生成成功 上传者：testuser
+
+2020-01-01 15:32:07 INFO default testproName render模块 /Users/yangjunbiao/Web/isux/toSeeWeb/dist/core/dsl_service_ts/test/output/index.css生成成功 上传者：testuser
+
+2020-01-01 15:32:13 DEBUG default testproName render模块 render/render.ts [handle] start 上传者：testuser
+
+2020-01-01 15:32:13 DEBUG default testproName render模块 render/render.ts [Template parse] 上传者：testuser
+
+2020-01-01 15:32:13 DEBUG default testproName render模块 render/render.ts [new Builder] 上传者：testuser
+
+2020-01-01 15:32:13 DEBUG default testproName render模块 render/h5/builder.js [_parseClassName] 上传者：testuser
+
+2020-01-01 15:32:13 DEBUG default testproName render模块 render/h5/builder.js [_parseCss] 上传者：testuser
+
+2020-01-01 15:32:13 DEBUG default testproName render模块 render/h5/dom_css [_buildTree] 上传者：testuser
+
+2020-01-01 15:32:13 DEBUG default testproName render模块 render/h5/dom_css [ReviseDomTree] 上传者：testuser
+
+2020-01-01 15:32:13 DEBUG default testproName render模块 render/h5/dom_css [TextRevise] 上传者：testuser
+
+2020-01-01 15:32:13 DEBUG default testproName render模块 similar_css_dom.js [process],enter[cssDomTree:3B0AB067-0AF1-4ED4-AFA3-E77128EEAD00] 上传者：testuser
+
+2020-01-01 15:32:13 DEBUG default testproName render模块 similar_css_dom.js [_buildSimilarData] 上传者：testuser
+
+2020-01-01 15:32:13 DEBUG default testproName render模块 similar_css_dom.js [_buildSimilarCss] 上传者：testuser
+
+2020-01-01 15:32:13 DEBUG default testproName render模块 render/h5/builder.js [_parseHtml] 上传者：testuser
+
+2020-01-01 15:32:13 INFO default testproName render模块 /Users/yangjunbiao/Web/isux/toSeeWeb/dist/core/dsl_service_ts/test/output/index.html生成成功 上传者：testuser
+
+2020-01-01 15:32:13 INFO default testproName render模块 /Users/yangjunbiao/Web/isux/toSeeWeb/dist/core/dsl_service_ts/test/output/index.css生成成功 上传者：testuser
+
+2020-01-01 15:37:09 INFO default testproName render模块 /Users/yangjunbiao/Web/isux/toSeeWeb/dist/core/dsl_service_ts/test/output/index.html生成成功 上传者：testuser
+
+2020-01-01 15:37:09 INFO default testproName render模块 /Users/yangjunbiao/Web/isux/toSeeWeb/dist/core/dsl_service_ts/test/output/index.css生成成功 上传者：testuser
+

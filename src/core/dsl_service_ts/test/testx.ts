@@ -5,7 +5,7 @@ import designjson from './test.json';
 // import Dsl from '../dsl/dsl';
 import Render from '../../dsl_render/index';
 import dslServer from '../dslService';
-const value: any = dslServer.process(
+let value: any = dslServer.process(
   {
     nodes: designjson,
   },

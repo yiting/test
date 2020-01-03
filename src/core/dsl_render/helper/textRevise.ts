@@ -1,9 +1,9 @@
 /**
  * 计算节点对齐逻辑
  */
-import Constraints from '../../dsl_service_ts/helper/constraints';
-import QLog from '../../dsl_service_ts/helper/qlog';
-import Dictionary from '../../dsl_service_ts/helper/dictionary';
+import Constraints from '../../dsl_layout/helper/constraints';
+import QLog from '../../dsl_layout/helper/qlog';
+import Dictionary from '../../dsl_layout/helper/dictionary';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 const alginMap: any = {
   Start: 'left',

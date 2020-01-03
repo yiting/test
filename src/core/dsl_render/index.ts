@@ -1,16 +1,10 @@
 import fs from 'fs';
 // builder
-import H5Builder from './h5/builder';
-import FlutterBuilder from './flutter/builder';
-import QLog from '../dsl_service_ts/helper/qlog';
-import Store from '../dsl_service_ts/helper/store';
+import QLog from '../dsl_layout/helper/qlog';
+import Store from '../dsl_layout/helper/store';
 import { debug } from 'util';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
-const builderMap: any = {
-  h5: H5Builder,
-  flutter: FlutterBuilder,
-};
 /**
  *
  * @param {*} dslTree
@@ -45,15 +39,9 @@ function outputFileWithPath(path: string, string: string) {
  * 方法
  * @param {DslTree} dslTree
  */
-function handle(dslTree: any) {
-  Loger.debug('render/render.ts [handle] start');
-  let builder: any;
-  let outputType = Store.get('outputType');
-  let Builder = builderMap[outputType];
-
+function handle(dslTree: any, Builder: any) {
   Loger.debug('render/render.ts [new Builder]');
-  builder = new Builder(dslTree);
-  return builder;
+  return new Builder(dslTree);
 }
 
 export default {

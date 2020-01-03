@@ -1,18 +1,18 @@
 // import fs from 'fs';
 import path from 'path';
-import QLog from '../../dsl_service_ts/helper/qlog';
-import Store from '../../dsl_service_ts/helper/store';
+import QLog from '../../dsl_layout/helper/qlog';
+import Store from '../../dsl_layout/helper/store';
 // 配置
 import * as renderConfig from '../config.json';
 // 此模块为h5解析模块
 import Builder from '../builder';
 import * as Style from './files/style';
-import * as SimilarCssProcess from './model/dom_similar_css';
+import * as SimilarCssProcess from './dom/dom_similar_css';
 import * as ClassName from './utils/className';
 //
 import TextRevise from '../helper/textRevise';
 import ReviseDomTree from '../helper/reviseDomTree';
-import Dom from './model/dom';
+import Dom from './dom/dom';
 // 模板
 import Template from '../template';
 import TemplateList from './templateList';
