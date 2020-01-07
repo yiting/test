@@ -34,13 +34,13 @@ class H5Builder extends Builder {
 
     Loger.debug(
       `render/h5/builder.js [_parseHtml] time: ${Date.parse(
-        new Date().tostring(),
+        new Date().toString(),
       )}`,
     );
     this._parseHtml();
     Loger.debug(
       `render/h5/builder.js [_parseDataOver] time: ${Date.parse(
-        new Date().tostring(),
+        new Date().toString(),
       )}`,
     );
   }

@@ -10,7 +10,7 @@ const Loger = QLog.getInstance(QLog.moduleData.render);
 function _buildTree(data: any, parent: any) {
   Loger.debug(
     `render/h5/builder.js [_parseHtml-buildTree] time: ${Date.parse(
-      new Date().tostring(),
+      new Date().toString(),
     )}`,
   );
   let htmlNode: any;
@@ -31,7 +31,7 @@ function _buildTree(data: any, parent: any) {
   }
   Loger.debug(
     `render/h5/builder.js [_parseHtml-buildTreeOver] time: ${Date.parse(
-      new Date().tostring(),
+      new Date().toString(),
     )}`,
   );
   return htmlNode;
