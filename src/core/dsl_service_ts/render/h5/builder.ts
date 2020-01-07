@@ -12,6 +12,7 @@ import Store from '../../helper/store';
 import tpl from './tpl';
 import testTpl from './test_tpl';
 import * as renderConfig from '../config.json';
+
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 class H5Builder extends Builder {
@@ -31,8 +32,13 @@ class H5Builder extends Builder {
     Loger.debug('render/h5/builder.js [_parseCss]');
     this._parseCss();
 
-    Loger.debug('render/h5/builder.js [_parseHtml]');
+    Loger.debug(
+      `render/h5/builder.js [_parseHtml] time: ${Date.parse(new Date())}`,
+    );
     this._parseHtml();
+    Loger.debug(
+      `render/h5/builder.js [_parseDataOver] time: ${Date.parse(new Date())}`,
+    );
   }
 
   /**
@@ -55,28 +61,28 @@ class H5Builder extends Builder {
   }
 
   getTagString() {
-    let tplType = Store.get('tplType') || 0;
-    let htmlStr = Html.getHtmlString(this.htmlDom);
-    let designWidth = Store.get('designWidth');
+    const tplType = Store.get('tplType') || 0;
+    const htmlStr = Html.getHtmlString(this.htmlDom);
+    const designWidth = Store.get('designWidth');
     // 添加完整的html结构
-    let cssPath = path.relative(
+    const cssPath = path.relative(
       renderConfig.HTML.output.htmlPath,
       renderConfig.HTML.output.cssPath,
     );
     if (tplType == -1) {
       // 测试
       return testTpl(htmlStr, {
-        designWidth: designWidth,
+        designWidth,
       });
-    } else if (tplType == 0) {
+    }
+    if (tplType == 0) {
       // 正式
       return tpl(htmlStr, {
-        designWidth: designWidth,
+        designWidth,
       }).replace(/\{cssFilePath\}/gim, cssPath);
-    } else {
-      // 模块
-      return htmlStr;
     }
+    // 模块
+    return htmlStr;
   }
 
   getStyleString() {

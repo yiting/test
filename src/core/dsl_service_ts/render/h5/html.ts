@@ -8,6 +8,11 @@ const Loger = QLog.getInstance(QLog.moduleData.render);
  * @param {Json} data
  */
 function _buildTree(data: any, parent: any) {
+  Loger.debug(
+    `render/h5/builder.js [_parseHtml-buildTree] time: ${Date.parse(
+      new Date(),
+    )}`,
+  );
   let htmlNode: any;
   try {
     htmlNode = new HtmlDom(data, parent);
@@ -24,6 +29,11 @@ function _buildTree(data: any, parent: any) {
         data.id},parent.id:${parent && parent.id}]`,
     );
   }
+  Loger.debug(
+    `render/h5/builder.js [_parseHtml-buildTreeOver] time: ${Date.parse(
+      new Date(),
+    )}`,
+  );
   return htmlNode;
 }
 
