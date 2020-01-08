@@ -33,7 +33,7 @@ function _parseBoundary(vdom: any) {
  */
 function _calculateBoundary(vdom: any) {
   // 跟节点不调整
-  if (vdom.type === Dictionary.type.QBody) {
+  if (!vdom.parent) {
     return;
   }
   if (vdom._isAbsolute()) {

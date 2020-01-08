@@ -1,12 +1,9 @@
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 import Funcs from '../utils/css_func';
 
 export default {
   key: 'backgroundColor',
   value() {
-    if (this._isImgTag()) {
-      return CssProperty.default.backgroundColor;
-    }
     if (
       this.styles &&
       this.styles.background &&
@@ -14,6 +11,6 @@ export default {
     ) {
       return Funcs.getRGBA(this.styles.background.color);
     }
-    return CssProperty.default.backgroundColor;
+    return cssDefaultProperty.backgroundColor;
   },
 };

@@ -9,4 +9,4 @@ import List from './models/list/tpl';
 import Inline from './widgets/inline/tpl';
 import ListItem from './models/listItem/tpl';
 // 模板数组
-export default [Body, Text, Image, Dividing, Inline, Layer, List, ListItem];
+export default [Layer, Body, Text, Image, Dividing, Inline, List, ListItem];

@@ -1,12 +1,12 @@
-import HtmlTemplate from '../../template';
+import HtmlTemplate from '../../dom/dom';
 
 export default class Body extends HtmlTemplate {
-  constructor(dom: any) {
-    super(dom);
-    this.className = 'section';
-    this.tagName = 'div';
+  constructor(dom: any, parent: any) {
+    super(dom, parent);
+    this._orignClassName = 'body';
+    this._orignTagName = 'div';
   }
   getUI() {
-    return `<div class="${this.classNameChain}">${this.slot}</div>`;
+    return `<div class="${this.htmlClassName}">${this.slot}</div>`;
   }
 }

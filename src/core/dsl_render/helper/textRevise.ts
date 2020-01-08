@@ -13,8 +13,7 @@ const alginMap: any = {
 function textRevise(vdom: any) {
   const flexChild = vdom.children.filter(
     (n: any) =>
-      n.constraints.LayoutSelfPosition !==
-      Constraints.LayoutSelfPosition.Absolute,
+      n.constraints.LayoutPosition !== Constraints.LayoutPosition.Absolute,
   );
   if (flexChild.length === 1 && flexChild[0].type === Dictionary.type.QText) {
     const align =

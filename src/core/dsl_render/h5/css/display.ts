@@ -1,5 +1,5 @@
 import Dictionary from '../../../dsl_layout/helper/dictionary';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 export default {
   key: 'display',
   value(): any {
@@ -18,6 +18,6 @@ export default {
     if (this.type !== Dictionary.type.QText && this.children.length) {
       return 'flex';
     }
-    return CssProperty.default.display;
+    return cssDefaultProperty.display;
   },
 };

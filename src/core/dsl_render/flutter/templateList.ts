@@ -5,4 +5,4 @@ import Image from './models/image/tpl';
 import Layer from './models/layer/tpl';
 import Body from './models/body/tpl';
 // 模板数组
-export default [Body, Text, Image, Layer];
+export default [Layer, Body, Text, Image];

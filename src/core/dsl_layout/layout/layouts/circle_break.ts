@@ -35,8 +35,8 @@ export function breakFeature(feature: any) {
     // const child: any = node.children[0];
     if (
       // 剔除绝对定位元素，绝对定位元素不参与判断
-      node.constraints['LayoutSelfPosition'] ==
-        Constraints.LayoutSelfPosition.Absolute ||
+      node.constraints['LayoutPosition'] ==
+        Constraints.LayoutPosition.Absolute ||
       // 是循环节点
       node.constructor !== ListModel
     ) {

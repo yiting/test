@@ -1,17 +1,17 @@
 import Constraints from '../../../dsl_layout/helper/constraints';
 import Text from '../models/text/tpl';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 //
 export default {
   key: 'marginRight',
   value() {
     if (this._isAbsolute()) {
-      return CssProperty.default.marginRight;
+      return cssDefaultProperty.marginRight;
     }
 
     // 如果为文本节点子节点
     if (this.parent && this.parent.modelName == Text.name) {
-      return CssProperty.default.marginRight;
+      return cssDefaultProperty.marginRight;
     }
     if (this._isParentHorizontal()) {
       // 横排计算与上一节点距离
@@ -21,14 +21,14 @@ export default {
         this.parent.constraints.LayoutJustifyContent ===
         Constraints.LayoutJustifyContent.Start
       ) {
-        return CssProperty.default.marginRight;
+        return cssDefaultProperty.marginRight;
       }
       // 如果水平居中
       if (
         this.parent.constraints.LayoutJustifyContent ===
         Constraints.LayoutJustifyContent.Center
       ) {
-        return CssProperty.default.marginRight;
+        return cssDefaultProperty.marginRight;
       }
 
       if (nextNode) {
@@ -52,7 +52,7 @@ export default {
       this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.Start
     ) {
-      return CssProperty.default.marginRight;
+      return cssDefaultProperty.marginRight;
     }
     if (
       this.parent &&
@@ -61,6 +61,6 @@ export default {
     ) {
       return vRight;
     }
-    return CssProperty.default.marginRight;
+    return cssDefaultProperty.marginRight;
   },
 };

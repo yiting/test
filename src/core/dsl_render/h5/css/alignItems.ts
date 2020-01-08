@@ -1,4 +1,4 @@
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 const flexValue: any = {
   Start: 'flex-start',
   End: 'flex-end',
@@ -9,12 +9,12 @@ export default {
   key: 'alignItems',
   value() {
     const that: any = this;
-    if (this.display === 'flex') {
+    if (this.display === 'flex' || this.display === 'inline-flex') {
       return (
         flexValue[that.constraints.LayoutAlignItems] ||
-        CssProperty.default.alignItems
+        cssDefaultProperty.alignItems
       );
     }
-    return CssProperty.default.alignItems;
+    return cssDefaultProperty.alignItems;
   },
 };

@@ -1,5 +1,5 @@
 import Constraints from '../../../dsl_layout/helper/constraints';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 export default {
   key: 'position',
   value() {
@@ -9,15 +9,19 @@ export default {
     return 'relative'; */
 
     if (
-      this.constraints['LayoutSelfPosition'] ===
-      Constraints.LayoutSelfPosition.Absolute
+      this.constraints['LayoutPosition'] === Constraints.LayoutPosition.Absolute
     ) {
       return 'absolute';
     } else if (
-      this.constraints['LayoutPosition'] === Constraints.LayoutPosition.Absolute
+      // this.constraints['LayoutPosition'] === Constraints.LayoutPosition.Absolute
+      this.children.some(
+        (child: any) =>
+          child.constraints.LayoutPosition ===
+          Constraints.LayoutPosition.Absolute,
+      )
     ) {
       return 'relative';
     }
-    return CssProperty.default.position;
+    return cssDefaultProperty.position;
   },
 };

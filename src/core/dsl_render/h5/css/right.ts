@@ -1,6 +1,6 @@
 //
 import Constraints from '../../../dsl_layout/helper/constraints';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 
 export default {
   key: 'right',
@@ -9,9 +9,9 @@ export default {
       this._isAbsolute() &&
       this.constrains === Constraints.LayoutSelfHorizontal.Right
     ) {
-      return this.parent.abXops - this.abXops;
+      return this._right;
     } else {
-      return CssProperty.default.right;
+      return cssDefaultProperty.right;
     }
   },
 };

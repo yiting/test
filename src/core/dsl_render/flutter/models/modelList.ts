@@ -1,6 +1,6 @@
 import Image from '../../../dsl_model/models/image';
 import Layer from '../../../dsl_model/models/layer';
-import Text from '../../../dsl_model/models/text';
 import Body from '../../../dsl_model/models/body';
+import Text from '../../../dsl_model/models/text';
 
-export default [Body, Image, Layer, Text];
+export default [Layer, Body, Image, Text];

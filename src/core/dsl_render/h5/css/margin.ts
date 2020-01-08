@@ -4,7 +4,7 @@ import marginTop from './marginTop';
 import marginBottom from './marginBottom';
 import marginLeft from './marginLeft';
 import marginRight from './marginRight';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 import { debug } from 'util';
 
 export default {
@@ -14,10 +14,10 @@ export default {
     const css: any[] = [0, 0, 0, 0];
     //绝对定位就不需要margin了
     if (!this.parent) {
-      return CssProperty.default.margin;
+      return cssDefaultProperty.margin;
     }
     if (this._isAbsolute()) {
-      return CssProperty.default.margin;
+      return cssDefaultProperty.margin;
     }
     //横排
     css[0] = marginTop.value.call(this) || 0;

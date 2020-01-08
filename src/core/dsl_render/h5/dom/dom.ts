@@ -5,49 +5,47 @@ import Constraints from '../../../dsl_layout/helper/constraints';
 import Func from '../utils/css_func';
 import QLog from '../../../dsl_layout/helper/qlog';
 import VDom from '../../vdom';
-import cssProperty from '../propertyMap';
+import {
+  map as MapProperty,
+  inheritProperty as cssInheritProperty,
+  defaultProperty as cssDefaultProperty,
+} from './propertyMap';
 
 let Loger = QLog.getInstance(QLog.moduleData.render);
 
-let cssPropertyMap = cssProperty.map;
-let cssInheritProperty = cssProperty.inheritProperties;
-
-export default class Dom extends VDom {
+export default class TemplateDom extends VDom {
   _zIndex: any;
 
-  className: string;
+  _tagName: string;
 
-  classNameChain: any;
+  _className: string;
 
-  simClassName: string;
+  _classNameChain: any;
 
-  simClassNameChain: any;
+  _simClassName: string;
+
+  _simClassNameChain: any;
+
+  _orignClassName: string;
+
+  _orignTagName: string;
 
   constructor(data: any, parent: any) {
     super(data, parent);
     // 节点的信息
-    //最终输出css时候当前节点的样式
-    this.className = data.className;
-    this.simClassName = data.simClassName;
-    this.classNameChain = data.classNameChain || [];
-    this.simClassNameChain = data.simClassNameChain || [];
+    // this._orignClassName = className;
+    // this._orignTagName = tagName;
+    // this._orignClassName = data.className;
+    // this._simClassName = data.simClassName;
+    // this._classNameChain = data.classNameChain || [];
+    // this._simClassNameChain = data.simClassNameChain || [];
 
     // 根据映射定义属性
-    cssPropertyMap.forEach((s: any) => {
-      Object.defineProperty(this, s.key, {
-        get: s.value,
+    MapProperty.forEach((prop: any) => {
+      Object.defineProperty(this, prop.key, {
+        get: prop.value,
       });
     });
-  }
-
-  // 转换过的基于父节点的parentX
-  get parentX() {
-    return this.abX - this.parent.abX;
-  }
-
-  // 转换过的基于父节点的parentY
-  get parentY() {
-    return this.abY - this.parent.abY;
   }
   _hasHeight() {
     if (
@@ -118,11 +116,8 @@ export default class Dom extends VDom {
     return false;
   }
 
-  _isImgTag() {
-    return this.tagName === 'img';
-  }
   _isBgTag() {
-    return this.tagName === 'i';
+    return this._orignTagName === 'i';
   }
 
   /**
@@ -130,9 +125,8 @@ export default class Dom extends VDom {
    */
   _isAbsolute() {
     if (
-      this.constraints.LayoutSelfPosition &&
-      this.constraints.LayoutSelfPosition ===
-        Constraints.LayoutSelfPosition.Absolute
+      this.constraints.LayoutPosition &&
+      this.constraints.LayoutPosition === Constraints.LayoutPosition.Absolute
     ) {
       return true;
     }
@@ -157,9 +151,8 @@ export default class Dom extends VDom {
    * 获取className
    */
   getCssSelector() {
-    return this.classNameChain.map((n: any) => `.${n}`).join(' ');
+    return this._classNameChain.map((n: any) => `.${n}`).join(' ');
   }
-
   /**
    * 获取得到的属性
    */
@@ -169,7 +162,7 @@ export default class Dom extends VDom {
     try {
       let that: any = this;
       // 获取属性值并进行拼接
-      cssPropertyMap.forEach((mod: any) => {
+      MapProperty.forEach((mod: any) => {
         ({ key } = mod);
         let value = that[key];
         let compValue = value + '';
@@ -178,7 +171,7 @@ export default class Dom extends VDom {
         // 如果属性可继承
         let parentValue = that.parent && that.parent[key] + '';
         // 获取默认属性
-        let defaultValue = cssProperty.default[key];
+        let defaultValue = cssDefaultProperty[key];
         // if (value !== null && value !== undefined && similarValue !== value) {
         let overlook: boolean = false;
         if (similarValue) {
@@ -203,4 +196,67 @@ export default class Dom extends VDom {
     }
     return props;
   }
+  textClassName(): string {
+    let node = this;
+    if (node.styles.texts[0] && node.styles.texts[0].size > 30) {
+      return 'title';
+    }
+    return 'text';
+  }
+  layerClassName(): string {
+    let node = this;
+    let indexObj = {
+      level: 0,
+      layerLevel: 0,
+    };
+    getLayerLevel(node, indexObj);
+    if (indexObj.level === 0) {
+      return 'body';
+    }
+    if (indexObj.level === 1) {
+      return 'section';
+    }
+    if (indexObj.level === 2) {
+      return 'panel';
+    }
+    if (indexObj.layerLevel === 3) {
+      return 'wrap';
+    }
+    if (indexObj.layerLevel === 4) {
+      return 'box';
+    }
+    if (indexObj.layerLevel === 5) {
+      return 'inner';
+    }
+    return 'block';
+  }
+  get htmlClassName() {
+    return [this._className, this._simClassName].join(' ');
+  }
+  get imgPath() {
+    let path = this.path;
+    if (!path) {
+      return '';
+    }
+    // return Path.join(
+    // Path.relative(Config.HTML.output.htmlPath, Config.HTML.output.imgPath),
+    // path,
+    // );
+    // const p = path.replace(/^.*\//gi, '');
+    const p = path.split('/').pop();
+    return `../images/${p}`;
+  }
+}
+function getLayerLevel(_node: any, _indexObj: any): any {
+  const node: any = _node;
+  const indexObj: any = _indexObj;
+  if (!node.parent) {
+    return null;
+  }
+  if (node.parent.modelName === 'Layer') {
+    indexObj.layerLevel += 1;
+  }
+  indexObj.level += 1;
+  const newLevel = getLayerLevel(node.parent, indexObj);
+  return newLevel;
 }

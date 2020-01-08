@@ -1,12 +1,12 @@
-import HtmlTemplate from '../../template';
+import HtmlTemplate from '../../dom/dom';
 
 export default class ListItem extends HtmlTemplate {
-  constructor(dom: any) {
-    super(dom);
-    this.className = 'list-item';
-    this.tagName = 'li';
+  constructor(dom: any, parent: any) {
+    super(dom, parent);
+    this._orignClassName = 'list-item';
+    this._orignTagName = 'li';
   }
   getUI() {
-    return `<li class="${this.classNameChain}">${this.slot}</li>`;
+    return `<li class="${this.htmlClassName}">${this.slot}</li>`;
   }
 }

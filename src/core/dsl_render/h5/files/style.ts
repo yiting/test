@@ -1,12 +1,7 @@
 // 样式的计算处理
 import QLog from '../../../dsl_layout/helper/qlog';
-import TextRevise from '../../helper/textRevise';
-import ReviseDomTree from '../../helper/reviseDomTree';
-import CssDom from '../dom/dom';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
-// 生成的Css记录树
-let cssDomTree = null;
 /**
  * 解析获取css属性
  * @param {Array} arr 字符串收集数组

@@ -4,11 +4,13 @@ import QLog from '../../../dsl_layout/helper/qlog';
 import Func from '../utils/css_func';
 
 // 生成的Css记录树
-import CssProperty from '../propertyMap';
+import {
+  map as cssPropertyMap,
+  inheritProperty as cssInheritProperty,
+  defaultProperty as cssDefaultProperty,
+} from './propertyMap';
 
 let Loger = QLog.getInstance(QLog.moduleData.render);
-let cssPropertyMap = CssProperty.map;
-let cssPropertyDefault = CssProperty.default;
 let minCss: [] = [];
 
 let _cssDomTree: any = {};
@@ -56,7 +58,7 @@ function _getCssProperty(cssNode: any) {
   Object.keys(cssNode).forEach(key => {
     let value = cssNode[key];
     let compValue = value + '';
-    let defVal = cssPropertyDefault[key] + '';
+    let defVal = cssDefaultProperty[key] + '';
     if (compValue !== defVal) {
       props.push(Func.transCssValue(key, value));
     }
@@ -77,7 +79,7 @@ function _buildSimilarData(cssNode: any, _similarMap: any) {
       if (!similarMap[similarId]) {
         similarMap[similarId] = {
           similarId,
-          simClassNameChain: cssNode.simClassNameChain,
+          simClassNameChain: cssNode._simClassNameChain,
           css: {},
           list: [],
         };

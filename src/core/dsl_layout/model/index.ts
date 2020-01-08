@@ -1,7 +1,7 @@
 import Model from './model';
 import QLog from '../helper/qlog';
 import Dictionary from '../helper/dictionary';
-import BodyMode from '../../dsl_model/models/body';
+import BodyModel from '../../dsl_model/models/body';
 export default function(nodes: any[], modelList: any[]) {
   const newNodeList: Model[] = [];
   let bodyModel;
@@ -46,7 +46,7 @@ export default function(nodes: any[], modelList: any[]) {
   });
   // 如果没有body，自动生成body
   if (!bodyModel) {
-    newNodeList.push(new BodyMode(bodyAttr));
+    newNodeList.push(new BodyModel(bodyAttr));
   }
 
   return newNodeList;

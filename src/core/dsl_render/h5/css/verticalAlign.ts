@@ -1,6 +1,6 @@
 import Constraints from '../../../dsl_layout/helper/constraints';
 import Dictionary from '../../../dsl_layout/helper/dictionary';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 
 export default {
   key: 'verticalAlign',
@@ -13,6 +13,6 @@ export default {
     ) {
       return 'middle';
     }
-    return CssProperty.default.verticalAlign;
+    return cssDefaultProperty.verticalAlign;
   },
 };

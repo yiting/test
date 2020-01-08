@@ -6,4 +6,4 @@ import Body from '../../../dsl_model/models/body';
 import List from './list/model';
 import ListItem from './listItem/model';
 
-export default [Body, Dividing, Image, Layer, Text, List, ListItem];
+export default [Layer, Body, Dividing, Image, Text, List, ListItem];

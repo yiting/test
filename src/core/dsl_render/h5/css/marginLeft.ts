@@ -1,16 +1,16 @@
 import Constraints from '../../../dsl_layout/helper/constraints';
 import Text from '../models/text/tpl';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 
 export default {
   key: 'marginLeft',
   value() {
     if (this._isAbsolute()) {
-      return CssProperty.default.marginLeft;
+      return cssDefaultProperty.marginLeft;
     }
     // 如果为文本节点子节点
     if (this.parent && this.parent.modelName == Text.name) {
-      return CssProperty.default.marginLeft;
+      return cssDefaultProperty.marginLeft;
     }
 
     if (this._isParentHorizontal()) {
@@ -23,13 +23,13 @@ export default {
           Constraints.LayoutJustifyContent.Center &&
         !preNode
       ) {
-        return CssProperty.default.marginLeft;
+        return cssDefaultProperty.marginLeft;
       }
       if (
         this.parent.constraints.LayoutJustifyContent ===
         Constraints.LayoutJustifyContent.End
       ) {
-        return CssProperty.default.marginLeft;
+        return cssDefaultProperty.marginLeft;
       }
       // LayoutJustifyContent.Start
       if (preNode) {
@@ -52,7 +52,7 @@ export default {
       this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.End
     ) {
-      return CssProperty.default.marginLeft;
+      return cssDefaultProperty.marginLeft;
     }
     return vLeft;
   },

@@ -23,15 +23,8 @@ import FlutterBuilder from '../dsl_render/flutter/builder';
 import { debug } from 'util';
 
 let outputMap: any = {
-  h5: {
-    modelList: H5ModelList,
-    widgetList: H5WidgetList,
-    builder: H5Builder,
-  },
-  flutter: {
-    modelList: FlutterModelList,
-    builder: FlutterBuilder,
-  },
+  h5: H5Builder,
+  flutter: FlutterBuilder,
 };
 
 /**
@@ -52,13 +45,11 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     let option = _initOptions(_options);
 
     let outputType = option.outputType;
-    let { modelList, widgetList, builder } = outputMap[outputType];
-    console.log(outputType);
-
+    let builder = outputMap[outputType];
     // 数据清洗
     let nodes = input.nodes;
     processDesc = '构建节点';
-    let layoutNodes = ModelProcess(nodes, modelList);
+    let layoutNodes = ModelProcess(nodes, builder.modelList);
     // 干预处理
     // processDesc = '干预处理';
     // layoutNodes = InterfereModelProcess(layoutNodes);
@@ -69,7 +60,7 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     let dslTree = GroupProcess(layoutNodes);
     // 模型识别模块
     processDesc = '模型初始化';
-    WidgetProcess(dslTree, widgetList);
+    WidgetProcess(dslTree, builder.widgetList);
     // 栅格化
     processDesc = '栅格化';
     GridProcess(dslTree);

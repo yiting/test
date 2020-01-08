@@ -18,10 +18,8 @@ function _row(parent: any) {
   // 分解行
   let layers = Utils.gatherByLogic(children, (a: any, b: any) => {
     if (
-      a.constraints.LayoutSelfPosition !==
-        Constraints.LayoutSelfPosition.Absolute &&
-      b.constraints.LayoutSelfPosition !==
-        Constraints.LayoutSelfPosition.Absolute &&
+      a.constraints.LayoutPosition !== Constraints.LayoutPosition.Absolute &&
+      b.constraints.LayoutPosition !== Constraints.LayoutPosition.Absolute &&
       Utils.isYConnect(a, b, -1)
     ) {
       if (
@@ -46,8 +44,7 @@ function _row(parent: any) {
       l.filter(
         (n: any) =>
           n.constraints &&
-          n.constraints.LayoutSelfPosition !==
-            Constraints.LayoutSelfPosition.Absolute,
+          n.constraints.LayoutPosition !== Constraints.LayoutPosition.Absolute,
       ),
     );
     Object.assign(l, range);
@@ -65,8 +62,8 @@ function _row(parent: any) {
      */
     if (
       arr.length === 1 &&
-      (firstNode.constraints['LayoutSelfPosition'] ===
-        Constraints.LayoutSelfPosition.Absolute ||
+      (firstNode.constraints['LayoutPosition'] ===
+        Constraints.LayoutPosition.Absolute ||
         firstNode instanceof Dividing)
       // ||
       // (firstNode.type !== Dictionary.type.QText &&
@@ -113,10 +110,8 @@ function _column(parent: any) {
   // 分解列
   const layers = Utils.gatherByLogic(children, (a: any, b: any) => {
     return (
-      a.constraints.LayoutSelfPosition !==
-        Constraints.LayoutSelfPosition.Absolute &&
-      b.constraints.LayoutSelfPosition !==
-        Constraints.LayoutSelfPosition.Absolute &&
+      a.constraints.LayoutPosition !== Constraints.LayoutPosition.Absolute &&
+      b.constraints.LayoutPosition !== Constraints.LayoutPosition.Absolute &&
       Utils.isXConnect(a, b)
     );
   });
@@ -130,8 +125,7 @@ function _column(parent: any) {
       l.filter(
         (n: any) =>
           n.constraints &&
-          n.constraints.LayoutSelfPosition !==
-            Constraints.LayoutSelfPosition.Absolute,
+          n.constraints.LayoutPosition !== Constraints.LayoutPosition.Absolute,
       ),
     );
     Object.assign(l, range);
@@ -150,8 +144,8 @@ function _column(parent: any) {
       arr.length === 1 &&
       (firstNode instanceof Dividing ||
         firstNode.type === Dictionary.type.QLayer ||
-        firstNode.constraints['LayoutSelfPosition'] ===
-          Constraints.LayoutSelfPosition.Absolute)
+        firstNode.constraints['LayoutPosition'] ===
+          Constraints.LayoutPosition.Absolute)
     ) {
       // 当纵向节点只有一个时
       newChildren.push(firstNode);

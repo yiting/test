@@ -119,13 +119,12 @@ function _add(_child: any, _parent: any, _isAbsolute: Boolean) {
   /*  if (!_isAbsolute && _isAbsoluteRelation(child, parent)) {
        parent = parent.parent || parent;
        parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
-       child.constraints.LayoutSelfPosition =
-         Constraints.LayoutSelfPosition.Absolute;
+       child.constraints.LayoutPosition =
+         Constraints.LayoutPosition.Absolute;
      } */
 
   if (_isAbsolute) {
-    child.constraints.LayoutSelfPosition =
-      Constraints.LayoutSelfPosition.Absolute;
+    child.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
   }
   child.parent = parent;
   parent.children.push(child);

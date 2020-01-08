@@ -1,13 +1,13 @@
-import HtmlTemplate from '../../template';
+import HtmlTemplate from '../../dom/dom';
 
 class Inline extends HtmlTemplate {
-  constructor(dom: any) {
-    super(dom);
-    this.className = 'inline';
-    this.tagName = 'span';
+  constructor(dom: any, parent: any) {
+    super(dom, parent);
+    this._orignClassName = 'inline';
+    this._orignTagName = 'span';
   }
   getUI() {
-    return `<span class="${this.classNameChain}">${this.slot}</span>`;
+    return `<span class="${this.htmlClassName}">${this.slot}</span>`;
   }
 }
 

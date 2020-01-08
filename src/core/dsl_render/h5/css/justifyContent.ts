@@ -3,18 +3,18 @@ const flexValue: any = {
   End: 'flex-end',
   Center: 'center',
 };
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 
 export default {
   key: 'justifyContent',
   value() {
-    if (this.display === 'flex') {
+    if (this.display === 'flex' || this.display === 'inline-flex') {
       return (
         flexValue[this.constraints.LayoutJustifyContent] ||
-        CssProperty.default.justifyContent
+        cssDefaultProperty.justifyContent
       );
     } else {
-      return CssProperty.default.justifyContent;
+      return cssDefaultProperty.justifyContent;
     }
   },
 };

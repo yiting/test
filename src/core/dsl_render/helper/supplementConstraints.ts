@@ -39,8 +39,7 @@ function calculateBaseLine(vdom: any) {
   const errorCoefficient = 2; // 误差系数
   vdom.children.forEach((node: any) => {
     if (
-      node.constraints.LayoutSelfPosition ===
-      Constraints.LayoutSelfPosition.Absolute
+      node.constraints.LayoutPosition === Constraints.LayoutPosition.Absolute
     ) {
       // 剔除绝对定位
       return;
