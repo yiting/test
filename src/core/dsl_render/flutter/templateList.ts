@@ -3,5 +3,6 @@
 import Text from './models/text/tpl';
 import Image from './models/image/tpl';
 import Layer from './models/layer/tpl';
+import Body from './models/body/tpl';
 // 模板数组
-export default [Layer, Text, Image];
+export default [Layer, Body, Text, Image];

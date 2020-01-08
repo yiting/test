@@ -1,11 +1,10 @@
 import Model from './model';
 import QLog from '../helper/qlog';
 import Dictionary from '../helper/dictionary';
-// import BodyMode from '../../dsl_model/models/body';
-import LayerMode from '../../dsl_model/models/layer';
+import BodyModel from '../../dsl_model/models/body';
 export default function(nodes: any[], modelList: any[]) {
   const newNodeList: Model[] = [];
-  // let bodyModel;
+  let bodyModel;
   let ModelType;
 
   let bodyAttr = {
@@ -31,9 +30,9 @@ export default function(nodes: any[], modelList: any[]) {
     let newNode = new ModelType(node);
 
     // 判断节点类型
-    // if (newNode.type === Dictionary.type.QBody) {
-    //   bodyModel = newNode;
-    // }
+    if (newNode.type === Dictionary.type.QBody) {
+      bodyModel = newNode;
+    }
     newNodeList.push(newNode);
     // 更新body边距
     bodyAttr.abX = newNode.abX < bodyAttr.abX ? newNode.abX : bodyAttr.abX;
@@ -46,7 +45,9 @@ export default function(nodes: any[], modelList: any[]) {
       bodyAttr.zIndex > newNode.zIndex ? newNode.zIndex : bodyAttr.zIndex;
   });
   // 如果没有body，自动生成body
-  newNodeList.push(new LayerMode(bodyAttr));
+  if (!bodyModel) {
+    newNodeList.push(new BodyModel(bodyAttr));
+  }
 
   return newNodeList;
 }

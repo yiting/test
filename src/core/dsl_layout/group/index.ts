@@ -26,7 +26,7 @@ function organize(segmentings: any[], body: Model) {
   const compareArr = [body];
   // 递进
   segmentings.forEach((child: any, i: any) => {
-    if (!child || child.type === Dictionary.type.QLayer) {
+    if (!child || child.type === Dictionary.type.QBody) {
       return;
     }
     let done = compareArr.some((parent: any, index: number) => {
@@ -140,7 +140,7 @@ function _add(_child: any, _parent: any, _isAbsolute: Boolean) {
 
 export default function(arr: any) {
   // 找到跟节点
-  let body = arr.find((node: any) => node.type == Dictionary.type.QLayer);
+  let body = arr.find((node: any) => node.type == Dictionary.type.QBody);
 
   // 排序分组
   const segmentings = sortSegmentings(arr);

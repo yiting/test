@@ -3,6 +3,7 @@ export default {
   type: {
     QImage: 'QImage',
     QText: 'QText',
+    QBody: 'QBody',
     QLayer: 'QLayer',
     QWidget: 'QWidget',
   },
