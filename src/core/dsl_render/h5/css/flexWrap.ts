@@ -1,5 +1,5 @@
 import Constraints from '../../../dsl_layout/helper/constraints';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 
 export default {
   key: 'flexWrap',
@@ -7,6 +7,6 @@ export default {
     if (this.constraints.LayoutWrap === Constraints.LayoutWrap.Wrap) {
       return 'wrap';
     }
-    return CssProperty.default.flexWrap;
+    return cssDefaultProperty.flexWrap;
   },
 };

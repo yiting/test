@@ -1,16 +1,16 @@
 import Constraints from '../../../dsl_layout/helper/constraints';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 export default {
   key: 'textAlign',
   value() {
-    if (this.display == 'flex') {
-      return CssProperty.default.textAlign;
+    if (this.display == 'flex' || this.display == 'inline-flex') {
+      return cssDefaultProperty.textAlign;
     }
     if (
       this.constraints.LayoutDirection !==
       Constraints.LayoutDirection.Horizontal
     ) {
-      return CssProperty.default.textAlign;
+      return cssDefaultProperty.textAlign;
     }
     let textAlign = this.styles.textAlign;
     let justifyContent = this.constraints.LayoutJustifyContent;

@@ -1,16 +1,16 @@
-import HtmlTemplate from '../../template';
+import HtmlTemplate from '../../dom/dom';
 
 export default class Image extends HtmlTemplate {
-  constructor(dom: any) {
-    super(dom);
-    this.className = 'img';
-    this.tagName = 'div';
+  constructor(dom: any, parent: any) {
+    super(dom, parent);
+    this._orignClassName = 'img';
+    this._orignTagName = 'div';
   }
   getUI() {
-    if (this.dom.children.length) {
-      return `<div class="${this.classNameChain}">${this.slot}</div>`;
+    if (this.children.length) {
+      return `<div class="${this.htmlClassName}">${this.slot}</div>`;
     } else {
-      return `<div class="${this.classNameChain}" style="background-image:url(${
+      return `<div class="${this.htmlClassName}" style="background-image:url(${
         this.imgPath
       })"></div>`;
     }

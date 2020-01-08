@@ -1,5 +1,5 @@
 import Funcs from '../utils/css_func';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 
 //
 export default {
@@ -8,6 +8,6 @@ export default {
     if (this.styles && this.styles.texts && this.styles.texts[0]) {
       return Funcs.getRGBA(this.styles.texts[0].color);
     }
-    return CssProperty.default.color;
+    return cssDefaultProperty.color;
   },
 };

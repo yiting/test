@@ -1,10 +1,11 @@
 import Constraints from '../dsl_layout/helper/constraints';
 import Utils from '../dsl_layout/helper/methods';
 import Dictionary from '../dsl_layout/helper/dictionary';
-class VDom {
+export default class VDom {
   children: any[];
   parent: any;
   id: any;
+  template: any;
   type: any;
   serialId: any;
   similarId: any;
@@ -12,7 +13,6 @@ class VDom {
   canRightFlex: any;
   modelId: any;
   modelName: any;
-  tagName: any;
   isClosedTag: any;
   text: any;
   abX: any;
@@ -26,7 +26,6 @@ class VDom {
   isMultiline: any;
 
   constructor(node: any, parent: any) {
-    // super(node)
     this.children = [];
     this.parent = parent || null;
     this.id = node.id;
@@ -37,9 +36,7 @@ class VDom {
     this.canRightFlex = node.canRightFlex;
     this.modelId = node.modelId;
     this.modelName = node.modelName;
-    this.tagName = node.tagName;
-    this.isClosedTag = node.isClosedTag;
-    this.text = node.text;
+    this.text = node.text || '';
     this.abX = node.abX || 0;
     this.abY = node.abY || 0;
     this.abXops = node.abXops;
@@ -63,8 +60,6 @@ class VDom {
       canRightFlex: this.canRightFlex,
       modelId: this.modelId,
       modelName: this.modelName,
-      tagName: this.tagName,
-      isClosedTag: this.isClosedTag,
       text: this.text,
       abX: this.abX,
       abY: this.abY,
@@ -77,26 +72,15 @@ class VDom {
       constraints: this.constraints,
     };
   }
-  get x() {
-    return this.parent ? this.abX - this.parent.abX : this.abX;
+
+  getUI() {
+    return '';
   }
 
-  get y() {
-    return this.parent ? this.abY - this.parent.abY : this.abY;
-  }
-
-  get width() {
-    return this.abXops - this.abX;
-  }
-
-  get height() {
-    return this.abYops - this.abY;
-  }
   _isAbsolute() {
     if (
-      this.constraints.LayoutSelfPosition &&
-      this.constraints.LayoutSelfPosition ===
-        Constraints.LayoutSelfPosition.Absolute
+      this.constraints.LayoutPosition &&
+      this.constraints.LayoutPosition === Constraints.LayoutPosition.Absolute
     ) {
       return true;
     }
@@ -323,7 +307,6 @@ class VDom {
       // 根节点
       return null;
     }
-
     const len = this.parent.children.length;
 
     let canBegin = false;
@@ -337,6 +320,126 @@ class VDom {
     }
     return null;
   }
-}
 
-export default VDom;
+  get slot() {
+    return (
+      this.children &&
+      this.children
+        .map((d: any) => {
+          return d.getUI(d.template);
+        })
+        .join('')
+    );
+  }
+
+  get _position() {
+    return this.constraints.LayoutPosition;
+  }
+  get _flex() {
+    return this.constraints.LayoutFlex;
+  }
+  get _direction() {
+    return this.constraints.LayoutDirection;
+  }
+  get _justifyContent() {
+    return this.constraints.LayoutJustifyContent;
+  }
+  get _alignItems() {
+    return this.constraints.LayoutAlignItems;
+  }
+  get _wrap() {
+    return this.constraints.LayoutWrap;
+  }
+
+  get _left() {
+    return this.parent ? this.abX - this.parent.abX : this.abX;
+  }
+
+  get _top() {
+    return this.parent ? this.abY - this.parent.abY : this.abY;
+  }
+
+  get _right() {
+    return this.parent ? this.parent.abXops - this.abXops : 0;
+  }
+
+  get _bottom() {
+    return this.parent ? this.parent.abYops - this.abYops : 0;
+  }
+
+  get _width() {
+    return this.abXops - this.abX;
+  }
+
+  get _height() {
+    return this.abYops - this.abY;
+  }
+
+  get _margin() {
+    let left = this._left,
+      right = this._right,
+      top = this._top,
+      bottom = this._bottom;
+    // 如果是绝对定位
+    if (this._isAbsolute()) {
+      return {
+        left,
+        right,
+        top,
+        bottom,
+      };
+    }
+    let prevNode = this._prevNode(),
+      nextNode = this._nextNode(),
+      prevLine = this._prevLine(),
+      nextLine = this._nextLine();
+    if (this._isParentHorizontal()) {
+      // 如果有上一行
+      if (prevLine.length) {
+        const prevLineAbYops = prevLine.map((n: any) => n.abYops);
+        const maxTop = Math.max(...prevLineAbYops) || this.parent.abY;
+        // LayoutAlignItems.Start
+        top = this.abY - maxTop;
+      }
+      // 如果有下一行
+      if (nextLine.length) {
+        const nextLineAbY = nextLine.map((n: any) => n.abY);
+        const maxBottom = Math.max(...nextLineAbY) || this.parent.abYops;
+        // LayoutAlignItems.Start
+        bottom = maxBottom - this.abYops;
+      }
+      // 横排
+      if (prevNode) {
+        left = this.abX - prevNode.abXops;
+      }
+      if (nextNode) {
+        right = nextNode.abX - this.abXops;
+      }
+    } else {
+      // 竖排
+      if (prevNode) {
+        top = this.abY - prevNode.abXops;
+      }
+      if (nextNode) {
+        bottom = nextNode.abY - this.abYops;
+      }
+    }
+    return {
+      left,
+      right,
+      top,
+      bottom,
+    };
+  }
+
+  get _padding() {
+    let flexNodes = this.children.map((node: any) => !node._isAbsolute());
+    let range = Utils.calRange(flexNodes);
+    return {
+      left: range.abX - this.abX,
+      right: this.abXops - range.abXops,
+      top: range.abY - this.abY,
+      bottom: this.abYops - range.abY,
+    };
+  }
+}

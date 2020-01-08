@@ -1,7 +1,7 @@
 import Constraints from '../../../dsl_layout/helper/constraints';
 import Text from '../models/text/tpl';
 import paddingTop from './paddingTop';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 
 export default {
   key: 'marginTop',
@@ -12,11 +12,11 @@ export default {
     }
     // 如果为文本节点子节点
     if (this.parent && this.parent.modelName == Text.name) {
-      return CssProperty.default.marginTop;
+      return cssDefaultProperty.marginTop;
     }
     let parentPaddingTop =
       (this.parent && paddingTop.value.call(this.parent)) ||
-      CssProperty.default.marginTop;
+      cssDefaultProperty.marginTop;
 
     if (this._isParentHorizontal()) {
       // 横排计算与父节点距离
@@ -25,13 +25,13 @@ export default {
         this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.Center
       ) {
-        return CssProperty.default.marginTop;
+        return cssDefaultProperty.marginTop;
       }
       if (
         this.parent.constraints.LayoutAlignItems ===
         Constraints.LayoutAlignItems.End
       ) {
-        return CssProperty.default.marginTop;
+        return cssDefaultProperty.marginTop;
       }
       // 如果有上一行
       if (this._prevLine().length) {

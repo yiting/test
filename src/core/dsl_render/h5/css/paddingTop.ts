@@ -1,25 +1,25 @@
 import Text from '../models/text/tpl';
 import Constraints from '../../../dsl_layout/helper/constraints';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 export default {
   key: 'paddingTop',
   value() {
     // 如果为文本节点
     if (this.modelName == Text.name) {
-      return CssProperty.default.paddingTop;
+      return cssDefaultProperty.paddingTop;
     }
 
     if (this._hasHeight()) {
-      return CssProperty.default.paddingTop;
+      return cssDefaultProperty.paddingTop;
     }
     let minPaddingTop: number | null = null;
-    const that = this;
+    let that = this;
     this.children.forEach((cssDom: any) => {
       if (
-        cssDom.constraints.LayoutSelfPosition !==
-        Constraints.LayoutSelfPosition.Absolute
+        cssDom.constraints.LayoutPosition !==
+        Constraints.LayoutPosition.Absolute
       ) {
-        const pd = cssDom.abY - that.abY;
+        let pd = cssDom.abY - that.abY;
         minPaddingTop =
           pd >= 0 && (minPaddingTop === null || minPaddingTop > pd)
             ? pd

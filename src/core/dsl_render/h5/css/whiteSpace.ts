@@ -1,12 +1,12 @@
 import Dictionary from '../../../dsl_layout/helper/dictionary';
 import { debug } from 'util';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 
 export default {
   key: 'whiteSpace',
   value() {
     if (this.type != Dictionary.type.QText) {
-      return CssProperty.default.whiteSpace;
+      return cssDefaultProperty.whiteSpace;
     }
     const lineHeight =
       this.lineHeight ||
@@ -16,7 +16,7 @@ export default {
     const _height = this.abYops - this.abY;
     if (_height / lineHeight > 1.2) {
       // 多行
-      return CssProperty.default.whiteSpace;
+      return cssDefaultProperty.whiteSpace;
     }
     if (
       this.parent &&
@@ -24,9 +24,9 @@ export default {
       this.type == Dictionary.type.QText
     ) {
       // emx元素
-      return CssProperty.default.whiteSpace;
+      return cssDefaultProperty.whiteSpace;
     }
     return 'nowrap';
-    return CssProperty.default.whiteSpace;
+    return cssDefaultProperty.whiteSpace;
   },
 };

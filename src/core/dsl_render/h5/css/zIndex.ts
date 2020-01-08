@@ -1,4 +1,4 @@
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 //
 export default {
   key: 'zIndex',
@@ -7,6 +7,6 @@ export default {
       return this.zindex;
     }
     // return null;
-    return CssProperty.default.zIndex;
+    return cssDefaultProperty.zIndex;
   },
 };

@@ -25,8 +25,7 @@ function isAbsolute(parent: any, node: any) {
   }
   // 如果子节点超出上下边界，则为绝对定位
   if (
-    node.constraints.LayoutSelfPosition ===
-      Constrains.LayoutSelfPosition.Absolute ||
+    node.constraints.LayoutPosition === Constrains.LayoutPosition.Absolute ||
     node.abY < parent.abY ||
     // node.abX < parent.abX ||
     node.abYops > parent.abYops
@@ -219,7 +218,7 @@ function getPrev(nodes: any, node: any): any {
 
 function setAbsolute(_node: any) {
   const node: any = _node;
-  node.constraints.LayoutSelfPosition = Constrains.LayoutSelfPosition.Absolute;
+  node.constraints.LayoutPosition = Constrains.LayoutPosition.Absolute;
   if (!node.constraints.LayoutFixedWidth) {
     node.constraints.LayoutFixedWidth = Constrains.LayoutFixedWidth.Fixed;
   }
@@ -284,9 +283,4 @@ export default function(parent: any, nodes: any) {
   absNodes.forEach((nd: any) => {
     setAbsolute(nd);
   });
-
-  if (absNodes.length > 0) {
-    // 父节点赋予相对定位约束
-    parent.constraints.LayoutPosition = Constrains.LayoutPosition.Absolute;
-  }
 }

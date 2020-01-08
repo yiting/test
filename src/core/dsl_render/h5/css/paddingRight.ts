@@ -1,5 +1,5 @@
 import Text from '../models/text/tpl';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 export default {
   key: 'paddingRight',
   value() {
@@ -8,13 +8,13 @@ export default {
     //   return null;
     // }
     if (this.modelName == Text.name) {
-      return CssProperty.default.paddingRight;
+      return cssDefaultProperty.paddingRight;
     }
     const hasWidth = this._hasWidth();
     const lastChild = this._getLastChild();
     if (!hasWidth && lastChild) {
       return this.abXops - lastChild.abXops;
     }
-    return CssProperty.default.paddingRight;
+    return cssDefaultProperty.paddingRight;
   },
 };

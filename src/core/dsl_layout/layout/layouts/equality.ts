@@ -45,15 +45,13 @@ function adjustAround(nodes: any) {
   let [prev, cur, next] = nodes;
   if (prev) {
     // prev
-    prev.constraints.LayoutSelfPosition =
-      Constraints.LayoutSelfPosition.Absolute;
+    prev.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
     prev.constraints.LayoutSelfHorizontal =
       Constraints.LayoutSelfHorizontal.Left;
   }
   if (next) {
     // next
-    next.constraints.LayoutSelfPosition =
-      Constraints.LayoutSelfPosition.Absolute;
+    next.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
     next.constraints.LayoutSelfHorizontal =
       Constraints.LayoutSelfHorizontal.Right;
   }
@@ -374,7 +372,6 @@ export default function(parent: any, nodes: any) {
   } else if (aroundArr) {
     // 两端对齐
     adjustAround(flexNodes);
-    parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
     parent.constraints.LayoutJustifyContent =
       Constraints.LayoutJustifyContent.Center;
   } else if (leftSpace) {

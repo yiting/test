@@ -3,11 +3,6 @@ export default {
   /**
    * 自身相关描述
    */
-  // 以x,y方式定位
-  LayoutSelfPosition: {
-    Static: 'Static',
-    Absolute: 'Absolute',
-  },
   // 排版中自身方式（优于父容器的排版）
   LayoutSelfHorizontal: {
     Left: 'Left',

@@ -17,25 +17,25 @@ export function policy_oneName(_data: any) {
   /**
    * 特性命名
    */
-  let selfClassName: string = data.template.className;
+  let selfClassName: string = data._orignClassName;
   if (_classNameCache[selfClassName]) {
     selfClassName = selfClassName + '_' + _data.serialId;
   }
   _classNameCache[selfClassName] = true;
-  _data.className = selfClassName;
-  _data.classNameChain = [selfClassName];
+  _data._className = selfClassName;
+  _data._classNameChain = [selfClassName];
   /**
    * 相似
    */
   if (_data.similarId) {
     let selfSimClassName: string = _simClassNameCache[_data.similarId];
     if (!selfSimClassName) {
-      selfSimClassName = data.template.className + '_s' + _data.similarId;
+      selfSimClassName = data._orignClassName + '_s' + _data.similarId;
       _simClassNameCache[_data.similarId] = selfSimClassName;
     }
     _classNameCache[selfSimClassName] = true;
-    _data.simClassName = selfSimClassName;
-    _data.simClassNameChain = [selfSimClassName];
+    _data._simClassName = selfSimClassName;
+    _data._simClassNameChain = [selfSimClassName];
   }
 }
 

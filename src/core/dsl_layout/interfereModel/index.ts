@@ -30,8 +30,7 @@ export default function(nodes: any) {
       _allowed_descendantIds,
     });
     if (type == 'absolute') {
-      layer.constraints.LayoutSelfPosition =
-        Constraints.LayoutSelfPosition.Absolute;
+      layer.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
     }
     nodes.push(layer);
   });

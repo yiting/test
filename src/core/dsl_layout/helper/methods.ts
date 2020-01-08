@@ -139,8 +139,7 @@ const utils = {
   },
   isAbsolute(node: any) {
     return (
-      node.constraints.LayoutSelfPosition ===
-      Constraints.LayoutSelfPosition.Absolute
+      node.constraints.LayoutPosition === Constraints.LayoutPosition.Absolute
     );
   },
   /**

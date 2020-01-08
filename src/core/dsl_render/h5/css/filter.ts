@@ -1,5 +1,5 @@
 import Funcs from '../utils/css_func';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 
 export default {
   key: 'filter',
@@ -18,6 +18,6 @@ export default {
       });
       return filter.join(' ');
     }
-    return CssProperty.default.filter;
+    return cssDefaultProperty.filter;
   },
 };

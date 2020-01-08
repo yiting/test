@@ -1,5 +1,5 @@
 import QLog from '../../../dsl_layout/helper/qlog';
-import PropertyMap from '../propertyMap';
+import PropertyMap from './propertyMap';
 import VDom from '../../vdom';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);

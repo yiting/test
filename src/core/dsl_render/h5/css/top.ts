@@ -1,5 +1,5 @@
 //
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 export default {
   key: 'top',
   value() {
@@ -9,6 +9,6 @@ export default {
     } else if (this._isAbsolute()) {
       return this.parentY;
     }
-    return CssProperty.default.top;
+    return cssDefaultProperty.top;
   },
 };

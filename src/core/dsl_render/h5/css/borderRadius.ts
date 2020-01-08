@@ -1,4 +1,4 @@
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 import Func from '../utils/css_func';
 
 export default {
@@ -10,6 +10,6 @@ export default {
         Math.min(this.abYops - this.abY, this.abXops - this.abX),
       );
     }
-    return CssProperty.default.borderRadius;
+    return cssDefaultProperty.borderRadius;
   },
 };

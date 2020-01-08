@@ -1,4 +1,4 @@
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 //
 export default {
   key: 'height',
@@ -6,6 +6,6 @@ export default {
     if (this._hasHeight()) {
       return Math.abs(this.abYops - this.abY);
     }
-    return CssProperty.default.height;
+    return cssDefaultProperty.height;
   },
 };

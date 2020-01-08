@@ -6,54 +6,35 @@ import Store from '../../dsl_layout/helper/store';
 import * as renderConfig from '../config.json';
 // 此模块为h5解析模块
 import Builder from '../builder';
+
 import * as Style from './files/style';
 import * as SimilarCssProcess from './dom/dom_similar_css';
 import * as ClassName from './utils/className';
-//
-import TextRevise from '../helper/textRevise';
-import ReviseDomTree from '../helper/reviseDomTree';
-import Dom from './dom/dom';
 // 模板
-import Template from '../template';
 import TemplateList from './templateList';
+import ModelList from './models/modelList';
+import WidgetList from './widgets/widgetList';
 import tpl from './files/html';
 import testTpl from './files/test_html';
-import { debug } from 'util';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 class H5Builder extends Builder {
-  _htmlFile: any;
-
-  htmlDom: any;
-
-  dom: any;
-
   similarCssMap: any;
 
-  // 解析逻辑
-  _parseData() {
-    // 构建树
-    Loger.debug('render/h5/dom_css [_buildTree]');
-    this.dom = _buildTree(null, this._data);
-
-    Loger.debug('render/h5/dom_css [ReviseDomTree]');
-    ReviseDomTree(this.dom);
-
-    Loger.debug('render/h5/dom_css [TextRevise]');
-    TextRevise(this.dom);
-    // 解析节点className
+  constructor(data: any, options: any) {
+    super(data, options, TemplateList);
     // 样式名解析
-    Loger.debug('render/h5/builder.js [_parseClassName]');
+    Loger.debug('render/h5/builder [ClassName.process]');
     // this._parseClassName();
     ClassName.process(this.dom, ClassName.policy_oneName);
     // 样式节点解析
-    Loger.debug('render/h5/builder.js [_parseCss]');
+    Loger.debug('render/h5/builder [SimilarCssProcess]');
     this.similarCssMap = SimilarCssProcess.process(this.dom);
   }
 
   getHtml() {
     let tplType = Store.get('tplType') || 0;
-    let htmlStr = Template.getUI(this.dom.template);
+    let htmlStr = this.dom.getUI();
     let designWidth = Store.get('designWidth');
     // 添加完整的html结构
     let cssPath = path.relative(
@@ -89,29 +70,8 @@ class H5Builder extends Builder {
     };
   }
 }
-/**
- * 构建cssDom树
- * @param {Object} parent
- * @param {Json} data
- */
-function _buildTree(parent: any, data: any) {
-  let dom: any;
-  try {
-    let Tpl = TemplateList.find(
-      (temp: any) => temp.name === data.constructor.name,
-    );
-    dom = new Dom(data, parent);
-    dom.template = new Tpl(dom);
-    // 构建树
-    if (parent) {
-      parent.children.push(dom);
-    }
-    data.children.forEach((d: any) => {
-      _buildTree(dom, d);
-    });
-  } catch (e) {
-    Loger.error(`${__dirname} [_buildTree]: ${e}`);
-  }
-  return dom;
-}
+
+H5Builder.modelList = ModelList;
+H5Builder.widgetList = WidgetList;
+
 export default H5Builder;

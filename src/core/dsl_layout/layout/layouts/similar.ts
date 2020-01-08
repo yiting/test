@@ -35,10 +35,7 @@ function _setSimilar(similarArr: any) {
  */
 function _filterRule(node: any) {
   // 剔除绝对定位元素，绝对定位元素不参与相似判断
-  if (
-    node.constraints.LayoutSelfPosition ===
-    Constraints.LayoutSelfPosition.Absolute
-  ) {
+  if (node.constraints.LayoutPosition === Constraints.LayoutPosition.Absolute) {
     return;
   }
   if (!_compareNodes[node.constructor.name]) {

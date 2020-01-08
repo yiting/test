@@ -1,5 +1,5 @@
 import Funcs from '../utils/css_func';
-import CssProperty from '../propertyMap';
+import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 
 export default {
   key: 'border',
@@ -10,6 +10,6 @@ export default {
       const borderColor = Funcs.getRGBA(this.styles.border.color);
       return [borderWidth, borderType, borderColor].join(' ');
     }
-    return CssProperty.default.border;
+    return cssDefaultProperty.border;
   },
 };

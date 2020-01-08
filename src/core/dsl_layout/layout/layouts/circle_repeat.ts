@@ -71,8 +71,7 @@ function _setULCircle(parent: any, target: any) {
   let gridChildrenLength = 0;
   children.forEach((child: any) => {
     if (
-      child.constraints.LayoutSelfPosition !==
-      Constraints.LayoutSelfPosition.Absolute
+      child.constraints.LayoutPosition !== Constraints.LayoutPosition.Absolute
     ) {
       gridChildrenLength++;
     }

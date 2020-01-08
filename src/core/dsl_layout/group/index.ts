@@ -26,7 +26,7 @@ function organize(segmentings: any[], body: Model) {
   const compareArr = [body];
   // 递进
   segmentings.forEach((child: any, i: any) => {
-    if (!child || child.type === Dictionary.type.QBody) {
+    if (!child || child.type === Dictionary.type.QLayer) {
       return;
     }
     let done = compareArr.some((parent: any, index: number) => {
@@ -119,13 +119,12 @@ function _add(_child: any, _parent: any, _isAbsolute: Boolean) {
   /*  if (!_isAbsolute && _isAbsoluteRelation(child, parent)) {
        parent = parent.parent || parent;
        parent.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
-       child.constraints.LayoutSelfPosition =
-         Constraints.LayoutSelfPosition.Absolute;
+       child.constraints.LayoutPosition =
+         Constraints.LayoutPosition.Absolute;
      } */
 
   if (_isAbsolute) {
-    child.constraints.LayoutSelfPosition =
-      Constraints.LayoutSelfPosition.Absolute;
+    child.constraints.LayoutPosition = Constraints.LayoutPosition.Absolute;
   }
   child.parent = parent;
   parent.children.push(child);
@@ -141,7 +140,7 @@ function _add(_child: any, _parent: any, _isAbsolute: Boolean) {
 
 export default function(arr: any) {
   // 找到跟节点
-  let body = arr.find((node: any) => node.type == Dictionary.type.QBody);
+  let body = arr.find((node: any) => node.type == Dictionary.type.QLayer);
 
   // 排序分组
   const segmentings = sortSegmentings(arr);
