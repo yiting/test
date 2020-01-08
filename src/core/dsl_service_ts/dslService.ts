@@ -1,7 +1,7 @@
 // dsl模块服务通过输入设计稿抽象过后的数据，然后输出对应的字符串
 import ModelProcess from '../dsl_layout/model/index';
 import WidgetProcess from '../dsl_layout/widget/index';
-// import ComponentProcess from './component/index';
+import ComponentProcess from '../dsl_component/index';
 // 暂时起名为Layout模块
 import LayoutProcess from '../dsl_layout/layout';
 // import InterfereModelProcess from './interfereModel/index';
@@ -79,9 +79,15 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     //   try {
     //     logger.info('DSL Service 进入模型匹配流程');
     //     ComponentProcess(dslTree);
+
+    //     // render模块
+    //     let Builder = RenderProcess.handle(dslTree, builder);
+    //     let res = Builder.getResult();
+    //     console.log(res.uiString);
+    //     return;
     //     // 测试直接返回
-    //     let Builder = RenderProcess.handle(dslTree);
-    //     return Builder.getResult();
+    //     //let Builder = RenderProcess.handle(dslTree);
+    //     //return Builder.getResult();
     //   } catch (e) {
     //     console.error(`dslService模型匹配错误  ${processDesc}:${e}`);
     //   }
