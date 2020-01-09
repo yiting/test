@@ -130,9 +130,7 @@ function cloneNodeByKeys(node, keys = []) {
 }
 
 function extractDom(rootNode, idList) {
-  const tagetNodes = serialize(rootNode)
-    .filter(n => ~idList.indexOf(n.id))
-    .sort((a, b) => a.zIndex - b.zIndex);
+  const tagetNodes = serialize(rootNode).filter(n => ~idList.indexOf(n.id));
   rootNode.removeAll();
   tagetNodes.forEach(n => {
     rootNode.add(n);
