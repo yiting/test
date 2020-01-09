@@ -137,7 +137,10 @@ function _add(_child: any, _parent: any, _isAbsolute: Boolean) {
   if (parent.type === Dictionary.type.QImage) {
     // parent.type = Dictionary.type.QLayer;
     let mod = parent.parent ? LayerModel : BodyModel;
-    parent.exchangeModel(mod);
+    let newParent = parent.exchangeModel(mod);
+    newParent.constraints.LayoutFixedHeight =
+      Constraints.LayoutFixedHeight.Fixed;
+    newParent.constraints.LayoutFixedWidth = Constraints.LayoutFixedWidth.Fixed;
   }
   return child;
 }
