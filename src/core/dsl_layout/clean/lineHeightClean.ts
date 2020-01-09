@@ -28,7 +28,8 @@ function pipe(node: any) {
     const dur = Math.floor((maxLineHeight - node.height) / 2);
     node.abY -= dur;
     node.abYops += dur;
-    node.styles.lineHeight = maxLineHeight;
   }
+  node.styles.lineHeight = maxLineHeight;
+
   return node;
 }
