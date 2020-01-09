@@ -3,6 +3,9 @@ import Dictionary from '../../dsl_layout/helper/dictionary';
 class Body extends Model {
   constructor(node: any) {
     super(node);
+    if (this.type == 'QShape') {
+      this.path = null;
+    }
     this.type = Dictionary.type.QBody;
     this.canLeftFlex = true;
     this.canRightFlex = true;
