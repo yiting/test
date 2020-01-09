@@ -5,6 +5,9 @@ import Methods from '../../dsl_layout/helper/methods';
 class Image extends Model {
   constructor(node: any) {
     super(node);
+    if (this.type == 'QShape') {
+      this.path = null;
+    }
     this.type = Dictionary.type.QImage;
     // 移除非模型特征属性
     this.styles.texts = null;
