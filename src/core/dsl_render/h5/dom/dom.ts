@@ -117,7 +117,7 @@ export default class TemplateDom extends VDom {
   }
 
   _isBgTag() {
-    return this._orignTagName === 'i';
+    return this.type === Dictionary.type.QImage;
   }
 
   /**

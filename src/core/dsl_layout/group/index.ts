@@ -2,6 +2,8 @@ import Utils from '../helper/methods';
 import Constraints from '../helper/constraints';
 import Dictionary from '../helper/dictionary';
 import Model from '../model/model';
+import LayerModel from '../../dsl_model/models/layer';
+import BodyModel from '../../dsl_model/models/layer';
 import Dividing from '../../dsl_render/h5/models/dividing/model';
 
 const DSLOptions: any = {};
@@ -133,7 +135,9 @@ function _add(_child: any, _parent: any, _isAbsolute: Boolean) {
    * 让父节点取代使用QImage模板
    * */
   if (parent.type === Dictionary.type.QImage) {
-    parent.type = Dictionary.type.QLayer;
+    // parent.type = Dictionary.type.QLayer;
+    let mod = parent.parent ? LayerModel : BodyModel;
+    parent.exchangeModel(mod);
   }
   return child;
 }

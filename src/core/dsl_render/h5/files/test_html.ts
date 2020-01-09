@@ -28,6 +28,20 @@ export default (
       padding:0;
       list-style:none
     }
+    .test-bar{
+      position:fixed;
+      bottom:0;
+      left:0;
+      font-size:12px;
+      line-height:20px;
+      background-color:rgba(255,255,255,.5);
+    }
+    .test-bar label{
+      display:block;
+    }
+      .image [class^="img"]{
+      background-color:rgba(255,0,0,.2);
+    }
   </style>
   <link rel="stylesheet" href="index.css" />
 </head>

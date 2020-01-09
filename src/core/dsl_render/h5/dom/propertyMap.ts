@@ -124,7 +124,7 @@ export let defaultProperty: any = {
   backgroundRepeat: 'repeat',
   color: 'rgba(0,0,0,1)',
   fontFamily: 'auto',
-  fontSize: 'initial',
+  fontSize: 0,
   position: 'static',
   filter: 'none',
   border: 'none',
