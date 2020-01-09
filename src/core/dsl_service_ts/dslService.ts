@@ -1,18 +1,31 @@
 // dsl模块服务通过输入设计稿抽象过后的数据，然后输出对应的字符串
-import ModelProcess from './model/index';
-import WidgetProcess from './widget/index';
-import ComponentProcess from './component/index';
+import ModelProcess from '../dsl_layout/model/index';
+import WidgetProcess from '../dsl_layout/widget/index';
+import ComponentProcess from '../dsl_component/index';
 // 暂时起名为Layout模块
-import LayoutProcess from './layout';
+import LayoutProcess from '../dsl_layout/layout';
 // import InterfereModelProcess from './interfereModel/index';
-import GroupProcess from './group/index';
-import GridProcess from './grid/index';
-import RenderProcess from './render';
-import NodeCleanProcess from './clean/index';
-import LayoutCleanProcess from './layout/clean';
-import Store from './helper/store';
+import GroupProcess from '../dsl_layout/group/index';
+import GridProcess from '../dsl_layout/grid/index';
+import RenderProcess from '../dsl_render';
+import NodeCleanProcess from '../dsl_layout/clean/index';
+import LayoutCleanProcess from '../dsl_layout/layout/clean';
+// import Model from './model/model';
+import Store from '../dsl_layout/helper/store';
 import qlog from '../log/qlog';
 const logger = qlog.getInstance(qlog.moduleData.all);
+
+import H5ModelList from '../dsl_render/h5/models/modelList';
+import H5WidgetList from '../dsl_render/h5/widgets/widgetList';
+import FlutterModelList from '../dsl_render/flutter/models/modelList';
+import H5Builder from '../dsl_render/h5/builder';
+import FlutterBuilder from '../dsl_render/flutter/builder';
+import { debug } from 'util';
+
+let outputMap: any = {
+  h5: H5Builder,
+  flutter: FlutterBuilder,
+};
 
 /**
  * dsl服务的主使用接口
@@ -29,11 +42,14 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     // 参数的初始化处理
     _initInput(input);
     // 初始化进程参数
-    _initOptions(_options);
+    let option = _initOptions(_options);
+
+    let outputType = option.outputType;
+    let builder = outputMap[outputType];
     // 数据清洗
     let nodes = input.nodes;
     processDesc = '构建节点';
-    let layoutNodes = ModelProcess(nodes);
+    let layoutNodes = ModelProcess(nodes, builder.modelList);
     // 干预处理
     // processDesc = '干预处理';
     // layoutNodes = InterfereModelProcess(layoutNodes);
@@ -44,7 +60,7 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     let dslTree = GroupProcess(layoutNodes);
     // 模型识别模块
     processDesc = '模型初始化';
-    WidgetProcess(dslTree);
+    WidgetProcess(dslTree, builder.widgetList);
     // 栅格化
     processDesc = '栅格化';
     GridProcess(dslTree);
@@ -54,15 +70,20 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     //   try {
     //     logger.info('DSL Service 进入模型匹配流程');
     //     ComponentProcess(dslTree);
+
+    //     // render模块
+    //     let Builder = RenderProcess.handle(dslTree, builder);
+    //     let res = Builder.getResult();
+    //     console.log(res.uiString);
+    //     return;
     //     // 测试直接返回
-    //     let Builder = RenderProcess.handle(dslTree);
-    //     return Builder.getResult();
+    //     //let Builder = RenderProcess.handle(dslTree);
+    //     //return Builder.getResult();
     //   } catch (e) {
     //     console.error(`dslService模型匹配错误  ${processDesc}:${e}`);
     //   }
     // }
 
-    //console.log(dslTree);
     // 进行布局及循环处理
     processDesc = '布局分析';
     LayoutProcess(dslTree);
@@ -70,7 +91,7 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     processDesc = '结构清理';
     dslTree = LayoutCleanProcess(dslTree);
     // render模块
-    let Builder = RenderProcess.handle(dslTree);
+    let Builder = RenderProcess.handle(dslTree, builder);
     return Builder.getResult();
   } catch (e) {
     console.error(`dslService.ts  ${processDesc}:${e}`);
