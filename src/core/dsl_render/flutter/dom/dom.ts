@@ -1,11 +1,7 @@
-import QLog from '../../../dsl_layout/helper/qlog';
 import PropertyMap from './propertyMap';
 import VDom from '../../vdom';
 
-const Loger = QLog.getInstance(QLog.moduleData.render);
-
-class FlutterDom extends VDom {
-  template: any;
+export default class FlutterDom extends VDom {
   constructor(node: any, parent: any) {
     super(node, parent);
     // 根据映射定义属性
@@ -16,5 +12,3 @@ class FlutterDom extends VDom {
     });
   }
 }
-
-export default FlutterDom;

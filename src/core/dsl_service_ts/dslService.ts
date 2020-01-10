@@ -18,14 +18,8 @@ const logger = qlog.getInstance(qlog.moduleData.all);
 import H5ModelList from '../dsl_render/h5/models/modelList';
 import H5WidgetList from '../dsl_render/h5/widgets/widgetList';
 import FlutterModelList from '../dsl_render/flutter/models/modelList';
-import H5Builder from '../dsl_render/h5/builder';
-import FlutterBuilder from '../dsl_render/flutter/builder';
+import BuilderMap from './builderMap';
 import { debug } from 'util';
-
-let outputMap: any = {
-  h5: H5Builder,
-  flutter: FlutterBuilder,
-};
 
 /**
  * dsl服务的主使用接口
@@ -43,9 +37,9 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     _initInput(input);
     // 初始化进程参数
     let option = _initOptions(_options);
-
+    let outpupMap: any = BuilderMap;
     let outputType = option.outputType;
-    let builder = outputMap[outputType];
+    let builder = outpupMap[outputType];
     // 数据清洗
     let nodes = input.nodes;
     processDesc = '构建节点';

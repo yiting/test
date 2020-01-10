@@ -13,6 +13,12 @@ export default {
     Top: 'Top',
     Bottom: 'Bottom',
   },
+  // flex:1
+  LayoutFlex: {
+    Default: 'Default',
+    Auto: 'Auto',
+    None: 'None',
+  },
   // 固定高度
   LayoutFixedHeight: {
     Default: 'Default',
@@ -22,12 +28,6 @@ export default {
   LayoutFixedWidth: {
     Default: 'Default',
     Fixed: 'Fixed',
-  },
-  // flex:1
-  LayoutFlex: {
-    Default: 'Default',
-    Auto: 'Auto',
-    None: 'None',
   },
   /**
    * 父容器排版方式描述
@@ -49,15 +49,15 @@ export default {
     Center: 'Center',
     // Between: 4
   },
-  // 换行
-  LayoutWrap: {
-    Nowrap: 'Nowrap',
-    Wrap: 'Wrap',
-  },
   // 纵轴居开始
   LayoutAlignItems: {
     Start: 'Start',
     End: 'End',
     Center: 'Center',
+  },
+  // 换行
+  LayoutWrap: {
+    Nowrap: 'Nowrap',
+    Wrap: 'Wrap',
   },
 };
