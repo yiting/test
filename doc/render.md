@@ -1,4 +1,4 @@
-# Render
+# 可自定义的目标语言渲染器
 
 ## 概述
 
@@ -151,7 +151,7 @@ getTemplate(designJSON,{
 | abXops                                 | Number               | 节点`右下角`相对根节点坐标 X                  |
 | abYops                                 | Number               | 节点`右下角`相对根节点坐标 Y                  |
 | path                                   | String \| Null       | 节点图片路径                                  |
-| constraints                            | Object               | 节点约束属性                                  |
+| constraints                            | Constraints          | 节点约束属性                                  |
 | zindex                                 | Number`{0+}`         | 节点层级，zindex 越大层级越高                 |
 | isMultiline                            | Boolean              | 是否多行文本                                  |
 | styles                                 | Style                | 样式对象                                      |
@@ -199,3 +199,16 @@ getTemplate(designJSON,{
 | \_height                               | Getter:Number        | 节点高度                                      |
 | \_margin                               | Getter:Object        | 外边距`left`、`top`、`right`、`bottom`        |
 | \_padding                              | Getter:Object        | 内边距`left`、`top`、`right`、`bottom`        |
+
+## Constraints
+
+| 约束名               | 约束属性                       | 描述               |
+| -------------------- | ------------------------------ | ------------------ |
+| LayoutFixedHeight    | Default、Fixed                 | 高度约束           |
+| LayoutFixedWidth     | Default、Fixed                 | 宽度约束           |
+| LayoutFlex           | Default、Auto、 None           | 伸缩约束           |
+| LayoutPosition       | Static、Absolute               | 定位约束           |
+| LayoutDirection      | Default、Horizontal、 Vertical | 子节点排列方向约束 |
+| LayoutJustifyContent | Start、End、 Center            | 主轴排列方式约束   |
+| LayoutAlignItems     | Start、End、 Center            | 副轴排列方式约束   |
+| LayoutWrap           | Nowrap、Wrap                   | 换行约束           |
