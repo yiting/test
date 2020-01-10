@@ -58,15 +58,11 @@
   - [ ] 优化模型识别（模型设计、算法、AI 辅助）。
   - [ ] 优化 DSL 树的结构（算法）。
   - [ ] 优化循环结构处理（算法）。
-- [ ] Render&Template（`负责人chironyang`）：通过模板引擎的重组能力和样式映射关系，把设计数据解析成终端代码。[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/Render&Template.md)
-  - [x] XML 解析引擎，解析 XML 结构模板，生成 json 结构的数据
-  - [ ] 静态模板组装引擎，根据数据特点，把节点内容替换成模板内容
-  - [x] 动态模板组装引擎，根据模板数据结合 RenderTree 生成 TemplateData
-  - [x] HTML 模板组装引擎，继承于动态模板组装引擎，根据 HTML 特性，把生成符合 HTML 特点的 TemplateData
-  - [ ] 优化「HTML 模板组装引擎」的语义化逻辑
-  - [ ] 优化 Css_Dom 样式输出的继承性问题
+- [ ] Render（`负责人chironyang`）：通过 Render 把设计数据映射在模板上，最终解析成终端代码。[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/render.md)
+  - [x] 模板映射，根据数据生成模板代码
+  - [ ] 优化 样式命名 ClassName
   - [ ] 优化 Css_Dom 样式输出的默认属性问题
-  - [ ] 优化 H5_builder 中,样式名组合逻辑
+  - [ ] 优化 Flutter 语言的流式布局逻辑
   - [ ] 设计稿分辨率兼容
 - [ ] AI 虚拟目标识别（`负责人ralychen`）：对设计稿的图元以及 UI 结构识别。[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/AI.md)
   - [ ] 完善增加 design15 数据集。
