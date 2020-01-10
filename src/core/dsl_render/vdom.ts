@@ -5,7 +5,6 @@ export default class VDom {
   children: any[];
   parent: any;
   id: any;
-  template: any;
   type: any;
   serialId: any;
   similarId: any;
@@ -77,7 +76,7 @@ export default class VDom {
     return '';
   }
 
-  _isAbsolute() {
+  protected _isAbsolute() {
     if (
       this.constraints.LayoutPosition &&
       this.constraints.LayoutPosition === Constraints.LayoutPosition.Absolute
@@ -87,7 +86,7 @@ export default class VDom {
 
     return false;
   }
-  _isParentVertical() {
+  protected _isParentVertical() {
     return !this._isParentHorizontal();
   }
 
@@ -95,7 +94,7 @@ export default class VDom {
    * 节点的排列是否为横排
    * @returns {Boolean}
    */
-  _isParentHorizontal() {
+  protected _isParentHorizontal() {
     if (!this.parent) {
       return false;
     }
@@ -122,14 +121,14 @@ export default class VDom {
    * 节点是否为固定宽度节点
    * @param {CssDom} node CssDom节点
    */
-  _canLeftFlex() {
+  protected _canLeftFlex() {
     return this._canFlex(true);
   }
 
-  _canRightFlex() {
+  protected _canRightFlex() {
     return this._canFlex(false);
   }
-  _canFlex(isLeft: boolean) {
+  private _canFlex(isLeft: boolean) {
     if (
       this.constraints.LayoutFixedWidth === Constraints.LayoutFixedWidth.Fixed
     ) {
@@ -199,7 +198,7 @@ export default class VDom {
   /**
    * 获取当前节点的前一个兄弟节点,若没有则返回null
    */
-  _prevNode() {
+  protected _prevNode() {
     if (this.type === Dictionary.type.QBody || !this.parent) {
       // 根节点
       return null;
@@ -237,7 +236,7 @@ export default class VDom {
    * 1. 水平排列的，比当前节点位置高的
    * 2. 垂直排列的，比当前节点位置左的
    */
-  _prevLine() {
+  protected _prevLine() {
     const that: any = this;
     const _prevNodes: any = [];
     if (that.type === Dictionary.type.QBody || !that.parent) {
@@ -271,7 +270,7 @@ export default class VDom {
    * 1. 水平排列的，比当前节点位置低的
    * 2. 垂直排列的，比当前节点位置右的
    */
-  _nextLine() {
+  protected _nextLine() {
     const that: any = this;
     const _nextNodes: any = [];
     if (that.type === Dictionary.type.QBody || !that.parent) {
@@ -302,7 +301,7 @@ export default class VDom {
   /**
    * 获取当前节点的下一个兄弟节点,若没有则返回null
    */
-  _nextNode() {
+  protected _nextNode() {
     if (this.type === Dictionary.type.QBody || !this.parent) {
       // 根节点
       return null;
@@ -321,61 +320,42 @@ export default class VDom {
     return null;
   }
 
-  get slot() {
+  protected get slot() {
     return (
       this.children &&
       this.children
         .map((d: any) => {
-          return d.getUI(d.template);
+          return d.getUI();
         })
         .join('')
     );
   }
 
-  get _position() {
-    return this.constraints.LayoutPosition;
-  }
-  get _flex() {
-    return this.constraints.LayoutFlex;
-  }
-  get _direction() {
-    return this.constraints.LayoutDirection;
-  }
-  get _justifyContent() {
-    return this.constraints.LayoutJustifyContent;
-  }
-  get _alignItems() {
-    return this.constraints.LayoutAlignItems;
-  }
-  get _wrap() {
-    return this.constraints.LayoutWrap;
-  }
-
-  get _left() {
+  protected get _left() {
     return this.parent ? this.abX - this.parent.abX : this.abX;
   }
 
-  get _top() {
+  protected get _top() {
     return this.parent ? this.abY - this.parent.abY : this.abY;
   }
 
-  get _right() {
+  protected get _right() {
     return this.parent ? this.parent.abXops - this.abXops : 0;
   }
 
-  get _bottom() {
+  protected get _bottom() {
     return this.parent ? this.parent.abYops - this.abYops : 0;
   }
 
-  get _width() {
+  protected get _width() {
     return this.abXops - this.abX;
   }
 
-  get _height() {
+  protected get _height() {
     return this.abYops - this.abY;
   }
 
-  get _margin() {
+  protected get _margin() {
     let left = this._left,
       right = this._right,
       top = this._top,
@@ -432,7 +412,7 @@ export default class VDom {
     };
   }
 
-  get _padding() {
+  protected get _padding() {
     let flexNodes = this.children.map((node: any) => !node._isAbsolute());
     let range = Utils.calRange(flexNodes);
     return {

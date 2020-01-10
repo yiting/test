@@ -15,12 +15,7 @@ class Builder {
 
   dom: any;
 
-  _tagString: string;
-
-  _styleString: string;
-
   options: any;
-
   constructor(data: any, options: any, TemlateList: any[]) {
     try {
       this.options = options; // 布局样式
