@@ -96,10 +96,10 @@ export let map: any = [
 ];
 export let defaultProperty: any = {
   display: 'block',
-  alignItems: 'normal',
+  alignItems: 'flex-start',
   flexDirection: 'row',
   flexWrap: 'nowrap',
-  justifyContent: 'normal',
+  justifyContent: 'flex-start',
   flex: '0 1 auto',
   width: 'auto',
   height: 'auto',
