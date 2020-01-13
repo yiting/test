@@ -176,7 +176,8 @@ export default class TemplateDom extends VDom {
         let overlook: boolean = false;
         if (similarValue) {
           overlook = compValue === similarValue;
-        } else if (isInherit) {
+        } else if (that.parent && isInherit) {
+          // 如果有父节点，且可继承
           overlook = compValue === parentValue;
         } else {
           overlook = compValue === defaultValue;
