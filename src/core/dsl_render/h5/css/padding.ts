@@ -8,9 +8,10 @@ import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
 export default {
   key: 'padding',
   value() {
+    /* 未知这段为何被使用，暂时注释删除
     if (!this.parent) {
       return cssDefaultProperty.padding;
-    }
+    } */
     const css: any[] = [0, 0, 0, 0];
     //横排
     css[0] = paddingTop.value.call(this) || 0;
