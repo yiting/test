@@ -12,10 +12,10 @@ export default {
   value() {
     //数组值保持跟magin属性一样的定位方式：上右下左
     const css: any[] = [0, 0, 0, 0];
-    //绝对定位就不需要margin了
     if (!this.parent) {
       return cssDefaultProperty.margin;
     }
+    //绝对定位就不需要margin了
     if (this._isAbsolute()) {
       return cssDefaultProperty.margin;
     }

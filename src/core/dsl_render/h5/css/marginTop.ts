@@ -16,7 +16,7 @@ export default {
     }
     let parentPaddingTop =
       (this.parent && paddingTop.value.call(this.parent)) ||
-      cssDefaultProperty.marginTop;
+      +cssDefaultProperty.marginTop;
 
     if (this._isParentHorizontal()) {
       // 横排计算与父节点距离
