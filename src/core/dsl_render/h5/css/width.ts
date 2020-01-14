@@ -1,14 +1,15 @@
 // import Constraints from '../../../helper/constraints';
 import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
+import display from './display';
 export default {
   key: 'width',
   value() {
-    const _hasWidth = this._hasWidth();
+    let _hasWidth = this._hasWidth();
     if (_hasWidth) {
-      const width = Math.abs(this.abXops - this.abX);
-      const parentWidth =
+      let width = Math.abs(this.abXops - this.abX);
+      let parentWidth =
         this.parent && Math.abs(this.parent.abXops - this.parent.abX);
-      return parentWidth === width ? '100%' : width;
+      return parentWidth === width ? cssDefaultProperty.width : width;
     }
     return cssDefaultProperty.width;
   },

@@ -30,7 +30,9 @@ export default function(nodes: any[], modelList: any[]) {
     let newNode = new ModelType(node);
 
     // 判断节点类型
-    if (newNode.type === Dictionary.type.QBody) {
+    if (newNode.type === Dictionary.type.QLayer) {
+      // bodyModel = newNode;
+      newNode = newNode.exchangeModel(BodyModel);
       bodyModel = newNode;
     }
     newNodeList.push(newNode);

@@ -151,6 +151,9 @@ const utils = {
   isHorizontal(doms: any[], _errorCoefficient: any = 0) {
     const errorCoefficient = parseFloat(_errorCoefficient) || 0;
     const _ = this;
+    // if (doms.length < 2) {
+    //   return false;
+    // }
     return doms
       .filter((n: any) => {
         return !this.isAbsolute(n);

@@ -1,5 +1,7 @@
 import Dictionary from '../../../dsl_layout/helper/dictionary';
 import { defaultProperty as cssDefaultProperty } from '../dom/propertyMap';
+import Constraints from '../../../dsl_layout/helper/constraints';
+
 export default {
   key: 'display',
   value(): any {
@@ -15,7 +17,11 @@ export default {
     if (this.parent && this.parent.type === Dictionary.type.QText) {
       return 'inline-flex';
     }
-    if (this.type !== Dictionary.type.QText && this.children.length) {
+    if (
+      this.type !== Dictionary.type.QText &&
+      this.constraints.LayoutDirection ===
+        Constraints.LayoutDirection.Horizontal
+    ) {
       return 'flex';
     }
     return cssDefaultProperty.display;

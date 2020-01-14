@@ -1,4 +1,5 @@
 import Utils from '../helper/methods';
+import Dictionary from '../helper/dictionary';
 
 export default (dslTree: any) => {
   return clean(dslTree);
@@ -14,6 +15,7 @@ function merge(node: any) {
     let children = Utils.filterAbsNode(node.children);
     let child = children[0];
     if (
+      child.type != Dictionary.type.QText &&
       children.length == 1 &&
       child.abY == node.abY &&
       child.abYops == node.abYops &&
@@ -26,6 +28,7 @@ function merge(node: any) {
   return node;
 }
 function replace(parent: any, child: any) {
+  console.log(parent.id, child.id);
   let otherNodes = parent.children.filter((c: any) => c !== child);
   otherNodes.forEach((c: any) => (c.parent = child));
   child.children.push(...otherNodes);

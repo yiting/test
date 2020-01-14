@@ -80,8 +80,10 @@ function _row(parent: any) {
       let node: any = new LayerModel({
         parent,
         abX: parent.abX,
+        // abX: arr.abX,
         abY: arr.abY,
         abXops: parent.abXops,
+        // abXops: arr.abXops,
         abYops: arr.abYops,
       });
 

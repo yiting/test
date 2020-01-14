@@ -5,6 +5,7 @@ import QLog from '../dsl_layout/helper/qlog';
 import TextRevise from './helper/textRevise';
 import CssBoundary from './helper/boundary';
 import CssConstraints from './helper/supplementConstraints';
+import LayoutCleanProcess from '../dsl_layout/layout/clean';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 class Builder {
@@ -20,10 +21,13 @@ class Builder {
     try {
       this.options = options; // 布局样式
       this.dom = _buildTree(null, data, TemlateList);
-      Loger.debug('render/h5/dom_css [ReviseDomTree]');
+      Loger.debug('render/builder [ReviseDomTree]');
       ReviseDomTree(this.dom);
-      Loger.debug('render/h5/dom_css [TextRevise]');
+      Loger.debug('render/builder [TextRevise]');
       TextRevise(this.dom);
+      // 结构清理
+      // Loger.debug('render/builder [LayoutCleanProcess]');
+      // this.dom = LayoutCleanProcess(this.dom);
     } catch (e) {
       Loger.error(`render/builder [constructor]:${e}`);
     }
