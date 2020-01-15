@@ -78,7 +78,9 @@ function pipe(node: any) {
         curNode.styles.lineHeight = rowLineHeight;
         curNode.styles.texts = [];
         curNode.abY += increaseTop;
-        curNode.styles.texts.push(...row.texts.filter((n: any) => !!n.string));
+        let textArr = row.texts.filter((n: any) => !!n.string);
+        curNode.styles.texts.push(...textArr);
+        curNode.text = textArr.map((n: any) => n.string);
         const rows = calRows(curNode.styles.texts, node.width);
         curNode.abYops = curNode.abY + rowLineHeight * rows;
 

@@ -42,13 +42,14 @@ function _process(_input: any, _options: any, _compileType?: any): object {
     let builder = outpupMap[outputType];
     // 数据清洗
     let nodes = input.nodes;
+    processDesc = '数据清洗';
+    nodes = NodeCleanProcess(nodes);
+
     processDesc = '构建节点';
     let layoutNodes = ModelProcess(nodes, builder.modelList);
     // 干预处理
     // processDesc = '干预处理';
     // layoutNodes = InterfereModelProcess(layoutNodes);
-    processDesc = '数据清洗';
-    layoutNodes = NodeCleanProcess(layoutNodes);
     // 生成树
     processDesc = '节点分组';
     let dslTree = GroupProcess(layoutNodes);

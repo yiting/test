@@ -8,7 +8,7 @@ export default class Text extends HtmlTemplate {
     this._orignTagName = 'span';
   }
   getUI() {
-    return `<span class="${this.htmlClassName}" ${this.id}>${this.text}${
+    return `<span class="${this.htmlClassName}">${this.text}${
       this.slot
     }</span>`;
   }
