@@ -8,7 +8,10 @@ export default {
     if (this.modelName == Text.name) {
       return cssDefaultProperty.paddingBottom;
     }
-    if (this._hasHeight()) {
+    if (
+      this.constraints.LayoutDirection ===
+      Constraints.LayoutDirection.Horizontal
+    ) {
       return cssDefaultProperty.paddingBottom;
     }
     let minPaddingBottom: number | null = null;

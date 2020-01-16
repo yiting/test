@@ -197,13 +197,6 @@ export default class TemplateDom extends VDom {
     }
     return props;
   }
-  textClassName(): string {
-    let node = this;
-    if (node.styles.texts[0] && node.styles.texts[0].size > 30) {
-      return 'title';
-    }
-    return 'text';
-  }
   layerClassName(): string {
     let node = this;
     let indexObj = {

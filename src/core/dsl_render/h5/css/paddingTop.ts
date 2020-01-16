@@ -9,7 +9,10 @@ export default {
       return cssDefaultProperty.paddingTop;
     }
 
-    if (this._hasHeight()) {
+    if (
+      this.constraints.LayoutDirection ===
+      Constraints.LayoutDirection.Horizontal
+    ) {
       return cssDefaultProperty.paddingTop;
     }
     let minPaddingTop: number | null = null;
