@@ -8,6 +8,8 @@ Render 模块负责对 DSL 中生成的布局结构型数据进行编译渲染�
 
 Render 模块主要通过`VDom`和`tpl`实现目标语言的转换：`VDom`提供了各模型模板所须的节点信息和函数方法；`tpl`继承`VDom`，根据模型特点实现具体的代码。
 
+![](./images/render.png)
+
 #### 步骤一 创建模块文件
 
 创建在`src/core/dsl_render`中创建 Render 模块，文件结构如下
@@ -131,7 +133,23 @@ getTemplate(designJSON,{
 })
 ```
 
-## VDom 属性&函数
+## VDom
+
+在 Render 模块中，VDom 为每个模板提供对应节点数据属性，其包含了来自于 DSL 的属性，也包含自身特性计算的属性。在编写模板时，所需应用的属性值，都应继承于此类，继承关系如下
+
+```ts
+class Dom extends VDom{
+  // 目标语言节点继承自 VDom
+  ...
+}
+
+class ModelTemplate extends Dom{
+  // 目标语言模板继承自 Dom
+  ...
+}
+```
+
+### VDom 的属性&函数
 
 | 名字                                   | 类型                 | 描述                                          |
 | -------------------------------------- | -------------------- | --------------------------------------------- |
@@ -201,6 +219,9 @@ getTemplate(designJSON,{
 | \_padding                              | Getter:Object        | 内边距`left`、`top`、`right`、`bottom`        |
 
 ## Constraints
+
+Constraints 用于描述节点与节点的布局关系，参考了 Css 的 Flex 规范，通过约束关系可以推导出节点的位置、边距等数据信息。
+在 Render 中，每个 VDom 都包含了 constraints，具体约束规范如下：
 
 | 约束名               | 约束属性                       | 描述               |
 | -------------------- | ------------------------------ | ------------------ |
