@@ -4,9 +4,11 @@
 
 Render 模块负责对 DSL 中生成的布局结构型数据进行编译渲染，该模块允许自定义其他目标语言的转换。
 
+
 ## 如何快速构建 Render
 
 Render 模块主要通过`VDom`和`tpl`实现目标语言的转换：`VDom`提供了各模型模板所须的节点信息和函数方法；`tpl`继承`VDom`，根据模型特点实现具体的代码。
+如需要帮助请联系：wxwork://message/username=orlandowang
 
 ![](./images/render.png)
 
