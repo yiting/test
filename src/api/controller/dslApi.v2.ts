@@ -3,7 +3,7 @@ import dslService from '../../core/dsl_service_ts/dslService';
 // import dslProcess from '../../core/dsl_service_ts/process';
 
 export default async function process(context: Context) {
-  const { designJSON, renderData, options } = context.request.body;
+  const { designJSON, renderData, options, complieType } = context.request.body;
   const input = {
     nodes: designJSON,
     renderData: renderData,
@@ -23,7 +23,7 @@ export default async function process(context: Context) {
       },
       options,
     );
-    const data = dslService.process(input, opt);
+    const data = dslService.process(input, opt, complieType);
     if (data) {
       res.data = data;
     } else {

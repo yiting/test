@@ -66,7 +66,7 @@ const ImageCombine = function() {
     this.pageId = param.pageId;
 
     logger = qlog.getInstance(store.default.getAll());
-    // logger = console;
+    logger = console;
   };
 
   this.unzipSketch = async projectName => {
@@ -863,7 +863,9 @@ const ImageCombine = function() {
   this.makeImgsByUpdateSketch = async param => {
     // try {
     let { projectName, imgList, isPreedit = false } = param;
-
+    let targetImgList = imgList.filter(function(item) {
+      return item.path;
+    });
     if (imgList.length == 0) {
       return new Promise(function(resolve, reject) {
         resolve([]);
@@ -920,12 +922,19 @@ const ImageCombine = function() {
         artboardIndex = imgList[i]['levelArr'][0];
         break;
       }
-      if (
+      //有些节点是合成节点，此时要看该节点下的子节点有没有levelArr属性，从而找artboard index
+      var j = 0;
+      while (
+        typeof artboardIndex == 'undefined' &&
         typeof imgList[i]['_imageChildren'] != 'undefined' &&
         imgList[i]['_imageChildren'].length > 0 &&
-        typeof imgList[i]['_imageChildren'][0]['levelArr'] != 'undefined'
+        j < imgList[i]['_imageChildren'].length &&
+        typeof imgList[i]['_imageChildren'][j]['levelArr'] == 'undefined'
       ) {
-        artboardIndex = imgList[i]['_imageChildren'][0]['levelArr'][0];
+        j++;
+      }
+      if (j < imgList[i]['_imageChildren'].length) {
+        artboardIndex = imgList[i]['_imageChildren'][j]['levelArr'][0];
         break;
       }
     }
@@ -1035,7 +1044,7 @@ const ImageCombine = function() {
     const result = await this.makeImg(param);
 
     // 8.压缩图片
-    await that.compressImgs(that.outputDir, projectName, imgList);
+    await that.compressImgs(that.outputDir, projectName, targetImgList);
 
     // 8、删除修改版sketch
     serverModulesUtils.deleteFolder(updateFilePath);

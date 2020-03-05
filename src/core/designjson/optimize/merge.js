@@ -94,7 +94,11 @@ class ImageMergeProcessor {
   static _nodeMerge(node) {
     // 规则判断
     if (node.children.length) {
-      this._mergeGroupToParent(node.children, node); // 非mask关联则进行规则判断合并
+      this._mergeGroupToParent(
+        node.children,
+        node,
+        this.RuleConfig.isManualCombine,
+      ); // 合图规则判断合并
       if (node.parent && node.children.length) {
         // 如果合并完有子元素，则提至祖父级
         let { parent, children } = node;
@@ -109,10 +113,12 @@ class ImageMergeProcessor {
       }
     }
   }
-  static _mergeGroupToParent(nodes, parent) {
+  static _mergeGroupToParent(nodes, parent, isManualCombine = false) {
     if (!nodes || !nodes.length) return;
-    const targetNodes = nodes.filter(
-      node => node.type === QShape.name || node.type === QImage.name,
+    const targetNodes = nodes.filter(node =>
+      isManualCombine
+        ? node.type !== QLayer.name
+        : node.type === QShape.name || node.type === QImage.name,
     ); // 过滤掉文字节点、组节点
     if (targetNodes.length < 2) return;
     const groupArr = mergeJudge(targetNodes, this.RuleConfig, parent); // 根据规则输出 成组列表 [[node1,node2],[node3,node4],node5]
@@ -131,7 +137,7 @@ class ImageMergeProcessor {
     groupArr.map(item => {
       if (item.size > 1) {
         var newnode = DesignTree.union([...item]);
-        this.score(newnode, [...item]);
+        // this.score(newnode, [...item]);
       }
     });
   }
@@ -211,36 +217,6 @@ class ImageMergeProcessor {
     }
     return commonColor;
   }
-  // 将节点转换成QImage
-  _convertToImageNode(node) {
-    console.log('转化为图片', node.name);
-    // const {id,name,}
-    // Object.assign(node,new QImage(),{ path, type: QImage.name, id: node.id, name: node.name });
-    node.type = QImage.name;
-    node.path = `${node.id}.png`;
-    node.shapeType && delete node.shapeType;
-    node.styles = { borderRadius: node.styles.borderRadius || [0, 0, 0, 0] };
-    if (node.children && node.children.length)
-      node._imageChildren = [...node.children];
-    node.pureColor = this.getNodesCommonColor(node.children);
-    node.children = [];
-    (node.isLeaf = true), (node.childnum = 0);
-    // this.tree._images.push(node.id); // 添加组图片信息
-  }
-  _convertToLayerNode(node) {
-    // 将rectangle矩形转为QLayer
-    node.type = QLayer.name;
-  }
-  // 将树的QImage和QShape的id插入列表，等待export.js输出
-  static _updateTreeImages(node) {
-    console.log('-----特殊形状转换-----');
-    walkout(node, n => {
-      if (needConvertToImage(n)) {
-        // QShape -> QImage
-        DesignTree.convert(n, QImage.name);
-      }
-    });
-  }
 }
 // 裁剪越界图片
 function modifySize(rootNode) {
@@ -261,22 +237,6 @@ function modifySize(rootNode) {
       img.height += rootNode.abYops - img.abYops;
     }
   });
-}
-function needConvertToImage(node) {
-  switch (node.type) {
-    case QImage.name:
-      return false;
-    case QText.name:
-      return false; // TODO
-    case QShape.name: {
-      const { shapeType, styles } = node;
-      let isComplexShape = shapeType != Rectangle && !node.isCircle;
-      let isComplexBg = styles.background && styles.background.type === 'image';
-      return isComplexShape || isComplexBg;
-    }
-    default:
-      return false;
-  }
 }
 function mergeJudge(nodelist, ruleConfig, root) {
   // 对每条边进行评分
@@ -330,7 +290,7 @@ function mergeJudge(nodelist, ruleConfig, root) {
   return groups;
 }
 function getRuleConfig(ruleMap, option) {
-  const { aiData, sliceData, rate, combineLayers } = option;
+  const { aiData, sliceData, rate, combineLayers, isManualCombine } = option;
   let ruleConfig = {};
   ruleMap.data.forEach(item => {
     ruleConfig[item.type] = {
@@ -354,6 +314,7 @@ function getRuleConfig(ruleMap, option) {
     });
   ruleConfig.sliceArr = sliceData;
   ruleConfig.combineLayers = combineLayers;
+  ruleConfig.isManualCombine = isManualCombine;
   return ruleConfig;
 }
 module.exports = process;

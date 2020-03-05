@@ -38,26 +38,23 @@ async function init(context: Context) {
 }
 async function parse(context: Context) {
   const { response: res, request: req } = context;
-  let { artboardId, data, fileType } = req.body;
+  let { condition, artboardId, data: option, fileType } = req.body;
   let parseData: any = {};
-  let { aiData, font: fontData, isPreedit, combineLayers } = data;
   let responseData: ResponseData = new ResponseData();
   try {
     // sketch特殊处理
-    const dataPath = `${TEMP_DIRECTORY}/${data.dataToken}/${
-      data.dataToken
+    const dataPath = `${TEMP_DIRECTORY}/${option.dataToken}/${
+      option.dataToken
     }.json`;
     if (!fs.existsSync(dataPath)) {
       responseData.state = 2;
       responseData.msg = '找不到文件';
     } else {
-      const jsonData = Object.assign(require(dataPath), {
-        aiData,
-        fontData,
-        isPreedit,
-        combineLayers,
-      });
-      parseData = DesignJson.parse(artboardId, jsonData);
+      const jsonData = require(dataPath);
+      parseData = parseNode(
+        { condition, artboardId, fileType, jsonData },
+        option,
+      );
       responseData.data = parseData;
     }
   } catch (error) {
@@ -67,6 +64,56 @@ async function parse(context: Context) {
   }
   res.body = responseData;
 }
+
+function parseNode(
+  { condition = 0, artboardId = '', fileType = 'sketch', jsonData = null },
+  option: any,
+) {
+  switch (condition) {
+    case 0: {
+      let {
+        aiData,
+        font: fontData,
+        isPreedit,
+        combineLayers,
+        outputPath = '',
+      } = option;
+      const data = Object.assign(jsonData, {
+        outputPath,
+        aiData,
+        fontData,
+        isPreedit,
+        combineLayers,
+      });
+      return DesignJson.parse(artboardId, fileType, data);
+    }
+    case 1: {
+      let { font: fontData, outputPath = '' } = option;
+      const data = Object.assign(jsonData, {
+        outputPath,
+        fontData,
+      });
+      return DesignJson.pureParse(artboardId, fileType, data);
+    }
+    case 2: {
+      let {
+        idList,
+        isPreedit,
+        combineLayers,
+        outputPath = '',
+        isManualCombine,
+      } = option;
+      const data = Object.assign(jsonData, {
+        isPreedit,
+        combineLayers,
+        outputPath,
+        isManualCombine,
+      });
+      return DesignJson.localParse(artboardId, fileType, idList, data);
+    }
+  }
+}
+
 function writeData(data: any, filename: string, directory: string) {
   try {
     const res = JSON.stringify(data);

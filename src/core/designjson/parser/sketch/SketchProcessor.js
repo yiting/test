@@ -10,7 +10,7 @@ const {
 const { SKETCH_LAYER_TYPES } = require('./SketchLayerTypes');
 const DesignTree = require('../../nodes/DesignTree');
 /**
- * @class 针对Sketch图元预处理，包括位置设置、mask合并等
+ * @class 针对Sketch图元预处理，包括位置设置/mask合并等，test2
  */
 class SketchProcessor {
   static process(node, data = { sliceData: [], fontData: {} }) {
@@ -149,7 +149,7 @@ class SketchProcessor {
       });
     }
     function _getFontDefaultLineHeight(fontName, fontData) {
-      const name = fontName.replace(/[-\s]/g, '').toLowerCase();
+      const name = fontName.replace(/[\.-\s]/g, '').toLowerCase();
       if (!name || !fontData[name]) return null;
       return fontData[name].lineHeight;
     }

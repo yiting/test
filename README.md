@@ -4,11 +4,13 @@
 
 官网：http://uitocode.oa.com
 
-#### 注意：项目分为两个仓库地址:
+#### 注意：项目分为三个仓库地址:
 
 #### 基础模块服务：http://git.code.oa.com/qqpay_ui/toSeeWeb.git
 
-#### web 服务：http://git.code.oa.com/alltasxiao/tosee_web_server_iframe_mix.git
+#### web 服务[前端]：https://git.code.oa.com/qqpay_ui/toSeeWebFE
+
+#### web 服务[后端]：https://git.code.oa.com/qqpay_ui/toSeeWebPlatform
 
 ## 相关文章介绍
 
