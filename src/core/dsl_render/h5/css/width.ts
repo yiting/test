@@ -9,7 +9,12 @@ export default {
       let width = Math.abs(this.abXops - this.abX);
       let parentWidth =
         this.parent && Math.abs(this.parent.abXops - this.parent.abX);
-      return parentWidth === width ? cssDefaultProperty.width : width;
+      let isBlockOfParent =
+        this.parent && this.parent.display === cssDefaultProperty.display;
+      let isSameWidthOfParent = parentWidth === width;
+      return isBlockOfParent && isSameWidthOfParent
+        ? cssDefaultProperty.width
+        : width;
     }
     return cssDefaultProperty.width;
   },
