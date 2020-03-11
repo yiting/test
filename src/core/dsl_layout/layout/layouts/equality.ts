@@ -100,7 +100,11 @@ function isJustifyAround(nodes: any, parent: any) {
 }
 function isAllCanFlex(nodes: any) {
   return nodes.every((node: any) => {
-    return node.canLeftFlex !== false && node.canRightFlex !== false;
+    return (
+      node.canLeftFlex !== false &&
+      node.canRightFlex !== false &&
+      node.constraints.LayoutFixedWidth !== Constraints.LayoutFixedWidth.Fixed
+    );
   });
 }
 //  调整居中模型位置
