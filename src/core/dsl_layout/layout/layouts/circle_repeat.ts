@@ -1,5 +1,5 @@
 // 循环结构的逻辑处理模块
-import Constraints from '../../helper/constraints';
+import Constraints from '../../../dsl_helper/constraints';
 import Similar from './similar';
 import LayerModel from '../../../dsl_model/models/layer';
 import ListModel from '../../../dsl_render/h5/models/list/model';

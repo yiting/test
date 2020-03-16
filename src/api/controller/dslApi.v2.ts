@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-import dslService from '../../core/dsl_service_ts/dslService';
+import dslService from '../../core/dsl_service/dslService';
 // import dslProcess from '../../core/dsl_service_ts/process';
 
 export default async function process(context: Context) {
@@ -23,7 +23,7 @@ export default async function process(context: Context) {
       },
       options,
     );
-    const data = dslService.process(input, opt, complieType);
+    const data = dslService.process(input, opt);
     if (data) {
       res.data = data;
     } else {

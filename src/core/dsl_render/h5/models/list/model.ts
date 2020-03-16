@@ -1,5 +1,4 @@
 import LayerModel from '../../../../dsl_model/models/layer';
-import Dictionary from '../../../../dsl_layout/helper/dictionary';
 class List extends LayerModel {
   constructor(node: any = {}) {
     super(node);

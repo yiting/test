@@ -1,6 +1,6 @@
-import HtmlTemplate from '../../dom/dom';
+import HtmlDom from '../../dom/dom';
 
-export default class ListItem extends HtmlTemplate {
+export default class ListItem extends HtmlDom {
   constructor(dom: any, parent: any) {
     super(dom, parent);
     this._orignClassName = 'list-item';

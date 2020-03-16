@@ -1,9 +1,9 @@
 // 绝对定位布局模型处理
-import Utils from '../../helper/methods';
+import Utils from '../../../dsl_helper/methods';
 // import Model from '../model';
-import Constrains from '../../helper/constraints';
-import Store from '../../helper/store';
-import Dictionary from '../../helper/dictionary';
+import Constrains from '../../../dsl_helper/constraints';
+import Store from '../../../dsl_helper/store';
+import Dictionary from '../../../dsl_helper/dictionary';
 
 // flex layout 的处理核心是
 //

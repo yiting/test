@@ -1,15 +1,19 @@
-import HtmlTemplate from '../../dom/dom';
+import HtmlDom from '../../dom/dom';
 
-export default class Image extends HtmlTemplate {
+export default class Image extends HtmlDom {
   constructor(dom: any, parent: any) {
     super(dom, parent);
     this._orignClassName = getClassName(this);
     this._orignTagName = 'div';
   }
   getUI() {
-    return `<div class="${this.htmlClassName}" style="background-image:url(${
-      this.imgPath
-    })"></div>`;
+    if (this.path) {
+      return `<div class="${this.htmlClassName}" style="background-image:url(${
+        this.imgPath
+      })">${this.slot}</div>`;
+    } else {
+      return `<div class="${this.htmlClassName}" >${this.slot}</div>`;
+    }
   }
 }
 function getClassName(dom: any) {

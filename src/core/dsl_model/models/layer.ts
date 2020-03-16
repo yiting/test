@@ -1,6 +1,6 @@
 import Model from '../../dsl_layout/model/model';
-import Dictionary from '../../dsl_layout/helper/dictionary';
-import Methods from '../../dsl_layout/helper/methods';
+import Dictionary from '../../dsl_helper/dictionary';
+import Methods from '../../dsl_helper/methods';
 export default class Layer extends Model {
   constructor(node: any) {
     super(node);

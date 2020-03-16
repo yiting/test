@@ -1,7 +1,7 @@
 // 这里定义数据输出的统一接口
 // h5, ios, android, weex等
 
-import QLog from '../dsl_layout/helper/qlog';
+import QLog from '../dsl_helper/qlog';
 import TextRevise from './helper/textRevise';
 import CssBoundary from './helper/boundary';
 import CssConstraints from './helper/supplementConstraints';

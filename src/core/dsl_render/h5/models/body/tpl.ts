@@ -1,6 +1,6 @@
-import HtmlTemplate from '../../dom/dom';
+import HtmlDom from '../../dom/dom';
 
-export default class Body extends HtmlTemplate {
+export default class Body extends HtmlDom {
   constructor(dom: any, parent: any) {
     super(dom, parent);
     this._orignClassName = 'body';

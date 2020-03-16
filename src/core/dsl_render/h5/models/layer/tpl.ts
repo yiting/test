@@ -1,6 +1,6 @@
-import HtmlTemplate from '../../dom/dom';
+import HtmlDom from '../../dom/dom';
 
-export default class Layer extends HtmlTemplate {
+export default class Layer extends HtmlDom {
   constructor(dom: any, parent: any) {
     super(dom, parent);
     this._orignClassName = this.layerClassName();

@@ -1,35 +1,59 @@
 // import fs from 'fs';
 import path from 'path';
-import QLog from '../../dsl_layout/helper/qlog';
-import Store from '../../dsl_layout/helper/store';
+import QLog from '../../dsl_helper/qlog';
+import Store from '../../dsl_helper/store';
 // 配置
 import * as renderConfig from '../config.json';
 // 此模块为h5解析模块
 import Builder from '../builder';
-
 import * as Style from './files/style';
 import * as SimilarCssProcess from './dom/dom_similar_css';
 import * as ClassName from './utils/className';
-// 模板
+
+import LayoutCircle from '../../dsl_layout/layout/layouts/circle';
+import LayoutClean from '../../dsl_layout/layout/clean';
+
+// 模型
 import TemplateList from './templateList';
 import ModelList from './models/modelList';
 import WidgetList from './widgets/widgetList';
+// 模板
 import tpl from './files/html';
 import testTpl from './files/test_html';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
+const walkOut = function(layoutHandle: any, dslTree: any) {
+  const { children } = dslTree;
+  if (children.length <= 0) {
+    return;
+  }
+  children.forEach((child: any) => {
+    walkOut(layoutHandle, child);
+  });
+  layoutHandle(dslTree, children);
+};
 class H5Builder extends Builder {
   similarCssMap: any;
 
   constructor(data: any, options: any) {
-    super(data, options, TemplateList);
-    // 样式名解析
-    Loger.debug('render/h5/builder [ClassName.process]');
-    // this._parseClassName();
-    ClassName.process(this.dom, ClassName.policy_oneName);
-    // 样式节点解析
-    Loger.debug('render/h5/builder [SimilarCssProcess]');
-    this.similarCssMap = SimilarCssProcess.process(this.dom);
+    var processDesc = '';
+    try {
+      processDesc = 'LayoutCircle';
+      walkOut(LayoutCircle, data);
+      processDesc = 'LayoutClean';
+      walkOut(LayoutClean, data);
+      processDesc = 'super';
+      super(data, options, TemplateList);
+
+      // 样式名解析
+      processDesc = 'ClassName.process';
+      ClassName.process(this.dom, ClassName.policy_oneName);
+      // 样式节点解析
+      processDesc = 'SimilarCssProcess.process';
+      this.similarCssMap = SimilarCssProcess.process(this.dom);
+    } catch (e) {
+      console.error(`${__filename}\n${processDesc} error:${e}`);
+    }
   }
 
   getHtml() {

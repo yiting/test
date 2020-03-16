@@ -1,6 +1,6 @@
-import Utils from '../helper/methods';
-import Constraints from '../helper/constraints';
-import Dictionary from '../helper/dictionary';
+import Utils from '../../dsl_helper/methods';
+import Constraints from '../../dsl_helper/constraints';
+import Dictionary from '../../dsl_helper/dictionary';
 import Model from '../model/model';
 import LayerModel from '../../dsl_model/models/layer';
 import BodyModel from '../../dsl_model/models/layer';
@@ -134,14 +134,14 @@ function _add(_child: any, _parent: any, _isAbsolute: Boolean) {
    * 如果父节点为QImage时，添加子节点后，父节点模型类型改为layer，
    * 让父节点取代使用QImage模板
    * */
-  if (parent.type === Dictionary.type.QImage) {
-    // parent.type = Dictionary.type.QLayer;
-    let mod = parent.parent ? LayerModel : BodyModel;
-    let newParent = parent.exchangeModel(mod);
-    newParent.constraints.LayoutFixedHeight =
-      Constraints.LayoutFixedHeight.Fixed;
-    newParent.constraints.LayoutFixedWidth = Constraints.LayoutFixedWidth.Fixed;
-  }
+  // if (parent.type === Dictionary.type.QImage) {
+  //   // parent.type = Dictionary.type.QLayer;
+  //   let mod = parent.parent ? LayerModel : BodyModel;
+  //   let newParent = parent.exchangeModel(mod);
+  //   newParent.constraints.LayoutFixedHeight =
+  //     Constraints.LayoutFixedHeight.Fixed;
+  //   newParent.constraints.LayoutFixedWidth = Constraints.LayoutFixedWidth.Fixed;
+  // }
   return child;
 }
 

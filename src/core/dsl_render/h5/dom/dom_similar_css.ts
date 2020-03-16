@@ -1,6 +1,6 @@
 // 样式的计算处理
 import CssDom from './dom';
-import QLog from '../../../dsl_layout/helper/qlog';
+import QLog from '../../../dsl_helper/qlog';
 import Func from '../utils/css_func';
 
 // 生成的Css记录树

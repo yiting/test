@@ -1,4 +1,4 @@
-import Utils from '../../helper/methods';
+import Utils from '../../../dsl_helper/methods';
 
 export default function(parent: any, nodes: any, models: any) {
   if (Utils.isHorizontal(nodes)) {

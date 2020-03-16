@@ -1,6 +1,6 @@
 // 此模块为h5解析模块
 import Builder from '../builder';
-import QLog from '../../dsl_layout/helper/qlog';
+import QLog from '../../dsl_helper/qlog';
 
 // dom
 import ModelList from './models/modelList';

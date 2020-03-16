@@ -3,7 +3,7 @@ import LayoutSimilar from './layouts/similar';
 import LayoutCircle from './layouts/circle';
 import LayoutSort from './layouts/sort';
 import LayoutBaseLine from './layouts/baseline';
-import QLog from '../helper/qlog';
+import QLog from '../../dsl_helper/qlog';
 import LayoutEquality from './layouts/equality';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
@@ -46,11 +46,11 @@ export default function(dslTree: any) {
     _logStep = '布局';
     walkIn(LayoutBaseLine, dslTree);
     // 循环
-    _logStep = '循环';
-    walkOut(LayoutCircle, dslTree);
+    // _logStep = '循环';
+    // walkOut(LayoutCircle, dslTree);
     // 排序
-    // _logStep = '排序';
-    // walkIn(LayoutSort, dslTree);
+    _logStep = '排序';
+    walkIn(LayoutSort, dslTree);
   } catch (e) {
     Loger.error(`dsl/layout/index.ts layout()
       desc: ${_logStep}
