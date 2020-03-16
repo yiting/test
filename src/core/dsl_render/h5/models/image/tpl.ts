@@ -7,9 +7,13 @@ export default class Image extends HtmlDom {
     this._orignTagName = 'div';
   }
   getUI() {
-    return `<div class="${this.htmlClassName}" style="background-image:url(${
-      this.imgPath
-    })"></div>`;
+    if (this.path) {
+      return `<div class="${this.htmlClassName}" style="background-image:url(${
+        this.imgPath
+      })">${this.slot}</div>`;
+    } else {
+      return `<div class="${this.htmlClassName}" >${this.slot}</div>`;
+    }
   }
 }
 function getClassName(dom: any) {

@@ -11,6 +11,7 @@ import * as SimilarCssProcess from './dom/dom_similar_css';
 import * as ClassName from './utils/className';
 
 import LayoutCircle from '../../dsl_layout/layout/layouts/circle';
+import LayoutClean from '../../dsl_layout/layout/clean';
 
 // 模型
 import TemplateList from './templateList';
@@ -35,16 +36,24 @@ class H5Builder extends Builder {
   similarCssMap: any;
 
   constructor(data: any, options: any) {
-    walkOut(LayoutCircle, data);
-    super(data, options, TemplateList);
+    var processDesc = '';
+    try {
+      processDesc = 'LayoutCircle';
+      walkOut(LayoutCircle, data);
+      processDesc = 'LayoutClean';
+      walkOut(LayoutClean, data);
+      processDesc = 'super';
+      super(data, options, TemplateList);
 
-    // 样式名解析
-    Loger.debug('render/h5/builder [ClassName.process]');
-    // this._parseClassName();
-    ClassName.process(this.dom, ClassName.policy_oneName);
-    // 样式节点解析
-    Loger.debug('render/h5/builder [SimilarCssProcess]');
-    this.similarCssMap = SimilarCssProcess.process(this.dom);
+      // 样式名解析
+      processDesc = 'ClassName.process';
+      ClassName.process(this.dom, ClassName.policy_oneName);
+      // 样式节点解析
+      processDesc = 'SimilarCssProcess.process';
+      this.similarCssMap = SimilarCssProcess.process(this.dom);
+    } catch (e) {
+      console.error(`${__filename}\n${processDesc} error:${e}`);
+    }
   }
 
   getHtml() {

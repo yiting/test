@@ -2,33 +2,24 @@ import Utils from '../../dsl_helper/methods';
 import Dictionary from '../../dsl_helper/dictionary';
 
 export default (dslTree: any) => {
-  return clean(dslTree);
-};
-function clean(node: any) {
-  if (node.children) {
-    node.children.forEach(clean);
-  }
-  return merge(node);
-}
-function merge(node: any) {
-  if (node.children) {
-    let children = Utils.filterAbsNode(node.children);
+  if (dslTree.children) {
+    let children = Utils.filterAbsNode(dslTree.children);
     let child = children[0];
     if (
+      child &&
       child.type != Dictionary.type.QText &&
       children.length == 1 &&
-      child.abY == node.abY &&
-      child.abYops == node.abYops &&
-      child.abX == node.abX &&
-      child.abXops == node.abXops
+      child.abY == dslTree.abY &&
+      child.abYops == dslTree.abYops &&
+      child.abX == dslTree.abX &&
+      child.abXops == dslTree.abXops
     ) {
-      return replace(node, child);
+      return replace(dslTree, child);
     }
   }
-  return node;
-}
+  return dslTree;
+};
 function replace(parent: any, child: any) {
-  console.log(parent.id, child.id);
   let otherNodes = parent.children.filter((c: any) => c !== child);
   otherNodes.forEach((c: any) => (c.parent = child));
   child.children.push(...otherNodes);

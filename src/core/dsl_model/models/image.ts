@@ -31,6 +31,8 @@ class Image extends Model {
       target.styles.background &&
       target.styles.background.color &&
       Methods.RGB2HEX(target.styles.background.color);
+    let a_borderWidth = this.styles.border && this.styles.border.width;
+    let b_borderWidth = target.styles.border && target.styles.border.width;
     let a_borderRadius =
       this.styles.borderRadius && this.styles.borderRadius.join();
     let b_borderRadius =
@@ -38,8 +40,9 @@ class Image extends Model {
     return (
       Math.abs(this.width - target.width) < ErrorCoefficient &&
       Math.abs(this.height - target.height) < ErrorCoefficient &&
-      a_bgColor == b_bgColor &&
-      a_borderRadius == b_borderRadius
+      (a_borderWidth == b_borderWidth ||
+        a_bgColor == b_bgColor ||
+        a_borderRadius == b_borderRadius)
     );
   }
 }

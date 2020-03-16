@@ -49,9 +49,8 @@ class Model {
     this.canLeftFlex = node.canLeftFlex || false;
     this.canRightFlex = node.canRightFlex || false;
     this.__allowed_descendantIds = node._allowed_descendantIds || null;
-
     this.isMultiline = this.text
-      ? this.height / (this.lineHeight || this.height) > 1.6
+      ? this.height / (this.lineHeight || this.height) > 1
       : false;
   }
   static regular(node: any) {
@@ -215,10 +214,7 @@ class Model {
   }
 
   get lineHeight() {
-    if (this.styles.texts) {
-      return Math.max(...this.styles.texts.map((word: any) => word.lineHeight));
-    }
-    return null;
+    return this.styles.lineHeight || null;
   }
 
   public appendChild(...childs: any) {
