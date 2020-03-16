@@ -5,7 +5,6 @@ import TextModel from '../../../../dsl_model/models/text';
 
 const H_SPACE = 20; // 水平间距
 const V_HEIGHT = 50; // 垂直高度要求
-const LINE_HEIGHT = 1.4; //sketch 默认行高
 let ErrorCoefficient: number;
 let CoordinateWidth: number;
 
@@ -42,6 +41,7 @@ function calInline(nodes: any) {
     let max =
       Math.max(meta.maxFontSize, target.maxFontSize) * 2 ||
       Math.min(meta.height, target.height) * 2;
+    // 允许横向最大间距
     let gapAllowed = Math.min(
       meta.minFontSize || V_HEIGHT,
       target.minFontSize || V_HEIGHT,
@@ -55,7 +55,8 @@ function calInline(nodes: any) {
         Math.abs(meta.abYops - target.abYops) < ErrorCoefficient) &&
       meta.height < max &&
       target.height < max &&
-      Methods.isXConnect(meta, target, gapAllowed)
+      Methods.isXConnect(meta, target, gapAllowed) &&
+      !Methods.isXConnect(meta, target, -gapAllowed)
     );
   });
 }

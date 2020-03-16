@@ -7,6 +7,6 @@ export default class Layer extends HtmlDom {
     this._orignTagName = 'div';
   }
   getUI() {
-    return `<div class="${this.htmlClassName}">${this.slot}</div>`;
+    return `<div class="${this.htmlClassName}" ${this.id}>${this.slot}</div>`;
   }
 }
