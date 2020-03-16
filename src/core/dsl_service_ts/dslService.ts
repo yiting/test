@@ -15,11 +15,7 @@ import Store from '../dsl_layout/helper/store';
 import qlog from '../log/qlog';
 const logger = qlog.getInstance(qlog.moduleData.all);
 
-import H5ModelList from '../dsl_render/h5/models/modelList';
-import H5WidgetList from '../dsl_render/h5/widgets/widgetList';
-import FlutterModelList from '../dsl_render/flutter/models/modelList';
 import BuilderMap from './builderMap';
-import { debug } from 'util';
 
 /**
  * dsl服务的主使用接口

@@ -1,0 +1,6 @@
+{
+  "com_proj": "/com.proj",
+  "font_xml": "/src/font.xml",
+  "view_lua": "/src/view/index.lua",
+  "view_xml": "/src/view/index.xml"
+}
