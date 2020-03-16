@@ -1,4 +1,4 @@
-import QLog from '../helper/qlog';
+import QLog from '../../dsl_helper/qlog';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 
 import fontWidthClean from './fontWidthClean';

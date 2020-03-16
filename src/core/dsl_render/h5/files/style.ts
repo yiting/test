@@ -1,5 +1,5 @@
 // 样式的计算处理
-import QLog from '../../../dsl_layout/helper/qlog';
+import QLog from '../../../dsl_helper/qlog';
 
 const Loger = QLog.getInstance(QLog.moduleData.render);
 /**

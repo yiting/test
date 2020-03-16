@@ -1,5 +1,5 @@
-import Utils from '../helper/methods';
-import Dictionary from '../helper/dictionary';
+import Utils from '../../dsl_helper/methods';
+import Dictionary from '../../dsl_helper/dictionary';
 
 export default (dslTree: any) => {
   return clean(dslTree);

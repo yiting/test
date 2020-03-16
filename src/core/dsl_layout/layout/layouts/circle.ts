@@ -1,7 +1,7 @@
 // 循环结构的逻辑处理模块
-import Utils from '../../helper/methods';
-import Dictionary from '../../helper/dictionary';
-import Constraints from '../../helper/constraints';
+import Utils from '../../../dsl_helper/methods';
+import Dictionary from '../../../dsl_helper/dictionary';
+import Constraints from '../../../dsl_helper/constraints';
 import * as CircleBreak from './circle_break';
 import * as CircleRepeat from './circle_repeat';
 import * as CircleSerial from './circle_serial';

@@ -1,7 +1,7 @@
-import Store from '../helper/store';
-import Util from '../helper/methods';
+import Util from '../../dsl_helper/methods';
+import Store from '../../dsl_helper/store';
 import Layer from '../../dsl_model/models/layer';
-import Constraints from '../helper/constraints';
+import Constraints from '../../dsl_helper/constraints';
 
 export default function(nodes: any) {
   let groups = Store.get('groups') || [];

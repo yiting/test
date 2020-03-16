@@ -1,6 +1,6 @@
-import HtmlTemplate from '../../dom/dom';
+import HtmlDom from '../../dom/dom';
 
-export default class Image extends HtmlTemplate {
+export default class Image extends HtmlDom {
   constructor(dom: any, parent: any) {
     super(dom, parent);
     this._orignClassName = getClassName(this);

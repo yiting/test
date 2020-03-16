@@ -1,6 +1,6 @@
-import Dictionary from '../../../../dsl_layout/helper/dictionary';
-import Store from '../../../../dsl_layout/helper/store';
-import Methods from '../../../../dsl_layout/helper/methods';
+import Dictionary from '../../../../dsl_helper/dictionary';
+import Store from '../../../../dsl_helper/store';
+import Methods from '../../../../dsl_helper/methods';
 import TextModel from '../../../../dsl_model/models/text';
 
 const H_SPACE = 20; // 水平间距

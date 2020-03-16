@@ -1,6 +1,6 @@
 import ImageModel from '../../../../dsl_model/models/image';
-import Dictionary from '../../../../dsl_layout/helper/dictionary';
-import Store from '../../../../dsl_layout/helper/store';
+import Dictionary from '../../../../dsl_helper/dictionary';
+import Store from '../../../../dsl_helper/store';
 class Dividing extends ImageModel {
   designWidth: number;
   static designWidth: number;

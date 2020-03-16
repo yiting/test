@@ -1,9 +1,9 @@
 // 样式的计算处理
 import { debug } from 'util';
-import Dictionary from '../../../dsl_layout/helper/dictionary';
-import Constraints from '../../../dsl_layout/helper/constraints';
+import Dictionary from '../../../dsl_helper/dictionary';
+import Constraints from '../../../dsl_helper/constraints';
 import Func from '../utils/css_func';
-import QLog from '../../../dsl_layout/helper/qlog';
+import QLog from '../../../dsl_helper/qlog';
 import VDom from '../../vdom';
 import {
   map as MapProperty,

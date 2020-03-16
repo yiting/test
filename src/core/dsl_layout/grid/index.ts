@@ -1,5 +1,5 @@
-import QLog from '../helper/qlog';
-import Store from '../helper/store';
+import QLog from '../../dsl_helper/qlog';
+import Store from '../../dsl_helper/store';
 import GridProcess from './grid';
 const Loger = QLog.getInstance(QLog.moduleData.render);
 const DSLOptions: any = {};

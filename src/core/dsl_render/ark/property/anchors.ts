@@ -1,4 +1,4 @@
-import Constraints from '../../../dsl_layout/helper/constraints';
+import Constraints from '../../../dsl_helper/constraints';
 
 const HorMap: any = {
   Start: 1,

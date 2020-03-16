@@ -1,7 +1,7 @@
 import Model from '../../dsl_layout/model/model';
-import Dictionary from '../../dsl_layout/helper/dictionary';
-import Store from '../../dsl_layout/helper/store';
-import Methods from '../../dsl_layout/helper/methods';
+import Dictionary from '../../dsl_helper/dictionary';
+import Store from '../../dsl_helper/store';
+import Methods from '../../dsl_helper/methods';
 class Image extends Model {
   constructor(node: any) {
     super(node);

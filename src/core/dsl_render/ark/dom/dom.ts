@@ -1,5 +1,5 @@
 import VDom from '../../vdom';
-import Utils from '../../../dsl_layout/helper/methods';
+import Utils from '../../../dsl_helper/methods';
 // propertys
 import margin from '../property/margin';
 import anchors from '../property/anchors';

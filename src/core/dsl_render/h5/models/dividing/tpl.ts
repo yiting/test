@@ -1,6 +1,6 @@
-import HtmlTemplate from '../../dom/dom';
+import HtmlDom from '../../dom/dom';
 
-export default class Dividing extends HtmlTemplate {
+export default class Dividing extends HtmlDom {
   constructor(dom: any, parent: any) {
     super(dom, parent);
     this._orignClassName = 'hr';

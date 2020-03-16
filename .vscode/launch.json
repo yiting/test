@@ -31,35 +31,35 @@
       "type": "node",
       "request": "launch",
       "name": "DSL Process test",
-      "program": "${workspaceFolder}/dist/core/dsl_service_ts/test/testxProcess",
+      "program": "${workspaceFolder}/dist/core/dsl_service/test/testxProcess",
       "cwd": "${workspaceFolder}"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "DSL test",
-      "program": "${workspaceFolder}/dist/core/dsl_service_ts/test/testx",
+      "program": "${workspaceFolder}/dist/core/dsl_service/test/testx",
       "cwd": "${workspaceFolder}"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "DSL flutter test",
-      "program": "${workspaceFolder}/dist/core/dsl_service_ts/test/testFlutter",
+      "program": "${workspaceFolder}/dist/core/dsl_service/test/testFlutter",
       "cwd": "${workspaceFolder}"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "DSL ark test",
-      "program": "${workspaceFolder}/dist/core/dsl_service_ts/test/testArk",
+      "program": "${workspaceFolder}/dist/core/dsl_service/test/testArk",
       "cwd": "${workspaceFolder}"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "DSL ct",
-      "program": "${workspaceFolder}/dist/core/dsl_service_ts/test/testSelection",
+      "program": "${workspaceFolder}/dist/core/dsl_service/test/testSelection",
       "cwd": "${workspaceFolder}"
     },
     {

@@ -1,6 +1,6 @@
-import HtmlTemplate from '../../dom/dom';
+import HtmlDom from '../../dom/dom';
 
-export default class Text extends HtmlTemplate {
+export default class Text extends HtmlDom {
   display: any;
   constructor(dom: any, parent: any) {
     super(dom, parent);

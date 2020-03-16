@@ -1,9 +1,9 @@
 // LayoutFlex下等分布局修正
 
-import Utils from '../../helper/methods';
-import Store from '../../helper/store';
-import Constraints from '../../helper/constraints';
-import Dictionary from '../../helper/dictionary';
+import Utils from '../../../dsl_helper/methods';
+import Store from '../../../dsl_helper/store';
+import Constraints from '../../../dsl_helper/constraints';
+import Dictionary from '../../../dsl_helper/dictionary';
 import { debug } from 'util';
 
 let ErrorCoefficient: number = 0;
