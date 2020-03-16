@@ -35,14 +35,11 @@ function organize(segmentings: any[], body: Model) {
       if (!parent) {
         return false;
       }
-
       let node;
       // 如果父节点包含干涉元素，则只有干涉元素能作为子节点
       if (
         (parent._allowed_descendantIds &&
           !parent._allowed_descendantIds.includes(child.id)) ||
-        // 父节点必须不是文本类型
-        parent.type === Dictionary.type.QText ||
         // 父节点不能是分割线
         parent instanceof Dividing ||
         // 子节点不能分割线
@@ -66,6 +63,8 @@ function organize(segmentings: any[], body: Model) {
       } else {
         if (
           child.zIndex >= parent.zIndex &&
+          // 父节点必须不是文本类型
+          parent.type !== Dictionary.type.QText &&
           // 包含关系
           (Utils.isWrap(parent, child) ||
             // 水平相连、垂直包含关系
