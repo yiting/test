@@ -194,16 +194,20 @@ class NodesMergeJudge {
     //     isCombine = true;
     //   }
     // }
+
     //如果其中一个是symbolInstance，则不合并
+    let isNodeSymbolInstance = ImgConbineUtils.isSymbolInstance(node);
+    let isBrotherSymbolInstance = ImgConbineUtils.isSymbolInstance(brother);
     if (isFinally == false) {
       if (
-        ImgConbineUtils.isSymbolInstance(node) ||
-        ImgConbineUtils.isSymbolInstance(brother)
+        (isNodeSymbolInstance && !isBrotherSymbolInstance) ||
+        (!isNodeSymbolInstance && isBrotherSymbolInstance)
       ) {
         isCombine = false;
         isFinally = true;
       }
     }
+
     //如果其中一个节点是大而简单的背景，则不合并
     if (isFinally == false) {
       // ruleConfig0 = this.getRuleConfig({

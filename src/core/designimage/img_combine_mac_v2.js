@@ -862,6 +862,8 @@ const ImageCombine = function() {
 
   this.makeImgsByUpdateSketch = async param => {
     // try {
+    let allStart = Date.now();
+    let start = Date.now();
     let { projectName, imgList, isPreedit = false } = param;
     let targetImgList = imgList.filter(function(item) {
       return item.path;
@@ -892,6 +894,12 @@ const ImageCombine = function() {
       that.inputDir + projectNameWithoutAfterFix,
       updateFilePath,
     );
+    console.log(
+      '-----------------------复制sketch源文件，用时' +
+        (Date.now() - start) / 1000 +
+        '秒',
+    );
+    start = Date.now();
 
     // 3.获取pageId
     if (typeof that.pageId === 'undefined' && fs.existsSync(updateFilePath)) {
@@ -911,6 +919,12 @@ const ImageCombine = function() {
         ),
       );
     }
+    console.log(
+      '-----------------------获取json，用时' +
+        (Date.now() - start) / 1000 +
+        '秒',
+    );
+    start = Date.now();
 
     //获取artboard index
     var artboardIndex;
@@ -1029,23 +1043,59 @@ const ImageCombine = function() {
 
     fs.unlinkSync(`${updateFilePath}/pages/${that.pageId}.json`);
 
+    console.log(
+      '-----------------------到达json转换字符串前，用时' +
+        (Date.now() - start) / 1000 +
+        '秒',
+    );
+    start = Date.now();
+
     const str = JSON.stringify(tmpPageJson);
 
+    console.log(
+      '-----------------------到达json转换字符串后，用时' +
+        (Date.now() - start) / 1000 +
+        '秒',
+    );
+    start = Date.now();
+
     fs.writeFileSync(`${updateFilePath}/pages/${that.pageId}.json`, str);
+    console.log(
+      '-----------------------json写成文件，用时' +
+        (Date.now() - start) / 1000 +
+        '秒',
+    );
+    start = Date.now();
     await serverModulesUtils.zipFolderPromise(
       `${that.sketchDir +
         projectNameWithoutAfterFix +
         updateFileAfterFix}.sketch`,
       updateFilePath,
     );
+    console.log(
+      '-----------------------压缩成sketch文件，用时' +
+        (Date.now() - start) / 1000 +
+        '秒',
+    );
+    start = Date.now();
     // 7、运行库
     param.itemIds = itemIds;
     param.sketchName = projectNameWithoutAfterFix + updateFileAfterFix;
     const result = await this.makeImg(param);
-
+    console.log(
+      '-----------------------生成图片，用时' +
+        (Date.now() - start) / 1000 +
+        '秒',
+    );
+    start = Date.now();
     // 8.压缩图片
     await that.compressImgs(that.outputDir, projectName, targetImgList);
-
+    console.log(
+      '-----------------------压缩图片，用时' +
+        (Date.now() - start) / 1000 +
+        '秒',
+    );
+    start = Date.now();
     // 8、删除修改版sketch
     serverModulesUtils.deleteFolder(updateFilePath);
     serverModulesUtils.deleteFolder(
@@ -1053,7 +1103,12 @@ const ImageCombine = function() {
         projectNameWithoutAfterFix +
         updateFileAfterFix}.sketch`,
     );
-
+    console.log(
+      '-----------------------删除修改版sketch，用时' +
+        (Date.now() - start) / 1000 +
+        '秒',
+    );
+    start = Date.now();
     // 返回
     // return new Promise(function(resolve, reject) {
     //   resolve({
@@ -1066,6 +1121,11 @@ const ImageCombine = function() {
         path: `${projectName}/images/${imageItem.path}`,
       });
     });
+    console.log(
+      '-----------------------合图全流程完成，用时' +
+        (Date.now() - allStart) / 1000 +
+        '秒',
+    );
     return new Promise(function(resolve, reject) {
       resolve(resultObj);
     });
