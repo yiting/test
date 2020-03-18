@@ -9,11 +9,12 @@ const {
 } = require('../../utils');
 const { SKETCH_LAYER_TYPES } = require('./SketchLayerTypes');
 const DesignTree = require('../../nodes/DesignTree');
+const FontData = require('../assist/font.json');
 /**
  * @class 针对Sketch图元预处理，包括位置设置/mask合并等，test2
  */
 class SketchProcessor {
-  static process(node, data = { sliceData: [], fontData: {} }) {
+  static process(node, data = { sliceData: [] }) {
     walkin(node, n => {
       this.setPropertyByParent(n);
       this.setPosition(n);
@@ -24,7 +25,7 @@ class SketchProcessor {
     });
     walkout(node, n => {
       this.shapeToImage(n); // 不规则形状转图片类型
-      this.fontProcess(n, data.fontData); // 字体修正
+      this.fontProcess(n, FontData); // 字体修正
       this.borderProcess(n); // 边框属性修正
       this.opacityProcess(n); // 透明度属性修正
       this.rotationProcess(n); // 旋转属性修正

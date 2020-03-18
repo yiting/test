@@ -1,0 +1,739 @@
+{
+  "adobesongstdlight": {
+    "lineHeight": 1,
+    "fullName": "AdobeSongStd-Light",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Adobe Song Std L"
+  },
+  "andalemono": {
+    "lineHeight": 1.125,
+    "fullName": "Andale Mono",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Andale Mono"
+  },
+  "applebrailleoutline6dot": {
+    "lineHeight": 1.03125,
+    "fullName": "Apple Braille Outline 6 Dot",
+    "fontSubFamily": "Outline 6 Dot",
+    "fontFamily": "Apple Braille"
+  },
+  "applebrailleoutline8dot": {
+    "lineHeight": 1.03125,
+    "fullName": "Apple Braille Outline 8 Dot",
+    "fontSubFamily": "Outline 8 Dot",
+    "fontFamily": "Apple Braille"
+  },
+  "applebraillepinpoint6dot": {
+    "lineHeight": 1.03125,
+    "fullName": "Apple Braille Pinpoint 6 Dot",
+    "fontSubFamily": "Pinpoint 6 Dot",
+    "fontFamily": "Apple Braille"
+  },
+  "applebraillepinpoint8dot": {
+    "lineHeight": 1.03125,
+    "fullName": "Apple Braille Pinpoint 8 Dot",
+    "fontSubFamily": "Pinpoint 8 Dot",
+    "fontFamily": "Apple Braille"
+  },
+  "applebraille": {
+    "lineHeight": 1.03125,
+    "fullName": "Apple Braille",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Apple Braille"
+  },
+  "applesymbols": {
+    "lineHeight": 0.91650390625,
+    "fullName": "Apple Symbols",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Apple Symbols"
+  },
+  "appleligothicmedium": {
+    "lineHeight": 1,
+    "fullName": "Apple LiGothic Medium",
+    "fontSubFamily": "Medium",
+    "fontFamily": "Apple LiGothic"
+  },
+  "applelisunglight": {
+    "lineHeight": 1,
+    "fullName": "Apple LiSung Light",
+    "fontSubFamily": "Light",
+    "fontFamily": "Apple LiSung"
+  },
+  "applemyungjoregular": {
+    "lineHeight": 1.1873170731707317,
+    "fullName": "AppleMyungjo Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "AppleMyungjo"
+  },
+  "arialblack": {
+    "lineHeight": 1.41015625,
+    "fullName": "Arial Black",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Arial Black"
+  },
+  "arialbolditalic": {
+    "lineHeight": 1.1171875,
+    "fullName": "Arial Bold Italic",
+    "fontSubFamily": "Bold Italic",
+    "fontFamily": "Arial"
+  },
+  "arialbold": {
+    "lineHeight": 1.1171875,
+    "fullName": "Arial Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "Arial"
+  },
+  "arialitalic": {
+    "lineHeight": 1.1171875,
+    "fullName": "Arial Italic",
+    "fontSubFamily": "Italic",
+    "fontFamily": "Arial"
+  },
+  "arialnarrowbolditalic": {
+    "lineHeight": 1.1474609375,
+    "fullName": "Arial Narrow Bold Italic",
+    "fontSubFamily": "Bold Italic",
+    "fontFamily": "Arial Narrow"
+  },
+  "arialnarrowbold": {
+    "lineHeight": 1.1474609375,
+    "fullName": "Arial Narrow Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "Arial Narrow"
+  },
+  "arialnarrowitalic": {
+    "lineHeight": 1.1474609375,
+    "fullName": "Arial Narrow Italic",
+    "fontSubFamily": "Italic",
+    "fontFamily": "Arial Narrow"
+  },
+  "arialnarrow": {
+    "lineHeight": 1.1474609375,
+    "fullName": "Arial Narrow",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Arial Narrow"
+  },
+  "arialroundedmtbold": {
+    "lineHeight": 1.1572265625,
+    "fullName": "Arial Rounded MT Bold",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Arial Rounded MT Bold"
+  },
+  "arialunicodems": {
+    "lineHeight": 1.33984375,
+    "fullName": "Arial Unicode MS",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Arial Unicode MS"
+  },
+  "arial": {
+    "lineHeight": 1.1171875,
+    "fullName": "Arial",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Arial"
+  },
+  "bodoni72smallcapsbook": {
+    "lineHeight": 1.198,
+    "fullName": "Bodoni 72 Smallcaps Book",
+    "fontSubFamily": "Book",
+    "fontFamily": "Bodoni 72 Smallcaps"
+  },
+  "bodoniornaments": {
+    "lineHeight": 1.001,
+    "fullName": "Bodoni Ornaments",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Bodoni Ornaments"
+  },
+  "bradleyhandbold": {
+    "lineHeight": 1.249,
+    "fullName": "Bradley Hand Bold",
+    "fontSubFamily": "Bold"
+  },
+  "brushscriptmtitalic": {
+    "lineHeight": 1.2265625,
+    "fullName": "Brush Script MT Italic",
+    "fontSubFamily": "Italic",
+    "fontFamily": "Brush Script MT"
+  },
+  "chalkduster": {
+    "lineHeight": 1.2629834254143646,
+    "fullName": "Chalkduster",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Chalkduster"
+  },
+  "comicsansmsbold": {
+    "lineHeight": 1.3935546875,
+    "fullName": "Comic Sans MS Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "Comic Sans MS"
+  },
+  "comicsansms": {
+    "lineHeight": 1.3935546875,
+    "fullName": "Comic Sans MS",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Comic Sans MS"
+  },
+  "couriernewbolditalic": {
+    "lineHeight": 1.1328125,
+    "fullName": "Courier New Bold Italic",
+    "fontSubFamily": "Bold Italic",
+    "fontFamily": "Courier New"
+  },
+  "couriernewbold": {
+    "lineHeight": 1.1328125,
+    "fullName": "Courier New Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "Courier New"
+  },
+  "couriernewitalic": {
+    "lineHeight": 1.1328125,
+    "fullName": "Courier New Italic",
+    "fontSubFamily": "Italic",
+    "fontFamily": "Courier New"
+  },
+  "couriernew": {
+    "lineHeight": 1.1328125,
+    "fullName": "Courier New",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Courier New"
+  },
+  "dinalternatebold": {
+    "lineHeight": 1.1640625,
+    "fullName": "DIN Alternate Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "DIN Alternate"
+  },
+  "dincondensedbold": {
+    "lineHeight": 1,
+    "fullName": "DIN Condensed Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "DIN Condensed"
+  },
+  "diwanthuluthregular": {
+    "lineHeight": 1.7138671875,
+    "fullName": "Diwan Thuluth Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Diwan Thuluth"
+  },
+  "fzshengshikaishusbgb": {
+    "lineHeight": 1.125,
+    "fullName": "FZShengShiKaiShuS-B-GB",
+    "fontSubFamily": "Regular",
+    "fontFamily": "FZShengShiKaiShuS-B-GB"
+  },
+  "fzshengshikaishusebgb": {
+    "lineHeight": 1.1328125,
+    "fullName": "FZShengShiKaiShuS-EB-GB",
+    "fontSubFamily": "Regular",
+    "fontFamily": "FZShengShiKaiShuS-EB-GB"
+  },
+  "fzshengshikaishusdbgb": {
+    "lineHeight": 1.125,
+    "fullName": "FZShengShiKaiShuS-DB-GB",
+    "fontSubFamily": "Regular",
+    "fontFamily": "FZShengShiKaiShuS-DB-GB"
+  },
+  "farisiregular": {
+    "lineHeight": 2.08154296875,
+    "fullName": "Farisi Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Farisi"
+  },
+  "georgiabolditalic": {
+    "lineHeight": 1.13623046875,
+    "fullName": "Georgia Bold Italic",
+    "fontSubFamily": "Bold Italic",
+    "fontFamily": "Georgia"
+  },
+  "georgiabold": {
+    "lineHeight": 1.13623046875,
+    "fullName": "Georgia Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "Georgia"
+  },
+  "georgiaitalic": {
+    "lineHeight": 1.13623046875,
+    "fullName": "Georgia Italic",
+    "fontSubFamily": "Italic",
+    "fontFamily": "Georgia"
+  },
+  "georgia": {
+    "lineHeight": 1.13623046875,
+    "fullName": "Georgia",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Georgia"
+  },
+  "heiregular": {
+    "lineHeight": 1,
+    "fullName": "Hei Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Hei"
+  },
+  "helveticaneuemedium": {
+    "lineHeight": 1.173,
+    "fullName": "HelveticaNeue Medium",
+    "fontSubFamily": "Medium",
+    "fontFamily": "HelveticaNeue"
+  },
+  "impact": {
+    "lineHeight": 1.2197265625,
+    "fullName": "Impact",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Impact"
+  },
+  "kairegular": {
+    "lineHeight": 1,
+    "fullName": "Kai Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Kai"
+  },
+  "khmersangammn": {
+    "lineHeight": 1.80029296875,
+    "fullName": "Khmer Sangam MN",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Khmer Sangam MN"
+  },
+  "laosangammn": {
+    "lineHeight": 1.3173828125,
+    "fullName": "Lao Sangam MN",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Lao Sangam MN"
+  },
+  "lingwaiscmedium": {
+    "lineHeight": 1.4,
+    "fullName": "LingWai SC Medium",
+    "fontSubFamily": "Medium",
+    "fontFamily": "LingWai SC"
+  },
+  "lingwaitcmedium": {
+    "lineHeight": 1.4,
+    "fullName": "LingWai TC Medium",
+    "fontSubFamily": "Medium",
+    "fontFamily": "LingWai TC"
+  },
+  "luminari": {
+    "lineHeight": 1.339,
+    "fullName": "Luminari",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Luminari"
+  },
+  "microsoftsansserif": {
+    "lineHeight": 1.1318359375,
+    "fullName": "Microsoft Sans Serif",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Microsoft Sans Serif"
+  },
+  "mishafigoldregular": {
+    "lineHeight": 1.44677734375,
+    "fullName": "Mishafi Gold Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Mishafi Gold"
+  },
+  "mishafiregular": {
+    "lineHeight": 1.44677734375,
+    "fullName": "Mishafi Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Mishafi"
+  },
+  "osaka": {
+    "lineHeight": 1.25,
+    "fullName": "Osaka",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Osaka"
+  },
+  "osakamono": {
+    "lineHeight": 1.046875,
+    "fullName": "Osaka-Mono",
+    "fontSubFamily": "Regular-Mono",
+    "fontFamily": "Osaka"
+  },
+  "pingfangscmedium": {
+    "lineHeight": 1.4,
+    "fullName": "PingFang SC Medium",
+    "fontSubFamily": "Medium",
+    "fontFamily": "PingFang SC"
+  },
+  "pingfangscregular": {
+    "lineHeight": 1.4,
+    "fullName": "PingFang SC Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "PingFang SC Regular"
+  },
+  "stixgeneralregular": {
+    "lineHeight": 1.51,
+    "fullName": "STIXGeneral-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXGeneral"
+  },
+  "stixgeneralbold": {
+    "lineHeight": 1.51,
+    "fullName": "STIXGeneral-Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "STIXGeneral"
+  },
+  "stixgeneralbolditalic": {
+    "lineHeight": 1.497,
+    "fullName": "STIXGeneral-BoldItalic",
+    "fontSubFamily": "Bold Italic",
+    "fontFamily": "STIXGeneral"
+  },
+  "stixgeneralitalic": {
+    "lineHeight": 1.51,
+    "fullName": "STIXGeneral-Italic",
+    "fontSubFamily": "Italic",
+    "fontFamily": "STIXGeneral"
+  },
+  "stixintegralsdbold": {
+    "lineHeight": 2.633,
+    "fullName": "STIXIntegralsD-Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "STIXIntegralsD"
+  },
+  "stixintegralsdregular": {
+    "lineHeight": 2.633,
+    "fullName": "STIXIntegralsD-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXIntegralsD"
+  },
+  "stixintegralssmbold": {
+    "lineHeight": 1.51,
+    "fullName": "STIXIntegralsSm-Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "STIXIntegralsSm"
+  },
+  "stixintegralssmregular": {
+    "lineHeight": 1.51,
+    "fullName": "STIXIntegralsSm-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXIntegralsSm"
+  },
+  "stixintegralsupbold": {
+    "lineHeight": 1.51,
+    "fullName": "STIXIntegralsUp-Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "STIXIntegralsUp"
+  },
+  "stixintegralsupdbold": {
+    "lineHeight": 2.633,
+    "fullName": "STIXIntegralsUpD-Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "STIXIntegralsUpD"
+  },
+  "stixintegralsupdregular": {
+    "lineHeight": 2.633,
+    "fullName": "STIXIntegralsUpD-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXIntegralsUpD"
+  },
+  "stixintegralsupregular": {
+    "lineHeight": 1.51,
+    "fullName": "STIXIntegralsUp-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXIntegralsUp"
+  },
+  "stixintegralsupsmbold": {
+    "lineHeight": 1.51,
+    "fullName": "STIXIntegralsUpSm-Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "STIXIntegralsUpSm"
+  },
+  "stixintegralsupsmregular": {
+    "lineHeight": 1.51,
+    "fullName": "STIXIntegralsUpSm-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXIntegralsUpSm"
+  },
+  "stixnonunicoderegular": {
+    "lineHeight": 2.002,
+    "fullName": "STIXNonUnicode-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXNonUnicode"
+  },
+  "stixnonunicodebold": {
+    "lineHeight": 2.002,
+    "fullName": "STIXNonUnicode-Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "STIXNonUnicode"
+  },
+  "stixnonunicodebolditalic": {
+    "lineHeight": 2.002,
+    "fullName": "STIXNonUnicode-BoldItalic",
+    "fontSubFamily": "Bold Italic",
+    "fontFamily": "STIXNonUnicode"
+  },
+  "stixnonunicodeitalic": {
+    "lineHeight": 2.002,
+    "fullName": "STIXNonUnicode-Italic",
+    "fontSubFamily": "Italic",
+    "fontFamily": "STIXNonUnicode"
+  },
+  "stixsizefivesymregular": {
+    "lineHeight": 1.414,
+    "fullName": "STIXSizeFiveSym-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXSizeFiveSym"
+  },
+  "stixsizefoursymbold": {
+    "lineHeight": 3.114,
+    "fullName": "STIXSizeFourSym-Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "STIXSizeFourSym"
+  },
+  "stixsizefoursymregular": {
+    "lineHeight": 3.114,
+    "fullName": "STIXSizeFourSym-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXSizeFourSym"
+  },
+  "stixsizeonesymbold": {
+    "lineHeight": 1.951,
+    "fullName": "STIXSizeOneSym-Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "STIXSizeOneSym"
+  },
+  "stixsizeonesymregular": {
+    "lineHeight": 1.951,
+    "fullName": "STIXSizeOneSym-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXSizeOneSym"
+  },
+  "stixsizethreesymbold": {
+    "lineHeight": 3.114,
+    "fullName": "STIXSizeThreeSym-Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "STIXSizeThreeSym"
+  },
+  "stixsizethreesymregular": {
+    "lineHeight": 3.114,
+    "fullName": "STIXSizeThreeSym-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXSizeThreeSym"
+  },
+  "stixsizetwosymbold": {
+    "lineHeight": 2.499,
+    "fullName": "STIXSizeTwoSym-Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "STIXSizeTwoSym"
+  },
+  "stixsizetwosymregular": {
+    "lineHeight": 2.499,
+    "fullName": "STIXSizeTwoSym-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXSizeTwoSym"
+  },
+  "stixvariantsregular": {
+    "lineHeight": 1.51,
+    "fullName": "STIXVariants-Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "STIXVariants"
+  },
+  "stixvariantsbold": {
+    "lineHeight": 1.51,
+    "fullName": "STIXVariants-Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "STIXVariants"
+  },
+  "tahomabold": {
+    "lineHeight": 1.20703125,
+    "fullName": "Tahoma Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "Tahoma"
+  },
+  "tahoma": {
+    "lineHeight": 1.20703125,
+    "fullName": "Tahoma",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Tahoma"
+  },
+  "timesnewromanbolditalic": {
+    "lineHeight": 1.107421875,
+    "fullName": "Times New Roman Bold Italic",
+    "fontSubFamily": "Bold Italic",
+    "fontFamily": "Times New Roman"
+  },
+  "timesnewromanbold": {
+    "lineHeight": 1.107421875,
+    "fullName": "Times New Roman Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "Times New Roman"
+  },
+  "timesnewromanitalic": {
+    "lineHeight": 1.107421875,
+    "fullName": "Times New Roman Italic",
+    "fontSubFamily": "Italic",
+    "fontFamily": "Times New Roman"
+  },
+  "timesnewroman": {
+    "lineHeight": 1.107421875,
+    "fullName": "Times New Roman",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Times New Roman"
+  },
+  "toppanbunkyumidashigothicextrabold": {
+    "lineHeight": 1,
+    "fullName": "Toppan Bunkyu Midashi Gothic Extrabold",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Toppan Bunkyu Midashi Gothic Extrabold"
+  },
+  "toppanbunkyumidashiminchoextrabold": {
+    "lineHeight": 1,
+    "fullName": "Toppan Bunkyu Midashi Mincho Extrabold",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Toppan Bunkyu Midashi Mincho Extrabold"
+  },
+  "toppanbunkyuminchoregular": {
+    "lineHeight": 1,
+    "fullName": "Toppan Bunkyu Mincho Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Toppan Bunkyu Mincho Regular"
+  },
+  "trattatello": {
+    "lineHeight": 1.812,
+    "fullName": "Trattatello",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Trattatello"
+  },
+  "trebuchetmsbolditalic": {
+    "lineHeight": 1.1611328125,
+    "fullName": "Trebuchet MS Bold Italic",
+    "fontSubFamily": "Bold Italic",
+    "fontFamily": "Trebuchet MS"
+  },
+  "trebuchetmsbold": {
+    "lineHeight": 1.1611328125,
+    "fullName": "Trebuchet MS Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "Trebuchet MS"
+  },
+  "trebuchetmsitalic": {
+    "lineHeight": 1.1611328125,
+    "fullName": "Trebuchet MS Italic",
+    "fontSubFamily": "Italic",
+    "fontFamily": "Trebuchet MS"
+  },
+  "trebuchetms": {
+    "lineHeight": 1.1611328125,
+    "fullName": "Trebuchet MS",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Trebuchet MS"
+  },
+  "verdanabolditalic": {
+    "lineHeight": 1.21533203125,
+    "fullName": "Verdana Bold Italic",
+    "fontSubFamily": "Bold Italic",
+    "fontFamily": "Verdana"
+  },
+  "verdanabold": {
+    "lineHeight": 1.21533203125,
+    "fullName": "Verdana Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "Verdana"
+  },
+  "verdanaitalic": {
+    "lineHeight": 1.21533203125,
+    "fullName": "Verdana Italic",
+    "fontSubFamily": "Italic",
+    "fontFamily": "Verdana"
+  },
+  "verdana": {
+    "lineHeight": 1.21533203125,
+    "fullName": "Verdana",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Verdana"
+  },
+  "wawatiscregular": {
+    "lineHeight": 1.4,
+    "fullName": "Wawati SC Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Wawati SC"
+  },
+  "wawatitcregular": {
+    "lineHeight": 1.4,
+    "fullName": "Wawati TC Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Wawati TC"
+  },
+  "webdings": {
+    "lineHeight": 1,
+    "fullName": "Webdings",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Webdings"
+  },
+  "weibeiscbold": {
+    "lineHeight": 1.4,
+    "fullName": "Weibei SC Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "Weibei SC"
+  },
+  "weibeitcbold": {
+    "lineHeight": 1.4,
+    "fullName": "Weibei TC Bold",
+    "fontSubFamily": "Bold",
+    "fontFamily": "Weibei TC Bold"
+  },
+  "wingdings2": {
+    "lineHeight": 1.05419921875,
+    "fullName": "Wingdings 2",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Wingdings 2"
+  },
+  "wingdings3": {
+    "lineHeight": 1.138671875,
+    "fullName": "Wingdings 3",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Wingdings 3"
+  },
+  "wingdings": {
+    "lineHeight": 1.10986328125,
+    "fullName": "Wingdings",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Wingdings"
+  },
+  "yugothicbold": {
+    "lineHeight": 1,
+    "fullName": "YuGothic Bold",
+    "fontSubFamily": "Regular",
+    "fontFamily": "YuGothic Bold"
+  },
+  "yugothicmedium": {
+    "lineHeight": 1,
+    "fullName": "YuGothic Medium",
+    "fontSubFamily": "Regular",
+    "fontFamily": "YuGothic Medium"
+  },
+  "yuppyscregular": {
+    "lineHeight": 1.4,
+    "fullName": "Yuppy SC Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Yuppy SC"
+  },
+  "yuppytcregular": {
+    "lineHeight": 1.4,
+    "fullName": "Yuppy TC Regular",
+    "fontSubFamily": "Regular",
+    "fontFamily": "Yuppy TC"
+  },
+  "simhei": {
+    "lineHeight": 1,
+    "fullName": "SimHei",
+    "fontSubFamily": "Regular",
+    "fontFamily": "SimHei"
+  },
+  "fzsuxinshiliukaisrgb": {
+    "lineHeight": 1.09375,
+    "fullName": "FZSuXinShiLiuKaiS-R-GB",
+    "fontSubFamily": "Regular",
+    "fontFamily": "FZSuXinShiLiuKaiS-R-GB"
+  },
+  "tencentsansw7": {
+    "lineHeight": 1.501,
+    "fullName": "TencentSans W7",
+    "fontSubFamily": "Regular",
+    "fontFamily": "TencentSans W7"
+  },
+  "pacotillebold": {
+    "lineHeight": 1.45,
+    "fullName": "Pacotille bold",
+    "fontSubFamily": "bold",
+    "fontFamily": "Pacotille"
+  }
+}
