@@ -12,7 +12,7 @@ export default {
       this.parent.type === Dictionary.type.QText &&
       this.type === Dictionary.type.QText
     ) {
-      return 'inline';
+      return 'inline-flex';
     }
     if (this.parent && this.parent.type === Dictionary.type.QText) {
       return 'inline-flex';
