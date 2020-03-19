@@ -30,11 +30,13 @@ const _parseCssTree = function(arr: any[], dom: any, similarData: any) {
  */
 function getCss(cssDom: any, similarCss: any) {
   let str = '';
-  const cssSelector = cssDom.getCssSelector();
-  const cssPropArr = cssDom.getCssProperty(similarCss);
+  let cssSelector = cssDom.getCssSelector();
+  let cssPropArr = cssDom.getCssProperty(similarCss);
+  let extendCss = cssDom.getExtendCss();
   if (cssPropArr.length) {
     str = `${cssSelector} {${cssPropArr.join('')}}`;
   }
+  str += extendCss;
   return str;
 }
 
