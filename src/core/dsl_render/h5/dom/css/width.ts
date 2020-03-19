@@ -1,4 +1,4 @@
-// import Constraints from '../../../helper/constraints';
+// import * as Constraints from '../../../helper/constraints';
 import { defaultProperty as cssDefaultProperty } from '../propertyMap';
 import display from './display';
 export default {

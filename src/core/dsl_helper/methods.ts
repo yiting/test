@@ -1,5 +1,5 @@
 // 此模块用于定义一些在dsl模块包中用到的工具函数
-import Constraints from './constraints';
+import * as Constraints from './constraints';
 
 const utils = {
   /**

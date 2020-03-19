@@ -1,7 +1,7 @@
 // 循环结构的逻辑处理模块
 import Dictionary from '../../../dsl_helper/dictionary';
 import Utils from '../../../dsl_helper/methods';
-import Constraints from '../../../dsl_helper/constraints';
+import * as Constraints from '../../../dsl_helper/constraints';
 
 let _compareNodes: any = {};
 

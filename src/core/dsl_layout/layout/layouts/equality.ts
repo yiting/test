@@ -2,7 +2,7 @@
 
 import Utils from '../../../dsl_helper/methods';
 import Store from '../../../dsl_helper/store';
-import Constraints from '../../../dsl_helper/constraints';
+import * as Constraints from '../../../dsl_helper/constraints';
 import Dictionary from '../../../dsl_helper/dictionary';
 import { debug } from 'util';
 

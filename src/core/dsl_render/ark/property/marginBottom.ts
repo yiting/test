@@ -1,4 +1,4 @@
-import Constraints from '../../../dsl_helper/constraints';
+import * as Constraints from '../../../dsl_helper/constraints';
 
 //
 export default {

@@ -1,7 +1,7 @@
 // 绝对定位布局模型处理
 import Utils from '../../../dsl_helper/methods';
 // import Model from '../model';
-import Constrains from '../../../dsl_helper/constraints';
+import * as Constrains from '../../../dsl_helper/constraints';
 import Store from '../../../dsl_helper/store';
 import Dictionary from '../../../dsl_helper/dictionary';
 
@@ -248,7 +248,6 @@ export default function(parent: any, nodes: any) {
   if (parent.type === Dictionary.type.QText) {
     return;
   }
-  const that: any = this;
   ErrorCoefficient = Store.get('errorCoefficient') || 0;
   // 剔除绝对定位节点
   const absNodes: any = [];

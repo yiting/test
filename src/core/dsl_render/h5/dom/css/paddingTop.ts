@@ -1,5 +1,5 @@
 import Text from '../../models/text/tpl';
-import Constraints from '../../../../dsl_helper/constraints';
+import * as Constraints from '../../../../dsl_helper/constraints';
 import { defaultProperty as cssDefaultProperty } from '../propertyMap';
 export default {
   key: 'paddingTop',

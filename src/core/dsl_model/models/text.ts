@@ -1,4 +1,4 @@
-import Model from '../../dsl_layout/model/model';
+import Model from '../model';
 import Dictionary from '../../dsl_helper/dictionary';
 class Text extends Model {
   constructor(node: any) {

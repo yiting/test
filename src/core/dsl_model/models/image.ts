@@ -1,4 +1,4 @@
-import Model from '../../dsl_layout/model/model';
+import Model from '../model';
 import Dictionary from '../../dsl_helper/dictionary';
 import Store from '../../dsl_helper/store';
 import Methods from '../../dsl_helper/methods';

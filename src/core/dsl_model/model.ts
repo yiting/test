@@ -1,4 +1,4 @@
-import Utils from '../../dsl_helper/methods';
+import Utils from '../dsl_helper/methods';
 
 let serialId = 0;
 class Model {

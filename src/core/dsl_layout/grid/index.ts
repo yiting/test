@@ -1,5 +1,5 @@
 import Utils from '../../dsl_helper/methods';
-import Constraints from '../../dsl_helper/constraints';
+import * as Constraints from '../../dsl_helper/constraints';
 import Dictionary from '../../dsl_helper/dictionary';
 import Dividing from '../../dsl_render/h5/models/dividing/model';
 import LayerModel from '../../dsl_model/models/layer';

@@ -1,7 +1,7 @@
 /**
  * 约束计算
  */
-import Constraints from '../../dsl_helper/constraints';
+import * as Constraints from '../../dsl_helper/constraints';
 import QLog from '../../dsl_helper/qlog';
 import Utils from '../../dsl_helper/methods';
 import Dictionary from '../../dsl_helper/dictionary';
@@ -90,8 +90,7 @@ function _supplementConstraints(vdom: any) {
     vdom.constraints.LayoutWrap === Constraints.LayoutWrap.Wrap;
   // 是否垂直布局
   const isVertical =
-    vdom.type == Dictionary.type.QBody ||
-    (!canNewLine && children.length > 0 && Utils.isVertical(children));
+    !canNewLine && children.length > 0 && Utils.isVertical(children);
   // 计算基线
   const baseLine: any = calculateBaseLine(vdom);
   const _justifyContent = isVertical ? 'vertical' : 'horizontal';

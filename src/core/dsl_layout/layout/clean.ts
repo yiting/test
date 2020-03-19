@@ -7,7 +7,7 @@ export default (dslTree: any) => {
     let child = children[0];
     if (
       child &&
-      child.type != Dictionary.type.QText &&
+      // child.type != Dictionary.type.QText &&
       children.length == 1 &&
       child.abY == dslTree.abY &&
       child.abYops == dslTree.abYops &&

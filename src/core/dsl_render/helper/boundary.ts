@@ -2,7 +2,7 @@
  * 边界重定义
  */
 import Dictionary from '../../dsl_helper/dictionary';
-import Constraints from '../../dsl_helper/constraints';
+import * as Constraints from '../../dsl_helper/constraints';
 import QLog from '../../dsl_helper/qlog';
 import Store from '../../dsl_helper/store';
 import { debug } from 'util';

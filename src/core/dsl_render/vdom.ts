@@ -1,4 +1,4 @@
-import Constraints from '../dsl_helper/constraints';
+import * as Constraints from '../dsl_helper/constraints';
 import Utils from '../dsl_helper/methods';
 import Dictionary from '../dsl_helper/dictionary';
 export default class VDom {
@@ -329,6 +329,10 @@ export default class VDom {
         })
         .join('')
     );
+  }
+  // 元素层级
+  protected get _gradation() {
+    return this.parent ? this.parent + 1 : 0;
   }
 
   protected get _left() {

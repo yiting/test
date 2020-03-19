@@ -1,4 +1,5 @@
 import HtmlDom from '../../dom/dom';
+import * as Constraints from '../../../../dsl_helper/constraints';
 
 export default class Layer extends HtmlDom {
   constructor(dom: any, parent: any) {
@@ -8,5 +9,13 @@ export default class Layer extends HtmlDom {
   }
   getUI() {
     return `<div class="${this.htmlClassName}">${this.slot}</div>`;
+  }
+  layerClassName() {
+    if (
+      this.constraints.LayoutDirection == Constraints.LayoutDirection.Horizontal
+    ) {
+      return 'row';
+    }
+    return 'block';
   }
 }

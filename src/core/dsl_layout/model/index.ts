@@ -1,4 +1,4 @@
-import Model from './model';
+import Model from '../../dsl_model/model';
 import QLog from '../../dsl_helper/qlog';
 import Dictionary from '../../dsl_helper/dictionary';
 import BodyModel from '../../dsl_model/models/body';

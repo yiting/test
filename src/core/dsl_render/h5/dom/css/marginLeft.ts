@@ -1,4 +1,4 @@
-import Constraints from '../../../../dsl_helper/constraints';
+import * as Constraints from '../../../../dsl_helper/constraints';
 import Text from '../../models/text/tpl';
 import { defaultProperty as cssDefaultProperty } from '../propertyMap';
 

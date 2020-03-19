@@ -2,6 +2,7 @@ import Dictionary from '../../../../dsl_helper/dictionary';
 import Store from '../../../../dsl_helper/store';
 import Methods from '../../../../dsl_helper/methods';
 import TextModel from '../../../../dsl_model/models/text';
+import Model from '../../../../dsl_model/model';
 
 const H_SPACE = 20; // 水平间距
 const V_HEIGHT = 50; // 垂直高度要求
@@ -36,8 +37,11 @@ class Inline extends TextModel {
     }
   }
 }
-function calInline(nodes: any) {
+function calInline(nodes: Model[]) {
   return Methods.gatherByLogic(nodes, (meta: any, target: any) => {
+    if (meta.isSimilarWith(target)) {
+      return false;
+    }
     let max =
       Math.max(meta.maxFontSize, target.maxFontSize) * 2 ||
       Math.min(meta.height, target.height) * 2;

@@ -1,4 +1,4 @@
-import Constraints from '../../../../dsl_helper/constraints';
+import * as Constraints from '../../../../dsl_helper/constraints';
 import Func from '../../utils/css_func';
 import paddingTop from './paddingTop';
 import paddingBottom from './paddingBottom';

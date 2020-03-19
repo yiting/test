@@ -1,6 +1,6 @@
 import Dictionary from '../../../../dsl_helper/dictionary';
 import { defaultProperty as cssDefaultProperty } from '../propertyMap';
-import Constraints from '../../../../dsl_helper/constraints';
+import * as Constraints from '../../../../dsl_helper/constraints';
 
 export default {
   key: 'display',

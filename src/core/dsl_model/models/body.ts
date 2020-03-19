@@ -1,4 +1,4 @@
-import Model from '../../dsl_layout/model/model';
+import Model from '../model';
 import Dictionary from '../../dsl_helper/dictionary';
 class Body extends Model {
   constructor(node: any) {

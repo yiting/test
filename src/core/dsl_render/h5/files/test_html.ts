@@ -39,8 +39,12 @@ export default (
     .test-bar label{
       display:block;
     }
-      .image [class^="img"]{
+    .test-image [class^="image"]{
       background-color:rgba(255,0,0,.2);
+    }
+    .test-default .wrap *{
+      background-color:rgba(0,0,0,.2);
+      color:transparent!important;
     }
   </style>
   <link rel="stylesheet" href="index.css" />
@@ -67,18 +71,15 @@ export default (
   <script type="text/javascript">
     function change_css(evt) {
       var target = evt.target;
-      var className = document.body.className.split(' '),
-        checked = target.checked,
-        value = target.value;
+      var checked = target.checked,
+        value = 'test-'+target.value;
 
-      if (target.checked && !className.includes(value)) {
-        className.push(value);
+      if (target.checked) {
+        document.body.classList.add(value);
       }
-      if (!target.checked && className.includes(value)) {
-        className = className.filter(c => c != value);
+      if (!target.checked) {
+        document.body.classList.remove(value);
       }
-      document.body.className = className.join(' ');
-
     };
     (function (win) {
       var doc = win.document,

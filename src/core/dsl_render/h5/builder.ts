@@ -30,7 +30,7 @@ const walkOut = function(layoutHandle: any, dslTree: any) {
   children.forEach((child: any) => {
     walkOut(layoutHandle, child);
   });
-  layoutHandle(dslTree, children);
+  return layoutHandle(dslTree, children);
 };
 class H5Builder extends Builder {
   similarCssMap: any;
@@ -41,7 +41,7 @@ class H5Builder extends Builder {
       processDesc = 'LayoutCircle';
       walkOut(LayoutCircle, data);
       processDesc = 'LayoutClean';
-      walkOut(LayoutClean, data);
+      data = walkOut(LayoutClean, data);
       processDesc = 'super';
       super(data, options, TemplateList);
 

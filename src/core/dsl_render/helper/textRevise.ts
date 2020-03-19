@@ -1,7 +1,7 @@
 /**
  * 计算节点对齐逻辑
  */
-import Constraints from '../../dsl_helper/constraints';
+import * as Constraints from '../../dsl_helper/constraints';
 import QLog from '../../dsl_helper/qlog';
 import Dictionary from '../../dsl_helper/dictionary';
 const Loger = QLog.getInstance(QLog.moduleData.render);

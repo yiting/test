@@ -1,7 +1,7 @@
 // 样式的计算处理
 import { debug } from 'util';
 import Dictionary from '../../../dsl_helper/dictionary';
-import Constraints from '../../../dsl_helper/constraints';
+import * as Constraints from '../../../dsl_helper/constraints';
 import Func from '../utils/css_func';
 import QLog from '../../../dsl_helper/qlog';
 import VDom from '../../vdom';
@@ -197,33 +197,6 @@ export default class TemplateDom extends VDom {
     }
     return props;
   }
-  layerClassName(): string {
-    let node = this;
-    let indexObj = {
-      level: 0,
-      layerLevel: 0,
-    };
-    getLayerLevel(node, indexObj);
-    if (indexObj.level === 0) {
-      return 'body';
-    }
-    if (indexObj.level === 1) {
-      return 'section';
-    }
-    if (indexObj.level === 2) {
-      return 'panel';
-    }
-    if (indexObj.layerLevel === 3) {
-      return 'wrap';
-    }
-    if (indexObj.layerLevel === 4) {
-      return 'box';
-    }
-    if (indexObj.layerLevel === 5) {
-      return 'inner';
-    }
-    return 'block';
-  }
   get htmlClassName() {
     return [this._className, this._simClassName].join(' ');
   }
@@ -240,17 +213,4 @@ export default class TemplateDom extends VDom {
     const p = path.split('/').pop();
     return `../images/${p}`;
   }
-}
-function getLayerLevel(_node: any, _indexObj: any): any {
-  const node: any = _node;
-  const indexObj: any = _indexObj;
-  if (!node.parent) {
-    return null;
-  }
-  if (node.parent.modelName === 'Layer') {
-    indexObj.layerLevel += 1;
-  }
-  indexObj.level += 1;
-  const newLevel = getLayerLevel(node.parent, indexObj);
-  return newLevel;
 }
