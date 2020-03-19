@@ -249,7 +249,7 @@ const utils = {
     if (!nodes || nodes.length === 0 || !arr || arr.length === 0) {
       return;
     }
-
+    
     arr.forEach((item: any) => {
       // 从nodes上移除
       for (let i = 0; i < nodes.length; i++) {
