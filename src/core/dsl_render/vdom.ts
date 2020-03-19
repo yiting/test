@@ -364,55 +364,164 @@ export default class VDom {
       right = this._right,
       top = this._top,
       bottom = this._bottom;
-    // 如果是绝对定位
+
+    // 绝对定位
     if (this._isAbsolute()) {
-      return {
-        left,
-        right,
-        top,
-        bottom,
-      };
+      return { left, right, top, bottom };
     }
-    let prevNode = this._prevNode(),
-      nextNode = this._nextNode(),
-      prevLine = this._prevLine(),
-      nextLine = this._nextLine();
-    if (this._isParentHorizontal()) {
-      // 如果有上一行
-      if (prevLine.length) {
-        const prevLineAbYops = prevLine.map((n: any) => n.abYops);
-        const maxTop = Math.max(...prevLineAbYops) || this.parent.abY;
-        // LayoutAlignItems.Start
-        top = this.abY - maxTop;
-      }
-      // 如果有下一行
-      if (nextLine.length) {
-        const nextLineAbY = nextLine.map((n: any) => n.abY);
-        const maxBottom = Math.max(...nextLineAbY) || this.parent.abYops;
-        // LayoutAlignItems.Start
-        bottom = maxBottom - this.abYops;
-      }
-      // 横排
-      if (prevNode) {
-        left = this.abX - prevNode.abXops;
-      }
-      if (nextNode) {
-        right = nextNode.abX - this.abXops;
-      }
-    } else {
-      // 竖排
-      if (prevNode) {
-        top = this.abY - prevNode.abXops;
-      }
-      if (nextNode) {
-        bottom = nextNode.abY - this.abYops;
+    const prevNode = this._prevNode();
+    const nextNode = this._nextNode();
+    const prevLine = this._prevLine();
+    const nextLine = this._nextLine();
+
+    function _parentLayout(parent: any) {
+      if (parent) {
+        return {
+          justifyContent: parent.constraints.LayoutJustifyContent,
+          alignItems: parent.constraints.LayoutAlignItems,
+        };
+      } else {
+        return {
+          justifyContent: null,
+          alignItems: null,
+        };
       }
     }
+    // margin-left函数
+    function _marginLeft(that: any) {
+      let _this = that;
+      if (_this._isParentHorizontal()) {
+        // 水平居中，或是右对齐，第一个子节点marginLeft=0;
+        if (
+          !prevNode &&
+          _parentLayout(_this.parent).justifyContent === 'Center'
+        ) {
+          return 0;
+        }
+        if (_parentLayout(_this.parent).justifyContent === 'End') {
+          return 0;
+        }
+        if (prevNode) {
+          return _this.abX - prevNode.abXops;
+        }
+        return _this.abX - _this.parent.abX;
+      }
+      // 竖向排列
+      //辅轴居中或右对齐,margin-left=0
+      else if (
+        _parentLayout(_this.parent).alignItems === 'Center' ||
+        _parentLayout(_this.parent).alignItems === 'End'
+      ) {
+        return 0;
+      }
+
+      return left;
+    }
+
+    // margin-right函数
+    function _marginRight(that: any) {
+      let _this = that;
+      // margin-right:
+      // 水平居中，左对齐，margin-right=0
+      if (_this._isParentHorizontal()) {
+        if (
+          _parentLayout(_this.parent).justifyContent === 'Start' ||
+          _parentLayout(_this.parent).justifyContent === 'Center'
+        ) {
+          return 0;
+        } else if (nextNode) {
+          return nextNode.abX - _this.abXops;
+        }
+      } else {
+        if (
+          _parentLayout(_this.parent).alignItems === 'Start' ||
+          _parentLayout(_this.parent).alignItems === 'Center'
+        ) {
+          return 0;
+        }
+        if (_parentLayout(_this.parent).alignItems === 'End') {
+          return _this.parent.abXops - _this.abXops;
+        }
+      }
+
+      return right;
+    }
+    // margin-top函数
+    function _marginTop(that: any) {
+      const _this = that;
+      if (!_this.parent) {
+        return top;
+      }
+      // if(_this.parent && _this.parent.type === 'QText') {
+      //   return top;
+      // }
+      if (_this._isParentHorizontal()) {
+        if (
+          _parentLayout(_this.parent).alignItems === 'Center' ||
+          _parentLayout(_this.parent).alignItems === 'End'
+        ) {
+          return top;
+        }
+        if (prevLine.length) {
+          const prevLineAbYops = _this._prevLine().map((n: any) => n.abYops);
+          const maxTop = Math.max(...prevLineAbYops) || _this.parent.abY;
+          return _this.abY - maxTop === Infinity ? 0 : _this.abY - maxTop;
+        } else {
+          return _this.abY - _this.parent.abY;
+        }
+      } else {
+        if (prevNode) {
+          return _this.abY - prevNode.abYops;
+        } else if (_this.parent) {
+          return _this.abY - _this.parent.abY;
+        }
+      }
+
+      return top;
+    }
+    // margin-bottom函数
+    function _marginBottom(that: any) {
+      const _this = that;
+      if (!_this.parent) {
+        return bottom;
+      }
+      if (_this._isParentHorizontal()) {
+        if (
+          _parentLayout(_this.parent).alignItems === 'Start' ||
+          _parentLayout(_this.parent).alignItems === 'Center'
+        ) {
+          return bottom;
+        }
+        if (nextLine.length) {
+          const nextLineAbY = nextLine.map((n: any) => n.abY);
+          const maxBottom = Math.max(...nextLineAbY) || _this.parent.abYops;
+          // LayoutAlignItems.Start
+          bottom = maxBottom - _this.abYops;
+        }
+        return _this.parent.abY - _this.abYops;
+      } else {
+        if (
+          !nextNode &&
+          _parentLayout(_this.parent).justifyContent === 'Center'
+        ) {
+          return 0;
+        }
+        if (_parentLayout(_this.parent).justifyContent === 'Start') {
+          return 0;
+        }
+        if (nextNode) {
+          return nextNode.abY - _this.abYops;
+        } else {
+          return _this.abY - _this.parent.abY;
+        }
+      }
+    }
+
     return {
-      left,
-      right,
-      top,
-      bottom,
+      left: _marginLeft(this),
+      right: _marginRight(this),
+      top: _marginTop(this),
+      bottom: _marginBottom(this),
     };
   }
 
