@@ -7,7 +7,7 @@ import WG3M1 from './wg3_m1';
 // 模型列表
 const ModelList = [
     new WG4M1(),
-    new WG3M1(),
+    new WG3M1()
 ];
 // 优先级排序
 
@@ -16,26 +16,19 @@ export default function(tree: any) {
     _findNodes(tree, matchNodes);
     
     // matchNodes进行匹配
-    let replaceGroups: any = [];
     if (matchNodes.length > 0) {
         matchNodes.forEach((nodes: any) => {
             let result: any = _matchModel(nodes);
             //replaceGroups.push(result);
             // 进行节点树的替换
             if (result.length > 0) {
+                //console.log(result);
                 result.forEach((res: any) => {
                     _replaceTreeNode(tree, res);
                 });
             }
         });
     }
-    
-    // // 进行节点替换
-    // if (replaceGroups.length > 0) {
-    //     replaceGroups.forEach((nodes: any) => {
-    //         _replaceTreeNode(tree, nodes);
-    //     });
-    // }
 }
 
 
@@ -111,10 +104,11 @@ let _findMatchNode = function(node: any, matchNodes: any) {
 let _matchModel = function(nodes: any[]): any {
     let result: any[] = [];
     if (!nodes || nodes.length <= 1) {  // 剩下一个元素就不匹配了
-        return;
+        return result;
     }
 
     ModelList.forEach((model: any) => {
+        if (!model) return;
         let groups: any[] = [];     // 需要匹配的节点
 
         groups = Utils.getGroupFromNodes(nodes, model.textNum, model.imageNum);
