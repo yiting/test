@@ -3,7 +3,7 @@ import * as Constraints from '../../dsl_helper/constraints';
 import Dictionary from '../../dsl_helper/dictionary';
 import Dividing from '../../dsl_render/h5/models/dividing/model';
 import LayerModel from '../../dsl_model/models/layer';
-import Inline from '../../dsl_render/h5/widgets/inline/widget';
+import Inline from '../../dsl_render/h5/unions/inline/union';
 /**
  * DSL树的构建类,用于生成和输出标准数据
  */

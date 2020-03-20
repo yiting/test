@@ -11,6 +11,7 @@ const Loger = QLog.getInstance(QLog.moduleData.render);
 class Builder {
   static modelList: any[];
   static widgetList: any[];
+  static unionList: any[];
 
   getResult() {}
 

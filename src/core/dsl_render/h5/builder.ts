@@ -14,9 +14,7 @@ import LayoutCircle from '../../dsl_layout/layout/layouts/circle';
 import LayoutClean from '../../dsl_layout/layout/clean';
 
 // 模型
-import TemplateList from './templateList';
-import ModelList from './models/modelList';
-import WidgetList from './widgets/widgetList';
+import modelList from './modelList';
 // 模板
 import tpl from './files/html';
 import testTpl from './files/test_html';
@@ -43,7 +41,7 @@ class H5Builder extends Builder {
       processDesc = 'LayoutClean';
       data = walkOut(LayoutClean, data);
       processDesc = 'super';
-      super(data, options, TemplateList);
+      super(data, options, modelList.templateList);
 
       // 样式名解析
       processDesc = 'ClassName.process';
@@ -95,7 +93,8 @@ class H5Builder extends Builder {
   }
 }
 
-H5Builder.modelList = ModelList;
-H5Builder.widgetList = WidgetList;
+H5Builder.modelList = modelList.modelList;
+H5Builder.widgetList = modelList.widgetList;
+H5Builder.unionList = modelList.unionList;
 
 export default H5Builder;
