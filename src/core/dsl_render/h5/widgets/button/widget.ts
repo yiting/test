@@ -38,6 +38,7 @@ class Button extends ImageModel {
         parent.constructor !== TextModel &&
         parent.children.length == 1 &&
         onlyChild.constructor == TextModel &&
+        onlyChild.width / parent.width < 0.8 &&
         Math.abs(
           onlyChild.abXops + onlyChild.abX - (parent.abXops + parent.abX),
         ) < ErrorCoefficient &&
