@@ -12,9 +12,17 @@ export default class Layer extends HtmlDom {
   }
   layerClassName() {
     if (
-      this.constraints.LayoutDirection == Constraints.LayoutDirection.Horizontal
+      this.constraints.LayoutDirection ===
+      Constraints.LayoutDirection.Horizontal
     ) {
       return 'row';
+    }
+    if (
+      this.parent &&
+      this.parent.constraints.LayoutDirection ===
+        Constraints.LayoutDirection.Horizontal
+    ) {
+      return 'col';
     }
     return 'block';
   }
