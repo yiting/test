@@ -63,31 +63,3 @@ export enum LayoutWrap {
   Wrap = 'Wrap',
   Default = 'Default',
 }
-// 这里定义我们的约束抽象
-export class Constraints {
-  LayoutSelfHorizontal: LayoutSelfHorizontal;
-  LayoutSelfVertical: LayoutSelfVertical;
-  LayoutFlex: LayoutFlex;
-  LayoutFixedHeight: LayoutFixedHeight;
-  LayoutFixedWidth: LayoutFixedWidth;
-  LayoutPosition: LayoutPosition;
-  LayoutDirection: LayoutDirection;
-  LayoutJustifyContent: LayoutJustifyContent;
-  LayoutAlignItems: LayoutAlignItems;
-  LayoutWrap: LayoutWrap;
-  constructor(o: any) {
-    this.LayoutSelfHorizontal =
-      o.LayoutSelfHorizontal || LayoutSelfHorizontal.Default;
-    this.LayoutSelfVertical =
-      o.LayoutSelfVertical || LayoutSelfVertical.Default;
-    this.LayoutFlex = o.LayoutFlex || LayoutFlex.Default;
-    this.LayoutFixedHeight = o.LayoutFixedHeight || LayoutFixedHeight.Default;
-    this.LayoutFixedWidth = o.LayoutFixedWidth || LayoutFixedWidth.Default;
-    this.LayoutPosition = o.LayoutPosition || LayoutPosition.Default;
-    this.LayoutDirection = o.LayoutDirection || LayoutDirection.Default;
-    this.LayoutJustifyContent =
-      o.LayoutJustifyContent || LayoutJustifyContent.Default;
-    this.LayoutAlignItems = o.LayoutAlignItems || LayoutAlignItems.Default;
-    this.LayoutWrap = o.LayoutWrap || LayoutWrap.Default;
-  }
-}
