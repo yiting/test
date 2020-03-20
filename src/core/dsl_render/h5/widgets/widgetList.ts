@@ -1,3 +1,4 @@
 import Inline from './inline/widget';
+import Button from './button/widget';
 
-export default [Inline];
+export default [Inline, Button];

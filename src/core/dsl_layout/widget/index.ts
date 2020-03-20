@@ -9,21 +9,19 @@ const walkout = (node: any, handler: Function) => {
 };
 export default function(nodeTree: any, widgetList: any = []) {
   walkout(nodeTree, (tree: any) => {
+    // console.log(tree.id)
     let children = tree.children;
     if (!children) {
       return;
     }
-    widgetList.some((widget: any) => {
+    widgetList.forEach((widget: any) => {
       let matchGroup = widget.capture(children);
       matchGroup.forEach((matchNodes: any[]) => {
-        let newChild = new widget();
-        newChild.appendChild(...matchNodes);
-        newChild.resize();
+        let newChild = new widget(matchNodes);
         newChild.resetZIndex();
         children = children.filter((child: any) => !matchNodes.includes(child));
         children.push(newChild);
       });
-      return matchGroup.length > 0;
     });
     tree.children = children;
   });

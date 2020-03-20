@@ -57,10 +57,10 @@ class Model {
   static regular(node: any) {
     return false;
   }
-  public get children() {
+  public get children(): Model[] {
     return this._children;
   }
-  public set children(value: any[]) {
+  public set children(value: Model[]) {
     this._children = value;
   }
   public get parent() {
