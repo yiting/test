@@ -1,10 +1,11 @@
 import Utils from '../dsl_helper/methods';
+import Constraints from '../dsl_model/constraints';
 
 let serialId = 0;
 class Model {
-  _children: any[];
-  _parent: any;
-  _id: any;
+  _children: Model[];
+  _parent: Model | null;
+  _id: string;
   _type: any;
   _serialId: number;
   _similarId: number | null;
@@ -15,7 +16,7 @@ class Model {
   _abYops: number;
   _styles: any;
   _path: string | null;
-  _constraints: any;
+  _constraints: Constraints;
   _zIndex: number;
   _name: string;
   _modelId: string;
@@ -56,10 +57,10 @@ class Model {
   static regular(node: any) {
     return false;
   }
-  public get children() {
+  public get children(): Model[] {
     return this._children;
   }
-  public set children(value: any[]) {
+  public set children(value: Model[]) {
     this._children = value;
   }
   public get parent() {

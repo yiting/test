@@ -7,17 +7,16 @@ const walkout = (node: any, handler: Function) => {
   });
   if (!node.parent) handler(node); // 处理根节点
 };
-export default function(nodeTree: any, widgetList: any = []) {
+export default function(nodeTree: any, unionList: any = []) {
   walkout(nodeTree, (tree: any) => {
-    // console.log(tree.id)
     let children = tree.children;
     if (!children) {
       return;
     }
-    widgetList.forEach((widget: any) => {
-      let matchGroup = widget.capture(children);
+    unionList.forEach((union: any) => {
+      let matchGroup = union.capture(children);
       matchGroup.forEach((matchNodes: any[]) => {
-        let newChild = new widget(matchNodes);
+        let newChild = new union(matchNodes);
         newChild.resetZIndex();
         children = children.filter((child: any) => !matchNodes.includes(child));
         children.push(newChild);

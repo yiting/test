@@ -41,7 +41,7 @@ class Text extends Model {
       b_color.push([r, g, b, a].join());
     });
     return (
-      this.isMultiline === target.isMultiline &&
+      // this.isMultiline === target.isMultiline &&
       a_font.join(',').search(RegExp(b_font.join('|'), 'g')) > -1 &&
       a_size.join(',').search(RegExp(b_size.join('|'), 'g')) > -1 &&
       a_color.join(',').search(RegExp(b_color.join('|'), 'g')) > -1

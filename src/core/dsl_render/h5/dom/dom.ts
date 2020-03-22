@@ -13,7 +13,9 @@ import {
 
 let Loger = QLog.getInstance(QLog.moduleData.render);
 
-export default class TemplateDom extends VDom {
+export default class HtmlDom extends VDom {
+  children: HtmlDom[];
+
   _zIndex: any;
 
   _tagName: string;
@@ -140,11 +142,15 @@ export default class TemplateDom extends VDom {
 
   _getLastChild() {
     for (let i = this.children.length - 1; i >= 0; i--) {
-      const child = this.children[i];
+      let child: HtmlDom = this.children[i];
       if (!child._isAbsolute()) {
         return child;
       }
     }
+  }
+
+  getExtendCss() {
+    return '';
   }
 
   /**

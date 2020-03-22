@@ -1,26 +1,26 @@
-import * as Constraints from '../dsl_helper/constraints';
+import * as ConstraintsMap from '../dsl_helper/constraints';
+import Constraints from '../dsl_model/constraints';
 import Utils from '../dsl_helper/methods';
 import Dictionary from '../dsl_helper/dictionary';
 export default class VDom {
-  children: any[];
-  parent: any;
+  children: VDom[];
+  parent: VDom | null;
   id: any;
   type: any;
   serialId: any;
   similarId: any;
-  canLeftFlex: any;
-  canRightFlex: any;
-  modelId: any;
-  modelName: any;
-  isClosedTag: any;
-  text: any;
-  abX: any;
-  abY: any;
-  path: any;
+  canLeftFlex: boolean;
+  canRightFlex: boolean;
+  modelId: string;
+  modelName: string;
+  text: string;
+  abX: number;
+  abY: number;
+  abXops: number;
+  abYops: number;
   styles: any;
-  abXops: any;
-  abYops: any;
-  constraints: any;
+  path: string | null;
+  constraints: Constraints;
   zindex: any;
   isMultiline: any;
 
@@ -44,7 +44,7 @@ export default class VDom {
     this.path = node.path || null;
     this.zindex = node.zIndex;
     this.styles = node.styles || {};
-    this.constraints = node.constraints || {};
+    this.constraints = node.constraints || new Constraints();
     this.isMultiline = node.isMultiline;
   }
   toJSON() {
@@ -79,7 +79,7 @@ export default class VDom {
   protected _isAbsolute() {
     if (
       this.constraints.LayoutPosition &&
-      this.constraints.LayoutPosition === Constraints.LayoutPosition.Absolute
+      this.constraints.LayoutPosition === ConstraintsMap.LayoutPosition.Absolute
     ) {
       return true;
     }
@@ -105,7 +105,7 @@ export default class VDom {
     if (
       this.parent.constraints.LayoutDirection &&
       this.parent.constraints.LayoutDirection ==
-        Constraints.LayoutDirection.Horizontal
+        ConstraintsMap.LayoutDirection.Horizontal
     ) {
       return true;
     }
@@ -130,7 +130,8 @@ export default class VDom {
   }
   private _canFlex(isLeft: boolean) {
     if (
-      this.constraints.LayoutFixedWidth === Constraints.LayoutFixedWidth.Fixed
+      this.constraints.LayoutFixedWidth ===
+      ConstraintsMap.LayoutFixedWidth.Fixed
     ) {
       return false;
     }
@@ -141,7 +142,7 @@ export default class VDom {
       this.type === Dictionary.type.QText &&
       (!this.parent ||
         this.parent.constraints.LayoutDirection !==
-          Constraints.LayoutDirection.Vertical)
+          ConstraintsMap.LayoutDirection.Vertical)
     ) {
       return false;
     }
@@ -155,7 +156,7 @@ export default class VDom {
 
     const _dir: string = isLeft ? 'End' : 'Start';
     const _c: any = this.constraints;
-    const _C: any = Constraints;
+    const _C: any = ConstraintsMap;
 
     const isHorizontal = _c.LayoutDirection === _C.LayoutDirection.Horizontal;
     const isJustifyDir =
@@ -164,7 +165,7 @@ export default class VDom {
     const isJustifyCenter =
       _c.LayoutJustifyContent === _C.LayoutJustifyContent.Center;
     const isAlignCenter =
-      _c.LayoutAlignItems === Constraints.LayoutAlignItems.Center;
+      _c.LayoutAlignItems === ConstraintsMap.LayoutAlignItems.Center;
     // 如果左对齐，不能向左拓展
     if (
       isHorizontal
@@ -183,7 +184,7 @@ export default class VDom {
       const isPJustifyCenter =
         _pc.LayoutJustifyContent === _C.LayoutJustifyContent.Center;
       const isPAlignCenter =
-        _pc.LayoutAlignItems === Constraints.LayoutAlignItems.Center;
+        _pc.LayoutAlignItems === ConstraintsMap.LayoutAlignItems.Center;
       if (
         isPHorizontal
           ? isPJustifyCenter || isPJustifyDir
@@ -218,7 +219,7 @@ export default class VDom {
          */
         const directKeyName =
           this.parent.constraints.LayoutDirection ==
-          Constraints.LayoutDirection.Horizontal
+          ConstraintsMap.LayoutDirection.Horizontal
             ? 'abX'
             : 'abY';
         if (node[directKeyName] > this[directKeyName]) {
@@ -245,12 +246,12 @@ export default class VDom {
     }
     const prevKey =
       that.parent.constraints.LayoutDirection ==
-      Constraints.LayoutDirection.Horizontal
+      ConstraintsMap.LayoutDirection.Horizontal
         ? 'abYops'
         : 'abXops';
     const selfKey =
       that.parent.constraints.LayoutDirection ==
-      Constraints.LayoutDirection.Horizontal
+      ConstraintsMap.LayoutDirection.Horizontal
         ? 'abY'
         : 'abX';
     that.parent.children.some((node: any) => {
@@ -279,12 +280,12 @@ export default class VDom {
     }
     const nextKey =
       that.parent.constraints.LayoutDirection ==
-      Constraints.LayoutDirection.Horizontal
+      ConstraintsMap.LayoutDirection.Horizontal
         ? 'abY'
         : 'abX';
     const selfKey =
       that.parent.constraints.LayoutDirection ==
-      Constraints.LayoutDirection.Horizontal
+      ConstraintsMap.LayoutDirection.Horizontal
         ? 'abYops'
         : 'abXops';
     that.parent.children.some((node: any) => {
@@ -331,31 +332,31 @@ export default class VDom {
     );
   }
   // 元素层级
-  protected get _gradation() {
-    return this.parent ? this.parent + 1 : 0;
+  protected get _gradation(): number {
+    return this.parent ? this.parent._gradation + 1 : 0;
   }
 
-  protected get _left() {
+  protected get _left(): number {
     return this.parent ? this.abX - this.parent.abX : this.abX;
   }
 
-  protected get _top() {
+  protected get _top(): number {
     return this.parent ? this.abY - this.parent.abY : this.abY;
   }
 
-  protected get _right() {
+  protected get _right(): number {
     return this.parent ? this.parent.abXops - this.abXops : 0;
   }
 
-  protected get _bottom() {
+  protected get _bottom(): number {
     return this.parent ? this.parent.abYops - this.abYops : 0;
   }
 
-  protected get _width() {
+  protected get _width(): number {
     return this.abXops - this.abX;
   }
 
-  protected get _height() {
+  protected get _height(): number {
     return this.abYops - this.abY;
   }
 

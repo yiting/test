@@ -10,7 +10,6 @@ export default class List extends HtmlDom {
   getUI() {
     return `<ul class="${this.htmlClassName}">${this.slot}</ul>`;
   }
-
   listClassName(): string {
     if (
       this.constraints.LayoutDirection == Constraints.LayoutDirection.Horizontal

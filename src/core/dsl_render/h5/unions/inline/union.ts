@@ -10,10 +10,12 @@ let ErrorCoefficient: number;
 let CoordinateWidth: number;
 
 class Inline extends TextModel {
-  constructor(node: any = {}) {
-    super(node);
+  constructor(nodes: any[]) {
+    super({});
     this.canLeftFlex = false;
     this.canRightFlex = true;
+    this.children = nodes;
+    this.resize();
   }
   static define() {}
   static capture(nodes: any[]): any[] {
