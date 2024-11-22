@@ -14,8 +14,6 @@ export default (
   <meta name="HandheldFriendly" content="true" />
   <meta name="MobileOptimized" content="320" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <meta name="Description" content="Tencent,腾讯" />
-  <meta name="Keywords" content="Tencent,腾讯" />
   <meta itemprop="name" content="" />
   <meta name="description" itemprop="description" content="" />
   <meta name="apple-mobile-web-app-capable" content="yes" />

@@ -211,37 +211,6 @@
     "type": "QShape"
   },
   {
-    "id": "1236---2C07E366-A05D-4CA5-B512-A1177AA88000",
-    "name": "Label",
-    "width": 148,
-    "height": 52,
-    "abX": 301,
-    "abY": 56,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "腾讯公益",
-          "font": "PingFangSC-Medium",
-          "size": 37
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 2,
-      "lineHeight": null
-    },
-    "type": "QText",
-    "text": "腾讯公益",
-    "symbolRoot": ["123664B2-7CAA-4C97-B207-CE6F20E869FB"],
-    "symbolIdentity": ["dcdae3899adfeecbb6979150a2d81c0a"]
-  },
-  {
     "id": "1236---601D2D09-FF58-4B8B-9D20-A5D890127FE2",
     "name": "100%",
     "width": 33,

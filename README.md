@@ -2,24 +2,6 @@
 
 让机器理解设计稿（SKETCH、PSD ），并生成对应的 UI 样式及结构代码(H5、iOS、Android)
 
-官网：http://uitocode.oa.com
-
-#### 注意：项目分为三个仓库地址:
-
-#### 基础模块服务：http://git.code.oa.com/qqpay_ui/toSeeWeb.git
-
-#### web 服务[前端]：https://git.code.oa.com/qqpay_ui/toSeeWebFE
-
-#### web 服务[后端]：https://git.code.oa.com/qqpay_ui/toSeeWebPlatform
-
-## 相关文章介绍
-
-1. 视觉编译-让机器理解设计：http://km.oa.com/group/15849/articles/show/367169
-2. 视觉编译-UI 界面的 DSL 算法(上) ：http://km.oa.com/group/15849/articles/show/370283
-3. 视觉编译-切图快到没朋友：http://km.oa.com/group/15849/articles/show/370832
-4. 视觉编译-如何构建 UI 界面元素的布局关系：http://km.oa.com/group/15849/articles/show/374138
-5. 视觉编译-结构清洗让 UI 图层更合理 http://km.oa.com/group/15849/articles/show/377366
-
 ## 目录
 
 1. 解决什么问题
@@ -38,62 +20,9 @@
 
 ## 2.解决方案
 
-![](http://km.oa.com/files/photos/pictures/201901/1547005473_87_w966_h636.png)
+待补充
 
-## 3.任务列表
-
-```
-1.勾选表示已完成或进行中，未勾选表示尚未开始，需要大家的帮助。
-2.对下述各环节有更好的思路及方案，随时加入修改。
-3.【有兴趣加入的同学，我们会安排专人帮你搭建运行环境】
-```
-
-- [ ] DesignJson（`负责人yonechen、ralychen`）：将视觉稿图层抽象为图元树。[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/src/core/docs/designjson.md)
-  - [x] Parser 图元抽象-Sketch
-  - [ ] Parser 图元抽象-Photoshop
-  - [ ] Parser 图元抽象-XD
-  - [x] Optimize 图元优化
-- [ ] DSL（`负责人chrisschen`）：对设计元素数据进行抽象并输出统一结构的模块。[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/dsl.md)
-  - [x] 元素模型、组件模型的识别及组合匹配算法块（识别及匹配出模型）。
-  - [x] 模型数据进行组装结构化算法块（模型数据组成 DSL 树）。
-  - [x] DSL 树进行布局处理及循环分析算法块（DSL 树布局分析）。
-  - [ ] 优化模型识别（模型设计、算法、AI 辅助）。
-  - [ ] 优化 DSL 树的结构（算法）。
-  - [ ] 优化循环结构处理（算法）。
-- [ ] Render（`负责人chironyang`）：通过 Render 把设计数据映射在模板上，最终解析成终端代码。[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/render.md)
-  - [x] 模板映射，根据数据生成模板代码
-  - [ ] 优化 样式命名 ClassName
-  - [ ] 优化 Css_Dom 样式输出的默认属性问题
-  - [ ] 优化 Flutter 语言的流式布局逻辑
-  - [ ] 设计稿分辨率兼容
-- [ ] AI 虚拟目标识别（`负责人ralychen`）：对设计稿的图元以及 UI 结构识别。[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/AI.md)
-  - [ ] 完善增加 design15 数据集。
-  - [x] 识别图元(icon,img)结构，为合图提供合并的判断条件。
-  - [x] 识别页面 UI 模块，为页面结构生成提供判断条件。
-  - [x] 识别元素接口开放，返回查询字段。
-- [ ] 图像合成/绘图去重（`负责人yixionglin、bowentang`）：找出该合成的图元并进行绘制，对重复的图片资源进行去重。
-  - [x] 图片合成逻辑;[点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/designRule.md)
-  - [x] 图片绘制-sketch [点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/designImage.md)
-  - [x] 图片绘制-psd [点击查看](https://git.code.oa.com/qqpay_ui/toSeeWeb/blob/master/doc/designPS.md)
-  - [ ] 图片绘制-xd
-  - [x] 重复图片，去重处理
-- [ ] 多语言解析和生成（`负责人chrisschen、chironyang`）：将视觉稿根据开发语言要求生成对应代码。文档待补充
-  - [x] Html/css 语言
-  - [x] Hippy
-  - [ ] 微信小程序
-  - [ ] Vue
-  - [ ] PC 版（Html/css）支持
-  - [ ] Android
-  - [ ] IOS
-- [ ] 编译平台（`负责人alltasxiao`）：将设计稿一键智能生成代码的平台。http://uitocode.oa.com
-  - [x] 上传、解析、编译、下载、预览。
-  - [x] 关键数据存储(上传文件、解压数据、编译项目、下载项目)；操作记录日志。
-  - [x] 个人中心(个人项目、浏览项目)、访客统计、所有项目、开发者工具、设计规范。
-  - [x] 编译页资源提取、面板操作(测距、单位转换等)。
-  - [ ] 底层基础库版本比对定时任务待接入
-  - [ ] AI+普通规则待接入
-
-## 4.快速搭建环境 【有兴趣加入的同学，我们会安排专人帮你搭建运行环境】
+## 3.快速搭建环境 【有兴趣加入的同学，我们会安排专人帮你搭建运行环境】
 
 ```
 背景：由于视觉编译服务底层绘图模块使用了sketch和gm运行库，而sketch绘图库目前只能在mac电脑下运行(后续可研究是否可反编译，运行在其他平台)，因此该项目主要部署mac电脑,
@@ -111,9 +40,9 @@
 
 2. 下载项目代码
 
-- 下载项目代码到本地电脑，项目地址：`http://git.code.oa.com/qqpay_ui/toSeeWeb.git`
+- 下载项目代码到本地电脑
 
-3. 初始化数据库
+1. 初始化数据库
 
 - 安装 mysql 数据库（建议版本 Server version: 8.0.13 MySQL Community Server - GPL）
 - 初始化数据库命令，如: `source /code/sql/tosee.sql`
@@ -126,7 +55,7 @@
 5. 访问页面(由于使用了 url 地址透传，按钮、链接等不能直接跳转，根据路径访问对应页面)
 
 ```
-说明：由于鉴权信息在线上服务器进行，本地部署无法获取用户信息。在本地部署时，先登录http://uitocode.oa.com，获取的用户信息存储在浏览器cookie中。这样本地部署访问时，
+说明：由于鉴权信息在线上服务器进行，本地部署无法获取用户信息。在本地部署时，先登录官网，获取的用户信息存储在浏览器cookie中。这样本地部署访问时，
 即可根据用户信息进行一系列数据库持久化操作。
 ```
 
@@ -134,9 +63,7 @@
 - 个人中心：localhost:8080/person
 - 编译结果页(需要复制上传后的项目链接，更改为本机地址+端口)，如：localhost:8080/edit?id=9b288f20-30f8-11e9-8839-1f15855e680f&name=20190215160632_0list
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>`搭建环境过程中有任何问题，请联系：alltasxiao(肖超)`</strong>
-
-## 5.目录结构
+## 4.目录结构
 
 #### `提示：下面项目目录，以上述新的仓库目录结构为准`
 
@@ -224,22 +151,12 @@
 └── package.json
 ```
 
-## 6.相关链接
+## 5.相关链接
 
 待补充
 
-## 7.许可声明/交流群
+## 6.许可声明/交流群
 
-#### 注意：项目仅供腾讯内部开源，源代码未经授权，禁止对外公开
-
-视觉编译开发者交 QQ 流群： 477963529
-![](http://km.oa.com/files/photos/pictures/201902/1550227512_64_w477_h477.jpg)
-
-### 最后，感谢以下成员业余时间友情支持：
-
-感谢 CSIG 优图实验室 hongyuzhou 对 AI 目标识别的技术指导！
-感谢 ISUX 碳黑设计组 trevorpang、skymlhuang 交互设计指导！
-感谢 IEG 互动娱乐发行线/设计中心/UI 开发组 PSD 技术支持！
-感谢 PCG 浏览平台产品部/平台开发组 Hippy 技术支持！
+#### 注意：项目仅供公司内部开源，源代码未经授权，禁止对外公开
 
 ### 项目相关代码仅对内部交流，请勿外传！谢谢！

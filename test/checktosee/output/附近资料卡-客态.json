@@ -637,36 +637,6 @@
     "path": "441d15c6540bcc90d6960310f4e435c0.png"
   },
   {
-    "id": "94A7426E-5E98-4C76-B5C3-EE5532D93C18",
-    "name": "腾讯科技有限公司",
-    "width": 224,
-    "height": 28,
-    "abX": 101,
-    "abY": 1062,
-    "zIndex": 1,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 0, "g": 0, "b": 0, "a": 1 },
-          "string": "腾讯科技有限公司",
-          "font": "PingFangSC-Regular",
-          "size": 28
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 28
-    },
-    "type": "QText",
-    "text": "腾讯科技有限公司"
-  },
-  {
     "id": "FB6A8156-E4D4-473A-9B31-278110B9AB26",
     "name": "工卡",
     "width": 34,

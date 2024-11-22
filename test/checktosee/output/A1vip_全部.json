@@ -96,37 +96,6 @@
     "path": "_2163_2163_2163.png"
   },
   {
-    "id": "8CD6---52864221-547F-4F59-918E-24D33D34BF80",
-    "name": "Tencent",
-    "width": 90,
-    "height": 24,
-    "abX": 50,
-    "abY": 8,
-    "styles": {
-      "borderRadius": null,
-      "border": null,
-      "opacity": 1,
-      "rotation": 0,
-      "shadows": null,
-      "background": null,
-      "texts": [
-        {
-          "color": { "r": 255, "g": 255, "b": 255, "a": 1 },
-          "string": "Tencent",
-          "font": "PingFangSC-Regular",
-          "size": 24
-        }
-      ],
-      "verticalAlign": 0,
-      "textAlign": 0,
-      "lineHeight": 24
-    },
-    "type": "QText",
-    "text": "Tencent",
-    "symbolRoot": ["8CD62676-C120-4D4A-882F-7EE8238EA34D"],
-    "symbolIdentity": ["96b6b36076f99c1bdd0ed867897d9139"]
-  },
-  {
     "id": "_8CD6_8CD6",
     "name": "_Wifi_Mobile Signal",
     "width": 159,
